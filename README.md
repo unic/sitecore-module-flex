@@ -1,0 +1,2 @@
+# Sitecore Flex
+Flex is the acronym for **Fl**exible Forms **Ex**perience, the module to create web forms within a Sitecore MVC solution. Flex is also known as a friend of [Bob the Builder](http://en.wikipedia.org/wiki/Bob_the_Builder "Bob the Builder"), a yellow-black cherry picker with a Northern Irish accent.
