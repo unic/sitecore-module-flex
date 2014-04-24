@@ -38,6 +38,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\..\packages\Castle.Core.3.2.0\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor">
+      <HintPath>..\..\packages\Castle.Windsor.3.2.0\lib\net45\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="Glass.Mapper">
+      <HintPath>..\..\packages\Glass.Mapper.3.0.10.23\lib\net45\Glass.Mapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Glass.Mapper.Sc">
+      <HintPath>..\..\packages\Glass.Mapper.Sc.3.1.8.27\lib\net45\Glass.Mapper.Sc.dll</HintPath>
+    </Reference>
+    <Reference Include="Glass.Mapper.Sc.CastleWindsor">
+      <HintPath>..\..\packages\Glass.Mapper.Sc.CastleWindsor.3.2.0.17\lib\net45\Glass.Mapper.Sc.CastleWindsor.dll</HintPath>
+    </Reference>
     <Reference Include="Kamsar.WebConsole">
       <HintPath>..\..\packages\Kamsar.WebConsole.1.2.2.0\lib\net40\Kamsar.WebConsole.dll</HintPath>
       <Private>True</Private>
@@ -50,6 +65,12 @@
     <Reference Include="Ninject">
       <HintPath>..\..\packages\Ninject.3.0.1.10\lib\net45-full\Ninject.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="Sitecore.Kernel">
+      <HintPath>..\..\lib\Sitecore.Kernel.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Mvc">
+      <HintPath>..\..\lib\Sitecore.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -95,8 +116,12 @@
       <HintPath>..\..\packages\Unicorn.2.0.3\lib\net45\Unicorn.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="WebActivatorEx">
+      <HintPath>..\..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\GlassConfig.cs" />
     <Compile Include="Controllers\FlexController.cs" />
     <Compile Include="Models\Flex\FormViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -104,12 +129,23 @@
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="App_Config\Include\Glass.Mapper.Sc.Mvc.config" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="App_Config\Include\Serialization.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Flex\Form.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Unic.Flex.DomainModel\Unic.Flex.DomainModel.csproj">
+      <Project>{c47272b9-c13f-4f53-b9f3-d3066bb45810}</Project>
+      <Name>Unic.Flex.DomainModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="web.config" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

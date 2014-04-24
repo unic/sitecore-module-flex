@@ -13,6 +13,7 @@
 							$(MSBuildStartupDirectory)\..\*.xml;
 							$(MSBuildStartupDirectory)\..\bin\**;
 							$(MSBuildStartupDirectory)\..\obj\**;
+							$(MSBuildStartupDirectory)\..\web.config;
 							$(MSBuildStartupDirectory)\..\Properties\**" />
 					
             <AppConfigFiles
@@ -21,7 +22,8 @@
             <Binaries
 				Include="	$(MSBuildStartupDirectory)\..\bin\*"
 				Exclude="	$(MSBuildStartupDirectory)\..\bin\*.xml;
-							$(MSBuildStartupDirectory)\..\bin\*.pdb" />
+							$(MSBuildStartupDirectory)\..\bin\*.pdb;
+							$(MSBuildStartupDirectory)\..\bin\Sitecore.*" />
         </ItemGroup>
 
         <Copy SourceFiles="@(GeneralFiles)" DestinationFiles="@(GeneralFiles->'$(DeployDir)\$(Environment)\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="True" />
