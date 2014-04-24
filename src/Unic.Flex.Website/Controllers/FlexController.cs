@@ -5,6 +5,7 @@
     using Sitecore.Diagnostics;
     using Sitecore.Mvc.Presentation;
     using Unic.Flex.DomainModel;
+    using Unic.Flex.DomainModel.Forms;
     using Unic.Flex.Website.Models.Flex;
 
     public class FlexController : Controller
@@ -14,7 +15,7 @@
             var dataSource = RenderingContext.Current.Rendering.DataSource;
             Assert.IsTrue(Sitecore.Data.ID.IsID(dataSource), "Datasource is not valid");
 
-            var formItem = (new SitecoreContext()).GetItem<BaseItem>(dataSource);
+            var formItem = (new SitecoreContext()).GetItem<Form>(dataSource);
 
             return this.View(new FormViewModel { Title = "GET Action for datasource item id: " + formItem.ItemId });
         }
