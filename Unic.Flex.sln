@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unic.Flex.DomainModel", "src\Unic.Flex.DomainModel\Unic.Flex.DomainModel.csproj", "{C47272B9-C13F-4F53-B9F3-D3066BB45810}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unic.Flex.Website", "src\Unic.Flex.Website\Unic.Flex.Website.csproj", "{577B0929-DF4E-437A-8601-DEF9D3974332}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C47272B9-C13F-4F53-B9F3-D3066BB45810}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C47272B9-C13F-4F53-B9F3-D3066BB45810}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C47272B9-C13F-4F53-B9F3-D3066BB45810}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C47272B9-C13F-4F53-B9F3-D3066BB45810}.Release|Any CPU.Build.0 = Release|Any CPU
+		{577B0929-DF4E-437A-8601-DEF9D3974332}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{577B0929-DF4E-437A-8601-DEF9D3974332}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{577B0929-DF4E-437A-8601-DEF9D3974332}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{577B0929-DF4E-437A-8601-DEF9D3974332}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
