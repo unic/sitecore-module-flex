@@ -1,0 +1,9 @@
+﻿@using System.Web.Mvc.Html
+@model Unic.Flex.Website.Models.Flex.FormViewModel
+
+<strong>@Model.Title</strong>
+
+@using (Html.BeginForm())
+{
+    <input type="submit" value="submit" />
+}
