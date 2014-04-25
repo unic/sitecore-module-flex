@@ -55,6 +55,7 @@
     <Compile Include="Context\IContextService.cs" />
     <Compile Include="Mapping\FormRepository.cs" />
     <Compile Include="Mapping\IFormRepository.cs" />
+    <Compile Include="Pipelines\HttpRequest\ResolveFormStep.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
