@@ -6,16 +6,24 @@
     using Sitecore.Mvc.Presentation;
     using Unic.Flex.DomainModel;
     using Unic.Flex.DomainModel.Forms;
+    using Unic.Flex.Service.Context;
     using Unic.Flex.Website.Models.Flex;
 
     public class FlexController : Controller
     {
+        private IContextService contextService;
+        
+        public FlexController(IContextService contextService)
+        {
+            this.contextService = contextService;
+        }
+        
         public ActionResult Form()
         {
             var dataSource = RenderingContext.Current.Rendering.DataSource;
             Assert.IsTrue(Sitecore.Data.ID.IsID(dataSource), "Datasource is not valid");
 
-            var formItem = (new SitecoreContext()).GetItem<Form>(dataSource);
+            var formItem = this.contextService.LoadForm(dataSource, new SitecoreContext());
 
             return this.View(new FormViewModel { Title = "GET Action for datasource item id: " + formItem.ItemId });
         }

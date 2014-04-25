@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unic.Flex.DomainModel", "sr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unic.Flex.Website", "src\Unic.Flex.Website\Unic.Flex.Website.csproj", "{577B0929-DF4E-437A-8601-DEF9D3974332}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unic.Flex.Service", "src\Unic.Flex.Service\Unic.Flex.Service.csproj", "{18B25AE3-F6AA-4A59-A49B-051CEB4487D8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{577B0929-DF4E-437A-8601-DEF9D3974332}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{577B0929-DF4E-437A-8601-DEF9D3974332}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{577B0929-DF4E-437A-8601-DEF9D3974332}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18B25AE3-F6AA-4A59-A49B-051CEB4487D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18B25AE3-F6AA-4A59-A49B-051CEB4487D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18B25AE3-F6AA-4A59-A49B-051CEB4487D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18B25AE3-F6AA-4A59-A49B-051CEB4487D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
