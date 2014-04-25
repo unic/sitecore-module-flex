@@ -11,7 +11,7 @@ namespace Unic.Flex.DomainModel.Steps
 
     public abstract class StandardStep : ItemBase, IStandardStep
     {
-        [SitecoreChildren(InferType = true)]
+        [SitecoreChildren(IsLazy = true, InferType = true)]
         public virtual IEnumerable<ISectionBase> Sections { get; set; }
     }
 }
