@@ -1,12 +1,13 @@
-﻿namespace Unic.Flex.Website.Controllers
+﻿using SitecoreContext = Glass.Mapper.Sc.SitecoreContext;
+
+namespace Unic.Flex.Website.Controllers
 {
     using System.Web.Mvc;
-    using Glass.Mapper.Sc;
     using Sitecore.Diagnostics;
     using Sitecore.Mvc.Presentation;
+    using Unic.Flex.Context;
     using Unic.Flex.DomainModel;
     using Unic.Flex.DomainModel.Forms;
-    using Unic.Flex.Service.Context;
     using Unic.Flex.Website.Models.Flex;
 
     public class FlexController : Controller

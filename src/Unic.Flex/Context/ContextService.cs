@@ -1,10 +1,8 @@
-﻿using ISitecoreContext = Glass.Mapper.Sc.ISitecoreContext;
-
-namespace Unic.Flex.Service.Context
+﻿namespace Unic.Flex.Context
 {
-    using System;
+    using Glass.Mapper.Sc;
     using Unic.Flex.DomainModel.Forms;
-    using Unic.Flex.Service.Glass;
+    using Unic.Flex.Mapping;
 
     public class ContextService : IContextService
     {

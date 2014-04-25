@@ -8,8 +8,8 @@ namespace Unic.Flex.Website
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
     using Ninject;
     using Ninject.Web.Common;
-    using Unic.Flex.Service.Context;
-    using Unic.Flex.Service.Glass;
+    using Unic.Flex.Context;
+    using Unic.Flex.Mapping;
 
     /// <summary>
     /// Ninject configuration initializer

@@ -7,8 +7,8 @@
     <ProjectGuid>{18B25AE3-F6AA-4A59-A49B-051CEB4487D8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Unic.Flex.Service</RootNamespace>
-    <AssemblyName>Unic.Flex.Service</AssemblyName>
+    <RootNamespace>Unic.Flex</RootNamespace>
+    <AssemblyName>Unic.Flex</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -53,8 +53,8 @@
   <ItemGroup>
     <Compile Include="Context\ContextService.cs" />
     <Compile Include="Context\IContextService.cs" />
-    <Compile Include="Glass\FormRepository.cs" />
-    <Compile Include="Glass\IFormRepository.cs" />
+    <Compile Include="Mapping\FormRepository.cs" />
+    <Compile Include="Mapping\IFormRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

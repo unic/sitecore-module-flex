@@ -150,9 +150,9 @@
       <Project>{c47272b9-c13f-4f53-b9f3-d3066bb45810}</Project>
       <Name>Unic.Flex.DomainModel</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Unic.Flex.Service\Unic.Flex.Service.csproj">
+    <ProjectReference Include="..\Unic.Flex\Unic.Flex.csproj">
       <Project>{18b25ae3-f6aa-4a59-a49b-051ceb4487d8}</Project>
-      <Name>Unic.Flex.Service</Name>
+      <Name>Unic.Flex</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,6 @@
-﻿using ISitecoreContext = Glass.Mapper.Sc.ISitecoreContext;
-
-namespace Unic.Flex.Service.Glass
+﻿namespace Unic.Flex.Mapping
 {
+    using Glass.Mapper.Sc;
     using Sitecore.Diagnostics;
     using Unic.Flex.DomainModel.Forms;
 

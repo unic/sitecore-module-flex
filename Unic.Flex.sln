@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unic.Flex.DomainModel", "sr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unic.Flex.Website", "src\Unic.Flex.Website\Unic.Flex.Website.csproj", "{577B0929-DF4E-437A-8601-DEF9D3974332}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unic.Flex.Service", "src\Unic.Flex.Service\Unic.Flex.Service.csproj", "{18B25AE3-F6AA-4A59-A49B-051CEB4487D8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unic.Flex", "src\Unic.Flex\Unic.Flex.csproj", "{18B25AE3-F6AA-4A59-A49B-051CEB4487D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
