@@ -133,6 +133,7 @@
     <Compile Include="App_Start\GlassConfig.cs" />
     <Compile Include="App_Start\NinjectConfig.cs" />
     <Compile Include="Controllers\FlexController.cs" />
+    <Compile Include="Models\Flex\FlexModelBinder.cs" />
     <Compile Include="Models\Flex\FormViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

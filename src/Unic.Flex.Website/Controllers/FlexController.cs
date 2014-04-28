@@ -35,8 +35,7 @@
         [HttpPost]
         public ActionResult Form(FormViewModel model)
         {
-            model.Title = "POST Action";
-            return this.View("~/Views/Modules/Flex//Default/Form.cshtml");
+            return this.View("~/Views/Modules/Flex//Default/Form.cshtml", model);
         }
     }
 }
