@@ -13,5 +13,9 @@ namespace Unic.Flex.DomainModel.Steps
     {
         [SitecoreChildren(IsLazy = true, InferType = true)]
         public virtual IEnumerable<ISectionBase> Sections { get; set; }
+
+        public abstract string ViewName { get; }
+
+        public bool IsActive { get; set; }
     }
 }

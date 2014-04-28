@@ -1,0 +1,23 @@
+﻿@using Unic.Flex.Helpers
+@model Unic.Flex.DomainModel.Sections.StandardSection
+
+@if (Model.DisableFieldset)
+{
+    <ul>
+        <li>Fields without fieldset</li>
+    </ul>
+}
+else
+{
+    <fieldset>
+        <legend>@Model.Title</legend>
+        
+        <ul>
+            @foreach (var field in Model.Fields)
+            {
+                @Html.FlexComponent(field)
+            }
+        </ul>
+
+    </fieldset> 
+}

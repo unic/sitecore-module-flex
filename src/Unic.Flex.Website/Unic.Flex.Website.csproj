@@ -143,7 +143,7 @@
     <Content Include="App_Config\Include\Serialization.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Flex\Form.cshtml" />
+    <Content Include="Views\Modules\Flex\Default\Form.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Unic.Flex.DomainModel\Unic.Flex.DomainModel.csproj">
@@ -160,6 +160,27 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Config\Include\Unic.Flex.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Modules\Flex\Default\Steps\MultiStep.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Modules\Flex\Default\Steps\SingleStep.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Modules\Flex\Default\Steps\Summary.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Modules\Flex\Default\Sections\ReusableSection.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Modules\Flex\Default\Sections\StandardSection.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Modules\Flex\Default\Fields\InputFields\MultilineText.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Modules\Flex\Default\Fields\InputFields\SinglelineText.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

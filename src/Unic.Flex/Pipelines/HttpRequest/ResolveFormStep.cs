@@ -75,16 +75,19 @@
             FlexContext.Current.Form = form;
 
             // if we are on the main step, everything is fine now
-            if (!rewriteContextItem) return;
+            if (!rewriteContextItem)
+            {
+                FlexContext.Current.Form.Steps.First().IsActive = true;
+                return;
+            }
 
             // check if we are on a valid step (/ means the first step and is valid)
-            var stepPath = path.Split('/').Last();
-            if (!form.Steps.Skip(1)
-                    .Select(step => step.Url.Split('/').Last())
-                    .Select(stepUrl => stepUrl.Remove(stepUrl.LastIndexOf(".", StringComparison.Ordinal)))
-                    .Any(stepUrl => stepUrl.Equals(stepPath, StringComparison.InvariantCultureIgnoreCase))) return;
-            
-            // rewrite context item if everything is ok
+            var currentUrlPart = path.Split('/').Last();
+            var activeStep = form.Steps.Skip(1).FirstOrDefault(step => this.IsStepEqual(step.Url, currentUrlPart));
+            if (activeStep == null) return;
+
+            // rewrite current step and context item if everything is ok
+            activeStep.IsActive = true;
             Sitecore.Context.Item = item;
         }
 
@@ -125,6 +128,19 @@
             Assert.ArgumentNotNull(item, "item");
             Assert.ArgumentNotNullOrEmpty(name, "name");
             return item.Axes.SelectSingleItem(string.Format("*[@@name = '{0}' or @__Display name = '{0}']", name));
+        }
+
+        /// <summary>
+        /// Determines whether the given step url matches the current url part.
+        /// </summary>
+        /// <param name="stepUrl">The step URL.</param>
+        /// <param name="currentUrlPart">The current URL part.</param>
+        /// <returns>Boolean value if the url parts match or not</returns>
+        private bool IsStepEqual(string stepUrl, string currentUrlPart)
+        {
+            var lastPart = stepUrl.Split('/').Last();
+            var url = lastPart.Remove(lastPart.LastIndexOf(".", StringComparison.Ordinal));
+            return url.Equals(currentUrlPart, StringComparison.InvariantCultureIgnoreCase);
         }
     }
 }

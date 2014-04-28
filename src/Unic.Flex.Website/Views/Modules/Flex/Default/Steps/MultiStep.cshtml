@@ -1,0 +1,13 @@
+﻿@using System.Web.Mvc.Html
+@using Unic.Flex.Helpers
+@model Unic.Flex.DomainModel.Steps.MultiStep
+
+<p>NAVIGATION PANEL</p>
+
+@foreach (var section in Model.Sections)
+{
+    @Html.FlexComponent(section)
+}
+
+<input type="submit" value="back" />
+<input type="submit" value="submit" />

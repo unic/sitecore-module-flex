@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Unic.Flex.DomainModel.Steps
 {
-    public interface IStepBase : IItemBase
+    using Unic.Flex.DomainModel.Presentation;
+
+    public interface IStepBase : IItemBase, IPresentationComponent
     {
+        bool IsActive { get; set; }
     }
 }

@@ -3,6 +3,7 @@
     using Ninject.Modules;
     using Unic.Flex.Context;
     using Unic.Flex.Mapping;
+    using Unic.Flex.Presentation;
 
     /// <summary>
     /// Ninject configuration module.
@@ -15,6 +16,7 @@
         public override void Load()
         {
             Bind<IContextService>().To<ContextService>();
+            Bind<IPresentationService>().To<PresentationService>();
             Bind<IFormRepository>().To<FormRepository>();
         }
     }

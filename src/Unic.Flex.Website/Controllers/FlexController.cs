@@ -1,37 +1,42 @@
-﻿using SitecoreContext = Glass.Mapper.Sc.SitecoreContext;
-
-namespace Unic.Flex.Website.Controllers
+﻿namespace Unic.Flex.Website.Controllers
 {
     using System.Web.Mvc;
-    using Sitecore.Diagnostics;
-    using Sitecore.Mvc.Presentation;
     using Unic.Flex.Context;
-    using Unic.Flex.DomainModel;
-    using Unic.Flex.DomainModel.Forms;
+    using Unic.Flex.DomainModel.Steps;
+    using Unic.Flex.Presentation;
     using Unic.Flex.Website.Models.Flex;
 
     public class FlexController : Controller
     {
-        private readonly IContextService contextService;
-        
-        public FlexController(IContextService contextService)
+        private readonly IPresentationService presentationService;
+
+        public FlexController(IPresentationService presentationService)
         {
-            this.contextService = contextService;
+            this.presentationService = presentationService;
         }
         
         public ActionResult Form()
         {
             var form = FlexContext.Current.Form;
             if (form == null) return new EmptyResult();
+
+            var formView = this.presentationService.ResolveView(this.ControllerContext, form.ViewName);
             
-            return this.View(new FormViewModel { Title = "GET Action for datasource item id: " + form.ItemId });
+            var model = new FormViewModel
+                            {
+                                Title = form.Title,
+                                Introdcution = form.Introduction,
+                                Step = form.GetActiveStep()
+                            };
+
+            return this.View(formView, model);
         }
 
         [HttpPost]
         public ActionResult Form(FormViewModel model)
         {
             model.Title = "POST Action";
-            return this.View(model);
+            return this.View("~/Views/Modules/Flex//Default/Form.cshtml");
         }
     }
 }

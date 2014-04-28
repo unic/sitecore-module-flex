@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Unic.Flex.DomainModel.Sections
 {
-    public interface ISectionBase : IItemBase
+    using Unic.Flex.DomainModel.Fields;
+    using Unic.Flex.DomainModel.Presentation;
+
+    public interface ISectionBase : IItemBase, IPresentationComponent
     {
+        IEnumerable<IFieldBase> Fields { get; set; } 
     }
 }

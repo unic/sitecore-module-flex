@@ -1,9 +1,11 @@
 ﻿@using System.Web.Mvc.Html
+@using Unic.Flex.Helpers
 @model Unic.Flex.Website.Models.Flex.FormViewModel
 
-<strong>@Model.Title</strong>
+<h2>@Model.Title</h2>
+<p>@Model.Introdcution</p>
 
 @using (Html.BeginForm())
 {
-    <input type="submit" value="submit" />
+    @Html.FlexComponent(Model.Step)
 }

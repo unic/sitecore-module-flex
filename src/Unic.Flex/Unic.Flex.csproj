@@ -47,6 +47,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -59,10 +61,13 @@
     <Compile Include="Context\IContextService.cs" />
     <Compile Include="DependencyInjection\Config.cs" />
     <Compile Include="DependencyInjection\Container.cs" />
+    <Compile Include="Helpers\HtmlHelperExtensions.cs" />
     <Compile Include="Mapping\FormRepository.cs" />
     <Compile Include="Mapping\IFormRepository.cs" />
     <Compile Include="Pipelines\HttpRequest\ResolveFormStep.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Presentation\IPresentationService.cs" />
+    <Compile Include="Presentation\PresentationService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Unic.Flex.DomainModel\Unic.Flex.DomainModel.csproj">
