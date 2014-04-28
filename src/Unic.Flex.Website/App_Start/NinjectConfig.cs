@@ -4,12 +4,14 @@
 namespace Unic.Flex.Website
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Web;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
     using Ninject;
+    using Ninject.Modules;
     using Ninject.Web.Common;
-    using Unic.Flex.Context;
-    using Unic.Flex.Mapping;
+    using Unic.Flex.DependencyInjection;
 
     /// <summary>
     /// Ninject configuration initializer
@@ -45,31 +47,19 @@ namespace Unic.Flex.Website
         /// <returns>The created kernel.</returns>
         private static IKernel CreateKernel()
         {
-            var kernel = new StandardKernel();
-
-            try
-            {
-                kernel.Bind<Func<IKernel>>().ToMethod(context => () => new Bootstrapper().Kernel);
-                kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
-
-                RegisterServices(kernel);
-                return kernel;
-            }
-            catch
-            {
-                kernel.Dispose();
-                throw;
-            }
+            var kernel = Container.CreateKernel(GetModules().ToArray());
+            kernel.Bind<Func<IKernel>>().ToMethod(context => () => new Bootstrapper().Kernel);
+            kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
+            return kernel;
         }
 
         /// <summary>
-        /// Load available modules and services
+        /// Gets the modules.
         /// </summary>
-        /// <param name="kernel">The kernel.</param>
-        private static void RegisterServices(IKernel kernel)
+        /// <returns>List of ninject modules</returns>
+        private static IEnumerable<INinjectModule> GetModules()
         {
-            kernel.Bind<IContextService>().To<ContextService>();
-            kernel.Bind<IFormRepository>().To<FormRepository>();
-        }        
+            yield return new Config();
+        }     
     }
 }

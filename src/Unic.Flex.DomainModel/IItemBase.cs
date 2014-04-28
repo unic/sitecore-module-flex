@@ -9,5 +9,7 @@ namespace Unic.Flex.DomainModel
     public interface IItemBase
     {
         Guid ItemId { get; set; }
+
+        string Url { get; set; }
     }
 }

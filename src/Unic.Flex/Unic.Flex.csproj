@@ -39,6 +39,9 @@
     <Reference Include="Glass.Mapper.Sc">
       <HintPath>..\..\packages\Glass.Mapper.Sc.3.1.8.27\lib\net45\Glass.Mapper.Sc.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="Sitecore.Kernel">
       <HintPath>..\..\lib\Sitecore.Kernel.dll</HintPath>
     </Reference>
@@ -53,6 +56,8 @@
   <ItemGroup>
     <Compile Include="Context\ContextService.cs" />
     <Compile Include="Context\IContextService.cs" />
+    <Compile Include="DependencyInjection\Config.cs" />
+    <Compile Include="DependencyInjection\Container.cs" />
     <Compile Include="Mapping\FormRepository.cs" />
     <Compile Include="Mapping\IFormRepository.cs" />
     <Compile Include="Pipelines\HttpRequest\ResolveFormStep.cs" />

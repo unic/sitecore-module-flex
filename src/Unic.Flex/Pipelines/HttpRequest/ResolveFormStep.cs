@@ -1,19 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Unic.Flex.Pipelines.HttpRequest
+﻿namespace Unic.Flex.Pipelines.HttpRequest
 {
+    using System;
+    using System.Linq;
+    using Glass.Mapper.Sc;
+    using Ninject;
     using Sitecore.Data.Items;
+    using Sitecore.Diagnostics;
     using Sitecore.Pipelines.HttpRequest;
+    using Unic.Flex.Context;
+    using Unic.Flex.DependencyInjection;
 
+    /// <summary>
+    /// Pipeline processor for resolving the current form step.
+    /// </summary>
     public class ResolveFormStep : HttpRequestProcessor
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ResolveFormStep"/> class.
+        /// </summary>
+        public ResolveFormStep()
+        {
+            Container.Kernel.Inject(this);
+        }
+
+        /// <summary>
+        /// Gets or sets the context service.
+        /// </summary>
+        /// <value>
+        /// The context service.
+        /// </value>
+        [Inject]
+        public IContextService ContextService { private get; set; }
+
+        /// <summary>
+        /// Processes the current pipeline processor
+        /// </summary>
+        /// <param name="args">The arguments.</param>
         public override void Process(HttpRequestArgs args)
         {
-            if (Sitecore.Context.Item != null) return;
+            // resolve item
+            var item = Sitecore.Context.Item;
+            var rewriteContextItem = false;
 
             // get the current path
             var path = args.LocalPath;
@@ -22,25 +49,81 @@ namespace Unic.Flex.Pipelines.HttpRequest
                 path = path.Remove(path.Length - 1);
             }
 
-            // resolve the parent item of the current path
-            var parentPath = path.Remove(path.LastIndexOf('/'));
-            var parentItem = this.ResolveParentItem(parentPath);
-            if (parentItem == null) return;
+            // load the parent item based on current path
+            if (item == null)
+            {
+                // resolve the parent item of the current path
+                var parentPath = path.Remove(path.LastIndexOf('/'));
+                item = this.ResolveItem(parentPath);
+
+                // we need to rewrite the context item at the end
+                rewriteContextItem = true;
+            }
+
+            // do nothing if we have no item context
+            if (item == null) return;
+
+            // get the current form included on the item
+            var formDatasource = this.ContextService.GetRenderingDatasource(item, Sitecore.Context.Device);
+            if (string.IsNullOrWhiteSpace(formDatasource)) return;
+
+            // load the form
+            var form = this.ContextService.LoadForm(formDatasource, new SitecoreContext());
+            if (form == null) return;
+
+            // todo: Save form into current request.items or somewhere else?
+
+            // if we are on the main step, everything is fine now
+            if (!rewriteContextItem) return;
+
+            // check if we are on a valid step (/ means the first step and is valid)
+            var stepPath = path.Split('/').Last();
+            if (!form.Steps.Skip(1)
+                    .Select(step => step.Url.Split('/').Last())
+                    .Select(stepUrl => stepUrl.Remove(stepUrl.LastIndexOf(".", StringComparison.Ordinal)))
+                    .Any(stepUrl => stepUrl.Equals(stepPath, StringComparison.InvariantCultureIgnoreCase))) return;
             
-            // todo: implement the complete logic
-            // 1. check if current item or parent item has a form included
-            // 2. check if the current url match to a step in the form config (/ means the first step)
-            // 3. if yes -> change context item and load form
-            // 4. if no -> show 404
-            Sitecore.Context.Item = parentItem;
+            // rewrite context item if everything is ok
+            Sitecore.Context.Item = item;
         }
 
-        private Item ResolveParentItem(string url)
+        /// <summary>
+        /// Resolves the item based on a url.
+        /// </summary>
+        /// <param name="url">The URL.</param>
+        /// <returns>Item if found or null</returns>
+        private Item ResolveItem(string url)
         {
-            // todo: test this with display names
+            // get root item
+            var startPath = Sitecore.Context.Site.StartPath;
+            if (string.IsNullOrWhiteSpace(startPath)) return null;
+            var item = Sitecore.Context.Database.GetItem(startPath);
+            if (item == null) return null;
 
-            var itemPath = Sitecore.Context.Site.StartPath + Sitecore.MainUtil.DecodeName(url);
-            return string.IsNullOrWhiteSpace(itemPath) ? null : Sitecore.Context.Database.GetItem(itemPath);
+            // resolve item from path
+            if (string.IsNullOrWhiteSpace(url)) return item;
+            url = Sitecore.MainUtil.DecodeName(url);
+            var urlParts = url.Split(new[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (var part in urlParts)
+            {
+                item = this.ResolveChild(item, part);
+                if (item == null) return null;
+            }
+
+            return item;
+        }
+
+        /// <summary>
+        /// Resolves the child item for a given name/display name.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        /// <param name="name">The name.</param>
+        /// <returns>Child item with name/display name if found</returns>
+        private Item ResolveChild(Item item, string name)
+        {
+            Assert.ArgumentNotNull(item, "item");
+            Assert.ArgumentNotNullOrEmpty(name, "name");
+            return item.Axes.SelectSingleItem(string.Format("*[@@name = '{0}' or @__Display name = '{0}']", name));
         }
     }
 }
