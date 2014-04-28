@@ -1,4 +1,5 @@
-﻿@using Unic.Flex.Helpers
+﻿@using HtmlHelpers.BeginCollectionItem
+@using Unic.Flex.Helpers
 @model Unic.Flex.DomainModel.Sections.StandardSection
 
 @if (Model.DisableFieldset)
@@ -15,7 +16,10 @@ else
         <ul>
             @foreach (var field in Model.Fields)
             {
-                @Html.FlexComponent(field)
+                using (Html.BeginCollectionItem("fields"))
+                {
+                    @Html.FlexComponent(field)
+                }
             }
         </ul>
 
