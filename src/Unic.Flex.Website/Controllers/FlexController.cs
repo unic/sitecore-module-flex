@@ -12,7 +12,7 @@ namespace Unic.Flex.Website.Controllers
 
     public class FlexController : Controller
     {
-        private IContextService contextService;
+        private readonly IContextService contextService;
         
         public FlexController(IContextService contextService)
         {
@@ -21,12 +21,10 @@ namespace Unic.Flex.Website.Controllers
         
         public ActionResult Form()
         {
-            var dataSource = RenderingContext.Current.Rendering.DataSource;
-            Assert.IsTrue(Sitecore.Data.ID.IsID(dataSource), "Datasource is not valid");
-
-            var formItem = this.contextService.LoadForm(dataSource, new SitecoreContext());
-
-            return this.View(new FormViewModel { Title = "GET Action for datasource item id: " + formItem.ItemId });
+            var form = FlexContext.Current.Form;
+            if (form == null) return new EmptyResult();
+            
+            return this.View(new FormViewModel { Title = "GET Action for datasource item id: " + form.ItemId });
         }
 
         [HttpPost]

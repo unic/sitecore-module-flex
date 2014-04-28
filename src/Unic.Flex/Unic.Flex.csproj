@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\ContextService.cs" />
+    <Compile Include="Context\FlexContext.cs" />
     <Compile Include="Context\IContextService.cs" />
     <Compile Include="DependencyInjection\Config.cs" />
     <Compile Include="DependencyInjection\Container.cs" />

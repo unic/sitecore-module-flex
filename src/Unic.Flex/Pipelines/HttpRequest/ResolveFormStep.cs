@@ -71,7 +71,8 @@
             var form = this.ContextService.LoadForm(formDatasource, new SitecoreContext());
             if (form == null) return;
 
-            // todo: Save form into current request.items or somewhere else?
+            // save the form to the current items collection
+            FlexContext.Current.Form = form;
 
             // if we are on the main step, everything is fine now
             if (!rewriteContextItem) return;
