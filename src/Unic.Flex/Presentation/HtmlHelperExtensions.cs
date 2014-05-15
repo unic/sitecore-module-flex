@@ -8,10 +8,19 @@
 
     public static class HtmlHelperExtensions
     {
-        public static MvcHtmlString FlexComponent(this HtmlHelper helper, IPresentationComponent component)
+        public static MvcHtmlString FlexComponent(this HtmlHelper helper, IPresentationComponent component, string htmlFieldPrefix)
         {
             var service = Container.Kernel.Get<IPresentationService>();
-            return helper.Partial(service.ResolveView(helper.ViewContext, component.ViewName), component);
+            return helper.Partial(
+                service.ResolveView(helper.ViewContext, component.ViewName),
+                component,
+                new ViewDataDictionary(helper.ViewData)
+                    {
+                        TemplateInfo = new TemplateInfo
+                        {
+                            HtmlFieldPrefix = htmlFieldPrefix
+                        }
+                    });
         }
     }
 }

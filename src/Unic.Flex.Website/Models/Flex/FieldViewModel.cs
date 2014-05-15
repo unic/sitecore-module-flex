@@ -5,16 +5,18 @@ using System.Web;
 
 namespace Unic.Flex.Website.Models.Flex
 {
+    using System.Web.Mvc;
     using Unic.Flex.DomainModel;
     using Unic.Flex.DomainModel.Fields;
     using Unic.Flex.DomainModel.Presentation;
     using Unic.Flex.Presentation;
+    using Unic.Flex.Website.ModelBinding;
 
     public class FieldViewModel : IPresentationComponent, IViewModel
     {
-        public FieldViewModel(ItemBase model)
+        public FieldViewModel(ItemBase domainModel)
         {
-            this.DomainModel = model;
+            this.DomainModel = domainModel;
         }
         
         public string Key { get; set; }

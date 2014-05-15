@@ -5,17 +5,19 @@ using System.Web;
 
 namespace Unic.Flex.Website.Models.Flex
 {
+    using System.Web.Mvc;
     using Unic.Flex.DomainModel;
     using Unic.Flex.DomainModel.Presentation;
     using Unic.Flex.DomainModel.Sections;
     using Unic.Flex.Presentation;
+    using Unic.Flex.Website.ModelBinding;
 
     public class SectionViewModel : IPresentationComponent, IViewModel
     {
-        public SectionViewModel(ItemBase model)
+        public SectionViewModel(ItemBase domainModel)
         {
             this.Fields = new List<FieldViewModel>();
-            this.DomainModel = model;
+            this.DomainModel = domainModel;
         }
         
         public IList<FieldViewModel> Fields { get; private set; }

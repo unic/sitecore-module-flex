@@ -1,6 +1,7 @@
 ﻿namespace Unic.Flex.Website.ModelBinding
 {
     using System;
+    using System.ComponentModel;
     using System.Web.Mvc;
     using Unic.Flex.Context;
     using Unic.Flex.Website.Models.Flex;
