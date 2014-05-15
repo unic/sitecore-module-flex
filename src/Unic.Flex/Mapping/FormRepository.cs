@@ -6,10 +6,10 @@
 
     public class FormRepository : IFormRepository
     {
-        public IForm LoadForm(string dataSource, ISitecoreContext sitecoreContext)
+        public Form LoadForm(string dataSource, ISitecoreContext sitecoreContext)
         {
             Assert.ArgumentCondition(Sitecore.Data.ID.IsID(dataSource), dataSource, "Datasource is not valid");
-            return sitecoreContext.GetItem<IForm>(dataSource, inferType: true);
+            return sitecoreContext.GetItem<Form>(dataSource, inferType: true);
         }
     }
 }

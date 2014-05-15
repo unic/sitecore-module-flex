@@ -2,7 +2,10 @@
 {
     using System.Web.Mvc;
     using Unic.Flex.Context;
+    using Unic.Flex.DomainModel.Sections;
+    using Unic.Flex.DomainModel.Steps;
     using Unic.Flex.Presentation;
+    using Unic.Flex.Website.ModelBinding;
     using Unic.Flex.Website.Models.Flex;
 
     public class FlexController : Controller
@@ -20,14 +23,8 @@
             if (form == null) return new EmptyResult();
 
             var formView = this.presentationService.ResolveView(this.ControllerContext, form.ViewName);
-            
-            var model = new FormViewModel
-                            {
-                                Title = form.Title,
-                                Introduction = form.Introduction,
-                                Step = form.GetActiveStep()
-                            };
-            return this.View(formView, model);
+
+            return this.View(formView, form.ToViewModel());
         }
 
         [HttpPost]

@@ -1,5 +1,5 @@
-﻿@using Unic.Flex.Helpers
-@model Unic.Flex.DomainModel.Sections.StandardSection
+﻿@using Unic.Flex.Presentation
+@inherits Unic.Flex.Presentation.FlexView<Unic.Flex.Website.Models.Flex.SectionViewModel, Unic.Flex.DomainModel.Sections.StandardSection>
 
 @if (Model.DisableFieldset)
 {

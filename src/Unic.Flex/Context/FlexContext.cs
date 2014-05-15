@@ -13,7 +13,7 @@ namespace Unic.Flex.Context
     {
         private const string ContextKey = "FORM_CONTEXT";
 
-        private IForm form;
+        private Form form;
 
         public FlexContext()
         {
@@ -30,7 +30,7 @@ namespace Unic.Flex.Context
 
         public ISitecoreContext SitecoreContext { get; set; }
 
-        public IForm Form
+        public Form Form
         {
             get
             {

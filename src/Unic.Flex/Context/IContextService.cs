@@ -6,7 +6,7 @@
 
     public interface IContextService
     {
-        IForm LoadForm(string dataSource, ISitecoreContext sitecoreContext);
+        Form LoadForm(string dataSource, ISitecoreContext sitecoreContext);
 
         string GetRenderingDatasource(Item item, DeviceItem device);
     }

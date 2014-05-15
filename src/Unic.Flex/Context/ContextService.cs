@@ -15,8 +15,8 @@
         {
             this.formRepository = formRepository;
         }
-        
-        public IForm LoadForm(string dataSource, ISitecoreContext sitecoreContext)
+
+        public Form LoadForm(string dataSource, ISitecoreContext sitecoreContext)
         {
             return this.formRepository.LoadForm(dataSource, sitecoreContext);
         }

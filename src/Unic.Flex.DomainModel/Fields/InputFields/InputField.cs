@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Unic.Flex.DomainModel.Fields.InputFields
 {
-    public interface IInputField : IFieldBase
+    public abstract class InputField : FieldBase
     {
     }
 }

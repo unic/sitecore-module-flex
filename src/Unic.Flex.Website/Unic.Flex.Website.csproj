@@ -130,8 +130,12 @@
     <Compile Include="App_Start\GlassConfig.cs" />
     <Compile Include="App_Start\NinjectConfig.cs" />
     <Compile Include="Controllers\FlexController.cs" />
-    <Compile Include="Models\Flex\FlexModelBinder.cs" />
+    <Compile Include="ModelBinding\ModelConverterExtensions.cs" />
+    <Compile Include="Models\Flex\FieldViewModel.cs" />
+    <Compile Include="ModelBinding\FormModelBinder.cs" />
     <Compile Include="Models\Flex\FormViewModel.cs" />
+    <Compile Include="Models\Flex\SectionViewModel.cs" />
+    <Compile Include="Models\Flex\StepViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -170,9 +174,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Modules\Flex\Default\Steps\Summary.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Modules\Flex\Default\Sections\ReusableSection.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Modules\Flex\Default\Sections\StandardSection.cshtml" />

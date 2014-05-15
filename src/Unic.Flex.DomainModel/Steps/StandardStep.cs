@@ -9,13 +9,9 @@ namespace Unic.Flex.DomainModel.Steps
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Unic.Flex.DomainModel.Sections;
 
-    public abstract class StandardStep : ItemBase, IStandardStep
+    public abstract class StandardStep : StepBase
     {
         [SitecoreChildren(IsLazy = true, InferType = true)]
-        public virtual IEnumerable<ISectionBase> Sections { get; set; }
-
-        public abstract string ViewName { get; }
-
-        public bool IsActive { get; set; }
+        public virtual IEnumerable<SectionBase> Sections { get; set; }
     }
 }

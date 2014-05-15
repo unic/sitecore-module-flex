@@ -49,21 +49,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Fields\FieldBase.cs" />
-    <Compile Include="Fields\IFieldBase.cs" />
-    <Compile Include="Fields\InputFields\IInputField.cs" />
+    <Compile Include="Fields\InputFields\InputField.cs" />
     <Compile Include="Fields\InputFields\MultilineTextField.cs" />
     <Compile Include="Fields\InputFields\SinglelineTextField.cs" />
     <Compile Include="ItemBase.cs" />
     <Compile Include="Forms\Form.cs" />
-    <Compile Include="Forms\IForm.cs" />
-    <Compile Include="IItemBase.cs" />
     <Compile Include="Presentation\IPresentationComponent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sections\ISectionBase.cs" />
     <Compile Include="Sections\ReusableSection.cs" />
+    <Compile Include="Sections\SectionBase.cs" />
     <Compile Include="Sections\StandardSection.cs" />
-    <Compile Include="Steps\IStandardStep.cs" />
-    <Compile Include="Steps\IStepBase.cs" />
+    <Compile Include="Steps\StepBase.cs" />
     <Compile Include="Steps\MultiStep.cs" />
     <Compile Include="Steps\SingleStep.cs" />
     <Compile Include="Steps\StandardStep.cs" />

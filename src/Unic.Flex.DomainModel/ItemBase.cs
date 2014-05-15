@@ -8,7 +8,7 @@
     /// Base class for all items.
     /// </summary>
     [SitecoreType]
-    public class ItemBase : IItemBase
+    public class ItemBase
     {
         /// <summary>
         /// Gets or sets the item identifier.

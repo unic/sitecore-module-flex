@@ -5,6 +5,6 @@
 
     public interface IFormRepository
     {
-        IForm LoadForm(string dataSource, ISitecoreContext sitecoreContext);
+        Form LoadForm(string dataSource, ISitecoreContext sitecoreContext);
     }
 }

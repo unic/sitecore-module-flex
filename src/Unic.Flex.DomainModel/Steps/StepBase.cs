@@ -8,8 +8,10 @@ namespace Unic.Flex.DomainModel.Steps
 {
     using Unic.Flex.DomainModel.Presentation;
 
-    public interface IStepBase : IItemBase, IPresentationComponent
+    public abstract class StepBase : ItemBase, IPresentationComponent
     {
-        bool IsActive { get; set; }
+        public virtual bool IsActive { get; set; }
+
+        public abstract string ViewName { get; }
     }
 }

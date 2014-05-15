@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Unic.Flex.DomainModel
+namespace Unic.Flex.DomainModel.Sections
 {
-    public interface IItemBase
+    public abstract class SectionBase : ItemBase
     {
-        Guid ItemId { get; set; }
-
-        string Url { get; set; }
     }
 }

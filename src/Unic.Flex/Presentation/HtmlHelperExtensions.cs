@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Unic.Flex.Helpers
+﻿namespace Unic.Flex.Presentation
 {
     using System.Web.Mvc;
     using System.Web.Mvc.Html;
     using Ninject;
     using Unic.Flex.DependencyInjection;
     using Unic.Flex.DomainModel.Presentation;
-    using Unic.Flex.Presentation;
 
     public static class HtmlHelperExtensions
     {
