@@ -3,5 +3,5 @@
 
 <li>
     @Html.LabelFor(m => m.Value, Model.Label)
-    @Html.TextBoxFor(m => m.Value)
+    @Html.TextBoxFor(m => m.Value, new { id = Model.ItemId, Name = Model.ItemId })
 </li>
