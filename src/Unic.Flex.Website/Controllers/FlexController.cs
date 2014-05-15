@@ -2,7 +2,6 @@
 {
     using System.Web.Mvc;
     using Unic.Flex.Context;
-    using Unic.Flex.DomainModel.Steps;
     using Unic.Flex.Presentation;
     using Unic.Flex.Website.Models.Flex;
 
@@ -25,10 +24,9 @@
             var model = new FormViewModel
                             {
                                 Title = form.Title,
-                                Introdcution = form.Introduction,
+                                Introduction = form.Introduction,
                                 Step = form.GetActiveStep()
                             };
-
             return this.View(formView, model);
         }
 

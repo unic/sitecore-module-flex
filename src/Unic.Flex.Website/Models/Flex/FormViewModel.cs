@@ -8,7 +8,7 @@
     {
         public string Title { get; set; }
 
-        public string Introdcution { get; set; }
+        public string Introduction { get; set; }
 
         public IStepBase Step { get; set; }
     }

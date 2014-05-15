@@ -22,8 +22,8 @@ namespace Unic.Flex.Website.Models.Flex
             var form = FlexContext.Current.Form;
 
             var model = new FormViewModel();
-            model.Title = model.Title;
-            model.Introdcution = model.Introdcution;
+            model.Title = form.Title;
+            model.Introduction = form.Introduction;
             model.Step = form.GetActiveStep();
 
             return model;
