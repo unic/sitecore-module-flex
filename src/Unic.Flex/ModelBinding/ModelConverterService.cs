@@ -1,5 +1,8 @@
 ﻿namespace Unic.Flex.ModelBinding
 {
+    using System.IO;
+    using System.Linq;
+    using Sitecore.Diagnostics;
     using Unic.Flex.Model.Fields;
     using Unic.Flex.Model.Forms;
     using Unic.Flex.Model.Sections;
@@ -9,11 +12,18 @@
     {
         public FormViewModel ConvertToViewModel(Form form)
         {
+            Assert.ArgumentNotNull(form, "form");
+            
             var activeStep = form.GetActiveStep();
+            if (activeStep == null) throw new InvalidDataException("No step is currently active or no step was found");
+
             var step = new StepViewModel(activeStep) { ViewName = activeStep.ViewName };
             if (activeStep is StandardStep)
             {
-                foreach (var section in ((StandardStep)activeStep).Sections)
+                var currentStep = activeStep as StandardStep;
+                if (currentStep.Sections == null || !currentStep.Sections.Any()) throw new InvalidDataException("Active step does not contain any sections");
+
+                foreach (var section in currentStep.Sections)
                 {
                     var realSection = (section is ReusableSection
                         ? (section as ReusableSection).Section
