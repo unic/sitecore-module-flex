@@ -4,7 +4,7 @@
     using System.ComponentModel;
     using System.Web.Mvc;
     using Unic.Flex.Context;
-    using Unic.Flex.Website.Models.Flex;
+    using Unic.Flex.Model.Forms;
 
     public class FormModelBinder : DefaultModelBinder
     {

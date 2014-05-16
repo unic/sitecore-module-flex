@@ -5,10 +5,10 @@ using System.Web;
 
 namespace Unic.Flex.Website.ModelBinding
 {
+    using Unic.Flex.Model.Fields;
     using Unic.Flex.Model.Forms;
     using Unic.Flex.Model.Sections;
     using Unic.Flex.Model.Steps;
-    using Unic.Flex.Website.Models.Flex;
 
     public static class ModelConverterExtensions
     {

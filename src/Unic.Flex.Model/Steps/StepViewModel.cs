@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace Unic.Flex.Website.Models.Flex
+﻿namespace Unic.Flex.Model.Steps
 {
-    using System.Web.Mvc;
+    using System.Collections.Generic;
     using Unic.Flex.Model;
     using Unic.Flex.Model.Presentation;
+    using Unic.Flex.Model.Sections;
     using Unic.Flex.Presentation;
-    using Unic.Flex.Website.ModelBinding;
 
     public class StepViewModel : IPresentationComponent, IViewModel
     {

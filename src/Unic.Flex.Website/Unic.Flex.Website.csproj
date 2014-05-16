@@ -131,11 +131,7 @@
     <Compile Include="App_Start\NinjectConfig.cs" />
     <Compile Include="Controllers\FlexController.cs" />
     <Compile Include="ModelBinding\ModelConverterExtensions.cs" />
-    <Compile Include="Models\Flex\FieldViewModel.cs" />
     <Compile Include="ModelBinding\FormModelBinder.cs" />
-    <Compile Include="Models\Flex\FormViewModel.cs" />
-    <Compile Include="Models\Flex\SectionViewModel.cs" />
-    <Compile Include="Models\Flex\StepViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -183,6 +179,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Modules\Flex\Default\Fields\InputFields\SinglelineText.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

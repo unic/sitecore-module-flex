@@ -2,9 +2,9 @@
 {
     using System.Web.Mvc;
     using Unic.Flex.Context;
+    using Unic.Flex.Model.Forms;
     using Unic.Flex.Presentation;
     using Unic.Flex.Website.ModelBinding;
-    using Unic.Flex.Website.Models.Flex;
 
     public class FlexController : Controller
     {
