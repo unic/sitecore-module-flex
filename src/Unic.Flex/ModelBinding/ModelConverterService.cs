@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace Unic.Flex.Website.ModelBinding
+﻿namespace Unic.Flex.ModelBinding
 {
     using Unic.Flex.Model.Fields;
     using Unic.Flex.Model.Forms;
     using Unic.Flex.Model.Sections;
     using Unic.Flex.Model.Steps;
 
-    public static class ModelConverterExtensions
+    public class ModelConverterService : IModelConverterService
     {
-        public static FormViewModel ToViewModel(this Form form)
+        public FormViewModel ConvertToViewModel(Form form)
         {
             var activeStep = form.GetActiveStep();
             var step = new StepViewModel(activeStep) { ViewName = activeStep.ViewName };
@@ -42,11 +37,11 @@ namespace Unic.Flex.Website.ModelBinding
             }
 
             return new FormViewModel
-                        {
-                            Title = form.Title,
-                            Introduction = form.Introduction,
-                            Step = step
-                        };
+            {
+                Title = form.Title,
+                Introduction = form.Introduction,
+                Step = step
+            };
         }
     }
 }

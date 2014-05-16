@@ -1,8 +1,10 @@
 ﻿namespace Unic.Flex.DependencyInjection
 {
+    using System.Web.Mvc;
     using Ninject.Modules;
     using Unic.Flex.Context;
     using Unic.Flex.Mapping;
+    using Unic.Flex.ModelBinding;
     using Unic.Flex.Presentation;
 
     /// <summary>
@@ -18,6 +20,10 @@
             Bind<IContextService>().To<ContextService>();
             Bind<IPresentationService>().To<PresentationService>();
             Bind<IFormRepository>().To<FormRepository>();
+
+            // model binding
+            Bind<IModelBinder>().To<FormModelBinder>();
+            Bind<IModelConverterService>().To<ModelConverterService>();
         }
     }
 }

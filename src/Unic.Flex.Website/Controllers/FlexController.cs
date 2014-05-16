@@ -3,16 +3,19 @@
     using System.Web.Mvc;
     using Unic.Flex.Context;
     using Unic.Flex.Model.Forms;
+    using Unic.Flex.ModelBinding;
     using Unic.Flex.Presentation;
-    using Unic.Flex.Website.ModelBinding;
 
     public class FlexController : Controller
     {
         private readonly IPresentationService presentationService;
 
-        public FlexController(IPresentationService presentationService)
+        private readonly IModelConverterService modelConverter;
+
+        public FlexController(IPresentationService presentationService, IModelConverterService modelConverter)
         {
             this.presentationService = presentationService;
+            this.modelConverter = modelConverter;
         }
         
         public ActionResult Form()
@@ -22,7 +25,7 @@
 
             var formView = this.presentationService.ResolveView(this.ControllerContext, form.ViewName);
 
-            return this.View(formView, form.ToViewModel());
+            return this.View(formView, this.modelConverter.ConvertToViewModel(form));
         }
 
         [HttpPost]
