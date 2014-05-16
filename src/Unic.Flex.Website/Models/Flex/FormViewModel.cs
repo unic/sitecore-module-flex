@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using System.Web.Mvc;
-    using Unic.Flex.DomainModel.Steps;
     using Unic.Flex.Website.ModelBinding;
 
     [ModelBinder(typeof(FormModelBinder))]

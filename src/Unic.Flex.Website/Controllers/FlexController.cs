@@ -2,8 +2,6 @@
 {
     using System.Web.Mvc;
     using Unic.Flex.Context;
-    using Unic.Flex.DomainModel.Sections;
-    using Unic.Flex.DomainModel.Steps;
     using Unic.Flex.Presentation;
     using Unic.Flex.Website.ModelBinding;
     using Unic.Flex.Website.Models.Flex;

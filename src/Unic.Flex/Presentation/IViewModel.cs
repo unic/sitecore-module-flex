@@ -1,6 +1,6 @@
 ﻿namespace Unic.Flex.Presentation
 {
-    using Unic.Flex.DomainModel;
+    using Unic.Flex.Model;
 
     public interface IViewModel
     {

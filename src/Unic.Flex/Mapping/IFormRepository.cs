@@ -1,7 +1,7 @@
 ﻿namespace Unic.Flex.Mapping
 {
     using Glass.Mapper.Sc;
-    using Unic.Flex.DomainModel.Forms;
+    using Unic.Flex.Model.Forms;
 
     public interface IFormRepository
     {

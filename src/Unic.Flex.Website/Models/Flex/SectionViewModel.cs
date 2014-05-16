@@ -6,9 +6,8 @@ using System.Web;
 namespace Unic.Flex.Website.Models.Flex
 {
     using System.Web.Mvc;
-    using Unic.Flex.DomainModel;
-    using Unic.Flex.DomainModel.Presentation;
-    using Unic.Flex.DomainModel.Sections;
+    using Unic.Flex.Model;
+    using Unic.Flex.Model.Presentation;
     using Unic.Flex.Presentation;
     using Unic.Flex.Website.ModelBinding;
 

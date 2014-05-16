@@ -4,8 +4,8 @@
     using Glass.Mapper.Sc;
     using Sitecore.Data;
     using Sitecore.Data.Items;
-    using Unic.Flex.DomainModel.Forms;
     using Unic.Flex.Mapping;
+    using Unic.Flex.Model.Forms;
 
     public class ContextService : IContextService
     {

@@ -4,7 +4,7 @@
     using System.Web.Mvc.Html;
     using Ninject;
     using Unic.Flex.DependencyInjection;
-    using Unic.Flex.DomainModel.Presentation;
+    using Unic.Flex.Model.Presentation;
 
     public static class HtmlHelperExtensions
     {
