@@ -20,6 +20,8 @@ namespace Unic.Flex.Context
 
         private Form form;
 
+        private string previousStepUrl;
+        
         private string nextStepUrl;
 
         public FlexContext()
@@ -64,6 +66,40 @@ namespace Unic.Flex.Context
             }
         }
 
+        public string PreviousStepUrl
+        {
+            get
+            {
+                if (this.previousStepUrl == null)
+                {
+                    var linkedSteps = new LinkedList<StepBase>(this.Form.Steps);
+                    var currentStep = linkedSteps.Find(this.Form.GetActiveStep());
+                    if (currentStep == null) throw new Exception("Could not convert steps to linked list");
+
+                    var previousStep = currentStep.Previous;
+                    if (previousStep == null)
+                    {
+                        this.PreviousStepUrl = string.Empty;
+                    }
+                    else if (previousStep.Equals(linkedSteps.First))
+                    {
+                        this.PreviousStepUrl = this.Item.Url;
+                    }
+                    else
+                    {
+                        this.PreviousStepUrl = previousStep.Value.GetUrl();
+                    }
+                }
+
+                return this.previousStepUrl;
+            }
+            set
+            {
+                this.previousStepUrl = value;
+                this.Save();
+            }
+        }
+
         public string NextStepUrl
         {
             get
@@ -75,7 +111,7 @@ namespace Unic.Flex.Context
                     if (currentStep == null) throw new Exception("Could not convert steps to linked list");
 
                     var nextStep = currentStep.Next;
-                    this.NextStepUrl = nextStep != null ? nextStep.Value.Url : string.Empty;
+                    this.NextStepUrl = nextStep != null ? nextStep.Value.GetUrl() : string.Empty;
                 }
                 
                 return this.nextStepUrl;

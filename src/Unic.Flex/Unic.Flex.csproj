@@ -63,6 +63,7 @@
     <Compile Include="Context\ContextService.cs" />
     <Compile Include="Context\FlexContext.cs" />
     <Compile Include="Context\IContextService.cs" />
+    <Compile Include="Context\UrlExtensions.cs" />
     <Compile Include="DependencyInjection\Config.cs" />
     <Compile Include="DependencyInjection\Container.cs" />
     <Compile Include="ModelBinding\FormModelBinder.cs" />

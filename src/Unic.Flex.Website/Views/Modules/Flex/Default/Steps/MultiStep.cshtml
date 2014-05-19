@@ -1,4 +1,5 @@
-﻿@using Unic.Flex.Presentation
+﻿@using Unic.Flex.Context
+@using Unic.Flex.Presentation
 @inherits Unic.Flex.Presentation.FlexView<Unic.Flex.Model.Steps.StepViewModel, Unic.Flex.Model.Steps.MultiStep>
 
 <p>NAVIGATION PANEL</p>
@@ -8,5 +9,8 @@
     @Html.FlexComponent(Model.Sections[i], ViewData.TemplateInfo.HtmlFieldPrefix + ".Sections[" + i + "]")
 }
 
-<input type="submit" value="back" />
+
+<a href="@FlexContext.Current.PreviousStepUrl">Back</a>
+<a href="@FlexContext.Current.NextStepUrl">Skip</a>
+
 <input type="submit" value="submit" />

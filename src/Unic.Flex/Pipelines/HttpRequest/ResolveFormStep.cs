@@ -139,8 +139,12 @@
         private bool IsStepEqual(string stepUrl, string currentUrlPart)
         {
             var lastPart = stepUrl.Split('/').Last();
-            var url = lastPart.Remove(lastPart.LastIndexOf(".", StringComparison.Ordinal));
-            return url.Equals(currentUrlPart, StringComparison.InvariantCultureIgnoreCase);
+            if (lastPart.Contains("."))
+            {
+                lastPart = lastPart.Remove(lastPart.LastIndexOf(".", StringComparison.Ordinal));
+            }
+
+            return lastPart.Equals(currentUrlPart, StringComparison.InvariantCultureIgnoreCase);
         }
     }
 }

@@ -31,7 +31,18 @@
         [HttpPost]
         public ActionResult Form(FormViewModel model)
         {
-            return this.View("~/Views/Modules/Flex//Default/Form.cshtml", model);
+            if (!ModelState.IsValid)
+            {
+                return this.View("~/Views/Modules/Flex/Default/Form.cshtml", model);    
+            }
+
+            var context = FlexContext.Current;
+            if (!string.IsNullOrWhiteSpace(context.NextStepUrl))
+            {
+                return this.Redirect(context.NextStepUrl);
+            }
+
+            return Content("this was the last step, form has been submitted");
         }
     }
 }
