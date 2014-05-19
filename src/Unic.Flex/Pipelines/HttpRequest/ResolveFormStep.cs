@@ -39,7 +39,7 @@
         public override void Process(HttpRequestArgs args)
         {
             // resolve item
-            var item = Sitecore.Context.Item;
+            var item = FlexContext.Current.Item != null ? FlexContext.Current.Item.InnerItem : null;
             var rewriteContextItem = false;
 
             // get the current path
@@ -64,11 +64,11 @@
             if (item == null) return;
 
             // get the current form included on the item
-            var formDatasource = this.ContextService.GetRenderingDatasource(item, Sitecore.Context.Device);
+            var formDatasource = this.ContextService.GetRenderingDatasource(item, FlexContext.Current.Device);
             if (string.IsNullOrWhiteSpace(formDatasource)) return;
 
             // load the form
-            var form = this.ContextService.LoadForm(formDatasource, new SitecoreContext());
+            var form = this.ContextService.LoadForm(formDatasource, FlexContext.Current.SitecoreContext);
             if (form == null) return;
 
             // save the form to the current items collection
@@ -88,7 +88,7 @@
 
             // rewrite current step and context item if everything is ok
             activeStep.IsActive = true;
-            Sitecore.Context.Item = item;
+            FlexContext.Current.SetContextItem(item);
         }
 
         /// <summary>
@@ -99,9 +99,9 @@
         private Item ResolveItem(string url)
         {
             // get root item
-            var startPath = Sitecore.Context.Site.StartPath;
+            var startPath = FlexContext.Current.SiteContext.StartPath;
             if (string.IsNullOrWhiteSpace(startPath)) return null;
-            var item = Sitecore.Context.Database.GetItem(startPath);
+            var item = FlexContext.Current.Database.GetItem(startPath);
             if (item == null) return null;
 
             // resolve item from path
