@@ -15,3 +15,9 @@ Assembly redirect for ninject is used in the `web.config` of the Sitecore instal
 	    </assemblyBinding>
 	  </runtime>
 	</configuration>
+
+### Client-side Validation
+To enable client side validation, add the following nodes to the `<appSettings>` of the `web.config`:
+
+    <add key="ClientValidationEnabled" value="true" />
+    <add key="UnobtrusiveJavaScriptEnabled" value="true" />
