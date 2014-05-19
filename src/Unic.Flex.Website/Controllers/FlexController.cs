@@ -12,10 +12,13 @@
 
         private readonly IModelConverterService modelConverter;
 
-        public FlexController(IPresentationService presentationService, IModelConverterService modelConverter)
+        private readonly IContextService contextService;
+
+        public FlexController(IPresentationService presentationService, IModelConverterService modelConverter, IContextService contextService)
         {
             this.presentationService = presentationService;
             this.modelConverter = modelConverter;
+            this.contextService = contextService;
         }
         
         public ActionResult Form()
@@ -37,6 +40,7 @@
             }
 
             var context = FlexContext.Current;
+            this.contextService.StoreFormValues(context.Form, model);
             if (!string.IsNullOrWhiteSpace(context.NextStepUrl))
             {
                 return this.Redirect(context.NextStepUrl);

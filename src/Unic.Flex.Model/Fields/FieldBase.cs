@@ -9,5 +9,7 @@
 
         [SitecoreField("Label")]
         public virtual string Label { get; set; }
+
+        public virtual object Value { get; set; }
     }
 }

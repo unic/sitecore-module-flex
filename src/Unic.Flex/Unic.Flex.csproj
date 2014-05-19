@@ -66,6 +66,8 @@
     <Compile Include="Context\UrlExtensions.cs" />
     <Compile Include="DependencyInjection\Config.cs" />
     <Compile Include="DependencyInjection\Container.cs" />
+    <Compile Include="Mapping\IUserDataRepository.cs" />
+    <Compile Include="Mapping\UserDataRepository.cs" />
     <Compile Include="ModelBinding\FormModelBinder.cs" />
     <Compile Include="ModelBinding\IModelConverterService.cs" />
     <Compile Include="ModelBinding\ListModelBinder.cs" />

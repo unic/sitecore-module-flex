@@ -54,7 +54,9 @@
     <Compile Include="ModelBinding\ModelConverterServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Unic.Flex.Model\Unic.Flex.Model.csproj">
       <Project>{c47272b9-c13f-4f53-b9f3-d3066bb45810}</Project>

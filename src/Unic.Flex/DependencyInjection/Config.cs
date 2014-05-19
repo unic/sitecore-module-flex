@@ -20,6 +20,7 @@
             Bind<IContextService>().To<ContextService>();
             Bind<IPresentationService>().To<PresentationService>();
             Bind<IFormRepository>().To<FormRepository>();
+            Bind<IUserDataRepository>().To<UserDataRepository>();
 
             // model binding
             Bind<IModelBinder>().To<FormModelBinder>();

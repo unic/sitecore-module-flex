@@ -8,6 +8,10 @@
     {
         Form LoadForm(string dataSource, ISitecoreContext sitecoreContext);
 
+        void PopulateFormValues(Form form);
+
+        void StoreFormValues(Form form, FormViewModel viewModel);
+
         string GetRenderingDatasource(Item item, DeviceItem device);
     }
 }

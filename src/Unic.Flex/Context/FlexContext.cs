@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 
 namespace Unic.Flex.Context
 {
+    using System.Web;
     using Glass.Mapper.Sc;
+    using Ninject;
     using Sitecore.Data;
     using Sitecore.Data.Items;
     using Sitecore.Sites;
+    using Unic.Flex.DependencyInjection;
     using Unic.Flex.Model;
     using Unic.Flex.Model.Forms;
     using Unic.Flex.Model.Steps;
@@ -18,14 +21,21 @@ namespace Unic.Flex.Context
     {
         private const string ContextKey = "FORM_CONTEXT";
 
+        [Inject]
+        public IContextService ContextService { private get; set; }
+
         private Form form;
 
         private string previousStepUrl;
         
         private string nextStepUrl;
 
-        public FlexContext()
+        private bool hasValuesPopulated;
+
+        private FlexContext()
         {
+            Container.Kernel.Inject(this);
+            
             this.Database = Sitecore.Context.Database;
             this.SiteContext = Sitecore.Context.Site;
             this.Device = Sitecore.Context.Device;
@@ -56,6 +66,12 @@ namespace Unic.Flex.Context
         {
             get
             {
+                if (!this.hasValuesPopulated && HttpContext.Current.Session != null)
+                {
+                    this.ContextService.PopulateFormValues(this.form);
+                    this.hasValuesPopulated = true;
+                }
+                
                 return this.form;
             }
 

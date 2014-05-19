@@ -39,6 +39,7 @@
                         fieldViewModel.Key = field.ItemId.ToString();
                         fieldViewModel.Label = field.Label;
                         fieldViewModel.ViewName = field.ViewName;
+                        fieldViewModel.Value = field.Value;
                         sectionViewModel.Fields.Add(fieldViewModel);
                     }
 
