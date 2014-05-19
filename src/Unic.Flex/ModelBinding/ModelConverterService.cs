@@ -3,10 +3,12 @@
     using System.IO;
     using System.Linq;
     using Sitecore.Diagnostics;
+    using Sitecore.Shell.Framework.Commands.Favorites;
     using Unic.Flex.Model.Fields;
     using Unic.Flex.Model.Forms;
     using Unic.Flex.Model.Sections;
     using Unic.Flex.Model.Steps;
+    using Unic.Flex.Model.Validators;
 
     public class ModelConverterService : IModelConverterService
     {
@@ -39,7 +41,20 @@
                         fieldViewModel.Key = field.ItemId.ToString();
                         fieldViewModel.Label = field.Label;
                         fieldViewModel.ViewName = field.ViewName;
-                        fieldViewModel.Value = field.Value;
+                        fieldViewModel.Value = field.Value as string;
+
+                        // add required validator
+                        if (field.IsRequired)
+                        {
+                            fieldViewModel.AddValidator(new RequiredValidator { ValidationMessage = field.ValidationMessage });
+                        }
+
+                        // add all other validators
+                        foreach (var validator in field.Validators)
+                        {
+                            fieldViewModel.AddValidator(validator);
+                        }
+
                         sectionViewModel.Fields.Add(fieldViewModel);
                     }
 

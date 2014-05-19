@@ -3,5 +3,6 @@
 
 <li>
     @Html.LabelFor(m => m.Value, Model.Label)
-    @Html.TextBoxFor(m => m.Value)
+    @Html.TextBoxFor(m => m.Value, Model.Attributes)
+    @Html.ValidationMessageFor(model => model.Value)
 </li>

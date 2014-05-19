@@ -2,6 +2,11 @@
 @inherits Unic.Flex.Presentation.FlexView<Unic.Flex.Model.Fields.FieldViewModel, Unic.Flex.Model.Fields.InputFields.MultilineTextField>
 
 <li>
+    @{
+        Model.Attributes.Add("Rows", DomainModel.Rows);
+    }
+    
     @Html.LabelFor(m => m.Value, Model.Label)
-    @Html.TextAreaFor(m => m.Value, new { Rows = DomainModel.Rows })
+    @Html.TextAreaFor(m => m.Value, Model.Attributes)
+    @Html.ValidationMessageFor(model => model.Value)
 </li>
