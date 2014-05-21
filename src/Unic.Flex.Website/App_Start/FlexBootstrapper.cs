@@ -11,13 +11,22 @@ namespace Unic.Flex.Website
     using Unic.Flex.Model.Sections;
     using Unic.Flex.ModelBinding;
 
+    /// <summary>
+    /// Bootstrapper for the Flex form module.
+    /// </summary>
     public class FlexBootstrapper
     {
+        /// <summary>
+        /// The method called after starting the application.
+        /// </summary>
         public static void PostStart()
         {
             RegisterModelBinders();
         }
 
+        /// <summary>
+        /// Registers the ASP.NET MVC model binders.
+        /// </summary>
         private static void RegisterModelBinders()
         {
             ModelBinders.Binders.Add(typeof(FormViewModel), Container.Kernel.Get<IModelBinder>());

@@ -18,16 +18,18 @@
         /// </summary>
         public override void Load()
         {
+            // business logic
             Bind<IContextService>().To<ContextService>();
             Bind<IPresentationService>().To<PresentationService>();
+            
+            // data access
+            Bind<IDictionaryRepository>().To<DictionaryRepository>();
             Bind<IFormRepository>().To<FormRepository>();
             Bind<IUserDataRepository>().To<UserDataRepository>();
 
-            // model binding
+            // model binding and converting
             Bind<IModelBinder>().To<FormModelBinder>();
             Bind<IModelConverterService>().To<ModelConverterService>();
-
-            Bind<IDictionaryRepository>().To<DictionaryRepository>();
         }
     }
 }

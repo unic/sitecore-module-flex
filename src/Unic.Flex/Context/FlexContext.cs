@@ -17,6 +17,8 @@ namespace Unic.Flex.Context
     using Unic.Flex.Model.Forms;
     using Unic.Flex.Model.Steps;
 
+    // todo (???): was wollen wir wirklich mit diesem context? Was muss genau alles hier rein und wie soll dieser context resp. die form daten von anderen entwicklern erreichbar sein?
+
     public class FlexContext
     {
         private const string ContextKey = "FORM_CONTEXT";

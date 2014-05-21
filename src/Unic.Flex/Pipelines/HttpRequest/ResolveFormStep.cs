@@ -2,7 +2,6 @@
 {
     using System;
     using System.Linq;
-    using Glass.Mapper.Sc;
     using Ninject;
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;

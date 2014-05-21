@@ -10,23 +10,49 @@
     using Unic.Flex.Model.Sections;
     using Unic.Flex.Model.Steps;
 
+    /// <summary>
+    /// The service containing contexxt based business logic.
+    /// </summary>
     public class ContextService : IContextService
     {
+        /// <summary>
+        /// The form repository
+        /// </summary>
         private readonly IFormRepository formRepository;
 
+        /// <summary>
+        /// The user data repository
+        /// </summary>
         private readonly IUserDataRepository userDataRepository;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ContextService"/> class.
+        /// </summary>
+        /// <param name="formRepository">The form repository.</param>
+        /// <param name="userDataRepository">The user data repository.</param>
         public ContextService(IFormRepository formRepository, IUserDataRepository userDataRepository)
         {
             this.formRepository = formRepository;
             this.userDataRepository = userDataRepository;
         }
 
+        /// <summary>
+        /// Loads the form based on a datasource.
+        /// </summary>
+        /// <param name="dataSource">The data source.</param>
+        /// <param name="sitecoreContext">The sitecore context.</param>
+        /// <returns>
+        /// The loaded form domain model object.
+        /// </returns>
         public Form LoadForm(string dataSource, ISitecoreContext sitecoreContext)
         {
             return this.formRepository.LoadForm(dataSource, sitecoreContext);
         }
 
+        /// <summary>
+        /// Populates the form values from the session into the form.
+        /// </summary>
+        /// <param name="form">The form domain model.</param>
         public void PopulateFormValues(Form form)
         {
             Assert.ArgumentNotNull(form, "form");
@@ -42,6 +68,11 @@
             }
         }
 
+        /// <summary>
+        /// Stores the form values into the session.
+        /// </summary>
+        /// <param name="form">The form domain model.</param>
+        /// <param name="viewModel">The form view model containing the current values.</param>
         public void StoreFormValues(Form form, FormViewModel viewModel)
         {
             Assert.ArgumentNotNull(form, "form");
@@ -53,8 +84,19 @@
             }
         }
 
+        /// <summary>
+        /// Gets the rendering datasource of a form.
+        /// </summary>
+        /// <param name="item">The item to search for a referenced form.</param>
+        /// <param name="device">The device.</param>
+        /// <returns>
+        /// Datasource/form id if form is included on item
+        /// </returns>
         public string GetRenderingDatasource(Item item, DeviceItem device)
         {
+            Assert.ArgumentNotNull(item, "item");
+            Assert.ArgumentNotNull(device, "device");
+            
             // todo: move id to the config file
             
             var renderingReferences = item.Visualization.GetRenderings(device, false);

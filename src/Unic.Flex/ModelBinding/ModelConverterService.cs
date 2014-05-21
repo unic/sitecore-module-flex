@@ -55,13 +55,7 @@
                         // add required validator
                         if (field.IsRequired)
                         {
-                            var validator = new RequiredValidator { ValidationMessage = field.ValidationMessage };
-                            if (string.IsNullOrWhiteSpace(validator.ValidationMessage))
-                            {
-                                validator.ValidationMessage = this.dictionaryRepository.GetText("Field is required");
-                            }
-
-                            fieldViewModel.AddValidator(validator);
+                            fieldViewModel.AddValidator(new RequiredValidator { ValidationMessage = field.ValidationMessage });
                         }
 
                         // add all other validators

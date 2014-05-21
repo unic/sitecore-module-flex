@@ -1,5 +1,4 @@
-﻿
-namespace Unic.Flex.Model.GlassExtensions.Handlers
+﻿namespace Unic.Flex.Model.GlassExtensions.Handlers
 {
     using Glass.Mapper;
     using Glass.Mapper.Configuration;
@@ -25,9 +24,7 @@ namespace Unic.Flex.Model.GlassExtensions.Handlers
         /// <returns>Value found by the mapper</returns>
         public override object GetFieldValue(string fieldValue, SitecoreFieldConfiguration config, SitecoreDataMappingContext context)
         {
-            var value = base.GetFieldValue(fieldValue, config, context);
-            var stringValue = value as string;
-            return string.IsNullOrWhiteSpace(stringValue) ? this.GetDictionaryText(config as SitecoreDictionaryFallbackFieldConfiguration) : value;
+            return string.IsNullOrWhiteSpace(fieldValue) ? this.GetDictionaryText(config as SitecoreDictionaryFallbackFieldConfiguration) : fieldValue;
         }
 
         /// <summary>
