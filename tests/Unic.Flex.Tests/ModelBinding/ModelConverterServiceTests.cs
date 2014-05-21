@@ -26,7 +26,7 @@ namespace Unic.Flex.Tests.ModelBinding
             {
                 // prepare
                 var form = this.GetForm(FormRepositoryMoqs.GetNullFormRepository());
-                var converter = new ModelConverterService();
+                var converter = new ModelConverterService(null);
 
                 // act
                 var viewModel = converter.ConvertToViewModel(form);
@@ -40,7 +40,7 @@ namespace Unic.Flex.Tests.ModelBinding
             {
                 // prepare
                 var form = this.GetForm(FormRepositoryMoqs.GetSingleStepFormRepository());
-                var converter = new ModelConverterService();
+                var converter = new ModelConverterService(null);
 
                 // act
                 var viewModel = converter.ConvertToViewModel(form);

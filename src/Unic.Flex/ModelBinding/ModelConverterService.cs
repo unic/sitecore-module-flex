@@ -3,7 +3,9 @@
     using System.IO;
     using System.Linq;
     using Sitecore.Diagnostics;
+    using Sitecore.Globalization;
     using Sitecore.Shell.Framework.Commands.Favorites;
+    using Unic.Flex.Globalization;
     using Unic.Flex.Model.Fields;
     using Unic.Flex.Model.Forms;
     using Unic.Flex.Model.Sections;
@@ -12,6 +14,13 @@
 
     public class ModelConverterService : IModelConverterService
     {
+        private readonly IDictionaryRepository dictionaryRepository;
+
+        public ModelConverterService(IDictionaryRepository dictionaryRepository)
+        {
+            this.dictionaryRepository = dictionaryRepository;
+        }
+        
         public FormViewModel ConvertToViewModel(Form form)
         {
             Assert.ArgumentNotNull(form, "form");
@@ -46,7 +55,14 @@
                         // add required validator
                         if (field.IsRequired)
                         {
-                            fieldViewModel.AddValidator(new RequiredValidator { ValidationMessage = field.ValidationMessage });
+                            var validator = new RequiredValidator { ValidationMessage = field.ValidationMessage };
+                            if (string.IsNullOrWhiteSpace(validator.ValidationMessage))
+                            {
+                                // todo: add a custom glass mapper attribute to create a dictionary fallback
+                                validator.ValidationMessage = this.dictionaryRepository.GetText("Field is required");
+                            }
+
+                            fieldViewModel.AddValidator(validator);
                         }
 
                         // add all other validators

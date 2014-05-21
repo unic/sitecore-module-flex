@@ -3,11 +3,13 @@
 namespace Unic.Flex.Website
 {
     using System.Web.Hosting;
+    using Castle.MicroKernel.Registration;
     using Castle.Windsor;
     using Glass.Mapper;
     using Glass.Mapper.Configuration;
     using Glass.Mapper.Configuration.Attributes;
     using Glass.Mapper.Sc.CastleWindsor;
+    using Unic.Flex.Model.GlassExtensions.Handlers;
 
     /// <summary>
     /// Configuration initializer for Sitecore Glass Mapper
@@ -48,6 +50,9 @@ namespace Unic.Flex.Website
         {
             // get new config
             var config = new Config();
+
+            // register custom type mapper
+            container.Register(Component.For<AbstractDataMapper>().ImplementedBy<SitecoreDictionaryFallbackFieldTypeMapper>().LifeStyle.Transient);
 
             // install the config
             container.Install(new SitecoreInstaller(config));

@@ -36,8 +36,9 @@
     <Reference Include="Glass.Mapper">
       <HintPath>..\..\packages\Glass.Mapper.3.0.10.23\lib\net45\Glass.Mapper.dll</HintPath>
     </Reference>
-    <Reference Include="Glass.Mapper.Sc">
-      <HintPath>..\..\packages\Glass.Mapper.Sc.3.1.8.27\lib\net45\Glass.Mapper.Sc.dll</HintPath>
+    <Reference Include="Glass.Mapper.Sc, Version=3.1.10.31, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Glass.Mapper.Sc.3.1.10.31\lib\net45\Glass.Mapper.Sc.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.Kernel">
       <HintPath>..\..\lib\Sitecore.Kernel.dll</HintPath>
@@ -58,6 +59,9 @@
     <Compile Include="Fields\InputFields\MultilineTextField.cs" />
     <Compile Include="Fields\InputFields\SinglelineTextField.cs" />
     <Compile Include="Forms\FormViewModel.cs" />
+    <Compile Include="GlassExtensions\Attributes\SitecoreDictionaryFallbackFieldAttribute.cs" />
+    <Compile Include="GlassExtensions\Configurations\SitecoreDictionaryFallbackFieldConfiguration.cs" />
+    <Compile Include="GlassExtensions\Handlers\SitecoreDictionaryFallbackFieldTypeMapper.cs" />
     <Compile Include="ItemBase.cs" />
     <Compile Include="Forms\Form.cs" />
     <Compile Include="Presentation\IPresentationComponent.cs" />

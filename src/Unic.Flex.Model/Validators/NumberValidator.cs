@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace Unic.Flex.Model.Validators
 {
     using Glass.Mapper.Sc.Configuration.Attributes;
+    using Unic.Flex.Model.GlassExtensions.Attributes;
 
     [SitecoreType(TemplateId = "{29129AFA-3651-4A7F-BA87-CF1DEEDB48A5}")]
     public class NumberValidator : IValidator
@@ -36,7 +37,7 @@ namespace Unic.Flex.Model.Validators
             return attributes;
         }
 
-        [SitecoreField("Validation Message")]
+        [SitecoreDictionaryFallbackField("Validation Message", "Please enter a valid number")]
         public virtual string ValidationMessage { get; set; }
 
         [SitecoreField("Number Range Start")]
