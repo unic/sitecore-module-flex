@@ -1,5 +1,7 @@
 ﻿namespace Unic.Flex.Presentation
 {
+    using System;
+    using System.Linq.Expressions;
     using System.Web.Mvc;
     using System.Web.Mvc.Html;
     using Ninject;
@@ -8,17 +10,29 @@
 
     public static class HtmlHelperExtensions
     {
-        public static MvcHtmlString FlexComponent(this HtmlHelper helper, IPresentationComponent component, string htmlFieldPrefix)
+        private static readonly Lazy<IPresentationService> presentationService;
+
+        static HtmlHelperExtensions()
         {
-            var service = Container.Kernel.Get<IPresentationService>();
-            return helper.Partial(
-                service.ResolveView(helper.ViewContext, component.ViewName),
-                component,
-                new ViewDataDictionary(helper.ViewData)
+            presentationService = new Lazy<IPresentationService>(() => Container.Kernel.Get<IPresentationService>());
+        }
+
+        public static MvcHtmlString FlexComponent<TModel, TProperty>(
+            this HtmlHelper<TModel> htmlHelper,
+            Expression<Func<TModel, TProperty>> expression) where TProperty : IPresentationComponent
+        {
+            var modelMetaData = ModelMetadata.FromLambdaExpression(expression, htmlHelper.ViewData);
+            var model = modelMetaData.Model as IPresentationComponent;
+            var propertyName = ExpressionHelper.GetExpressionText(expression);
+
+            return htmlHelper.Partial(
+                presentationService.Value.ResolveView(htmlHelper.ViewContext, model.ViewName),
+                model,
+                new ViewDataDictionary(htmlHelper.ViewData)
                     {
                         TemplateInfo = new TemplateInfo
                         {
-                            HtmlFieldPrefix = htmlFieldPrefix
+                            HtmlFieldPrefix = htmlHelper.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName(propertyName)
                         }
                     });
         }

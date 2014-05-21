@@ -7,5 +7,5 @@
 
 @using (Html.BeginForm())
 {
-    @Html.FlexComponent(Model.Step, "Step")
+    @Html.FlexComponent(m => m.Step)
 }
