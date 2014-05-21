@@ -58,7 +58,6 @@
                             var validator = new RequiredValidator { ValidationMessage = field.ValidationMessage };
                             if (string.IsNullOrWhiteSpace(validator.ValidationMessage))
                             {
-                                // todo: add a custom glass mapper attribute to create a dictionary fallback
                                 validator.ValidationMessage = this.dictionaryRepository.GetText("Field is required");
                             }
 
@@ -70,6 +69,8 @@
                         {
                             fieldViewModel.AddValidator(validator);
                         }
+
+                        // todo: validators should handle format string -> i.e {0} in the validation message should be replaced with the field name
 
                         sectionViewModel.Fields.Add(fieldViewModel);
                     }
