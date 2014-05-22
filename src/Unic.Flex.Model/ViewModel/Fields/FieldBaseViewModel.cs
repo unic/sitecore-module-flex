@@ -9,7 +9,7 @@
     /// <summary>
     /// This view model covers a field in the form
     /// </summary>
-    public class FieldViewModel : IPresentationComponent, IViewModel, IValidatableObject
+    public abstract class FieldBaseViewModel<TValue> : IPresentationComponent, IValidatableObject
     {
         /// <summary>
         /// The validators
@@ -17,12 +17,10 @@
         private readonly IList<IValidator> validators;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="FieldViewModel"/> class.
+        /// Initializes a new instance of the <see cref="FieldBaseViewModel{TValue}"/> class.
         /// </summary>
-        /// <param name="domainModel">The domain model.</param>
-        public FieldViewModel(ItemBase domainModel)
+        protected FieldBaseViewModel()
         {
-            this.DomainModel = domainModel;
             this.Attributes = new Dictionary<string, object>();
             this.validators = new List<IValidator>();
         }
@@ -33,7 +31,7 @@
         /// <value>
         /// The key.
         /// </value>
-        public string Key { get; set; }
+        public virtual string Key { get; set; }
 
         /// <summary>
         /// Gets or sets the label.
@@ -41,7 +39,7 @@
         /// <value>
         /// The label.
         /// </value>
-        public string Label { get; set; }
+        public virtual string Label { get; set; }
 
         /// <summary>
         /// Gets or sets the value.
@@ -49,7 +47,7 @@
         /// <value>
         /// The value.
         /// </value>
-        public string Value { get; set; } // todo: string is wrong here, this must be object
+        public virtual TValue Value { get; set; }
 
         /// <summary>
         /// Gets the additional html attributes on the field.
@@ -57,7 +55,7 @@
         /// <value>
         /// The additional html attributes on the field.
         /// </value>
-        public IDictionary<string, object> Attributes { get; private set; }
+        public virtual IDictionary<string, object> Attributes { get; private set; }
 
         /// <summary>
         /// Gets or sets the name of the view.
@@ -65,15 +63,7 @@
         /// <value>
         /// The name of the view.
         /// </value>
-        public string ViewName { get; set; }
-
-        /// <summary>
-        /// Gets or sets the domain model.
-        /// </summary>
-        /// <value>
-        /// The domain model.
-        /// </value>
-        public ItemBase DomainModel { get; set; }
+        public virtual string ViewName { get; set; }
 
         /// <summary>
         /// Determines whether the specified object is valid.
@@ -82,7 +72,7 @@
         /// <returns>
         /// A collection that holds failed-validation information.
         /// </returns>
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        public virtual IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             foreach (var validator in this.validators)
             {
@@ -97,7 +87,7 @@
         /// Adds a validator to the current field.
         /// </summary>
         /// <param name="validator">The validator.</param>
-        public void AddValidator(IValidator validator)
+        public virtual void AddValidator(IValidator validator)
         {
             // add the validator to the list
             this.validators.Add(validator);

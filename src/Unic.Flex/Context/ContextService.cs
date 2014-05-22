@@ -1,11 +1,14 @@
 ﻿namespace Unic.Flex.Context
 {
+    using System;
     using System.Linq;
     using Glass.Mapper.Sc;
     using Sitecore.Data;
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
+    using Sitecore.Shell.Framework.Commands.Masters;
     using Unic.Flex.Mapping;
+    using Unic.Flex.Model.DomainModel.Fields;
     using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.DomainModel.Sections;
     using Unic.Flex.Model.DomainModel.Steps;
@@ -64,7 +67,8 @@
                 var section = reusableSection != null ? reusableSection.Section : stepSection as StandardSection;
                 foreach (var field in section.Fields)
                 {
-                    field.Value = this.userDataRepository.GetValue(form.ItemId.ToString(), field.ItemId.ToString());
+                    // todo: this must be generic, not statically a string
+                    (field as FieldBase<string>).Value = this.userDataRepository.GetValue(form.ItemId.ToString(), field.ItemId.ToString()) as string;
                 }
             }
         }

@@ -6,7 +6,7 @@
     /// Multiline text field
     /// </summary>
     [SitecoreType(TemplateId = "{D5768466-2ADA-4C3C-B5C2-6B0299D08F2E}")]
-    public class MultilineTextField : InputField
+    public class MultilineTextField : InputField<string>
     {
         /// <summary>
         /// Gets the name of the view.

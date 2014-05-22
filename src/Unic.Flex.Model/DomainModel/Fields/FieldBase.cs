@@ -1,6 +1,7 @@
 ﻿namespace Unic.Flex.Model.DomainModel.Fields
 {
     using System.Collections.Generic;
+    using Glass.Mapper.Configuration.Attributes;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Unic.Flex.Model.GlassExtensions.Attributes;
     using Unic.Flex.Model.Presentation;
@@ -54,13 +55,5 @@
         /// </value>
         [SitecoreQuery("./Validators/*", InferType = true, IsRelative = true, IsLazy = true)]
         public virtual IEnumerable<IValidator> Validators { get; set; }
-
-        /// <summary>
-        /// Gets or sets the value.
-        /// </summary>
-        /// <value>
-        /// The value.
-        /// </value>
-        public virtual object Value { get; set; }
     }
 }

@@ -76,8 +76,6 @@
     <Compile Include="ModelBinding\IModelConverterService.cs" />
     <Compile Include="ModelBinding\ListModelBinder.cs" />
     <Compile Include="ModelBinding\ModelConverterService.cs" />
-    <Compile Include="ModelBinding\ValueModelBinder.cs" />
-    <Compile Include="Presentation\FlexView.cs" />
     <Compile Include="Presentation\HtmlHelperExtensions.cs" />
     <Compile Include="Mapping\FormRepository.cs" />
     <Compile Include="Mapping\IFormRepository.cs" />

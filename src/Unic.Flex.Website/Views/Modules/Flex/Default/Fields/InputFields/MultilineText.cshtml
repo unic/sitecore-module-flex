@@ -1,9 +1,9 @@
 ﻿@using System.Web.Mvc.Html
-@inherits Unic.Flex.Presentation.FlexView<Unic.Flex.Model.ViewModel.Fields.FieldViewModel, Unic.Flex.Model.DomainModel.Fields.InputFields.MultilineTextField>
+@model Unic.Flex.Model.ViewModel.Fields.InputFields.MultilineTextFieldViewModel
 
 <li>
     @{
-        Model.Attributes.Add("Rows", DomainModel.Rows);
+        Model.Attributes.Add("Rows", Model.Rows);
     }
     
     @Html.LabelFor(m => m.Value, Model.Label)

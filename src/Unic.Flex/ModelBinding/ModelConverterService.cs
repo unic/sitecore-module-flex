@@ -6,11 +6,14 @@
     using Sitecore.Globalization;
     using Sitecore.Shell.Framework.Commands.Favorites;
     using Unic.Flex.Globalization;
+    using Unic.Flex.Model.DomainModel.Fields;
+    using Unic.Flex.Model.DomainModel.Fields.InputFields;
     using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.DomainModel.Sections;
     using Unic.Flex.Model.DomainModel.Steps;
     using Unic.Flex.Model.DomainModel.Validators;
     using Unic.Flex.Model.ViewModel.Fields;
+    using Unic.Flex.Model.ViewModel.Fields.InputFields;
     using Unic.Flex.Model.ViewModel.Forms;
     using Unic.Flex.Model.ViewModel.Sections;
     using Unic.Flex.Model.ViewModel.Steps;
@@ -49,11 +52,22 @@
 
                     foreach (var field in realSection.Fields)
                     {
-                        var fieldViewModel = new FieldViewModel(field);
+                        InputFieldViewModel<string> fieldViewModel;
+                        if(field is SinglelineTextField)
+                        {
+                            fieldViewModel = new SinglelineTextFieldViewModel();
+                        }
+                        else
+                        {
+                            fieldViewModel = new MultilineTextFieldViewModel();
+                        }
+
                         fieldViewModel.Key = field.ItemId.ToString();
                         fieldViewModel.Label = field.Label;
                         fieldViewModel.ViewName = field.ViewName;
-                        fieldViewModel.Value = field.Value as string; // todo: this should be an object here and casting to string isn't needed
+                        
+                        // todo: this must be generic not a string
+                        fieldViewModel.Value = (field as FieldBase<string>).Value as string;
 
                         // add required validator
                         if (field.IsRequired)

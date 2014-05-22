@@ -8,7 +8,7 @@
     /// <summary>
     /// This view model covers a section in the form step.
     /// </summary>
-    public class SectionViewModel : IPresentationComponent, IViewModel
+    public class SectionViewModel : IPresentationComponent
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SectionViewModel"/> class.
@@ -16,7 +16,7 @@
         /// <param name="domainModel">The domain model.</param>
         public SectionViewModel(ItemBase domainModel)
         {
-            this.Fields = new List<FieldViewModel>();
+            this.Fields = new List<FieldBaseViewModel<string>>();
             this.DomainModel = domainModel;
         }
 
@@ -26,7 +26,7 @@
         /// <value>
         /// The fields.
         /// </value>
-        public IList<FieldViewModel> Fields { get; private set; }
+        public IList<FieldBaseViewModel<string>> Fields { get; private set; } // todo: type must be generic
 
         /// <summary>
         /// Gets or sets a value indicating whether to disable the fieldset markup.

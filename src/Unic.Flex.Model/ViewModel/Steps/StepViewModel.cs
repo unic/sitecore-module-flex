@@ -8,7 +8,7 @@
     /// <summary>
     /// This view model covers current step in the form.
     /// </summary>
-    public class StepViewModel : IPresentationComponent, IViewModel
+    public class StepViewModel : IPresentationComponent
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="StepViewModel"/> class.

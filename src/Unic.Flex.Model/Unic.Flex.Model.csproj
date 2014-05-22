@@ -54,10 +54,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DomainModel\Fields\FieldBase.cs" />
-    <Compile Include="ViewModel\Fields\FieldViewModel.cs" />
+    <Compile Include="DomainModel\Fields\FieldBaseGeneric.cs" />
+    <Compile Include="ViewModel\Fields\FieldBaseViewModel.cs" />
     <Compile Include="DomainModel\Fields\InputFields\InputField.cs" />
     <Compile Include="DomainModel\Fields\InputFields\MultilineTextField.cs" />
     <Compile Include="DomainModel\Fields\InputFields\SinglelineTextField.cs" />
+    <Compile Include="ViewModel\Fields\InputFields\InputFieldViewModel.cs" />
+    <Compile Include="ViewModel\Fields\InputFields\MultilineTextFieldViewModel.cs" />
+    <Compile Include="ViewModel\Fields\InputFields\SinglelineTextFieldViewModel.cs" />
     <Compile Include="ViewModel\Forms\FormViewModel.cs" />
     <Compile Include="GlassExtensions\Attributes\SitecoreDictionaryFallbackFieldAttribute.cs" />
     <Compile Include="GlassExtensions\Configurations\SitecoreDictionaryFallbackFieldConfiguration.cs" />
@@ -65,7 +69,6 @@
     <Compile Include="DomainModel\ItemBase.cs" />
     <Compile Include="DomainModel\Forms\Form.cs" />
     <Compile Include="Presentation\IPresentationComponent.cs" />
-    <Compile Include="Presentation\IViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DomainModel\Sections\ReusableSection.cs" />
     <Compile Include="DomainModel\Sections\SectionBase.cs" />
