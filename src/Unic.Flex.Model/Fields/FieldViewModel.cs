@@ -49,7 +49,7 @@
         /// <value>
         /// The value.
         /// </value>
-        public string Value { get; set; } // todo: string is wrong here, this must be object
+        public object Value { get; set; } // todo: string is wrong here, this must be object
 
         /// <summary>
         /// Gets the additional html attributes on the field.

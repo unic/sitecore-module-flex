@@ -32,6 +32,7 @@ namespace Unic.Flex.Website
             ModelBinders.Binders.Add(typeof(FormViewModel), Container.Kernel.Get<IModelBinder>());
             ModelBinders.Binders.Add(typeof(IList<SectionViewModel>), new ListModelBinder());
             ModelBinders.Binders.Add(typeof(IList<FieldViewModel>), new ListModelBinder());
+            ModelBinders.Binders.Add(typeof(FieldViewModel), new ValueModelBinder());
         }
     }
 }
