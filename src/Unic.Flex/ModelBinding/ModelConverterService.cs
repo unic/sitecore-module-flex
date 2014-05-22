@@ -50,7 +50,7 @@
                         fieldViewModel.Key = field.ItemId.ToString();
                         fieldViewModel.Label = field.Label;
                         fieldViewModel.ViewName = field.ViewName;
-                        fieldViewModel.Value = field.Value; // todo: this should be an object here and casting to string isn't needed
+                        fieldViewModel.Value = field.Value as string; // todo: this should be an object here and casting to string isn't needed
 
                         // add required validator
                         if (field.IsRequired)

@@ -18,7 +18,8 @@ namespace Unic.Flex.ModelBinding
         {
             if (propertyDescriptor.Name == "Value")
             {
-                propertyDescriptor.SetValue(propertyDescriptor.PropertyType, typeof(string));
+                // todo: uncomment or remove if not needed
+                //propertyDescriptor.SetValue(propertyDescriptor.PropertyType, typeof(string));
             }
             
             base.BindProperty(controllerContext, bindingContext, propertyDescriptor);
