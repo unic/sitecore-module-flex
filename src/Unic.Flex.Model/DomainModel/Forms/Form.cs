@@ -1,10 +1,10 @@
-﻿namespace Unic.Flex.Model.Forms
+﻿namespace Unic.Flex.Model.DomainModel.Forms
 {
     using System.Collections.Generic;
     using System.Linq;
     using Glass.Mapper.Sc.Configuration.Attributes;
+    using Unic.Flex.Model.DomainModel.Steps;
     using Unic.Flex.Model.Presentation;
-    using Unic.Flex.Model.Steps;
 
     /// <summary>
     /// The complete form domain model object

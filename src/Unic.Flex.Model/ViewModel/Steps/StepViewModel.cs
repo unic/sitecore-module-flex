@@ -1,9 +1,9 @@
-﻿namespace Unic.Flex.Model.Steps
+﻿namespace Unic.Flex.Model.ViewModel.Steps
 {
     using System.Collections.Generic;
-    using Unic.Flex.Model;
+    using Unic.Flex.Model.DomainModel;
     using Unic.Flex.Model.Presentation;
-    using Unic.Flex.Model.Sections;
+    using Unic.Flex.Model.ViewModel.Sections;
 
     /// <summary>
     /// This view model covers current step in the form.

@@ -1,4 +1,4 @@
-﻿namespace Unic.Flex.Model.Validators
+﻿namespace Unic.Flex.Model.Validation
 {
     using System.Collections.Generic;
 

@@ -1,4 +1,4 @@
-﻿namespace Unic.Flex.Model.Fields.InputFields
+﻿namespace Unic.Flex.Model.DomainModel.Fields.InputFields
 {
     using Glass.Mapper.Sc.Configuration.Attributes;
 

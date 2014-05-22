@@ -1,9 +1,9 @@
-﻿namespace Unic.Flex.Model.Sections
+﻿namespace Unic.Flex.Model.ViewModel.Sections
 {
     using System.Collections.Generic;
-    using Unic.Flex.Model;
-    using Unic.Flex.Model.Fields;
+    using Unic.Flex.Model.DomainModel;
     using Unic.Flex.Model.Presentation;
+    using Unic.Flex.Model.ViewModel.Fields;
 
     /// <summary>
     /// This view model covers a section in the form step.

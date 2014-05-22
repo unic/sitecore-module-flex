@@ -1,4 +1,4 @@
-﻿namespace Unic.Flex.Model
+﻿namespace Unic.Flex.Model.DomainModel
 {
     using System;
     using Glass.Mapper.Sc.Configuration;

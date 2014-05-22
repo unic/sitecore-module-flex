@@ -2,6 +2,7 @@
 {
     using System.Web.Mvc;
     using Unic.Flex.Model;
+    using Unic.Flex.Model.DomainModel;
     using Unic.Flex.Model.Presentation;
 
     public abstract class FlexView<TViewModel, TDomainModel> : WebViewPage<TViewModel> where TViewModel : IViewModel where TDomainModel : ItemBase

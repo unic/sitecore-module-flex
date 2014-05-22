@@ -6,11 +6,14 @@
     using Sitecore.Globalization;
     using Sitecore.Shell.Framework.Commands.Favorites;
     using Unic.Flex.Globalization;
-    using Unic.Flex.Model.Fields;
-    using Unic.Flex.Model.Forms;
-    using Unic.Flex.Model.Sections;
-    using Unic.Flex.Model.Steps;
-    using Unic.Flex.Model.Validators;
+    using Unic.Flex.Model.DomainModel.Forms;
+    using Unic.Flex.Model.DomainModel.Sections;
+    using Unic.Flex.Model.DomainModel.Steps;
+    using Unic.Flex.Model.DomainModel.Validators;
+    using Unic.Flex.Model.ViewModel.Fields;
+    using Unic.Flex.Model.ViewModel.Forms;
+    using Unic.Flex.Model.ViewModel.Sections;
+    using Unic.Flex.Model.ViewModel.Steps;
 
     public class ModelConverterService : IModelConverterService
     {

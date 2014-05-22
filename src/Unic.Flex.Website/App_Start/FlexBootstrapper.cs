@@ -6,9 +6,9 @@ namespace Unic.Flex.Website
     using System.Web.Mvc;
     using Ninject;
     using Unic.Flex.DependencyInjection;
-    using Unic.Flex.Model.Fields;
-    using Unic.Flex.Model.Forms;
-    using Unic.Flex.Model.Sections;
+    using Unic.Flex.Model.ViewModel.Fields;
+    using Unic.Flex.Model.ViewModel.Forms;
+    using Unic.Flex.Model.ViewModel.Sections;
     using Unic.Flex.ModelBinding;
 
     /// <summary>

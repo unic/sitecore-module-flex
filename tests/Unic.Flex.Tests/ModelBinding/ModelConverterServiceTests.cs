@@ -8,7 +8,7 @@ namespace Unic.Flex.Tests.ModelBinding
 {
     using NUnit.Framework;
     using Unic.Flex.Mapping;
-    using Unic.Flex.Model.Forms;
+    using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.ModelBinding;
     using Unic.Flex.Tests.Common.Moqs;
 

@@ -2,6 +2,7 @@
 {
     using System.Linq;
     using Unic.Flex.Model;
+    using Unic.Flex.Model.DomainModel;
 
     /// <summary>
     /// Extensions for url related objects.

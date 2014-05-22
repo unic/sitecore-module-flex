@@ -1,10 +1,10 @@
-﻿namespace Unic.Flex.Model.Fields
+﻿namespace Unic.Flex.Model.DomainModel.Fields
 {
     using System.Collections.Generic;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Unic.Flex.Model.GlassExtensions.Attributes;
     using Unic.Flex.Model.Presentation;
-    using Unic.Flex.Model.Validators;
+    using Unic.Flex.Model.Validation;
 
     /// <summary>
     /// Base class for all available fields

@@ -1,12 +1,12 @@
-﻿namespace Unic.Flex.Model.Steps
+﻿namespace Unic.Flex.Model.DomainModel.Steps
 {
     using Glass.Mapper.Sc.Configuration.Attributes;
 
     /// <summary>
-    /// The step in a single step form.
+    /// The summary step.
     /// </summary>
-    [SitecoreType(TemplateId = "{62607958-C3F4-4925-BD8E-786E37F10E9A}")]
-    public class SingleStep : StandardStep
+    [SitecoreType(TemplateId = "{D8D5719A-4799-44D4-8BDC-9EA78E029385}")]
+    public class Summary : StepBase
     {
         /// <summary>
         /// Gets the name of the view.
@@ -18,7 +18,7 @@
         {
             get
             {
-                return "Steps/SingleStep";
+                return "Steps/Summary";
             }
         }
     }

@@ -6,9 +6,10 @@
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
     using Unic.Flex.Mapping;
-    using Unic.Flex.Model.Forms;
-    using Unic.Flex.Model.Sections;
-    using Unic.Flex.Model.Steps;
+    using Unic.Flex.Model.DomainModel.Forms;
+    using Unic.Flex.Model.DomainModel.Sections;
+    using Unic.Flex.Model.DomainModel.Steps;
+    using Unic.Flex.Model.ViewModel.Forms;
 
     /// <summary>
     /// The service containing contexxt based business logic.

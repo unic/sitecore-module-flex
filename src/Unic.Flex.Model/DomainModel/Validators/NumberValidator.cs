@@ -1,9 +1,10 @@
-﻿namespace Unic.Flex.Model.Validators
+﻿namespace Unic.Flex.Model.DomainModel.Validators
 {
     using System;
     using System.Collections.Generic;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Unic.Flex.Model.GlassExtensions.Attributes;
+    using Unic.Flex.Model.Validation;
 
     /// <summary>
     /// Validator for validating numbers.

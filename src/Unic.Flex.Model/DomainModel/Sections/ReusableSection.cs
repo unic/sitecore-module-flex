@@ -1,4 +1,4 @@
-﻿namespace Unic.Flex.Model.Sections
+﻿namespace Unic.Flex.Model.DomainModel.Sections
 {
     using Glass.Mapper.Sc.Configuration.Attributes;
 

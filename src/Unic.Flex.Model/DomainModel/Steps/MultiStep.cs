@@ -1,4 +1,4 @@
-﻿namespace Unic.Flex.Model.Steps
+﻿namespace Unic.Flex.Model.DomainModel.Steps
 {
     using Glass.Mapper.Sc.Configuration.Attributes;
 

@@ -1,6 +1,7 @@
 ﻿namespace Unic.Flex.Model.Presentation
 {
     using Unic.Flex.Model;
+    using Unic.Flex.Model.DomainModel;
 
     /// <summary>
     /// Interface for all view models which stores a reference to the corresponding domain model object.

@@ -1,10 +1,10 @@
-﻿namespace Unic.Flex.Model.Fields
+﻿namespace Unic.Flex.Model.ViewModel.Fields
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using Unic.Flex.Model;
+    using Unic.Flex.Model.DomainModel;
     using Unic.Flex.Model.Presentation;
-    using Unic.Flex.Model.Validators;
+    using Unic.Flex.Model.Validation;
 
     /// <summary>
     /// This view model covers a field in the form

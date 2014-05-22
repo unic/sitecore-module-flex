@@ -53,33 +53,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Fields\FieldBase.cs" />
-    <Compile Include="Fields\FieldViewModel.cs" />
-    <Compile Include="Fields\InputFields\InputField.cs" />
-    <Compile Include="Fields\InputFields\MultilineTextField.cs" />
-    <Compile Include="Fields\InputFields\SinglelineTextField.cs" />
-    <Compile Include="Forms\FormViewModel.cs" />
+    <Compile Include="DomainModel\Fields\FieldBase.cs" />
+    <Compile Include="ViewModel\Fields\FieldViewModel.cs" />
+    <Compile Include="DomainModel\Fields\InputFields\InputField.cs" />
+    <Compile Include="DomainModel\Fields\InputFields\MultilineTextField.cs" />
+    <Compile Include="DomainModel\Fields\InputFields\SinglelineTextField.cs" />
+    <Compile Include="ViewModel\Forms\FormViewModel.cs" />
     <Compile Include="GlassExtensions\Attributes\SitecoreDictionaryFallbackFieldAttribute.cs" />
     <Compile Include="GlassExtensions\Configurations\SitecoreDictionaryFallbackFieldConfiguration.cs" />
     <Compile Include="GlassExtensions\Handlers\SitecoreDictionaryFallbackFieldTypeMapper.cs" />
-    <Compile Include="ItemBase.cs" />
-    <Compile Include="Forms\Form.cs" />
+    <Compile Include="DomainModel\ItemBase.cs" />
+    <Compile Include="DomainModel\Forms\Form.cs" />
     <Compile Include="Presentation\IPresentationComponent.cs" />
     <Compile Include="Presentation\IViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sections\ReusableSection.cs" />
-    <Compile Include="Sections\SectionBase.cs" />
-    <Compile Include="Sections\SectionViewModel.cs" />
-    <Compile Include="Sections\StandardSection.cs" />
-    <Compile Include="Steps\StepBase.cs" />
-    <Compile Include="Steps\MultiStep.cs" />
-    <Compile Include="Steps\SingleStep.cs" />
-    <Compile Include="Steps\StandardStep.cs" />
-    <Compile Include="Steps\StepViewModel.cs" />
-    <Compile Include="Steps\Summary.cs" />
-    <Compile Include="Validators\IValidator.cs" />
-    <Compile Include="Validators\NumberValidator.cs" />
-    <Compile Include="Validators\RequiredValidator.cs" />
+    <Compile Include="DomainModel\Sections\ReusableSection.cs" />
+    <Compile Include="DomainModel\Sections\SectionBase.cs" />
+    <Compile Include="ViewModel\Sections\SectionViewModel.cs" />
+    <Compile Include="DomainModel\Sections\StandardSection.cs" />
+    <Compile Include="DomainModel\Steps\StepBase.cs" />
+    <Compile Include="DomainModel\Steps\MultiStep.cs" />
+    <Compile Include="DomainModel\Steps\SingleStep.cs" />
+    <Compile Include="DomainModel\Steps\StandardStep.cs" />
+    <Compile Include="ViewModel\Steps\StepViewModel.cs" />
+    <Compile Include="DomainModel\Steps\Summary.cs" />
+    <Compile Include="Validation\IValidator.cs" />
+    <Compile Include="DomainModel\Validators\NumberValidator.cs" />
+    <Compile Include="DomainModel\Validators\RequiredValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

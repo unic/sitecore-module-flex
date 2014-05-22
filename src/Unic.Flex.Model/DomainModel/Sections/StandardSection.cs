@@ -1,8 +1,8 @@
-﻿namespace Unic.Flex.Model.Sections
+﻿namespace Unic.Flex.Model.DomainModel.Sections
 {
     using System.Collections.Generic;
     using Glass.Mapper.Sc.Configuration.Attributes;
-    using Unic.Flex.Model.Fields;
+    using Unic.Flex.Model.DomainModel.Fields;
     using Unic.Flex.Model.Presentation;
 
     /// <summary>

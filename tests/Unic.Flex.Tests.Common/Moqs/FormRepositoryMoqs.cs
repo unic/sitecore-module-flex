@@ -5,10 +5,10 @@
     using Glass.Mapper.Sc;
     using Moq;
     using Unic.Flex.Mapping;
-    using Unic.Flex.Model.Fields;
-    using Unic.Flex.Model.Forms;
-    using Unic.Flex.Model.Sections;
-    using Unic.Flex.Model.Steps;
+    using Unic.Flex.Model.DomainModel.Fields;
+    using Unic.Flex.Model.DomainModel.Forms;
+    using Unic.Flex.Model.DomainModel.Sections;
+    using Unic.Flex.Model.DomainModel.Steps;
 
     public static class FormRepositoryMoqs
     {

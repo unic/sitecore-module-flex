@@ -1,6 +1,6 @@
-﻿namespace Unic.Flex.Model.Forms
+﻿namespace Unic.Flex.Model.ViewModel.Forms
 {
-    using Unic.Flex.Model.Steps;
+    using Unic.Flex.Model.ViewModel.Steps;
 
     /// <summary>
     /// This view model covers the form itself.

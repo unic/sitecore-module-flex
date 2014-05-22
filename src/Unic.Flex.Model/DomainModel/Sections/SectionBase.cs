@@ -1,4 +1,4 @@
-﻿namespace Unic.Flex.Model.Sections
+﻿namespace Unic.Flex.Model.DomainModel.Sections
 {
     /// <summary>
     /// Base class for all sections.

@@ -1,8 +1,8 @@
-﻿namespace Unic.Flex.Model.Steps
+﻿namespace Unic.Flex.Model.DomainModel.Steps
 {
     using System.Collections.Generic;
     using Glass.Mapper.Sc.Configuration.Attributes;
-    using Unic.Flex.Model.Sections;
+    using Unic.Flex.Model.DomainModel.Sections;
 
     /// <summary>
     /// A default step with sections and fields.
