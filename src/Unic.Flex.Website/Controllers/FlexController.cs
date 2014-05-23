@@ -23,7 +23,7 @@
         
         public ActionResult Form()
         {
-            var form = FlexContext.Current.Form;
+            var form = ContextUtil.GetCurrentForm();
             if (form == null) return new EmptyResult();
 
             var formView = this.presentationService.ResolveView(this.ControllerContext, form.ViewName);
@@ -39,12 +39,12 @@
                 return this.View("~/Views/Modules/Flex/Default/Form.cshtml", model);    
             }
 
-            var context = FlexContext.Current;
-            this.contextService.StoreFormValues(context.Form, model);
-            if (!string.IsNullOrWhiteSpace(context.NextStepUrl))
+            var form = ContextUtil.GetCurrentForm();
+            this.contextService.StoreFormValues(form, model);
+            /*if (!string.IsNullOrWhiteSpace(context.NextStepUrl))
             {
                 return this.Redirect(context.NextStepUrl);
-            }
+            }*/
 
             return Content("this was the last step, form has been submitted");
         }

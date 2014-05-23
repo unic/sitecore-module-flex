@@ -1,26 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Unic.Flex.Context
+﻿namespace Unic.Flex.Context
 {
-    using System.Web;
     using Glass.Mapper.Sc;
     using Ninject;
     using Sitecore.Data;
     using Sitecore.Data.Items;
     using Sitecore.Sites;
+    using System;
+    using System.Collections.Generic;
+    using System.Web;
     using Unic.Flex.DependencyInjection;
-    using Unic.Flex.Model;
     using Unic.Flex.Model.DomainModel;
     using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.DomainModel.Steps;
 
-    // todo (???): was wollen wir wirklich mit diesem context? Was muss genau alles hier rein und wie soll dieser context resp. die form daten von anderen entwicklern erreichbar sein?
-
-    public class FlexContext
+    internal class FlexContext
     {
         private const string ContextKey = "FORM_CONTEXT";
 
