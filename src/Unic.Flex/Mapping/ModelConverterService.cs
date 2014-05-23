@@ -1,18 +1,16 @@
 ﻿namespace Unic.Flex.Mapping
 {
-    using System;
-    using System.Linq;
     using AutoMapper;
     using Castle.DynamicProxy;
     using Sitecore.Diagnostics;
+    using System;
+    using System.Collections.Concurrent;
+    using System.Linq;
     using Unic.Flex.Context;
     using Unic.Flex.Model.DomainModel.Fields;
-    using Unic.Flex.Model.DomainModel.Fields.InputFields;
     using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.DomainModel.Sections;
-    using Unic.Flex.Model.DomainModel.Steps;
     using Unic.Flex.Model.DomainModel.Validators;
-    using Unic.Flex.Model.ViewModel;
     using Unic.Flex.Model.ViewModel.Fields.InputFields;
     using Unic.Flex.Model.ViewModel.Forms;
     using Unic.Flex.Model.ViewModel.Sections;
@@ -20,6 +18,19 @@
 
     public class ModelConverterService : IModelConverterService
     {
+        /// <summary>
+        /// Cache for view model types
+        /// </summary>
+        private readonly ConcurrentDictionary<string, Type> viewModelTypeCache;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ModelConverterService"/> class.
+        /// </summary>
+        public ModelConverterService()
+        {
+            this.viewModelTypeCache = new ConcurrentDictionary<string, Type>();
+        }
+        
         public FormViewModel ConvertToViewModel(Form form)
         {
             Assert.ArgumentNotNull(form, "form");
@@ -33,11 +44,11 @@
             if (activeStep == null) throw new Exception("No step is currently active or no step was found");
 
             // map the form to it's view model
-            var formViewModel = GetViewModel<FormViewModel>(form);
+            var formViewModel = this.GetViewModel<FormViewModel>(form);
             Mapper.DynamicMap(form, formViewModel, form.GetType(), formViewModel.GetType());
 
             // map the current step to it's view model
-            var stepViewModel = GetViewModel<StepBaseViewModel>(activeStep);
+            var stepViewModel = this.GetViewModel<StepBaseViewModel>(activeStep);
             Mapper.DynamicMap(activeStep, stepViewModel, activeStep.GetType(), stepViewModel.GetType());
             stepViewModel.Sections.Clear();
 
@@ -58,7 +69,7 @@
                 var section = (reusableSection == null ? skinySection : reusableSection.Section) as StandardSection;
 
                 // map the current section to it's view model
-                var sectionViewModel = GetViewModel<StandardSectionViewModel>(section);
+                var sectionViewModel = this.GetViewModel<StandardSectionViewModel>(section);
                 Mapper.DynamicMap(section, sectionViewModel, section.GetType(), sectionViewModel.GetType());
                 sectionViewModel.Fields.Clear();
 
@@ -66,7 +77,7 @@
                 foreach (var field in section.Fields)
                 {
                     // todo: this must be generic
-                    var fieldViewModel = GetViewModel<InputFieldViewModel<string>>(field);
+                    var fieldViewModel = this.GetViewModel<InputFieldViewModel<string>>(field);
                     Mapper.DynamicMap(field, fieldViewModel, field.GetType(), fieldViewModel.GetType());
                     
                     // add required validator
@@ -107,16 +118,43 @@
         /// <typeparam name="T">Type of the view model</typeparam>
         /// <param name="domainModel">The domain model.</param>
         /// <returns>New instance of the found view model or null</returns>
-        private static T GetViewModel<T>(object domainModel)
+        public virtual T GetViewModel<T>(object domainModel)
         {
             Assert.ArgumentNotNull(domainModel, "domainModel");
-            
-            // todo: add caching to rewtrieving types
-
-            var domainModelType = ProxyUtil.GetUnproxiedType(domainModel);
-            var name = domainModelType.Name + "ViewModel";
-            var viewModelType = domainModelType.Assembly.GetTypes().FirstOrDefault(type => type.Name == name);
+            var viewModelType = this.ResolveViewModelType(domainModel);
             return viewModelType == null ? default(T) : (T)Activator.CreateInstance(viewModelType);
+        }
+
+        /// <summary>
+        /// Resolves the type of the view model.
+        /// </summary>
+        /// <param name="domainModel">The domain model.</param>
+        /// <returns>Type of the view model class.</returns>
+        protected virtual Type ResolveViewModelType(object domainModel)
+        {
+            var domainModelFullName = domainModel.GetType().FullName;
+            if (this.viewModelTypeCache.ContainsKey(domainModelFullName))
+            {
+                return this.viewModelTypeCache[domainModelFullName];
+            }
+
+            var viewModelType = this.ResolveViewModelTypeFromAssembly(domainModel);
+            this.viewModelTypeCache.TryAdd(domainModelFullName, viewModelType);
+            return viewModelType;
+        }
+
+        /// <summary>
+        /// Resolves the view model type from the assembly. It searches for class with the same name as the domain model
+        /// type with "ViewModel" at the end -> i.e. for the domain model class "TextField" it searches for "TextFieldViewModel".
+        /// The search is done within the same assembly as the domain model only.
+        /// </summary>
+        /// <param name="domainModel">The domain model instance.</param>
+        /// <returns>Type of the view model class.</returns>
+        protected virtual Type ResolveViewModelTypeFromAssembly(object domainModel)
+        {
+            var domainModelType = ProxyUtil.GetUnproxiedType(domainModel);
+            var viewModelClassName = domainModelType.Name + "ViewModel";
+            return domainModelType.Assembly.GetTypes().FirstOrDefault(type => type.Name == viewModelClassName);
         }
     }
 }
