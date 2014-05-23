@@ -1,23 +1,20 @@
 ﻿namespace Unic.Flex.Model.ViewModel.Sections
 {
     using System.Collections.Generic;
-    using Unic.Flex.Model.DomainModel;
     using Unic.Flex.Model.Presentation;
     using Unic.Flex.Model.ViewModel.Fields;
 
     /// <summary>
     /// This view model covers a section in the form step.
     /// </summary>
-    public class SectionViewModel : IPresentationComponent
+    public class StandardSectionViewModel : IPresentationComponent
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SectionViewModel"/> class.
+        /// Initializes a new instance of the <see cref="StandardSectionViewModel" /> class.
         /// </summary>
-        /// <param name="domainModel">The domain model.</param>
-        public SectionViewModel(ItemBase domainModel)
+        public StandardSectionViewModel()
         {
             this.Fields = new List<FieldBaseViewModel<string>>();
-            this.DomainModel = domainModel;
         }
 
         /// <summary>
@@ -26,7 +23,7 @@
         /// <value>
         /// The fields.
         /// </value>
-        public IList<FieldBaseViewModel<string>> Fields { get; private set; } // todo: type must be generic
+        public virtual IList<FieldBaseViewModel<string>> Fields { get; private set; } // todo: type must be generic
 
         /// <summary>
         /// Gets or sets a value indicating whether to disable the fieldset markup.
@@ -34,7 +31,7 @@
         /// <value>
         ///   <c>true</c> if the fieldset markup should not be outputed; otherwise, <c>false</c>.
         /// </value>
-        public bool DisableFieldset { get; set; }
+        public virtual bool DisableFieldset { get; set; }
 
         /// <summary>
         /// Gets or sets the title.
@@ -42,7 +39,7 @@
         /// <value>
         /// The title.
         /// </value>
-        public string Title { get; set; }
+        public virtual string Title { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the view.
@@ -50,14 +47,6 @@
         /// <value>
         /// The name of the view.
         /// </value>
-        public string ViewName { get; set; }
-
-        /// <summary>
-        /// Gets or sets the domain model.
-        /// </summary>
-        /// <value>
-        /// The domain model.
-        /// </value>
-        public ItemBase DomainModel { get; set; }
+        public virtual string ViewName { get; set; }
     }
 }

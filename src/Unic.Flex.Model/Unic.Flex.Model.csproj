@@ -72,17 +72,20 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DomainModel\Sections\ReusableSection.cs" />
     <Compile Include="DomainModel\Sections\SectionBase.cs" />
-    <Compile Include="ViewModel\Sections\SectionViewModel.cs" />
+    <Compile Include="ViewModel\Sections\StandardSectionViewModel.cs" />
     <Compile Include="DomainModel\Sections\StandardSection.cs" />
     <Compile Include="DomainModel\Steps\StepBase.cs" />
     <Compile Include="DomainModel\Steps\MultiStep.cs" />
     <Compile Include="DomainModel\Steps\SingleStep.cs" />
     <Compile Include="DomainModel\Steps\StandardStep.cs" />
-    <Compile Include="ViewModel\Steps\StepViewModel.cs" />
+    <Compile Include="ViewModel\Steps\MultiStepViewModel.cs" />
+    <Compile Include="ViewModel\Steps\SingleStepViewModel.cs" />
     <Compile Include="DomainModel\Steps\Summary.cs" />
     <Compile Include="Validation\IValidator.cs" />
     <Compile Include="DomainModel\Validators\NumberValidator.cs" />
     <Compile Include="DomainModel\Validators\RequiredValidator.cs" />
+    <Compile Include="ViewModel\Steps\StepBaseViewModel.cs" />
+    <Compile Include="ViewModel\Steps\SummaryViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

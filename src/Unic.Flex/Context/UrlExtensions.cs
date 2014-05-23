@@ -33,8 +33,11 @@
         /// <returns>Url of the next step if available</returns>
         public static string GetNextStepUrl(this StepBase step)
         {
-            var node = GetCurrentStepNode(step).Next;
-            return node != null ? node.Value.GetUrl() : string.Empty;
+            var linkedSteps = new LinkedList<StepBase>(FlexContext.Current.Form.Steps);
+            var stepNode = linkedSteps.Find(step);
+            if (stepNode == null) throw new Exception("Could not convert steps to linked list");
+            var nextStep = stepNode.Next;
+            return nextStep != null ? nextStep.Value.GetUrl() : string.Empty;
         }
 
         /// <summary>
@@ -44,22 +47,14 @@
         /// <returns>Url of the previous step if available</returns>
         public static string GetPreviousStepUrl(this StepBase step)
         {
-            var node = GetCurrentStepNode(step).Previous;
-            return node != null ? node.Value.GetUrl() : string.Empty;
-        }
-
-        /// <summary>
-        /// Gets the current step node.
-        /// </summary>
-        /// <param name="step">The step.</param>
-        /// <returns>The current step as linked list node</returns>
-        /// <exception cref="System.Exception">Could not convert steps to linked list</exception>
-        private static LinkedListNode<StepBase> GetCurrentStepNode(StepBase step)
-        {
-            var linkedSteps = new LinkedList<StepBase>(FlexContext.Current.Form.Steps);
+            var context = FlexContext.Current;
+            var linkedSteps = new LinkedList<StepBase>(context.Form.Steps);
             var stepNode = linkedSteps.Find(step);
             if (stepNode == null) throw new Exception("Could not convert steps to linked list");
-            return stepNode;
+            var previousStep = stepNode.Previous;
+
+            if (previousStep == null) return string.Empty;
+            return previousStep.Equals(linkedSteps.First) ? context.Item.Url : previousStep.Value.GetUrl();
         }
     }
 }

@@ -13,7 +13,7 @@
         /// <value>
         /// The title.
         /// </value>
-        public string Title { get; set; }
+        public virtual string Title { get; set; }
 
         /// <summary>
         /// Gets or sets the introduction.
@@ -21,7 +21,7 @@
         /// <value>
         /// The introduction.
         /// </value>
-        public string Introduction { get; set; }
+        public virtual string Introduction { get; set; }
 
         /// <summary>
         /// Gets or sets the step to render.
@@ -29,6 +29,6 @@
         /// <value>
         /// The step to render.
         /// </value>
-        public StepViewModel Step { get; set; }
+        public virtual StepBaseViewModel Step { get; set; }
     }
 }
