@@ -9,7 +9,8 @@
     /// <summary>
     /// This view model covers a field in the form
     /// </summary>
-    public abstract class FieldBaseViewModel<TValue> : IPresentationComponent, IValidatableObject
+    // todo: clas should be abtract
+    public class FieldBaseViewModel<TValue> : IPresentationComponent, IValidatableObject
     {
         /// <summary>
         /// The validators

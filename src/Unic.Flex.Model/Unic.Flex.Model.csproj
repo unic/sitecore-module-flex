@@ -77,7 +77,6 @@
     <Compile Include="DomainModel\Steps\StepBase.cs" />
     <Compile Include="DomainModel\Steps\MultiStep.cs" />
     <Compile Include="DomainModel\Steps\SingleStep.cs" />
-    <Compile Include="DomainModel\Steps\StandardStep.cs" />
     <Compile Include="ViewModel\Steps\MultiStepViewModel.cs" />
     <Compile Include="ViewModel\Steps\SingleStepViewModel.cs" />
     <Compile Include="DomainModel\Steps\Summary.cs" />
