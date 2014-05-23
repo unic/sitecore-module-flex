@@ -122,7 +122,7 @@
         {
             Assert.ArgumentNotNull(domainModel, "domainModel");
             var viewModelType = this.ResolveViewModelType(domainModel);
-            return viewModelType == null ? default(T) : (T)Activator.CreateInstance(viewModelType);
+            return viewModelType == null || !(viewModelType == typeof(T)) ? default(T) : (T)Activator.CreateInstance(viewModelType);
         }
 
         /// <summary>
