@@ -10,6 +10,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unic.Flex", "src\Unic.Flex\Unic.Flex.csproj", "{18B25AE3-F6AA-4A59-A49B-051CEB4487D8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{7F01601C-CD63-42C7-8B65-A14851B19DFD}"
+	ProjectSection(SolutionItems) = preProject
+		tests\DefaultSettings.runsettings = tests\DefaultSettings.runsettings
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unic.Flex.Tests.Common", "tests\Unic.Flex.Tests.Common\Unic.Flex.Tests.Common.csproj", "{AE341D4C-2CA6-4194-B476-7284FA3EF429}"
 EndProject
