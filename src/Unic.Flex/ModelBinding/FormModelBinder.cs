@@ -3,6 +3,7 @@
     using System;
     using System.Web.Mvc;
     using Unic.Flex.Context;
+    using Unic.Flex.Mapping;
     using Unic.Flex.Model.ViewModel.Forms;
 
     public class FormModelBinder : DefaultModelBinder

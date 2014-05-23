@@ -2,6 +2,7 @@
 {
     using System.Web.Mvc;
     using Unic.Flex.Context;
+    using Unic.Flex.Mapping;
     using Unic.Flex.Model.ViewModel.Forms;
     using Unic.Flex.ModelBinding;
     using Unic.Flex.Presentation;

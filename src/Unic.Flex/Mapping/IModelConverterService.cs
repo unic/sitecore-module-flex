@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Unic.Flex.ModelBinding
+﻿namespace Unic.Flex.Mapping
 {
     using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.ViewModel.Forms;

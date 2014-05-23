@@ -1,7 +1,7 @@
-﻿namespace Unic.Flex.ModelBinding
+﻿namespace Unic.Flex.Mapping
 {
-    using Sitecore.Diagnostics;
     using System;
+    using Sitecore.Diagnostics;
     using Unic.Flex.Context;
     using Unic.Flex.Model.DomainModel.Fields;
     using Unic.Flex.Model.DomainModel.Fields.InputFields;
