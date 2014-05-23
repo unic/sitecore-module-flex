@@ -114,7 +114,7 @@
             // todo: add caching to rewtrieving types
 
             var domainModelType = ProxyUtil.GetUnproxiedType(domainModel);
-            var name = domainModelType.Name.Replace("Proxy", string.Empty) + "ViewModel";
+            var name = domainModelType.Name + "ViewModel";
             var viewModelType = domainModelType.Assembly.GetTypes().FirstOrDefault(type => type.Name == name);
             return viewModelType == null ? default(T) : (T)Activator.CreateInstance(viewModelType);
         }
