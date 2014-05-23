@@ -36,7 +36,7 @@
         /// The fields.
         /// </value>
         [SitecoreChildren(IsLazy = true, InferType = true)]
-        public virtual IEnumerable<FieldBase> Fields { get; set; }
+        public virtual IEnumerable<IField> Fields { get; set; }
 
         /// <summary>
         /// Gets the name of the view.
