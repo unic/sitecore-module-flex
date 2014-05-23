@@ -41,10 +41,11 @@
 
             var form = ContextUtil.GetCurrentForm();
             this.contextService.StoreFormValues(form, model);
-            /*if (!string.IsNullOrWhiteSpace(context.NextStepUrl))
+            var nextStepUrl = form.GetActiveStep().GetNextStepUrl();
+            if (!string.IsNullOrWhiteSpace(nextStepUrl))
             {
-                return this.Redirect(context.NextStepUrl);
-            }*/
+                return this.Redirect(nextStepUrl);
+            }
 
             return Content("this was the last step, form has been submitted");
         }
