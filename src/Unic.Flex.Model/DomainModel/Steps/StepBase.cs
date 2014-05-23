@@ -1,5 +1,8 @@
 ﻿namespace Unic.Flex.Model.DomainModel.Steps
 {
+    using System.Collections.Generic;
+    using Glass.Mapper.Sc.Configuration.Attributes;
+    using Unic.Flex.Model.DomainModel.Sections;
     using Unic.Flex.Model.Presentation;
 
     /// <summary>
@@ -22,5 +25,14 @@
         /// The name of the view.
         /// </value>
         public abstract string ViewName { get; }
+
+        /// <summary>
+        /// Gets or sets the sections.
+        /// </summary>
+        /// <value>
+        /// The sections.
+        /// </value>
+        [SitecoreChildren(IsLazy = true, InferType = true)]
+        public virtual IEnumerable<SectionBase> Sections { get; set; }
     }
 }

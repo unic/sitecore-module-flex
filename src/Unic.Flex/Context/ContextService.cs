@@ -61,7 +61,7 @@
         {
             Assert.ArgumentNotNull(form, "form");
             
-            foreach (var stepSection in form.Steps.OfType<StandardStep>().SelectMany(step => step.Sections))
+            foreach (var stepSection in form.Steps.SelectMany(step => step.Sections))
             {
                 var reusableSection = stepSection as ReusableSection;
                 var section = reusableSection != null ? reusableSection.Section : stepSection as StandardSection;
