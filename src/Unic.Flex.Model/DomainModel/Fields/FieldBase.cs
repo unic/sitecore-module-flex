@@ -53,7 +53,7 @@
         /// <value>
         /// The validators.
         /// </value>
-        [SitecoreQuery("./Validators/*", InferType = true, IsRelative = true, IsLazy = true)]
+        [SitecoreChildren(IsLazy = true, InferType = true)]
         public virtual IEnumerable<IValidator> Validators { get; set; }
     }
 }
