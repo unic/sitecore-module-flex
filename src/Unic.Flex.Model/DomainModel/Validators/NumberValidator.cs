@@ -53,7 +53,10 @@
         /// </returns>
         public virtual bool IsValid(object value)
         {
-            if (value == null) return false;
+            if (value == null) return true;
+
+            var stringValue = value as string;
+            if (stringValue == null || string.IsNullOrWhiteSpace(stringValue)) return true;
 
             try
             {

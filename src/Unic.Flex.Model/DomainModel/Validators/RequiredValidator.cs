@@ -30,6 +30,8 @@
         /// </returns>
         public virtual bool IsValid(object value)
         {
+            // todo: requried validator does not yet validate checkboxes correctly on frontend
+            
             if (value == null) return false;
 
             var booleanValue = value as bool?;

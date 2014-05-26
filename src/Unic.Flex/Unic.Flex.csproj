@@ -82,6 +82,7 @@
     <Compile Include="Globalization\IDictionaryRepository.cs" />
     <Compile Include="Mapping\IUserDataRepository.cs" />
     <Compile Include="Mapping\UserDataRepository.cs" />
+    <Compile Include="ModelBinding\FieldModelBinder.cs" />
     <Compile Include="ModelBinding\FormModelBinder.cs" />
     <Compile Include="Mapping\IModelConverterService.cs" />
     <Compile Include="ModelBinding\ListModelBinder.cs" />
