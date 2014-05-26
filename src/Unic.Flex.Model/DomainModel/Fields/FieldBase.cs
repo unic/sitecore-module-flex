@@ -1,31 +1,50 @@
 ﻿namespace Unic.Flex.Model.DomainModel.Fields
 {
-    using Glass.Mapper.Sc.Configuration.Attributes;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using Glass.Mapper.Sc.Configuration.Attributes;
     using Unic.Flex.Model.GlassExtensions.Attributes;
     using Unic.Flex.Model.Presentation;
     using Unic.Flex.Model.Validation;
 
     /// <summary>
-    /// Base class for all available fields
+    /// Generic base class for all available fields
     /// </summary>
+    /// <typeparam name="TValue">The type of the value.</typeparam>
     public abstract class FieldBase<TValue> : FieldBase, IField<TValue>
     {
+        /// <summary>
+        /// Gets or sets the value.
+        /// </summary>
+        /// <value>
+        /// The value.
+        /// </value>
         object IField.Value
         {
             get
             {
-                return Value;
+                return this.Value;
             }
+
             set
             {
-                Value = value != null ? (TValue)value : default(TValue);
+                this.Value = value != null ? (TValue)value : default(TValue);
             }
         }
 
+        /// <summary>
+        /// Gets or sets the value.
+        /// </summary>
+        /// <value>
+        /// The value.
+        /// </value>
         public TValue Value { get; set; }
     }
 
+    /// <summary>
+    /// Abstract base class for all fields
+    /// </summary>
+    [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1402:FileMayOnlyContainASingleClass", Justification = "Reviewed. Suppression is OK here.")]
     public abstract class FieldBase : ItemBase, IPresentationComponent
     {
         /// <summary>

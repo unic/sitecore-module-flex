@@ -1,13 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Unic.Flex.Model.ViewModel.Fields.InputFields
+﻿namespace Unic.Flex.Model.ViewModel.Fields.InputFields
 {
+    /// <summary>
+    /// Multiline textfield (also called text area)
+    /// </summary>
     public class MultilineTextFieldViewModel : InputFieldViewModel<string>
     {
+        /// <summary>
+        /// Gets or sets the number of rows.
+        /// </summary>
+        /// <value>
+        /// The number of rows.
+        /// </value>
         public virtual string Rows { get; set; }
     }
 }

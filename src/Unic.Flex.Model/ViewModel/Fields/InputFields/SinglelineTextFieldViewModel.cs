@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Unic.Flex.Model.ViewModel.Fields.InputFields
+﻿namespace Unic.Flex.Model.ViewModel.Fields.InputFields
 {
+    /// <summary>
+    /// Singletext field
+    /// </summary>
     public class SinglelineTextFieldViewModel : InputFieldViewModel<string>
     {
     }

@@ -2,14 +2,13 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using Unic.Flex.Model.DomainModel;
-    using Unic.Flex.Model.Presentation;
     using Unic.Flex.Model.Validation;
     using IValidatableObject = Unic.Flex.Model.Validation.IValidatableObject;
 
     /// <summary>
     /// This view model covers a field in the form
     /// </summary>
+    /// <typeparam name="TValue">The type of the value.</typeparam>
     public abstract class FieldBaseViewModel<TValue> : IValidatableObject, IFieldViewModel<TValue>
     {
         /// <summary>
@@ -26,15 +25,22 @@
             this.validators = new List<IValidator>();
         }
 
+        /// <summary>
+        /// Gets or sets the value.
+        /// </summary>
+        /// <value>
+        /// The value.
+        /// </value>
         object IFieldViewModel.Value
         {
             get
             {
-                return Value;
+                return this.Value;
             }
+
             set
             {
-                Value = value != null ? (TValue)value : default(TValue);
+                this.Value = value != null ? (TValue)value : default(TValue);
             }
         }
 
