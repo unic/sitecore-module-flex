@@ -97,7 +97,7 @@
                     // add all other validators
                     foreach (var validator in field.Validators)
                     {
-                        // todo: validators should handle format string -> i.e {0} in the validation message should be replaced with the field name
+                        // todo: it should be possible to create placeholder within the form message in a property-name style -> #MinValue# should be replaced with property "MinValue" of the validator etc.
                         validatableObject.AddValidator(validator);
                     }
 
