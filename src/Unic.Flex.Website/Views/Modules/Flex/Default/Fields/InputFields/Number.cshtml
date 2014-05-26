@@ -4,6 +4,17 @@
 <li>
     @{
         Model.Attributes.Add("type", "number");
+        Model.Attributes.Add("min", Model.MinValue);
+
+        if (Model.MaxValue > Model.MinValue)
+        {
+            Model.Attributes.Add("max", Model.MaxValue);
+        }
+
+        if (Model.Step > 0)
+        {
+            Model.Attributes.Add("step", Model.Step);
+        }
     }
 
     @Html.LabelFor(m => m.Value, Model.Label)
