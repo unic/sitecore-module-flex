@@ -10,7 +10,7 @@
     /// <summary>
     /// This view model covers a field in the form
     /// </summary>
-    public abstract class FieldBaseViewModel<TValue> : IValidatableObject, IFieldViewModel<TValue> where TValue : class
+    public abstract class FieldBaseViewModel<TValue> : IValidatableObject, IFieldViewModel<TValue>
     {
         /// <summary>
         /// The validators
@@ -34,7 +34,7 @@
             }
             set
             {
-                Value = value as TValue;
+                Value = value != null ? (TValue)value : default(TValue);
             }
         }
 

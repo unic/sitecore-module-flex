@@ -3,7 +3,7 @@
     using Unic.Flex.Model.Presentation;
     using Unic.Flex.Model.Validation;
 
-    public interface IFieldViewModel<TValue> : IFieldViewModel where TValue : class
+    public interface IFieldViewModel<TValue> : IFieldViewModel
     {
         new TValue Value { get; set; }
     }

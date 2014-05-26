@@ -9,7 +9,7 @@
     /// <summary>
     /// Base class for all available fields
     /// </summary>
-    public abstract class FieldBase<TValue> : FieldBase, IField<TValue> where TValue : class
+    public abstract class FieldBase<TValue> : FieldBase, IField<TValue>
     {
         object IField.Value
         {
@@ -19,7 +19,7 @@
             }
             set
             {
-                Value = value as TValue;
+                Value = value != null ? (TValue)value : default(TValue);
             }
         }
 
