@@ -5,12 +5,12 @@
     using Unic.Flex.Model.DomainModel;
     using Unic.Flex.Model.Presentation;
     using Unic.Flex.Model.Validation;
+    using IValidatableObject = Unic.Flex.Model.Validation.IValidatableObject;
 
     /// <summary>
     /// This view model covers a field in the form
     /// </summary>
-    // todo: clas should be abtract
-    public class FieldBaseViewModel<TValue> : IPresentationComponent, IValidatableObject
+    public abstract class FieldBaseViewModel<TValue> : IValidatableObject, IFieldViewModel<TValue> where TValue : class
     {
         /// <summary>
         /// The validators
@@ -24,6 +24,18 @@
         {
             this.Attributes = new Dictionary<string, object>();
             this.validators = new List<IValidator>();
+        }
+
+        object IFieldViewModel.Value
+        {
+            get
+            {
+                return Value;
+            }
+            set
+            {
+                Value = value as TValue;
+            }
         }
 
         /// <summary>

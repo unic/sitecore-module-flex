@@ -11,6 +11,8 @@
     using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.DomainModel.Sections;
     using Unic.Flex.Model.DomainModel.Validators;
+    using Unic.Flex.Model.Validation;
+    using Unic.Flex.Model.ViewModel.Fields;
     using Unic.Flex.Model.ViewModel.Fields.InputFields;
     using Unic.Flex.Model.ViewModel.Forms;
     using Unic.Flex.Model.ViewModel.Sections;
@@ -76,21 +78,22 @@
                 // iterate through the fields and add them
                 foreach (var field in section.Fields)
                 {
-                    // todo: this must be generic
-                    var fieldViewModel = this.GetViewModel<InputFieldViewModel<string>>(field);
+                    var fieldViewModel = this.GetViewModel<IFieldViewModel>(field);
                     Mapper.DynamicMap(field, fieldViewModel, field.GetType(), fieldViewModel.GetType());
-                    
+                    var validatableObject = fieldViewModel as IValidatableObject;
+                    if (validatableObject == null) continue;
+
                     // add required validator
                     if (field.IsRequired)
                     {
-                        fieldViewModel.AddValidator(new RequiredValidator { ValidationMessage = field.ValidationMessage });
+                        validatableObject.AddValidator(new RequiredValidator { ValidationMessage = field.ValidationMessage });
                     }
 
                     // add all other validators
                     foreach (var validator in field.Validators)
                     {
                         // todo: validators should handle format string -> i.e {0} in the validation message should be replaced with the field name
-                        fieldViewModel.AddValidator(validator);
+                        validatableObject.AddValidator(validator);
                     }
 
                     // add the field to the section

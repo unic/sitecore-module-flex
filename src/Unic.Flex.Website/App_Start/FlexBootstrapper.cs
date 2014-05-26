@@ -31,7 +31,7 @@ namespace Unic.Flex.Website
         {
             ModelBinders.Binders.Add(typeof(FormViewModel), Container.Kernel.Get<IModelBinder>());
             ModelBinders.Binders.Add(typeof(IList<StandardSectionViewModel>), new ListModelBinder());
-            ModelBinders.Binders.Add(typeof(IList<FieldBaseViewModel<string>>), new ListModelBinder()); // todo: type must be generic
+            ModelBinders.Binders.Add(typeof(IList<IFieldViewModel>), new ListModelBinder());
         }
     }
 }

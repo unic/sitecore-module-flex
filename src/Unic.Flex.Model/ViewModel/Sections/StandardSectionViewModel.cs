@@ -14,7 +14,7 @@
         /// </summary>
         public StandardSectionViewModel()
         {
-            this.Fields = new List<FieldBaseViewModel<string>>();
+            this.Fields = new List<IFieldViewModel>();
         }
 
         /// <summary>
@@ -23,7 +23,7 @@
         /// <value>
         /// The fields.
         /// </value>
-        public virtual IList<FieldBaseViewModel<string>> Fields { get; private set; } // todo: type must be generic
+        public virtual IList<IFieldViewModel> Fields { get; private set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to disable the fieldset markup.
