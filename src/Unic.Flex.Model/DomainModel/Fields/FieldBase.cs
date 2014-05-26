@@ -1,8 +1,7 @@
 ﻿namespace Unic.Flex.Model.DomainModel.Fields
 {
-    using System.Collections.Generic;
-    using Glass.Mapper.Configuration.Attributes;
     using Glass.Mapper.Sc.Configuration.Attributes;
+    using System.Collections.Generic;
     using Unic.Flex.Model.GlassExtensions.Attributes;
     using Unic.Flex.Model.Presentation;
     using Unic.Flex.Model.Validation;
@@ -10,6 +9,23 @@
     /// <summary>
     /// Base class for all available fields
     /// </summary>
+    public abstract class FieldBase<TValue> : FieldBase, IField<TValue> where TValue : class
+    {
+        object IField.Value
+        {
+            get
+            {
+                return Value;
+            }
+            set
+            {
+                Value = value as TValue;
+            }
+        }
+
+        public TValue Value { get; set; }
+    }
+
     public abstract class FieldBase : ItemBase, IPresentationComponent
     {
         /// <summary>
@@ -19,6 +35,20 @@
         /// The name of the view.
         /// </value>
         public abstract string ViewName { get; }
+
+        /// <summary>
+        /// Gets the key.
+        /// </summary>
+        /// <value>
+        /// The key.
+        /// </value>
+        public string Key
+        {
+            get
+            {
+                return this.ItemId.ToString();
+            }
+        }
 
         /// <summary>
         /// Gets or sets the label.
