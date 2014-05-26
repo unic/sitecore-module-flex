@@ -1,0 +1,8 @@
+﻿@using System.Web.Mvc.Html
+@model Unic.Flex.Model.ViewModel.Fields.InputFields.CheckBoxFieldViewModel
+
+<li>
+    @Html.LabelFor(m => m.Value, Model.Label)
+    @Html.CheckBoxFor(m => m.Value, Model.Attributes)
+    @Html.ValidationMessageFor(model => model.Value)
+</li>

@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="DomainModel\Fields\FieldBase.cs" />
     <Compile Include="DomainModel\Fields\IField.cs" />
+    <Compile Include="DomainModel\Fields\InputFields\CheckBoxField.cs" />
     <Compile Include="DomainModel\Fields\InputFields\NumberField.cs" />
     <Compile Include="Validation\IValidatableObject.cs" />
     <Compile Include="ViewModel\Fields\FieldBaseViewModel.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="DomainModel\Fields\InputFields\MultilineTextField.cs" />
     <Compile Include="DomainModel\Fields\InputFields\SinglelineTextField.cs" />
     <Compile Include="ViewModel\Fields\IFieldViewModel.cs" />
+    <Compile Include="ViewModel\Fields\InputFields\CheckBoxFieldViewModel.cs" />
     <Compile Include="ViewModel\Fields\InputFields\InputFieldViewModel.cs" />
     <Compile Include="ViewModel\Fields\InputFields\MultilineTextFieldViewModel.cs" />
     <Compile Include="ViewModel\Fields\InputFields\NumberFieldViewModel.cs" />

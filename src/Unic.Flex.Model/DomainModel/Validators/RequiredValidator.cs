@@ -32,6 +32,9 @@
         {
             if (value == null) return false;
 
+            var booleanValue = value as bool?;
+            if (booleanValue != null) return (bool)value;
+
             var stringValue = value as string;
             return stringValue != null && !string.IsNullOrWhiteSpace(stringValue);
         }
