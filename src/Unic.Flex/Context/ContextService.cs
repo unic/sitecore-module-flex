@@ -67,8 +67,7 @@
                 var section = reusableSection != null ? reusableSection.Section : stepSection as StandardSection;
                 foreach (var field in section.Fields)
                 {
-                    // todo: this must be generic, not statically a string
-                    (field as FieldBase<string>).Value = this.userDataRepository.GetValue(form.ItemId.ToString(), field.ItemId.ToString()) as string;
+                    field.Value = this.userDataRepository.GetValue(form.ItemId.ToString(), field.Key);
                 }
             }
         }
