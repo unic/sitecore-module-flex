@@ -39,11 +39,11 @@
             // generate the sections
             var firstSection = new StandardSection();
             firstSection.Title = "This is the first section";
-            firstSection.Fields = new List<FieldBase>();
+            firstSection.Fields = new List<IField>();
             
             var secondSection = new StandardSection();
             secondSection.Title = "This is the second section";
-            secondSection.Fields = new List<FieldBase>();
+            secondSection.Fields = new List<IField>();
 
             // generate the step
             var step = new SingleStep();
