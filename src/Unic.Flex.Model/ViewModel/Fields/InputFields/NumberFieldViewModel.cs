@@ -3,7 +3,7 @@
     /// <summary>
     /// View model for a number field
     /// </summary>
-    public class NumberFieldViewModel : InputFieldViewModel<int>
+    public class NumberFieldViewModel : InputFieldViewModel<int?>
     {
         /// <summary>
         /// Gets or sets the minimum value.
