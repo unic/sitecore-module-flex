@@ -24,7 +24,7 @@
             {
                 // prepare
                 var form = this.GetForm(FormRepositoryMoqs.GetNullFormRepository());
-                var converter = new ModelConverterService();
+                var converter = new ModelConverterService(null);
 
                 // act
                 var viewModel = converter.ConvertToViewModel(form);
@@ -38,7 +38,7 @@
             {
                 // prepare
                 var form = this.GetForm(FormRepositoryMoqs.GetSingleStepFormRepository());
-                var converter = new ModelConverterService();
+                var converter = new ModelConverterService(null);
 
                 // act
                 var viewModel = converter.ConvertToViewModel(form);
@@ -63,7 +63,7 @@
             public void ShouldReturnNullWhenViewModelWasNotFound()
             {
                 // arrange
-                var converter = new ModelConverterService();
+                var converter = new ModelConverterService(null);
                 var domainModel = new object();
 
                 // act
@@ -77,7 +77,7 @@
             public void ShouldReturnNullWhenViewModelWasWrongType()
             {
                 // arrange
-                var converter = new ModelConverterService();
+                var converter = new ModelConverterService(null);
                 var domainModel = new SingleStep();
 
                 // act
@@ -91,7 +91,7 @@
             public void ShouldReturnCorrectViewModelInstance()
             {
                 // arrange
-                var converter = new ModelConverterService();
+                var converter = new ModelConverterService(null);
                 var domainModel = new Form();
 
                 // act
@@ -106,7 +106,7 @@
             public void ShouldReturnCorrectViewModelInstanceFromCache()
             {
                 // arrange
-                var serviceMock = new Mock<ModelConverterService>() { CallBase = true };
+                var serviceMock = new Mock<ModelConverterService>(null) { CallBase = true };
                 var converter = serviceMock.Object;
                 var domainModel = new Form();
 

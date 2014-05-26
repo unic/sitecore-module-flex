@@ -3,8 +3,8 @@
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using Glass.Mapper.Sc.Configuration.Attributes;
+    using Unic.Flex.Model.DomainModel.Validators;
     using Unic.Flex.Model.GlassExtensions.Attributes;
-    using Unic.Flex.Model.Presentation;
     using Unic.Flex.Model.Validation;
 
     /// <summary>
@@ -45,8 +45,16 @@
     /// Abstract base class for all fields
     /// </summary>
     [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1402:FileMayOnlyContainASingleClass", Justification = "Reviewed. Suppression is OK here.")]
-    public abstract class FieldBase : ItemBase, IPresentationComponent
+    public abstract class FieldBase : ItemBase
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FieldBase"/> class.
+        /// </summary>
+        protected FieldBase()
+        {
+            this.DefaultValidators = new List<IValidator>();
+        }
+        
         /// <summary>
         /// Gets the name of the view.
         /// </summary>
@@ -93,7 +101,7 @@
         /// <value>
         /// The validation message.
         /// </value>
-        [SitecoreDictionaryFallbackField("Validation Message", "Field is required")]
+        [SitecoreDictionaryFallbackField("Validation Message", RequiredValidator.ValidationMessageDictionaryKey)]
         public virtual string ValidationMessage { get; set; }
 
         /// <summary>
@@ -104,5 +112,13 @@
         /// </value>
         [SitecoreChildren(IsLazy = true, InferType = true)]
         public virtual IEnumerable<IValidator> Validators { get; set; }
+
+        /// <summary>
+        /// Gets the default validators.
+        /// </summary>
+        /// <value>
+        /// The default validators.
+        /// </value>
+        public virtual IList<IValidator> DefaultValidators { get; private set; }
     }
 }

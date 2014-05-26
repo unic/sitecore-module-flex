@@ -7,7 +7,9 @@
     using System.Collections.Concurrent;
     using System.Linq;
     using Unic.Flex.Context;
+    using Unic.Flex.Globalization;
     using Unic.Flex.Model.DomainModel.Fields;
+    using Unic.Flex.Model.DomainModel.Fields.InputFields;
     using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.DomainModel.Sections;
     using Unic.Flex.Model.DomainModel.Validators;
@@ -25,12 +27,15 @@
         /// </summary>
         private readonly ConcurrentDictionary<string, Type> viewModelTypeCache;
 
+        private readonly IDictionaryRepository dictionaryRepository;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ModelConverterService"/> class.
         /// </summary>
-        public ModelConverterService()
+        public ModelConverterService(IDictionaryRepository dictionaryRepository)
         {
             this.viewModelTypeCache = new ConcurrentDictionary<string, Type>();
+            this.dictionaryRepository = dictionaryRepository;
         }
         
         public FormViewModel ConvertToViewModel(Form form)
@@ -93,6 +98,13 @@
                     foreach (var validator in field.Validators)
                     {
                         // todo: validators should handle format string -> i.e {0} in the validation message should be replaced with the field name
+                        validatableObject.AddValidator(validator);
+                    }
+
+                    // add default validators of the field
+                    foreach (var validator in field.DefaultValidators)
+                    {
+                        validator.ValidationMessage = this.dictionaryRepository.GetText(validator.ValidationMessage);
                         validatableObject.AddValidator(validator);
                     }
 

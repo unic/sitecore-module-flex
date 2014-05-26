@@ -2,6 +2,8 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+    using Castle.DynamicProxy;
     using Unic.Flex.Model.Validation;
     using IValidatableObject = Unic.Flex.Model.Validation.IValidatableObject;
 
@@ -108,6 +110,10 @@
         /// <param name="validator">The validator.</param>
         public virtual void AddValidator(IValidator validator)
         {
+            // do nothing if validators of this type has already been added
+            var validatorType = ProxyUtil.GetUnproxiedType(validator);
+            if (this.validators.Any(v => ProxyUtil.GetUnproxiedType(v) == validatorType)) return;
+            
             // add the validator to the list
             this.validators.Add(validator);
 

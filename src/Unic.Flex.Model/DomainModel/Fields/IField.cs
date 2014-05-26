@@ -63,5 +63,13 @@
         /// The validators.
         /// </value>
         IEnumerable<IValidator> Validators { get; set; }
+
+        /// <summary>
+        /// Gets the default validators.
+        /// </summary>
+        /// <value>
+        /// The default validators.
+        /// </value>
+        IList<IValidator> DefaultValidators { get; } 
     }
 }

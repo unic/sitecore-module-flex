@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="DomainModel\Fields\FieldBase.cs" />
     <Compile Include="DomainModel\Fields\IField.cs" />
+    <Compile Include="DomainModel\Fields\InputFields\NumberField.cs" />
     <Compile Include="Validation\IValidatableObject.cs" />
     <Compile Include="ViewModel\Fields\FieldBaseViewModel.cs" />
     <Compile Include="DomainModel\Fields\InputFields\InputField.cs" />
@@ -65,6 +66,7 @@
     <Compile Include="ViewModel\Fields\IFieldViewModel.cs" />
     <Compile Include="ViewModel\Fields\InputFields\InputFieldViewModel.cs" />
     <Compile Include="ViewModel\Fields\InputFields\MultilineTextFieldViewModel.cs" />
+    <Compile Include="ViewModel\Fields\InputFields\NumberFieldViewModel.cs" />
     <Compile Include="ViewModel\Fields\InputFields\SinglelineTextFieldViewModel.cs" />
     <Compile Include="ViewModel\Forms\FormViewModel.cs" />
     <Compile Include="GlassExtensions\Attributes\SitecoreDictionaryFallbackFieldAttribute.cs" />
