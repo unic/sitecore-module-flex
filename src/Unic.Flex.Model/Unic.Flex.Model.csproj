@@ -42,12 +42,40 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Glass.Mapper.Sc.3.1.10.31\lib\net45\Glass.Mapper.Sc.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
     <Reference Include="Sitecore.Kernel">
       <HintPath>..\..\lib\Sitecore.Kernel.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.Mvc.5.1.2\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.Razor.3.1.2\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -59,6 +87,8 @@
     <Compile Include="DomainModel\Fields\IField.cs" />
     <Compile Include="DomainModel\Fields\InputFields\CheckBoxField.cs" />
     <Compile Include="DomainModel\Fields\InputFields\NumberField.cs" />
+    <Compile Include="DomainModel\Fields\ListFields\DropDownListField.cs" />
+    <Compile Include="DomainModel\Fields\ListFields\ListField.cs" />
     <Compile Include="Validation\IValidatableObject.cs" />
     <Compile Include="ViewModel\Fields\FieldBaseViewModel.cs" />
     <Compile Include="DomainModel\Fields\InputFields\InputField.cs" />
@@ -70,6 +100,8 @@
     <Compile Include="ViewModel\Fields\InputFields\MultilineTextFieldViewModel.cs" />
     <Compile Include="ViewModel\Fields\InputFields\NumberFieldViewModel.cs" />
     <Compile Include="ViewModel\Fields\InputFields\SinglelineTextFieldViewModel.cs" />
+    <Compile Include="ViewModel\Fields\ListFields\DropDownListFieldViewModel.cs" />
+    <Compile Include="ViewModel\Fields\ListFields\ListFieldViewModel.cs" />
     <Compile Include="ViewModel\Forms\FormViewModel.cs" />
     <Compile Include="GlassExtensions\Attributes\SitecoreDictionaryFallbackFieldAttribute.cs" />
     <Compile Include="GlassExtensions\Configurations\SitecoreDictionaryFallbackFieldConfiguration.cs" />
@@ -95,6 +127,7 @@
     <Compile Include="ViewModel\Steps\SummaryViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

@@ -198,6 +198,9 @@
   <ItemGroup>
     <Content Include="Views\Modules\Flex\Default\Fields\InputFields\CheckBox.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Modules\Flex\Default\Fields\ListFields\DropDownList.cshtml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
