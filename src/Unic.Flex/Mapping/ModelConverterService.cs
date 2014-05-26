@@ -93,12 +93,6 @@
                         fieldViewModel.AddValidator(validator);
                     }
 
-                    // todo: remove this
-                    fieldViewModel.Key = field.ItemId.ToString();
-
-                    // todo: this must be generic not a string -> also it should not be set here becaue of the caching
-                    fieldViewModel.Value = (field as FieldBase<string>).Value as string;
-
                     // add the field to the section
                     sectionViewModel.Fields.Add(fieldViewModel);
                 }
