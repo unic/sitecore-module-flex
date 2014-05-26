@@ -3,8 +3,6 @@
     using System.Collections.Generic;
     using System.Web;
 
-    // todo (???): wollen wir das wirklich so in der session abspeichern? Oder sollten wir mehr speichern? z.B. das komplette serialisierte Form?
-
     /// <summary>
     /// Repository containg data access to user generated form data from the user session
     /// </summary>
