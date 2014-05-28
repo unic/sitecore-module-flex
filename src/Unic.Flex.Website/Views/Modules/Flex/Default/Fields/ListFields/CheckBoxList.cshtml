@@ -10,6 +10,7 @@
             
             @Html.LabelFor(m => m.Items[i].Selected, Model.Items[i].Text)
             @Html.CheckBoxFor(m => m.Items[i].Selected)
+            @Html.ValidationMessageFor(m => m.Items[i].Selected)
 
         </div>
     }
