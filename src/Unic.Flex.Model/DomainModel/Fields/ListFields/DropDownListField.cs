@@ -16,11 +16,9 @@ namespace Unic.Flex.Model.DomainModel.Fields.ListFields
         {
             // todo: this values should be provided from Sitecore
             
-            var items = new List<SelectListItem>();
-            items.Add(new SelectListItem { Text = "Please Select", Value = string.Empty });
-            items.Add(new SelectListItem { Text = "Male", Value = "Male" });
-            items.Add(new SelectListItem { Text = "Female", Value = "Female" });
-            this.Items = items;
+            this.Items.Add(new SelectListItem { Text = "Please Select", Value = string.Empty });
+            this.Items.Add(new SelectListItem { Text = "Male", Value = "Male" });
+            this.Items.Add(new SelectListItem { Text = "Female", Value = "Female" });
         }
         
         public override string ViewName

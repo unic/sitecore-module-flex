@@ -1,0 +1,18 @@
+﻿@using System.Web.Mvc.Html
+@model Unic.Flex.Model.ViewModel.Fields.ListFields.CheckBoxListFieldViewModel
+
+<li>
+    @Html.LabelFor(m => m.Value, Model.Label)
+    
+    @for (var i=0; i<Model.Items.Count(); i++)
+    {
+        <div>
+            
+            @Html.LabelFor(m => m.Items[i].Selected, Model.Items[i].Text)
+            @Html.CheckBoxFor(m => m.Items[i].Selected)
+
+        </div>
+    }
+
+    @Html.ValidationMessageFor(model => model.Value)
+</li>
