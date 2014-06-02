@@ -30,6 +30,9 @@
 
             for (var index = 0; index < collection.Count; index++)
             {
+                // the change to the original model binder here is, that the model is taken from "collection[index]"
+                // instead of "null" -> this way the collection element is not initialized new, the instance that
+                // was in the list originally is taken instead
                 var innerContext = new ModelBindingContext
                 {
                     ModelMetadata = ModelMetadataProviders.Current.GetMetadataForType(() => collection[index], elementType),
