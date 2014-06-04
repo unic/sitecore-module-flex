@@ -7,6 +7,7 @@ namespace Unic.Flex.Website
     using Ninject;
     using Unic.Flex.DependencyInjection;
     using Unic.Flex.Model.ViewModel.Fields;
+    using Unic.Flex.Model.ViewModel.Fields.ListFields;
     using Unic.Flex.Model.ViewModel.Forms;
     using Unic.Flex.Model.ViewModel.Sections;
     using Unic.Flex.ModelBinding;
@@ -29,9 +30,12 @@ namespace Unic.Flex.Website
         /// </summary>
         private static void RegisterModelBinders()
         {
+            // todo: check if really all binders here are correct and needed
+            
             ModelBinders.Binders.Add(typeof(FormViewModel), Container.Kernel.Get<IModelBinder>());
             ModelBinders.Binders.Add(typeof(IList<StandardSectionViewModel>), new ListModelBinder());
             ModelBinders.Binders.Add(typeof(IList<IFieldViewModel>), new ListModelBinder());
+            ModelBinders.Binders.Add(typeof(IList<SelectListItem>), new ListModelBinder());
             ModelBinders.Binders.Add(typeof(IFieldViewModel), new FieldModelBinder());
         }
     }
