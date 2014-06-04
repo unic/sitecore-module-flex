@@ -1,4 +1,4 @@
-﻿namespace Unic.Flex.Model.DomainModel.Validators
+﻿namespace Unic.Flex.Implementation.Validators
 {
     using System;
     using System.Collections.Generic;

@@ -3,7 +3,6 @@
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using Glass.Mapper.Sc.Configuration.Attributes;
-    using Unic.Flex.Model.DomainModel.Validators;
     using Unic.Flex.Model.GlassExtensions.Attributes;
     using Unic.Flex.Model.Validation;
 
@@ -96,7 +95,7 @@
         /// <value>
         /// The validation message.
         /// </value>
-        [SitecoreDictionaryFallbackField("Validation Message", RequiredValidator.ValidationMessageDictionaryKey)]
+        [SitecoreDictionaryFallbackField("Validation Message", "Field is required")]
         public virtual string ValidationMessage { get; set; }
 
         /// <summary>

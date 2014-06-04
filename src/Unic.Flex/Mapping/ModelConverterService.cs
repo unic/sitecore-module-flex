@@ -1,23 +1,20 @@
 ﻿namespace Unic.Flex.Mapping
 {
-    using System.Collections.Generic;
     using AutoMapper;
     using Castle.DynamicProxy;
     using Sitecore.Diagnostics;
     using System;
     using System.Collections.Concurrent;
     using System.Linq;
+    using Sitecore.Exceptions;
     using Unic.Flex.Context;
     using Unic.Flex.Globalization;
-    using Unic.Flex.Model.DomainModel.Fields;
-    using Unic.Flex.Model.DomainModel.Fields.InputFields;
     using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.DomainModel.Sections;
     using Unic.Flex.Model.DomainModel.Steps;
     using Unic.Flex.Model.DomainModel.Validators;
     using Unic.Flex.Model.Validation;
     using Unic.Flex.Model.ViewModel.Fields;
-    using Unic.Flex.Model.ViewModel.Fields.InputFields;
     using Unic.Flex.Model.ViewModel.Forms;
     using Unic.Flex.Model.ViewModel.Sections;
     using Unic.Flex.Model.ViewModel.Steps;
@@ -153,7 +150,7 @@
                 return (T)Activator.CreateInstance(viewModelType);
             }
 
-            return default(T);
+            throw new TypeLoadException(string.Format("Could not find corresponding view model for type '{0}'", ProxyUtil.GetUnproxiedType(domainModel).FullName));
         }
 
         /// <summary>

@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Unic.Flex.Model.DomainModel.Fields.ListFields
+﻿namespace Unic.Flex.Implementation.Fields.ListFields
 {
     using System.Web.Mvc;
     using Glass.Mapper.Sc.Configuration.Attributes;
+    using Unic.Flex.Model.DomainModel.Fields.ListFields;
 
     [SitecoreType(TemplateId = "{18C0BDC1-5162-4CE4-A92A-0C9A8CAFCF11}")]
     public class DropDownListField : ListField<string>

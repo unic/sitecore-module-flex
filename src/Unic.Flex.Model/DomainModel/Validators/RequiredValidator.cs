@@ -9,11 +9,6 @@
     public class RequiredValidator : IValidator
     {
         /// <summary>
-        /// The validation message dictionary key
-        /// </summary>
-        public const string ValidationMessageDictionaryKey = "Field is required";
-        
-        /// <summary>
         /// Gets or sets the validation message.
         /// </summary>
         /// <value>

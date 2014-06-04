@@ -39,7 +39,7 @@ namespace Unic.Flex.Website
         private static IConfigurationLoader[] GlassLoaders()
         {
             var model = new AttributeConfigurationLoader(HostingEnvironment.MapPath("/bin/Unic.Flex.Model.dll"));
-            var implementations = new AttributeConfigurationLoader(HostingEnvironment.MapPath("/bin/Unic.Flex.Implementations.dll"));
+            var implementations = new AttributeConfigurationLoader(HostingEnvironment.MapPath("/bin/Unic.Flex.Implementation.dll"));
             return new IConfigurationLoader[] { model, implementations };
         }
 

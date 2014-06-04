@@ -85,27 +85,16 @@
   <ItemGroup>
     <Compile Include="DomainModel\Fields\FieldBase.cs" />
     <Compile Include="DomainModel\Fields\IField.cs" />
-    <Compile Include="DomainModel\Fields\InputFields\CheckBoxField.cs" />
-    <Compile Include="DomainModel\Fields\InputFields\NumberField.cs" />
-    <Compile Include="DomainModel\Fields\ListFields\CheckBoxListField.cs" />
-    <Compile Include="DomainModel\Fields\ListFields\DropDownListField.cs" />
     <Compile Include="DomainModel\Fields\ListFields\ListField.cs" />
     <Compile Include="DomainModel\Plugs\LoadPlugs\ILoadPlug.cs" />
     <Compile Include="DomainModel\Plugs\LoadPlugs\LoadPlugBase.cs" />
     <Compile Include="DomainModel\Plugs\PlugBase.cs" />
+    <Compile Include="DomainModel\Validators\RequiredValidator.cs" />
     <Compile Include="Validation\IValidatableObject.cs" />
     <Compile Include="ViewModel\Fields\FieldBaseViewModel.cs" />
     <Compile Include="DomainModel\Fields\InputFields\InputField.cs" />
-    <Compile Include="DomainModel\Fields\InputFields\MultilineTextField.cs" />
-    <Compile Include="DomainModel\Fields\InputFields\SinglelineTextField.cs" />
     <Compile Include="ViewModel\Fields\IFieldViewModel.cs" />
-    <Compile Include="ViewModel\Fields\InputFields\CheckBoxFieldViewModel.cs" />
     <Compile Include="ViewModel\Fields\InputFields\InputFieldViewModel.cs" />
-    <Compile Include="ViewModel\Fields\InputFields\MultilineTextFieldViewModel.cs" />
-    <Compile Include="ViewModel\Fields\InputFields\NumberFieldViewModel.cs" />
-    <Compile Include="ViewModel\Fields\InputFields\SinglelineTextFieldViewModel.cs" />
-    <Compile Include="ViewModel\Fields\ListFields\CheckBoxListFieldViewModel.cs" />
-    <Compile Include="ViewModel\Fields\ListFields\DropDownListFieldViewModel.cs" />
     <Compile Include="ViewModel\Fields\ListFields\ListFieldViewModel.cs" />
     <Compile Include="ViewModel\Forms\FormViewModel.cs" />
     <Compile Include="GlassExtensions\Attributes\SitecoreDictionaryFallbackFieldAttribute.cs" />
@@ -126,8 +115,6 @@
     <Compile Include="ViewModel\Steps\SingleStepViewModel.cs" />
     <Compile Include="DomainModel\Steps\Summary.cs" />
     <Compile Include="Validation\IValidator.cs" />
-    <Compile Include="DomainModel\Validators\NumberValidator.cs" />
-    <Compile Include="DomainModel\Validators\RequiredValidator.cs" />
     <Compile Include="ViewModel\Steps\StepBaseViewModel.cs" />
     <Compile Include="ViewModel\Steps\SummaryViewModel.cs" />
   </ItemGroup>

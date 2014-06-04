@@ -38,7 +38,7 @@
                 // the problem ist, that in the checkboxlist the value of each checkbox is binded to the .Selected property of each
                 // value in the .Items<SelectListItem> property. Normally the elementType here is "IFieldViewModel" and this doesn't
                 // contain a property .Items, so the items and the selected value will not be binded
-                var innerType = item is CheckBoxListFieldViewModel ? typeof(CheckBoxListFieldViewModel) : elementType;
+                var innerType = item is ListFieldViewModel<string[]> ? typeof(ListFieldViewModel<string[]>) : elementType;
                 
                 // the change to the original model binder here is, that the model is taken from "collection[index]"
                 // instead of "null" -> this way the collection element is not initialized new, the instance that

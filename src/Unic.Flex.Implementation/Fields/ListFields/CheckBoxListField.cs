@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Unic.Flex.Model.DomainModel.Fields.ListFields
+﻿namespace Unic.Flex.Implementation.Fields.ListFields
 {
     using System.Web.Mvc;
     using Glass.Mapper.Sc.Configuration.Attributes;
+    using Unic.Flex.Model.DomainModel.Fields.ListFields;
 
     [SitecoreType(TemplateId = "{7532F52A-8BA7-4903-9B27-9E18FA1C4B92}")]
     public class CheckBoxListField : ListField<string[]>

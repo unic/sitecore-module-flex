@@ -1,7 +1,8 @@
-﻿namespace Unic.Flex.Model.DomainModel.Fields.InputFields
+﻿namespace Unic.Flex.Implementation.Fields.InputFields
 {
     using Glass.Mapper.Sc.Configuration.Attributes;
-    using Unic.Flex.Model.DomainModel.Validators;
+    using Unic.Flex.Implementation.Validators;
+    using Unic.Flex.Model.DomainModel.Fields.InputFields;
 
     /// <summary>
     /// Number field
