@@ -97,6 +97,7 @@
     <Compile Include="Fields\ListFields\DropDownListField.cs" />
     <Compile Include="Fields\ListFields\DropDownListFieldViewModel.cs" />
     <Compile Include="Plugs\LoadPlugs\QueryStringLoader.cs" />
+    <Compile Include="Plugs\SavePlugs\SaveToDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validators\NumberValidator.cs" />
   </ItemGroup>

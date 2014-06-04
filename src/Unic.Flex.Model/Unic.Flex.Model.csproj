@@ -89,6 +89,8 @@
     <Compile Include="DomainModel\Plugs\LoadPlugs\ILoadPlug.cs" />
     <Compile Include="DomainModel\Plugs\LoadPlugs\LoadPlugBase.cs" />
     <Compile Include="DomainModel\Plugs\PlugBase.cs" />
+    <Compile Include="DomainModel\Plugs\SavePlugs\ISavePlug.cs" />
+    <Compile Include="DomainModel\Plugs\SavePlugs\SavePlugBase.cs" />
     <Compile Include="DomainModel\Validators\RequiredValidator.cs" />
     <Compile Include="Validation\IValidatableObject.cs" />
     <Compile Include="ViewModel\Fields\FieldBaseViewModel.cs" />

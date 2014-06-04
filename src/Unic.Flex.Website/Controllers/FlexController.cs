@@ -5,6 +5,7 @@
     using Unic.Flex.Mapping;
     using Unic.Flex.Model.ViewModel.Forms;
     using Unic.Flex.ModelBinding;
+    using Unic.Flex.Plugs;
     using Unic.Flex.Presentation;
 
     public class FlexController : Controller
@@ -17,12 +18,15 @@
 
         private readonly IUserDataRepository userDataRepository;
 
-        public FlexController(IPresentationService presentationService, IModelConverterService modelConverter, IContextService contextService, IUserDataRepository userDataRepository)
+        private readonly IPlugsService plugsService;
+
+        public FlexController(IPresentationService presentationService, IModelConverterService modelConverter, IContextService contextService, IUserDataRepository userDataRepository, IPlugsService plugsService)
         {
             this.presentationService = presentationService;
             this.modelConverter = modelConverter;
             this.contextService = contextService;
             this.userDataRepository = userDataRepository;
+            this.plugsService = plugsService;
         }
         
         public ActionResult Form()
@@ -53,7 +57,8 @@
                 return this.Redirect(nextStepUrl);
             }
 
-            // todo: execute save plugs
+            // execute save plugs
+            this.plugsService.ExecuteSavePlugs(form);
 
             // clear session values
             this.userDataRepository.ClearForm(form.Id);

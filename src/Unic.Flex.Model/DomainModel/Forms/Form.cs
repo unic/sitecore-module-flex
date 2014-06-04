@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using Unic.Flex.Model.DomainModel.Plugs.LoadPlugs;
+    using Unic.Flex.Model.DomainModel.Plugs.SavePlugs;
     using Unic.Flex.Model.DomainModel.Steps;
     using Unic.Flex.Model.GlassExtensions.Attributes;
     using Unic.Flex.Model.Presentation;
@@ -67,6 +68,15 @@
         /// </value>
         [SitecoreQuery("./Load Plugs/*", IsLazy = true, IsRelative = true, InferType = true)]
         public virtual IEnumerable<ILoadPlug> LoadPlugs { get; set; }
+
+        /// <summary>
+        /// Gets or sets the save plugs.
+        /// </summary>
+        /// <value>
+        /// The save plugs.
+        /// </value>
+        [SitecoreQuery("./Save Plugs/*", IsLazy = true, IsRelative = true, InferType = true)]
+        public virtual IEnumerable<ISavePlug> SavePlugs { get; set; }
 
         /// <summary>
         /// Gets the name of the view.

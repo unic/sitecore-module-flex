@@ -28,5 +28,16 @@
                 plug.Execute(form);
             }
         }
+
+        public void ExecuteSavePlugs(Form form)
+        {
+            Assert.ArgumentNotNull(form, "form");
+
+            // todo: we currently don't know exactly how we should execute these plugs (i.e. sync/async, revirsible, etc.) -> so change the implementation when it's clear
+            foreach (var plug in form.SavePlugs)
+            {
+                plug.Execute(form);
+            }
+        }
     }
 }
