@@ -153,9 +153,9 @@
     <Content Include="Views\Modules\Flex\Default\Form.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Unic.Flex.Implementations\Unic.Flex.Implementations.csproj">
+    <ProjectReference Include="..\Unic.Flex.Implementation\Unic.Flex.Implementation.csproj">
       <Project>{5a1f1575-4fef-4801-9c6c-a96cf0860885}</Project>
-      <Name>Unic.Flex.Implementations</Name>
+      <Name>Unic.Flex.Implementation</Name>
     </ProjectReference>
     <ProjectReference Include="..\Unic.Flex.Model\Unic.Flex.Model.csproj">
       <Project>{c47272b9-c13f-4f53-b9f3-d3066bb45810}</Project>

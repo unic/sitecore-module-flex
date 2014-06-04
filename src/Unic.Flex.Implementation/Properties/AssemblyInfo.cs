@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Unic.Flex.Implementations")]
+[assembly: AssemblyTitle("Unic.Flex.Implementation")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Unic AG")]
-[assembly: AssemblyProduct("Unic.Flex.Implementations")]
+[assembly: AssemblyProduct("Unic.Flex.Implementation")]
 [assembly: AssemblyCopyright("Copyright © Unic AG 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

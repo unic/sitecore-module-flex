@@ -1,13 +1,14 @@
-﻿namespace Unic.Flex.Model.DomainModel.Plugs.LoadPlugs
+﻿namespace Unic.Flex.Implementation.Plugs.LoadPlugs
 {
+    using System.Linq;
+    using System.Web;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Ninject;
     using Sitecore.Diagnostics;
-    using System.Linq;
-    using System.Web;
     using Unic.Flex.DependencyInjection;
     using Unic.Flex.Mapping;
     using Unic.Flex.Model.DomainModel.Forms;
+    using Unic.Flex.Model.DomainModel.Plugs.LoadPlugs;
     using Unic.Flex.Model.DomainModel.Sections;
 
     /// <summary>

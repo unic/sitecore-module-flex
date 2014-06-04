@@ -7,8 +7,8 @@
     <ProjectGuid>{5A1F1575-4FEF-4801-9C6C-A96CF0860885}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Unic.Flex.Implementations</RootNamespace>
-    <AssemblyName>Unic.Flex.Implementations</AssemblyName>
+    <RootNamespace>Unic.Flex.Implementation</RootNamespace>
+    <AssemblyName>Unic.Flex.Implementation</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
