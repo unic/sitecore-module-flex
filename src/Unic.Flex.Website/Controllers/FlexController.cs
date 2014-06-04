@@ -29,6 +29,8 @@
 
             var formView = this.presentationService.ResolveView(this.ControllerContext, form.ViewName);
 
+            // todo: try to add the @Html.Sitecore.BeginForm() and @Html.Sitecore.FormHandler() for the form post
+
             return this.View(formView, this.modelConverter.ConvertToViewModel(form));
         }
 
