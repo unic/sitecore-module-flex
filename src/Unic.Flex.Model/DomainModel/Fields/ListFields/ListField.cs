@@ -5,6 +5,11 @@
 
     public abstract class ListField<TValue> : FieldBase<TValue>
     {
-        public IEnumerable<SelectListItem> Items { get; set; }
+        protected ListField()
+        {
+            this.Items = new List<SelectListItem>();
+        }
+        
+        public IList<SelectListItem> Items { get; private set; }
     }
 }

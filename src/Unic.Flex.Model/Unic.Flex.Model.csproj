@@ -87,6 +87,7 @@
     <Compile Include="DomainModel\Fields\IField.cs" />
     <Compile Include="DomainModel\Fields\InputFields\CheckBoxField.cs" />
     <Compile Include="DomainModel\Fields\InputFields\NumberField.cs" />
+    <Compile Include="DomainModel\Fields\ListFields\CheckBoxListField.cs" />
     <Compile Include="DomainModel\Fields\ListFields\DropDownListField.cs" />
     <Compile Include="DomainModel\Fields\ListFields\ListField.cs" />
     <Compile Include="Validation\IValidatableObject.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="ViewModel\Fields\InputFields\MultilineTextFieldViewModel.cs" />
     <Compile Include="ViewModel\Fields\InputFields\NumberFieldViewModel.cs" />
     <Compile Include="ViewModel\Fields\InputFields\SinglelineTextFieldViewModel.cs" />
+    <Compile Include="ViewModel\Fields\ListFields\CheckBoxListFieldViewModel.cs" />
     <Compile Include="ViewModel\Fields\ListFields\DropDownListFieldViewModel.cs" />
     <Compile Include="ViewModel\Fields\ListFields\ListFieldViewModel.cs" />
     <Compile Include="ViewModel\Forms\FormViewModel.cs" />

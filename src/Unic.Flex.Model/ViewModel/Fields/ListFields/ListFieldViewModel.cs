@@ -5,6 +5,6 @@
 
     public abstract class ListFieldViewModel<TValue> : FieldBaseViewModel<TValue>
     {
-        public IEnumerable<SelectListItem> Items { get; set; }
+        public IList<SelectListItem> Items { get; set; }
     }
 }
