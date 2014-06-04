@@ -22,6 +22,13 @@
         void SetValue(string formId, string fieldId, object value);
 
         /// <summary>
+        /// Determines whether a form is stored in the storage provider.
+        /// </summary>
+        /// <param name="formId">The form identifier.</param>
+        /// <returns><c>true</c> if the form is currently stored in the storage provider, <c>false</c> otherwise.</returns>
+        bool IsFormStored(string formId);
+
+        /// <summary>
         /// Clears the form values completely out of the storage provider.
         /// </summary>
         /// <param name="formId">The form identifier.</param>

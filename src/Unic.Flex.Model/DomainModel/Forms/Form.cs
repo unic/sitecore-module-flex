@@ -3,6 +3,7 @@
     using Glass.Mapper.Sc.Configuration.Attributes;
     using System.Collections.Generic;
     using System.Linq;
+    using Unic.Flex.Model.DomainModel.Plugs.LoadPlugs;
     using Unic.Flex.Model.DomainModel.Steps;
     using Unic.Flex.Model.GlassExtensions.Attributes;
     using Unic.Flex.Model.Presentation;
@@ -59,6 +60,15 @@
         public virtual IEnumerable<StepBase> Steps { get; set; }
 
         /// <summary>
+        /// Gets or sets the load plugs.
+        /// </summary>
+        /// <value>
+        /// The load plugs.
+        /// </value>
+        [SitecoreQuery("./Load Plugs/*", IsLazy = true, IsRelative = true, InferType = true)]
+        public virtual IEnumerable<ILoadPlug> LoadPlugs { get; set; }
+
+        /// <summary>
         /// Gets the name of the view.
         /// </summary>
         /// <value>
@@ -69,6 +79,20 @@
             get
             {
                 return "Form";
+            }
+        }
+
+        /// <summary>
+        /// Gets the identifier.
+        /// </summary>
+        /// <value>
+        /// The identifier.
+        /// </value>
+        public virtual string Id
+        {
+            get
+            {
+                return this.ItemId.ToString();
             }
         }
 

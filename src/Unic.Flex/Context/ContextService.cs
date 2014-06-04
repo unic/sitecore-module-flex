@@ -67,7 +67,7 @@
                 var section = reusableSection != null ? reusableSection.Section : stepSection as StandardSection;
                 foreach (var field in section.Fields)
                 {
-                    field.Value = this.userDataRepository.GetValue(form.ItemId.ToString(), field.Key);
+                    field.Value = this.userDataRepository.GetValue(form.Id, field.Key);
                 }
             }
         }
@@ -84,7 +84,7 @@
 
             foreach (var field in viewModel.Step.Sections.SelectMany(section => section.Fields))
             {
-                this.userDataRepository.SetValue(form.ItemId.ToString(), field.Key, field.Value);
+                this.userDataRepository.SetValue(form.Id, field.Key, field.Value);
             }
         }
 

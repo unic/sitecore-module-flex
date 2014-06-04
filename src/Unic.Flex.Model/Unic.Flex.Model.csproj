@@ -90,6 +90,10 @@
     <Compile Include="DomainModel\Fields\ListFields\CheckBoxListField.cs" />
     <Compile Include="DomainModel\Fields\ListFields\DropDownListField.cs" />
     <Compile Include="DomainModel\Fields\ListFields\ListField.cs" />
+    <Compile Include="DomainModel\Plugs\LoadPlugs\ILoadPlug.cs" />
+    <Compile Include="DomainModel\Plugs\LoadPlugs\LoadPlugBase.cs" />
+    <Compile Include="DomainModel\Plugs\LoadPlugs\QueryStringLoader.cs" />
+    <Compile Include="DomainModel\Plugs\PlugBase.cs" />
     <Compile Include="Validation\IValidatableObject.cs" />
     <Compile Include="ViewModel\Fields\FieldBaseViewModel.cs" />
     <Compile Include="DomainModel\Fields\InputFields\InputField.cs" />

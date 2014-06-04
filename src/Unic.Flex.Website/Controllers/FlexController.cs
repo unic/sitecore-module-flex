@@ -56,7 +56,7 @@
             // todo: execute save plugs
 
             // clear session values
-            this.userDataRepository.ClearForm(form.ItemId.ToString());
+            this.userDataRepository.ClearForm(form.Id);
 
             // redirect to the sucess page
             if (form.SuccessRedirect != null && !string.IsNullOrWhiteSpace(form.SuccessRedirect.Url))

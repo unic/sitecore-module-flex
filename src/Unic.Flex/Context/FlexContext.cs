@@ -12,6 +12,7 @@
     using Unic.Flex.Model.DomainModel;
     using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.DomainModel.Steps;
+    using Unic.Flex.Plugs;
 
     internal class FlexContext
     {
@@ -19,6 +20,9 @@
 
         [Inject]
         public IContextService ContextService { private get; set; }
+
+        [Inject]
+        public IPlugsService PlugService { private get; set; }
 
         private Form form;
 
@@ -61,6 +65,7 @@
                 if (!this.hasValuesPopulated && HttpContext.Current.Session != null)
                 {
                     this.ContextService.PopulateFormValues(this.form);
+                    this.PlugService.ExecuteLoadPlugs(this.form);
                     this.hasValuesPopulated = true;
                 }
                 

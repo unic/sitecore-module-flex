@@ -6,6 +6,7 @@
     using Unic.Flex.Globalization;
     using Unic.Flex.Mapping;
     using Unic.Flex.ModelBinding;
+    using Unic.Flex.Plugs;
     using Unic.Flex.Presentation;
 
     /// <summary>
@@ -21,6 +22,7 @@
             // business logic
             Bind<IContextService>().To<ContextService>();
             Bind<IPresentationService>().To<PresentationService>();
+            Bind<IPlugsService>().To<PlugsService>();
             
             // data access
             Bind<IDictionaryRepository>().To<DictionaryRepository>();
