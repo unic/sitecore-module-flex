@@ -37,5 +37,13 @@
         /// The key.
         /// </value>
         string Key { get; set; }
+
+        /// <summary>
+        /// Gets or sets the label.
+        /// </summary>
+        /// <value>
+        /// The label.
+        /// </value>
+        string Label { get; set; }
     }
 }

@@ -1,27 +1,16 @@
 ﻿namespace Unic.Flex.Model.ViewModel.Steps
 {
-    using System;
-    using System.Collections.Generic;
-    using Unic.Flex.Model.ViewModel.Sections;
-
     /// <summary>
     /// View model for a summary step
     /// </summary>
     public class SummaryViewModel : StepBaseViewModel
     {
         /// <summary>
-        /// Gets the sections.
+        /// Gets or sets the previous step URL.
         /// </summary>
         /// <value>
-        /// The sections.
+        /// The previous step URL.
         /// </value>
-        /// <exception cref="System.NotSupportedException">Summary does not section viewmodels</exception>
-        public override IList<StandardSectionViewModel> Sections
-        {
-            get
-            {
-                throw new NotSupportedException("Summary does not section viewmodels");
-            }
-        }
+        public virtual string PreviousStepUrl { get; set; }
     }
 }

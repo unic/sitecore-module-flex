@@ -1,5 +1,16 @@
 ﻿@model Unic.Flex.Model.ViewModel.Steps.SummaryViewModel
 
-this will be the summary
+@foreach (var stepSection in Model.Sections)
+{
+    <h3>@stepSection.Title</h3>
+    foreach (var field in stepSection.Fields)
+    {
+        <span>@field.Label</span>
+        <span>: </span>
+        <span>@field.Value (TODO: add converters on each field to get the "readable" value)</span>
+        <br/>
+    }
+}
 
+<a href="@Model.PreviousStepUrl">Back</a>
 <input type="submit" value="submit" />

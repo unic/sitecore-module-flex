@@ -1,5 +1,6 @@
 ﻿namespace Unic.Flex.Mapping
 {
+    using System.Collections.Generic;
     using AutoMapper;
     using Castle.DynamicProxy;
     using Sitecore.Diagnostics;
@@ -12,6 +13,7 @@
     using Unic.Flex.Model.DomainModel.Fields.InputFields;
     using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.DomainModel.Sections;
+    using Unic.Flex.Model.DomainModel.Steps;
     using Unic.Flex.Model.DomainModel.Validators;
     using Unic.Flex.Model.Validation;
     using Unic.Flex.Model.ViewModel.Fields;
@@ -50,6 +52,13 @@
             var activeStep = form.GetActiveStep();
             if (activeStep == null) throw new Exception("No step is currently active or no step was found");
 
+            // handle summary step
+            if (activeStep is Summary)
+            {
+                // todo: this need to be done someway different -> also we need to structure the sections by step and not only the sections
+                activeStep.Sections = form.Steps.SelectMany(step => step.Sections).ToList();
+            }
+
             // map the form to it's view model
             var formViewModel = this.GetViewModel<FormViewModel>(form);
             Mapper.DynamicMap(form, formViewModel, form.GetType(), formViewModel.GetType());
@@ -66,6 +75,13 @@
                 multiStepViewModel.NextStepUrl = activeStep.GetNextStepUrl();
                 multiStepViewModel.PreviousStepUrl = activeStep.GetPreviousStepUrl();
                 stepViewModel = multiStepViewModel;
+            }
+
+            // add summary step properties
+            var summaryViewModels = stepViewModel as SummaryViewModel;
+            if (summaryViewModels != null)
+            {
+                summaryViewModels.PreviousStepUrl = activeStep.GetPreviousStepUrl();
             }
     
             // iterate through sections and add them
