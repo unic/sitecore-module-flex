@@ -15,11 +15,14 @@
 
         private readonly IContextService contextService;
 
-        public FlexController(IPresentationService presentationService, IModelConverterService modelConverter, IContextService contextService)
+        private readonly IUserDataRepository userDataRepository;
+
+        public FlexController(IPresentationService presentationService, IModelConverterService modelConverter, IContextService contextService, IUserDataRepository userDataRepository)
         {
             this.presentationService = presentationService;
             this.modelConverter = modelConverter;
             this.contextService = contextService;
+            this.userDataRepository = userDataRepository;
         }
         
         public ActionResult Form()
@@ -49,6 +52,11 @@
             {
                 return this.Redirect(nextStepUrl);
             }
+
+            // todo: execute save plugs
+
+            // clear session values
+            this.userDataRepository.ClearForm(form.ItemId.ToString());
 
             // redirect to the sucess page
             if (form.SuccessRedirect != null && !string.IsNullOrWhiteSpace(form.SuccessRedirect.Url))

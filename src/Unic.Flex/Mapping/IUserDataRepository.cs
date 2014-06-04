@@ -20,5 +20,11 @@
         /// <param name="fieldId">The field identifier.</param>
         /// <param name="value">The value.</param>
         void SetValue(string formId, string fieldId, object value);
+
+        /// <summary>
+        /// Clears the form values completely out of the storage provider.
+        /// </summary>
+        /// <param name="formId">The form identifier.</param>
+        void ClearForm(string formId);
     }
 }

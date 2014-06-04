@@ -72,6 +72,19 @@
         }
 
         /// <summary>
+        /// Clears the form values completely out of the storage provider.
+        /// </summary>
+        /// <param name="formId">The form identifier.</param>
+        public void ClearForm(string formId)
+        {
+            var session = this.FormSession;
+            if (!session.ContainsKey(formId)) return;
+
+            session.Remove(formId);
+            this.FormSession = session;
+        }
+
+        /// <summary>
         /// Gets the values from the session for a specific form.
         /// </summary>
         /// <param name="formId">The form identifier.</param>
