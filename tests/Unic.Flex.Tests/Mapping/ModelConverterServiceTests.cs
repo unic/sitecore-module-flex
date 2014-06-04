@@ -60,7 +60,8 @@
         public class TheGetViewModelMethod
         {
             [Test]
-            public void ShouldReturnNullWhenViewModelWasNotFound()
+            [ExpectedException(typeof(TypeLoadException))]
+            public void WillThrowExceptionWhenViewModelWasNotFound()
             {
                 // arrange
                 var converter = new ModelConverterService(null);
@@ -70,11 +71,12 @@
                 var viewModel = converter.GetViewModel<FormViewModel>(domainModel);
 
                 // assert
-                Assert.Null(viewModel);
+                Assert.Fail("Failed, exception should be thrown");
             }
 
             [Test]
-            public void ShouldReturnNullWhenViewModelWasWrongType()
+            [ExpectedException(typeof(TypeLoadException))]
+            public void WillThrowExceptionWhenViewModelWasWrongType()
             {
                 // arrange
                 var converter = new ModelConverterService(null);
@@ -84,7 +86,7 @@
                 var viewModel = converter.GetViewModel<FormViewModel>(domainModel);
 
                 // assert
-                Assert.Null(viewModel);
+                Assert.Fail("Failed, exception should be thrown");
             }
 
             [Test]
