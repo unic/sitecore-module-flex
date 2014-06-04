@@ -64,18 +64,13 @@
         public abstract string ViewName { get; }
 
         /// <summary>
-        /// Gets the key.
+        /// Gets or sets the key.
         /// </summary>
         /// <value>
         /// The key.
         /// </value>
-        public string Key
-        {
-            get
-            {
-                return this.ItemId.ToString();
-            }
-        }
+        [SitecoreField("Key")]
+        public virtual string Key { get; set; }
 
         /// <summary>
         /// Gets or sets the label.
