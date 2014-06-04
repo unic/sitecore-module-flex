@@ -50,7 +50,14 @@
                 return this.Redirect(nextStepUrl);
             }
 
-            return Content("this was the last step, form has been submitted");
+            // redirect to the sucess page
+            if (form.SuccessRedirect != null && !string.IsNullOrWhiteSpace(form.SuccessRedirect.Url))
+            {
+                return this.Redirect(form.SuccessRedirect.Url);
+            }
+
+            // todo: a 301 should be done before showing the success message, to prevent multiple postbacks of the complete form
+            return this.Content(form.SuccessMessage);
         }
     }
 }

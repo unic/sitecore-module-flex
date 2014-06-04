@@ -1,9 +1,10 @@
 ﻿namespace Unic.Flex.Model.DomainModel.Forms
 {
+    using Glass.Mapper.Sc.Configuration.Attributes;
     using System.Collections.Generic;
     using System.Linq;
-    using Glass.Mapper.Sc.Configuration.Attributes;
     using Unic.Flex.Model.DomainModel.Steps;
+    using Unic.Flex.Model.GlassExtensions.Attributes;
     using Unic.Flex.Model.Presentation;
 
     /// <summary>
@@ -29,6 +30,24 @@
         /// </value>
         [SitecoreField("Introduction")]
         public virtual string Introduction { get; set; }
+
+        /// <summary>
+        /// Gets or sets the success message.
+        /// </summary>
+        /// <value>
+        /// The success message.
+        /// </value>
+        [SitecoreDictionaryFallbackField("Message", "Default success message")]
+        public virtual string SuccessMessage { get; set; }
+
+        /// <summary>
+        /// Gets or sets the success redirect.
+        /// </summary>
+        /// <value>
+        /// The success redirect.
+        /// </value>
+        [SitecoreField("Redirect")]
+        public virtual ItemBase SuccessRedirect { get; set; }
 
         /// <summary>
         /// Gets or sets the steps.
