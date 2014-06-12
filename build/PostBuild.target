@@ -6,7 +6,7 @@
     
     <Target Name="DoDeploy">
         <CallTarget Targets="ReadDeployDir" Condition="Exists('deploy.txt')" />
-        <CallTarget Targets="DoCopyFiles" />
+        <CallTarget Targets="DoCopyFiles" Condition="'$(DeployDir)' != ''" />
     </Target>
 
     <Target Name="ReadDeployDir">
