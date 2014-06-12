@@ -86,6 +86,8 @@
   <ItemGroup>
     <Compile Include="Fields\InputFields\CheckBoxField.cs" />
     <Compile Include="Fields\InputFields\CheckBoxFieldViewModel.cs" />
+    <Compile Include="Fields\InputFields\EmailField.cs" />
+    <Compile Include="Fields\InputFields\EmailFieldViewModel.cs" />
     <Compile Include="Fields\InputFields\MultilineTextField.cs" />
     <Compile Include="Fields\InputFields\MultilineTextFieldViewModel.cs" />
     <Compile Include="Fields\InputFields\NumberField.cs" />
