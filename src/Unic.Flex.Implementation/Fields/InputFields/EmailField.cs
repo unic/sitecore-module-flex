@@ -15,6 +15,7 @@
         /// </summary>
         public EmailField()
         {
+            // todo: this validator shows two different validation messages on client side validation -> is 1 coming from jquery validation and one from the regex validator?
             this.DefaultValidators.Add(new EmailValidator { ValidationMessage = EmailValidator.ValidationMessageDictionaryKey });
         }
         
