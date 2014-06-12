@@ -33,6 +33,14 @@
         object Value { get; set; }
 
         /// <summary>
+        /// Gets the text value.
+        /// </summary>
+        /// <value>
+        /// The text value.
+        /// </value>
+        string TextValue { get; }
+
+        /// <summary>
         /// Gets the key.
         /// </summary>
         /// <value>
