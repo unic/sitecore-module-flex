@@ -1,5 +1,6 @@
 ﻿namespace Unic.Flex.Model.DomainModel.Fields
 {
+    using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using Glass.Mapper.Sc.Configuration.Attributes;
@@ -38,6 +39,22 @@
         /// The value.
         /// </value>
         public TValue Value { get; set; }
+
+        /// <summary>
+        /// Gets the text value.
+        /// </summary>
+        /// <value>
+        /// The text value.
+        /// </value>
+        public virtual string TextValue
+        {
+            get
+            {
+                // todo: does currently always return "-" because this.Value is always null here, but why???
+                var value = !object.Equals(this.Value, null) ? this.Value.ToString() : string.Empty;
+                return !string.IsNullOrWhiteSpace(value) ? value : "-";
+            }
+        }
     }
 
     /// <summary>

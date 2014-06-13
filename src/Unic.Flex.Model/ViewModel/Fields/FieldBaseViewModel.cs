@@ -71,6 +71,14 @@
         public virtual TValue Value { get; set; }
 
         /// <summary>
+        /// Gets or sets the text value.
+        /// </summary>
+        /// <value>
+        /// The text value.
+        /// </value>
+        public virtual string TextValue { get; set; }
+
+        /// <summary>
         /// Gets the additional html attributes on the field.
         /// </summary>
         /// <value>
