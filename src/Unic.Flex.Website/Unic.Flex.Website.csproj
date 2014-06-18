@@ -50,12 +50,16 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Glass.Mapper.3.0.11.23\lib\net45\Glass.Mapper.dll</HintPath>
     </Reference>
-    <Reference Include="Glass.Mapper.Sc, Version=3.1.10.31, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Glass.Mapper.Sc, Version=3.2.0.39, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Glass.Mapper.Sc.3.1.10.31\lib\net45\Glass.Mapper.Sc.dll</HintPath>
+      <HintPath>..\..\packages\Glass.Mapper.Sc.3.2.0.39\lib\net45\Glass.Mapper.Sc.dll</HintPath>
     </Reference>
-    <Reference Include="Glass.Mapper.Sc.CastleWindsor">
-      <HintPath>..\..\packages\Glass.Mapper.Sc.CastleWindsor.3.2.0.17\lib\net45\Glass.Mapper.Sc.CastleWindsor.dll</HintPath>
+    <Reference Include="Glass.Mapper.Sc.CastleWindsor, Version=3.2.0.19, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Glass.Mapper.Sc.CastleWindsor.3.2.0.19\lib\net45\Glass.Mapper.Sc.CastleWindsor.dll</HintPath>
+    </Reference>
+    <Reference Include="Glass.Mapper.Sc.Mvc">
+      <HintPath>..\..\packages\Glass.Mapper.Sc.Mvc-5.3.2.0.34\lib\net45\Glass.Mapper.Sc.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Kamsar.WebConsole">
       <HintPath>..\..\packages\Kamsar.WebConsole.1.2.2.0\lib\net40\Kamsar.WebConsole.dll</HintPath>
@@ -144,9 +148,6 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Config\Include\Glass.Mapper.Sc.Mvc.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="App_Config\Include\Serialization.config" />
   </ItemGroup>
   <ItemGroup>
@@ -210,6 +211,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Modules\Flex\Default\Fields\InputFields\Email.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Config\Include\Glass.Mapper.Sc.Mvc.config" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
