@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using Unic.Flex.Model.DomainModel;
+    using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.DomainModel.Steps;
 
     /// <summary>
@@ -55,6 +56,17 @@
 
             if (previousStep == null) return string.Empty;
             return previousStep.Equals(linkedSteps.First) ? context.Item.Url : previousStep.Value.GetUrl();
+        }
+
+        /// <summary>
+        /// Gets the first step URL.
+        /// </summary>
+        /// <param name="form">The form.</param>
+        /// <returns>The url of the first step in the form</returns>
+        public static string GetFirstStepUrl(this Form form)
+        {
+            var context = FlexContext.Current;
+            return context.Item == null ? string.Empty : context.Item.Url;
         }
     }
 }

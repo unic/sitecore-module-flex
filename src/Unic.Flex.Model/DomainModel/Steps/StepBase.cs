@@ -19,6 +19,14 @@
         public virtual bool IsActive { get; set; }
 
         /// <summary>
+        /// Gets or sets the step number.
+        /// </summary>
+        /// <value>
+        /// The step number.
+        /// </value>
+        public virtual int StepNumber { get; set; }
+
+        /// <summary>
         /// Gets the name of the view.
         /// </summary>
         /// <value>

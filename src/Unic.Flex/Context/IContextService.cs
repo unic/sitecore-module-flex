@@ -3,6 +3,7 @@
     using Glass.Mapper.Sc;
     using Sitecore.Data.Items;
     using Unic.Flex.Model.DomainModel.Forms;
+    using Unic.Flex.Model.DomainModel.Steps;
     using Unic.Flex.Model.ViewModel.Forms;
 
     /// <summary>
@@ -30,6 +31,14 @@
         /// <param name="form">The form domain model.</param>
         /// <param name="viewModel">The form view model containing the current values.</param>
         void StoreFormValues(Form form, FormViewModel viewModel);
+
+        /// <summary>
+        /// Determines whether the given step can be actually accessed. This is only valid if all previous steps has been processed.
+        /// </summary>
+        /// <param name="form">The form.</param>
+        /// <param name="step">The step.</param>
+        /// <returns>Boolean value if the step may accessed by the user or not</returns>
+        bool IsStepAccessible(Form form, StepBase step);
 
         /// <summary>
         /// Gets the rendering datasource of a form.

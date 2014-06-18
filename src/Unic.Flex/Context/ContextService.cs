@@ -1,14 +1,11 @@
 ﻿namespace Unic.Flex.Context
 {
-    using System;
-    using System.Linq;
     using Glass.Mapper.Sc;
     using Sitecore.Data;
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
-    using Sitecore.Shell.Framework.Commands.Masters;
+    using System.Linq;
     using Unic.Flex.Mapping;
-    using Unic.Flex.Model.DomainModel.Fields;
     using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.DomainModel.Sections;
     using Unic.Flex.Model.DomainModel.Steps;
@@ -50,7 +47,14 @@
         /// </returns>
         public Form LoadForm(string dataSource, ISitecoreContext sitecoreContext)
         {
-            return this.formRepository.LoadForm(dataSource, sitecoreContext);
+            var form = this.formRepository.LoadForm(dataSource, sitecoreContext);
+            var counter = 0;
+            foreach (var step in form.Steps)
+            {
+                step.StepNumber = ++counter;
+            }
+
+            return form;
         }
 
         /// <summary>
@@ -86,6 +90,27 @@
             {
                 this.userDataRepository.SetValue(form.Id, field.Key, field.Value);
             }
+        }
+
+        /// <summary>
+        /// Determines whether the given step can be actually accessed. This is only valid if all previous steps has been processed.
+        /// </summary>
+        /// <param name="form">The form.</param>
+        /// <param name="step">The step.</param>
+        /// <returns>
+        /// Boolean value if the step may accessed by the user or not
+        /// </returns>
+        public bool IsStepAccessible(Form form, StepBase step)
+        {
+            Assert.ArgumentNotNull(form, "form");
+            Assert.ArgumentNotNull(step, "step");
+
+            // return for simple cases
+            if (!form.Steps.Any()) return false;
+            if (step.StepNumber == 1) return true;
+
+            // check if step has been completed
+            return this.userDataRepository.IsStepCompleted(form.Id, step.StepNumber - 1);
         }
 
         /// <summary>

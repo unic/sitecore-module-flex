@@ -14,6 +14,11 @@
         private const string SessionKey = "FLEX_FORM_USERDATA";
 
         /// <summary>
+        /// The competed steps key
+        /// </summary>
+        private const string CompetedStepsKey = "COMPLETED_STEPS";
+
+        /// <summary>
         /// Gets or sets the form session.
         /// </summary>
         /// <value>
@@ -94,6 +99,46 @@
 
             session.Remove(formId);
             this.FormSession = session;
+        }
+
+        /// <summary>
+        /// Completes the step.
+        /// </summary>
+        /// <param name="formId">The form identifier.</param>
+        /// <param name="stepNumber">The step number.</param>
+        public void CompleteStep(string formId, int stepNumber)
+        {
+            var completedSteps = this.GetValue(formId, CompetedStepsKey) as List<int> ?? new List<int>();
+            completedSteps.Add(stepNumber);
+            this.SetValue(formId, CompetedStepsKey, completedSteps);
+        }
+
+        /// <summary>
+        /// Reverts to step and invaldiate all completed step until the give one.
+        /// </summary>
+        /// <param name="formId">The form identifier.</param>
+        /// <param name="stepNumber">The step number.</param>
+        public void RevertToStep(string formId, int stepNumber)
+        {
+            var completedSteps = this.GetValue(formId, CompetedStepsKey) as List<int>;
+            if (completedSteps == null) return;
+
+            completedSteps.RemoveAll(step => step >= stepNumber);
+            this.SetValue(formId, CompetedStepsKey, completedSteps);
+        }
+
+        /// <summary>
+        /// Determines whether a step number has been completed.
+        /// </summary>
+        /// <param name="formId">The form identifier.</param>
+        /// <param name="stepNumber">The step number.</param>
+        /// <returns>
+        /// Boolean value if the given step has been completed or not
+        /// </returns>
+        public bool IsStepCompleted(string formId, int stepNumber)
+        {
+            var completedSteps = this.GetValue(formId, CompetedStepsKey) as List<int>;
+            return completedSteps != null && completedSteps.Contains(stepNumber);
         }
 
         /// <summary>

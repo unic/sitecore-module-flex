@@ -31,29 +31,53 @@
         
         public ActionResult Form()
         {
+            // get the form
             var form = ContextUtil.GetCurrentForm();
             if (form == null) return new EmptyResult();
 
+            // get the current step
+            var currentStep = form.GetActiveStep();
+            if (currentStep == null) return new EmptyResult();
+
+            // check if the current step may be accessed (only valid if all previous steps are done)
+            // if step is not valid, redirect to the first step
+            if (!this.contextService.IsStepAccessible(form, currentStep))
+            {
+                return this.Redirect(form.GetFirstStepUrl());
+            }
+
+            // revert step completion to the current step
+            this.userDataRepository.RevertToStep(form.Id, currentStep.StepNumber);
+
+            // return the view for this step
             var formView = this.presentationService.ResolveView(this.ControllerContext, form.ViewName);
-
-            // todo: try to add the @Html.Sitecore.BeginForm() and @Html.Sitecore.FormHandler() for the form post
-
             return this.View(formView, this.modelConverter.ConvertToViewModel(form));
         }
 
         [HttpPost]
         public ActionResult Form(FormViewModel model)
         {
+            // get the current form
+            var form = ContextUtil.GetCurrentForm();
+            if (form == null) return new EmptyResult();
+            
+            // return view if we have any validation errors
+            var formView = this.presentationService.ResolveView(this.ControllerContext, form.ViewName);
             if (!ModelState.IsValid)
             {
-                return this.View("~/Views/Modules/Flex/Default/Form.cshtml", model);    
+                return this.View(formView, model);    
             }
 
-            var form = ContextUtil.GetCurrentForm();
+            // get the current step
+            var currentStep = form.GetActiveStep();
+            if (currentStep == null) return new EmptyResult();
+
+            // store the values in the session redirect to next step if we have a next step
             this.contextService.StoreFormValues(form, model);
-            var nextStepUrl = form.GetActiveStep().GetNextStepUrl();
+            var nextStepUrl = currentStep.GetNextStepUrl();
             if (!string.IsNullOrWhiteSpace(nextStepUrl))
             {
+                this.userDataRepository.CompleteStep(form.Id, currentStep.StepNumber);
                 return this.Redirect(nextStepUrl);
             }
 

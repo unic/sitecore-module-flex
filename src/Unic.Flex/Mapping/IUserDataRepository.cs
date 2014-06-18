@@ -33,5 +33,27 @@
         /// </summary>
         /// <param name="formId">The form identifier.</param>
         void ClearForm(string formId);
+
+        /// <summary>
+        /// Completes the step.
+        /// </summary>
+        /// <param name="formId">The form identifier.</param>
+        /// <param name="stepNumber">The step number.</param>
+        void CompleteStep(string formId, int stepNumber);
+
+        /// <summary>
+        /// Reverts to step and invaldiate all completed step until the give one.
+        /// </summary>
+        /// <param name="formId">The form identifier.</param>
+        /// <param name="stepNumber">The step number.</param>
+        void RevertToStep(string formId, int stepNumber);
+
+        /// <summary>
+        /// Determines whether a step number has been completed.
+        /// </summary>
+        /// <param name="formId">The form identifier.</param>
+        /// <param name="stepNumber">The step number.</param>
+        /// <returns>Boolean value if the given step has been completed or not</returns>
+        bool IsStepCompleted(string formId, int stepNumber);
     }
 }
