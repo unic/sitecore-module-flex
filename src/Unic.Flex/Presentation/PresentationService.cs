@@ -7,6 +7,10 @@
 
     public class PresentationService : IPresentationService
     {
+        private const string ViewPath = "~/Views/Modules/Flex/{0}/{1}.cshtml";
+
+        private const string DefaultTheme = "Default";
+        
         private readonly IConfigurationManager configurationManager;
 
         public PresentationService(IConfigurationManager configurationManager)
@@ -16,21 +20,16 @@
         
         public string ResolveView(ControllerContext controllerContext, string viewName)
         {
-
-            // todo: abstract this in a service
-
             var specification = this.configurationManager.Get<PresentationConfiguration>(c => c.Theme);
-            var theme = specification != null ? specification.Value : "undefined";
+            var theme = specification != null ? specification.Value : DefaultTheme;
             
-            // todo: make dynmic and/or move to config
-
-            var themeView = "~/Views/Modules/Flex/" + theme + "/" + viewName + ".cshtml";
+            var themeView = string.Format(ViewPath, theme, viewName);
             if (this.ViewExists(controllerContext, themeView))
             {
                 return themeView;
             }
 
-            return "~/Views/Modules/Flex/Default/" + viewName + ".cshtml";
+            return string.Format(ViewPath, DefaultTheme, viewName);
         }
 
         private bool ViewExists(ControllerContext controllerContext, string path)
