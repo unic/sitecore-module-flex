@@ -2,12 +2,13 @@
 
 namespace Unic.Flex.Website
 {
+    using Ninject;
     using System.Collections.Generic;
     using System.Web.Mvc;
-    using Ninject;
+    using Unic.Configuration.Converter;
     using Unic.Flex.DependencyInjection;
+    using Unic.Flex.Model.Configuration.Converters;
     using Unic.Flex.Model.ViewModel.Fields;
-    using Unic.Flex.Model.ViewModel.Fields.ListFields;
     using Unic.Flex.Model.ViewModel.Forms;
     using Unic.Flex.Model.ViewModel.Sections;
     using Unic.Flex.ModelBinding;
@@ -23,6 +24,7 @@ namespace Unic.Flex.Website
         public static void PostStart()
         {
             RegisterModelBinders();
+            RegisterConfigurationConverters();
         }
 
         /// <summary>
@@ -37,6 +39,14 @@ namespace Unic.Flex.Website
             ModelBinders.Binders.Add(typeof(IList<IFieldViewModel>), new ListModelBinder());
             ModelBinders.Binders.Add(typeof(IList<SelectListItem>), new ListModelBinder());
             ModelBinders.Binders.Add(typeof(IFieldViewModel), new FieldModelBinder());
+        }
+
+        /// <summary>
+        /// Registers the configuration converters for the config module.
+        /// </summary>
+        private static void RegisterConfigurationConverters()
+        {
+            ConverterFactory.RegisterConverter(new SpecificationConverter());
         }
     }
 }

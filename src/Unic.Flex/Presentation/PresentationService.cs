@@ -3,6 +3,7 @@
     using System.Web.Mvc;
     using Unic.Configuration;
     using Unic.Flex.Model.Configuration;
+    using Unic.Flex.Model.Configuration.Extensions;
 
     public class PresentationService : IPresentationService
     {
@@ -13,7 +14,7 @@
 
             var configManager = new ConfigurationManager();
             var specification = configManager.Get<PresentationConfiguration>(c => c.Theme);
-            var theme = specification != null ? specification["Value"] : "undefined";
+            var theme = specification != null ? specification.Value : "undefined";
             
             // todo: make dynmic and/or move to config
 

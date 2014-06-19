@@ -1,11 +1,20 @@
 ﻿namespace Unic.Flex.Model.Configuration
 {
-    using Sitecore.Data.Items;
     using Unic.Configuration;
+    using Unic.Flex.Model.DomainModel.Global;
 
+    /// <summary>
+    /// Configuration model für presentation config.
+    /// </summary>
     public class PresentationConfiguration : AbstractConfiguration
     {
+        /// <summary>
+        /// Gets or sets the theme.
+        /// </summary>
+        /// <value>
+        /// The theme.
+        /// </value>
         [Configuration(FieldName = "Theme")]
-        public Item Theme { get; set; }
+        public Specification Theme { get; set; }
     }
 }
