@@ -7,13 +7,19 @@
 
     public class PresentationService : IPresentationService
     {
+        private readonly IConfigurationManager configurationManager;
+
+        public PresentationService(IConfigurationManager configurationManager)
+        {
+            this.configurationManager = configurationManager;
+        }
+        
         public string ResolveView(ControllerContext controllerContext, string viewName)
         {
 
             // todo: abstract this in a service
 
-            var configManager = new ConfigurationManager();
-            var specification = configManager.Get<PresentationConfiguration>(c => c.Theme);
+            var specification = this.configurationManager.Get<PresentationConfiguration>(c => c.Theme);
             var theme = specification != null ? specification.Value : "undefined";
             
             // todo: make dynmic and/or move to config
