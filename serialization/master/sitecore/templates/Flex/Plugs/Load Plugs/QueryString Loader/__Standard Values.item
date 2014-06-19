@@ -7,7 +7,7 @@ parent: {4906DF7C-B200-4825-B1AC-488D7D928452}
 name: __Standard Values
 master: {00000000-0000-0000-0000-000000000000}
 template: {4906DF7C-B200-4825-B1AC-488D7D928452}
-templatekey: Querystring Loader
+templatekey: QueryString Loader
 
 ----version----
 language: en

@@ -1,21 +1,29 @@
 ﻿namespace Unic.Flex.Presentation
 {
     using System.Web.Mvc;
+    using Unic.Configuration;
+    using Unic.Flex.Model.Configuration;
 
     public class PresentationService : IPresentationService
     {
         public string ResolveView(ControllerContext controllerContext, string viewName)
         {
+
+            // todo: abstract this in a service
+
+            var configManager = new ConfigurationManager();
+            var specification = configManager.Get<PresentationConfiguration>(c => c.Theme);
+            var theme = specification != null ? specification["Value"] : "undefined";
+            
             // todo: make dynmic and/or move to config
 
-            // todo: the current theme should be loaded via the configuration modul
-            
-            if (this.ViewExists(controllerContext, "~/Views/Modules/Flex/Default/" + viewName + ".cshtml"))
+            var themeView = "~/Views/Modules/Flex/" + theme + "/" + viewName + ".cshtml";
+            if (this.ViewExists(controllerContext, themeView))
             {
-                return "~/Views/Modules/Flex/Default/" + viewName + ".cshtml";
+                return themeView;
             }
 
-            return string.Empty;
+            return "~/Views/Modules/Flex/Default/" + viewName + ".cshtml";
         }
 
         private bool ViewExists(ControllerContext controllerContext, string path)
