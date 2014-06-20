@@ -81,7 +81,7 @@
         /// </summary>
         /// <param name="form">The form domain model.</param>
         /// <param name="viewModel">The form view model containing the current values.</param>
-        public void StoreFormValues(Form form, FormViewModel viewModel)
+        public void StoreFormValues(Form form, IFormViewModel viewModel)
         {
             Assert.ArgumentNotNull(form, "form");
             Assert.ArgumentNotNull(viewModel, "viewModel");

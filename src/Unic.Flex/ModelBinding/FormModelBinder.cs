@@ -17,7 +17,7 @@
         
         protected override object CreateModel(ControllerContext controllerContext, ModelBindingContext bindingContext, Type modelType)
         {
-            if (modelType != typeof(FormViewModel))
+            if (modelType != typeof(IFormViewModel))
             {
                 return base.CreateModel(controllerContext, bindingContext, modelType);
             }

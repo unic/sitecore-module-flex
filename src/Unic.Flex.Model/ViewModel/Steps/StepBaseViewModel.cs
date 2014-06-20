@@ -7,14 +7,14 @@
     /// <summary>
     /// Base view model for all steps
     /// </summary>
-    public abstract class StepBaseViewModel : IPresentationComponent
+    public abstract class StepBaseViewModel : IStepViewModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="StepBaseViewModel"/> class.
         /// </summary>
         protected StepBaseViewModel()
         {
-            this.Sections = new List<StandardSectionViewModel>();
+            this.Sections = new List<ISectionViewModel>();
         }
 
         /// <summary>
@@ -23,7 +23,7 @@
         /// <value>
         /// The sections.
         /// </value>
-        public virtual IList<StandardSectionViewModel> Sections { get; private set; }
+        public virtual IList<ISectionViewModel> Sections { get; private set; }
         
         /// <summary>
         /// Gets or sets the name of the view.

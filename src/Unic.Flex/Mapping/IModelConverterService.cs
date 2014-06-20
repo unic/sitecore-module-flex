@@ -5,7 +5,7 @@
 
     public interface IModelConverterService
     {
-        FormViewModel ConvertToViewModel(Form form);
+        IFormViewModel ConvertToViewModel(Form form);
 
         T GetViewModel<T>(object domainModel);
     }

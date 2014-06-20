@@ -68,7 +68,7 @@
         }
 
         [HttpPost]
-        public ActionResult Form(FormViewModel model)
+        public ActionResult Form(IFormViewModel model)
         {
             // get the current form
             var form = ContextUtil.GetCurrentForm();

@@ -1,13 +1,12 @@
 ﻿namespace Unic.Flex.Model.ViewModel.Sections
 {
     using System.Collections.Generic;
-    using Unic.Flex.Model.Presentation;
     using Unic.Flex.Model.ViewModel.Fields;
 
     /// <summary>
     /// This view model covers a section in the form step.
     /// </summary>
-    public class StandardSectionViewModel : IPresentationComponent
+    public class StandardSectionViewModel : ISectionViewModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="StandardSectionViewModel" /> class.

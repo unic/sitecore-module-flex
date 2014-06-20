@@ -115,11 +115,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DomainModel\Sections\ReusableSection.cs" />
     <Compile Include="DomainModel\Sections\SectionBase.cs" />
+    <Compile Include="ViewModel\Forms\IFormViewModel.cs" />
+    <Compile Include="ViewModel\Sections\ISectionViewModel.cs" />
     <Compile Include="ViewModel\Sections\StandardSectionViewModel.cs" />
     <Compile Include="DomainModel\Sections\StandardSection.cs" />
     <Compile Include="DomainModel\Steps\StepBase.cs" />
     <Compile Include="DomainModel\Steps\MultiStep.cs" />
     <Compile Include="DomainModel\Steps\SingleStep.cs" />
+    <Compile Include="ViewModel\Steps\IStepViewModel.cs" />
     <Compile Include="ViewModel\Steps\MultiStepViewModel.cs" />
     <Compile Include="ViewModel\Steps\SingleStepViewModel.cs" />
     <Compile Include="DomainModel\Steps\Summary.cs" />

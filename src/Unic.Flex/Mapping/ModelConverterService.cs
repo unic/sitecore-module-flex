@@ -37,17 +37,11 @@
             this.dictionaryRepository = dictionaryRepository;
         }
 
-        public FormViewModel ConvertToViewModel(Form form)
+        public IFormViewModel ConvertToViewModel(Form form)
         {
             Assert.ArgumentNotNull(form, "form");
 
-            // todo: why are these 2 lines necessary now? suddenly? Our of nothing? -.-
-            Mapper.CreateMap<StandardSection, StandardSectionViewModel>();
-            Mapper.CreateMap<Unic.Flex.Model.DomainModel.Fields.IField, Unic.Flex.Model.ViewModel.Fields.IFieldViewModel>();
-
             // todo: add caching (don't forget to always add the field values also when the viewmodel comes from the cache)
-
-            // todo: add interfaces for all properties needed in minimum to map here
 
             // get the current active step
             var activeStep = form.GetActiveStep();
@@ -61,45 +55,27 @@
             }
 
             // map the form to it's view model
-            var formViewModel = this.GetViewModel<FormViewModel>(form);
-            Mapper.DynamicMap(form, formViewModel, form.GetType(), formViewModel.GetType());
+            var formViewModel = this.GetViewModel<IFormViewModel>(form);
+            Mapper.Map(form, formViewModel, form.GetType(), formViewModel.GetType());
 
             // map the current step to it's view model
-            var stepViewModel = this.GetViewModel<StepBaseViewModel>(activeStep);
-            Mapper.DynamicMap(activeStep, stepViewModel, activeStep.GetType(), stepViewModel.GetType());
-            stepViewModel.Sections.Clear();
-
-            // add multistep properties
-            var multiStepViewModel = stepViewModel as MultiStepViewModel;
-            if (multiStepViewModel != null)
-            {
-                multiStepViewModel.NextStepUrl = activeStep.GetNextStepUrl();
-                multiStepViewModel.PreviousStepUrl = activeStep.GetPreviousStepUrl();
-                stepViewModel = multiStepViewModel;
-            }
-
-            // add summary step properties
-            var summaryViewModels = stepViewModel as SummaryViewModel;
-            if (summaryViewModels != null)
-            {
-                summaryViewModels.PreviousStepUrl = activeStep.GetPreviousStepUrl();
-            }
+            var stepViewModel = this.GetViewModel<IStepViewModel>(activeStep);
+            Mapper.Map(activeStep, stepViewModel, activeStep.GetType(), stepViewModel.GetType());
 
             // iterate through sections and add them
-            foreach (var skinySection in activeStep.Sections)
+            foreach (var section in activeStep.Sections)
             {
                 // get the real section, because a reusable section just contains a section
-                var reusableSection = skinySection as ReusableSection;
-                var section = (reusableSection == null ? skinySection : reusableSection.Section) as StandardSection;
-                if (section == null) continue;
+                var reusableSection = section as ReusableSection;
+                var realSection = (reusableSection == null ? section : reusableSection.Section) as StandardSection;
+                if (realSection == null) continue;
 
                 // map the current section to it's view model
-                var sectionViewModel = this.GetViewModel<StandardSectionViewModel>(section);
-                Mapper.DynamicMap(section, sectionViewModel, section.GetType(), sectionViewModel.GetType());
-                sectionViewModel.Fields.Clear();
+                var sectionViewModel = this.GetViewModel<ISectionViewModel>(realSection);
+                Mapper.Map(realSection, sectionViewModel, realSection.GetType(), sectionViewModel.GetType());
 
                 // iterate through the fields and add them
-                foreach (var field in section.Fields)
+                foreach (var field in realSection.Fields)
                 {
                     var fieldViewModel = this.GetViewModel<IFieldViewModel>(field);
                     Mapper.DynamicMap(field, fieldViewModel, field.GetType(), fieldViewModel.GetType());

@@ -5,7 +5,7 @@
     /// <summary>
     /// This view model covers the form itself.
     /// </summary>
-    public class FormViewModel
+    public class FormViewModel : IFormViewModel
     {
         /// <summary>
         /// Gets or sets the title.
@@ -29,6 +29,6 @@
         /// <value>
         /// The step to render.
         /// </value>
-        public virtual StepBaseViewModel Step { get; set; }
+        public virtual IStepViewModel Step { get; set; }
     }
 }

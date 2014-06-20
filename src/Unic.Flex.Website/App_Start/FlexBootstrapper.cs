@@ -34,8 +34,8 @@ namespace Unic.Flex.Website
         {
             // todo: check if really all binders here are correct and needed
             
-            ModelBinders.Binders.Add(typeof(FormViewModel), Container.Kernel.Get<IModelBinder>());
-            ModelBinders.Binders.Add(typeof(IList<StandardSectionViewModel>), new ListModelBinder());
+            ModelBinders.Binders.Add(typeof(IFormViewModel), Container.Kernel.Get<IModelBinder>());
+            ModelBinders.Binders.Add(typeof(IList<ISectionViewModel>), new ListModelBinder());
             ModelBinders.Binders.Add(typeof(IList<IFieldViewModel>), new ListModelBinder());
             ModelBinders.Binders.Add(typeof(IList<SelectListItem>), new ListModelBinder());
             ModelBinders.Binders.Add(typeof(IFieldViewModel), new FieldModelBinder());
