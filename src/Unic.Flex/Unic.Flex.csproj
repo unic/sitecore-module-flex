@@ -122,6 +122,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Presentation\IPresentationService.cs" />
     <Compile Include="Presentation\PresentationService.cs" />
+    <Compile Include="Rules\Conditions\FormCondition.cs" />
+    <Compile Include="Rules\Conditions\InstanceCondition.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Unic.Flex.Model\Unic.Flex.Model.csproj">
