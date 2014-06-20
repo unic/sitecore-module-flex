@@ -1,5 +1,6 @@
 ﻿namespace Unic.Flex.Website.Controllers
 {
+    using System.Linq;
     using System.Web.Mvc;
     using Unic.Flex.Context;
     using Unic.Flex.Mapping;
@@ -10,6 +11,10 @@
 
     public class FlexController : Controller
     {
+        private const string SuccessQueryStringKey = "success";
+
+        private const string SuccessQueryStringValue = "true";
+
         private readonly IPresentationService presentationService;
 
         private readonly IModelConverterService modelConverter;
@@ -28,7 +33,7 @@
             this.userDataRepository = userDataRepository;
             this.plugsService = plugsService;
         }
-        
+
         public ActionResult Form()
         {
             // get the form
@@ -38,6 +43,14 @@
             // get the current step
             var currentStep = form.GetActiveStep();
             if (currentStep == null) return new EmptyResult();
+
+            // check if we need to show the success message
+            if (Request.QueryString[SuccessQueryStringKey] == SuccessQueryStringValue
+                && currentStep.StepNumber == form.Steps.Count()
+                && !this.userDataRepository.IsFormStored(form.Id))
+            {
+                return this.Content(form.SuccessMessage);
+            }
 
             // check if the current step may be accessed (only valid if all previous steps are done)
             // if step is not valid, redirect to the first step
@@ -60,17 +73,24 @@
             // get the current form
             var form = ContextUtil.GetCurrentForm();
             if (form == null) return new EmptyResult();
-            
-            // return view if we have any validation errors
-            var formView = this.presentationService.ResolveView(this.ControllerContext, form.ViewName);
-            if (!ModelState.IsValid)
-            {
-                return this.View(formView, model);    
-            }
 
             // get the current step
             var currentStep = form.GetActiveStep();
             if (currentStep == null) return new EmptyResult();
+
+            // check if the current step may be accessed (only valid if all previous steps are done)
+            // if step is not valid, redirect to the first step
+            if (!this.contextService.IsStepAccessible(form, currentStep))
+            {
+                return this.Redirect(form.GetFirstStepUrl());
+            }
+
+            // return view if we have any validation errors
+            var formView = this.presentationService.ResolveView(this.ControllerContext, form.ViewName);
+            if (!ModelState.IsValid)
+            {
+                return this.View(formView, model);
+            }
 
             // store the values in the session redirect to next step if we have a next step
             this.contextService.StoreFormValues(form, model);
@@ -93,8 +113,10 @@
                 return this.Redirect(form.SuccessRedirect.Url);
             }
 
-            // todo: a 301 should be done before showing the success message, to prevent multiple postbacks of the complete form
-            return this.Content(form.SuccessMessage);
+            // redirect to the current page and show the success message
+            var url = Sitecore.Web.WebUtil.GetRawUrl();
+            url += string.Format("{0}{1}={2}", url.Contains("?") ? "&" : "?", SuccessQueryStringKey, SuccessQueryStringValue);
+            return this.Redirect(url);
         }
     }
 }
