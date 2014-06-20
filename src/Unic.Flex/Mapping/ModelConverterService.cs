@@ -36,15 +36,19 @@
             this.viewModelTypeCache = new ConcurrentDictionary<string, Type>();
             this.dictionaryRepository = dictionaryRepository;
         }
-        
+
         public FormViewModel ConvertToViewModel(Form form)
         {
             Assert.ArgumentNotNull(form, "form");
 
+            // todo: why are these 2 lines necessary now? suddenly? Our of nothing? -.-
+            Mapper.CreateMap<StandardSection, StandardSectionViewModel>();
+            Mapper.CreateMap<Unic.Flex.Model.DomainModel.Fields.IField, Unic.Flex.Model.ViewModel.Fields.IFieldViewModel>();
+
             // todo: add caching (don't forget to always add the field values also when the viewmodel comes from the cache)
 
             // todo: add interfaces for all properties needed in minimum to map here
-            
+
             // get the current active step
             var activeStep = form.GetActiveStep();
             if (activeStep == null) throw new Exception("No step is currently active or no step was found");
@@ -80,7 +84,7 @@
             {
                 summaryViewModels.PreviousStepUrl = activeStep.GetPreviousStepUrl();
             }
-    
+
             // iterate through sections and add them
             foreach (var skinySection in activeStep.Sections)
             {
