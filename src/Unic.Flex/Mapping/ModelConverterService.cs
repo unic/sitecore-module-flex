@@ -91,6 +91,7 @@
                 // get the real section, because a reusable section just contains a section
                 var reusableSection = skinySection as ReusableSection;
                 var section = (reusableSection == null ? skinySection : reusableSection.Section) as StandardSection;
+                if (section == null) continue;
 
                 // map the current section to it's view model
                 var sectionViewModel = this.GetViewModel<StandardSectionViewModel>(section);
