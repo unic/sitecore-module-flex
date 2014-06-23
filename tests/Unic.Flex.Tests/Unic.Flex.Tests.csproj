@@ -68,6 +68,10 @@
       <Project>{c47272b9-c13f-4f53-b9f3-d3066bb45810}</Project>
       <Name>Unic.Flex.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\Unic.Flex.Website\Unic.Flex.Website.csproj">
+      <Project>{577b0929-df4e-437a-8601-def9d3974332}</Project>
+      <Name>Unic.Flex.Website</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Unic.Flex\Unic.Flex.csproj">
       <Project>{18b25ae3-f6aa-4a59-a49b-051ceb4487d8}</Project>
       <Name>Unic.Flex</Name>

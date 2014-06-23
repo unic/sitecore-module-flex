@@ -9,12 +9,22 @@
     using Unic.Flex.Model.DomainModel.Steps;
     using Unic.Flex.Model.ViewModel.Forms;
     using Unic.Flex.Tests.Common.Moqs;
+    using Unic.Flex.Website;
 
     public class ModelConverterServiceTests
     {
         [TestFixture]
         public class TheConvertToViewModelMethod
         {
+            /// <summary>
+            /// Initializes the tests by configuring auto mapper.
+            /// </summary>
+            [TestFixtureSetUp]
+            public void InitializeTests()
+            {
+                AutoMapperConfig.Configure();
+            }
+            
             /// <summary>
             /// Converter should throw an exception if form could not be loaded
             /// </summary>

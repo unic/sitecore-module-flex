@@ -18,7 +18,7 @@ namespace Unic.Flex.Website
             Configure();
         }
         
-        private static void Configure()
+        public static void Configure()
         {
             // Forms
             Mapper.CreateMap<Form, FormViewModel>().ForMember(m => m.Step, o => o.Ignore());
