@@ -9,6 +9,15 @@
     public class MultiStep : StepBase
     {
         /// <summary>
+        /// Gets or sets a value indicating whether to show the navigation pane.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if the navigation pane should be shown; otherwise, <c>false</c>.
+        /// </value>
+        [SitecoreField("Show Navigation Pane")]
+        public virtual bool ShowNavigationPane { get; set; }
+        
+        /// <summary>
         /// Gets the name of the view.
         /// </summary>
         /// <value>

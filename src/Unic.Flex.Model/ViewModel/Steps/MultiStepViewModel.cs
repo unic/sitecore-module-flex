@@ -6,6 +6,14 @@
     public class MultiStepViewModel : StepBaseViewModel
     {
         /// <summary>
+        /// Gets or sets a value indicating whether to show the navigation pane.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if the navigation pane should be shown; otherwise, <c>false</c>.
+        /// </value>
+        public virtual bool ShowNavigationPane { get; set; }
+        
+        /// <summary>
         /// Gets or sets the next step URL.
         /// </summary>
         /// <value>

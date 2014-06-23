@@ -9,10 +9,17 @@ master: {00000000-0000-0000-0000-000000000000}
 template: {93EC9DA3-81FC-4A1E-82F8-DD988A2D355B}
 templatekey: Multi Step
 
+----field----
+field: {44307944-EA8B-4F93-B239-5529FAC1FAF9}
+name: Show Navigation Pane
+key: show navigation pane
+content-length: 1
+
+1
 ----version----
 language: en
 version: 1
-revision: 42f1a90e-a77d-4171-9c21-438806431545
+revision: f5176de0-c473-467e-a4e7-3a9d8e84b18c
 
 ----field----
 field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
@@ -41,14 +48,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-42f1a90e-a77d-4171-9c21-438806431545
+f5176de0-c473-467e-a4e7-3a9d8e84b18c
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20140428T140743:635342908634478806
+20140623T100928:635391149687209905
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
