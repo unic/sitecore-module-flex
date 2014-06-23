@@ -7,5 +7,7 @@
     public interface IStepViewModel : IPresentationComponent
     {
         IList<ISectionViewModel> Sections { get; }
+
+        string Title { get; set; }
     }
 }

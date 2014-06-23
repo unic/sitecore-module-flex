@@ -98,8 +98,11 @@
     <Compile Include="DomainModel\Plugs\PlugBase.cs" />
     <Compile Include="DomainModel\Plugs\SavePlugs\ISavePlug.cs" />
     <Compile Include="DomainModel\Plugs\SavePlugs\SavePlugBase.cs" />
+    <Compile Include="DomainModel\Steps\INavigationPane.cs" />
     <Compile Include="DomainModel\Validators\RequiredValidator.cs" />
     <Compile Include="Validation\IValidatableObject.cs" />
+    <Compile Include="ViewModel\Components\NavigationItem.cs" />
+    <Compile Include="ViewModel\Components\NavigationPaneViewModel.cs" />
     <Compile Include="ViewModel\Fields\FieldBaseViewModel.cs" />
     <Compile Include="DomainModel\Fields\InputFields\InputField.cs" />
     <Compile Include="ViewModel\Fields\IFieldViewModel.cs" />
@@ -122,6 +125,7 @@
     <Compile Include="DomainModel\Steps\StepBase.cs" />
     <Compile Include="DomainModel\Steps\MultiStep.cs" />
     <Compile Include="DomainModel\Steps\SingleStep.cs" />
+    <Compile Include="ViewModel\Steps\INavigationPaneViewModel.cs" />
     <Compile Include="ViewModel\Steps\IStepViewModel.cs" />
     <Compile Include="ViewModel\Steps\MultiStepViewModel.cs" />
     <Compile Include="ViewModel\Steps\SingleStepViewModel.cs" />

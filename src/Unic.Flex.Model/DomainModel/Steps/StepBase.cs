@@ -35,6 +35,15 @@
         public abstract string ViewName { get; }
 
         /// <summary>
+        /// Gets or sets the title.
+        /// </summary>
+        /// <value>
+        /// The title.
+        /// </value>
+        [SitecoreField("Title")]
+        public virtual string Title { get; set; }
+
+        /// <summary>
         /// Gets or sets the sections.
         /// </summary>
         /// <value>

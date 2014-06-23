@@ -9,10 +9,17 @@ master: {00000000-0000-0000-0000-000000000000}
 template: {D8D5719A-4799-44D4-8BDC-9EA78E029385}
 templatekey: Summary
 
+----field----
+field: {5F2DAF43-FDD0-48F4-BA3C-644A113544C0}
+name: Show Navigation Pane
+key: show navigation pane
+content-length: 1
+
+1
 ----version----
 language: en
 version: 1
-revision: a257c9bd-dc74-48f2-a2be-eea62eac54e5
+revision: c0bf2eae-52cb-40b9-9f17-ebcb7cd81cbb
 
 ----field----
 field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
@@ -41,14 +48,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-a257c9bd-dc74-48f2-a2be-eea62eac54e5
+c0bf2eae-52cb-40b9-9f17-ebcb7cd81cbb
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20140424T173005:635339574056506716
+20140623T104637:635391171975508465
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

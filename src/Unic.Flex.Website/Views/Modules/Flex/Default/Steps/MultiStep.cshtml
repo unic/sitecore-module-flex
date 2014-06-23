@@ -1,16 +1,15 @@
 ﻿@using Unic.Flex.Presentation
 @model Unic.Flex.Model.ViewModel.Steps.MultiStepViewModel
 
-@if (Model.ShowNavigationPane)
+@if (Model.ShowNavigationPane && Model.NavigationPane != null)
 {
-    <p>NAVIGATION PANEL</p>
+    @Html.FlexComponent(m => m.NavigationPane)
 }
 
 @for (int i = 0; i < Model.Sections.Count; i++)
 {
     @Html.FlexComponent(m => m.Sections[i])
 }
-
 
 <a href="@Model.PreviousStepUrl">Back</a>
 <a href="@Model.NextStepUrl">Skip</a>

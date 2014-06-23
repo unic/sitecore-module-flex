@@ -32,5 +32,13 @@
         /// The name of the view.
         /// </value>
         public virtual string ViewName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the title.
+        /// </summary>
+        /// <value>
+        /// The title.
+        /// </value>
+        public virtual string Title { get; set; }
     }
 }

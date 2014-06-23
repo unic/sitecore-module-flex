@@ -6,7 +6,7 @@
     /// A step in a multi step form.
     /// </summary>
     [SitecoreType(TemplateId = "{93EC9DA3-81FC-4A1E-82F8-DD988A2D355B}")]
-    public class MultiStep : StepBase
+    public class MultiStep : StepBase, INavigationPane
     {
         /// <summary>
         /// Gets or sets a value indicating whether to show the navigation pane.
@@ -16,7 +16,7 @@
         /// </value>
         [SitecoreField("Show Navigation Pane")]
         public virtual bool ShowNavigationPane { get; set; }
-        
+
         /// <summary>
         /// Gets the name of the view.
         /// </summary>

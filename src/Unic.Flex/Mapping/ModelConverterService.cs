@@ -14,6 +14,7 @@
     using Unic.Flex.Model.DomainModel.Steps;
     using Unic.Flex.Model.DomainModel.Validators;
     using Unic.Flex.Model.Validation;
+    using Unic.Flex.Model.ViewModel.Components;
     using Unic.Flex.Model.ViewModel.Fields;
     using Unic.Flex.Model.ViewModel.Forms;
     using Unic.Flex.Model.ViewModel.Sections;
@@ -61,6 +62,13 @@
             // map the current step to it's view model
             var stepViewModel = this.GetViewModel<IStepViewModel>(activeStep);
             Mapper.Map(activeStep, stepViewModel, activeStep.GetType(), stepViewModel.GetType());
+
+            // add the navigation pane for multi steps
+            var navigationPane = stepViewModel as INavigationPaneViewModel;
+            if (navigationPane != null && navigationPane.ShowNavigationPane)
+            {
+                navigationPane.NavigationPane = this.GetNavigationPane(form, activeStep.StepNumber);
+            }
 
             // iterate through sections and add them
             foreach (var section in activeStep.Sections)
@@ -164,6 +172,31 @@
             var domainModelType = ProxyUtil.GetUnproxiedType(domainModel);
             var viewModelClassName = domainModelType.Name + "ViewModel";
             return domainModelType.Assembly.GetTypes().FirstOrDefault(type => type.Name == viewModelClassName);
+        }
+
+        /// <summary>
+        /// Gets the navigation pane.
+        /// </summary>
+        /// <param name="form">The form.</param>
+        /// <param name="currentStep">The current step.</param>
+        /// <returns>Navigation pane with navigation items</returns>
+        protected virtual NavigationPaneViewModel GetNavigationPane(Form form, int currentStep)
+        {
+            Assert.ArgumentNotNull(form, "form");
+            
+            var navigationPane = new NavigationPaneViewModel();
+            foreach (var step in form.Steps)
+            {
+                navigationPane.Items.Add(new NavigationItem
+                                         {
+                                             IsActive = step.StepNumber == currentStep,
+                                             IsLinked = step.StepNumber < currentStep,
+                                             Title = step.Title,
+                                             Url = step.GetUrl()
+                                         });
+            }
+
+            return navigationPane;
         }
     }
 }

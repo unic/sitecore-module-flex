@@ -1,4 +1,10 @@
-﻿@model Unic.Flex.Model.ViewModel.Steps.SummaryViewModel
+﻿@using Unic.Flex.Presentation
+@model Unic.Flex.Model.ViewModel.Steps.SummaryViewModel
+
+@if (Model.ShowNavigationPane && Model.NavigationPane != null)
+{
+    @Html.FlexComponent(m => m.NavigationPane)
+}
 
 @foreach (var stepSection in Model.Sections)
 {

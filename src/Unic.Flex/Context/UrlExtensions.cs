@@ -17,12 +17,13 @@
         /// </summary>
         /// <param name="item">The item.</param>
         /// <returns>Url of the current item appended to the current form context</returns>
-        public static string GetUrl(this ItemBase item)
+        public static string GetUrl(this StepBase item)
         {
             var context = FlexContext.Current;
 
             if (context.Item == null) return item.Url;
             if (context.Form == null) return item.Url;
+            if (item.StepNumber == 1) return context.Item.Url;
 
             return string.Join("/", context.Item.Url, item.Url.Split('/').Last());
         }
