@@ -11,9 +11,9 @@
         {
             // todo: this values should be provided from Sitecore
 
-            this.Items.Add(new SelectListItem { Text = "Red", Value = "red" });
-            this.Items.Add(new SelectListItem { Text = "Green", Value = "green" });
-            this.Items.Add(new SelectListItem { Text = "Blue", Value = "blue" });
+            this.Items.Add(new SelectListItem { Text = "Red", Value = "red_value" });
+            this.Items.Add(new SelectListItem { Text = "Green", Value = "green_value" });
+            this.Items.Add(new SelectListItem { Text = "Blue", Value = "blue_value" });
         }
         
         public override string ViewName

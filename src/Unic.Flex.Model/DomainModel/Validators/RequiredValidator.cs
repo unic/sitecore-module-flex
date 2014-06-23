@@ -1,6 +1,7 @@
 ﻿namespace Unic.Flex.Model.DomainModel.Validators
 {
     using System.Collections.Generic;
+    using System.Linq;
     using Unic.Flex.Model.Validation;
 
     /// <summary>
@@ -33,7 +34,12 @@
             if (booleanValue != null) return (bool)value;
 
             var stringValue = value as string;
-            return stringValue != null && !string.IsNullOrWhiteSpace(stringValue);
+            if (stringValue != null) return !string.IsNullOrWhiteSpace(stringValue);
+
+            var stringArrayValue = value as string[];
+            if (stringArrayValue != null) return stringArrayValue.Any();
+
+            return false;
         }
 
         /// <summary>
