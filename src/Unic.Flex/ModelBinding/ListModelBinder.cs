@@ -34,18 +34,14 @@
                 // get the item and the type
                 var item = collection[index];
 
-                // todo: this is a really ugly hack... we need to find another solution for this...
-                // the problem ist, that in the checkboxlist the value of each checkbox is binded to the .Selected property of each
-                // value in the .Items<SelectListItem> property. Normally the elementType here is "IFieldViewModel" and this doesn't
-                // contain a property .Items, so the items and the selected value will not be binded
-                var innerType = item is ListFieldViewModel<string[]> ? typeof(ListFieldViewModel<string[]>) : elementType;
+                // todo: checkboxlist und listbox doesn't bind with the FieldModelBinder and therefor doesn't validate -> but only if string[] is empty -> if one is selected, the correct binder is choosen...
                 
                 // the change to the original model binder here is, that the model is taken from "collection[index]"
                 // instead of "null" -> this way the collection element is not initialized new, the instance that
                 // was in the list originally is taken instead
                 var innerContext = new ModelBindingContext
                 {
-                    ModelMetadata = ModelMetadataProviders.Current.GetMetadataForType(() => item, innerType),
+                    ModelMetadata = ModelMetadataProviders.Current.GetMetadataForType(() => item, elementType),
                     ModelName = CreateSubIndexName(bindingContext.ModelName, index),
                     ModelState = bindingContext.ModelState,
                     PropertyFilter = bindingContext.PropertyFilter,
