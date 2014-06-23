@@ -3,15 +3,20 @@
 
 <li>
     @Html.LabelFor(m => m.Value, Model.Label)
-    @Html.HiddenFor(m => m.Value, Model.Attributes)
     
     @for (var i=0; i<Model.Items.Count(); i++)
     {
         <div>
             
-            @Html.LabelFor(m => m.Items[i].Selected, Model.Items[i].Text)
-            @Html.CheckBoxFor(m => m.Items[i].Selected)
-            @Html.ValidationMessageFor(m => m.Items[i].Selected)
+            @{
+                var checkbox = Model.Items[i];
+                var propertyName = string.Format("{0}.Value", ViewData.TemplateInfo.HtmlFieldPrefix);
+                var propertyId = Html.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldId(string.Format("{0}[{1}]", propertyName, i));
+                var selected = Model.Value != null && Model.Value.Contains(checkbox.Value) ? "checked=\"checked\"" : string.Empty;
+            }
+            
+            <label for="@propertyId">@checkbox.Text</label>
+            <input type="checkbox" name="@propertyName" id="@propertyId" value="@checkbox.Value" @selected />
 
         </div>
     }

@@ -27,7 +27,7 @@
         public virtual bool IsValid(object value)
         {
             // todo: requried validator does not yet validate checkboxes correctly on frontend
-            
+
             if (value == null) return false;
 
             var booleanValue = value as bool?;
@@ -37,7 +37,7 @@
             if (stringValue != null) return !string.IsNullOrWhiteSpace(stringValue);
 
             var stringArrayValue = value as string[];
-            if (stringArrayValue != null) return stringArrayValue.Any();
+            if (stringArrayValue != null) return stringArrayValue.Any(v => !string.IsNullOrWhiteSpace(v));
 
             return false;
         }
