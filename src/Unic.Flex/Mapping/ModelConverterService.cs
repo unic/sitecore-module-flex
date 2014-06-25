@@ -1,5 +1,7 @@
 ﻿namespace Unic.Flex.Mapping
 {
+    using System.Collections;
+    using System.Collections.Generic;
     using AutoMapper;
     using Castle.DynamicProxy;
     using Sitecore.Diagnostics;
@@ -25,7 +27,9 @@
         /// <summary>
         /// Cache for view model types
         /// </summary>
-        private readonly ConcurrentDictionary<string, Type> viewModelTypeCache;
+        private readonly IDictionary viewModelTypeCache;
+
+        private static readonly object typeLock = new object();
 
         private readonly IDictionaryRepository dictionaryRepository;
 
@@ -34,7 +38,7 @@
         /// </summary>
         public ModelConverterService(IDictionaryRepository dictionaryRepository)
         {
-            this.viewModelTypeCache = new ConcurrentDictionary<string, Type>();
+            this.viewModelTypeCache = new Dictionary<string, Type>();
             this.dictionaryRepository = dictionaryRepository;
         }
 
@@ -149,14 +153,20 @@
         /// <returns>Type of the view model class.</returns>
         protected virtual Type ResolveViewModelType(object domainModel)
         {
+            Type viewModelType;
             var domainModelFullName = domainModel.GetType().FullName;
-            if (this.viewModelTypeCache.ContainsKey(domainModelFullName))
+
+            lock (typeLock)
             {
-                return this.viewModelTypeCache[domainModelFullName];
+                if (this.viewModelTypeCache.Contains(domainModelFullName))
+                {
+                    return this.viewModelTypeCache[domainModelFullName] as Type;
+                }
+
+                viewModelType = this.ResolveViewModelTypeFromAssembly(domainModel);
+                this.viewModelTypeCache.Add(domainModelFullName, viewModelType);
             }
 
-            var viewModelType = this.ResolveViewModelTypeFromAssembly(domainModel);
-            this.viewModelTypeCache.TryAdd(domainModelFullName, viewModelType);
             return viewModelType;
         }
 
