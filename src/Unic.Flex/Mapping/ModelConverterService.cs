@@ -27,7 +27,7 @@
         /// <summary>
         /// Cache for view model types
         /// </summary>
-        private readonly IDictionary viewModelTypeCache;
+        private readonly IDictionary<string, Type> viewModelTypeCache;
 
         private static readonly object typeLock = new object();
 
@@ -158,9 +158,9 @@
 
             lock (typeLock)
             {
-                if (this.viewModelTypeCache.Contains(domainModelFullName))
+                if (this.viewModelTypeCache.ContainsKey(domainModelFullName))
                 {
-                    return this.viewModelTypeCache[domainModelFullName] as Type;
+                    return this.viewModelTypeCache[domainModelFullName];
                 }
 
                 viewModelType = this.ResolveViewModelTypeFromAssembly(domainModel);
