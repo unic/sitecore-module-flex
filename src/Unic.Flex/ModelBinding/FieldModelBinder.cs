@@ -1,16 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Unic.Flex.ModelBinding
+﻿namespace Unic.Flex.ModelBinding
 {
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
+    using Unic.Flex.Model.ViewModel.Fields;
 
     public class FieldModelBinder : DefaultModelBinder
     {
+        public override object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
+        {
+            var initialModel = bindingContext.Model;
+            var model = base.BindModel(controllerContext, bindingContext);
+
+            // return the binded model if is could be bindet
+            if (model != null) return model;
+
+            // otherwise no values has been posted -> reset the field value, to validation and return the initial model
+            ((IFieldViewModel)initialModel).Value = null;
+            ForceModelValidation(bindingContext);
+            return initialModel;
+        }
+
         protected override void OnModelUpdated(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
             base.OnModelUpdated(controllerContext, bindingContext);
