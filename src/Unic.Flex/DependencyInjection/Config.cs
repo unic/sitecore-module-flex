@@ -32,7 +32,7 @@
 
             // model binding and converting
             Bind<IModelBinder>().To<FormModelBinder>();
-            Bind<IModelConverterService>().To<ModelConverterService>();
+            Bind<IModelConverterService>().To<ModelConverterService>().InSingletonScope();
 
             // configuration module
             Bind<IConfigurationManager>().To<ConfigurationManager>();
