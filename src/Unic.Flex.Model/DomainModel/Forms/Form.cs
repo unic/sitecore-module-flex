@@ -1,5 +1,6 @@
 ﻿namespace Unic.Flex.Model.DomainModel.Forms
 {
+    using Glass.Mapper.Sc.Configuration;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using System.Collections.Generic;
     using System.Linq;
@@ -15,6 +16,15 @@
     [SitecoreType(TemplateId = "{3AFE4256-1C3E-4441-98AF-B3D0037A8B1F}")]
     public class Form : ItemBase, IPresentationComponent
     {
+        /// <summary>
+        /// Gets or sets the language.
+        /// </summary>
+        /// <value>
+        /// The language.
+        /// </value>
+        [SitecoreInfo(SitecoreInfoType.Language)]
+        public virtual string Language { get; set; }
+        
         /// <summary>
         /// Gets or sets the title.
         /// </summary>

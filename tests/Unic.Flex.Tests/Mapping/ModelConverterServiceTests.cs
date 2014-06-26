@@ -34,7 +34,7 @@
             {
                 // prepare
                 var form = this.GetForm(FormRepositoryMoqs.GetNullFormRepository());
-                var converter = new ModelConverterService(null);
+                var converter = new ModelConverterService(null, null);
 
                 // act
                 var viewModel = converter.ConvertToViewModel(form);
@@ -48,7 +48,7 @@
             {
                 // prepare
                 var form = this.GetForm(FormRepositoryMoqs.GetSingleStepFormRepository());
-                var converter = new ModelConverterService(null);
+                var converter = new ModelConverterService(null, null);
 
                 // act
                 var viewModel = converter.ConvertToViewModel(form);
@@ -74,7 +74,7 @@
             public void WillThrowExceptionWhenViewModelWasNotFound()
             {
                 // arrange
-                var converter = new ModelConverterService(null);
+                var converter = new ModelConverterService(null, null);
                 var domainModel = new object();
 
                 // act
@@ -89,7 +89,7 @@
             public void WillThrowExceptionWhenViewModelWasWrongType()
             {
                 // arrange
-                var converter = new ModelConverterService(null);
+                var converter = new ModelConverterService(null, null);
                 var domainModel = new SingleStep();
 
                 // act
@@ -103,7 +103,7 @@
             public void ShouldReturnCorrectViewModelInstance()
             {
                 // arrange
-                var converter = new ModelConverterService(null);
+                var converter = new ModelConverterService(null, null);
                 var domainModel = new Form();
 
                 // act
