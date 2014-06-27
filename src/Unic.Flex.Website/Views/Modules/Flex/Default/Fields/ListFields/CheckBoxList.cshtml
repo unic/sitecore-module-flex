@@ -1,7 +1,7 @@
 ﻿@using System.Web.Mvc.Html
 @model Unic.Flex.Implementation.Fields.ListFields.CheckBoxListFieldViewModel
 
-<li>
+<li class="@Model.CssClass">
     @Html.LabelFor(m => m.Value, Model.Label)
     
     @for (var i=0; i<Model.Items.Count(); i++)

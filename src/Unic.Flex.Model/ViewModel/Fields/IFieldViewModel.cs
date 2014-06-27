@@ -53,5 +53,13 @@
         /// The label.
         /// </value>
         string Label { get; set; }
+
+        /// <summary>
+        /// Gets or sets the CSS class.
+        /// </summary>
+        /// <value>
+        /// The CSS class.
+        /// </value>
+        string CssClass { get; set; }
     }
 }

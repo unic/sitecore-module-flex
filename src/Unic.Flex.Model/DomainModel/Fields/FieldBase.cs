@@ -3,6 +3,7 @@
     using Glass.Mapper.Sc.Configuration.Attributes;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using Unic.Flex.Model.DomainModel.Global;
     using Unic.Flex.Model.GlassExtensions.Attributes;
     using Unic.Flex.Model.Validation;
 
@@ -78,6 +79,20 @@
         public abstract string ViewName { get; }
 
         /// <summary>
+        /// Gets the CSS class.
+        /// </summary>
+        /// <value>
+        /// The CSS class.
+        /// </value>
+        public virtual string CssClass
+        {
+            get
+            {
+                return string.Empty;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the key.
         /// </summary>
         /// <value>
@@ -94,6 +109,24 @@
         /// </value>
         [SitecoreField("Label")]
         public virtual string Label { get; set; }
+
+        /// <summary>
+        /// Gets or sets the CSS class.
+        /// </summary>
+        /// <value>
+        /// The CSS class.
+        /// </value>
+        [SitecoreSharedField(FieldName = "Css Class")]
+        public virtual Specification CustomCssClass { get; set; }
+
+        /// <summary>
+        /// Gets or sets the additional CSS classes.
+        /// </summary>
+        /// <value>
+        /// The additional CSS classes.
+        /// </value>
+        [SitecoreField("Additional Css Class")]
+        public virtual string AdditionalCssClass { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether this field is required.

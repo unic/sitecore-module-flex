@@ -1,7 +1,7 @@
 ﻿@using System.Web.Mvc.Html
 @model Unic.Flex.Implementation.Fields.InputFields.NumberFieldViewModel
 
-<li>
+<li class="@Model.CssClass">
     @{
         Model.Attributes.Add("type", "number");
         Model.Attributes.Add("min", Model.MinValue);

@@ -95,6 +95,14 @@
         public virtual string ViewName { get; set; }
 
         /// <summary>
+        /// Gets or sets the CSS class.
+        /// </summary>
+        /// <value>
+        /// The CSS class.
+        /// </value>
+        public virtual string CssClass { get; set; }
+
+        /// <summary>
         /// Determines whether the specified object is valid.
         /// </summary>
         /// <param name="validationContext">The validation context.</param>

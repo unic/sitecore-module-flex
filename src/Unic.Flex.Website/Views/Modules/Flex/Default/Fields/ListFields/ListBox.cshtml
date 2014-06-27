@@ -1,7 +1,7 @@
 ﻿@using System.Web.Mvc.Html
 @model Unic.Flex.Implementation.Fields.ListFields.ListBoxFieldViewModel
 
-<li>
+<li class="@Model.CssClass">
     @Html.LabelFor(m => m.Value, Model.Label)
     @Html.ListBoxFor(m => m.Value, Model.Items, Model.Attributes)
     @Html.ValidationMessageFor(model => model.Value)

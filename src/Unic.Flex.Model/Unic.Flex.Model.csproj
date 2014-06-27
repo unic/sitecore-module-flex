@@ -100,6 +100,9 @@
     <Compile Include="DomainModel\Plugs\SavePlugs\SavePlugBase.cs" />
     <Compile Include="DomainModel\Steps\INavigationPane.cs" />
     <Compile Include="DomainModel\Validators\RequiredValidator.cs" />
+    <Compile Include="GlassExtensions\Attributes\SitecoreSharedFieldAttribute.cs" />
+    <Compile Include="GlassExtensions\Configurations\SitecoreSharedFieldConfiguration.cs" />
+    <Compile Include="GlassExtensions\Handlers\SitecoreSharedFieldTypeMapper.cs" />
     <Compile Include="Validation\IValidatableObject.cs" />
     <Compile Include="ViewModel\Components\NavigationItem.cs" />
     <Compile Include="ViewModel\Components\NavigationPaneViewModel.cs" />

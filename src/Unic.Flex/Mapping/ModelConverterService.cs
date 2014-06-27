@@ -142,6 +142,17 @@
                         validatableObject.AddValidator(validator);
                     }
 
+                    // add css classes
+                    if (field.CustomCssClass != null && !string.IsNullOrWhiteSpace(field.CustomCssClass.Value))
+                    {
+                        fieldViewModel.CssClass += " " + field.CustomCssClass.Value;
+                    }
+
+                    if (!string.IsNullOrWhiteSpace(field.AdditionalCssClass))
+                    {
+                        fieldViewModel.CssClass += " " + field.AdditionalCssClass;
+                    }
+
                     // add the field to the section
                     sectionViewModel.Fields.Add(fieldViewModel);
                 }

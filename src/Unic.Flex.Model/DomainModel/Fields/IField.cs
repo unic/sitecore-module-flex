@@ -1,6 +1,7 @@
 ﻿namespace Unic.Flex.Model.DomainModel.Fields
 {
     using System.Collections.Generic;
+    using Unic.Flex.Model.DomainModel.Global;
     using Unic.Flex.Model.Presentation;
     using Unic.Flex.Model.Validation;
 
@@ -47,6 +48,22 @@
         /// The key.
         /// </value>
         string Key { get; }
+
+        /// <summary>
+        /// Gets or sets the custom CSS class.
+        /// </summary>
+        /// <value>
+        /// The custom CSS class.
+        /// </value>
+        Specification CustomCssClass { get; set; }
+
+        /// <summary>
+        /// Gets or sets the additional CSS class.
+        /// </summary>
+        /// <value>
+        /// The additional CSS class.
+        /// </value>
+        string AdditionalCssClass { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether this instance is required.
