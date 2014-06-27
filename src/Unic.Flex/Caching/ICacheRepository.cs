@@ -4,6 +4,6 @@
     {
         T Get<T>(string cacheKey) where T : class;
 
-        void AddViewModel(string cacheKey, object data);
+        void Add(string cacheKey, object data);
     }
 }

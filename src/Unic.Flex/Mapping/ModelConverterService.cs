@@ -13,6 +13,7 @@
     using Unic.Flex.Caching;
     using Unic.Flex.Context;
     using Unic.Flex.Globalization;
+    using Unic.Flex.Logging;
     using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.DomainModel.Sections;
     using Unic.Flex.Model.DomainModel.Steps;
@@ -37,14 +38,17 @@
 
         private readonly ICacheRepository cacheRepository;
 
+        private readonly ILogger logger;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ModelConverterService"/> class.
         /// </summary>
-        public ModelConverterService(IDictionaryRepository dictionaryRepository, ICacheRepository cacheRepository)
+        public ModelConverterService(IDictionaryRepository dictionaryRepository, ICacheRepository cacheRepository, ILogger logger)
         {
             this.viewModelTypeCache = new Dictionary<string, Type>();
             this.dictionaryRepository = dictionaryRepository;
             this.cacheRepository = cacheRepository;
+            this.logger = logger;
         }
 
         public IFormViewModel ConvertToViewModel(Form form)
@@ -67,15 +71,15 @@
             if (viewModel == null)
             {
                 viewModel = this.Convert(form, activeStep);
-                this.cacheRepository.AddViewModel(cacheKey, viewModel);
-                Log.Info(string.Format("FLEX :: Added form view model into cache (key={0})", cacheKey), this);
+                this.cacheRepository.Add(cacheKey, viewModel);
+                this.logger.Info(string.Format("Added form view model into cache (key={0})", cacheKey), this);
             }
             else
             {
-                Log.Info(string.Format("FLEX :: Serving form view model from cache (key={0})", cacheKey), this);
+                this.logger.Info(string.Format("Serving form view model from cache (key={0})", cacheKey), this);
             }
 
-            Log.Error("FLEX :: MILLISECONDS FOR CONVERTING: " + stopWatch.ElapsedMilliseconds, this);
+            this.logger.Error("MILLISECONDS FOR CONVERTING: " + stopWatch.ElapsedMilliseconds, this);
 
             return viewModel;
         }

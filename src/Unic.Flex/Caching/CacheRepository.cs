@@ -30,7 +30,7 @@ namespace Unic.Flex.Caching
             return this.GetObject(cacheKey) as T;
         }
 
-        public void AddViewModel(string cacheKey, object data)
+        public void Add(string cacheKey, object data)
         {
             Assert.ArgumentNotNullOrEmpty(cacheKey, "cacheKey");
             Assert.ArgumentNotNull(data, "data");
