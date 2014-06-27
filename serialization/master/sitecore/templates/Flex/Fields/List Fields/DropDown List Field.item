@@ -27,13 +27,13 @@ content-length: 38
 field: {06D5295C-ED2F-4A54-9BF2-26228D113318}
 name: __Icon
 key: __icon
-content-length: 32
+content-length: 22
 
-applications/16x16/form_blue.png
+business/32x32/row.png
 ----version----
 language: en
 version: 1
-revision: f29e8971-9fb1-4f1e-91aa-742f0091415d
+revision: 40b48c30-59ce-4902-834b-cebda5035476
 
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
@@ -55,14 +55,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-f29e8971-9fb1-4f1e-91aa-742f0091415d
+40b48c30-59ce-4902-834b-cebda5035476
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20140627T080601:635394531611937799
+20140627T125220:635394703408454240
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
