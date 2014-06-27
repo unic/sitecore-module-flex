@@ -47,12 +47,15 @@
 
             // generate the step
             var step = new SingleStep();
+            step.StepNumber = 1;
             step.Sections = new List<SectionBase> { firstSection, secondSection };
 
             // generate the form
             var form = new Form();
             form.Title = "Single Step Form";
             form.Introduction = "This is the introduction for a single step form";
+            form.ItemId = Guid.NewGuid();
+            form.Language = "en";
             form.Steps = new List<StepBase> { step };
             return form;
         }

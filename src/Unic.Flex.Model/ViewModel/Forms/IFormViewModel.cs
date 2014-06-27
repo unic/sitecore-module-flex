@@ -5,5 +5,9 @@
     public interface IFormViewModel
     {
         IStepViewModel Step { get; set; }
+
+        string Id { get; set; }
+
+        string Language { get; set; }
     }
 }

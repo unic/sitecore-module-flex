@@ -2,6 +2,7 @@
 {
     using System.Collections;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using AutoMapper;
     using Castle.DynamicProxy;
     using Sitecore.Diagnostics;
@@ -11,6 +12,7 @@
     using Sitecore.Exceptions;
     using Unic.Flex.Context;
     using Unic.Flex.Globalization;
+    using Unic.Flex.Logging;
     using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.DomainModel.Sections;
     using Unic.Flex.Model.DomainModel.Steps;
@@ -46,17 +48,42 @@
         {
             Assert.ArgumentNotNull(form, "form");
 
-            // todo: add caching (don't forget to always add the field values also when the viewmodel comes from the cache)
-
             // get the current active step
             var activeStep = form.GetActiveStep();
             if (activeStep == null) throw new Exception("No step is currently active or no step was found");
 
+            // convert the step
+            return this.Convert(form, activeStep);
+        }
+
+        /// <summary>
+        /// Gets a new view model instance based on the corresponding domain model.
+        /// </summary>
+        /// <typeparam name="T">Type of the view model</typeparam>
+        /// <param name="domainModel">The domain model.</param>
+        /// <returns>New instance of the found view model or null</returns>
+        public virtual T GetViewModel<T>(object domainModel)
+        {
+            Assert.ArgumentNotNull(domainModel, "domainModel");
+            var viewModelType = this.ResolveViewModelType(domainModel);
+            if (viewModelType != null && typeof(T).IsAssignableFrom(viewModelType))
+            {
+                return (T)Activator.CreateInstance(viewModelType);
+            }
+
+            throw new TypeLoadException(string.Format("Could not find corresponding view model for type '{0}'", ProxyUtil.GetUnproxiedType(domainModel).FullName));
+        }
+
+        protected virtual IFormViewModel Convert(Form form, StepBase step)
+        {
+            Assert.ArgumentNotNull(form, "form");
+            Assert.ArgumentNotNull(step, "step");
+
             // handle summary step
-            if (activeStep is Summary)
+            if (step is Summary)
             {
                 // todo: this need to be done someway different -> also we need to structure the sections by step and not only the sections
-                activeStep.Sections = form.Steps.SelectMany(step => step.Sections).ToList();
+                step.Sections = form.Steps.SelectMany(s => s.Sections).ToList();
             }
 
             // map the form to it's view model
@@ -64,18 +91,18 @@
             Mapper.Map(form, formViewModel, form.GetType(), formViewModel.GetType());
 
             // map the current step to it's view model
-            var stepViewModel = this.GetViewModel<IStepViewModel>(activeStep);
-            Mapper.Map(activeStep, stepViewModel, activeStep.GetType(), stepViewModel.GetType());
+            var stepViewModel = this.GetViewModel<IStepViewModel>(step);
+            Mapper.Map(step, stepViewModel, step.GetType(), stepViewModel.GetType());
 
             // add the navigation pane for multi steps
             var navigationPane = stepViewModel as INavigationPaneViewModel;
             if (navigationPane != null && navigationPane.ShowNavigationPane)
             {
-                navigationPane.NavigationPane = this.GetNavigationPane(form, activeStep.StepNumber);
+                navigationPane.NavigationPane = this.GetNavigationPane(form, step.StepNumber);
             }
 
             // iterate through sections and add them
-            foreach (var section in activeStep.Sections)
+            foreach (var section in step.Sections)
             {
                 // get the real section, because a reusable section just contains a section
                 var reusableSection = section as ReusableSection;
@@ -126,24 +153,6 @@
             // add the current step to the form and return
             formViewModel.Step = stepViewModel;
             return formViewModel;
-        }
-
-        /// <summary>
-        /// Gets a new view model instance based on the corresponding domain model.
-        /// </summary>
-        /// <typeparam name="T">Type of the view model</typeparam>
-        /// <param name="domainModel">The domain model.</param>
-        /// <returns>New instance of the found view model or null</returns>
-        public virtual T GetViewModel<T>(object domainModel)
-        {
-            Assert.ArgumentNotNull(domainModel, "domainModel");
-            var viewModelType = this.ResolveViewModelType(domainModel);
-            if (viewModelType != null && typeof(T).IsAssignableFrom(viewModelType))
-            {
-                return (T)Activator.CreateInstance(viewModelType);
-            }
-
-            throw new TypeLoadException(string.Format("Could not find corresponding view model for type '{0}'", ProxyUtil.GetUnproxiedType(domainModel).FullName));
         }
 
         /// <summary>

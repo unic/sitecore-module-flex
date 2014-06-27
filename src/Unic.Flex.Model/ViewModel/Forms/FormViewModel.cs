@@ -8,6 +8,22 @@
     public class FormViewModel : IFormViewModel
     {
         /// <summary>
+        /// Gets or sets the identifier.
+        /// </summary>
+        /// <value>
+        /// The identifier.
+        /// </value>
+        public virtual string Id { get; set; }
+
+        /// <summary>
+        /// Gets or sets the language.
+        /// </summary>
+        /// <value>
+        /// The language.
+        /// </value>
+        public virtual string Language { get; set; }
+        
+        /// <summary>
         /// Gets or sets the title.
         /// </summary>
         /// <value>

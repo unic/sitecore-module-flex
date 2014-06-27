@@ -5,6 +5,7 @@
     using Unic.Configuration;
     using Unic.Flex.Context;
     using Unic.Flex.Globalization;
+    using Unic.Flex.Logging;
     using Unic.Flex.Mapping;
     using Unic.Flex.ModelBinding;
     using Unic.Flex.Plugs;
@@ -20,6 +21,9 @@
         /// </summary>
         public override void Load()
         {
+            // logging
+            Bind<ILogger>().To<SitecoreLogger>();
+            
             // business logic
             Bind<IContextService>().To<ContextService>();
             Bind<IPresentationService>().To<PresentationService>();
