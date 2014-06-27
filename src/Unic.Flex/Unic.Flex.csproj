@@ -97,8 +97,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Caching\CacheRepository.cs" />
-    <Compile Include="Caching\ICacheRepository.cs" />
     <Compile Include="Context\ContextService.cs" />
     <Compile Include="Context\ContextUtil.cs" />
     <Compile Include="Context\FlexContext.cs" />

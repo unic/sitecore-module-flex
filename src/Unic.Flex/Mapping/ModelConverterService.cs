@@ -10,7 +10,6 @@
     using System.Collections.Concurrent;
     using System.Linq;
     using Sitecore.Exceptions;
-    using Unic.Flex.Caching;
     using Unic.Flex.Context;
     using Unic.Flex.Globalization;
     using Unic.Flex.Logging;
@@ -36,52 +35,25 @@
 
         private readonly IDictionaryRepository dictionaryRepository;
 
-        private readonly ICacheRepository cacheRepository;
-
-        private readonly ILogger logger;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="ModelConverterService"/> class.
         /// </summary>
-        public ModelConverterService(IDictionaryRepository dictionaryRepository, ICacheRepository cacheRepository, ILogger logger)
+        public ModelConverterService(IDictionaryRepository dictionaryRepository)
         {
             this.viewModelTypeCache = new Dictionary<string, Type>();
             this.dictionaryRepository = dictionaryRepository;
-            this.cacheRepository = cacheRepository;
-            this.logger = logger;
         }
 
         public IFormViewModel ConvertToViewModel(Form form)
         {
             Assert.ArgumentNotNull(form, "form");
 
-            // todo: add caching (don't forget to always add the field values also when the viewmodel comes from the cache)
-
             // get the current active step
             var activeStep = form.GetActiveStep();
             if (activeStep == null) throw new Exception("No step is currently active or no step was found");
 
-
-            var stopWatch = new Stopwatch();
-            stopWatch.Start();
-
-            // get viewmodel
-            var cacheKey = this.GetFormCacheKey(form.Id, form.Language, activeStep.StepNumber);
-            var viewModel = this.cacheRepository.Get<IFormViewModel>(cacheKey);
-            if (viewModel == null)
-            {
-                viewModel = this.Convert(form, activeStep);
-                this.cacheRepository.Add(cacheKey, viewModel);
-                this.logger.Info(string.Format("Added form view model into cache (key={0})", cacheKey), this);
-            }
-            else
-            {
-                this.logger.Info(string.Format("Serving form view model from cache (key={0})", cacheKey), this);
-            }
-
-            this.logger.Error("MILLISECONDS FOR CONVERTING: " + stopWatch.ElapsedMilliseconds, this);
-
-            return viewModel;
+            // convert the step
+            return this.Convert(form, activeStep);
         }
 
         /// <summary>
@@ -244,14 +216,6 @@
             }
 
             return navigationPane;
-        }
-
-        private string GetFormCacheKey(string formId, string language, int stepNumber)
-        {
-            Assert.ArgumentNotNullOrEmpty(formId, "formId");
-            Assert.ArgumentNotNullOrEmpty(language, "language");
-            Assert.ArgumentCondition(stepNumber > 0, "stepNumber", "Step number must be > 0");
-            return string.Format("{0}_{1}_{2}", formId, language, stepNumber);
         }
     }
 }

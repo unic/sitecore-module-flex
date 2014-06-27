@@ -3,7 +3,6 @@
     using System.Web.Mvc;
     using Ninject.Modules;
     using Unic.Configuration;
-    using Unic.Flex.Caching;
     using Unic.Flex.Context;
     using Unic.Flex.Globalization;
     using Unic.Flex.Logging;
@@ -38,7 +37,6 @@
             // model binding and converting
             Bind<IModelBinder>().To<FormModelBinder>();
             Bind<IModelConverterService>().To<ModelConverterService>().InSingletonScope();
-            Bind<ICacheRepository>().To<CacheRepository>().InSingletonScope();
 
             // configuration module
             Bind<IConfigurationManager>().To<ConfigurationManager>();
