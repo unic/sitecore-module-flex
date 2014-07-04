@@ -15,14 +15,6 @@
     public class ResolveFormStep : HttpRequestProcessor
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ResolveFormStep"/> class.
-        /// </summary>
-        public ResolveFormStep()
-        {
-            Container.Kernel.Inject(this);
-        }
-
-        /// <summary>
         /// Gets or sets the context service.
         /// </summary>
         /// <value>
@@ -37,8 +29,20 @@
         /// <param name="args">The arguments.</param>
         public override void Process(HttpRequestArgs args)
         {
+            // get context
+            var context = FlexContext.Current;
+
+            // verify context
+            if (context.Database == null || context.SiteContext.Name == "shell" || context.SiteContext.Name == "login")
+            {
+                return;
+            }
+
+            // inject
+            Container.Kernel.Inject(this);
+            
             // resolve item
-            var item = FlexContext.Current.Item != null ? FlexContext.Current.Item.InnerItem : null;
+            var item = context.Item != null ? context.Item.InnerItem : null;
             var rewriteContextItem = false;
 
             // get the current path
@@ -53,7 +57,7 @@
             {
                 // resolve the parent item of the current path
                 var parentPath = path.Remove(path.LastIndexOf('/'));
-                item = this.ResolveItem(parentPath);
+                item = this.ResolveItem(parentPath, context);
 
                 // we need to rewrite the context item at the end
                 rewriteContextItem = true;
@@ -63,20 +67,20 @@
             if (item == null) return;
 
             // get the current form included on the item
-            var formDatasource = this.ContextService.GetRenderingDatasource(item, FlexContext.Current.Device);
+            var formDatasource = this.ContextService.GetRenderingDatasource(item, context.Device);
             if (string.IsNullOrWhiteSpace(formDatasource)) return;
 
             // load the form
-            var form = this.ContextService.LoadForm(formDatasource, FlexContext.Current.SitecoreContext);
+            var form = this.ContextService.LoadForm(formDatasource, context.SitecoreContext);
             if (form == null) return;
 
             // save the form to the current items collection
-            FlexContext.Current.Form = form;
+            context.Form = form;
 
             // if we are on the main step, everything is fine now
             if (!rewriteContextItem)
             {
-                FlexContext.Current.Form.Steps.First().IsActive = true;
+                context.Form.Steps.First().IsActive = true;
                 return;
             }
 
@@ -87,7 +91,7 @@
 
             // rewrite current step and context item if everything is ok
             activeStep.IsActive = true;
-            FlexContext.Current.SetContextItem(item);
+            context.SetContextItem(item);
         }
 
         /// <summary>
@@ -95,12 +99,12 @@
         /// </summary>
         /// <param name="url">The URL.</param>
         /// <returns>Item if found or null</returns>
-        private Item ResolveItem(string url)
+        private Item ResolveItem(string url, FlexContext context)
         {
             // get root item
-            var startPath = FlexContext.Current.SiteContext.StartPath;
+            var startPath = context.SiteContext.StartPath;
             if (string.IsNullOrWhiteSpace(startPath)) return null;
-            var item = FlexContext.Current.Database.GetItem(startPath);
+            var item = context.Database.GetItem(startPath);
             if (item == null) return null;
 
             // resolve item from path
