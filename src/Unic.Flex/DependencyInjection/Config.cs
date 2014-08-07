@@ -1,7 +1,9 @@
 ﻿namespace Unic.Flex.DependencyInjection
 {
     using System.Web.Mvc;
+    using Glass.Mapper.Sc;
     using Ninject.Modules;
+    using Ninject.Web.Common;
     using Unic.Configuration;
     using Unic.Flex.Context;
     using Unic.Flex.Globalization;
@@ -37,6 +39,10 @@
             // model binding and converting
             Bind<IModelBinder>().To<FormModelBinder>();
             Bind<IModelConverterService>().To<ModelConverterService>().InSingletonScope();
+
+            // context
+            Bind<ISitecoreContext>().To<SitecoreContext>().InRequestScope();
+            Bind<IFlexContext>().To<FlexContext>().InRequestScope();
 
             // configuration module
             Bind<IConfigurationManager>().To<ConfigurationManager>();

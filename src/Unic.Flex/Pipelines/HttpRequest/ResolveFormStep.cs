@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using Glass.Mapper.Sc;
     using Ninject;
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
@@ -15,13 +16,14 @@
     public class ResolveFormStep : HttpRequestProcessor
     {
         /// <summary>
-        /// Gets or sets the context service.
+        /// The context service
         /// </summary>
-        /// <value>
-        /// The context service.
-        /// </value>
-        [Inject]
-        public IContextService ContextService { private get; set; }
+        private IContextService contextService;
+
+        /// <summary>
+        /// The flex context
+        /// </summary>
+        private IFlexContext flexContext;
 
         /// <summary>
         /// Processes the current pipeline processor
@@ -29,20 +31,20 @@
         /// <param name="args">The arguments.</param>
         public override void Process(HttpRequestArgs args)
         {
-            // get context
-            var context = FlexContext.Current;
-
             // verify context
-            if (context.Database == null || context.SiteContext.Name == "shell" || context.SiteContext.Name == "login")
+            if (Sitecore.Context.Database == null || Sitecore.Context.GetSiteName() == "shell" || Sitecore.Context.GetSiteName() == "login")
             {
                 return;
             }
 
-            // inject
-            Container.Kernel.Inject(this);
+            // inject classes
+            // NOTE: this has to be done with the service locator anti-pattern because the
+            // pipeline process is cached and not instantiated on each request.
+            this.contextService = Container.Resolve<IContextService>();
+            this.flexContext = Container.Resolve<IFlexContext>();
             
             // resolve item
-            var item = context.Item != null ? context.Item.InnerItem : null;
+            var item = this.flexContext.Item != null ? this.flexContext.Item.InnerItem : null;
             var rewriteContextItem = false;
 
             // get the current path
@@ -57,7 +59,7 @@
             {
                 // resolve the parent item of the current path
                 var parentPath = path.Remove(path.LastIndexOf('/'));
-                item = this.ResolveItem(parentPath, context);
+                item = this.ResolveItem(parentPath);
 
                 // we need to rewrite the context item at the end
                 rewriteContextItem = true;
@@ -67,20 +69,20 @@
             if (item == null) return;
 
             // get the current form included on the item
-            var formDatasource = this.ContextService.GetRenderingDatasource(item, context.Device);
+            var formDatasource = this.contextService.GetRenderingDatasource(item, Sitecore.Context.Device);
             if (string.IsNullOrWhiteSpace(formDatasource)) return;
 
             // load the form
-            var form = this.ContextService.LoadForm(formDatasource, context.SitecoreContext);
+            var form = this.contextService.LoadForm(formDatasource);
             if (form == null) return;
 
             // save the form to the current items collection
-            context.Form = form;
+            this.flexContext.Form = form;
 
             // if we are on the main step, everything is fine now
             if (!rewriteContextItem)
             {
-                context.Form.Steps.First().IsActive = true;
+                this.flexContext.Form.Steps.First().IsActive = true;
                 return;
             }
 
@@ -91,20 +93,22 @@
 
             // rewrite current step and context item if everything is ok
             activeStep.IsActive = true;
-            context.SetContextItem(item);
+            this.flexContext.SetContextItem(item);
         }
 
         /// <summary>
         /// Resolves the item based on a url.
         /// </summary>
         /// <param name="url">The URL.</param>
-        /// <returns>Item if found or null</returns>
-        private Item ResolveItem(string url, FlexContext context)
+        /// <returns>
+        /// Item if found or null
+        /// </returns>
+        private Item ResolveItem(string url)
         {
             // get root item
-            var startPath = context.SiteContext.StartPath;
+            var startPath = Sitecore.Context.Site.StartPath;
             if (string.IsNullOrWhiteSpace(startPath)) return null;
-            var item = context.Database.GetItem(startPath);
+            var item = Sitecore.Context.Database.GetItem(startPath);
             if (item == null) return null;
 
             // resolve item from path

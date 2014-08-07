@@ -33,7 +33,7 @@
         /// </summary>
         public QueryStringLoader()
         {
-            Container.Kernel.Inject(this);
+            Container.Inject(this);
         }
 
         /// <summary>

@@ -1,10 +1,12 @@
 ﻿namespace Unic.Flex.Rules.Conditions
 {
+    using Ninject;
     using Sitecore.Data;
     using Sitecore.Diagnostics;
     using Sitecore.Rules;
     using Sitecore.Rules.Conditions;
     using Unic.Flex.Context;
+    using Unic.Flex.DependencyInjection;
 
     /// <summary>
     /// Conditional rule to validate the current form.
@@ -38,7 +40,7 @@
             Assert.ArgumentNotNull(ruleContext, "ruleContext");
 
             // get the current form
-            var formContext = FlexContext.Current.Form;
+            var formContext = Container.Resolve<IFlexContext>().Form;
             if (formContext == null) return false;
 
             // compare the id's

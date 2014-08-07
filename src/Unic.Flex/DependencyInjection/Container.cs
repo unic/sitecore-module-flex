@@ -9,12 +9,9 @@
     public static class Container
     {
         /// <summary>
-        /// Gets the kernel.
+        /// The kernel
         /// </summary>
-        /// <value>
-        /// The kernel.
-        /// </value>
-        public static IKernel Kernel { get; private set; }
+        private static IKernel kernel;
 
         /// <summary>
         /// Creates the kernel.
@@ -23,8 +20,27 @@
         /// <returns>New instance of the kernel.</returns>
         public static IKernel CreateKernel(INinjectModule[] modules)
         {
-            Kernel = new StandardKernel(modules);
-            return Kernel;
+            kernel = new StandardKernel(modules);
+            return kernel;
+        }
+
+        /// <summary>
+        /// Injects the specified instance.
+        /// </summary>
+        /// <param name="instance">The instance.</param>
+        public static void Inject(object instance)
+        {
+            kernel.Inject(instance);
+        }
+
+        /// <summary>
+        /// Resolves an instance of given type from the container.
+        /// </summary>
+        /// <typeparam name="T">Type of the class to resolve</typeparam>
+        /// <returns>Instance of the type</returns>
+        public static T Resolve<T>()
+        {
+            return kernel.Get<T>();
         }
     }
 }
