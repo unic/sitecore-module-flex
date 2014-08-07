@@ -40,7 +40,7 @@
             Assert.ArgumentNotNull(ruleContext, "ruleContext");
 
             // get the current form
-            var formContext = Container.Kernel.Get<IFlexContext>().Form;
+            var formContext = Container.Resolve<IFlexContext>().Form;
             if (formContext == null) return false;
 
             // compare the id's

@@ -24,7 +24,7 @@
                 return base.CreateModel(controllerContext, bindingContext, modelType);
             }
 
-            var context = Container.Kernel.Get<IFlexContext>();
+            var context = Container.Resolve<IFlexContext>();
             return this.modelConverter.ConvertToViewModel(context.Form);
         }
     }

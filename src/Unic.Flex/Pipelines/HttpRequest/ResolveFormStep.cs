@@ -40,8 +40,8 @@
             // inject classes
             // NOTE: this has to be done with the service locator anti-pattern because the
             // pipeline process is cached and not instantiated on each request.
-            this.contextService = Container.Kernel.Get<IContextService>();
-            this.flexContext = Container.Kernel.Get<IFlexContext>();
+            this.contextService = Container.Resolve<IContextService>();
+            this.flexContext = Container.Resolve<IFlexContext>();
             
             // resolve item
             var item = this.flexContext.Item != null ? this.flexContext.Item.InnerItem : null;

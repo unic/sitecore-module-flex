@@ -17,7 +17,7 @@
         /// </summary>
         public CheckBoxField()
         {
-            Container.Kernel.Inject(this);
+            Container.Inject(this);
         }
 
         /// <summary>

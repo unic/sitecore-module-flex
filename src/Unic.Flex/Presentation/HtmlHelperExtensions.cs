@@ -4,7 +4,6 @@
     using System.Linq.Expressions;
     using System.Web.Mvc;
     using System.Web.Mvc.Html;
-    using Ninject;
     using Unic.Flex.DependencyInjection;
     using Unic.Flex.Model.Presentation;
 
@@ -23,7 +22,7 @@
         /// </summary>
         static HtmlHelperExtensions()
         {
-            PresentationService = new Lazy<IPresentationService>(() => Container.Kernel.Get<IPresentationService>());
+            PresentationService = new Lazy<IPresentationService>(Container.Resolve<IPresentationService>);
         }
 
         /// <summary>
