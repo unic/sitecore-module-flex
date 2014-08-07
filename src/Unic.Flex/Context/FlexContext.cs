@@ -24,19 +24,16 @@
         [Inject]
         public IPlugsService PlugService { private get; set; }
 
+        [Inject]
+        public ISitecoreContext SitecoreContext { private get; set; }
+
         private Form form;
 
         private bool hasValuesPopulated;
 
-        private FlexContext()
+        public FlexContext()
         {
             Container.Kernel.Inject(this);
-            
-            this.Database = Sitecore.Context.Database;
-            this.SiteContext = Sitecore.Context.Site;
-            this.Device = Sitecore.Context.Device;
-            this.SitecoreContext = new SitecoreContext();
-
             this.SetContextItem(Sitecore.Context.Item);
         }
 
@@ -48,15 +45,7 @@
             }
         }
 
-        public ISitecoreContext SitecoreContext { get; set; }
-
         public ItemBase Item { get; set; }
-
-        public SiteContext SiteContext { get; set; }
-
-        public Database Database { get; set; }
-
-        public DeviceItem Device { get; set; }
 
         public Form Form
         {
