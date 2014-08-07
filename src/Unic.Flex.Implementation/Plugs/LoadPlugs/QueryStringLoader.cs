@@ -20,20 +20,16 @@
         // todo: move all plug, fields, etc. implementation to custom assembly -> we have a circulate project references else
 
         /// <summary>
-        /// Gets or sets the user data repository.
+        /// The user data repository
         /// </summary>
-        /// <value>
-        /// The user data repository.
-        /// </value>
-        [Inject]
-        public IUserDataRepository userDataRepository { private get; set; }
+        private readonly IUserDataRepository userDataRepository;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="QueryStringLoader"/> class.
         /// </summary>
         public QueryStringLoader()
         {
-            Container.Inject(this);
+            this.userDataRepository = Container.Resolve<IUserDataRepository>();
         }
 
         /// <summary>

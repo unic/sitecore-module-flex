@@ -13,21 +13,17 @@
     public class CheckBoxField : InputField<bool>
     {
         /// <summary>
+        /// The dictionary repository
+        /// </summary>
+        private readonly IDictionaryRepository dictionaryRepository;
+        
+        /// <summary>
         /// Initializes a new instance of the <see cref="CheckBoxField"/> class.
         /// </summary>
         public CheckBoxField()
         {
-            Container.Inject(this);
+            this.dictionaryRepository = Container.Resolve<IDictionaryRepository>();
         }
-
-        /// <summary>
-        /// Gets or sets the dictionary repository.
-        /// </summary>
-        /// <value>
-        /// The dictionary repository.
-        /// </value>
-        [Inject]
-        public IDictionaryRepository DictionaryRepository { private get; set; }
 
         /// <summary>
         /// Gets the text value.
@@ -39,7 +35,7 @@
         {
             get
             {
-                return this.Value ? this.DictionaryRepository.GetText("Yes") : this.DictionaryRepository.GetText("No");
+                return this.Value ? this.dictionaryRepository.GetText("Yes") : this.dictionaryRepository.GetText("No");
             }
         }
 

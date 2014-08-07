@@ -25,15 +25,6 @@
         }
 
         /// <summary>
-        /// Injects the specified instance.
-        /// </summary>
-        /// <param name="instance">The instance.</param>
-        public static void Inject(object instance)
-        {
-            kernel.Inject(instance);
-        }
-
-        /// <summary>
         /// Resolves an instance of given type from the container.
         /// </summary>
         /// <typeparam name="T">Type of the class to resolve</typeparam>
