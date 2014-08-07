@@ -15,9 +15,10 @@
         /// Loads the form based on a datasource.
         /// </summary>
         /// <param name="dataSource">The data source.</param>
-        /// <param name="sitecoreContext">The sitecore context.</param>
-        /// <returns>The loaded form domain model object.</returns>
-        Form LoadForm(string dataSource, ISitecoreContext sitecoreContext);
+        /// <returns>
+        /// The loaded form domain model object.
+        /// </returns>
+        Form LoadForm(string dataSource);
 
         /// <summary>
         /// Populates the form values from the session into the form.

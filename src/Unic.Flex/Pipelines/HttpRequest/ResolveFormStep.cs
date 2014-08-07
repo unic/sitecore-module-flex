@@ -21,11 +21,6 @@
         private IContextService contextService;
 
         /// <summary>
-        /// The sitecore context
-        /// </summary>
-        private ISitecoreContext sitecoreContext;
-
-        /// <summary>
         /// Processes the current pipeline processor
         /// </summary>
         /// <param name="args">The arguments.</param>
@@ -41,9 +36,9 @@
             var context = FlexContext.Current;
 
             // inject classes
-            // NOTE: this has to be done with the service locator anti-pattern because the pipeline process is cached and not instantiated on each request.
+            // NOTE: this has to be done with the service locator anti-pattern because the
+            // pipeline process is cached and not instantiated on each request.
             this.contextService = Container.Kernel.Get<IContextService>();
-            this.sitecoreContext = Container.Kernel.Get<ISitecoreContext>();
             
             // resolve item
             var item = context.Item != null ? context.Item.InnerItem : null;
@@ -75,7 +70,7 @@
             if (string.IsNullOrWhiteSpace(formDatasource)) return;
 
             // load the form
-            var form = this.contextService.LoadForm(formDatasource, this.sitecoreContext);
+            var form = this.contextService.LoadForm(formDatasource);
             if (form == null) return;
 
             // save the form to the current items collection

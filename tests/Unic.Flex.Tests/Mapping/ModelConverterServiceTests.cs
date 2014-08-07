@@ -62,7 +62,7 @@
 
             private Form GetForm(IFormRepository repository)
             {
-                return repository.LoadForm(string.Empty, null);
+                return repository.LoadForm(string.Empty);
             }
         }
 

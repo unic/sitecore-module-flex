@@ -42,13 +42,12 @@
         /// Loads the form based on a datasource.
         /// </summary>
         /// <param name="dataSource">The data source.</param>
-        /// <param name="sitecoreContext">The sitecore context.</param>
         /// <returns>
         /// The loaded form domain model object.
         /// </returns>
-        public virtual Form LoadForm(string dataSource, ISitecoreContext sitecoreContext)
+        public virtual Form LoadForm(string dataSource)
         {
-            var form = this.formRepository.LoadForm(dataSource, sitecoreContext);
+            var form = this.formRepository.LoadForm(dataSource);
             var counter = 0;
             foreach (var step in form.Steps)
             {
