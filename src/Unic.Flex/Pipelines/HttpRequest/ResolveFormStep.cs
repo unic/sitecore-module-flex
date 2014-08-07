@@ -21,6 +21,11 @@
         private IContextService contextService;
 
         /// <summary>
+        /// The flex context
+        /// </summary>
+        private IFlexContext flexContext;
+
+        /// <summary>
         /// Processes the current pipeline processor
         /// </summary>
         /// <param name="args">The arguments.</param>
@@ -32,16 +37,14 @@
                 return;
             }
 
-            // get context
-            var context = FlexContext.Current;
-
             // inject classes
             // NOTE: this has to be done with the service locator anti-pattern because the
             // pipeline process is cached and not instantiated on each request.
             this.contextService = Container.Kernel.Get<IContextService>();
+            this.flexContext = Container.Kernel.Get<IFlexContext>();
             
             // resolve item
-            var item = context.Item != null ? context.Item.InnerItem : null;
+            var item = this.flexContext.Item != null ? this.flexContext.Item.InnerItem : null;
             var rewriteContextItem = false;
 
             // get the current path
@@ -74,12 +77,12 @@
             if (form == null) return;
 
             // save the form to the current items collection
-            context.Form = form;
+            this.flexContext.Form = form;
 
             // if we are on the main step, everything is fine now
             if (!rewriteContextItem)
             {
-                context.Form.Steps.First().IsActive = true;
+                this.flexContext.Form.Steps.First().IsActive = true;
                 return;
             }
 
@@ -90,7 +93,7 @@
 
             // rewrite current step and context item if everything is ok
             activeStep.IsActive = true;
-            context.SetContextItem(item);
+            this.flexContext.SetContextItem(item);
         }
 
         /// <summary>

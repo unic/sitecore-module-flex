@@ -2,7 +2,9 @@
 {
     using System;
     using System.Web.Mvc;
+    using Ninject;
     using Unic.Flex.Context;
+    using Unic.Flex.DependencyInjection;
     using Unic.Flex.Mapping;
     using Unic.Flex.Model.ViewModel.Forms;
 
@@ -22,7 +24,8 @@
                 return base.CreateModel(controllerContext, bindingContext, modelType);
             }
 
-            return this.modelConverter.ConvertToViewModel(FlexContext.Current.Form);
+            var context = Container.Kernel.Get<IFlexContext>();
+            return this.modelConverter.ConvertToViewModel(context.Form);
         }
     }
 }

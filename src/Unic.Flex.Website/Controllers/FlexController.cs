@@ -25,19 +25,22 @@
 
         private readonly IPlugsService plugsService;
 
-        public FlexController(IPresentationService presentationService, IModelConverterService modelConverter, IContextService contextService, IUserDataRepository userDataRepository, IPlugsService plugsService)
+        private readonly IFlexContext flexContext;
+
+        public FlexController(IPresentationService presentationService, IModelConverterService modelConverter, IContextService contextService, IUserDataRepository userDataRepository, IPlugsService plugsService, IFlexContext flexContext)
         {
             this.presentationService = presentationService;
             this.modelConverter = modelConverter;
             this.contextService = contextService;
             this.userDataRepository = userDataRepository;
             this.plugsService = plugsService;
+            this.flexContext = flexContext;
         }
 
         public ActionResult Form()
         {
             // get the form
-            var form = ContextUtil.GetCurrentForm();
+            var form = this.flexContext.Form;
             if (form == null) return new EmptyResult();
 
             // get the current step
@@ -71,7 +74,7 @@
         public ActionResult Form(IFormViewModel model)
         {
             // get the current form
-            var form = ContextUtil.GetCurrentForm();
+            var form = this.flexContext.Form;
             if (form == null) return new EmptyResult();
 
             // get the current step

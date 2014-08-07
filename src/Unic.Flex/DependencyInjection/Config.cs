@@ -42,6 +42,7 @@
 
             // context
             Bind<ISitecoreContext>().To<SitecoreContext>().InRequestScope();
+            Bind<IFlexContext>().To<FlexContext>().InRequestScope();
 
             // configuration module
             Bind<IConfigurationManager>().To<ConfigurationManager>();
