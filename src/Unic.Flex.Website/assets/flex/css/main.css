@@ -1,1 +1,1128 @@
-head { display: block; padding: 1em 1em 0 1em; } head:after { font-family: sans-serif; font-size: large; font-weight: bold; content: "Error compiling CSS asset"; } body { margin: 0; } body:before { content:"DEPRECATION WARNING on line 19 of /var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/css/base.scss:\000aAssigning to global variable \"$default-float\" by default is deprecated.\000aIn future versions of Sass, this will create a new local variable.\000aIf you want to assign to the global variable, use \"$default-float: left !global\" instead.\000aNote that this will be incompatible with Sass 3.2.\000a\000aDEPRECATION WARNING on line 20 of /var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/css/base.scss:\000aAssigning to global variable \"$opposite-direction\" by default is deprecated.\000aIn future versions of Sass, this will create a new local variable.\000aIf you want to assign to the global variable, use \"$opposite-direction: right !global\" instead.\000aNote that this will be incompatible with Sass 3.2.\000a\000a"; display: block; white-space: pre-wrap; font-family: monospace; border-bottom: 1em solid black; padding: 1em; margin-bottom: 1em; } body * { display: none; }
+/* ==========================================================================
+   Normalize.scss settings
+   ========================================================================== */
+/**
+ * Includes legacy browser support IE6/7
+ *
+ * Set to false if you want to drop support for IE6 and IE7
+ */
+/* ==========================================================================
+   HTML5 display definitions
+   ========================================================================== */
+/*
+ * Corrects `block` display not defined in IE 8/9.
+ */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+  display: block;
+}
+
+/**
+ * Correct `inline-block` display not defined in IE 6/7/8/9 and Firefox 3.
+ */
+audio,
+canvas,
+video {
+  display: inline-block;
+}
+
+/**
+ * Prevents modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+/**
+ * Address `[hidden]` styling not present in IE 8/9.
+ * Hide the `template` element in IE, Safari, and Firefox < 22.
+ */
+[hidden], template {
+  display: none;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+/**
+ * 1. Set default font family to sans-serif.
+ * 2. Prevent iOS text size adjust after orientation change, without disabling
+ * 3.Corrects text resizing oddly in IE 6/7 when body `font-size` is set using
+ *    `em` units.
+ */
+html {
+  font-family: sans-serif;
+  /* 1 */
+  -ms-text-size-adjust: 100%;
+  /* 2 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+}
+
+/**
+ * Remove default margin.
+ */
+body {
+  margin: 0;
+}
+
+/* ==========================================================================
+   Links
+   ========================================================================== */
+/**
+ * Remove the gray background color from active links in IE 10.
+ */
+a {
+  background: transparent;
+}
+
+/**
+ * Address `outline` inconsistency between Chrome and other browsers.
+ */
+/**
+ * Improves readability when focused and also mouse hovered in all browsers.
+ */
+a:focus {
+  outline: thin dotted;
+}
+a:active, a:hover {
+  outline: 0;
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+/**
+ * Addresses font sizes and margins set differently in IE 6/7.
+ * Address variable `h1` font-size and margin within `section` and `article`
+ * contexts in Firefox 4+, Safari 5, and Chrome.
+ */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+/**
+ * Address styling not present in IE 8/9, Safari 5, and Chrome.
+ */
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+
+/**
+ * Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome.
+ */
+b,
+strong {
+  font-weight: bold;
+}
+
+/**
+ * Address styling not present in Safari 5 and Chrome.
+ */
+dfn {
+  font-style: italic;
+}
+
+/**
+ * Address differences between Firefox and other browsers.
+ */
+hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+
+/**
+ * Addresses styling not present in IE 8/9.
+ */
+mark {
+  background: #ff0;
+  color: #000;
+}
+
+/**
+ * Addresses margins set differently in IE 6/7.
+ */
+/**
+ * Correct font family set oddly in Safari 5 and Chrome.
+ */
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, serif;
+  font-size: 1em;
+}
+
+/**
+ * Improve readability of pre-formatted text in all browsers.
+ */
+pre {
+  white-space: pre-wrap;
+}
+
+/**
+ *  Set consistent quote types.
+ */
+q {
+  quotes: "\201C" "\201D" "\2018" "\2019";
+}
+
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+small {
+  font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+/* ==========================================================================
+   Embedded content
+   ========================================================================== */
+/**
+ * 1. Remove border when inside `a` element in IE 8/9.
+ * 2. Improves image quality when scaled in IE 7.
+ */
+img {
+  border: 0;
+}
+
+/**
+ * Correct overflow displayed oddly in IE 9.
+ */
+svg:not(:root) {
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   Figures
+   ========================================================================== */
+/**
+ * Address margin not present in IE 8/9 and Safari 5.
+ */
+figure {
+  margin: 0;
+}
+
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+/**
+ * Define consistent border, margin, and padding.
+ */
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+
+/**
+ * 1. Correct `color` not being inherited in IE 8/9.
+ * 2. Remove padding so people aren't caught out if they zero out fieldsets.
+ * 3. Corrects text not wrapping in Firefox 3.
+ * 4. Corrects alignment displayed oddly in IE 6/7.
+ */
+legend {
+  border: 0;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+
+/**
+ * 1. Correct font family not being inherited in all browsers.
+ * 2. Correct font size not being inherited in all browsers.
+ * 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome.
+ * 4. Improves appearance and consistency in all browsers.
+ */
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 2 */
+  margin: 0;
+  /* 3 */
+}
+
+/**
+ * Address Firefox 4+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+button,
+input {
+  line-height: normal;
+}
+
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Chrome, Safari 5+, and IE 8+.
+ * Correct `select` style inheritance in Firefox 4+ and Opera.
+ */
+button,
+select {
+  text-transform: none;
+}
+
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ * 4. Removes inner spacing in IE 7 without affecting normal text inputs.
+ *    Known issue: inner spacing remains in IE 6.
+ */
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  /* 2 */
+  cursor: pointer;
+  /* 3 */
+}
+
+/**
+ * Re-set default cursor for disabled elements.
+ */
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+
+/**
+ * 1. Address box sizing set to `content-box` in IE 8/9/10.
+ * 2. Remove excess padding in IE 7/8/9/10.
+ *    Known issue: excess padding remains in IE 6.
+ */
+input[type="checkbox"],
+input[type="radio"] {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome
+ *    (include `-moz` to future-proof).
+ */
+input[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  -moz-box-sizing: content-box;
+  /* 2 */
+  box-sizing: content-box;
+}
+
+/**
+ * Remove inner padding and search cancel button in Safari 5 and Chrome
+ * on OS X.
+ */
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * Remove inner padding and border in Firefox 4+.
+ */
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+/**
+ * 1. Remove default vertical scrollbar in IE 8/9.
+ * 2. Improve readability and alignment in all browsers.
+ */
+textarea {
+  overflow: auto;
+  /* 1 */
+  vertical-align: top;
+  /* 2 */
+}
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+/**
+ * Remove most spacing between table cells.
+ */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* General settings */
+div.selector, div.selector span, div.checker span, div.radio span, div.uploader, div.uploader span.action, div.button, div.button span {
+  background-image: url("../images/sprite.png");
+  background-repeat: no-repeat;
+  -webkit-font-smoothing: antialiased;
+}
+div.selector, div.checker, div.button, div.radio, div.uploader {
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+  vertical-align: middle;
+  /* Keeping this as :focus to remove browser styles */
+}
+div.selector:focus, div.checker:focus, div.button:focus, div.radio:focus, div.uploader:focus {
+  outline: 0;
+}
+div.selector, div.selector *, div.radio, div.radio *, div.checker, div.checker *, div.uploader, div.uploader *, div.button, div.button * {
+  margin: 0;
+  padding: 0;
+}
+
+.highContrastDetect {
+  background: url("../images/bg-input.png") repeat-x 0 0;
+  width: 0px;
+  height: 0px;
+}
+
+/* Input & Textarea */
+input.uniform-input,
+select.uniform-multiselect,
+textarea.uniform {
+  padding: 3px;
+  background: url("../images/bg-input.png") repeat-x 0 0;
+  outline: 0;
+}
+input.uniform-input.active,
+select.uniform-multiselect.active,
+textarea.uniform.active {
+  background: url("../images/bg-input-focus.png") repeat-x 0 0;
+}
+
+/* Remove default webkit and possible mozilla .search styles.
+ * Keeping this as :active to remove browser styles */
+div.checker input,
+input[type="search"],
+input[type="search"]:active {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+/* Select */
+div.selector {
+  background-position: 0 -130px;
+  line-height: 26px;
+  height: 26px;
+  padding: 0 0 0 10px;
+  position: relative;
+  overflow: hidden;
+}
+div.selector span {
+  text-overflow: ellipsis;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  background-position: right 0;
+  height: 26px;
+  line-height: 26px;
+  padding-right: 25px;
+  cursor: pointer;
+  width: 100%;
+  display: block;
+}
+div.selector.fixedWidth {
+  width: 190px;
+}
+div.selector.fixedWidth span {
+  width: 155px;
+}
+div.selector select {
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -moz-opacity: 0;
+  border: none;
+  background: none;
+  position: absolute;
+  height: 22px;
+  top: 2px;
+  left: 0px;
+  width: 100%;
+}
+div.selector.active {
+  background-position: 0 -156px;
+}
+div.selector.active span {
+  background-position: right -26px;
+}
+div.selector.hover, div.selector.focus {
+  background-position: 0 -182px;
+}
+div.selector.hover span, div.selector.focus span {
+  background-position: right -52px;
+}
+div.selector.hover.active, div.selector.focus.active {
+  background-position: 0 -208px;
+}
+div.selector.hover.active span, div.selector.focus.active span {
+  background-position: right -78px;
+}
+div.selector.disabled, div.selector.disabled.active {
+  background-position: 0 -234px;
+}
+div.selector.disabled span, div.selector.disabled.active span {
+  background-position: right -104px;
+}
+
+/* Checkbox */
+div.checker {
+  position: relative;
+}
+div.checker, div.checker span, div.checker input {
+  width: 19px;
+  height: 19px;
+}
+div.checker span {
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+  text-align: center;
+  background-position: 0 -260px;
+}
+div.checker span.checked {
+  background-position: -76px -260px;
+}
+div.checker input {
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -moz-opacity: 0;
+  border: none;
+  background: none;
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+}
+div.checker.active span {
+  background-position: -19px -260px;
+}
+div.checker.active span.checked {
+  background-position: -95px -260px;
+}
+div.checker.hover span, div.checker.focus span {
+  background-position: -38px -260px;
+}
+div.checker.hover span.checked, div.checker.focus span.checked {
+  background-position: -114px -260px;
+}
+div.checker.hover.active span, div.checker.focus.active span {
+  background-position: -57px -260px;
+}
+div.checker.hover.active span.checked, div.checker.focus.active span.checked {
+  background-position: -133px -260px;
+}
+div.checker.disabled, div.checker.disabled.active {
+  background-position: -152px -260px;
+}
+div.checker.disabled span.checked, div.checker.disabled.active span.checked {
+  background-position: -171px -260px;
+}
+
+/* Radio */
+div.radio {
+  position: relative;
+}
+div.radio, div.radio span, div.radio input {
+  width: 18px;
+  height: 18px;
+}
+div.radio span {
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+  text-align: center;
+  background-position: 0 -279px;
+}
+div.radio span.checked {
+  background-position: -72px -279px;
+}
+div.radio input {
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -moz-opacity: 0;
+  border: none;
+  background: none;
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+  text-align: center;
+}
+div.radio.active span {
+  background-position: -18px -279px;
+}
+div.radio.active span.checked {
+  background-position: -90px -279px;
+}
+div.radio.hover span, div.radio.focus span {
+  background-position: -36px -279px;
+}
+div.radio.hover span.checked, div.radio.focus span.checked {
+  background-position: -108px -279px;
+}
+div.radio.hover.active span, div.radio.focus.active span {
+  background-position: -54px -279px;
+}
+div.radio.hover.active span.checked, div.radio.focus.active span.checked {
+  background-position: -126px -279px;
+}
+div.radio.disabled span, div.radio.disabled.active span {
+  background-position: -144px -279px;
+}
+div.radio.disabled span.checked, div.radio.disabled.active span.checked {
+  background-position: -162px -279px;
+}
+
+/* Uploader */
+div.uploader {
+  background-position: 0 -297px;
+  height: 28px;
+  width: 190px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+div.uploader span.action {
+  background-position: right -409px;
+  height: 28px;
+  line-height: 28px;
+  width: 85px;
+  text-align: center;
+  float: left;
+  display: inline;
+  overflow: hidden;
+  cursor: pointer;
+}
+div.uploader span.filename {
+  text-overflow: ellipsis;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  float: left;
+  cursor: default;
+  height: 24px;
+  margin: 2px 0 2px 2px;
+  line-height: 24px;
+  width: 82px;
+  padding: 0 10px;
+}
+div.uploader input {
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -moz-opacity: 0;
+  border: none;
+  background: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  float: right;
+  cursor: default;
+  width: 100%;
+  height: 100%;
+}
+div.uploader.active span.action {
+  background-position: right -465px;
+}
+div.uploader.hover, div.uploader.focus {
+  background-position: 0 -353px;
+}
+div.uploader.hover span.action, div.uploader.focus span.action {
+  background-position: right -437px;
+}
+div.uploader.hover.active span.action, div.uploader.focus.active span.action {
+  background-position: right -493px;
+}
+div.uploader.disabled, div.uploader.disabled.active {
+  background-position: 0 -325px;
+}
+div.uploader.disabled span.action, div.uploader.disabled.active span.action {
+  background-position: right -381px;
+}
+
+/* Buttons */
+div.button {
+  background-position: 0 -641px;
+  height: 30px;
+  cursor: pointer;
+  position: relative;
+  /* Keep buttons barely visible so they can get focus */
+}
+div.button a, div.button button, div.button input {
+  opacity: 0.01;
+  filter: alpha(opacity=1);
+  -moz-opacity: 0.01;
+  display: block;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+}
+div.button span {
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+  line-height: 30px;
+  text-align: center;
+  background-position: right -521px;
+  height: 30px;
+  margin-left: 13px;
+  padding: 0;
+}
+div.button.active {
+  background-position: 0 -671px;
+}
+div.button.active span {
+  background-position: right -551px;
+  cursor: default;
+}
+div.button.hover, div.button.focus {
+  background-position: 0 -701px;
+}
+div.button.hover span, div.button.focus span {
+  background-position: right -581px;
+}
+div.button.disabled, div.button.disabled.active {
+  background-position: 0 -731px;
+}
+div.button.disabled span, div.button.disabled.active span {
+  background-position: right -611px;
+  cursor: default;
+}
+
+/**
+ * Default variables
+ */
+/**
+ * Helper functions
+ */
+/**
+ * Lists with layout purpose
+ */
+.fm_formcontainer fieldset ul, .fm_formcontainer fieldset ol,
+.fm_formcontainer section ul, .fm_formcontainer section ol {
+  list-style: none;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Inputfields and Buttons */
+.fm_formcontainer {
+  margin-bottom: 0.5em;
+}
+.fm_formcontainer .fm_label {
+  color: black;
+}
+.fm_formcontainer input[type=submit].u_var_small, .fm_formcontainer button[type=submit].u_var_small {
+  line-height: 1;
+}
+.fm_formcontainer input[type=reset].u_var_small, .fm_formcontainer button[type=reset].u_var_small,
+.fm_formcontainer [type=submit].u_button_secondary.u_var_small {
+  line-height: 1;
+}
+.fm_formcontainer .fm_singlecheckbox,
+.fm_formcontainer .fm_singletextfield,
+.fm_formcontainer .fm_singleselectfield,
+.fm_formcontainer .fm_radiogroup,
+.fm_formcontainer .fm_textarea,
+.fm_formcontainer .fm_fileinputfield {
+  position: relative;
+}
+.fm_formcontainer input[type=number] {
+  -moz-appearance: textfield;
+}
+.fm_formcontainer input[type=number]::-webkit-inner-spin-button,
+.fm_formcontainer input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.fm_formcontainer fieldset {
+  border: none;
+  margin: 0;
+  padding: 0.01em 0 0;
+  position: relative;
+}
+.fm_formcontainer fieldset legend {
+  position: relative;
+}
+.fm_formcontainer fieldset li, .fm_formcontainer fieldset .fm_listitem {
+  margin-bottom: 1em;
+}
+.fm_formcontainer label {
+  display: inline-block;
+}
+.fm_formcontainer .fm_has_error input[type=text],
+.fm_formcontainer .fm_has_error input[type=email],
+.fm_formcontainer .fm_has_error input[type=phone],
+.fm_formcontainer .fm_has_error input[type=number],
+.fm_formcontainer .fm_has_error input[type=search],
+.fm_formcontainer .fm_has_error input[type=password] {
+  border-color: #fdb913;
+}
+.fm_formcontainer .fm_has_error > textarea {
+  border-color: #fdb913;
+}
+.fm_formcontainer .fm_has_error > .fm_checker span, .fm_formcontainer .fm_has_error > fieldset .fm_radio span, .fm_formcontainer .fm_has_error > .fm_selector span {
+  border-color: #fdb913;
+}
+.fm_formcontainer .fm_fielderror {
+  color: #fdb913;
+}
+.fm_formcontainer .fm_showpassword input[type=text] {
+  display: none;
+}
+.fm_formcontainer .fm_showpassword.fm_show_active input[type=password] {
+  display: none;
+}
+.fm_formcontainer .fm_showpassword.fm_show_active input[type=text] {
+  display: block;
+}
+
+.fm_listitem {
+  position: relative;
+}
+.fm_listitem .fm_label {
+  display: block;
+}
+
+/* Placeholders */
+.fm_formcontainer input[type=submit], .fm_formcontainer button[type=submit], .fm_formcontainer input[type=reset], .fm_formcontainer button[type=reset],
+.fm_formcontainer [type=submit].u_button_secondary {
+  padding: 0.25em 0.5em;
+}
+
+.fm_formcontainer input[type=submit], .fm_formcontainer button[type=submit] {
+  background: #fff7b9;
+  border: 1px solid #ffdd00;
+  color: black;
+}
+.fm_formcontainer input[type=submit]:hover, .fm_formcontainer button[type=submit]:hover, .fm_formcontainer input[type=submit]:focus, .fm_formcontainer button[type=submit]:focus {
+  background-color: #ffef6f;
+  border-color: #deb407;
+  color: black;
+}
+
+.fm_formcontainer input[type=reset], .fm_formcontainer button[type=reset],
+.fm_formcontainer [type=submit].u_button_secondary {
+  background: white;
+  border: 1px solid #ffef6f;
+  color: black;
+}
+.fm_formcontainer input[type=reset]:hover, .fm_formcontainer button[type=reset]:hover,
+.fm_formcontainer [type=submit].u_button_secondary:hover, .fm_formcontainer input[type=reset]:focus, .fm_formcontainer button[type=reset]:focus,
+.fm_formcontainer [type=submit].u_button_secondary:focus {
+  background-color: #fff7b9;
+  border-color: #ffdd00;
+  color: black;
+}
+
+.fm_formcontainer input[type=text],
+.fm_formcontainer input[type=email],
+.fm_formcontainer input[type=phone],
+.fm_formcontainer input[type=number],
+.fm_formcontainer input[type=search],
+.fm_formcontainer input[type=password] {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 3.2em;
+  line-height: 3.2em;
+  padding: 0 0.8em;
+  background: #fff7b9;
+  border: 2px solid #ffdd00;
+  -webkit-appearance: none;
+  border-radius: 0;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 0.9375em;
+  color: black;
+}
+.fm_formcontainer input.placeholder[type=text],
+.fm_formcontainer input.placeholder[type=email],
+.fm_formcontainer input.placeholder[type=phone],
+.fm_formcontainer input.placeholder[type=number],
+.fm_formcontainer input.placeholder[type=search],
+.fm_formcontainer input.placeholder[type=password] {
+  color: #939ba1;
+  font-family: Helvetica, Arial, sans-serif;
+  opacity: 1;
+}
+.fm_formcontainer input[type=text]:-moz-placeholder,
+.fm_formcontainer input[type=email]:-moz-placeholder,
+.fm_formcontainer input[type=phone]:-moz-placeholder,
+.fm_formcontainer input[type=number]:-moz-placeholder,
+.fm_formcontainer input[type=search]:-moz-placeholder,
+.fm_formcontainer input[type=password]:-moz-placeholder {
+  color: #939ba1;
+  font-family: Helvetica, Arial, sans-serif;
+  opacity: 1;
+}
+.fm_formcontainer input[type=text]::-moz-placeholder,
+.fm_formcontainer input[type=email]::-moz-placeholder,
+.fm_formcontainer input[type=phone]::-moz-placeholder,
+.fm_formcontainer input[type=number]::-moz-placeholder,
+.fm_formcontainer input[type=search]::-moz-placeholder,
+.fm_formcontainer input[type=password]::-moz-placeholder {
+  color: #939ba1;
+  font-family: Helvetica, Arial, sans-serif;
+  opacity: 1;
+}
+.fm_formcontainer input[type=text]:-ms-input-placeholder,
+.fm_formcontainer input[type=email]:-ms-input-placeholder,
+.fm_formcontainer input[type=phone]:-ms-input-placeholder,
+.fm_formcontainer input[type=number]:-ms-input-placeholder,
+.fm_formcontainer input[type=search]:-ms-input-placeholder,
+.fm_formcontainer input[type=password]:-ms-input-placeholder {
+  color: #939ba1;
+  font-family: Helvetica, Arial, sans-serif;
+  opacity: 1;
+}
+.fm_formcontainer input[type=text]::-webkit-input-placeholder,
+.fm_formcontainer input[type=email]::-webkit-input-placeholder,
+.fm_formcontainer input[type=phone]::-webkit-input-placeholder,
+.fm_formcontainer input[type=number]::-webkit-input-placeholder,
+.fm_formcontainer input[type=search]::-webkit-input-placeholder,
+.fm_formcontainer input[type=password]::-webkit-input-placeholder {
+  color: #939ba1;
+  font-family: Helvetica, Arial, sans-serif;
+  opacity: 1;
+}
+.fm_formcontainer input[type=text]:focus,
+.fm_formcontainer input[type=email]:focus,
+.fm_formcontainer input[type=phone]:focus,
+.fm_formcontainer input[type=number]:focus,
+.fm_formcontainer input[type=search]:focus,
+.fm_formcontainer input[type=password]:focus {
+  outline: none;
+  border-color: #8a6f00;
+}
+
+.fm_formcontainer textarea {
+  background: #fff7b9;
+  border: 2px solid #ffdd00;
+  color: black;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 0.9375em;
+  padding: 1em 0.8em;
+  height: 9.6em;
+  resize: vertical;
+}
+.fm_formcontainer textarea.placeholder {
+  color: #939ba1;
+  font-family: Helvetica, Arial, sans-serif;
+}
+.fm_formcontainer textarea:-moz-placeholder {
+  color: #939ba1;
+  font-family: Helvetica, Arial, sans-serif;
+}
+.fm_formcontainer textarea::-moz-placeholder {
+  color: #939ba1;
+  font-family: Helvetica, Arial, sans-serif;
+}
+.fm_formcontainer textarea:-ms-input-placeholder {
+  color: #939ba1;
+  font-family: Helvetica, Arial, sans-serif;
+}
+.fm_formcontainer textarea::-webkit-input-placeholder {
+  color: #939ba1;
+  font-family: Helvetica, Arial, sans-serif;
+}
+.fm_formcontainer textarea:focus {
+  outline: none;
+  border-color: #8a6f00;
+}
+
+.fm_formcontainer .fm_checker .fm_checked {
+  position: relative;
+}
+.fm_formcontainer .fm_checker .fm_checked:before {
+  content: '\2713';
+  position: absolute;
+  line-height: 1.125em;
+  height: 1.125em;
+  width: 1.125em;
+  left: 0.2em;
+  top: 0.1em;
+}
+.fm_formcontainer .fm_radio span {
+  border-radius: 50%;
+}
+.fm_formcontainer .fm_radio .fm_checked {
+  position: relative;
+}
+.fm_formcontainer .fm_radio .fm_checked:before {
+  content: '';
+  position: absolute;
+  line-height: 0.75em;
+  height: 0.75em;
+  width: 0.75em;
+  background-color: black;
+  border-radius: 50%;
+  left: 0.2em;
+  top: 0.2em;
+}
+.fm_formcontainer .fm_checker,
+.fm_formcontainer .fm_radio {
+  z-index: 0;
+}
+.fm_formcontainer .fm_checker span,
+.fm_formcontainer .fm_radio span {
+  display: inline-block;
+  background: #fff7b9;
+  border: 2px solid #ffdd00;
+  height: 1.125em;
+  width: 1.125em;
+}
+.fm_formcontainer .fm_checker input,
+.fm_formcontainer .fm_radio input {
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+}
+.fm_formcontainer .fm_checker.fm_focus span, .fm_formcontainer .fm_checker:focus span,
+.fm_formcontainer .fm_radio.fm_focus span,
+.fm_formcontainer .fm_radio:focus span {
+  outline: none;
+  border-color: #8a6f00;
+}
+.fm_formcontainer .fm_checker.fm_disabled span:before,
+.fm_formcontainer .fm_radio.fm_disabled span:before {
+  color: #cfd4d8;
+}
+.fm_formcontainer .fm_selector {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 3em;
+  width: 100% !important;
+  padding: 0;
+}
+.fm_formcontainer .fm_selector span {
+  display: inline-block;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 2px solid #ffdd00;
+  padding: 0.66667em 0.66667em;
+  background: #fff7b9;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 0.9375em;
+  color: black;
+  width: 100% !important;
+  position: relative;
+}
+.fm_formcontainer .fm_selector span:after {
+  content: '\25bc';
+}
+.fm_formcontainer .fm_selector select {
+  position: absolute;
+  left: 0;
+  top: 0.125em;
+  opacity: 0;
+  height: 2.75em;
+  width: 100%;
+}
+.fm_formcontainer .fm_selector:focus span, .fm_formcontainer .fm_selector.fm_focus span {
+  border-color: #8a6f00;
+}
+.fm_formcontainer .fm_uploader {
+  height: auto;
+  width: 100%;
+  padding-right: 0.5em;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+.fm_formcontainer .fm_uploader [type=file] {
+  font-size: 500px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  width: 100%;
+}
+.fm_formcontainer .fm_uploader .fm_filename {
+  display: inline-block;
+  width: 70%;
+  margin: 0;
+}
+.fm_formcontainer .fm_uploader .fm_action {
+  width: 30%;
+  margin: 0.25em -0.5em 0 0.5em;
+}
+
+.fm_tooltipcontainer {
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 5;
+}
+.fm_tooltipcontainer .fm_tooltip {
+  position: absolute;
+  left: 0.625em;
+  top: -0.625em;
+  display: none;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin-left: 1.25em;
+  padding: 1.25em;
+  width: 12.5em;
+}
+.fm_tooltipcontainer .fm_tooltipheader {
+  display: block;
+  padding-right: 1.25em;
+}
+.fm_tooltipcontainer .fm_tooltipclose {
+  position: absolute;
+  right: 1.25em;
+  top: 1.25em;
+}
+
+body {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 62.5em;
+  margin: 0 auto;
+}
