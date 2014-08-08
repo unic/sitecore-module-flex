@@ -11,6 +11,7 @@
     using System.Linq;
     using Sitecore.Exceptions;
     using Unic.Flex.Context;
+    using Unic.Flex.Definitions;
     using Unic.Flex.Globalization;
     using Unic.Flex.Logging;
     using Unic.Flex.Model.DomainModel.Forms;
@@ -35,13 +36,16 @@
 
         private readonly IDictionaryRepository dictionaryRepository;
 
+        private readonly IUrlService urlService;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ModelConverterService"/> class.
         /// </summary>
-        public ModelConverterService(IDictionaryRepository dictionaryRepository)
+        public ModelConverterService(IDictionaryRepository dictionaryRepository, IUrlService urlService)
         {
             this.viewModelTypeCache = new Dictionary<string, Type>();
             this.dictionaryRepository = dictionaryRepository;
+            this.urlService = urlService;
         }
 
         public IFormViewModel ConvertToViewModel(Form form)
@@ -99,6 +103,18 @@
             if (navigationPane != null && navigationPane.ShowNavigationPane)
             {
                 navigationPane.NavigationPane = this.GetNavigationPane(form, step.StepNumber);
+            }
+
+            // get the text for the canlce link
+            if (form.CancelLink != null && !string.IsNullOrWhiteSpace(form.CancelLink.Url))
+            {
+                stepViewModel.CancelUrl = this.urlService.AddQueryStringToCurrentUrl(
+                    Constants.CancelQueryStringKey,
+                    Constants.CancelQueryStringValue);
+
+                stepViewModel.CancelText = !string.IsNullOrWhiteSpace(form.CancelLink.Text)
+                                 ? form.CancelLink.Text
+                                 : this.dictionaryRepository.GetText("Cancel Form");
             }
 
             // iterate through sections and add them

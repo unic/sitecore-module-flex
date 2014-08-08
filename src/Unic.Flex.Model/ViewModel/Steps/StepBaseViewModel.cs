@@ -40,5 +40,21 @@
         /// The title.
         /// </value>
         public virtual string Title { get; set; }
+
+        /// <summary>
+        /// Gets or sets the cancel URL.
+        /// </summary>
+        /// <value>
+        /// The cancel URL.
+        /// </value>
+        public virtual string CancelUrl { get; set; }
+
+        /// <summary>
+        /// Gets or sets the cancel text.
+        /// </summary>
+        /// <value>
+        /// The cancel text.
+        /// </value>
+        public virtual string CancelText { get; set; }
     }
 }

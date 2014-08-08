@@ -3,6 +3,7 @@
     using System.Linq;
     using System.Web.Mvc;
     using Unic.Flex.Context;
+    using Unic.Flex.Definitions;
     using Unic.Flex.Mapping;
     using Unic.Flex.Model.ViewModel.Forms;
     using Unic.Flex.ModelBinding;
@@ -11,10 +12,6 @@
 
     public class FlexController : Controller
     {
-        private const string SuccessQueryStringKey = "success";
-
-        private const string SuccessQueryStringValue = "true";
-
         private readonly IPresentationService presentationService;
 
         private readonly IModelConverterService modelConverter;
@@ -27,7 +24,9 @@
 
         private readonly IFlexContext flexContext;
 
-        public FlexController(IPresentationService presentationService, IModelConverterService modelConverter, IContextService contextService, IUserDataRepository userDataRepository, IPlugsService plugsService, IFlexContext flexContext)
+        private readonly IUrlService urlService;
+
+        public FlexController(IPresentationService presentationService, IModelConverterService modelConverter, IContextService contextService, IUserDataRepository userDataRepository, IPlugsService plugsService, IFlexContext flexContext, IUrlService urlService)
         {
             this.presentationService = presentationService;
             this.modelConverter = modelConverter;
@@ -35,6 +34,7 @@
             this.userDataRepository = userDataRepository;
             this.plugsService = plugsService;
             this.flexContext = flexContext;
+            this.urlService = urlService;
         }
 
         public ActionResult Form()
@@ -48,11 +48,23 @@
             if (currentStep == null) return new EmptyResult();
 
             // check if we need to show the success message
-            if (Request.QueryString[SuccessQueryStringKey] == SuccessQueryStringValue
+            if (Request.QueryString[Constants.SuccessQueryStringKey] == Constants.SuccessQueryStringValue
                 && currentStep.StepNumber == form.Steps.Count()
                 && !this.userDataRepository.IsFormStored(form.Id))
             {
                 return this.Content(form.SuccessMessage);
+            }
+
+            // check if we need to cancel the current form
+            if (Request.QueryString[Constants.CancelQueryStringKey] == Constants.CancelQueryStringValue
+                && form.CancelLink != null
+                && !string.IsNullOrWhiteSpace(form.CancelLink.Url))
+            {
+                // clear session values
+                this.userDataRepository.ClearForm(form.Id);
+
+                // redirect to correct url
+                return this.Redirect(form.CancelLink.Url);
             }
 
             // check if the current step may be accessed (only valid if all previous steps are done)
@@ -117,9 +129,7 @@
             }
 
             // redirect to the current page and show the success message
-            var url = Sitecore.Web.WebUtil.GetRawUrl();
-            url += string.Format("{0}{1}={2}", url.Contains("?") ? "&" : "?", SuccessQueryStringKey, SuccessQueryStringValue);
-            return this.Redirect(url);
+            return this.Redirect(this.urlService.AddQueryStringToCurrentUrl(Constants.SuccessQueryStringKey, Constants.SuccessQueryStringValue));
         }
     }
 }

@@ -9,5 +9,9 @@
         IList<ISectionViewModel> Sections { get; }
 
         string Title { get; set; }
+
+        string CancelUrl { get; set; }
+
+        string CancelText { get; set; }
     }
 }

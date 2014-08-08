@@ -44,6 +44,9 @@
             Bind<ISitecoreContext>().To<SitecoreContext>().InRequestScope();
             Bind<IFlexContext>().To<FlexContext>().InRequestScope();
 
+            // helpers
+            Bind<IUrlService>().To<UrlService>().InSingletonScope();
+
             // configuration module
             Bind<IConfigurationManager>().To<ConfigurationManager>();
         }

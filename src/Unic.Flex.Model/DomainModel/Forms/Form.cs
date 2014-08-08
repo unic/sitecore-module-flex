@@ -4,6 +4,7 @@
     using Glass.Mapper.Sc.Configuration.Attributes;
     using System.Collections.Generic;
     using System.Linq;
+    using Glass.Mapper.Sc.Fields;
     using Unic.Flex.Model.DomainModel.Plugs.LoadPlugs;
     using Unic.Flex.Model.DomainModel.Plugs.SavePlugs;
     using Unic.Flex.Model.DomainModel.Steps;
@@ -42,6 +43,15 @@
         /// </value>
         [SitecoreField("Introduction")]
         public virtual string Introduction { get; set; }
+
+        /// <summary>
+        /// Gets or sets the cancel link.
+        /// </summary>
+        /// <value>
+        /// The cancel link.
+        /// </value>
+        [SitecoreField("Cancel Link")]
+        public virtual Link CancelLink { get; set; }
 
         /// <summary>
         /// Gets or sets the success message.
