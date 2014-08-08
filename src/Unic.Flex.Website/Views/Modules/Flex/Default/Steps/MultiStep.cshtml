@@ -12,7 +12,10 @@
     @Html.FlexComponent(m => m.Sections[i])
 }
 
-<a href="@Model.PreviousStepUrl">Back</a>
+@if (!string.IsNullOrWhiteSpace(Model.PreviousStepUrl))
+{
+    <a href="@Model.PreviousStepUrl">@Translate.Text("Previous Step")</a>
+}
 
 @if (Model.IsSkippable)
 {
