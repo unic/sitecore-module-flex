@@ -32,6 +32,14 @@
         public virtual bool ShowNavigationPane { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether this step is skippable.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this step is skippable; otherwise, <c>false</c>.
+        /// </value>
+        public virtual bool IsSkippable { get; set; }
+
+        /// <summary>
         /// Gets or sets the navigation pane.
         /// </summary>
         /// <value>

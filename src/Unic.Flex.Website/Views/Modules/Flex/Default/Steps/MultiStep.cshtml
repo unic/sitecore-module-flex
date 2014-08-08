@@ -1,4 +1,5 @@
-﻿@using Unic.Flex.Presentation
+﻿@using Sitecore.Globalization
+@using Unic.Flex.Presentation
 @model Unic.Flex.Model.ViewModel.Steps.MultiStepViewModel
 
 @if (Model.ShowNavigationPane && Model.NavigationPane != null)
@@ -12,6 +13,10 @@
 }
 
 <a href="@Model.PreviousStepUrl">Back</a>
-<a href="@Model.NextStepUrl">Skip</a>
+
+@if (Model.IsSkippable)
+{
+    <a href="@Model.NextStepUrl">@Translate.Text("Skip Step")</a>
+}
 
 <input type="submit" value="submit" />

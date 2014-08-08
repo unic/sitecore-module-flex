@@ -48,10 +48,19 @@
         public virtual Form LoadForm(string dataSource)
         {
             var form = this.formRepository.LoadForm(dataSource);
+            
+            // set the step number for each step
             var counter = 0;
             foreach (var step in form.Steps)
             {
                 step.StepNumber = ++counter;
+            }
+
+            // remove skippable flag from the last step
+            var lastStep = form.Steps.LastOrDefault() as MultiStep;
+            if (lastStep != null)
+            {
+                lastStep.IsSkippable = false;
             }
 
             return form;
@@ -109,8 +118,13 @@
             if (!form.Steps.Any()) return false;
             if (step.StepNumber == 1) return true;
 
+            // get the last step which is not skippable
+            var lastNeededStep = form.Steps.OfType<MultiStep>()
+                .Where(multiStep => multiStep.StepNumber < step.StepNumber)
+                .LastOrDefault(multiStep => !multiStep.IsSkippable);
+
             // check if step has been completed
-            return this.userDataRepository.IsStepCompleted(form.Id, step.StepNumber - 1);
+            return lastNeededStep == null || this.userDataRepository.IsStepCompleted(form.Id, lastNeededStep.StepNumber);
         }
 
         /// <summary>

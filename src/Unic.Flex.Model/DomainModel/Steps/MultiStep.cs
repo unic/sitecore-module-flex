@@ -18,6 +18,15 @@
         public virtual bool ShowNavigationPane { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether this step is skippable.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this step is skippable; otherwise, <c>false</c>.
+        /// </value>
+        [SitecoreField("Is Skippable")]
+        public virtual bool IsSkippable { get; set; }
+
+        /// <summary>
         /// Gets the name of the view.
         /// </summary>
         /// <value>
