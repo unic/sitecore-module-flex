@@ -27,6 +27,14 @@
         public virtual bool IsSkippable { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether this step is the last step.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this step is the last step; otherwise, <c>false</c>.
+        /// </value>
+        public virtual bool IsLastStep { get; set; }
+
+        /// <summary>
         /// Gets the name of the view.
         /// </summary>
         /// <value>

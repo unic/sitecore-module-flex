@@ -61,6 +61,7 @@
             if (lastStep != null)
             {
                 lastStep.IsSkippable = false;
+                lastStep.IsLastStep = true;
             }
 
             return form;
