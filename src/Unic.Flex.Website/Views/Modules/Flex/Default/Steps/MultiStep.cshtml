@@ -22,9 +22,18 @@
     <a href="@Model.NextStepUrl">@Translate.Text("Skip Step")</a>
 }
 
-<input type="submit" value="@string.Format("{0}", Model.IsLastStep ? Translate.Text("Finish Form") : Translate.Text("Next Step"))" />
-
 @if (!string.IsNullOrWhiteSpace(Model.CancelUrl))
 {
     <a href="@Model.CancelUrl">@Model.CancelText</a>
 }
+
+
+<div class="fm_formfooter">
+    <div class="fm_buttoncontainer">
+        <button type="submit" role="button">
+            <span>
+                @string.Format("{0}", Model.IsLastStep ? Translate.Text("Finish Form") : Translate.Text("Next Step"))
+            </span>
+        </button>
+    </div>
+</div>
