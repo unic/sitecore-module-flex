@@ -15,12 +15,10 @@
         /// Converts the specified field.
         /// </summary>
         /// <param name="field">The field.</param>
-        /// <returns></returns>
+        /// <returns>The specification model</returns>
         public override Specification Convert(IConfigurationField field)
         {
             Assert.ArgumentNotNull(field, "field");
-
-            // todo: Can this be generic in some way that we don't have to create a converter for each different domain model class? Do we have even have more than this? ;-)
 
             using (new VersionCountDisabler())
             {

@@ -17,8 +17,6 @@
     [SitecoreType(TemplateId = "{4906DF7C-B200-4825-B1AC-488D7D928452}")]
     public class QueryStringLoader : LoadPlugBase
     {
-        // todo: move all plug, fields, etc. implementation to custom assembly -> we have a circulate project references else
-
         /// <summary>
         /// The user data repository
         /// </summary>
