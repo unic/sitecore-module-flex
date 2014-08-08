@@ -210,7 +210,7 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Modules\Flex\Scripts.cshtml" />
+    <Content Include="Views\Modules\Flex\BodyIncludes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Modules\Flex\Default\Fields\InputFields\Number.cshtml" />
@@ -235,6 +235,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Modules\Flex\Default\Fields\ListFields\ListBox.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Modules\Flex\HeaderIncludes.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
