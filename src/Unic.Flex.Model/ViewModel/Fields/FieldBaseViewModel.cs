@@ -103,11 +103,24 @@
         public virtual string CssClass { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether this field is disabled.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this field is disabled; otherwise, <c>false</c>.
+        /// </value>
+        public virtual bool IsDisabled { get; set; }
+
+        /// <summary>
         /// Binds the needed attributes and properties after converting from domain model to the view model
         /// </summary>
         public virtual void BindProperties()
         {
-            // nothing needed here
+            if (this.IsDisabled)
+            {
+                this.Attributes.Add("disabled", "disabled");
+                this.Attributes.Add("aria-disabled", true);
+                this.AddCssClass("fm_disabled");
+            }
         }
 
         /// <summary>
@@ -153,6 +166,17 @@
             {
                 this.Attributes.Add("data-val", "true");
             }
+        }
+
+        /// <summary>
+        /// Adds a CSS class.
+        /// </summary>
+        /// <param name="cssClass">The CSS class.</param>
+        public virtual void AddCssClass(string cssClass)
+        {
+            if (string.IsNullOrWhiteSpace(cssClass)) return;
+
+            this.CssClass = string.Join(" ", this.CssClass, cssClass);
         }
     }
 }

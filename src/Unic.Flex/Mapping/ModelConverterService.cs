@@ -164,12 +164,12 @@
                     // add css classes
                     if (field.CustomCssClass != null && !string.IsNullOrWhiteSpace(field.CustomCssClass.Value))
                     {
-                        fieldViewModel.CssClass += " " + field.CustomCssClass.Value;
+                        fieldViewModel.AddCssClass(field.CustomCssClass.Value);
                     }
 
                     if (!string.IsNullOrWhiteSpace(field.AdditionalCssClass))
                     {
-                        fieldViewModel.CssClass += " " + field.AdditionalCssClass;
+                        fieldViewModel.AddCssClass(field.AdditionalCssClass);
                     }
 
                     // add the field to the section

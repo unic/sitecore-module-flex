@@ -140,5 +140,14 @@
         /// The default validators.
         /// </value>
         public virtual IList<IValidator> DefaultValidators { get; private set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this field is disabled.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this field is disabled; otherwise, <c>false</c>.
+        /// </value>
+        [SitecoreField("Is Disabled")]
+        public virtual bool IsDisabled { get; set; }
     }
 }

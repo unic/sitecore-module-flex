@@ -76,5 +76,11 @@
         /// Binds the needed attributes and properties after converting from domain model to the view model
         /// </summary>
         void BindProperties();
+
+        /// <summary>
+        /// Adds a CSS class.
+        /// </summary>
+        /// <param name="cssClass">The CSS class.</param>
+        void AddCssClass(string cssClass);
     }
 }

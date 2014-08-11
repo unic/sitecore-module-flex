@@ -30,7 +30,7 @@
 
             this.Attributes.Add("aria-multiline", false);
             this.Attributes.Add("role", "textbox");
-            this.CssClass = "fm_singletextfield";
+            this.AddCssClass("fm_singletextfield");
         }
     }
 }
