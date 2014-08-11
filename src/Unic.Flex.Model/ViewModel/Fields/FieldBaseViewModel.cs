@@ -103,6 +103,14 @@
         public virtual string CssClass { get; set; }
 
         /// <summary>
+        /// Binds the needed attributes and properties after converting from domain model to the view model
+        /// </summary>
+        public virtual void BindProperties()
+        {
+            // nothing needed here
+        }
+
+        /// <summary>
         /// Determines whether the specified object is valid.
         /// </summary>
         /// <param name="validationContext">The validation context.</param>

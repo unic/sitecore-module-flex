@@ -1,6 +1,7 @@
 ﻿namespace Unic.Flex.Model.ViewModel.Fields
 {
     using System.Collections.Generic;
+    using Unic.Flex.Model.DomainModel.Fields;
     using Unic.Flex.Model.Presentation;
 
     /// <summary>
@@ -70,5 +71,10 @@
         /// The attributes.
         /// </value>
         IDictionary<string, object> Attributes { get; }
+
+        /// <summary>
+        /// Binds the needed attributes and properties after converting from domain model to the view model
+        /// </summary>
+        void BindProperties();
     }
 }

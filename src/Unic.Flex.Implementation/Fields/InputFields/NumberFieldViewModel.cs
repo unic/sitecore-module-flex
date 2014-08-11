@@ -30,5 +30,26 @@
         /// The step.
         /// </value>
         public virtual int Step { get; set; }
+
+        /// <summary>
+        /// Binds the needed attributes and properties after converting from domain model to the view model
+        /// </summary>
+        public override void BindProperties()
+        {
+            base.BindProperties();
+
+            this.Attributes.Add("type", "number");
+            this.Attributes.Add("min", this.MinValue);
+
+            if (this.MaxValue > this.MinValue)
+            {
+                this.Attributes.Add("max", this.MaxValue);
+            }
+
+            if (this.Step > 0)
+            {
+                this.Attributes.Add("step", this.Step);
+            }
+        }
     }
 }

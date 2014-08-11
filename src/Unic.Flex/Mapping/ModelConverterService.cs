@@ -137,6 +137,9 @@
                     var validatableObject = fieldViewModel as IValidatableObject;
                     if (validatableObject == null) continue;
 
+                    // bind properties
+                    fieldViewModel.BindProperties();
+
                     // add required validator
                     if (field.IsRequired)
                     {

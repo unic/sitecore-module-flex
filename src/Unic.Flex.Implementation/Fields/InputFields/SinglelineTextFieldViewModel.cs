@@ -7,8 +7,13 @@
     /// </summary>
     public class SinglelineTextFieldViewModel : InputFieldViewModel<string>
     {
-        public SinglelineTextFieldViewModel()
+        /// <summary>
+        /// Binds the properties.
+        /// </summary>
+        public override void BindProperties()
         {
+            base.BindProperties();
+
             this.Attributes.Add("aria-multiline", false);
             this.Attributes.Add("role", "textbox");
             this.CssClass = "fm_singletextfield";
