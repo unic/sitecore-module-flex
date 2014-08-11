@@ -23,7 +23,7 @@
     /// <summary>
     /// Non-generic interface for a field.
     /// </summary>
-    public interface IField : IPresentationComponent
+    public interface IField
     {
         /// <summary>
         /// Gets or sets the value.

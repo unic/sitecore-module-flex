@@ -24,14 +24,14 @@
         /// The sections.
         /// </value>
         public virtual IList<ISectionViewModel> Sections { get; private set; }
-        
+
         /// <summary>
-        /// Gets or sets the name of the view.
+        /// Gets the name of the view.
         /// </summary>
         /// <value>
         /// The name of the view.
         /// </value>
-        public virtual string ViewName { get; set; }
+        public abstract string ViewName { get; }
 
         /// <summary>
         /// Gets or sets the title.

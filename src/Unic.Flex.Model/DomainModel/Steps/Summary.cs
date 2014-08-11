@@ -16,19 +16,5 @@
         /// </value>
         [SitecoreField("Show Navigation Pane")]
         public virtual bool ShowNavigationPane { get; set; }
-        
-        /// <summary>
-        /// Gets the name of the view.
-        /// </summary>
-        /// <value>
-        /// The name of the view.
-        /// </value>
-        public override string ViewName
-        {
-            get
-            {
-                return "Steps/Summary";
-            }
-        }
     }
 }

@@ -15,13 +15,5 @@
             this.Items.Add(new SelectListItem { Text = "Apple", Value = "apple_value" });
             this.Items.Add(new SelectListItem { Text = "Oranges", Value = "oranges_value" });
         }
-        
-        public override string ViewName
-        {
-            get
-            {
-                return "Fields/ListFields/ListBox";
-            }
-        }
     }
 }

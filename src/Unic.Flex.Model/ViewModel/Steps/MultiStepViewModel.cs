@@ -54,5 +54,19 @@
         /// The navigation pane.
         /// </value>
         public virtual NavigationPaneViewModel NavigationPane { get; set; }
+
+        /// <summary>
+        /// Gets the name of the view.
+        /// </summary>
+        /// <value>
+        /// The name of the view.
+        /// </value>
+        public override string ViewName
+        {
+            get
+            {
+                return "Steps/MultiStep";
+            }
+        }
     }
 }

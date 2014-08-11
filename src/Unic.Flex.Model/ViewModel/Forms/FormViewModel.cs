@@ -46,5 +46,19 @@
         /// The step to render.
         /// </value>
         public virtual IStepViewModel Step { get; set; }
+
+        /// <summary>
+        /// Gets the name of the view.
+        /// </summary>
+        /// <value>
+        /// The name of the view.
+        /// </value>
+        public virtual string ViewName
+        {
+            get
+            {
+                return "Form";
+            }
+        }
     }
 }

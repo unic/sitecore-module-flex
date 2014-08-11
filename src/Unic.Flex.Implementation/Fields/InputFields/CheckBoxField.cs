@@ -38,19 +38,5 @@
                 return this.Value ? this.dictionaryRepository.GetText("Yes") : this.dictionaryRepository.GetText("No");
             }
         }
-
-        /// <summary>
-        /// Gets the name of the view.
-        /// </summary>
-        /// <value>
-        /// The name of the view.
-        /// </value>
-        public override string ViewName
-        {
-            get
-            {
-                return "Fields/InputFields/CheckBox";
-            }
-        }
     }
 }

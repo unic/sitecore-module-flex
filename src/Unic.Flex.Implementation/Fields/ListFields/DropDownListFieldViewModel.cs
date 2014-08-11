@@ -7,5 +7,12 @@
     /// </summary>
     public class DropDownListFieldViewModel : ListFieldViewModel<string>
     {
+        public override string ViewName
+        {
+            get
+            {
+                return "Fields/ListFields/DropDownList";
+            }
+        }
     }
 }

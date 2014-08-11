@@ -33,19 +33,5 @@
         /// <c>true</c> if this step is the last step; otherwise, <c>false</c>.
         /// </value>
         public virtual bool IsLastStep { get; set; }
-
-        /// <summary>
-        /// Gets the name of the view.
-        /// </summary>
-        /// <value>
-        /// The name of the view.
-        /// </value>
-        public override string ViewName
-        {
-            get
-            {
-                return "Steps/MultiStep";
-            }
-        }
     }
 }

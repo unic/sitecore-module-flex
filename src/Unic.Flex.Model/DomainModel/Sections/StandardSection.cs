@@ -1,15 +1,14 @@
 ﻿namespace Unic.Flex.Model.DomainModel.Sections
 {
-    using System.Collections.Generic;
     using Glass.Mapper.Sc.Configuration.Attributes;
+    using System.Collections.Generic;
     using Unic.Flex.Model.DomainModel.Fields;
-    using Unic.Flex.Model.Presentation;
 
     /// <summary>
     /// The standard section.
     /// </summary>
     [SitecoreType(TemplateId = "{B2B5CAB2-2BD7-4FFE-80B1-7607A310771E}")]
-    public class StandardSection : SectionBase, IPresentationComponent
+    public class StandardSection : SectionBase
     {
         /// <summary>
         /// Gets or sets the title.
@@ -37,19 +36,5 @@
         /// </value>
         [SitecoreChildren(IsLazy = true, InferType = true)]
         public virtual IEnumerable<IField> Fields { get; set; }
-
-        /// <summary>
-        /// Gets the name of the view.
-        /// </summary>
-        /// <value>
-        /// The name of the view.
-        /// </value>
-        public virtual string ViewName
-        {
-            get
-            {
-                return "Sections/StandardSection";
-            }
-        }
     }
 }

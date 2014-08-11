@@ -78,8 +78,9 @@
             this.userDataRepository.RevertToStep(form.Id, currentStep.StepNumber);
 
             // return the view for this step
-            var formView = this.presentationService.ResolveView(this.ControllerContext, form.ViewName);
-            return this.View(formView, this.modelConverter.ConvertToViewModel(form));
+            var formViewModel = this.modelConverter.ConvertToViewModel(form);
+            var formView = this.presentationService.ResolveView(this.ControllerContext, formViewModel);
+            return this.View(formView, formViewModel);
         }
 
         [HttpPost]
@@ -101,7 +102,7 @@
             }
 
             // return view if we have any validation errors
-            var formView = this.presentationService.ResolveView(this.ControllerContext, form.ViewName);
+            var formView = this.presentationService.ResolveView(this.ControllerContext, model);
             if (!ModelState.IsValid)
             {
                 return this.View(formView, model);

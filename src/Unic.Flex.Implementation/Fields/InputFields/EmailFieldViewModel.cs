@@ -8,6 +8,20 @@
     public class EmailFieldViewModel : InputFieldViewModel<string>
     {
         /// <summary>
+        /// Gets the name of the view.
+        /// </summary>
+        /// <value>
+        /// The name of the view.
+        /// </value>
+        public override string ViewName
+        {
+            get
+            {
+                return "Fields/InputFields/Email";
+            }
+        }
+
+        /// <summary>
         /// Binds the needed attributes and properties after converting from domain model to the view model
         /// </summary>
         public override void BindProperties()

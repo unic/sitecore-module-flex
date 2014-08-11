@@ -1,14 +1,13 @@
 ﻿namespace Unic.Flex.Model.DomainModel.Steps
 {
-    using System.Collections.Generic;
     using Glass.Mapper.Sc.Configuration.Attributes;
+    using System.Collections.Generic;
     using Unic.Flex.Model.DomainModel.Sections;
-    using Unic.Flex.Model.Presentation;
 
     /// <summary>
     /// Base class for all steps.
     /// </summary>
-    public abstract class StepBase : ItemBase, IPresentationComponent
+    public abstract class StepBase : ItemBase
     {
         /// <summary>
         /// Gets or sets a value indicating whether this step is active.
@@ -25,14 +24,6 @@
         /// The step number.
         /// </value>
         public virtual int StepNumber { get; set; }
-
-        /// <summary>
-        /// Gets the name of the view.
-        /// </summary>
-        /// <value>
-        /// The name of the view.
-        /// </value>
-        public abstract string ViewName { get; }
 
         /// <summary>
         /// Gets or sets the title.

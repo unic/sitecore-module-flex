@@ -69,14 +69,6 @@
         {
             this.DefaultValidators = new List<IValidator>();
         }
-        
-        /// <summary>
-        /// Gets the name of the view.
-        /// </summary>
-        /// <value>
-        /// The name of the view.
-        /// </value>
-        public abstract string ViewName { get; }
 
         /// <summary>
         /// Gets or sets the key.

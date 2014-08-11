@@ -2,20 +2,19 @@
 {
     using Glass.Mapper.Sc.Configuration;
     using Glass.Mapper.Sc.Configuration.Attributes;
+    using Glass.Mapper.Sc.Fields;
     using System.Collections.Generic;
     using System.Linq;
-    using Glass.Mapper.Sc.Fields;
     using Unic.Flex.Model.DomainModel.Plugs.LoadPlugs;
     using Unic.Flex.Model.DomainModel.Plugs.SavePlugs;
     using Unic.Flex.Model.DomainModel.Steps;
     using Unic.Flex.Model.GlassExtensions.Attributes;
-    using Unic.Flex.Model.Presentation;
 
     /// <summary>
     /// The complete form domain model object
     /// </summary>
     [SitecoreType(TemplateId = "{3AFE4256-1C3E-4441-98AF-B3D0037A8B1F}")]
-    public class Form : ItemBase, IPresentationComponent
+    public class Form : ItemBase
     {
         /// <summary>
         /// Gets or sets the language.
@@ -97,20 +96,6 @@
         /// </value>
         [SitecoreQuery("./Save Plugs/*", IsLazy = true, IsRelative = true, InferType = true)]
         public virtual IEnumerable<ISavePlug> SavePlugs { get; set; }
-
-        /// <summary>
-        /// Gets the name of the view.
-        /// </summary>
-        /// <value>
-        /// The name of the view.
-        /// </value>
-        public virtual string ViewName
-        {
-            get
-            {
-                return "Form";
-            }
-        }
 
         /// <summary>
         /// Gets the identifier.

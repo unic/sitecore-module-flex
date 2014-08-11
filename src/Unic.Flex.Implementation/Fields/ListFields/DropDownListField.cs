@@ -15,13 +15,5 @@
             this.Items.Add(new SelectListItem { Text = "Male", Value = "male_value" });
             this.Items.Add(new SelectListItem { Text = "Female", Value = "female_value" });
         }
-        
-        public override string ViewName
-        {
-            get
-            {
-                return "Fields/ListFields/DropDownList";
-            }
-        }
     }
 }

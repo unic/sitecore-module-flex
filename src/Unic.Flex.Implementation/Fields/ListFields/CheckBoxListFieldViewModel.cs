@@ -5,5 +5,13 @@
     public class CheckBoxListFieldViewModel : ListFieldViewModel<string[]>
     {
         // todo: client-side validator does not work
+
+        public override string ViewName
+        {
+            get
+            {
+                return "Fields/ListFields/CheckBoxList";
+            }
+        }
     }
 }

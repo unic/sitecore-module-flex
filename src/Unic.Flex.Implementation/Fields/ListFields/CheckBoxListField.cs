@@ -15,13 +15,5 @@
             this.Items.Add(new SelectListItem { Text = "Green", Value = "green_value" });
             this.Items.Add(new SelectListItem { Text = "Blue", Value = "blue_value" });
         }
-        
-        public override string ViewName
-        {
-            get
-            {
-                return "Fields/ListFields/CheckBoxList";
-            }
-        }
     }
 }

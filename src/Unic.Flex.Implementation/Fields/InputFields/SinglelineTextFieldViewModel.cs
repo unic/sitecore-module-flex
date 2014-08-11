@@ -8,6 +8,20 @@
     public class SinglelineTextFieldViewModel : InputFieldViewModel<string>
     {
         /// <summary>
+        /// Gets the name of the view.
+        /// </summary>
+        /// <value>
+        /// The name of the view.
+        /// </value>
+        public override string ViewName
+        {
+            get
+            {
+                return "Fields/InputFields/SinglelineText";
+            }
+        }
+        
+        /// <summary>
         /// Binds the properties.
         /// </summary>
         public override void BindProperties()

@@ -1,9 +1,11 @@
 ﻿namespace Unic.Flex.Presentation
 {
     using System.Web.Mvc;
+    using Sitecore.Diagnostics;
     using Unic.Configuration;
     using Unic.Flex.Model.Configuration;
     using Unic.Flex.Model.Configuration.Extensions;
+    using Unic.Flex.Model.Presentation;
 
     /// <summary>
     /// Presentation service implementation.
@@ -38,22 +40,24 @@
         /// Resolves the complete view path to a given view name regarding the current theme.
         /// </summary>
         /// <param name="controllerContext">The controller context.</param>
-        /// <param name="viewName">Name of the view.</param>
+        /// <param name="presentationComponent">The presentation component.</param>
         /// <returns>
         /// Complete path of the view
         /// </returns>
-        public string ResolveView(ControllerContext controllerContext, string viewName)
+        public string ResolveView(ControllerContext controllerContext, IPresentationComponent presentationComponent)
         {
+            Assert.ArgumentNotNull(presentationComponent, "presentationComponent");
+            
             var specification = this.configurationManager.Get<PresentationConfiguration>(c => c.Theme);
             var theme = specification != null ? specification.Value : DefaultTheme;
-            
-            var themeView = string.Format(ViewPath, theme, viewName);
+
+            var themeView = string.Format(ViewPath, theme, presentationComponent.ViewName);
             if (this.ViewExists(controllerContext, themeView))
             {
                 return themeView;
             }
 
-            return string.Format(ViewPath, DefaultTheme, viewName);
+            return string.Format(ViewPath, DefaultTheme, presentationComponent.ViewName);
         }
 
         /// <summary>

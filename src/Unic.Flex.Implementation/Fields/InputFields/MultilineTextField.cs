@@ -10,20 +10,6 @@
     public class MultilineTextField : InputField<string>
     {
         /// <summary>
-        /// Gets the name of the view.
-        /// </summary>
-        /// <value>
-        /// The name of the view.
-        /// </value>
-        public override string ViewName
-        {
-            get
-            {
-                return "Fields/InputFields/MultilineText";
-            }
-        }
-
-        /// <summary>
         /// Gets or sets the rows.
         /// </summary>
         /// <value>

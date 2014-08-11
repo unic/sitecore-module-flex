@@ -45,7 +45,7 @@
             var propertyName = ExpressionHelper.GetExpressionText(expression);
 
             return htmlHelper.Partial(
-                PresentationService.Value.ResolveView(htmlHelper.ViewContext, model.ViewName),
+                PresentationService.Value.ResolveView(htmlHelper.ViewContext, model),
                 model,
                 new ViewDataDictionary(htmlHelper.ViewData)
                     {
