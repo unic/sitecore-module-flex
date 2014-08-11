@@ -1,5 +1,6 @@
 ﻿namespace Unic.Flex.Model.ViewModel.Fields
 {
+    using System.Collections.Generic;
     using Unic.Flex.Model.Presentation;
 
     /// <summary>
@@ -61,5 +62,13 @@
         /// The CSS class.
         /// </value>
         string CssClass { get; set; }
+
+        /// <summary>
+        /// Gets the attributes.
+        /// </summary>
+        /// <value>
+        /// The attributes.
+        /// </value>
+        IDictionary<string, object> Attributes { get; }
     }
 }

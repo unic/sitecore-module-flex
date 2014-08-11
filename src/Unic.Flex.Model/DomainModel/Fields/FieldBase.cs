@@ -79,20 +79,6 @@
         public abstract string ViewName { get; }
 
         /// <summary>
-        /// Gets the CSS class.
-        /// </summary>
-        /// <value>
-        /// The CSS class.
-        /// </value>
-        public virtual string CssClass
-        {
-            get
-            {
-                return string.Empty;
-            }
-        }
-
-        /// <summary>
         /// Gets or sets the key.
         /// </summary>
         /// <value>

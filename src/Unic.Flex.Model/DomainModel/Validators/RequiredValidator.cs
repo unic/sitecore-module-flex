@@ -52,6 +52,8 @@
         {
             var attributes = new Dictionary<string, object>();
             attributes.Add("data-val-required", this.ValidationMessage);
+            attributes.Add("required", "required");
+            attributes.Add("aria-required", true);
             return attributes;
         }
     }

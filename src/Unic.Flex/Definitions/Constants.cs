@@ -15,5 +15,9 @@ namespace Unic.Flex.Definitions
         public const string CancelQueryStringKey = "cancel";
 
         public const string CancelQueryStringValue = "true";
+
+        public const string LabelIdSuffix = "Label";
+
+        public const string LabelCssClass = "fm_label";
     }
 }
