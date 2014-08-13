@@ -89,6 +89,7 @@
     <Compile Include="Configuration\Converters\SpecificationConverter.cs" />
     <Compile Include="Configuration\Extensions\ConfigurationManagerExtensions.cs" />
     <Compile Include="Configuration\PresentationConfiguration.cs" />
+    <Compile Include="DomainModel\Components\ITooltip.cs" />
     <Compile Include="DomainModel\Fields\FieldBase.cs" />
     <Compile Include="DomainModel\Fields\IField.cs" />
     <Compile Include="DomainModel\Fields\ListFields\ListField.cs" />
@@ -98,12 +99,14 @@
     <Compile Include="DomainModel\Plugs\PlugBase.cs" />
     <Compile Include="DomainModel\Plugs\SavePlugs\ISavePlug.cs" />
     <Compile Include="DomainModel\Plugs\SavePlugs\SavePlugBase.cs" />
-    <Compile Include="DomainModel\Steps\INavigationPane.cs" />
+    <Compile Include="DomainModel\Components\INavigationPane.cs" />
     <Compile Include="DomainModel\Validators\RequiredValidator.cs" />
     <Compile Include="GlassExtensions\Attributes\SitecoreSharedFieldAttribute.cs" />
     <Compile Include="GlassExtensions\Configurations\SitecoreSharedFieldConfiguration.cs" />
     <Compile Include="GlassExtensions\Handlers\SitecoreSharedFieldTypeMapper.cs" />
     <Compile Include="Validation\IValidatableObject.cs" />
+    <Compile Include="ViewModel\Components\ITooltipViewModel.cs" />
+    <Compile Include="ViewModel\Components\TooltipViewModel.cs" />
     <Compile Include="ViewModel\Components\NavigationItem.cs" />
     <Compile Include="ViewModel\Components\NavigationPaneViewModel.cs" />
     <Compile Include="ViewModel\Fields\FieldBaseViewModel.cs" />
@@ -128,7 +131,7 @@
     <Compile Include="DomainModel\Steps\StepBase.cs" />
     <Compile Include="DomainModel\Steps\MultiStep.cs" />
     <Compile Include="DomainModel\Steps\SingleStep.cs" />
-    <Compile Include="ViewModel\Steps\INavigationPaneViewModel.cs" />
+    <Compile Include="ViewModel\Components\INavigationPaneViewModel.cs" />
     <Compile Include="ViewModel\Steps\IStepViewModel.cs" />
     <Compile Include="ViewModel\Steps\MultiStepViewModel.cs" />
     <Compile Include="ViewModel\Steps\SingleStepViewModel.cs" />

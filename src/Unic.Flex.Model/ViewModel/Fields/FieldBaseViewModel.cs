@@ -5,6 +5,7 @@
     using System.Linq;
     using Castle.DynamicProxy;
     using Unic.Flex.Model.Validation;
+    using Unic.Flex.Model.ViewModel.Components;
     using IValidatableObject = Unic.Flex.Model.Validation.IValidatableObject;
 
     /// <summary>
@@ -109,6 +110,14 @@
         /// <c>true</c> if this field is disabled; otherwise, <c>false</c>.
         /// </value>
         public virtual bool IsDisabled { get; set; }
+
+        /// <summary>
+        /// Gets or sets the tooltip.
+        /// </summary>
+        /// <value>
+        /// The tooltip.
+        /// </value>
+        public virtual TooltipViewModel Tooltip { get; set; }
 
         /// <summary>
         /// Binds the needed attributes and properties after converting from domain model to the view model

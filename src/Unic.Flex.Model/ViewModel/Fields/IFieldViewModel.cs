@@ -1,8 +1,8 @@
 ﻿namespace Unic.Flex.Model.ViewModel.Fields
 {
     using System.Collections.Generic;
-    using Unic.Flex.Model.DomainModel.Fields;
     using Unic.Flex.Model.Presentation;
+    using Unic.Flex.Model.ViewModel.Components;
 
     /// <summary>
     /// Generic field view model interface with generic value.
@@ -22,7 +22,7 @@
     /// <summary>
     /// Field view model.
     /// </summary>
-    public interface IFieldViewModel : IPresentationComponent
+    public interface IFieldViewModel : IPresentationComponent, ITooltipViewModel
     {
         /// <summary>
         /// Gets or sets the value.

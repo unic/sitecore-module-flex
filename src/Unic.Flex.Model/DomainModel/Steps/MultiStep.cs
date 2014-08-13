@@ -1,6 +1,7 @@
 ﻿namespace Unic.Flex.Model.DomainModel.Steps
 {
     using Glass.Mapper.Sc.Configuration.Attributes;
+    using Unic.Flex.Model.DomainModel.Components;
 
     /// <summary>
     /// A step in a multi step form.

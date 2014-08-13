@@ -172,6 +172,9 @@
                         fieldViewModel.AddCssClass(field.AdditionalCssClass);
                     }
 
+                    // add tooltip
+                    fieldViewModel.Tooltip = new TooltipViewModel { TooltipTitle = field.TooltipTitle, TooltipText = field.TooltipText };
+
                     // add the field to the section
                     sectionViewModel.Fields.Add(fieldViewModel);
                 }

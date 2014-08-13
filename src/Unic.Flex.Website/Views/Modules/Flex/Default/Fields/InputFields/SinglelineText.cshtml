@@ -6,4 +6,5 @@
     @Html.FlexLabel(m => m.Value, Model.Label)
     @Html.TextBoxFor(m => m.Value, Html.GetAttributes(Model))
     @Html.FlexValidator(model => model.Value)
+    @Html.FlexComponent(model => model.Tooltip)
 </li>

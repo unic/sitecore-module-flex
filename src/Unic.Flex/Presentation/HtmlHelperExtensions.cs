@@ -112,6 +112,12 @@
         {
             var attributes = viewModel.Attributes;
             attributes.Add("aria-labelledby", htmlHelper.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldId(Constants.LabelIdSuffix));
+
+            if (viewModel.Tooltip.ShowTooltip)
+            {
+                attributes.Add("aria-describedby", htmlHelper.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldId(Constants.TooltipIdSuffix));
+            }
+
             return attributes;
         }
     }

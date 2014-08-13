@@ -149,5 +149,23 @@
         /// </value>
         [SitecoreField("Is Disabled")]
         public virtual bool IsDisabled { get; set; }
+
+        /// <summary>
+        /// Gets or sets the tooltip title.
+        /// </summary>
+        /// <value>
+        /// The tooltip title.
+        /// </value>
+        [SitecoreDictionaryFallbackField("Tooltip Title", "Tooltip Title")]
+        public virtual string TooltipTitle { get; set; }
+
+        /// <summary>
+        /// Gets or sets the tooltip text.
+        /// </summary>
+        /// <value>
+        /// The tooltip text.
+        /// </value>
+        [SitecoreField("Tooltip Text")]
+        public virtual string TooltipText { get; set; }
     }
 }

@@ -1,7 +1,5 @@
-﻿namespace Unic.Flex.Model.ViewModel.Steps
+﻿namespace Unic.Flex.Model.ViewModel.Components
 {
-    using Unic.Flex.Model.ViewModel.Components;
-
     /// <summary>
     /// View model with a navigation pane
     /// </summary>

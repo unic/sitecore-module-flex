@@ -16,6 +16,8 @@ namespace Unic.Flex.Definitions
 
         public const string CancelQueryStringValue = "true";
 
+        public const string TooltipIdSuffix = "Tooltip";
+        
         public const string LabelIdSuffix = "Label";
 
         public const string LabelCssClass = "flex_label";

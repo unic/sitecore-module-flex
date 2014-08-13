@@ -1,0 +1,27 @@
+﻿@using System.Web.Mvc.Html
+@using Sitecore.Globalization
+@model Unic.Flex.Model.ViewModel.Components.TooltipViewModel
+
+@if (Model.ShowTooltip)
+{
+    <div class="flex_tooltipcontainer" id="@Html.IdForModel()" data-init="tooltips">
+        <a href="#" role="tooltip" aria-haspopup="true" data-tooltips="link">
+            <span>
+                @Translate.Text("Info")
+            </span>
+        </a>
+        <span class="flex_tooltip" aria-expanded="false" data-tooltips="tooltip">
+            <span class="flex_tooltipheader">
+                @Model.TooltipTitle
+            </span>
+            <span class="flex_tooltipcontent">
+                @Model.TooltipText
+            </span>
+            <a href="#" class="flex_tooltipclose" data-tooltips="close">
+                <span>
+                    @Translate.Text("Close")
+                </span>
+            </a>
+        </span>
+    </div>
+}
