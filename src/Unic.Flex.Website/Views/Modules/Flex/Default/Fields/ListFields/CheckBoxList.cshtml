@@ -1,25 +1,34 @@
 ﻿@using System.Web.Mvc.Html
+@using Unic.Flex.Definitions
+@using Unic.Flex.Presentation
 @model Unic.Flex.Implementation.Fields.ListFields.CheckBoxListFieldViewModel
 
-<li class="@Model.CssClass">
-    @Html.LabelFor(m => m.Value, Model.Label)
+<li class="flex_listitem @Model.CssClass">
     
-    @for (var i=0; i<Model.Items.Count(); i++)
-    {
-        <div>
-            
-            @{
-                var checkbox = Model.Items[i];
-                var propertyName = string.Format("{0}.Value", ViewData.TemplateInfo.HtmlFieldPrefix);
-                var propertyId = Html.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldId(string.Format("{0}[{1}]", propertyName, i));
-                var selected = Model.Value != null && Model.Value.Contains(checkbox.Value) ? "checked=\"checked\"" : string.Empty;
-            }
-            
-            <label for="@propertyId">@checkbox.Text</label>
-            <input type="checkbox" name="@propertyName" id="@propertyId" value="@checkbox.Value" @selected />
+    <fieldset role="listbox" aria-multiselectable="true">
+        <legend class="flex_label" id="@Html.IdForModel()">
+            @Model.Label
+        </legend>
 
-        </div>
-    }
+        @for (var i = 0; i < Model.Items.Count(); i++)
+        {
+            var checkbox = Model.Items[i];
+            var propertyName = string.Format("{0}.Value", ViewData.TemplateInfo.HtmlFieldPrefix);
+            var propertyId = Html.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldId(string.Format("Option[{0}]", i));
+            var propertyLabel = string.Format("{0}_{1}", propertyId, Constants.LabelIdSuffix);
+            var selected = Model.Value != null && Model.Value.Contains(checkbox.Value);
+            var selectedText = selected ? "checked=\"checked\"" : string.Empty;
 
-    @Html.ValidationMessageFor(model => model.Value)
+            <input type="checkbox" name="@propertyName" id="@propertyId" value="@checkbox.Value" role="option"
+                   aria-multiline="false" aria-labelledby="@propertyLabel" aria-checked="@selected.ToString()"
+                   @selectedText />
+
+            <label class="flex_label" for="@propertyId" id="@propertyLabel">
+                @checkbox.Text
+            </label>
+        }
+
+    </fieldset>
+
+    @Html.FlexValidator(model => model.Value)
 </li>

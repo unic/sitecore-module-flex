@@ -4,7 +4,7 @@
 
     public class CheckBoxListFieldViewModel : ListFieldViewModel<string[]>
     {
-        // todo: client-side validator does not work
+        // todo: client-side validator does not work actually -> needed attributes are missing
 
         public override string ViewName
         {
@@ -12,6 +12,16 @@
             {
                 return "Fields/ListFields/CheckBoxList";
             }
+        }
+
+        /// <summary>
+        /// Binds the properties.
+        /// </summary>
+        public override void BindProperties()
+        {
+            base.BindProperties();
+
+            this.AddCssClass("flex_checkboxgroup");
         }
     }
 }

@@ -20,5 +20,19 @@
                 return "Fields/InputFields/CheckBox";
             }
         }
+
+        /// <summary>
+        /// Binds the needed attributes and properties after converting from domain model to the view model
+        /// </summary>
+        public override void BindProperties()
+        {
+            base.BindProperties();
+
+            this.AddCssClass("flex_singlecheckbox");
+
+            this.Attributes.Add("aria-multiline", false);
+            this.Attributes.Add("aria-checked", this.Value);
+            this.Attributes.Add("role", "checkbox");
+        }
     }
 }
