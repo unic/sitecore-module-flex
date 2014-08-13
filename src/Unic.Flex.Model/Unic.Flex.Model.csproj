@@ -93,6 +93,7 @@
     <Compile Include="DomainModel\Fields\FieldBase.cs" />
     <Compile Include="DomainModel\Fields\IField.cs" />
     <Compile Include="DomainModel\Fields\ListFields\ListField.cs" />
+    <Compile Include="DomainModel\Fields\ListFields\MulticheckListField.cs" />
     <Compile Include="DomainModel\Global\Specification.cs" />
     <Compile Include="DomainModel\Plugs\LoadPlugs\ILoadPlug.cs" />
     <Compile Include="DomainModel\Plugs\LoadPlugs\LoadPlugBase.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="DomainModel\Plugs\SavePlugs\ISavePlug.cs" />
     <Compile Include="DomainModel\Plugs\SavePlugs\SavePlugBase.cs" />
     <Compile Include="DomainModel\Components\INavigationPane.cs" />
+    <Compile Include="DomainModel\Validators\MulticheckRequired.cs" />
     <Compile Include="DomainModel\Validators\RequiredValidator.cs" />
     <Compile Include="GlassExtensions\Attributes\SitecoreSharedFieldAttribute.cs" />
     <Compile Include="GlassExtensions\Configurations\SitecoreSharedFieldConfiguration.cs" />
@@ -114,6 +116,7 @@
     <Compile Include="ViewModel\Fields\IFieldViewModel.cs" />
     <Compile Include="ViewModel\Fields\InputFields\InputFieldViewModel.cs" />
     <Compile Include="ViewModel\Fields\ListFields\ListFieldViewModel.cs" />
+    <Compile Include="ViewModel\Fields\ListFields\MulticheckListFieldViewModel.cs" />
     <Compile Include="ViewModel\Forms\FormViewModel.cs" />
     <Compile Include="GlassExtensions\Attributes\SitecoreDictionaryFallbackFieldAttribute.cs" />
     <Compile Include="GlassExtensions\Configurations\SitecoreDictionaryFallbackFieldConfiguration.cs" />

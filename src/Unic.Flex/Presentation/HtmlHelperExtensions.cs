@@ -2,7 +2,9 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Linq.Expressions;
+    using System.Text;
     using System.Web.Mvc;
     using System.Web.Mvc.Html;
     using Unic.Flex.Definitions;
@@ -119,6 +121,11 @@
             }
 
             return attributes;
+        }
+
+        public static string FormatAttributes(this HtmlHelper htmlHelper, IDictionary<string, object> attributes)
+        {
+            return attributes.Aggregate(new StringBuilder(), (sb, kvp) => sb.AppendFormat("{0}='{1}' ", kvp.Key, kvp.Value)).ToString();
         }
     }
 }

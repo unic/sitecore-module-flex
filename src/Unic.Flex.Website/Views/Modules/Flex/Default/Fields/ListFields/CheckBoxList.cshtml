@@ -9,6 +9,10 @@
         <legend class="flex_label" id="@Html.IdForModel()">
             @Model.Label
         </legend>
+        
+        @{
+            var attributes = Html.FormatAttributes(Html.GetAttributes(Model));
+        }
 
         @for (var i = 0; i < Model.Items.Count(); i++)
         {
@@ -21,7 +25,7 @@
 
             <input type="checkbox" name="@propertyName" id="@propertyId" value="@checkbox.Value" role="option"
                    aria-multiline="false" aria-labelledby="@propertyLabel" aria-checked="@selected.ToString()"
-                   @selectedText />
+                   @Html.Raw(attributes) @selectedText />
 
             <label class="flex_label" for="@propertyId" id="@propertyLabel">
                 @checkbox.Text

@@ -2,7 +2,7 @@
 {
     using Unic.Flex.Model.ViewModel.Fields.ListFields;
 
-    public class CheckBoxListFieldViewModel : ListFieldViewModel<string[]>
+    public class CheckBoxListFieldViewModel : MulticheckListFieldViewModel<string[]>
     {
         // todo: client-side validator does not work actually -> needed attributes are missing
 

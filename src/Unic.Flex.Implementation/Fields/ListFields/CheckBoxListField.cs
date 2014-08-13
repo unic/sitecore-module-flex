@@ -5,7 +5,7 @@
     using Unic.Flex.Model.DomainModel.Fields.ListFields;
 
     [SitecoreType(TemplateId = "{7532F52A-8BA7-4903-9B27-9E18FA1C4B92}")]
-    public class CheckBoxListField : ListField<string[]>
+    public class CheckBoxListField : MulticheckListField<string[]>
     {
         public CheckBoxListField()
         {

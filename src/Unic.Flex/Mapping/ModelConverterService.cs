@@ -14,6 +14,7 @@
     using Unic.Flex.Definitions;
     using Unic.Flex.Globalization;
     using Unic.Flex.Logging;
+    using Unic.Flex.Model.DomainModel.Fields.ListFields;
     using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.DomainModel.Sections;
     using Unic.Flex.Model.DomainModel.Steps;
@@ -24,6 +25,7 @@
     using Unic.Flex.Model.ViewModel.Forms;
     using Unic.Flex.Model.ViewModel.Sections;
     using Unic.Flex.Model.ViewModel.Steps;
+    using Unic.Flex.Utilities;
 
     public class ModelConverterService : IModelConverterService
     {
@@ -143,7 +145,14 @@
                     // add required validator
                     if (field.IsRequired)
                     {
-                        validatableObject.AddValidator(new RequiredValidator { ValidationMessage = field.ValidationMessage });
+                        if (TypeHelper.IsSubclassOfRawGeneric(typeof(MulticheckListField<>), field.GetType()))
+                        {
+                            validatableObject.AddValidator(new MulticheckRequired { ValidationMessage = field.ValidationMessage });
+                        }
+                        else
+                        {
+                            validatableObject.AddValidator(new RequiredValidator { ValidationMessage = field.ValidationMessage });    
+                        }       
                     }
 
                     // add all other validators
