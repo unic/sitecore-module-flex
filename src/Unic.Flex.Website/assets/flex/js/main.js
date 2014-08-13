@@ -16970,47 +16970,23 @@ $.extend($.fn, {
 }(jQuery));
 
 /**
- * Styling of form-components based on uniform.js.
- * @author RoW, Unic AG
+ * Default Form-Functionalities:
+ * - validation
+ * - belongsto
+ * - showpassword
+ * @author RoM, Unic AG
  * @license All rights reserved Unic AG
  */
-
 ;(function(window, document, $, Unic, undefined) {
 	'use strict';
 
-	var pluginName = 'formmodule',
+	var $document = $(document);
+
+	var pluginName = 'flexform',
 		events = {
 		},
 		defaults = {
-			uniformOptions: {
-				activeClass: 'fm_active',
-				autoHide: true,
-				buttonClass: 'fm_button',
-				checkboxClass: 'fm_checker',
-				checkedClass: 'fm_checked',
-				disabledClass: 'fm_disabled',
-				eventNamespace: '.fm_uniform',
-				fileButtonClass: 'fm_action',
-				fileButtonHtml: 'Choose File',
-				fileClass: 'fm_uploader',
-				fileDefaultHtml: 'No file selected',
-				filenameClass: 'fm_filename',
-				focusClass: 'fm_focus',
-				hoverClass: 'fm_hover',
-				idPrefix: 'fm_uniform',
-				inputAddTypeAsClass: true,
-				inputClass: 'fm_uniform-input',
-				radioClass: 'fm_radio',
-				resetDefaultHtml: 'Reset',
-				resetSelector: '[type=reset]',  // We'll use our own function when you don't specify one
-				selectAutoWidth: true,
-				selectClass: 'fm_selector',
-				selectMultiClass: 'fm_uniform-multiselect',
-				submitDefaultHtml: 'Submit',  // Only text allowed
-				textareaClass: 'fm_uniform',
-				useID: true,
-				wrapperClass: null
-			}
+			cssprefix: 'flex'
 		};
 	pluginName = pluginName.toLowerCase();
 
@@ -17018,7 +16994,6 @@ $.extend($.fn, {
 	Unic.modules[pluginName] = {
 		events: events
 	};
-
 
 	/**
 	 * Create an instance of the module
@@ -17037,13 +17012,8 @@ $.extend($.fn, {
 	 * Initialize module, bind events
 	 */
 	Plugin.prototype.init = function() {
-//		if (POSTWEPP && typeof (POSTWEPP.languages[POSTWEPP.config.currentLang]) !== 'undefined' && typeof (POSTWEPP.languages[POSTWEPP.config.currentLang].translations) !== 'undefined') {
-//			this.options.uniformOptions.fileButtonHtml = POSTWEPP.languages[POSTWEPP.config.currentLang].translations.fileButtonHtml;
-//			this.options.uniformOptions.fileDefaultHtml = POSTWEPP.languages[POSTWEPP.config.currentLang].translations.fileDefaultHtml;
-//		}
-
-		this._initFormStyles();
 		this._initBelongsto();
+		this._initValidation();
 
 		if (!Modernizr.placeholder) {
 			this.$element.find('input, textarea').placeholder();
@@ -17051,10 +17021,16 @@ $.extend($.fn, {
 
 		this.$element.on('change.' + pluginName, '[data-' + pluginName + '=showpasswordtrigger]', _.bind(this._handleShowPassword, this));
 		this.$element.on('submit.' + pluginName, _.bind(this._handleSubmit, this));
+
+		// Init dependent flex-modules
+		if (Unic.modules.flexstyles) {
+			this.$element.attr('data-init', this.$element.attr('data-init') + ' flexstyles');
+		}
+		$document.trigger('additional_forminit');
 	};
 
 	/**
-	 * Reinits the formmodule.
+	 * Reinits the flex-formmodule.
 	 * @public
 	 */
 	Plugin.prototype.reinit = function() {
@@ -17063,13 +17039,17 @@ $.extend($.fn, {
 	};
 
 	/**
-	 * Inits Uniform-Styles.
+	 * Method to configure Validation-Plugin if necessary and add default customValidators.
 	 * @private
 	 */
-	Plugin.prototype._initFormStyles = function(){
-		this.$element.find('select, :checkbox, :radio, [type=file]').uniform(this.options.uniformOptions);
+	Plugin.prototype._initValidation = function(){
+		// http://weblogs.asp.net/imranbaloch/overriding-unobtrusive-client-side-validation-settings-in-asp-net-mvc-3
+		// var validator = this.$element.data('validator');
 
-		this.$element.find('.fm_selector > span').attr('aria-hidden', 'true');
+		$.validator.addMethod('multicheckrequired', function (value, element) {
+			var $container = $(element).closest('fieldset');
+			return $container.find(':checked').length ? true : false;
+		});
 	};
 
 	/**
@@ -17126,7 +17106,7 @@ $.extend($.fn, {
 			$current.siblings(':text, :password').val(currentVal);
 		});
 
-		$container.toggleClass('fm_show_active', $checkbox.is(':checked'));
+		$container.toggleClass(this.options.prefix + '_show_active', $checkbox.is(':checked'));
 
 		// Handle Disabling Fields - Do not send invisible field, therefore disable it.
 		$container.find(':password:visible, :text:visible').removeAttr('disabled').removeAttr('aria-disabled');
@@ -17165,7 +17145,8 @@ $.extend($.fn, {
 		events = {
 		},
 		defaults = {
-			tooltipSpeed: 0
+			tooltipSpeed: 0,
+			prefix: 'flex'
 		};
 
 	// Globally accessible data like event names
@@ -17197,7 +17178,7 @@ $.extend($.fn, {
 	};
 
 	/**
-	 * Reinits the formmodule.
+	 * Reinits the flex-formmodule.
 	 * @public
 	 */
 	Plugin.prototype.reinit = function() {
@@ -17223,7 +17204,7 @@ $.extend($.fn, {
 		// Toggle tooltip link class
 		$link.closest('[data-' + pluginName + '=init]')
 			.find('[data-' + pluginName + '=link]')
-			.toggleClass('fm_tooltip_visible');
+			.toggleClass(this.options.prefix + '_tooltip_visible');
 	};
 
 	// Make the plugin available through jQuery (and the global project namespace)
