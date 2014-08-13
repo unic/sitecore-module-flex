@@ -18,6 +18,6 @@ namespace Unic.Flex.Definitions
 
         public const string LabelIdSuffix = "Label";
 
-        public const string LabelCssClass = "fm_label";
+        public const string LabelCssClass = "flex_label";
     }
 }

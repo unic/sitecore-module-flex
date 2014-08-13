@@ -65,7 +65,10 @@
         /// <param name="expression">The expression.</param>
         /// <param name="labelText">The label text.</param>
         /// <returns>Html string with the markup for a label</returns>
-        public static MvcHtmlString FlexLabel<TModel, TValue>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TValue>> expression, string labelText)
+        public static MvcHtmlString FlexLabel<TModel, TValue>(
+            this HtmlHelper<TModel> htmlHelper,
+            Expression<Func<TModel, TValue>> expression,
+            string labelText)
         {
             return htmlHelper.LabelFor(
                 expression,
@@ -74,6 +77,28 @@
                     {
                         @class = Constants.LabelCssClass,
                         id = htmlHelper.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldId(Constants.LabelIdSuffix)
+                    });
+        }
+
+        /// <summary>
+        /// Adds the validator for a specific field
+        /// </summary>
+        /// <typeparam name="TModel">The type of the model.</typeparam>
+        /// <typeparam name="TProperty">The type of the property.</typeparam>
+        /// <param name="htmlHelper">The HTML helper.</param>
+        /// <param name="expression">The expression.</param>
+        /// <returns>Html string with the markup for the validator</returns>
+        public static MvcHtmlString FlexValidator<TModel, TProperty>(
+            this HtmlHelper<TModel> htmlHelper,
+            Expression<Func<TModel, TProperty>> expression)
+        {
+            return htmlHelper.ValidationMessageFor(
+                expression,
+                null,
+                new
+                    {
+                        role = "alert",
+                        aria_labelledby = htmlHelper.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldId(Constants.LabelIdSuffix)
                     });
         }
 

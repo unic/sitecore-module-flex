@@ -119,7 +119,7 @@
             {
                 this.Attributes.Add("disabled", "disabled");
                 this.Attributes.Add("aria-disabled", true);
-                this.AddCssClass("fm_disabled");
+                this.AddCssClass("flex_disabled");
             }
         }
 

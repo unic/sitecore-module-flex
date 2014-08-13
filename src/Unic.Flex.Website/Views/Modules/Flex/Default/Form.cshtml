@@ -1,12 +1,20 @@
 ﻿@using System.Web.Mvc
 @using System.Web.Mvc.Html
+@using Sitecore.Globalization
 @using Unic.Flex.Presentation
 @model Unic.Flex.Model.ViewModel.Forms.FormViewModel
 
 <h2>@Model.Title</h2>
 <p>@Model.Introduction</p>
 
-@using (Html.BeginForm(null, null, FormMethod.Post, new { @action = this.Request.RawUrl, @class = "fm_formcontainer", data_init = "formmodule" }))
+@using (Html.BeginForm(null, null, FormMethod.Post, new {
+                                                            @action = this.Request.RawUrl,
+                                                            @class = "flex_formcontainer",
+                                                            data_init = "flexform",
+                                                            data_flexstyles_options = "{'uniformOptions': {'fileButtonHtml' : '" + Translate.Text("Choose file") + "', 'fileDefaultHtml': '" + Translate.Text("No file choosen") + "'}}"
+                                                        }))
 {
     @Html.FlexComponent(m => m.Step)
 }
+
+

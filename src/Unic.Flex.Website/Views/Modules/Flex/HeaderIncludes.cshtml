@@ -1,5 +1,8 @@
-﻿<!-- Flex Stylesheets -->
-<link rel="stylesheet" href="@Url.Content("~/assets/flex/css/main.css")">
+﻿@using Unic.Flex.Presentation
+
+<!-- Flex Stylesheets -->
+<link rel="stylesheet" href="@Url.CacheSafeContent("~/assets/flex/css/main.css")">
+<link rel="stylesheet" href="@Url.CacheSafeContent("~/assets/flex/css/styling.css")">
 
 <!-- Flex Javascripts -->
-<script src="@Url.Content("~/assets/flex/js/head.js")"></script>
+<script src="@Url.CacheSafeContent("~/assets/flex/js/head.js")"></script>
