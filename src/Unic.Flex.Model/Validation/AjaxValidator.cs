@@ -11,21 +11,26 @@
     public abstract class AjaxValidator : IValidator
     {
         /// <summary>
+        /// Gets the default validation message dictionary key.
+        /// </summary>
+        /// <value>
+        /// The default validation message dictionary key.
+        /// </value>
+        public virtual string DefaultValidationMessageDictionaryKey
+        {
+            get
+            {
+                return "Input is invalid";
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the validation message.
         /// </summary>
         /// <value>
         /// The validation message.
         /// </value>
         public abstract string ValidationMessage { get; set; }
-
-        /// <summary>
-        /// Determines whether the specified value is valid.
-        /// </summary>
-        /// <param name="value">The value.</param>
-        /// <returns>
-        ///   <c>true</c> if the value entered is valid, <c>false</c> otherwise
-        /// </returns>
-        public abstract bool IsValid(object value);
 
         /// <summary>
         /// Gets or sets the validator identifier.
@@ -49,6 +54,15 @@
                 return FormMethod.Post;
             }
         }
+
+        /// <summary>
+        /// Determines whether the specified value is valid.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>
+        ///   <c>true</c> if the value entered is valid, <c>false</c> otherwise
+        /// </returns>
+        public abstract bool IsValid(object value);
 
         /// <summary>
         /// Gets the additional html attributes which should be rendered.

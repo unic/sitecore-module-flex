@@ -164,8 +164,7 @@
                     // add default validators of the field
                     foreach (var validator in field.DefaultValidators)
                     {
-                        // todo: can this repalcement maybe moved to some generic place instead of only doing it here?
-                        validator.ValidationMessage = this.dictionaryRepository.GetText(validator.ValidationMessage);
+                        validator.ValidationMessage = this.dictionaryRepository.GetText(validator.DefaultValidationMessageDictionaryKey);
                         validatableObject.AddValidator(validator);
                     }
 

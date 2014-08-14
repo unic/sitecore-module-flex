@@ -13,9 +13,18 @@
     public class NumberValidator : IValidator
     {
         /// <summary>
-        /// The validation message dictionary key
+        /// Gets the default validation message dictionary key.
         /// </summary>
-        public const string ValidationMessageDictionaryKey = "Please enter a valid number";
+        /// <value>
+        /// The default validation message dictionary key.
+        /// </value>
+        public virtual string DefaultValidationMessageDictionaryKey
+        {
+            get
+            {
+                return "Please enter a valid number";
+            }
+        }
         
         /// <summary>
         /// Gets or sets the validation message.
@@ -23,7 +32,7 @@
         /// <value>
         /// The validation message.
         /// </value>
-        [SitecoreDictionaryFallbackField("Validation Message", ValidationMessageDictionaryKey)]
+        [SitecoreDictionaryFallbackField("Validation Message", "Please enter a valid number")]
         public virtual string ValidationMessage { get; set; }
 
         /// <summary>

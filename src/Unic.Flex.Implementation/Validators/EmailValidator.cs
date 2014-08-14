@@ -10,9 +10,18 @@
     public class EmailValidator : RegularExpressionValidator
     {
         /// <summary>
-        /// The validation message dictionary key
+        /// Gets the default validation message dictionary key.
         /// </summary>
-        public new const string ValidationMessageDictionaryKey = "Email is invalid";
+        /// <value>
+        /// The default validation message dictionary key.
+        /// </value>
+        public override string DefaultValidationMessageDictionaryKey
+        {
+            get
+            {
+                return "Email is invalid";
+            }
+        }
 
         /// <summary>
         /// Gets or sets the validation message.
@@ -20,7 +29,7 @@
         /// <value>
         /// The validation message.
         /// </value>
-        [SitecoreDictionaryFallbackField("Validation Message", ValidationMessageDictionaryKey)]
+        [SitecoreDictionaryFallbackField("Validation Message", "Email is invalid")]
         public override string ValidationMessage { get; set; }
 
         /// <summary>

@@ -13,9 +13,18 @@
     public class RegularExpressionValidator : IValidator
     {
         /// <summary>
-        /// The validation message dictionary key
+        /// Gets the default validation message dictionary key.
         /// </summary>
-        public const string ValidationMessageDictionaryKey = "Input is invalid";
+        /// <value>
+        /// The default validation message dictionary key.
+        /// </value>
+        public virtual string DefaultValidationMessageDictionaryKey
+        {
+            get
+            {
+                return "Input is invalid";
+            }
+        }
 
         /// <summary>
         /// Gets or sets the validation message.
@@ -23,7 +32,7 @@
         /// <value>
         /// The validation message.
         /// </value>
-        [SitecoreDictionaryFallbackField("Validation Message", ValidationMessageDictionaryKey)]
+        [SitecoreDictionaryFallbackField("Validation Message", "Input is invalid")]
         public virtual string ValidationMessage { get; set; }
 
         /// <summary>

@@ -8,6 +8,14 @@
     public interface IValidator
     {
         /// <summary>
+        /// Gets the default validation message dictionary key.
+        /// </summary>
+        /// <value>
+        /// The default validation message dictionary key.
+        /// </value>
+        string DefaultValidationMessageDictionaryKey { get; }
+        
+        /// <summary>
         /// Gets or sets the validation message.
         /// </summary>
         /// <value>

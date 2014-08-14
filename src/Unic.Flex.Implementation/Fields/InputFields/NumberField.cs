@@ -15,7 +15,7 @@
         /// </summary>
         public NumberField()
         {
-            this.DefaultValidators.Add(new NumberValidator { ValidationMessage = NumberValidator.ValidationMessageDictionaryKey });
+            this.DefaultValidators.Add(new NumberValidator());
         }
 
         /// <summary>

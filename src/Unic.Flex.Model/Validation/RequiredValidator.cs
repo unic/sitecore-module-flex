@@ -9,6 +9,20 @@
     public class RequiredValidator : IValidator
     {
         /// <summary>
+        /// Gets the default validation message dictionary key.
+        /// </summary>
+        /// <value>
+        /// The default validation message dictionary key.
+        /// </value>
+        public virtual string DefaultValidationMessageDictionaryKey
+        {
+            get
+            {
+                return "Field is required";
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the validation message.
         /// </summary>
         /// <value>
