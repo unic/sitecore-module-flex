@@ -19,33 +19,6 @@
         }
 
         /// <summary>
-        /// Gets or sets the minimum value.
-        /// </summary>
-        /// <value>
-        /// The minimum value.
-        /// </value>
-        [SitecoreField("Min Value")]
-        public virtual int MinValue { get; set; }
-
-        /// <summary>
-        /// Gets or sets the maximum value.
-        /// </summary>
-        /// <value>
-        /// The maximum value.
-        /// </value>
-        [SitecoreField("Max Value")]
-        public virtual int MaxValue { get; set; }
-
-        /// <summary>
-        /// Gets or sets the step.
-        /// </summary>
-        /// <value>
-        /// The step.
-        /// </value>
-        [SitecoreField("Step")]
-        public virtual int Step { get; set; }
-
-        /// <summary>
         /// Sets the value.
         /// </summary>
         /// <param name="value">The value.</param>

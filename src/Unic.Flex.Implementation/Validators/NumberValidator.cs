@@ -79,9 +79,17 @@
         /// </returns>
         public virtual IDictionary<string, object> GetAttributes()
         {
-            // todo: handle range attributes
             var attributes = new Dictionary<string, object>();
+
             attributes.Add("data-val-number", this.ValidationMessage);
+
+            if (this.NumberRangeStart > 0 || this.NumberRangeEnd > 0)
+            {
+                attributes.Add("data-val-range", this.ValidationMessage);
+                if (this.NumberRangeStart > 0) attributes.Add("data-val-range-min", this.NumberRangeStart);
+                if (this.NumberRangeEnd > 0) attributes.Add("data-val-range-max", this.NumberRangeEnd);
+            }
+
             return attributes;
         }
     }
