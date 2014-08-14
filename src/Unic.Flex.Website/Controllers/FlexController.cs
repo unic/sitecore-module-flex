@@ -1,10 +1,13 @@
 ﻿namespace Unic.Flex.Website.Controllers
 {
+    using System;
     using System.Linq;
     using System.Web.Mvc;
     using Unic.Flex.Context;
     using Unic.Flex.Definitions;
+    using Unic.Flex.Logging;
     using Unic.Flex.Mapping;
+    using Unic.Flex.Model.Validation;
     using Unic.Flex.Model.ViewModel.Forms;
     using Unic.Flex.ModelBinding;
     using Unic.Flex.Plugs;
@@ -26,7 +29,11 @@
 
         private readonly IUrlService urlService;
 
-        public FlexController(IPresentationService presentationService, IModelConverterService modelConverter, IContextService contextService, IUserDataRepository userDataRepository, IPlugsService plugsService, IFlexContext flexContext, IUrlService urlService)
+        private readonly IFormRepository formRepository;
+
+        private readonly ILogger logger;
+
+        public FlexController(IPresentationService presentationService, IModelConverterService modelConverter, IContextService contextService, IUserDataRepository userDataRepository, IPlugsService plugsService, IFlexContext flexContext, IUrlService urlService, IFormRepository formRepository, ILogger logger)
         {
             this.presentationService = presentationService;
             this.modelConverter = modelConverter;
@@ -35,6 +42,8 @@
             this.plugsService = plugsService;
             this.flexContext = flexContext;
             this.urlService = urlService;
+            this.formRepository = formRepository;
+            this.logger = logger;
         }
 
         public ActionResult Form()
@@ -131,6 +140,34 @@
 
             // redirect to the current page and show the success message
             return this.Redirect(this.urlService.AddQueryStringToCurrentUrl(Constants.SuccessQueryStringKey, Constants.SuccessQueryStringValue));
+        }
+
+        /// <summary>
+        /// Ajaxes the validator.
+        /// </summary>
+        /// <param name="validator">The validator.</param>
+        /// <returns>Boolean value as json result</returns>
+        public ActionResult AjaxValidator(Guid validator)
+        {
+            // get the validator
+            var validatorItem = this.formRepository.LoadValidator(validator) as AjaxValidator;
+            if (validatorItem == null)
+            {
+                this.logger.Warn(string.Format("Ajax validator with guid '{0}' not found", validator), this);
+                return this.Json(false, JsonRequestBehavior.AllowGet);
+            }
+
+            // get the key of the valud
+            var collection = validatorItem.HttpMethod == FormMethod.Post ? Request.Form : Request.QueryString;
+            var key = collection.AllKeys.FirstOrDefault(x => x.EndsWith("Value"));
+            if (string.IsNullOrWhiteSpace(key))
+            {
+                this.logger.Warn(string.Format("No valid value provided to check ajax validator '{0}'", validator), this);
+                return this.Json(false, JsonRequestBehavior.AllowGet);
+            }
+            
+            // validate
+            return this.Json(validatorItem.IsValid(collection[key]), JsonRequestBehavior.AllowGet);
         }
     }
 }

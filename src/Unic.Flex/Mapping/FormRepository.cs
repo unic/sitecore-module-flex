@@ -1,8 +1,10 @@
 ﻿namespace Unic.Flex.Mapping
 {
+    using System;
     using Glass.Mapper.Sc;
     using Sitecore.Diagnostics;
     using Unic.Flex.Model.DomainModel.Forms;
+    using Unic.Flex.Model.Validation;
 
     /// <summary>
     /// Repository containg data access for the forms.
@@ -34,6 +36,18 @@
         {
             Assert.ArgumentCondition(Sitecore.Data.ID.IsID(dataSource), dataSource, "Datasource is not valid");
             return this.sitecoreContext.GetItem<Form>(dataSource, inferType: true);
+        }
+
+        /// <summary>
+        /// Loads a validator from the data source.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>
+        /// Validator if found
+        /// </returns>
+        public IValidator LoadValidator(Guid id)
+        {
+            return this.sitecoreContext.GetItem<IValidator>(id, inferType: true);
         }
     }
 }

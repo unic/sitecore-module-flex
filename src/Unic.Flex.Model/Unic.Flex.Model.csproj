@@ -101,6 +101,7 @@
     <Compile Include="DomainModel\Plugs\SavePlugs\ISavePlug.cs" />
     <Compile Include="DomainModel\Plugs\SavePlugs\SavePlugBase.cs" />
     <Compile Include="DomainModel\Components\INavigationPane.cs" />
+    <Compile Include="Validation\AjaxValidator.cs" />
     <Compile Include="Validation\MulticheckRequired.cs" />
     <Compile Include="Validation\RequiredValidator.cs" />
     <Compile Include="GlassExtensions\Attributes\SitecoreSharedFieldAttribute.cs" />

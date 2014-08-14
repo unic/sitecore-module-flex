@@ -15,6 +15,11 @@ namespace Unic.Flex.Logging
             Log.Info(this.FormatMessage(message), owner);
         }
 
+        public void Warn(string message, object owner)
+        {
+            Log.Warn(message, owner);
+        }
+
         public void Error(string message, object owner)
         {
             Log.Error(this.FormatMessage(message), owner);

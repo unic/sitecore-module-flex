@@ -10,6 +10,8 @@ namespace Unic.Flex.Logging
     {
         void Info(string message, object owner);
 
+        void Warn(string message, object owner);
+
         void Error(string message, object owner);
     }
 }
