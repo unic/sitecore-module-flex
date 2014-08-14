@@ -44,5 +44,21 @@
         /// </value>
         [SitecoreField("Step")]
         public virtual int Step { get; set; }
+
+        /// <summary>
+        /// Sets the value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        protected override void SetValue(object value)
+        {
+            if (value == null)
+            {
+                this.Value = default(int?);
+                return;
+            }
+            
+            int intValue;
+            this.Value = int.TryParse(value.ToString(), out intValue) ? intValue : (int?)null;
+        }
     }
 }

@@ -1,7 +1,6 @@
 ﻿namespace Unic.Flex.Implementation.Fields.InputFields
 {
     using Glass.Mapper.Sc.Configuration.Attributes;
-    using Ninject;
     using Unic.Flex.DependencyInjection;
     using Unic.Flex.Globalization;
     using Unic.Flex.Model.DomainModel.Fields.InputFields;
@@ -37,6 +36,22 @@
             {
                 return this.Value ? this.dictionaryRepository.GetText("Yes") : this.dictionaryRepository.GetText("No");
             }
+        }
+
+        /// <summary>
+        /// Sets the value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        protected override void SetValue(object value)
+        {
+            if (value == null)
+            {
+                this.Value = default(bool);
+                return;
+            }
+            
+            bool boolValue;
+            this.Value = bool.TryParse(value.ToString(), out boolValue) && boolValue;
         }
     }
 }

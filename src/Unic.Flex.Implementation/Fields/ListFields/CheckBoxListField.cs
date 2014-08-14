@@ -1,5 +1,6 @@
 ﻿namespace Unic.Flex.Implementation.Fields.ListFields
 {
+    using System.Linq;
     using System.Web.Mvc;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Unic.Flex.Model.DomainModel.Fields.ListFields;
@@ -14,6 +15,21 @@
             this.Items.Add(new SelectListItem { Text = "Red", Value = "red_value" });
             this.Items.Add(new SelectListItem { Text = "Green", Value = "green_value" });
             this.Items.Add(new SelectListItem { Text = "Blue", Value = "blue_value" });
+        }
+
+        /// <summary>
+        /// Sets the value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        protected override void SetValue(object value)
+        {
+            if (value == null)
+            {
+                this.Value = default(string[]);
+                return;
+            }
+
+            this.Value = value.ToString().Split(',');
         }
     }
 }

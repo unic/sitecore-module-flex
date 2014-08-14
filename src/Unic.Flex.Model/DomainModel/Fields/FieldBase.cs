@@ -28,7 +28,7 @@
 
             set
             {
-                this.Value = value != null ? (TValue)value : default(TValue);
+                this.SetValue(value);
             }
         }
 
@@ -53,6 +53,15 @@
                 var value = !Equals(this.Value, null) ? this.Value.ToString() : string.Empty;
                 return !string.IsNullOrWhiteSpace(value) ? value : "-";
             }
+        }
+
+        /// <summary>
+        /// Sets the value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        protected virtual void SetValue(object value)
+        {
+            this.Value = value != null ? (TValue)value : default(TValue);
         }
     }
 

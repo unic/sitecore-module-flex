@@ -15,5 +15,20 @@
             this.Items.Add(new SelectListItem { Text = "Apple", Value = "apple_value" });
             this.Items.Add(new SelectListItem { Text = "Oranges", Value = "oranges_value" });
         }
+
+        /// <summary>
+        /// Sets the value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        protected override void SetValue(object value)
+        {
+            if (value == null)
+            {
+                this.Value = default(string[]);
+                return;
+            }
+
+            this.Value = value.ToString().Split(',');
+        }
     }
 }

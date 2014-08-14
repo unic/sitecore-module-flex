@@ -1,10 +1,9 @@
 ﻿namespace Unic.Flex.Implementation.Plugs.LoadPlugs
 {
+    using Glass.Mapper.Sc.Configuration.Attributes;
+    using Sitecore.Diagnostics;
     using System.Linq;
     using System.Web;
-    using Glass.Mapper.Sc.Configuration.Attributes;
-    using Ninject;
-    using Sitecore.Diagnostics;
     using Unic.Flex.DependencyInjection;
     using Unic.Flex.Mapping;
     using Unic.Flex.Model.DomainModel.Forms;
@@ -49,7 +48,6 @@
                     var value = queryString[field.Key];
                     if (string.IsNullOrWhiteSpace(value)) continue;
 
-                    // todo: this currently only works for string types -> also allow this for i.e. checkboxes
                     field.Value = value;
                     this.userDataRepository.SetValue(form.Id, field.Key, value);
                 }
