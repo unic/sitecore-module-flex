@@ -155,16 +155,13 @@
                     }
 
                     // add all other validators
-                    foreach (var validator in field.Validators)
+                    foreach (var validator in field.Validators.Concat(field.DefaultValidators))
                     {
-                        // todo: it should be possible to create placeholder within the form message in a property-name style -> #MinValue# should be replaced with property "MinValue" of the validator etc.
-                        validatableObject.AddValidator(validator);
-                    }
+                        if (string.IsNullOrWhiteSpace(validator.ValidationMessage))
+                        {
+                            validator.ValidationMessage = this.dictionaryRepository.GetText(validator.DefaultValidationMessageDictionaryKey);
+                        }
 
-                    // add default validators of the field
-                    foreach (var validator in field.DefaultValidators)
-                    {
-                        validator.ValidationMessage = this.dictionaryRepository.GetText(validator.DefaultValidationMessageDictionaryKey);
                         validatableObject.AddValidator(validator);
                     }
 

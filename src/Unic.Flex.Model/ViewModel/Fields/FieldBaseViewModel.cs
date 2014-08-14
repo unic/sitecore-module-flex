@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
+    using System.Text.RegularExpressions;
     using Castle.DynamicProxy;
     using Unic.Flex.Model.Validation;
     using Unic.Flex.Model.ViewModel.Components;
@@ -159,7 +160,10 @@
             // do nothing if validators of this type has already been added
             var validatorType = ProxyUtil.GetUnproxiedType(validator);
             if (this.validators.Any(v => ProxyUtil.GetUnproxiedType(v) == validatorType)) return;
-            
+
+            // replace the placeholders of the validator with values
+            validator.ValidationMessage = ReplaceValidatorMessagePlaceholders(validator);
+
             // add the validator to the list
             this.validators.Add(validator);
 
@@ -186,6 +190,23 @@
             if (string.IsNullOrWhiteSpace(cssClass)) return;
 
             this.CssClass = string.Join(" ", this.CssClass, cssClass);
+        }
+
+        /// <summary>
+        /// Replaces the validator message placeholders with the value of the validators.
+        /// </summary>
+        /// <param name="validator">The validator.</param>
+        /// <returns>The replaced validator message</returns>
+        private static string ReplaceValidatorMessagePlaceholders(IValidator validator)
+        {
+            var type = validator.GetType();
+            
+            return Regex.Replace(
+                validator.ValidationMessage,
+                @"({)(.*?)(})",
+                match => type.GetProperty(match.Groups[2].Value) != null
+                    ? type.GetProperty(match.Groups[2].Value).GetValue(validator).ToString()
+                    : match.Value);
         }
     }
 }
