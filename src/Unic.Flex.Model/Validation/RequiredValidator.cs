@@ -1,8 +1,7 @@
-﻿namespace Unic.Flex.Model.DomainModel.Validators
+﻿namespace Unic.Flex.Model.Validation
 {
     using System.Collections.Generic;
     using System.Linq;
-    using Unic.Flex.Model.Validation;
 
     /// <summary>
     /// Validator to validate if field has a value

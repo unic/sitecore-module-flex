@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Unic.Flex.Model.DomainModel.Validators
+﻿namespace Unic.Flex.Model.Validation
 {
-    using Unic.Flex.Model.Validation;
+    using System.Collections.Generic;
+    using System.Linq;
 
     /// <summary>
     /// Required validator for fields with multiple options to check (checkboxlist)
