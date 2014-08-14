@@ -167,5 +167,14 @@
         /// </value>
         [SitecoreField("Tooltip Text")]
         public virtual string TooltipText { get; set; }
+
+        /// <summary>
+        /// Gets or sets the placeholder.
+        /// </summary>
+        /// <value>
+        /// The placeholder.
+        /// </value>
+        [SitecoreField("Placeholder")]
+        public virtual string Placeholder { get; set; }
     }
 }
