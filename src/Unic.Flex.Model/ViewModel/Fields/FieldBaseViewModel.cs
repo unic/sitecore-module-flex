@@ -162,7 +162,7 @@
             if (this.validators.Any(v => ProxyUtil.GetUnproxiedType(v) == validatorType)) return;
 
             // replace the placeholders of the validator with values
-            validator.ValidationMessage = ReplaceValidatorMessagePlaceholders(validator);
+            validator.ValidationMessage = this.ReplaceValidatorMessagePlaceholders(validator);
 
             // add the validator to the list
             this.validators.Add(validator);
@@ -197,16 +197,23 @@
         /// </summary>
         /// <param name="validator">The validator.</param>
         /// <returns>The replaced validator message</returns>
-        private static string ReplaceValidatorMessagePlaceholders(IValidator validator)
+        private string ReplaceValidatorMessagePlaceholders(IValidator validator)
         {
+            // get the type of the validator
             var type = validator.GetType();
             
-            return Regex.Replace(
+            // replace all placeholders
+            var message = Regex.Replace(
                 validator.ValidationMessage,
                 @"({)(.*?)(})",
                 match => type.GetProperty(match.Groups[2].Value) != null
                     ? type.GetProperty(match.Groups[2].Value).GetValue(validator).ToString()
                     : match.Value);
+
+            // replace the field name
+            message = message.Replace("{Field}", this.Label);
+
+            return message;
         }
     }
 }

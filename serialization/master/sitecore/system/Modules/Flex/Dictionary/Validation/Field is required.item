@@ -19,15 +19,15 @@ Field is required
 ----version----
 language: en
 version: 1
-revision: bc28d5ed-c877-44dc-a300-6e38f4956221
+revision: 93171f2e-3f9b-406b-a219-ef6871c955f1
 
 ----field----
 field: {2BA3454A-9A9C-4CDF-A9F8-107FD484EB6E}
 name: Phrase
 key: phrase
-content-length: 18
+content-length: 28
 
-Field is required.
+Field '{Field}' is required.
 ----field----
 field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
 name: __Owner
@@ -55,14 +55,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-bc28d5ed-c877-44dc-a300-6e38f4956221
+93171f2e-3f9b-406b-a219-ef6871c955f1
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20140521T113442:635362688822566620
+20140814T181305:635436367858087728
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
