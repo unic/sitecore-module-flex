@@ -24,14 +24,14 @@
         /// <param name="value">The value.</param>
         protected override void SetValue(object value)
         {
-            if (value == null)
+            if (value is string)
             {
-                this.Value = default(int?);
+                int intValue;
+                base.SetValue(int.TryParse(value.ToString(), out intValue) ? intValue : default(int?));
                 return;
             }
             
-            int intValue;
-            this.Value = int.TryParse(value.ToString(), out intValue) ? intValue : (int?)null;
+            base.SetValue(value);
         }
     }
 }

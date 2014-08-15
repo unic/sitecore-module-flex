@@ -23,13 +23,13 @@
         /// <param name="value">The value.</param>
         protected override void SetValue(object value)
         {
-            if (value == null)
+            if (value is string)
             {
-                this.Value = default(string[]);
+                base.SetValue(value.ToString().Split(','));
                 return;
             }
-
-            this.Value = value.ToString().Split(',');
+            
+            base.SetValue(value);
         }
     }
 }

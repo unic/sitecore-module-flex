@@ -44,14 +44,14 @@
         /// <param name="value">The value.</param>
         protected override void SetValue(object value)
         {
-            if (value == null)
+            if (value is string)
             {
-                this.Value = default(bool);
+                bool boolValue;
+                base.SetValue(bool.TryParse(value.ToString(), out boolValue) && boolValue);
                 return;
             }
-            
-            bool boolValue;
-            this.Value = bool.TryParse(value.ToString(), out boolValue) && boolValue;
+
+            base.SetValue(value);
         }
     }
 }
