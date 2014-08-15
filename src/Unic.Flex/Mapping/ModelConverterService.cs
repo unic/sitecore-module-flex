@@ -25,6 +25,7 @@
     using Unic.Flex.Model.ViewModel.Sections;
     using Unic.Flex.Model.ViewModel.Steps;
     using Unic.Flex.Utilities;
+    using Profiler = Unic.Profiling.Profiler;
 
     public class ModelConverterService : IModelConverterService
     {
@@ -58,7 +59,10 @@
             if (activeStep == null) throw new Exception("No step is currently active or no step was found");
 
             // convert the step
-            return this.Convert(form, activeStep);
+            Profiler.OnStart(this, "Convert DomainModel to ViewModel");
+            var viewModel = this.Convert(form, activeStep);
+            Profiler.OnEnd(this, "Convert DomainModel to ViewModel");
+            return viewModel;
         }
 
         /// <summary>
