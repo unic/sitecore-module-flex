@@ -33,12 +33,39 @@
         }
 
         /// <summary>
+        /// Gets or sets the default value.
+        /// </summary>
+        /// <value>
+        /// The default value.
+        /// </value>
+        object IField.DefaultValue
+        {
+            get
+            {
+                return this.DefaultValue;
+            }
+
+            set
+            {
+                this.DefaultValue = value != null ? (TValue)value : default(TValue);
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the value.
         /// </summary>
         /// <value>
         /// The value.
         /// </value>
         public virtual TValue Value { get; set; }
+
+        /// <summary>
+        /// Gets or sets the default value.
+        /// </summary>
+        /// <value>
+        /// The default value.
+        /// </value>
+        public virtual TValue DefaultValue { get; set; }
 
         /// <summary>
         /// Gets the text value.

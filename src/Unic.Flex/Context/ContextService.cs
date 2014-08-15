@@ -79,9 +79,13 @@
             {
                 var reusableSection = stepSection as ReusableSection;
                 var section = reusableSection != null ? reusableSection.Section : stepSection as StandardSection;
+                if (section == null) continue;
+
                 foreach (var field in section.Fields)
                 {
-                    field.Value = this.userDataRepository.GetValue(form.Id, field.Key);
+                    field.Value = this.userDataRepository.IsFieldStored(form.Id, field.Key)
+                                      ? this.userDataRepository.GetValue(form.Id, field.Key)
+                                      : field.DefaultValue;
                 }
             }
         }

@@ -17,5 +17,13 @@
         /// </value>
         [SitecoreField("Rows")]
         public virtual int Rows { get; set; }
+        /// <summary>
+        /// Gets or sets the default value.
+        /// </summary>
+        /// <value>
+        /// The default value.
+        /// </value>
+        [SitecoreField("Default Value")]
+        public override string DefaultValue { get; set; }
     }
 }

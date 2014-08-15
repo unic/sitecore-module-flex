@@ -18,6 +18,14 @@
         /// The value.
         /// </value>
         new TValue Value { get; set; }
+
+        /// <summary>
+        /// Gets or sets the default value.
+        /// </summary>
+        /// <value>
+        /// The default value.
+        /// </value>
+        new TValue DefaultValue { get; set; }
     }
 
     /// <summary>
@@ -32,6 +40,14 @@
         /// The value.
         /// </value>
         object Value { get; set; }
+
+        /// <summary>
+        /// Gets or sets the default value.
+        /// </summary>
+        /// <value>
+        /// The default value.
+        /// </value>
+        object DefaultValue { get; set; }
 
         /// <summary>
         /// Gets the text value.

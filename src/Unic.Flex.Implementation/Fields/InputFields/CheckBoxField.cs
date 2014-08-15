@@ -25,6 +25,15 @@
         }
 
         /// <summary>
+        /// Gets or sets the default value.
+        /// </summary>
+        /// <value>
+        /// The default value.
+        /// </value>
+        [SitecoreField("Default Value")]
+        public override bool DefaultValue { get; set; }
+
+        /// <summary>
         /// Gets the text value.
         /// </summary>
         /// <value>

@@ -19,6 +19,15 @@
         }
 
         /// <summary>
+        /// Gets or sets the default value.
+        /// </summary>
+        /// <value>
+        /// The default value.
+        /// </value>
+        [SitecoreField("Default Value")]
+        public override int? DefaultValue { get; set; }
+
+        /// <summary>
         /// Sets the value.
         /// </summary>
         /// <param name="value">The value.</param>

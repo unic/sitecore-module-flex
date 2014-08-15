@@ -29,6 +29,14 @@
         bool IsFormStored(string formId);
 
         /// <summary>
+        /// Determines whether a specific field from a form is actually stored in the storage provider or not.
+        /// </summary>
+        /// <param name="formId">The form identifier.</param>
+        /// <param name="fieldId">The field identifier.</param>
+        /// <returns><c>true</c> if the field is curretly stored in the storage provider, <c>false</c> otherwise.</returns>
+        bool IsFieldStored(string formId, string fieldId);
+
+        /// <summary>
         /// Clears the form values completely out of the storage provider.
         /// </summary>
         /// <param name="formId">The form identifier.</param>

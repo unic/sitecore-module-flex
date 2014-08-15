@@ -18,5 +18,14 @@
             // todo: this validator shows two different validation messages on client side validation -> is 1 coming from jquery validation and one from the regex validator?
             this.DefaultValidators.Add(new EmailValidator());
         }
+
+        /// <summary>
+        /// Gets or sets the default value.
+        /// </summary>
+        /// <value>
+        /// The default value.
+        /// </value>
+        [SitecoreField("Default Value")]
+        public override string DefaultValue { get; set; }
     }
 }
