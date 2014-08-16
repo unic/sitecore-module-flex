@@ -140,10 +140,6 @@
       <Project>{c47272b9-c13f-4f53-b9f3-d3066bb45810}</Project>
       <Name>Unic.Flex.Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Unic.Profiling\Unic.Profiling.csproj">
-      <Project>{293cac68-cd9b-457c-b841-83081cc79aa1}</Project>
-      <Name>Unic.Profiling</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
