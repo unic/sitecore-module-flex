@@ -1,8 +1,11 @@
 ﻿namespace Unic.Flex.Implementation.Validators
 {
+    using System;
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
     using Glass.Mapper.Sc.Configuration.Attributes;
+    using Unic.Flex.DependencyInjection;
+    using Unic.Flex.Logging;
     using Unic.Flex.Model.GlassExtensions.Attributes;
     using Unic.Flex.Model.Validation;
 
@@ -57,10 +60,19 @@
             if (string.IsNullOrWhiteSpace(stringValue)) return true;
 
             // todo: add regular expression validator for Sitecore item to validate correctly regex in the field
-            // todo: exception handling for invalid regular expression
-            var regex = new Regex(this.RegularExpression);
-            var match = regex.Match(stringValue);
-            return match.Success && match.Index == 0 && match.Length == stringValue.Length;
+            
+            try
+            {
+                var regex = new Regex(this.RegularExpression);
+                var match = regex.Match(stringValue);
+                return match.Success && match.Index == 0 && match.Length == stringValue.Length;
+            }
+            catch (ArgumentException exception)
+            {
+                var logger = Container.Resolve<ILogger>();
+                logger.Error(string.Format("Regular expression '{0}' is not valid", this.RegularExpression), this, exception);
+                return false;
+            }
         }
 
         /// <summary>
