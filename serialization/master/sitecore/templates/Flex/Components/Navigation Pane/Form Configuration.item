@@ -2,7 +2,7 @@
 version: 1
 id: {ABE6790D-E928-4DA2-9BC4-D61A791C903D}
 database: master
-path: /sitecore/templates/Flex/Steps/Navigation Pane/Form Configuration
+path: /sitecore/templates/Flex/Components/Navigation Pane/Form Configuration
 parent: {569C95E7-C1E0-4DD7-AE84-9673DBD3CB18}
 name: Form Configuration
 master: {00000000-0000-0000-0000-000000000000}

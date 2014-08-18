@@ -2,7 +2,7 @@
 version: 1
 id: {08C0835E-5179-4B68-B759-29B795AA9B89}
 database: master
-path: /sitecore/templates/Flex/Steps/Navigation Pane/Form Configuration/Show Navigation Pane
+path: /sitecore/templates/Flex/Components/Navigation Pane/Form Configuration/Show Navigation Pane
 parent: {ABE6790D-E928-4DA2-9BC4-D61A791C903D}
 name: Show Navigation Pane
 master: {00000000-0000-0000-0000-000000000000}

@@ -9,13 +9,6 @@ master: {00000000-0000-0000-0000-000000000000}
 template: {93EC9DA3-81FC-4A1E-82F8-DD988A2D355B}
 templatekey: Multi Step
 
-----field----
-field: {44307944-EA8B-4F93-B239-5529FAC1FAF9}
-name: Show Navigation Pane
-key: show navigation pane
-content-length: 1
-
-1
 ----version----
 language: en
 version: 1

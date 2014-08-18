@@ -9,13 +9,6 @@ master: {00000000-0000-0000-0000-000000000000}
 template: {D8D5719A-4799-44D4-8BDC-9EA78E029385}
 templatekey: Summary
 
-----field----
-field: {5F2DAF43-FDD0-48F4-BA3C-644A113544C0}
-name: Show Navigation Pane
-key: show navigation pane
-content-length: 1
-
-1
 ----version----
 language: en
 version: 1

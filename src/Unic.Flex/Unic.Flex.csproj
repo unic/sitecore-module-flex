@@ -136,6 +136,7 @@
     <Compile Include="Presentation\PresentationService.cs" />
     <Compile Include="Rules\Conditions\FormCondition.cs" />
     <Compile Include="Rules\Conditions\InstanceCondition.cs" />
+    <Compile Include="Validators\FieldValidators\RegularExpressionValidator.cs" />
     <Compile Include="Utilities\TypeHelper.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -59,8 +59,6 @@
             var stringValue = value as string;
             if (string.IsNullOrWhiteSpace(stringValue)) return true;
 
-            // todo: add regular expression validator for Sitecore item to validate correctly regex in the field
-            
             try
             {
                 var regex = new Regex(this.RegularExpression);

@@ -2,7 +2,7 @@
 version: 1
 id: {69B9DC57-F926-4C6A-96B0-25C076AABBE1}
 database: master
-path: /sitecore/templates/Flex/Steps/Navigation Pane/__Standard Values
+path: /sitecore/templates/Flex/Components/Navigation Pane/__Standard Values
 parent: {569C95E7-C1E0-4DD7-AE84-9673DBD3CB18}
 name: __Standard Values
 master: {00000000-0000-0000-0000-000000000000}
