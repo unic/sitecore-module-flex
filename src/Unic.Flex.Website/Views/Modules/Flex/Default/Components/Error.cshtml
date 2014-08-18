@@ -1,0 +1,16 @@
+﻿@model Unic.Flex.Model.ViewModel.Components.ErrorViewModel
+
+@if (Model.Messages.Any())
+{
+    <div class="flex_formcontainer">
+        <div class="validation-summary-errors">
+            <ul>
+                @foreach (var message in Model.Messages)
+                {
+                    <li>@message</li>
+                }
+            </ul>
+        </div>
+    </div>
+}
+    

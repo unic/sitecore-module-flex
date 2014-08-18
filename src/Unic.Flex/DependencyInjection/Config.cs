@@ -9,6 +9,7 @@
     using Unic.Flex.Globalization;
     using Unic.Flex.Logging;
     using Unic.Flex.Mapping;
+    using Unic.Flex.Model.Exceptions;
     using Unic.Flex.ModelBinding;
     using Unic.Flex.Plugs;
     using Unic.Flex.Presentation;
@@ -25,6 +26,9 @@
         {
             // logging
             Bind<ILogger>().To<SitecoreLogger>();
+
+            // exception handling
+            Bind<IExceptionState>().To<ExceptionState>().InRequestScope();
             
             // business logic
             Bind<IContextService>().To<ContextService>();

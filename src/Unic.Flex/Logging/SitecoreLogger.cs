@@ -20,9 +20,9 @@ namespace Unic.Flex.Logging
             Log.Warn(this.FormatMessage(message), owner);
         }
 
-        public void Error(string message, object owner)
+        public void Error(string message, object owner, Exception exception = null)
         {
-            Log.Error(this.FormatMessage(message), owner);
+            Log.Error(this.FormatMessage(message), exception, owner);
         }
 
         private string FormatMessage(string message)

@@ -12,6 +12,6 @@ namespace Unic.Flex.Logging
 
         void Warn(string message, object owner);
 
-        void Error(string message, object owner);
+        void Error(string message, object owner, Exception exception = null);
     }
 }

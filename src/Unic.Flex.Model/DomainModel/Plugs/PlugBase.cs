@@ -4,7 +4,7 @@
 
     public abstract class PlugBase : ItemBase
     {
-        [SitecoreDictionaryFallbackField("Label", "Default plug error")]
+        [SitecoreDictionaryFallbackField("Error Message", "Default plug error")]
         public virtual string ErrorMessage { get; set; }
     }
 }

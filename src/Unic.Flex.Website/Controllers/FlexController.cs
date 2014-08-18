@@ -7,7 +7,9 @@
     using Unic.Flex.Definitions;
     using Unic.Flex.Logging;
     using Unic.Flex.Mapping;
+    using Unic.Flex.Model.Exceptions;
     using Unic.Flex.Model.Validation;
+    using Unic.Flex.Model.ViewModel.Components;
     using Unic.Flex.Model.ViewModel.Forms;
     using Unic.Flex.ModelBinding;
     using Unic.Flex.Plugs;
@@ -33,7 +35,9 @@
 
         private readonly ILogger logger;
 
-        public FlexController(IPresentationService presentationService, IModelConverterService modelConverter, IContextService contextService, IUserDataRepository userDataRepository, IPlugsService plugsService, IFlexContext flexContext, IUrlService urlService, IFormRepository formRepository, ILogger logger)
+        private readonly IExceptionState exceptionState;
+
+        public FlexController(IPresentationService presentationService, IModelConverterService modelConverter, IContextService contextService, IUserDataRepository userDataRepository, IPlugsService plugsService, IFlexContext flexContext, IUrlService urlService, IFormRepository formRepository, ILogger logger, IExceptionState exceptionState)
         {
             this.presentationService = presentationService;
             this.modelConverter = modelConverter;
@@ -44,6 +48,7 @@
             this.urlService = urlService;
             this.formRepository = formRepository;
             this.logger = logger;
+            this.exceptionState = exceptionState;
         }
 
         public ActionResult Form()
@@ -55,6 +60,12 @@
             // get the current step
             var currentStep = form.GetActiveStep();
             if (currentStep == null) return new EmptyResult();
+
+            // show errors
+            if (this.exceptionState.HasErrors)
+            {
+                return this.ShowError();
+            }
 
             // check if we need to show the success message
             if (Request.QueryString[Constants.SuccessQueryStringKey] == Constants.SuccessQueryStringValue
@@ -168,6 +179,13 @@
             
             // validate
             return this.Json(validatorItem.IsValid(collection[key]), JsonRequestBehavior.AllowGet);
+        }
+
+        private ActionResult ShowError()
+        {
+            var model = new ErrorViewModel { Messages = this.exceptionState.Messages };
+            var view = this.presentationService.ResolveView(this.ControllerContext, model);
+            return this.View(view, model);
         }
     }
 }

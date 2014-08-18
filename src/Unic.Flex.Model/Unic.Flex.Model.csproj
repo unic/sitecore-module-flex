@@ -101,6 +101,8 @@
     <Compile Include="DomainModel\Plugs\SavePlugs\ISavePlug.cs" />
     <Compile Include="DomainModel\Plugs\SavePlugs\SavePlugBase.cs" />
     <Compile Include="DomainModel\Components\INavigationPane.cs" />
+    <Compile Include="Exceptions\ExceptionState.cs" />
+    <Compile Include="Exceptions\IExceptionState.cs" />
     <Compile Include="Validation\AjaxValidator.cs" />
     <Compile Include="Validation\MulticheckRequired.cs" />
     <Compile Include="Validation\RequiredValidator.cs" />
@@ -108,6 +110,7 @@
     <Compile Include="GlassExtensions\Configurations\SitecoreSharedFieldConfiguration.cs" />
     <Compile Include="GlassExtensions\Handlers\SitecoreSharedFieldTypeMapper.cs" />
     <Compile Include="Validation\IValidatableObject.cs" />
+    <Compile Include="ViewModel\Components\ErrorViewModel.cs" />
     <Compile Include="ViewModel\Components\ITooltipViewModel.cs" />
     <Compile Include="ViewModel\Components\TooltipViewModel.cs" />
     <Compile Include="ViewModel\Components\NavigationItem.cs" />
