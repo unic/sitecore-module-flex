@@ -11,6 +11,7 @@
     using Unic.Flex.Model.DomainModel.Sections;
     using Unic.Flex.Model.DomainModel.Steps;
     using Unic.Flex.Model.ViewModel.Forms;
+    using Profiler = Unic.Profiling.Profiler;
 
     /// <summary>
     /// The service containing contexxt based business logic.
@@ -74,7 +75,9 @@
         public virtual void PopulateFormValues(Form form)
         {
             Assert.ArgumentNotNull(form, "form");
-            
+
+            Profiler.OnStart(this, "Populating values from user data storage");
+
             foreach (var stepSection in form.Steps.SelectMany(step => step.Sections))
             {
                 var reusableSection = stepSection as ReusableSection;
@@ -88,6 +91,8 @@
                                       : field.DefaultValue;
                 }
             }
+
+            Profiler.OnEnd(this, "Populating values from user data storage");
         }
 
         /// <summary>
@@ -100,10 +105,14 @@
             Assert.ArgumentNotNull(form, "form");
             Assert.ArgumentNotNull(viewModel, "viewModel");
 
+            Profiler.OnStart(this, "Store form values to user data sotrage");
+
             foreach (var field in viewModel.Step.Sections.SelectMany(section => section.Fields))
             {
                 this.userDataRepository.SetValue(form.Id, field.Key, field.Value);
             }
+
+            Profiler.OnEnd(this, "Store form values to user data sotrage");
         }
 
         /// <summary>
