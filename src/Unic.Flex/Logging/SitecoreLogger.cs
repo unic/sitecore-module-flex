@@ -17,7 +17,7 @@ namespace Unic.Flex.Logging
 
         public void Warn(string message, object owner)
         {
-            Log.Warn(message, owner);
+            Log.Warn(this.FormatMessage(message), owner);
         }
 
         public void Error(string message, object owner)
