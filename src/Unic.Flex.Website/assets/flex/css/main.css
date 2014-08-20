@@ -420,14 +420,14 @@ table {
  *
  * http://nicolasgallagher.com/micro-clearfix-hack/
  */
-.clearfix {
+.clearfix, .flex_mod_multistepnavigation {
   *zoom: 1;
 }
-.clearfix:before, .clearfix:after {
+.clearfix:before, .flex_mod_multistepnavigation:before, .clearfix:after, .flex_mod_multistepnavigation:after {
   content: " ";
   display: table;
 }
-.clearfix:after {
+.clearfix:after, .flex_mod_multistepnavigation:after {
   clear: both;
 }
 
@@ -436,7 +436,7 @@ table {
  */
 nav ul,
 nav ol, .flex_formcontainer fieldset ul, .flex_formcontainer fieldset ol,
-.flex_formcontainer section ul, .flex_formcontainer section ol {
+.flex_formcontainer section ul, .flex_formcontainer section ol, .flex_mod_multistepnavigation ul {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -473,23 +473,83 @@ nav ol, .flex_formcontainer fieldset ul, .flex_formcontainer fieldset ol,
 .flex_formcontainer .flex_label {
   color: black;
 }
-.flex_formcontainer .flex_label {
+.flex_formcontainer .flex_singletextfield .flex_label,
+.flex_formcontainer .flex_singleselectfield .flex_label,
+.flex_formcontainer .flex_textarea .flex_label,
+.flex_formcontainer .flex_fileinputfield .flex_label {
+  width: 50%;
+  float: left;
+  padding-top: 1em;
+}
+.flex_formcontainer .flex_singletextfield input[type=text],
+.flex_formcontainer .flex_singletextfield input[type=email],
+.flex_formcontainer .flex_singletextfield input[type=phone],
+.flex_formcontainer .flex_singletextfield input[type=number],
+.flex_formcontainer .flex_singletextfield input[type=search],
+.flex_formcontainer .flex_singletextfield input[type=password],
+.flex_formcontainer .flex_singletextfield textarea,
+.flex_formcontainer .flex_singletextfield .flex_uploader,
+.flex_formcontainer .flex_singletextfield .flex_selector,
+.flex_formcontainer .flex_singleselectfield input[type=text],
+.flex_formcontainer .flex_singleselectfield input[type=email],
+.flex_formcontainer .flex_singleselectfield input[type=phone],
+.flex_formcontainer .flex_singleselectfield input[type=number],
+.flex_formcontainer .flex_singleselectfield input[type=search],
+.flex_formcontainer .flex_singleselectfield input[type=password],
+.flex_formcontainer .flex_singleselectfield textarea,
+.flex_formcontainer .flex_singleselectfield .flex_uploader,
+.flex_formcontainer .flex_singleselectfield .flex_selector,
+.flex_formcontainer .flex_textarea input[type=text],
+.flex_formcontainer .flex_textarea input[type=email],
+.flex_formcontainer .flex_textarea input[type=phone],
+.flex_formcontainer .flex_textarea input[type=number],
+.flex_formcontainer .flex_textarea input[type=search],
+.flex_formcontainer .flex_textarea input[type=password],
+.flex_formcontainer .flex_textarea textarea,
+.flex_formcontainer .flex_textarea .flex_uploader,
+.flex_formcontainer .flex_textarea .flex_selector,
+.flex_formcontainer .flex_fileinputfield input[type=text],
+.flex_formcontainer .flex_fileinputfield input[type=email],
+.flex_formcontainer .flex_fileinputfield input[type=phone],
+.flex_formcontainer .flex_fileinputfield input[type=number],
+.flex_formcontainer .flex_fileinputfield input[type=search],
+.flex_formcontainer .flex_fileinputfield input[type=password],
+.flex_formcontainer .flex_fileinputfield textarea,
+.flex_formcontainer .flex_fileinputfield .flex_uploader,
+.flex_formcontainer .flex_fileinputfield .flex_selector {
+  display: inline-block;
+  width: 50% !important;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.flex_formcontainer .flex_smallfield .flex_label {
+  width: 50%;
+  float: left;
+}
+.flex_formcontainer .flex_smallfield input[type=text],
+.flex_formcontainer .flex_smallfield input[type=email],
+.flex_formcontainer .flex_smallfield input[type=phone],
+.flex_formcontainer .flex_smallfield input[type=number],
+.flex_formcontainer .flex_smallfield input[type=search],
+.flex_formcontainer .flex_smallfield input[type=password],
+.flex_formcontainer .flex_smallfield textarea,
+.flex_formcontainer .flex_smallfield .flex_uploader,
+.flex_formcontainer .flex_smallfield .flex_selector {
+  width: 30% !important;
+}
+.flex_formcontainer .flex_radiogroup legend.flex_label,
+.flex_formcontainer .flex_checkboxgroup legend.flex_label {
   width: 50%;
   float: left;
 }
 .flex_formcontainer input[type=submit].u_var_small, .flex_formcontainer button[type=submit].u_var_small {
   line-height: 1;
 }
-.flex_formcontainer input[type=reset].u_var_small, .flex_formcontainer button[type=reset].u_var_small,
-.flex_formcontainer [type=submit].u_button_secondary.u_var_small {
+.flex_formcontainer input[type=reset].u_var_small, .flex_formcontainer button[type=reset].u_var_small, .flex_formcontainer button[type=button].u_var_small,
+.flex_formcontainer [type=submit].flex_button_secondary.u_var_small {
   line-height: 1;
 }
-.flex_formcontainer .flex_singlecheckbox,
-.flex_formcontainer .flex_singletextfield,
-.flex_formcontainer .flex_singleselectfield,
-.flex_formcontainer .flex_radiogroup,
-.flex_formcontainer .flex_textarea,
-.flex_formcontainer .flex_fileinputfield {
+.flex_formcontainer .flex_listitem {
   position: relative;
 }
 .flex_formcontainer input[type=number] {
@@ -503,7 +563,7 @@ nav ol, .flex_formcontainer fieldset ul, .flex_formcontainer fieldset ol,
 .flex_formcontainer fieldset {
   border: none;
   margin: 0;
-  padding: 0.01em 0 0;
+  padding: 3.2em 0 0;
   position: relative;
 }
 .flex_formcontainer fieldset legend {
@@ -512,12 +572,45 @@ nav ol, .flex_formcontainer fieldset ul, .flex_formcontainer fieldset ol,
 .flex_formcontainer fieldset legend:not(.flex_label) {
   font-family: Georgia, serif;
   font-size: 1.4em;
-  margin: 0.7619em 0;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 .flex_formcontainer fieldset li, .flex_formcontainer fieldset .flex_listitem {
   margin-bottom: 1em;
 }
-.flex_formcontainer label {
+.flex_formcontainer .flex_radiogroup .flex_radio {
+  float: left;
+  padding-right: 0.3125em;
+}
+.flex_formcontainer .flex_radiogroup .flex_label {
+  line-height: 1.375em;
+}
+.flex_formcontainer .flex_singlecheckbox .flex_checker,
+.flex_formcontainer .flex_checkboxgroup .flex_checker {
+  float: left;
+  padding-right: 0.3125em;
+}
+.flex_formcontainer .flex_singlecheckbox .flex_label,
+.flex_formcontainer .flex_checkboxgroup .flex_label {
+  line-height: 1.375em;
+}
+.flex_formcontainer .flex_radiogroup .flex_label,
+.flex_formcontainer .flex_checkboxgroup .flex_label {
+  line-height: 1.375em;
+  margin-bottom: 0.5em;
+}
+.flex_formcontainer .flex_radiogroup .flex_checkboxgroupoptions,
+.flex_formcontainer .flex_radiogroup .flex_radiogroupoptions,
+.flex_formcontainer .flex_checkboxgroup .flex_checkboxgroupoptions,
+.flex_formcontainer .flex_checkboxgroup .flex_radiogroupoptions {
+  display: inline-block;
+}
+.flex_formcontainer .flex_singlecheckbox label,
+.flex_formcontainer .flex_checkboxgroupoptions label,
+.flex_formcontainer .flex_radiogroupoptions label {
   display: inline-block;
 }
 .flex_formcontainer .flex_has_error input[type=text],
@@ -568,8 +661,8 @@ nav ol, .flex_formcontainer fieldset ul, .flex_formcontainer fieldset ol,
 }
 
 /* Placeholders */
-.flex_formcontainer input[type=submit], .flex_formcontainer button[type=submit], .flex_formcontainer input[type=reset], .flex_formcontainer button[type=reset],
-.flex_formcontainer [type=submit].u_button_secondary {
+.flex_formcontainer input[type=submit], .flex_formcontainer button[type=submit], .flex_formcontainer input[type=reset], .flex_formcontainer button[type=reset], .flex_formcontainer button[type=button],
+.flex_formcontainer [type=submit].flex_button_secondary {
   padding: 0.25em 0.5em;
 }
 
@@ -584,15 +677,15 @@ nav ol, .flex_formcontainer fieldset ul, .flex_formcontainer fieldset ol,
   color: white;
 }
 
-.flex_formcontainer input[type=reset], .flex_formcontainer button[type=reset],
-.flex_formcontainer [type=submit].u_button_secondary {
+.flex_formcontainer input[type=reset], .flex_formcontainer button[type=reset], .flex_formcontainer button[type=button],
+.flex_formcontainer [type=submit].flex_button_secondary {
   background: #626262;
   border: 1px solid #626262;
   color: white;
 }
-.flex_formcontainer input[type=reset]:hover, .flex_formcontainer button[type=reset]:hover,
-.flex_formcontainer [type=submit].u_button_secondary:hover, .flex_formcontainer input[type=reset]:focus, .flex_formcontainer button[type=reset]:focus,
-.flex_formcontainer [type=submit].u_button_secondary:focus {
+.flex_formcontainer input[type=reset]:hover, .flex_formcontainer button[type=reset]:hover, .flex_formcontainer button[type=button]:hover,
+.flex_formcontainer [type=submit].flex_button_secondary:hover, .flex_formcontainer input[type=reset]:focus, .flex_formcontainer button[type=reset]:focus, .flex_formcontainer button[type=button]:focus,
+.flex_formcontainer [type=submit].flex_button_secondary:focus {
   background-color: #a4c400;
   border-color: #a4c400;
   color: white;
@@ -781,9 +874,33 @@ nav ol, .flex_formcontainer fieldset ul, .flex_formcontainer fieldset ol,
   top: 0;
 }
 
+.flex_mod_multistepnavigation li {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+  text-align: center;
+}
+.flex_mod_multistepnavigation li a, .flex_mod_multistepnavigation li span {
+  display: block;
+  padding: 0.5em 0;
+  border: 1px solid #626262;
+  background-color: #626262;
+  color: white;
+}
+.flex_mod_multistepnavigation li a:hover, .flex_mod_multistepnavigation li a:focus, .flex_mod_multistepnavigation li span:hover, .flex_mod_multistepnavigation li span:focus {
+  background-color: #a4c400;
+}
+.flex_mod_multistepnavigation li.flex_var_active span {
+  background-color: #a4c400;
+}
+
 body {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   width: 62.5em;
   margin: 0 auto;
+}
+
+.info3-block {
+  display: none;
 }

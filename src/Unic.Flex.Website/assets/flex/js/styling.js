@@ -1172,8 +1172,9 @@ Enjoy!
 
 /* global Modernizr */
 /**
- * @requires ../../modules/formstyling/formstyling.js
+ * @requires ../../vendor/jquery.uniform/jquery.uniform.js
+ * @requires ../../../modules/formstyling/formstyling.js
  */
 
-console.log('main');
+console.log('styling');
 console.log(Modernizr.touchevents);

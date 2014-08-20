@@ -1187,7 +1187,7 @@ This test will also return `true` for Firefox 4 Multitouch support.
 })(this, document);
 /* jshint unused: false */
 /**
- * @requires ../.tmp/modernizr.js
+ * @requires ../../.tmp/modernizr.js
  */
 
 /**

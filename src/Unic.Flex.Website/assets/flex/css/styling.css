@@ -426,8 +426,8 @@ div.button.disabled span, div.button.disabled.active span {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   height: 3em;
-  width: 100% !important;
   padding: 0;
+  position: relative;
 }
 .flex_formcontainer .flex_selector span {
   display: inline-block;
