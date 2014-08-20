@@ -134,6 +134,9 @@
                 var sectionViewModel = this.GetViewModel<ISectionViewModel>(realSection);
                 Mapper.Map(realSection, sectionViewModel, realSection.GetType(), sectionViewModel.GetType());
 
+                // add tooltip
+                sectionViewModel.Tooltip = new TooltipViewModel { TooltipTitle = realSection.TooltipTitle, TooltipText = realSection.TooltipText };
+
                 // iterate through the fields and add them
                 foreach (var field in realSection.Fields)
                 {

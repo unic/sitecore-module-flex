@@ -2,10 +2,20 @@
 {
     using System.Collections.Generic;
     using Unic.Flex.Model.Presentation;
+    using Unic.Flex.Model.ViewModel.Components;
     using Unic.Flex.Model.ViewModel.Fields;
 
-    public interface ISectionViewModel : IPresentationComponent
+    /// <summary>
+    /// View model for a section
+    /// </summary>
+    public interface ISectionViewModel : IPresentationComponent, ITooltipViewModel
     {
+        /// <summary>
+        /// Gets the fields.
+        /// </summary>
+        /// <value>
+        /// The fields.
+        /// </value>
         IList<IFieldViewModel> Fields { get; }
 
         /// <summary>

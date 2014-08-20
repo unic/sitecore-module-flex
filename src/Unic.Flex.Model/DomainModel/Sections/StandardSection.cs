@@ -2,13 +2,15 @@
 {
     using Glass.Mapper.Sc.Configuration.Attributes;
     using System.Collections.Generic;
+    using Unic.Flex.Model.DomainModel.Components;
     using Unic.Flex.Model.DomainModel.Fields;
+    using Unic.Flex.Model.GlassExtensions.Attributes;
 
     /// <summary>
     /// The standard section.
     /// </summary>
     [SitecoreType(TemplateId = "{B2B5CAB2-2BD7-4FFE-80B1-7607A310771E}")]
-    public class StandardSection : SectionBase
+    public class StandardSection : SectionBase, ITooltip
     {
         /// <summary>
         /// Gets or sets the title.
@@ -36,5 +38,23 @@
         /// </value>
         [SitecoreChildren(IsLazy = true, InferType = true)]
         public virtual IEnumerable<IField> Fields { get; set; }
+
+        /// <summary>
+        /// Gets or sets the tooltip title.
+        /// </summary>
+        /// <value>
+        /// The tooltip title.
+        /// </value>
+        [SitecoreDictionaryFallbackField("Tooltip Title", "Tooltip Title")]
+        public virtual string TooltipTitle { get; set; }
+
+        /// <summary>
+        /// Gets or sets the tooltip text.
+        /// </summary>
+        /// <value>
+        /// The tooltip text.
+        /// </value>
+        [SitecoreField("Tooltip Text")]
+        public virtual string TooltipText { get; set; }
     }
 }

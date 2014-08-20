@@ -1,6 +1,7 @@
 ﻿namespace Unic.Flex.Model.ViewModel.Sections
 {
     using System.Collections.Generic;
+    using Unic.Flex.Model.ViewModel.Components;
     using Unic.Flex.Model.ViewModel.Fields;
 
     /// <summary>
@@ -39,6 +40,14 @@
         /// The title.
         /// </value>
         public virtual string Title { get; set; }
+
+        /// <summary>
+        /// Gets or sets the tooltip.
+        /// </summary>
+        /// <value>
+        /// The tooltip.
+        /// </value>
+        public virtual TooltipViewModel Tooltip { get; set; }
 
         /// <summary>
         /// Gets the name of the view.
