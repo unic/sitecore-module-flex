@@ -21,6 +21,7 @@
     using Unic.Flex.Model.Validation;
     using Unic.Flex.Model.ViewModel.Components;
     using Unic.Flex.Model.ViewModel.Fields;
+    using Unic.Flex.Model.ViewModel.Fields.InputFields;
     using Unic.Flex.Model.ViewModel.Forms;
     using Unic.Flex.Model.ViewModel.Sections;
     using Unic.Flex.Model.ViewModel.Steps;
@@ -89,7 +90,8 @@
             Assert.ArgumentNotNull(step, "step");
 
             // handle summary step
-            if (step is Summary)
+            var summary = step as Summary;
+            if (summary != null)
             {
                 // todo: this need to be done someway different -> also we need to structure the sections by step and not only the sections
                 step.Sections = form.Steps.SelectMany(s => s.Sections).ToList();
@@ -194,6 +196,12 @@
                 stepViewModel.Sections.Add(sectionViewModel);
             }
 
+            // add the honeypot field
+            if (summary == null)
+            {
+                this.AddHoneypotField(stepViewModel);
+            }
+
             // add the current step to the form and return
             formViewModel.Step = stepViewModel;
             return formViewModel;
@@ -260,6 +268,33 @@
             }
 
             return navigationPane;
+        }
+
+        /// <summary>
+        /// Adds the honeypot field for spam protection to the current step.
+        /// </summary>
+        /// <param name="stepViewModel">The step view model.</param>
+        protected virtual void AddHoneypotField(IStepViewModel stepViewModel)
+        {
+            Assert.ArgumentNotNull(stepViewModel, "stepViewModel");
+
+            // get the first section
+            var section = stepViewModel.Sections.FirstOrDefault();
+            if (section == null) return;
+
+            // generate the field
+            var honeypot = new HoneypotFieldViewModel();
+            honeypot.Key = "info3";
+            honeypot.Label = this.dictionaryRepository.GetText("Leave this blank if you are human");
+            honeypot.BindProperties();
+
+            // add validator
+            var validator = new HoneypotValidator();
+            validator.ValidationMessage = this.dictionaryRepository.GetText(validator.DefaultValidationMessageDictionaryKey);
+            honeypot.AddValidator(validator);
+            
+            // add field
+            section.Fields.Add(honeypot);
         }
     }
 }
