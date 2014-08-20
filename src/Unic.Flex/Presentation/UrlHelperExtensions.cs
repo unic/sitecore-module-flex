@@ -16,6 +16,11 @@
         /// <returns>Url with appended assembly version</returns>
         public static string CacheSafeContent(this UrlHelper urlHelper, string url)
         {
+            if (urlHelper.RequestContext.HttpContext.Request.QueryString["minified"] == "false")
+            {
+                url = url.Replace(".min.", ".");
+            }
+            
             var contentUrl = urlHelper.Content(url);
             return string.Format("{0}?v={1}", contentUrl, Assembly.GetExecutingAssembly().GetName().Version.ToString().Replace(".", string.Empty));
         }
