@@ -1,4 +1,5 @@
-﻿@model Unic.Flex.Model.ViewModel.Components.NavigationPaneViewModel
+﻿@using Sitecore.Globalization
+@model Unic.Flex.Model.ViewModel.Components.NavigationPaneViewModel
 
 <ul>
 
@@ -23,3 +24,39 @@
     }
 
 </ul>
+
+<div class="flex_mod_multistepnavigation" data-flexform="multistepnavigation">
+    <ul>
+        
+        @foreach (var step in Model.Items)
+        {
+            if (step.IsActive)
+            {
+                <li class="flex_var_active" data-flexform="multistepnavigationitem">
+                    <span class="flex_multistepitem">
+                        <span class="visuallyhidden">@Translate.Text("Your are on step") </span>
+                        @step.Title
+                    </span>
+                </li>
+            }
+            else if (step.IsLinked)
+            {
+                <li data-flexform="multistepnavigationitem">
+                    <a href="@step.Url" class="flex_multistepitem">
+                        <span class="visuallyhidden">@Translate.Text("Go to step") </span>
+                        @step.Title
+                    </a>
+                </li>
+            }
+            else
+            {
+                <li data-flexform="multistepnavigationitem">
+                    <span class="flex_multistepitem">
+                        @step.Title
+                    </span>
+                </li>
+            }
+        }
+    </ul>
+
+</div>
