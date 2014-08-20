@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace Unic.Flex.Tests.Common.Moqs
 {
     using Moq;
+    using Unic.Flex.Globalization;
     using Unic.Flex.Logging;
 
     public static class SimpleMoqs
@@ -17,6 +18,13 @@ namespace Unic.Flex.Tests.Common.Moqs
             mock.Setup(method => method.Info(It.IsAny<string>(), It.IsAny<object>()));
             mock.Setup(method => method.Warn(It.IsAny<string>(), It.IsAny<object>()));
             mock.Setup(method => method.Error(It.IsAny<string>(), It.IsAny<object>(), It.IsAny<Exception>()));
+            return mock.Object;
+        }
+
+        public static IDictionaryRepository GetDictionaryRepository()
+        {
+            var mock = new Mock<IDictionaryRepository>();
+            mock.Setup(method => method.GetText(It.IsAny<string>())).Returns((string key) => key);
             return mock.Object;
         }
     }
