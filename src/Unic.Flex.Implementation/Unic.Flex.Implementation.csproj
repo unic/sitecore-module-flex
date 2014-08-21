@@ -95,6 +95,8 @@
     <Compile Include="Fields\InputFields\MultilineTextFieldViewModel.cs" />
     <Compile Include="Fields\InputFields\NumberField.cs" />
     <Compile Include="Fields\InputFields\NumberFieldViewModel.cs" />
+    <Compile Include="Fields\InputFields\PasswordField.cs" />
+    <Compile Include="Fields\InputFields\PasswordFieldViewModel.cs" />
     <Compile Include="Fields\InputFields\SinglelineTextField.cs" />
     <Compile Include="Fields\InputFields\SinglelineTextFieldViewModel.cs" />
     <Compile Include="Fields\ListFields\CheckBoxListField.cs" />
@@ -108,6 +110,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validators\EmailValidator.cs" />
     <Compile Include="Validators\NumberValidator.cs" />
+    <Compile Include="Validators\PasswordStrengthValidator.cs" />
     <Compile Include="Validators\RegularExpressionValidator.cs" />
   </ItemGroup>
   <ItemGroup>
