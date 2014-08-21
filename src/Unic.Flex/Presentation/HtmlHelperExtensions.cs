@@ -125,7 +125,7 @@
 
         public static string FormatAttributes(this HtmlHelper htmlHelper, IDictionary<string, object> attributes)
         {
-            return attributes.Aggregate(new StringBuilder(), (sb, kvp) => sb.AppendFormat("{0}='{1}' ", kvp.Key, kvp.Value)).ToString();
+            return attributes.Aggregate(new StringBuilder(), (sb, kvp) => sb.AppendFormat("{0}=\"{1}\" ", kvp.Key, kvp.Value)).ToString();
         }
     }
 }
