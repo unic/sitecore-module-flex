@@ -11,7 +11,6 @@
         {
             // todo: this values should be provided from Sitecore
             
-            this.Items.Add(new SelectListItem { Text = "Please Select", Value = string.Empty });
             this.Items.Add(new SelectListItem { Text = "Apple", Value = "apple_value" });
             this.Items.Add(new SelectListItem { Text = "Oranges", Value = "oranges_value" });
         }
