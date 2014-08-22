@@ -566,6 +566,9 @@ nav ol, .flex_formcontainer fieldset ul, .flex_formcontainer fieldset ol,
   padding: 3.2em 0 0;
   position: relative;
 }
+.flex_formcontainer fieldset.flex_var_nolegend {
+  padding-top: 0;
+}
 .flex_formcontainer fieldset legend {
   position: relative;
 }
@@ -887,11 +890,14 @@ nav ol, .flex_formcontainer fieldset ul, .flex_formcontainer fieldset ol,
   background-color: #626262;
   color: white;
 }
-.flex_mod_multistepnavigation li a:hover, .flex_mod_multistepnavigation li a:focus, .flex_mod_multistepnavigation li span:hover, .flex_mod_multistepnavigation li span:focus {
+.flex_mod_multistepnavigation li a:hover, .flex_mod_multistepnavigation li a:focus {
   background-color: #a4c400;
 }
 .flex_mod_multistepnavigation li.flex_var_active span {
   background-color: #a4c400;
+}
+.flex_mod_multistepnavigation li.flex_var_inactive span {
+  opacity: 0.5;
 }
 
 body {
