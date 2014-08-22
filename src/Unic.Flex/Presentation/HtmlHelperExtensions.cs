@@ -53,7 +53,7 @@
                     {
                         TemplateInfo = new TemplateInfo
                         {
-                            HtmlFieldPrefix = htmlHelper.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName(propertyName)
+                            HtmlFieldPrefix = htmlHelper.GetName(propertyName)
                         }
                     });
         }
@@ -78,8 +78,30 @@
                 new
                     {
                         @class = Constants.LabelCssClass,
-                        id = htmlHelper.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldId(Constants.LabelIdSuffix)
+                        id = htmlHelper.GetId(Constants.LabelIdSuffix)
                     });
+        }
+
+        /// <summary>
+        /// Gets the id of the current html field and add the suffix.
+        /// </summary>
+        /// <param name="htmlHelper">The HTML helper.</param>
+        /// <param name="suffix">The suffix.</param>
+        /// <returns>The generated id</returns>
+        public static string GetId(this HtmlHelper htmlHelper, string suffix)
+        {
+            return htmlHelper.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldId(suffix);
+        }
+
+        /// <summary>
+        /// Gets the name of the current html field and add the suffix.
+        /// </summary>
+        /// <param name="htmlHelper">The HTML helper.</param>
+        /// <param name="suffix">The suffix.</param>
+        /// <returns>The generated name</returns>
+        public static string GetName(this HtmlHelper htmlHelper, string suffix)
+        {
+            return htmlHelper.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName(suffix);
         }
 
         /// <summary>
@@ -100,7 +122,7 @@
                 new
                     {
                         role = "alert",
-                        aria_labelledby = htmlHelper.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldId(Constants.LabelIdSuffix)
+                        aria_labelledby = htmlHelper.GetId(Constants.LabelIdSuffix)
                     });
         }
 
@@ -113,11 +135,11 @@
         public static IDictionary<string, object> GetAttributes(this HtmlHelper htmlHelper, IFieldViewModel viewModel)
         {
             var attributes = viewModel.Attributes;
-            attributes.Add("aria-labelledby", htmlHelper.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldId(Constants.LabelIdSuffix));
+            attributes.Add("aria-labelledby", htmlHelper.GetId(Constants.LabelIdSuffix));
 
             if (viewModel.Tooltip != null && viewModel.Tooltip.ShowTooltip)
             {
-                attributes.Add("aria-describedby", htmlHelper.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldId(Constants.TooltipIdSuffix));
+                attributes.Add("aria-describedby", htmlHelper.GetId(Constants.TooltipIdSuffix));
             }
 
             return attributes;
