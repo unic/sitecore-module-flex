@@ -4,8 +4,6 @@
 
     public class ListBoxFieldViewModel : ListFieldViewModel<string[]>
     {
-        // todo: client-side required validator does also mark empty option (i.e. "Please select") as valid
-
         public override string ViewName
         {
             get
