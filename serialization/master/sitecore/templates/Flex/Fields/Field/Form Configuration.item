@@ -1,6 +1,6 @@
 ----item----
 version: 1
-id: {66F35862-E338-4BB0-AD68-DC0AE90BB8B9}
+id: {8AB0ED9E-9C3A-4FB4-A2EF-86124CFA16F4}
 database: master
 path: /sitecore/templates/Flex/Fields/Field/Form Configuration
 parent: {1FBDE2AF-BC03-4DA8-AB95-D92CB7A0C602}
@@ -19,7 +19,7 @@ content-length: 3
 ----version----
 language: en
 version: 1
-revision: 5e46f68c-a9a6-4aeb-a988-ce2feae80ed7
+revision: 1cbc1642-6168-4792-bfe6-eb9cbe8a7d85
 
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
@@ -27,7 +27,7 @@ name: __Created
 key: __created
 content-length: 15
 
-20140627T130944
+20140825T141908
 ----field----
 field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
 name: __Created by
@@ -41,14 +41,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-5e46f68c-a9a6-4aeb-a988-ce2feae80ed7
+1cbc1642-6168-4792-bfe6-eb9cbe8a7d85
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20140813T131902:635435327421343340
+20140825T141908:635445731485571769
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

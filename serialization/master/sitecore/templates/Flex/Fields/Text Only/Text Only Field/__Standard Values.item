@@ -2,17 +2,24 @@
 version: 1
 id: {1C4013F9-AB97-48E9-B5A4-0D5595539277}
 database: master
-path: /sitecore/templates/Flex/Fields/Text Only Field/__Standard Values
+path: /sitecore/templates/Flex/Fields/Text Only/Text Only Field/__Standard Values
 parent: {C2B3372D-F1BA-4A98-9FDE-7A2A0C0EE76B}
 name: __Standard Values
 master: {00000000-0000-0000-0000-000000000000}
 template: {C2B3372D-F1BA-4A98-9FDE-7A2A0C0EE76B}
 templatekey: Text Only Field
 
+----field----
+field: {4F77EB60-BE8A-438E-A598-FC034DF43C24}
+name: Show In Summary
+key: show in summary
+content-length: 0
+
+
 ----version----
 language: en
 version: 1
-revision: cc7b50cd-d693-419a-93f2-7dc5c3197109
+revision: 7d67f475-e9aa-4fb8-b71a-4d6c927a56ec
 
 ----field----
 field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
@@ -41,14 +48,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-cc7b50cd-d693-419a-93f2-7dc5c3197109
+7d67f475-e9aa-4fb8-b71a-4d6c927a56ec
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20140825T131224:635445691448461767
+20140825T142249:635445733698928363
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

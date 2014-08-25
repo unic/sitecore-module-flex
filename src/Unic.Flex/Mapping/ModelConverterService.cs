@@ -142,6 +142,10 @@
                 // iterate through the fields and add them
                 foreach (var field in realSection.Fields)
                 {
+                    // skip if on summary the field should not be shown
+                    if (summary != null && !field.ShowInSummary) continue;
+                    
+                    // map the field
                     var fieldViewModel = this.GetViewModel<IFieldViewModel>(field);
                     Mapper.DynamicMap(field, fieldViewModel, field.GetType(), fieldViewModel.GetType());
                     var validatableObject = fieldViewModel as IValidatableObject;

@@ -178,6 +178,15 @@
         public virtual IList<IValidator> DefaultValidators { get; private set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to show this field in the summary or not.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this field should be shown in the summary; otherwise, <c>false</c>.
+        /// </value>
+        [SitecoreField("Show in Summary")]
+        public virtual bool ShowInSummary { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether this field is disabled.
         /// </summary>
         /// <value>

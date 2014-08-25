@@ -3,7 +3,7 @@ version: 1
 id: {3E7C097C-599F-4DF9-8952-2D994DE0DA1B}
 database: master
 path: /sitecore/templates/Flex/Fields/Field/Form Configuration/Is Disabled
-parent: {66F35862-E338-4BB0-AD68-DC0AE90BB8B9}
+parent: {8AB0ED9E-9C3A-4FB4-A2EF-86124CFA16F4}
 name: Is Disabled
 master: {00000000-0000-0000-0000-000000000000}
 template: {455A3E98-A627-4B40-8035-E683A0331AC7}

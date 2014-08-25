@@ -2,7 +2,7 @@
 version: 1
 id: {2C416207-7A8F-4665-94CE-15AA02407ECB}
 database: master
-path: /sitecore/templates/Flex/Fields/Text Only Field/Form Content/Text
+path: /sitecore/templates/Flex/Fields/Text Only/Text Only Field/Form Content/Text
 parent: {56A49449-FBE7-4453-938E-CB080C03AFB3}
 name: Text
 master: {00000000-0000-0000-0000-000000000000}
@@ -26,7 +26,7 @@ content-length: 3
 ----version----
 language: en
 version: 1
-revision: 6280ce74-7376-452a-b7de-6abf03995730
+revision: fe0168cb-9940-47c3-9067-636f7a54aaa1
 
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
@@ -41,14 +41,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-6280ce74-7376-452a-b7de-6abf03995730
+fe0168cb-9940-47c3-9067-636f7a54aaa1
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20140825T131251:635445691714774386
+20140825T141935:635445731751352284
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

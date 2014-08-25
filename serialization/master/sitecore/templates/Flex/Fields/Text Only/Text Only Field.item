@@ -13,9 +13,9 @@ templatekey: Template
 field: {12C33F3F-86C5-43A5-AEB4-5598CEC45116}
 name: __Base template
 key: __base template
-content-length: 38
+content-length: 77
 
-{1930BBEB-7805-471A-A3BE-4858AC7CF696}
+{1930BBEB-7805-471A-A3BE-4858AC7CF696}|{319A93DF-4C9B-4370-A54C-F5277C3B84DF}
 ----field----
 field: {F7D48A55-2158-4F02-9356-756654404F73}
 name: __Standard values
@@ -33,7 +33,7 @@ business/32x32/row.png
 ----version----
 language: en
 version: 1
-revision: 62b601bd-8282-4fbc-b05c-f3805fa73568
+revision: 4b2a282a-7335-4114-95ce-c36d451084ef
 
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
@@ -55,14 +55,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-62b601bd-8282-4fbc-b05c-f3805fa73568
+4b2a282a-7335-4114-95ce-c36d451084ef
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20140825T131256:635445691764940838
+20140825T141935:635445731752082795
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
