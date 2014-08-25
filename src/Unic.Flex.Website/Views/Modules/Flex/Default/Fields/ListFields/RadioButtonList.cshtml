@@ -1,33 +1,33 @@
 ﻿@using System.Web.Mvc.Html
 @using Unic.Flex.Definitions
 @using Unic.Flex.Presentation
-@model Unic.Flex.Implementation.Fields.ListFields.CheckBoxListFieldViewModel
+@model Unic.Flex.Implementation.Fields.ListFields.RadioButtonListFieldViewModel
 
 <li class="flex_listitem @Model.CssClass">
     
-    <fieldset role="listbox" aria-multiselectable="true">
+    <fieldset role="radiogroup">
         <legend class="flex_label" id="@Html.IdForModel()">
             @Model.Label
         </legend>
-        
-        <div class="flex_checkboxgroupoptions">
 
+        <div class="flex_radiogroupoptions">
+            
             @{
                 var attributes = Html.FormatAttributes(Html.GetAttributes(Model));
                 var propertyName = string.Format("{0}.Value", ViewData.TemplateInfo.HtmlFieldPrefix);
             }
-
+            
             @for (var i = 0; i < Model.Items.Count(); i++)
             {
                 var item = Model.Items[i];
-                var propertyId = Html.GetId(string.Format("Option[{0}]", i));
+                var propertyId = Html.GetId(string.Format("Radio[{0}]", i));
                 var propertyLabel = string.Format("{0}_{1}", propertyId, Constants.LabelIdSuffix);
                 var selected = Model.Value != null && Model.Value.Contains(item.Value);
                 var selectedText = selected ? "checked=\"checked\"" : string.Empty;
+                
+                <div class="flex_radiogroupoption">
 
-                <div class="flex_checkboxgroupoption">
-
-                    <input type="checkbox" name="@propertyName" id="@propertyId" value="@item.Value" role="option"
+                    <input type="radio" name="@propertyName" id="@propertyId" value="@item.Value" role="radio"
                            aria-multiline="false" aria-labelledby="@propertyLabel" aria-checked="@selected.ToString()"
                            @Html.Raw(attributes) @selectedText />
 
@@ -39,7 +39,6 @@
             }
 
         </div>
-
     </fieldset>
 
     @Html.FlexValidator(model => model.Value)

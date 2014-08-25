@@ -105,6 +105,8 @@
     <Compile Include="Fields\ListFields\DropDownListFieldViewModel.cs" />
     <Compile Include="Fields\ListFields\ListBoxField.cs" />
     <Compile Include="Fields\ListFields\ListBoxFieldViewModel.cs" />
+    <Compile Include="Fields\ListFields\RadioButtonListField.cs" />
+    <Compile Include="Fields\ListFields\RadioButtonListFieldViewModel.cs" />
     <Compile Include="Fields\TextOnly\TextOnlyField.cs" />
     <Compile Include="Fields\TextOnly\TextOnlyFieldViewModel.cs" />
     <Compile Include="Plugs\LoadPlugs\QueryStringLoader.cs" />
