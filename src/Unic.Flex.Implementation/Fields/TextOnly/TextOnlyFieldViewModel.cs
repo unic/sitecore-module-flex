@@ -1,0 +1,42 @@
+﻿namespace Unic.Flex.Implementation.Fields.TextOnly
+{
+    using Unic.Flex.Model.ViewModel.Fields;
+
+    /// <summary>
+    /// View model for text only fields
+    /// </summary>
+    public class TextOnlyFieldViewModel : FieldBaseViewModel<string>
+    {
+        /// <summary>
+        /// Gets the name of the view.
+        /// </summary>
+        /// <value>
+        /// The name of the view.
+        /// </value>
+        public override string ViewName
+        {
+            get
+            {
+                return "Fields/TextOnlyFields/TextOnly";
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the text.
+        /// </summary>
+        /// <value>
+        /// The text.
+        /// </value>
+        public virtual string Text { get; set; }
+
+        /// <summary>
+        /// Binds the needed attributes and properties after converting from domain model to the view model
+        /// </summary>
+        public override void BindProperties()
+        {
+            base.BindProperties();
+
+            this.AddCssClass("flex_textitem");
+        }
+    }
+}
