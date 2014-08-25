@@ -20,5 +20,19 @@
             // we use the standard values item here as validator id, because we do not have a specific item for the validator as it is defined here and not in Sitecore
             this.DefaultValidators.Add(new PasswordStrengthValidator { ValidatorId = new Guid(Settings.GetSetting("Flex.PasswordStrengthValidator.StandardValues.ItemId")) });
         }
+
+        /// <summary>
+        /// Gets the text value.
+        /// </summary>
+        /// <value>
+        /// The text value.
+        /// </value>
+        public override string TextValue
+        {
+            get
+            {
+                return "********";
+            }
+        }
     }
 }
