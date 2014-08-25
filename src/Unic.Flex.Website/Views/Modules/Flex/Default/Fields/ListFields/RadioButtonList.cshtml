@@ -29,7 +29,7 @@
 
                     <input type="radio" name="@propertyName" id="@propertyId" value="@item.Value" role="radio"
                            aria-multiline="false" aria-labelledby="@propertyLabel" aria-checked="@selected.ToString()"
-                           @Html.Raw(attributes) @selectedText />
+                           @Html.Raw(attributes) @Html.Raw(selectedText) />
 
                     <label class="flex_label" for="@propertyId" id="@propertyLabel">
                         @item.Text
