@@ -900,13 +900,6 @@ nav ol, .flex_formcontainer fieldset ul, .flex_formcontainer fieldset ol,
   opacity: 0.5;
 }
 
-body {
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  width: 62.5em;
-  margin: 0 auto;
-}
-
 .info3-block {
   display: none;
 }

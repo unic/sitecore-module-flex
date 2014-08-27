@@ -9936,7 +9936,7 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
 /**
  * @license
  * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
- * Build: `lodash include="debounce,keys,bind" -o ../../source/assets/.tmp/lodash.js -d`
+ * Build: `lodash include="debounce,keys,bind,find" -o ../../source/assets/.tmp/lodash.js -d`
  * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
  * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
  * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -9947,8 +9947,14 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
   /** Used as a safe reference for `undefined` in pre ES5 environments */
   var undefined;
 
+  /** Used to pool arrays and objects used internally */
+  var arrayPool = [];
+
   /** Used internally to indicate various things */
   var indicatorObject = {};
+
+  /** Used as the max size of the `arrayPool` and `objectPool` */
+  var maxPoolSize = 40;
 
   /** Used to detected named functions */
   var reFuncName = /^\s*function[ \n\r\t]+\w/;
@@ -10026,6 +10032,42 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
   }
 
   /*--------------------------------------------------------------------------*/
+
+  /**
+   * Gets an array from the array pool or creates a new one if the pool is empty.
+   *
+   * @private
+   * @returns {Array} The array from the pool.
+   */
+  function getArray() {
+    return arrayPool.pop() || [];
+  }
+
+  /**
+   * Checks if `value` is a DOM node in IE < 9.
+   *
+   * @private
+   * @param {*} value The value to check.
+   * @returns {boolean} Returns `true` if the `value` is a DOM node, else `false`.
+   */
+  function isNode(value) {
+    // IE < 9 presents DOM nodes as `Object` objects except they have `toString`
+    // methods that are `typeof` "string" and still can coerce nodes to strings
+    return typeof value.toString != 'function' && typeof (value + '') == 'string';
+  }
+
+  /**
+   * Releases the given array back to the array pool.
+   *
+   * @private
+   * @param {Array} [array] The array to release.
+   */
+  function releaseArray(array) {
+    array.length = 0;
+    if (arrayPool.length < maxPoolSize) {
+      arrayPool.push(array);
+    }
+  }
 
   /**
    * Slices the `collection` from the `start` index up to, but not including,
@@ -10589,6 +10631,181 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
   }
 
   /**
+   * The base implementation of `_.isEqual`, without support for `thisArg` binding,
+   * that allows partial "_.where" style comparisons.
+   *
+   * @private
+   * @param {*} a The value to compare.
+   * @param {*} b The other value to compare.
+   * @param {Function} [callback] The function to customize comparing values.
+   * @param {Function} [isWhere=false] A flag to indicate performing partial comparisons.
+   * @param {Array} [stackA=[]] Tracks traversed `a` objects.
+   * @param {Array} [stackB=[]] Tracks traversed `b` objects.
+   * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
+   */
+  function baseIsEqual(a, b, callback, isWhere, stackA, stackB) {
+    // used to indicate that when comparing objects, `a` has at least the properties of `b`
+    if (callback) {
+      var result = callback(a, b);
+      if (typeof result != 'undefined') {
+        return !!result;
+      }
+    }
+    // exit early for identical values
+    if (a === b) {
+      // treat `+0` vs. `-0` as not equal
+      return a !== 0 || (1 / a == 1 / b);
+    }
+    var type = typeof a,
+        otherType = typeof b;
+
+    // exit early for unlike primitive values
+    if (a === a &&
+        !(a && objectTypes[type]) &&
+        !(b && objectTypes[otherType])) {
+      return false;
+    }
+    // exit early for `null` and `undefined` avoiding ES3's Function#call behavior
+    // http://es5.github.io/#x15.3.4.4
+    if (a == null || b == null) {
+      return a === b;
+    }
+    // compare [[Class]] names
+    var className = toString.call(a),
+        otherClass = toString.call(b);
+
+    if (className == argsClass) {
+      className = objectClass;
+    }
+    if (otherClass == argsClass) {
+      otherClass = objectClass;
+    }
+    if (className != otherClass) {
+      return false;
+    }
+    switch (className) {
+      case boolClass:
+      case dateClass:
+        // coerce dates and booleans to numbers, dates to milliseconds and booleans
+        // to `1` or `0` treating invalid dates coerced to `NaN` as not equal
+        return +a == +b;
+
+      case numberClass:
+        // treat `NaN` vs. `NaN` as equal
+        return (a != +a)
+          ? b != +b
+          // but treat `+0` vs. `-0` as not equal
+          : (a == 0 ? (1 / a == 1 / b) : a == +b);
+
+      case regexpClass:
+      case stringClass:
+        // coerce regexes to strings (http://es5.github.io/#x15.10.6.4)
+        // treat string primitives and their corresponding object instances as equal
+        return a == String(b);
+    }
+    var isArr = className == arrayClass;
+    if (!isArr) {
+      // unwrap any `lodash` wrapped values
+      var aWrapped = hasOwnProperty.call(a, '__wrapped__'),
+          bWrapped = hasOwnProperty.call(b, '__wrapped__');
+
+      if (aWrapped || bWrapped) {
+        return baseIsEqual(aWrapped ? a.__wrapped__ : a, bWrapped ? b.__wrapped__ : b, callback, isWhere, stackA, stackB);
+      }
+      // exit for functions and DOM nodes
+      if (className != objectClass) {
+        return false;
+      }
+      // in older versions of Opera, `arguments` objects have `Array` constructors
+      var ctorA = !support.argsObject && isArguments(a) ? Object : a.constructor,
+          ctorB = !support.argsObject && isArguments(b) ? Object : b.constructor;
+
+      // non `Object` object instances with different constructors are not equal
+      if (ctorA != ctorB &&
+            !(isFunction(ctorA) && ctorA instanceof ctorA && isFunction(ctorB) && ctorB instanceof ctorB) &&
+            ('constructor' in a && 'constructor' in b)
+          ) {
+        return false;
+      }
+    }
+    // assume cyclic structures are equal
+    // the algorithm for detecting cyclic structures is adapted from ES 5.1
+    // section 15.12.3, abstract operation `JO` (http://es5.github.io/#x15.12.3)
+    var initedStack = !stackA;
+    stackA || (stackA = getArray());
+    stackB || (stackB = getArray());
+
+    var length = stackA.length;
+    while (length--) {
+      if (stackA[length] == a) {
+        return stackB[length] == b;
+      }
+    }
+    var size = 0;
+    result = true;
+
+    // add `a` and `b` to the stack of traversed objects
+    stackA.push(a);
+    stackB.push(b);
+
+    // recursively compare objects and arrays (susceptible to call stack limits)
+    if (isArr) {
+      // compare lengths to determine if a deep comparison is necessary
+      length = a.length;
+      size = b.length;
+      result = size == length;
+
+      if (result || isWhere) {
+        // deep compare the contents, ignoring non-numeric properties
+        while (size--) {
+          var index = length,
+              value = b[size];
+
+          if (isWhere) {
+            while (index--) {
+              if ((result = baseIsEqual(a[index], value, callback, isWhere, stackA, stackB))) {
+                break;
+              }
+            }
+          } else if (!(result = baseIsEqual(a[size], value, callback, isWhere, stackA, stackB))) {
+            break;
+          }
+        }
+      }
+    }
+    else {
+      // deep compare objects using `forIn`, instead of `forOwn`, to avoid `Object.keys`
+      // which, in this case, is more costly
+      forIn(b, function(value, key, b) {
+        if (hasOwnProperty.call(b, key)) {
+          // count the number of properties.
+          size++;
+          // deep compare each property value.
+          return (result = hasOwnProperty.call(a, key) && baseIsEqual(a[key], value, callback, isWhere, stackA, stackB));
+        }
+      });
+
+      if (result && !isWhere) {
+        // ensure both objects have the same number of properties
+        forIn(a, function(value, key, a) {
+          if (hasOwnProperty.call(a, key)) {
+            // `size` will be `-1` if `a` has more properties than `b`
+            return (result = --size > -1);
+          }
+        });
+      }
+    }
+    stackA.pop();
+    stackB.pop();
+
+    if (initedStack) {
+      releaseArray(stackA);
+      releaseArray(stackB);
+    }
+    return result;
+  }
+
+  /**
    * Creates a function that, when called, either curries or invokes `func`
    * with an optional `this` binding and partially applied arguments.
    *
@@ -10831,7 +11048,73 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
     return nativeKeys(object);
   };
 
+  /** Reusable iterator options shared by `each`, `forIn`, and `forOwn` */
+  var eachIteratorOptions = {
+    'args': 'collection, callback, thisArg',
+    'top': "callback = callback && typeof thisArg == 'undefined' ? callback : baseCreateCallback(callback, thisArg, 3)",
+    'array': "typeof length == 'number'",
+    'keys': keys,
+    'loop': 'if (callback(iterable[index], index, collection) === false) return result'
+  };
+
+  /** Reusable iterator options for `forIn` and `forOwn` */
+  var forOwnIteratorOptions = {
+    'top': 'if (!objectTypes[typeof iterable]) return result;\n' + eachIteratorOptions.top,
+    'array': false
+  };
+
+  /**
+   * A function compiled to iterate `arguments` objects, arrays, objects, and
+   * strings consistenly across environments, executing the callback for each
+   * element in the collection. The callback is bound to `thisArg` and invoked
+   * with three arguments; (value, index|key, collection). Callbacks may exit
+   * iteration early by explicitly returning `false`.
+   *
+   * @private
+   * @type Function
+   * @param {Array|Object|string} collection The collection to iterate over.
+   * @param {Function} [callback=identity] The function called per iteration.
+   * @param {*} [thisArg] The `this` binding of `callback`.
+   * @returns {Array|Object|string} Returns `collection`.
+   */
+  var baseEach = createIterator(eachIteratorOptions);
+
   /*--------------------------------------------------------------------------*/
+
+  /**
+   * Iterates over own and inherited enumerable properties of an object,
+   * executing the callback for each property. The callback is bound to `thisArg`
+   * and invoked with three arguments; (value, key, object). Callbacks may exit
+   * iteration early by explicitly returning `false`.
+   *
+   * @static
+   * @memberOf _
+   * @type Function
+   * @category Objects
+   * @param {Object} object The object to iterate over.
+   * @param {Function} [callback=identity] The function called per iteration.
+   * @param {*} [thisArg] The `this` binding of `callback`.
+   * @returns {Object} Returns `object`.
+   * @example
+   *
+   * function Shape() {
+   *   this.x = 0;
+   *   this.y = 0;
+   * }
+   *
+   * Shape.prototype.move = function(x, y) {
+   *   this.x += x;
+   *   this.y += y;
+   * };
+   *
+   * _.forIn(new Shape, function(value, key) {
+   *   console.log(key);
+   * });
+   * // => logs 'x', 'y', and 'move' (property order is not guaranteed across environments)
+   */
+  var forIn = createIterator(eachIteratorOptions, forOwnIteratorOptions, {
+    'useHas': false
+  });
 
   /**
    * Checks if `value` is a function.
@@ -10900,6 +11183,76 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
   function isString(value) {
     return typeof value == 'string' ||
       value && typeof value == 'object' && toString.call(value) == stringClass || false;
+  }
+
+  /*--------------------------------------------------------------------------*/
+
+  /**
+   * Iterates over elements of a collection, returning the first element that
+   * the callback returns truey for. The callback is bound to `thisArg` and
+   * invoked with three arguments; (value, index|key, collection).
+   *
+   * If a property name is provided for `callback` the created "_.pluck" style
+   * callback will return the property value of the given element.
+   *
+   * If an object is provided for `callback` the created "_.where" style callback
+   * will return `true` for elements that have the properties of the given object,
+   * else `false`.
+   *
+   * @static
+   * @memberOf _
+   * @alias detect, findWhere
+   * @category Collections
+   * @param {Array|Object|string} collection The collection to iterate over.
+   * @param {Function|Object|string} [callback=identity] The function called
+   *  per iteration. If a property name or object is provided it will be used
+   *  to create a "_.pluck" or "_.where" style callback, respectively.
+   * @param {*} [thisArg] The `this` binding of `callback`.
+   * @returns {*} Returns the found element, else `undefined`.
+   * @example
+   *
+   * var characters = [
+   *   { 'name': 'barney',  'age': 36, 'blocked': false },
+   *   { 'name': 'fred',    'age': 40, 'blocked': true },
+   *   { 'name': 'pebbles', 'age': 1,  'blocked': false }
+   * ];
+   *
+   * _.find(characters, function(chr) {
+   *   return chr.age < 40;
+   * });
+   * // => { 'name': 'barney', 'age': 36, 'blocked': false }
+   *
+   * // using "_.where" callback shorthand
+   * _.find(characters, { 'age': 1 });
+   * // =>  { 'name': 'pebbles', 'age': 1, 'blocked': false }
+   *
+   * // using "_.pluck" callback shorthand
+   * _.find(characters, 'blocked');
+   * // => { 'name': 'fred', 'age': 40, 'blocked': true }
+   */
+  function find(collection, callback, thisArg) {
+    callback = lodash.createCallback(callback, thisArg, 3);
+
+    if (isArray(collection)) {
+      var index = -1,
+          length = collection.length;
+
+      while (++index < length) {
+        var value = collection[index];
+        if (callback(value, index, collection)) {
+          return value;
+        }
+      }
+    } else {
+      var result;
+      baseEach(collection, function(value, index, collection) {
+        if (callback(value, index, collection)) {
+          result = value;
+          return false;
+        }
+      });
+      return result;
+    }
   }
 
   /*--------------------------------------------------------------------------*/
@@ -11075,6 +11428,72 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
   /*--------------------------------------------------------------------------*/
 
   /**
+   * Produces a callback bound to an optional `thisArg`. If `func` is a property
+   * name the created callback will return the property value for a given element.
+   * If `func` is an object the created callback will return `true` for elements
+   * that contain the equivalent object properties, otherwise it will return `false`.
+   *
+   * @static
+   * @memberOf _
+   * @category Utilities
+   * @param {*} [func=identity] The value to convert to a callback.
+   * @param {*} [thisArg] The `this` binding of the created callback.
+   * @param {number} [argCount] The number of arguments the callback accepts.
+   * @returns {Function} Returns a callback function.
+   * @example
+   *
+   * var characters = [
+   *   { 'name': 'barney', 'age': 36 },
+   *   { 'name': 'fred',   'age': 40 }
+   * ];
+   *
+   * // wrap to create custom callback shorthands
+   * _.createCallback = _.wrap(_.createCallback, function(func, callback, thisArg) {
+   *   var match = /^(.+?)__([gl]t)(.+)$/.exec(callback);
+   *   return !match ? func(callback, thisArg) : function(object) {
+   *     return match[2] == 'gt' ? object[match[1]] > match[3] : object[match[1]] < match[3];
+   *   };
+   * });
+   *
+   * _.filter(characters, 'age__gt38');
+   * // => [{ 'name': 'fred', 'age': 40 }]
+   */
+  function createCallback(func, thisArg, argCount) {
+    var type = typeof func;
+    if (func == null || type == 'function') {
+      return baseCreateCallback(func, thisArg, argCount);
+    }
+    // handle "_.pluck" style callback shorthands
+    if (type != 'object') {
+      return property(func);
+    }
+    var props = keys(func),
+        key = props[0],
+        a = func[key];
+
+    // handle "_.where" style callback shorthands
+    if (props.length == 1 && a === a && !isObject(a)) {
+      // fast path the common case of providing an object with a single
+      // property containing a primitive value
+      return function(object) {
+        var b = object[key];
+        return a === b && (a !== 0 || (1 / a == 1 / b));
+      };
+    }
+    return function(object) {
+      var length = props.length,
+          result = false;
+
+      while (length--) {
+        if (!(result = baseIsEqual(object[props[length]], func[props[length]], null, true))) {
+          break;
+        }
+      }
+      return result;
+    };
+  }
+
+  /**
    * This method returns the first argument provided to it.
    *
    * @static
@@ -11125,14 +11544,48 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
     return new Date().getTime();
   };
 
+  /**
+   * Creates a "_.pluck" style function, which returns the `key` value of a
+   * given object.
+   *
+   * @static
+   * @memberOf _
+   * @category Utilities
+   * @param {string} key The name of the property to retrieve.
+   * @returns {Function} Returns the new function.
+   * @example
+   *
+   * var characters = [
+   *   { 'name': 'fred',   'age': 40 },
+   *   { 'name': 'barney', 'age': 36 }
+   * ];
+   *
+   * var getName = _.property('name');
+   *
+   * _.map(characters, getName);
+   * // => ['barney', 'fred']
+   *
+   * _.sortBy(characters, getName);
+   * // => [{ 'name': 'barney', 'age': 36 }, { 'name': 'fred',   'age': 40 }]
+   */
+  function property(key) {
+    return function(object) {
+      return object[key];
+    };
+  }
+
   /*--------------------------------------------------------------------------*/
 
   lodash.bind = bind;
+  lodash.createCallback = createCallback;
   lodash.debounce = debounce;
+  lodash.forIn = forIn;
   lodash.keys = keys;
+  lodash.property = property;
 
   /*--------------------------------------------------------------------------*/
 
+  lodash.find = find;
   lodash.identity = identity;
   lodash.isArguments = isArguments;
   lodash.isArray = isArray;
@@ -11141,6 +11594,9 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
   lodash.isString = isString;
   lodash.noop = noop;
   lodash.now = now;
+
+  lodash.detect = find;
+  lodash.findWhere = find;
 
   /*--------------------------------------------------------------------------*/
 
@@ -15978,10 +16434,27 @@ $.extend($.fn, {
 		// http://weblogs.asp.net/imranbaloch/overriding-unobtrusive-client-side-validation-settings-in-asp-net-mvc-3
 		// var validator = this.$element.data('validator');
 
+		// deactivate email => it's done by regex (because default email-regex isn't good)
+		$.validator.methods.email = function(){
+				return true;
+		};
+
+		// Multicheckrequired
+		$.validator.unobtrusive.adapters.add('multicheckrequired', [], function (options) {
+			options.rules.multicheckrequired = true;
+			options.messages.multicheckrequired = options.message;
+		});
+
 		$.validator.addMethod('multicheckrequired', function (value, element) {
 			var $container = $(element).closest('fieldset');
 			return $container.find(':checked').length ? true : false;
 		});
+
+		var form = this.$element
+			.removeData('validator') /* added by the raw jquery.validate plugin */
+			.removeData('unobtrusiveValidation');  /* added by the jquery unobtrusive plugin */
+
+		$.validator.unobtrusive.parse(form);
 	};
 
 	/**
