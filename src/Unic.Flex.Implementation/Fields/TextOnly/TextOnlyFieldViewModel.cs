@@ -36,7 +36,7 @@
         {
             base.BindProperties();
 
-            this.AddCssClass("flex_textitem");
+            this.AddCssClass("flex_rtecontent");
         }
     }
 }
