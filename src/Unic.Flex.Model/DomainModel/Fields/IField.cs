@@ -1,5 +1,6 @@
 ﻿namespace Unic.Flex.Model.DomainModel.Fields
 {
+    using System;
     using System.Collections.Generic;
     using Unic.Flex.Model.DomainModel.Components;
     using Unic.Flex.Model.DomainModel.Global;
@@ -33,6 +34,14 @@
     /// </summary>
     public interface IField : ITooltip
     {
+        /// <summary>
+        /// Gets or sets the item identifier.
+        /// </summary>
+        /// <value>
+        /// The item identifier.
+        /// </value>
+        Guid ItemId { get; set; }
+        
         /// <summary>
         /// Gets or sets the value.
         /// </summary>

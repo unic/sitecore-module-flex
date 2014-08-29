@@ -116,6 +116,7 @@
     <Compile Include="Plugs\LoadPlugs\QueryStringLoader.cs" />
     <Compile Include="Plugs\SavePlugs\SaveToDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validators\CompareValidator.cs" />
     <Compile Include="Validators\EmailValidator.cs" />
     <Compile Include="Validators\NumberValidator.cs" />
     <Compile Include="Validators\PasswordStrengthValidator.cs" />

@@ -5,8 +5,10 @@
     using Glass.Mapper.Sc.Fields;
     using System.Collections.Generic;
     using System.Linq;
+    using Unic.Flex.Model.DomainModel.Fields;
     using Unic.Flex.Model.DomainModel.Plugs.LoadPlugs;
     using Unic.Flex.Model.DomainModel.Plugs.SavePlugs;
+    using Unic.Flex.Model.DomainModel.Sections;
     using Unic.Flex.Model.DomainModel.Steps;
     using Unic.Flex.Model.GlassExtensions.Attributes;
 
@@ -118,6 +120,32 @@
         public virtual StepBase GetActiveStep()
         {
             return this.Steps.FirstOrDefault(step => step.IsActive) ?? this.Steps.FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Gets all fields available within a step or over all.
+        /// </summary>
+        /// <param name="stepNumber">The step number. If not provided or 0, then it returns fields from all steps</param>
+        /// <returns>List of fields</returns>
+        public virtual IEnumerable<IField> GetAllFields(int stepNumber = 0)
+        {
+            var steps = this.Steps;
+            if (stepNumber > 0)
+            {
+                steps = steps.Where(step => step.StepNumber == stepNumber);
+            }
+
+            foreach (var section in steps.SelectMany(s => s.Sections))
+            {
+                var reusableSection = section as ReusableSection;
+                var realSection = (reusableSection == null ? section : reusableSection.Section) as StandardSection;
+                if (realSection == null) continue;
+
+                foreach (var field in realSection.Fields)
+                {
+                    yield return field;
+                }
+            }
         }
     }
 }
