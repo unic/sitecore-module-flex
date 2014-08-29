@@ -1,9 +1,10 @@
 ﻿namespace Unic.Flex.Model.Validation
 {
+    using System.Web;
+    using Glass.Mapper.Sc.Configuration.Attributes;
     using System;
     using System.Collections.Generic;
     using System.Web.Mvc;
-    using Glass.Mapper.Sc.Configuration.Attributes;
 
     /// <summary>
     /// Abstract ajax validator to add needed properties and attribute for remote validation
@@ -76,10 +77,18 @@
             attributes.Add("data-val-remote", this.ValidationMessage);
             attributes.Add("data-val-remote-type", this.HttpMethod);
             attributes.Add("data-val-remote-additionalfields", "*.Value");
-
-            // todo: this url has to be constructed automatically
-            attributes.Add("data-val-remote-url", "/api/sitecore/Flex/AjaxValidator?validator=" + this.ValidatorId);
+            attributes.Add("data-val-remote-url", this.GetValidationUrl());
             return attributes;
+        }
+
+        /// <summary>
+        /// Gets the url to the ajax validation.
+        /// </summary>
+        /// <returns>Url to call via ajax</returns>
+        private string GetValidationUrl()
+        {
+            var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
+            return urlHelper.Action("AjaxValidator", "Flex", new { validator = this.ValidatorId });
         }
     }
 }
