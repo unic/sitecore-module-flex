@@ -77,11 +77,9 @@
             
             // get the other field
             var context = Container.Resolve<IFlexContext>();
-            var field = context.Form.GetAllFields(context.Form.GetActiveStep().StepNumber).FirstOrDefault(f => f.ItemId == this.OtherFieldModel.ItemId);
+            var field = context.ViewModel.Step.Sections.SelectMany(section => section.Fields).FirstOrDefault(f => f.Key == this.OtherFieldModel.Key);
             if (field == null) return false;
 
-            // todo: this does not work as the field.Value is always null because it's not set in this context here -> we are in modelbinding and the "value" parameters comes from the view model and not from the domain model
-            
             // compare field values
             return (value == null && field.Value == null) || (value != null && value.Equals(field.Value));
         }

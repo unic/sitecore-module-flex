@@ -5,6 +5,7 @@
     using System.Web;
     using Unic.Flex.Model.DomainModel;
     using Unic.Flex.Model.DomainModel.Forms;
+    using Unic.Flex.Model.ViewModel.Forms;
     using Unic.Flex.Plugs;
 
     public class FlexContext : IFlexContext
@@ -49,6 +50,8 @@
                 this.form = value;
             }
         }
+
+        public IFormViewModel ViewModel { get; set; }
 
         public void SetContextItem(Item contextItem)
         {
