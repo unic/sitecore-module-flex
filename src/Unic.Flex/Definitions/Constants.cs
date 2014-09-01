@@ -20,6 +20,8 @@ namespace Unic.Flex.Definitions
         
         public const string LabelIdSuffix = "Label";
 
+        public const string ValueIdSuffix = "Value";
+
         public const string TextIdSuffix = "Text";
 
         public const string LabelCssClass = "flex_label";
