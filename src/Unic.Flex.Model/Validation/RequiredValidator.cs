@@ -65,6 +65,8 @@
         /// </returns>
         public IDictionary<string, object> GetAttributes()
         {
+            // todo: Client side validator must be sure to not validate file uploads if a file was uploaded before
+            
             var attributes = new Dictionary<string, object>();
             attributes.Add("data-val-required", this.ValidationMessage);
             attributes.Add("required", "required");
