@@ -25,7 +25,8 @@
             }
 
             var context = Container.Resolve<IFlexContext>();
-            return this.modelConverter.ConvertToViewModel(context.Form);
+            context.ViewModel = this.modelConverter.ConvertToViewModel(context.Form);
+            return context.ViewModel;
         }
     }
 }
