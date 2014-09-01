@@ -181,6 +181,22 @@
             return this.Json(validatorItem.IsValid(collection[key]), JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// Removes the uploaded file from the user data storage.
+        /// </summary>
+        /// <param name="form">The form.</param>
+        /// <param name="field">The field.</param>
+        /// <returns>Result for handling within the frontend</returns>
+        public ActionResult RemoveUploadedFile(string form, string field)
+        {
+            if (this.userDataRepository.IsFieldStored(form, field))
+            {
+                this.userDataRepository.SetValue(form, field, null);
+            }
+
+            return this.Content("OK"); // todo: return whatever is needed from the frontend
+        }
+
         private ActionResult ShowError()
         {
             var model = new ErrorViewModel { Messages = this.exceptionState.Messages };

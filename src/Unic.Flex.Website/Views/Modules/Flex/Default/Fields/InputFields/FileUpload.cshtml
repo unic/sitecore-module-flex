@@ -1,5 +1,6 @@
-﻿@using System.Web.Mvc.Html
+﻿@using Unic.Flex.Context
 @using Unic.Flex.Definitions
+@using Unic.Flex.DependencyInjection
 @using Unic.Flex.Presentation
 @model Unic.Flex.Implementation.Fields.InputFields.FileUploadFieldViewModel
 
@@ -12,6 +13,7 @@
     @if (Model.Value != null)
     {
         <span>@Model.Value.FileName</span>
+        <a href="@Url.Action("RemoveUploadedFile", "Flex", new { form = Container.Resolve<IFlexContext>().Form.Id, field = Model.Key })">REMOVE FILE</a>
     }
 
     @Html.FlexValidator(model => model.Value)
