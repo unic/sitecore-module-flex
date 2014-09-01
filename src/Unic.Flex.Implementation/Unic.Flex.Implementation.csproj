@@ -91,6 +91,8 @@
     <Compile Include="Fields\InputFields\CheckBoxFieldViewModel.cs" />
     <Compile Include="Fields\InputFields\EmailField.cs" />
     <Compile Include="Fields\InputFields\EmailFieldViewModel.cs" />
+    <Compile Include="Fields\InputFields\FileUploadField.cs" />
+    <Compile Include="Fields\InputFields\FileUploadFieldViewModel.cs" />
     <Compile Include="Fields\InputFields\HiddenField.cs" />
     <Compile Include="Fields\InputFields\HiddenFieldViewModel.cs" />
     <Compile Include="Fields\InputFields\MultilineTextField.cs" />

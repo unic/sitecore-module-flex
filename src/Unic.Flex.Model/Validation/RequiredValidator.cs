@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Web;
 
     /// <summary>
     /// Validator to validate if field has a value
@@ -50,6 +51,9 @@
             var stringArrayValue = value as string[];
             if (stringArrayValue != null) return stringArrayValue.Any(v => !string.IsNullOrWhiteSpace(v));
 
+            var fileValue = value as HttpPostedFileBase;
+            if (fileValue != null) return true;
+
             return false;
         }
 
@@ -61,6 +65,8 @@
         /// </returns>
         public IDictionary<string, object> GetAttributes()
         {
+            // todo: Client side validator must be sure to not validate file uploads if a file was uploaded before
+            
             var attributes = new Dictionary<string, object>();
             attributes.Add("data-val-required", this.ValidationMessage);
             attributes.Add("required", "required");

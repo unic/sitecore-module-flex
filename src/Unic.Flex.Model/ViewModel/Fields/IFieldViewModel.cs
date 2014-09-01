@@ -1,5 +1,6 @@
 ﻿namespace Unic.Flex.Model.ViewModel.Fields
 {
+    using System;
     using System.Collections.Generic;
     using Unic.Flex.Model.Presentation;
     using Unic.Flex.Model.ViewModel.Components;
@@ -24,6 +25,14 @@
     /// </summary>
     public interface IFieldViewModel : IPresentationComponent, ITooltipViewModel
     {
+        /// <summary>
+        /// Gets the type.
+        /// </summary>
+        /// <value>
+        /// The type.
+        /// </value>
+        Type Type { get; }
+        
         /// <summary>
         /// Gets or sets the value.
         /// </summary>

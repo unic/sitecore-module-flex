@@ -1,21 +1,28 @@
 ﻿namespace Unic.Flex.ModelBinding
 {
     using System.ComponentModel.DataAnnotations;
+    using System.Web;
     using System.Web.Mvc;
     using Unic.Flex.Model.ViewModel.Fields;
 
     public class FieldModelBinder : DefaultModelBinder
     {
+        private object initialValue;
+        
         public override object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
-            var initialModel = bindingContext.Model;
+            // get initial values
+            var initialModel = (IFieldViewModel)bindingContext.Model;
+            this.initialValue = initialModel.Value;
+
+            // bind the model with the default model binder
             var model = base.BindModel(controllerContext, bindingContext);
 
-            // return the binded model if is could be bindet
+            // return the binded model if it could be binded
             if (model != null) return model;
 
             // otherwise no values has been posted -> reset the field value, to validation and return the initial model
-            ((IFieldViewModel)initialModel).Value = null;
+            initialModel.Value = null;
             ForceModelValidation(bindingContext);
             return initialModel;
         }
@@ -23,6 +30,14 @@
         protected override void OnModelUpdated(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
             base.OnModelUpdated(controllerContext, bindingContext);
+
+            // set the file uploaded to the initial file (because it maybe wasn't posted but was posted before)
+            var model = (IFieldViewModel)bindingContext.Model;
+            if (model.Value == null && model.Type == typeof(HttpPostedFileBase))
+            {
+                model.Value = this.initialValue;
+            }
+
             ForceModelValidation(bindingContext);
         }
 
