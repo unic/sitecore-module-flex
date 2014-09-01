@@ -190,7 +190,7 @@
             }
 
             // add the "data-val" attribute to specify that this field needs to be validated
-            if (!this.Attributes.ContainsKey("data-val"))
+            if (this.Attributes.Any() && !this.Attributes.ContainsKey("data-val"))
             {
                 this.Attributes.Add("data-val", "true");
             }
