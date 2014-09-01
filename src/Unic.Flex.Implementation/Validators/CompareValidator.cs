@@ -1,10 +1,9 @@
 ﻿namespace Unic.Flex.Implementation.Validators
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using Glass.Mapper.Sc.Configuration;
     using Glass.Mapper.Sc.Configuration.Attributes;
+    using System.Collections.Generic;
+    using System.Linq;
     using Unic.Flex.Context;
     using Unic.Flex.DependencyInjection;
     using Unic.Flex.Model.DomainModel.Fields;
@@ -73,7 +72,7 @@
         public bool IsValid(object value)
         {
             // other field not configured or not found
-            if (this.OtherField == null) return false;
+            if (this.OtherFieldModel == null) return false;
             
             // get the other field
             var context = Container.Resolve<IFlexContext>();
@@ -93,8 +92,27 @@
         public virtual IDictionary<string, object> GetAttributes()
         {
             var attributes = new Dictionary<string, object>();
-            //attributes.Add("data-val-equalto", this.ValidationMessage);
-            //attributes.Add("data-val-equalto-other", "*.Name1"); // todo: set to the correct value
+
+            // check if a field is configured
+            if (this.OtherFieldModel == null) return attributes;
+
+            // get the context
+            var context = Container.Resolve<IFlexContext>();
+            
+            // get all sections
+            var allSections = context.Form.GetSections(context.Form.GetActiveStep().StepNumber);
+
+            // get the section index the field is in
+            var section = allSections.Select((n, i) => new { n.Fields, Index = i }).FirstOrDefault(s => s.Fields.Any(f => f.Key == this.OtherFieldModel.Key));
+            if (section == null) return attributes;
+
+            // get the field index the field is in
+            var field = section.Fields.Select((n, i) => new { n.Key, Index = i }).FirstOrDefault(f => f.Key == this.OtherFieldModel.Key);
+            if (field == null) return attributes;
+
+            // add attributes
+            attributes.Add("data-val-equalto", this.ValidationMessage);
+            attributes.Add("data-val-equalto-other", string.Format("Step.Sections[{0}].Fields[{1}].Value", section.Index, field.Index));
             return attributes;
         }
     }
