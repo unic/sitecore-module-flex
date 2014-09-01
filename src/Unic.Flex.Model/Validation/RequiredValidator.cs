@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Web;
 
     /// <summary>
     /// Validator to validate if field has a value
@@ -49,6 +50,9 @@
 
             var stringArrayValue = value as string[];
             if (stringArrayValue != null) return stringArrayValue.Any(v => !string.IsNullOrWhiteSpace(v));
+
+            var fileValue = value as HttpPostedFileBase;
+            if (fileValue != null) return true;
 
             return false;
         }

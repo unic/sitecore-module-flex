@@ -1,5 +1,6 @@
 ﻿namespace Unic.Flex.Model.ViewModel.Fields
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
@@ -45,6 +46,20 @@
             set
             {
                 this.Value = value != null ? (TValue)value : default(TValue);
+            }
+        }
+
+        /// <summary>
+        /// Gets the type.
+        /// </summary>
+        /// <value>
+        /// The type.
+        /// </value>
+        public virtual Type Type
+        {
+            get
+            {
+                return typeof(TValue);
             }
         }
 
