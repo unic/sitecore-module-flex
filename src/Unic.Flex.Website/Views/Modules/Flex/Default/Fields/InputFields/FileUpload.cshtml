@@ -8,6 +8,11 @@
     @Html.FlexLabel(m => m.Value, Model.Label)
 
     <input type="file" name="@Html.GetName(Constants.ValueIdSuffix)" id="@Html.GetId(Constants.ValueIdSuffix)" @Html.Raw(Html.FormatAttributes(Html.GetAttributes(Model))) />
+    
+    @if (Model.Value != null)
+    {
+        <span>@Model.Value.FileName</span>
+    }
 
     @Html.FlexValidator(model => model.Value)
     @Html.FlexComponent(model => model.Tooltip)
