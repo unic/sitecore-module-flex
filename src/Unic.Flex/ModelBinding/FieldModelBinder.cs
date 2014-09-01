@@ -31,7 +31,7 @@
         {
             base.OnModelUpdated(controllerContext, bindingContext);
 
-            // set the file uploaded to the initial file (because it maybe wasn't posted)
+            // set the file uploaded to the initial file (because it maybe wasn't posted but was posted before)
             var model = (IFieldViewModel)bindingContext.Model;
             if (model.Value == null && model.Type == typeof(HttpPostedFileBase))
             {
