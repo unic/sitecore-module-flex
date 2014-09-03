@@ -140,6 +140,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Unic.Configuration.0.3.0.1\lib\net45\Unic.Configuration.dll</HintPath>
     </Reference>
+    <Reference Include="Unic.Profiling, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Unic.Profiling.1.0.0\lib\net45\Unic.Profiling.dll</HintPath>
+    </Reference>
     <Reference Include="Unicorn, Version=2.0.4.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Unicorn.2.0.4\lib\net45\Unicorn.dll</HintPath>

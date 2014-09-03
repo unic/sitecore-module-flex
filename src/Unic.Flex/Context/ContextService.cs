@@ -76,7 +76,7 @@
         {
             Assert.ArgumentNotNull(form, "form");
 
-            Profiler.OnStart(this, "Populating values from user data storage");
+            Profiler.OnStart(this, "Flex :: Populating values from user data storage");
 
             foreach (var stepSection in form.Steps.SelectMany(step => step.Sections))
             {
@@ -92,7 +92,7 @@
                 }
             }
 
-            Profiler.OnEnd(this, "Populating values from user data storage");
+            Profiler.OnEnd(this, "Flex :: Populating values from user data storage");
         }
 
         /// <summary>
@@ -105,14 +105,14 @@
             Assert.ArgumentNotNull(form, "form");
             Assert.ArgumentNotNull(viewModel, "viewModel");
 
-            Profiler.OnStart(this, "Store form values to user data sotrage");
+            Profiler.OnStart(this, "Flex :: Store form values to user data sotrage");
 
             foreach (var field in viewModel.Step.Sections.SelectMany(section => section.Fields))
             {
                 this.userDataRepository.SetValue(form.Id, field.Key, field.Value);
             }
 
-            Profiler.OnEnd(this, "Store form values to user data sotrage");
+            Profiler.OnEnd(this, "Flex :: Store form values to user data sotrage");
         }
 
         /// <summary>

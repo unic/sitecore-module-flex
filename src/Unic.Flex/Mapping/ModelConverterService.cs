@@ -60,9 +60,9 @@
             if (activeStep == null) throw new Exception("No step is currently active or no step was found");
 
             // convert the step
-            Profiler.OnStart(this, "Convert DomainModel to ViewModel");
+            Profiler.OnStart(this, "Flex :: Convert DomainModel to ViewModel");
             var viewModel = this.Convert(form, activeStep);
-            Profiler.OnEnd(this, "Convert DomainModel to ViewModel");
+            Profiler.OnEnd(this, "Flex :: Convert DomainModel to ViewModel");
             return viewModel;
         }
 

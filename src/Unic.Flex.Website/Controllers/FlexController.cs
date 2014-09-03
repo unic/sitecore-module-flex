@@ -14,9 +14,14 @@
     using Unic.Flex.ModelBinding;
     using Unic.Flex.Plugs;
     using Unic.Flex.Presentation;
+    using Unic.Profiling;
 
     public class FlexController : Controller
     {
+        private const string ProfileGetEventName = "Flex :: GET Controller Action";
+
+        private const string ProfilePostEventName = "Flex :: POST Controller Action";
+        
         private readonly IPresentationService presentationService;
 
         private readonly IModelConverterService modelConverter;
@@ -53,6 +58,8 @@
 
         public ActionResult Form()
         {
+            Profiler.OnStart(this, ProfileGetEventName);
+            
             // get the form
             var form = this.flexContext.Form;
             if (form == null) return new EmptyResult();
@@ -64,7 +71,9 @@
             // show errors
             if (this.exceptionState.HasErrors)
             {
-                return this.ShowError();
+                var result = this.ShowError();
+                Profiler.OnEnd(this, ProfileGetEventName);
+                return result;
             }
 
             // check if we need to show the success message
@@ -72,7 +81,9 @@
                 && currentStep.StepNumber == form.Steps.Count()
                 && !this.userDataRepository.IsFormStored(form.Id))
             {
-                return this.ShowSuccessMessage(form.SuccessMessage);
+                var result = this.ShowSuccessMessage(form.SuccessMessage);
+                Profiler.OnEnd(this, ProfileGetEventName);
+                return result;
             }
 
             // check if we need to cancel the current form
@@ -84,6 +95,7 @@
                 this.userDataRepository.ClearForm(form.Id);
 
                 // redirect to correct url
+                Profiler.OnEnd(this, ProfileGetEventName);
                 return this.Redirect(form.CancelLink.Url);
             }
 
@@ -91,6 +103,7 @@
             // if step is not valid, redirect to the first step
             if (!this.contextService.IsStepAccessible(form, currentStep))
             {
+                Profiler.OnEnd(this, ProfileGetEventName);
                 return this.Redirect(form.GetFirstStepUrl());
             }
 
@@ -100,12 +113,15 @@
             // return the view for this step
             var formViewModel = this.modelConverter.ConvertToViewModel(form);
             var formView = this.presentationService.ResolveView(this.ControllerContext, formViewModel);
+            Profiler.OnEnd(this, ProfileGetEventName);
             return this.View(formView, formViewModel);
         }
 
         [HttpPost]
         public ActionResult Form(IFormViewModel model)
         {
+            Profiler.OnStart(this, ProfilePostEventName);
+            
             // get the current form
             var form = this.flexContext.Form;
             if (form == null) return new EmptyResult();
@@ -118,6 +134,7 @@
             // if step is not valid, redirect to the first step
             if (!this.contextService.IsStepAccessible(form, currentStep))
             {
+                Profiler.OnEnd(this, ProfilePostEventName);
                 return this.Redirect(form.GetFirstStepUrl());
             }
 
@@ -125,6 +142,7 @@
             var formView = this.presentationService.ResolveView(this.ControllerContext, model);
             if (!ModelState.IsValid)
             {
+                Profiler.OnEnd(this, ProfilePostEventName);
                 return this.View(formView, model);
             }
 
@@ -134,6 +152,7 @@
             if (!string.IsNullOrWhiteSpace(nextStepUrl))
             {
                 this.userDataRepository.CompleteStep(form.Id, currentStep.StepNumber);
+                Profiler.OnEnd(this, ProfilePostEventName);
                 return this.Redirect(nextStepUrl);
             }
 
@@ -146,10 +165,12 @@
             // redirect to the sucess page
             if (form.SuccessRedirect != null && !string.IsNullOrWhiteSpace(form.SuccessRedirect.Url))
             {
+                Profiler.OnEnd(this, ProfilePostEventName);
                 return this.Redirect(form.SuccessRedirect.Url);
             }
 
             // redirect to the current page and show the success message
+            Profiler.OnEnd(this, ProfilePostEventName);
             return this.Redirect(this.urlService.AddQueryStringToCurrentUrl(Constants.SuccessQueryStringKey, Constants.SuccessQueryStringValue));
         }
 
