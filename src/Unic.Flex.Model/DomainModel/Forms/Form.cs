@@ -135,14 +135,7 @@
                 steps = steps.Where(step => step.StepNumber == stepNumber);
             }
 
-            foreach (var section in steps.SelectMany(s => s.Sections))
-            {
-                var reusableSection = section as ReusableSection;
-                var realSection = (reusableSection == null ? section : reusableSection.Section) as StandardSection;
-                if (realSection == null) continue;
-
-                yield return realSection;
-            }
+            return steps.SelectMany(s => s.GetSections());
         }
     }
 }

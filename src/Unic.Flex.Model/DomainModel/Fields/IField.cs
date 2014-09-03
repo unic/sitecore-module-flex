@@ -67,6 +67,14 @@
         string Key { get; }
 
         /// <summary>
+        /// Gets the label.
+        /// </summary>
+        /// <value>
+        /// The label.
+        /// </value>
+        string Label { get; }
+
+        /// <summary>
         /// Gets or sets the custom CSS class.
         /// </summary>
         /// <value>

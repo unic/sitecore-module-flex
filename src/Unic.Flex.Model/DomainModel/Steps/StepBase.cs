@@ -42,5 +42,21 @@
         /// </value>
         [SitecoreChildren(IsLazy = true, InferType = true)]
         public virtual IEnumerable<SectionBase> Sections { get; set; }
+
+        /// <summary>
+        /// Gets all the real sections.
+        /// </summary>
+        /// <returns>All real sections of this step</returns>
+        public virtual IEnumerable<StandardSection> GetSections()
+        {
+            foreach (var section in this.Sections)
+            {
+                var reusableSection = section as ReusableSection;
+                var realSection = (reusableSection == null ? section : reusableSection.Section) as StandardSection;
+                if (realSection == null) continue;
+
+                yield return realSection;
+            }
+        }
     }
 }

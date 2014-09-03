@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Unic.Flex.Implementation.Mailers
+﻿namespace Unic.Flex.Implementation.Mailers
 {
     using System.Net.Mail;
     using System.Web;
     using Mvc.Mailer;
+    using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Presentation;
 
     public class SavePlugMailer : MailerBase, ISavePlugMailer
@@ -20,20 +15,19 @@ namespace Unic.Flex.Implementation.Mailers
             this.presentationService = presentationService;
         }
 
-        public virtual MvcMailMessage GetMessage()
+        public virtual MvcMailMessage GetMessage(Form form)
         {
             // ensure the mailer has been initialized
             if (this.ControllerContext == null)
             {
                 this.Initialize(HttpContext.Current.Request.RequestContext);
             }
-            
-            // get the html part
-            this.ViewBag.HtmlBody = "this is my html body";
-            this.ViewBag.HtmlLayout = this.presentationService.ResolveView(this.ControllerContext, "Mailers/_Layout");
 
-            // get the text part
-            this.ViewBag.TextBody = "this is my plain text body";
+            // add the model
+            this.ViewBag.Form = form;
+            
+            // get the layouts
+            this.ViewBag.HtmlLayout = this.presentationService.ResolveView(this.ControllerContext, "Mailers/_Layout");
             this.ViewBag.TextLayout = this.presentationService.ResolveView(this.ControllerContext, "Mailers/_Layout.text");
             
             // populate the mail

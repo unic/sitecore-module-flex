@@ -1,5 +1,31 @@
-﻿@{
+﻿@using System.Linq
+@using System.Web
+@using Sitecore.Configuration
+@using Sitecore.Globalization
+@using Unic.Flex.Context
+@using Unic.Flex.Model.DomainModel.Forms
+@using Unic.Flex.Model.DomainModel.Steps
+@using Unic.Flex.Presentation
+
+@{
     Layout = ViewBag.HtmlLayout;
+    var form = ViewBag.Form as Form;
+    if (form == null)
+    {
+        return;
+    }
+
+    var formUrl = Sitecore.Web.WebUtil.GetFullUrl(form.GetFirstStepUrl());
 }
 
-@ViewBag.HtmlBody
+<h1>@form.Title</h1>
+<p>@form.Introduction</p>
+
+@foreach (var step in form.Steps.Where(s => !(s is Summary)))
+{
+    @Html.FlexComponent(m => step, "Mailers/SavePlug/Step")
+}
+
+<div style="margin-top: 50px; padding-top: 10px; border-top: 1px solid black; font-size: 90%">
+    @Translate.TextByDomain(Settings.GetSetting("Flex.DictionaryDomain"), "Form Title"): <a href="@formUrl">@formUrl</a>
+</div>

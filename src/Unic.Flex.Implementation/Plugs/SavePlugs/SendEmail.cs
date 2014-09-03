@@ -13,15 +13,12 @@
     [SitecoreType(TemplateId = "{DF5C2C2F-4A48-4206-9DFB-0DCDE27E2233}")]
     public class SendEmail : SavePlugBase
     {
-        private readonly IConfigurationManager configurationManager;
-
         private readonly IMailRepository mailRepository;
 
         private readonly ISavePlugMailer savePlugMailer;
 
-        public SendEmail(IConfigurationManager configurationManager, IMailRepository mailRepository, ISavePlugMailer savePlugMailer)
+        public SendEmail(IMailRepository mailRepository, ISavePlugMailer savePlugMailer)
         {
-            this.configurationManager = configurationManager;
             this.mailRepository = mailRepository;
             this.savePlugMailer = savePlugMailer;
         }
@@ -30,9 +27,7 @@
         {
             Assert.ArgumentNotNull(form, "form");
 
-            var from = this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.From);
-
-            var mailMessage = this.savePlugMailer.GetMessage();
+            var mailMessage = this.savePlugMailer.GetMessage(form);
             this.mailRepository.SendMail(mailMessage);
         }
     }

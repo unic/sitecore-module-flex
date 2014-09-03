@@ -1,0 +1,21 @@
+﻿@using System.Linq
+@using Sitecore.Configuration
+@using Sitecore.Globalization
+@using Unic.Flex.Presentation
+@model Unic.Flex.Model.DomainModel.Sections.StandardSection
+
+<h3>@Model.Title</h3>
+
+<table>
+    
+    <tr style="background-color: #c0c0c0">
+        <th width="150" style="text-align: left">@Translate.TextByDomain(Settings.GetSetting("Flex.DictionaryDomain"), "Field Title")</th>
+        <th style="text-align: left;">@Translate.TextByDomain(Settings.GetSetting("Flex.DictionaryDomain"), "Value Title")</th>
+    </tr>
+
+    @foreach (var field in Model.Fields.Where(field => field.ShowInSummary))
+    {
+        @Html.FlexComponent(m => field, "Mailers/SavePlug/Field")
+    }
+
+</table>
