@@ -61,7 +61,7 @@
 
             try
             {
-                var regex = new Regex(this.RegularExpression);
+                var regex = new Regex(this.RegularExpression, RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.ExplicitCapture);
                 var match = regex.Match(stringValue);
                 return match.Success && match.Index == 0 && match.Length == stringValue.Length;
             }

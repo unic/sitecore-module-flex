@@ -125,6 +125,7 @@
     <Compile Include="Validators\PasswordStrengthValidator.cs" />
     <Compile Include="Validators\PhoneValidator.cs" />
     <Compile Include="Validators\RegularExpressionValidator.cs" />
+    <Compile Include="Validators\UrlValidator.cs" />
     <Compile Include="Validators\ValidFileTypeValidator.cs" />
   </ItemGroup>
   <ItemGroup>
