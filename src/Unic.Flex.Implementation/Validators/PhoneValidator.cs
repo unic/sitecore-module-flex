@@ -1,6 +1,5 @@
 ﻿namespace Unic.Flex.Implementation.Validators
 {
-    using System.Collections.Generic;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Unic.Flex.Model.GlassExtensions.Attributes;
 
@@ -45,19 +44,6 @@
             {
                 return @"^[0|\+]{1}[0-9|\ ]{6,}$";
             }
-        }
-
-        /// <summary>
-        /// Gets the additional html attributes which should be rendered.
-        /// </summary>
-        /// <returns>
-        /// Key-Value based dictionary with additional html attributes
-        /// </returns>
-        public override IDictionary<string, object> GetAttributes()
-        {
-            var attributes = base.GetAttributes();
-            attributes.Add("data-val-phone", this.ValidationMessage);
-            return attributes;
         }
     }
 }
