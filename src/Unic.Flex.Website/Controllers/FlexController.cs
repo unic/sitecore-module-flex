@@ -72,7 +72,7 @@
                 && currentStep.StepNumber == form.Steps.Count()
                 && !this.userDataRepository.IsFormStored(form.Id))
             {
-                return this.Content(form.SuccessMessage);
+                return this.ShowSuccessMessage(form.SuccessMessage);
             }
 
             // check if we need to cancel the current form
@@ -200,6 +200,13 @@
         private ActionResult ShowError()
         {
             var model = new ErrorViewModel { Messages = this.exceptionState.Messages };
+            var view = this.presentationService.ResolveView(this.ControllerContext, model);
+            return this.View(view, model);
+        }
+
+        private ActionResult ShowSuccessMessage(string message)
+        {
+            var model = new SuccessMessageViewModel { Message = message };
             var view = this.presentationService.ResolveView(this.ControllerContext, model);
             return this.View(view, model);
         }

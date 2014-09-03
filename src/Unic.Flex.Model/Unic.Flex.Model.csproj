@@ -114,6 +114,7 @@
     <Compile Include="Validation\IValidatableObject.cs" />
     <Compile Include="ViewModel\Components\ErrorViewModel.cs" />
     <Compile Include="ViewModel\Components\ITooltipViewModel.cs" />
+    <Compile Include="ViewModel\Components\SuccessMessageViewModel.cs" />
     <Compile Include="ViewModel\Components\TooltipViewModel.cs" />
     <Compile Include="ViewModel\Components\NavigationItem.cs" />
     <Compile Include="ViewModel\Components\NavigationPaneViewModel.cs" />
