@@ -273,6 +273,18 @@
   <ItemGroup>
     <Content Include="Views\Modules\Flex\Default\Components\SuccessMessage.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Modules\Flex\Default\Mailers\SavePlug\Form.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Modules\Flex\Default\Mailers\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Modules\Flex\Default\Mailers\_Layout.text.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Modules\Flex\Default\Mailers\SavePlug\Form.text.cshtml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

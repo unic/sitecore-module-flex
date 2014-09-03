@@ -8,6 +8,7 @@
     using Unic.Flex.Context;
     using Unic.Flex.Globalization;
     using Unic.Flex.Logging;
+    using Unic.Flex.Mailing;
     using Unic.Flex.Mapping;
     using Unic.Flex.Model.Exceptions;
     using Unic.Flex.ModelBinding;
@@ -49,6 +50,9 @@
             // context
             Bind<ISitecoreContext>().To<SitecoreContext>().InRequestScope();
             Bind<IFlexContext>().To<FlexContext>().InRequestScope();
+
+            // mailing
+            Bind<IMailRepository>().To<MailRepository>();
 
             // helpers
             Bind<IUrlService>().To<UrlService>().InSingletonScope();

@@ -5,6 +5,8 @@
     using Unic.Configuration;
     using Unic.Flex.DependencyInjection;
     using Unic.Flex.Implementation.Configuration;
+    using Unic.Flex.Implementation.Mailers;
+    using Unic.Flex.Mailing;
     using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.DomainModel.Plugs.SavePlugs;
 
@@ -13,16 +15,25 @@
     {
         private readonly IConfigurationManager configurationManager;
 
-        public SendEmail(IConfigurationManager configurationManager)
+        private readonly IMailRepository mailRepository;
+
+        private readonly ISavePlugMailer savePlugMailer;
+
+        public SendEmail(IConfigurationManager configurationManager, IMailRepository mailRepository, ISavePlugMailer savePlugMailer)
         {
             this.configurationManager = configurationManager;
+            this.mailRepository = mailRepository;
+            this.savePlugMailer = savePlugMailer;
         }
         
         public override void Execute(Form form)
         {
             Assert.ArgumentNotNull(form, "form");
 
-            Log.Error("---------- " + this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.From), this);
+            var from = this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.From);
+
+            var mailMessage = this.savePlugMailer.GetMessage();
+            this.mailRepository.SendMail(mailMessage);
         }
     }
 }
