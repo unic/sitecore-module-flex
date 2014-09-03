@@ -1,19 +1,14 @@
 ﻿namespace Unic.Flex.Mapping
 {
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Diagnostics;
     using AutoMapper;
     using Castle.DynamicProxy;
     using Sitecore.Diagnostics;
     using System;
-    using System.Collections.Concurrent;
+    using System.Collections.Generic;
     using System.Linq;
-    using Sitecore.Exceptions;
     using Unic.Flex.Context;
     using Unic.Flex.Definitions;
     using Unic.Flex.Globalization;
-    using Unic.Flex.Logging;
     using Unic.Flex.Model.DomainModel.Fields.ListFields;
     using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.DomainModel.Sections;
@@ -28,22 +23,36 @@
     using Unic.Flex.Utilities;
     using Profiler = Unic.Profiling.Profiler;
 
+    /// <summary>
+    /// Service to convert between domain and view model.
+    /// </summary>
     public class ModelConverterService : IModelConverterService
     {
+        /// <summary>
+        /// The type lock
+        /// </summary>
+        private static readonly object TypeLock = new object();
+        
         /// <summary>
         /// Cache for view model types
         /// </summary>
         private readonly IDictionary<string, Type> viewModelTypeCache;
 
-        private static readonly object typeLock = new object();
-
+        /// <summary>
+        /// The dictionary repository
+        /// </summary>
         private readonly IDictionaryRepository dictionaryRepository;
 
+        /// <summary>
+        /// The URL service
+        /// </summary>
         private readonly IUrlService urlService;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ModelConverterService"/> class.
+        /// Initializes a new instance of the <see cref="ModelConverterService" /> class.
         /// </summary>
+        /// <param name="dictionaryRepository">The dictionary repository.</param>
+        /// <param name="urlService">The URL service.</param>
         public ModelConverterService(IDictionaryRepository dictionaryRepository, IUrlService urlService)
         {
             this.viewModelTypeCache = new Dictionary<string, Type>();
@@ -51,6 +60,14 @@
             this.urlService = urlService;
         }
 
+        /// <summary>
+        /// Converts the domain model to view model.
+        /// </summary>
+        /// <param name="form">The form domain model.</param>
+        /// <returns>
+        /// The view model
+        /// </returns>
+        /// <exception cref="System.Exception">No step is currently active or no step was found</exception>
         public IFormViewModel ConvertToViewModel(Form form)
         {
             Assert.ArgumentNotNull(form, "form");
@@ -67,11 +84,15 @@
         }
 
         /// <summary>
-        /// Gets a new view model instance based on the corresponding domain model.
+        /// Gets a view model instance base on the domain model.
+        /// The view model must have the same class name as the domain model with the postfix "ViewModel".
+        /// Both classes have to be in the same assembly.
         /// </summary>
-        /// <typeparam name="T">Type of the view model</typeparam>
+        /// <typeparam name="T">Interface type of the desired view model</typeparam>
         /// <param name="domainModel">The domain model.</param>
-        /// <returns>New instance of the found view model or null</returns>
+        /// <returns>
+        /// A newly created view model, if class was found.
+        /// </returns>
         public virtual T GetViewModel<T>(object domainModel)
         {
             Assert.ArgumentNotNull(domainModel, "domainModel");
@@ -84,6 +105,12 @@
             throw new TypeLoadException(string.Format("Could not find corresponding view model for type '{0}'", ProxyUtil.GetUnproxiedType(domainModel).FullName));
         }
 
+        /// <summary>
+        /// Converts the specified form domain model to the view model.
+        /// </summary>
+        /// <param name="form">The form.</param>
+        /// <param name="step">The step.</param>
+        /// <returns>View model</returns>
         protected virtual IFormViewModel Convert(Form form, StepBase step)
         {
             Assert.ArgumentNotNull(form, "form");
@@ -221,7 +248,7 @@
             Type viewModelType;
             var domainModelFullName = domainModel.GetType().FullName;
 
-            lock (typeLock)
+            lock (TypeLock)
             {
                 if (this.viewModelTypeCache.ContainsKey(domainModelFullName))
                 {

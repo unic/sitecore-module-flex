@@ -2,10 +2,17 @@
 {
     using Unic.Flex.Model.ViewModel.Fields.ListFields;
 
+    /// <summary>
+    /// Checkbox list field view model
+    /// </summary>
     public class CheckBoxListFieldViewModel : MulticheckListFieldViewModel<string[]>
     {
-        // todo: client-side validator does not work actually -> needed attributes are missing
-
+        /// <summary>
+        /// Gets the name of the view.
+        /// </summary>
+        /// <value>
+        /// The name of the view.
+        /// </value>
         public override string ViewName
         {
             get

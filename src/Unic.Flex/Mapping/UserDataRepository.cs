@@ -37,6 +37,7 @@
 
                 return session;
             }
+
             set
             {
                 HttpContext.Current.Session[SessionKey] = value;

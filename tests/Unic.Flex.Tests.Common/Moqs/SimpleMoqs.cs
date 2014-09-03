@@ -1,17 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Unic.Flex.Tests.Common.Moqs
+﻿namespace Unic.Flex.Tests.Common.Moqs
 {
     using Moq;
+    using System;
     using Unic.Flex.Globalization;
     using Unic.Flex.Logging;
 
+    /// <summary>
+    /// Class to retrieve simple moq classes.
+    /// </summary>
     public static class SimpleMoqs
     {
+        /// <summary>
+        /// Gets the logger.
+        /// </summary>
+        /// <returns>A logger moq</returns>
         public static ILogger GetLogger()
         {
             var mock = new Mock<ILogger>();
@@ -21,6 +23,10 @@ namespace Unic.Flex.Tests.Common.Moqs
             return mock.Object;
         }
 
+        /// <summary>
+        /// Gets the dictionary repository.
+        /// </summary>
+        /// <returns>A dictionary repository moq</returns>
         public static IDictionaryRepository GetDictionaryRepository()
         {
             var mock = new Mock<IDictionaryRepository>();

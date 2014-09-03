@@ -1,9 +1,9 @@
 ﻿namespace Unic.Flex.Model.Validation
 {
-    using System.Web;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using System;
     using System.Collections.Generic;
+    using System.Web;
     using System.Web.Mvc;
 
     /// <summary>

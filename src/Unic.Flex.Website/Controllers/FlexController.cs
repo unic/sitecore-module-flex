@@ -11,37 +11,92 @@
     using Unic.Flex.Model.Validation;
     using Unic.Flex.Model.ViewModel.Components;
     using Unic.Flex.Model.ViewModel.Forms;
-    using Unic.Flex.ModelBinding;
     using Unic.Flex.Plugs;
     using Unic.Flex.Presentation;
     using Unic.Profiling;
 
+    /// <summary>
+    /// The one and only controller for Flex
+    /// </summary>
     public class FlexController : Controller
     {
+        /// <summary>
+        /// Profiling event namef or GET method
+        /// </summary>
         private const string ProfileGetEventName = "Flex :: GET Controller Action";
 
+        /// <summary>
+        /// Profiling event namef or POST method
+        /// </summary>
         private const string ProfilePostEventName = "Flex :: POST Controller Action";
-        
+
+        #region Fields
+
+        /// <summary>
+        /// The presentation service
+        /// </summary>
         private readonly IPresentationService presentationService;
 
+        /// <summary>
+        /// The model converter
+        /// </summary>
         private readonly IModelConverterService modelConverter;
 
+        /// <summary>
+        /// The context service
+        /// </summary>
         private readonly IContextService contextService;
 
+        /// <summary>
+        /// The user data repository
+        /// </summary>
         private readonly IUserDataRepository userDataRepository;
 
+        /// <summary>
+        /// The plugs service
+        /// </summary>
         private readonly IPlugsService plugsService;
 
+        /// <summary>
+        /// The flex context
+        /// </summary>
         private readonly IFlexContext flexContext;
 
+        /// <summary>
+        /// The URL service
+        /// </summary>
         private readonly IUrlService urlService;
 
+        /// <summary>
+        /// The form repository
+        /// </summary>
         private readonly IFormRepository formRepository;
 
+        /// <summary>
+        /// The logger
+        /// </summary>
         private readonly ILogger logger;
 
+        /// <summary>
+        /// The exception state
+        /// </summary>
         private readonly IExceptionState exceptionState;
 
+        #endregion
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FlexController"/> class.
+        /// </summary>
+        /// <param name="presentationService">The presentation service.</param>
+        /// <param name="modelConverter">The model converter.</param>
+        /// <param name="contextService">The context service.</param>
+        /// <param name="userDataRepository">The user data repository.</param>
+        /// <param name="plugsService">The plugs service.</param>
+        /// <param name="flexContext">The flex context.</param>
+        /// <param name="urlService">The URL service.</param>
+        /// <param name="formRepository">The form repository.</param>
+        /// <param name="logger">The logger.</param>
+        /// <param name="exceptionState">State of the exception.</param>
         public FlexController(IPresentationService presentationService, IModelConverterService modelConverter, IContextService contextService, IUserDataRepository userDataRepository, IPlugsService plugsService, IFlexContext flexContext, IUrlService urlService, IFormRepository formRepository, ILogger logger, IExceptionState exceptionState)
         {
             this.presentationService = presentationService;
@@ -56,6 +111,10 @@
             this.exceptionState = exceptionState;
         }
 
+        /// <summary>
+        /// Controller action for GET requests
+        /// </summary>
+        /// <returns>Result of this action.</returns>
         public ActionResult Form()
         {
             Profiler.OnStart(this, ProfileGetEventName);
@@ -117,6 +176,11 @@
             return this.View(formView, formViewModel);
         }
 
+        /// <summary>
+        /// Controller action for POST requests.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>Result of the action.</returns>
         [HttpPost]
         public ActionResult Form(IFormViewModel model)
         {
@@ -218,6 +282,10 @@
             return this.Content("OK"); // todo: return whatever is needed from the frontend
         }
 
+        /// <summary>
+        /// Shows the error.
+        /// </summary>
+        /// <returns>View for showing errors</returns>
         private ActionResult ShowError()
         {
             var model = new ErrorViewModel { Messages = this.exceptionState.Messages };
@@ -225,6 +293,11 @@
             return this.View(view, model);
         }
 
+        /// <summary>
+        /// Shows the success message.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <returns>View for showing the success message</returns>
         private ActionResult ShowSuccessMessage(string message)
         {
             var model = new SuccessMessageViewModel { Message = message };

@@ -11,8 +11,14 @@
     using Unic.Flex.Tests.Common.Moqs;
     using Unic.Flex.Website;
 
+    /// <summary>
+    /// Tests for model converting
+    /// </summary>
     public class ModelConverterServiceTests
     {
+        /// <summary>
+        /// Test the converting from domain model to view model
+        /// </summary>
         [TestFixture]
         public class TheConvertToViewModelMethod
         {
@@ -43,6 +49,9 @@
                 Assert.Fail("Failed, exception should be thrown");
             }
 
+            /// <summary>
+            /// Converter should return correct view model for a single step form
+            /// </summary>
             [Test]
             public void WillReturnCorrectViewModelForSingleStepForm()
             {
@@ -60,15 +69,26 @@
                 // todo: add more test cases
             }
 
+            /// <summary>
+            /// Gets the form.
+            /// </summary>
+            /// <param name="repository">The repository.</param>
+            /// <returns>The form from the repository</returns>
             private Form GetForm(IFormRepository repository)
             {
                 return repository.LoadForm(string.Empty);
             }
         }
 
+        /// <summary>
+        /// Test the get view model method
+        /// </summary>
         [TestFixture]
         public class TheGetViewModelMethod
         {
+            /// <summary>
+            /// Test should thro an exception if view model was not found
+            /// </summary>
             [Test]
             [ExpectedException(typeof(TypeLoadException))]
             public void WillThrowExceptionWhenViewModelWasNotFound()
@@ -84,6 +104,9 @@
                 Assert.Fail("Failed, exception should be thrown");
             }
 
+            /// <summary>
+            /// Test should show an exception if the view model was from the wrong type.
+            /// </summary>
             [Test]
             [ExpectedException(typeof(TypeLoadException))]
             public void WillThrowExceptionWhenViewModelWasWrongType()
@@ -99,6 +122,9 @@
                 Assert.Fail("Failed, exception should be thrown");
             }
 
+            /// <summary>
+            /// Test should return correct view model instance.
+            /// </summary>
             [Test]
             public void ShouldReturnCorrectViewModelInstance()
             {
@@ -114,6 +140,9 @@
                 Assert.IsInstanceOf<FormViewModel>(viewModel);
             }
 
+            /// <summary>
+            /// Should return correct view model instance from change if loading twice.
+            /// </summary>
             [Test]
             public void ShouldReturnCorrectViewModelInstanceFromCache()
             {

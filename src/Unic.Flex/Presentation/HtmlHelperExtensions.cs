@@ -145,6 +145,12 @@
             return attributes;
         }
 
+        /// <summary>
+        /// Formats the attributes to output as the html markup.
+        /// </summary>
+        /// <param name="htmlHelper">The HTML helper.</param>
+        /// <param name="attributes">The attributes.</param>
+        /// <returns>string in the format "attribute=value attribute2=value2"</returns>
         public static string FormatAttributes(this HtmlHelper htmlHelper, IDictionary<string, object> attributes)
         {
             return attributes.Aggregate(new StringBuilder(), (sb, kvp) => sb.AppendFormat("{0}=\"{1}\" ", kvp.Key, kvp.Value)).ToString();

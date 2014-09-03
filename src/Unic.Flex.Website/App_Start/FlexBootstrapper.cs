@@ -32,7 +32,7 @@ namespace Unic.Flex.Website
         /// </summary>
         private static void RegisterModelBinders()
         {
-            // todo: check if really all binders here are correct and needed
+            //// todo: check if really all binders here are correct and needed
 
             ModelBinders.Binders.Add(typeof(IFormViewModel), Container.Resolve<IModelBinder>());
             ModelBinders.Binders.Add(typeof(IList<ISectionViewModel>), new ListModelBinder());

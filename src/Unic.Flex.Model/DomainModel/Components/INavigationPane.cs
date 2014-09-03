@@ -1,5 +1,8 @@
 ﻿namespace Unic.Flex.Model.DomainModel.Components
 {
+    /// <summary>
+    /// Interface for navigation pane
+    /// </summary>
     public interface INavigationPane
     {
         /// <summary>

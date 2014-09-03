@@ -2,8 +2,17 @@
 {
     using Unic.Flex.Model.ViewModel.Fields.ListFields;
 
+    /// <summary>
+    /// Listbox field view model
+    /// </summary>
     public class ListBoxFieldViewModel : ListFieldViewModel<string[]>
     {
+        /// <summary>
+        /// Gets the name of the view.
+        /// </summary>
+        /// <value>
+        /// The name of the view.
+        /// </value>
         public override string ViewName
         {
             get

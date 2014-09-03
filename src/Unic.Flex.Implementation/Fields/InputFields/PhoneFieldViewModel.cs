@@ -1,5 +1,4 @@
-﻿
-namespace Unic.Flex.Implementation.Fields.InputFields
+﻿namespace Unic.Flex.Implementation.Fields.InputFields
 {
     using Unic.Flex.Model.ViewModel.Fields.InputFields;
 

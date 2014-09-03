@@ -1,17 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Unic.Flex.Logging
+﻿namespace Unic.Flex.Logging
 {
+    using System;
+
+    /// <summary>
+    /// Interface used for logging.
+    /// </summary>
     public interface ILogger
     {
+        /// <summary>
+        /// Logs an info message.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <param name="owner">The owner/sender of the message.</param>
         void Info(string message, object owner);
 
+        /// <summary>
+        /// Logs a warn message.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <param name="owner">The owner/sender of the message.</param>
         void Warn(string message, object owner);
 
+        /// <summary>
+        /// Logs an error message
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <param name="owner">The owner/sender of the message.</param>
+        /// <param name="exception">The exception, can also be null.</param>
         void Error(string message, object owner, Exception exception = null);
     }
 }

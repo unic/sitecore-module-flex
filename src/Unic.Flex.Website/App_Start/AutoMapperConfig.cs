@@ -1,4 +1,4 @@
-﻿[assembly: WebActivatorEx.PostApplicationStartMethod(typeof(Unic.Flex.Website.AutoMapperConfig), "PreStart")]
+﻿[assembly: WebActivatorEx.PostApplicationStartMethod(typeof(Unic.Flex.Website.AutoMapperConfig), "PostStart")]
 
 namespace Unic.Flex.Website
 {
@@ -11,13 +11,22 @@ namespace Unic.Flex.Website
     using Unic.Flex.Model.ViewModel.Sections;
     using Unic.Flex.Model.ViewModel.Steps;
 
+    /// <summary>
+    /// Configuration for AutoMapper module.
+    /// </summary>
     public static class AutoMapperConfig
     {
-        public static void PreStart()
+        /// <summary>
+        /// Executes after application has been started.
+        /// </summary>
+        public static void PostStart()
         {
             Configure();
         }
-        
+
+        /// <summary>
+        /// Configures the AutoMapper.
+        /// </summary>
         public static void Configure()
         {
             // Forms

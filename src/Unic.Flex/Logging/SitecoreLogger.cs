@@ -1,30 +1,49 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Unic.Flex.Logging
+﻿namespace Unic.Flex.Logging
 {
+    using System;
     using Sitecore.Diagnostics;
 
+    /// <summary>
+    /// Logger implementation for logging to Sitecore log file.
+    /// </summary>
     public class SitecoreLogger : ILogger
     {
+        /// <summary>
+        /// Logs an info message.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <param name="owner">The owner/sender of the message.</param>
         public void Info(string message, object owner)
         {
             Log.Info(this.FormatMessage(message), owner);
         }
 
+        /// <summary>
+        /// Logs a warn message.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <param name="owner">The owner/sender of the message.</param>
         public void Warn(string message, object owner)
         {
             Log.Warn(this.FormatMessage(message), owner);
         }
 
+        /// <summary>
+        /// Logs an error message
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <param name="owner">The owner/sender of the message.</param>
+        /// <param name="exception">The exception, can also be null.</param>
         public void Error(string message, object owner, Exception exception = null)
         {
             Log.Error(this.FormatMessage(message), exception, owner);
         }
 
+        /// <summary>
+        /// Formats the message.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <returns>Message with Flex prefix.</returns>
         private string FormatMessage(string message)
         {
             return string.Format("FLEX :: {0}", message);

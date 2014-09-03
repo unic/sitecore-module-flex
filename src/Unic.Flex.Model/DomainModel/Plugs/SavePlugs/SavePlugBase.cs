@@ -8,7 +8,7 @@
     public abstract class SavePlugBase : PlugBase, ISavePlug
     {
         /// <summary>
-        /// Executes the load plug.
+        /// Executes the save plug.
         /// </summary>
         /// <param name="form">The form.</param>
         public abstract void Execute(Form form);

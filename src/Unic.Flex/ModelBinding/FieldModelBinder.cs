@@ -5,10 +5,24 @@
     using System.Web.Mvc;
     using Unic.Flex.Model.ViewModel.Fields;
 
+    /// <summary>
+    /// Bind fields
+    /// </summary>
     public class FieldModelBinder : DefaultModelBinder
     {
+        /// <summary>
+        /// The initial value of the model
+        /// </summary>
         private object initialValue;
-        
+
+        /// <summary>
+        /// Binds the model by using the specified controller context and binding context.
+        /// </summary>
+        /// <param name="controllerContext">The context within which the controller operates. The context information includes the controller, HTTP content, request context, and route data.</param>
+        /// <param name="bindingContext">The context within which the model is bound. The context includes information such as the model object, model name, model type, property filter, and value provider.</param>
+        /// <returns>
+        /// The bound object.
+        /// </returns>
         public override object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
             // get initial values
@@ -27,6 +41,11 @@
             return initialModel;
         }
 
+        /// <summary>
+        /// Called when the model is updated.
+        /// </summary>
+        /// <param name="controllerContext">The context within which the controller operates. The context information includes the controller, HTTP content, request context, and route data.</param>
+        /// <param name="bindingContext">The context within which the model is bound. The context includes information such as the model object, model name, model type, property filter, and value provider.</param>
         protected override void OnModelUpdated(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
             base.OnModelUpdated(controllerContext, bindingContext);
@@ -41,6 +60,10 @@
             ForceModelValidation(bindingContext);
         }
 
+        /// <summary>
+        /// Forces the model validation.
+        /// </summary>
+        /// <param name="bindingContext">The binding context.</param>
         private static void ForceModelValidation(ModelBindingContext bindingContext)
         {
             var model = bindingContext.Model as IValidatableObject;

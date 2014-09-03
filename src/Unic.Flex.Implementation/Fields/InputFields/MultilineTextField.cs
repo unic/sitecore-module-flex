@@ -17,6 +17,7 @@
         /// </value>
         [SitecoreField("Rows")]
         public virtual int Rows { get; set; }
+
         /// <summary>
         /// Gets or sets the default value.
         /// </summary>
