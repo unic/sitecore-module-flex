@@ -24,8 +24,10 @@
         /// </summary>
         public override void Load()
         {
+            // todo: check if all scopes of these injetions are valid
+            
             // logging
-            Bind<ILogger>().To<SitecoreLogger>();
+            Bind<ILogger>().To<SitecoreLogger>().InSingletonScope();
 
             // exception handling
             Bind<IExceptionState>().To<ExceptionState>().InRequestScope();
@@ -36,7 +38,7 @@
             Bind<IPlugsService>().To<PlugsService>();
             
             // data access
-            Bind<IDictionaryRepository>().To<DictionaryRepository>();
+            Bind<IDictionaryRepository>().To<DictionaryRepository>().InSingletonScope();
             Bind<IFormRepository>().To<FormRepository>();
             Bind<IUserDataRepository>().To<UserDataRepository>();
 
