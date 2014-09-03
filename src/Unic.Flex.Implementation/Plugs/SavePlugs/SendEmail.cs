@@ -11,15 +11,18 @@
     [SitecoreType(TemplateId = "{DF5C2C2F-4A48-4206-9DFB-0DCDE27E2233}")]
     public class SendEmail : SavePlugBase
     {
-        public IConfigurationManager ConfigurationManager { private get; set; }
+        private readonly IConfigurationManager configurationManager;
+
+        public SendEmail(IConfigurationManager configurationManager)
+        {
+            this.configurationManager = configurationManager;
+        }
         
         public override void Execute(Form form)
         {
             Assert.ArgumentNotNull(form, "form");
 
-            this.ConfigurationManager = Container.Resolve<IConfigurationManager>();
-
-            Log.Error("---------- " + this.ConfigurationManager.Get<SendEmailPlugConfiguration>(c => c.From), this);
+            Log.Error("---------- " + this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.From), this);
         }
     }
 }

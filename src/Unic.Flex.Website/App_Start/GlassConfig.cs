@@ -8,8 +8,10 @@ namespace Unic.Flex.Website
     using Glass.Mapper;
     using Glass.Mapper.Configuration;
     using Glass.Mapper.Configuration.Attributes;
+    using Glass.Mapper.Pipelines.ObjectConstruction;
     using Glass.Mapper.Sc.CastleWindsor;
     using Unic.Flex.Model.GlassExtensions.Handlers;
+    using Unic.Flex.Pipelines.ObjectConstruction;
 
     /// <summary>
     /// Configuration initializer for Sitecore Glass Mapper
@@ -54,6 +56,9 @@ namespace Unic.Flex.Website
 
             // register custom type mapper
             container.Register(Component.For<AbstractDataMapper>().ImplementedBy<SitecoreDictionaryFallbackFieldTypeMapper>().LifeStyle.Transient);
+
+            // register ninject object creation
+            container.Register(Component.For<IObjectConstructionTask>().ImplementedBy<NinjectInjectorTask>().LifestylePerWebRequest());
 
             // install the config
             container.Install(new SitecoreInstaller(config));
