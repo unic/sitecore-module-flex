@@ -294,6 +294,15 @@
   <ItemGroup>
     <Content Include="Views\Modules\Flex\Default\Mailers\SavePlug\Field.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Modules\Flex\Default\Mailers\SavePlug\Step.text.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Modules\Flex\Default\Mailers\SavePlug\Section.text.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Modules\Flex\Default\Mailers\SavePlug\Field.text.cshtml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

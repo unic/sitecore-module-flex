@@ -1,0 +1,12 @@
+﻿@using Unic.Flex.Presentation
+@model Unic.Flex.Model.DomainModel.Steps.StepBase
+
+
+---------------------------------------
+@Model.Title
+---------------------------------------
+
+@foreach (var standardSection in @Model.GetSections())
+{
+    @Html.FlexComponent(m => standardSection, "Mailers/SavePlug/Section.text")
+}
