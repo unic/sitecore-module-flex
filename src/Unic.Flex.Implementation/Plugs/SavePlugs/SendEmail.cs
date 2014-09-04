@@ -8,6 +8,7 @@
     using Unic.Flex.Implementation.Mailers;
     using Unic.Flex.Mailing;
     using Unic.Flex.Model.DomainModel.Forms;
+    using Unic.Flex.Model.DomainModel.Global;
     using Unic.Flex.Model.DomainModel.Plugs.SavePlugs;
 
     [SitecoreType(TemplateId = "{DF5C2C2F-4A48-4206-9DFB-0DCDE27E2233}")]
@@ -16,6 +17,9 @@
         private readonly IMailRepository mailRepository;
 
         private readonly ISavePlugMailer savePlugMailer;
+
+        [SitecoreField("Theme")]
+        public virtual Specification Theme { get; set; }
 
         public SendEmail(IMailRepository mailRepository, ISavePlugMailer savePlugMailer)
         {
@@ -27,7 +31,7 @@
         {
             Assert.ArgumentNotNull(form, "form");
 
-            var mailMessage = this.savePlugMailer.GetMessage(form);
+            var mailMessage = this.savePlugMailer.GetMessage(form, this.Theme != null ? this.Theme.Value : string.Empty);
             this.mailRepository.SendMail(mailMessage);
         }
     }

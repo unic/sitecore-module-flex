@@ -23,7 +23,7 @@
 
 @foreach (var step in form.Steps.Where(s => !(s is Summary)))
 {
-    @Html.FlexComponent(m => step, "Mailers/SavePlug/Step")
+    @Html.FlexComponent(m => step, "Mailers/SavePlug/Step", (string)ViewBag.Theme)
 }
 
 <div style="margin-top: 50px; padding-top: 10px; border-top: 1px solid black; font-size: 90%">

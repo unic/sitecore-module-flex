@@ -41,10 +41,11 @@
         /// </summary>
         /// <param name="controllerContext">The controller context.</param>
         /// <param name="presentationComponent">The presentation component.</param>
+        /// <param name="theme">The theme.</param>
         /// <returns>
         /// Complete path of the view
         /// </returns>
-        public string ResolveView(ControllerContext controllerContext, IPresentationComponent presentationComponent)
+        public string ResolveView(ControllerContext controllerContext, IPresentationComponent presentationComponent, string theme = "")
         {
             Assert.ArgumentNotNull(presentationComponent, "presentationComponent");
             return this.ResolveView(controllerContext, presentationComponent.ViewName);
@@ -55,15 +56,19 @@
         /// </summary>
         /// <param name="controllerContext">The controller context.</param>
         /// <param name="viewName">Name of the view.</param>
+        /// <param name="theme">The theme.</param>
         /// <returns>
         /// Complete path of the view
         /// </returns>
-        public string ResolveView(ControllerContext controllerContext, string viewName)
+        public string ResolveView(ControllerContext controllerContext, string viewName, string theme = "")
         {
             Assert.ArgumentNotNullOrEmpty(viewName, "viewName");
 
-            var specification = this.configurationManager.Get<PresentationConfiguration>(c => c.Theme);
-            var theme = specification != null ? specification.Value : DefaultTheme;
+            // get the theme
+            if (string.IsNullOrWhiteSpace(theme))
+            {
+                theme = this.ResolveThemeByConfiguration();    
+            }
 
             var themeView = string.Format(ViewPath, theme, viewName);
             if (this.ViewExists(controllerContext, themeView))
@@ -72,6 +77,16 @@
             }
 
             return string.Format(ViewPath, DefaultTheme, viewName);
+        }
+
+        /// <summary>
+        /// Resolves the theme by the configuration.
+        /// </summary>
+        /// <returns>The theme or the default theme is not configured</returns>
+        private string ResolveThemeByConfiguration()
+        {
+            var specification = this.configurationManager.Get<PresentationConfiguration>(c => c.Theme);
+            return specification != null ? specification.Value : DefaultTheme;
         }
 
         /// <summary>

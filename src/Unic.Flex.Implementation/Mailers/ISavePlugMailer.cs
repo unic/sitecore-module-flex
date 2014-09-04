@@ -5,6 +5,6 @@
 
     public interface ISavePlugMailer
     {
-        MvcMailMessage GetMessage(Form form);
+        MvcMailMessage GetMessage(Form form, string theme);
     }
 }

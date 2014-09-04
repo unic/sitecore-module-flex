@@ -15,7 +15,7 @@
 
     @foreach (var field in Model.Fields.Where(field => field.ShowInSummary))
     {
-        @Html.FlexComponent(m => field, "Mailers/SavePlug/Field")
+        @Html.FlexComponent(m => field, "Mailers/SavePlug/Field", (string)ViewBag.Theme)
     }
 
 </table>

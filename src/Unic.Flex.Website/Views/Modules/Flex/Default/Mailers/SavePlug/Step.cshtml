@@ -5,5 +5,5 @@
 
 @foreach (var standardSection in @Model.GetSections())
 {
-    @Html.FlexComponent(m => standardSection, "Mailers/SavePlug/Section")
+    @Html.FlexComponent(m => standardSection, "Mailers/SavePlug/Section", (string)ViewBag.Theme)
 }
