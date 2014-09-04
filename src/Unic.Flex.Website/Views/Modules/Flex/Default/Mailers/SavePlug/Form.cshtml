@@ -18,6 +18,8 @@
     var formUrl = Sitecore.Web.WebUtil.GetFullUrl(form.GetFirstStepUrl());
 }
 
+@Html.Raw(ViewBag.HtmlMailIntroduction)
+
 <h1>@form.Title</h1>
 <p>@form.Introduction</p>
 
@@ -25,6 +27,8 @@
 {
     @Html.FlexComponent(m => step, "Mailers/SavePlug/Step", (string)ViewBag.Theme)
 }
+
+@Html.Raw(ViewBag.HtmlMailFooter)
 
 <div style="margin-top: 50px; padding-top: 10px; border-top: 1px solid black; font-size: 90%">
     @Translate.TextByDomain(Settings.GetSetting("Flex.DictionaryDomain"), "Form Title"): <a href="@formUrl">@formUrl</a><br/>

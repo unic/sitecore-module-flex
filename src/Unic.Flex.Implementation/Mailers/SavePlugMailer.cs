@@ -42,13 +42,20 @@
             // set the theme
             this.theme = plug.Theme != null ? plug.Theme.Value : string.Empty;
 
-            // add data
-            this.ViewBag.Form = form;
-            this.ViewBag.Theme = this.theme;
-            
             // get the layouts
             this.ViewBag.HtmlLayout = this.presentationService.ResolveView(this.ControllerContext, "Mailers/_Layout", this.theme);
             this.ViewBag.TextLayout = this.presentationService.ResolveView(this.ControllerContext, "Mailers/_Layout.text", this.theme);
+            
+            // add data
+            this.ViewBag.Form = form;
+            this.ViewBag.Theme = this.theme;
+
+            // add content
+            var fields = form.GetSections().SelectMany(s => s.Fields).Where(f => f.ShowInSummary).ToList();
+            this.ViewBag.HtmlMailIntroduction = this.mailService.ReplaceTokens(plug.HtmlMailIntroduction, fields);
+            this.ViewBag.HtmlMailFooter = this.mailService.ReplaceTokens(plug.HtmlMailFooter, fields);
+            this.ViewBag.TextMailIntroduction = this.mailService.ReplaceTokens(plug.TextMailIntroduction, fields);
+            this.ViewBag.TextMailFooter = this.mailService.ReplaceTokens(plug.TextMailFooter, fields);
 
             // get email addresses
             var from = this.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.From), plug.From);
@@ -60,7 +67,7 @@
             return this.Populate(x =>
             {
                 x.ViewName = this.presentationService.ResolveView(this.ControllerContext, "Mailers/SavePlug/Form", this.theme);
-                x.Subject = "Test email";
+                x.Subject = this.mailService.ReplaceTokens(plug.Subject, fields);
 
                 // add addresses
                 x.From = new MailAddress(from);

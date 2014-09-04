@@ -34,6 +34,21 @@
         [SitecoreField("Bcc")]
         public virtual string Bcc { get; set; }
 
+        [SitecoreField("Subject")]
+        public virtual string Subject { get; set; }
+
+        [SitecoreField("Html Mail Introduction")]
+        public virtual string HtmlMailIntroduction { get; set; }
+
+        [SitecoreField("Html Mail Footer")]
+        public virtual string HtmlMailFooter { get; set; }
+
+        [SitecoreField("Text Mail Introduction")]
+        public virtual string TextMailIntroduction { get; set; }
+
+        [SitecoreField("Text Mail Footer")]
+        public virtual string TextMailFooter { get; set; }
+
         public SendEmail(IMailRepository mailRepository, ISavePlugMailer savePlugMailer)
         {
             this.mailRepository = mailRepository;

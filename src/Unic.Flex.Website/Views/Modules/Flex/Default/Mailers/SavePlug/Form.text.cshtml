@@ -15,6 +15,9 @@
 
     var formUrl = Sitecore.Web.WebUtil.GetFullUrl(form.GetFirstStepUrl());
 }
+
+@ViewBag.TextMailIntroduction
+
 @form.Title
 
 @form.Introduction
@@ -24,7 +27,7 @@
     @Html.FlexComponent(m => step, "Mailers/SavePlug/Step.text", (string)ViewBag.Theme)
 }
 
-
+@ViewBag.TextMailFooter
 
 --
 @Translate.TextByDomain(Settings.GetSetting("Flex.DictionaryDomain"), "Form Title"): @formUrl
