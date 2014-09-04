@@ -138,6 +138,15 @@
         public virtual IField ReceiverField { get; set; }
 
         /// <summary>
+        /// Gets or sets the reply to field.
+        /// </summary>
+        /// <value>
+        /// The reply to field.
+        /// </value>
+        [SitecoreField("Reply To Field", Setting = SitecoreFieldSettings.InferType)]
+        public virtual IField ReplyToField { get; set; }
+
+        /// <summary>
         /// Executes the save plug.
         /// </summary>
         /// <param name="form">The form.</param>

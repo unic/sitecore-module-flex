@@ -12,6 +12,7 @@
     using Unic.Flex.Implementation.Plugs.SavePlugs;
     using Unic.Flex.Implementation.Validators;
     using Unic.Flex.Mailing;
+    using Unic.Flex.Model.DomainModel.Fields;
     using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Presentation;
 
@@ -87,26 +88,14 @@
             this.ViewBag.TextMailIntroduction = this.mailService.ReplaceTokens(plug.TextMailIntroduction, fields);
             this.ViewBag.TextMailFooter = this.mailService.ReplaceTokens(plug.TextMailFooter, fields);
 
-            // todo: add reply-to address -> if the user has entered an email address in the form, this should be the reply-to address
-
             // get email addresses
             var from = this.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.From), plug.From);
             var cc = this.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.Cc), plug.Cc);
             var bcc = this.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.Bcc), plug.Bcc);
+            var replyTo = this.GetEmailFromField(plug.ReplyToField, form);
 
             // get the receiver email address
-            var to = string.Empty;
-            var receiverField = plug.ReceiverField;
-            if (receiverField != null)
-            {
-                var formField = form.GetSections().SelectMany(s => s.Fields).FirstOrDefault(f => f.ItemId == receiverField.ItemId);
-                var receiverFieldEmail = formField != null ? formField.Value as string : string.Empty;
-                if (!string.IsNullOrWhiteSpace(receiverFieldEmail) && (new EmailValidator()).IsValid(receiverFieldEmail))
-                {
-                    to = receiverFieldEmail;
-                }
-            }
-
+            var to = this.GetEmailFromField(plug.ReceiverField, form);
             if (string.IsNullOrWhiteSpace(to))
             {
                 to = this.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.To), plug.To);
@@ -123,6 +112,7 @@
                 to.Split(new[] { ";" }, StringSplitOptions.RemoveEmptyEntries).ForEach(address => x.To.Add(address));
                 if (!string.IsNullOrWhiteSpace(cc)) cc.Split(new[] { ";" }, StringSplitOptions.RemoveEmptyEntries).ForEach(address => x.CC.Add(address));
                 if (!string.IsNullOrWhiteSpace(bcc)) bcc.Split(new[] { ";" }, StringSplitOptions.RemoveEmptyEntries).ForEach(address => x.Bcc.Add(address));
+                if (!string.IsNullOrWhiteSpace(replyTo)) x.ReplyToList.Add(replyTo);
 
                 // add attachments
                 foreach (var fileField in fields
@@ -142,6 +132,21 @@
         public override string TextViewName(string viewName)
         {
             return this.presentationService.ResolveView(this.ControllerContext, "Mailers/SavePlug/Form.text", this.theme);
+        }
+
+        /// <summary>
+        /// Gets the email address from a field.
+        /// </summary>
+        /// <param name="field">The field.</param>
+        /// <param name="form">The form.</param>
+        /// <returns>The email if valid, or empty string</returns>
+        private string GetEmailFromField(IField field, Form form)
+        {
+            if (field == null) return string.Empty;
+
+            var formField = form.GetSections().SelectMany(s => s.Fields).FirstOrDefault(f => f.ItemId == field.ItemId);
+            var email = formField != null ? formField.Value as string : string.Empty;
+            return (!string.IsNullOrWhiteSpace(email) && (new EmailValidator()).IsValid(email)) ? email : string.Empty;
         }
 
         /// <summary>
