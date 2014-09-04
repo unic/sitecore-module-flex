@@ -21,14 +21,19 @@
     public class FlexController : Controller
     {
         /// <summary>
-        /// Profiling event namef or GET method
+        /// Profiling event name for GET method
         /// </summary>
         private const string ProfileGetEventName = "Flex :: GET Controller Action";
 
         /// <summary>
-        /// Profiling event namef or POST method
+        /// Profiling event name for POST method
         /// </summary>
         private const string ProfilePostEventName = "Flex :: POST Controller Action";
+
+        /// <summary>
+        /// Profiling event name for executing save plugs
+        /// </summary>
+        private const string ProfileExecuteSavePlugsEventName = "Flex :: Execute Save Plugs";
 
         #region Fields
 
@@ -221,7 +226,9 @@
             }
 
             // execute save plugs
+            Profiler.OnStart(this, ProfileExecuteSavePlugsEventName);
             this.plugsService.ExecuteSavePlugs(form);
+            Profiler.OnEnd(this, ProfileExecuteSavePlugsEventName);
 
             // show errors
             if (this.exceptionState.HasErrors)
