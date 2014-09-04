@@ -53,6 +53,7 @@
 
             // mailing
             Bind<IMailRepository>().To<MailRepository>();
+            Bind<IMailService>().To<MailService>();
 
             // helpers
             Bind<IUrlService>().To<UrlService>().InSingletonScope();

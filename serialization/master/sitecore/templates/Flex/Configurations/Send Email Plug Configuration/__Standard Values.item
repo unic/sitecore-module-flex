@@ -22,32 +22,32 @@ name: From
 key: from
 content-length: 13
 
-flex@unic.com
+{DefaultFrom}
 ----field----
 field: {109991EF-2912-4439-A3AE-B51E71D385AE}
 name: To
 key: to
-content-length: 0
+content-length: 11
 
-
+{DefaultTo}
 ----field----
 field: {C823FE50-E870-4818-A6E6-33340BD325C3}
 name: Cc
 key: cc
-content-length: 0
+content-length: 11
 
-
+{DefaultCc}
 ----field----
 field: {75918506-8605-4193-9860-CA3D006D13B7}
 name: Bcc
 key: bcc
-content-length: 0
+content-length: 12
 
-
+{DefaultBcc}
 ----version----
 language: en
 version: 1
-revision: 9ca2a44e-a7a3-46c6-b21e-c2ab1a77fe7e
+revision: e1763e7e-89e0-4eb0-8047-8d38863f6449
 
 ----field----
 field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
@@ -76,14 +76,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-9ca2a44e-a7a3-46c6-b21e-c2ab1a77fe7e
+e1763e7e-89e0-4eb0-8047-8d38863f6449
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20140904T110553:635454255537133980
+20140904T113635:635454273950201563
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

@@ -1,17 +1,16 @@
 ﻿namespace Unic.Flex.Implementation.Mailers
 {
+    using Castle.Core.Internal;
+    using Mvc.Mailer;
     using System;
     using System.Linq;
     using System.Net.Mail;
     using System.Web;
-    using Castle.Core.Internal;
-    using Mvc.Mailer;
     using Unic.Configuration;
     using Unic.Flex.Implementation.Configuration;
     using Unic.Flex.Implementation.Fields.InputFields;
     using Unic.Flex.Implementation.Plugs.SavePlugs;
-    using Unic.Flex.Model.Configuration;
-    using Unic.Flex.Model.Configuration.Extensions;
+    using Unic.Flex.Mailing;
     using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Presentation;
 
@@ -21,12 +20,15 @@
 
         private readonly IConfigurationManager configurationManager;
 
+        private readonly IMailService mailService;
+
         private string theme;
 
-        public SavePlugMailer(IPresentationService presentationService, IConfigurationManager configurationManager)
+        public SavePlugMailer(IPresentationService presentationService, IConfigurationManager configurationManager, IMailService mailService)
         {
             this.presentationService = presentationService;
             this.configurationManager = configurationManager;
+            this.mailService = mailService;
         }
 
         public virtual MvcMailMessage GetMessage(Form form, SendEmail plug)
@@ -88,13 +90,15 @@
             return this.presentationService.ResolveView(this.ControllerContext, "Mailers/SavePlug/Form.text", this.theme);
         }
 
+        /// <summary>
+        /// Gets the email addresses and replace settings parameter from config file.
+        /// </summary>
+        /// <param name="globalConfig">The email address from the global configuration.</param>
+        /// <param name="plugConfig">The email address from the plug configuration.</param>
+        /// <returns>The final email addresses</returns>
         private string GetEmailAddresses(string globalConfig, string plugConfig)
         {
-            var config = !string.IsNullOrWhiteSpace(plugConfig) ? plugConfig : globalConfig;
-
-            // todo: replace {bla} from settings key Flex.EmailAddresses.bla
-
-            return config;
+            return this.mailService.ReplaceEmailAddressesFromConfig(!string.IsNullOrWhiteSpace(plugConfig) ? plugConfig : globalConfig);
         }
     }
 }

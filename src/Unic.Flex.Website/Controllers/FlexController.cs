@@ -223,6 +223,14 @@
             // execute save plugs
             this.plugsService.ExecuteSavePlugs(form);
 
+            // show errors
+            if (this.exceptionState.HasErrors)
+            {
+                var result = this.ShowError();
+                Profiler.OnEnd(this, ProfilePostEventName);
+                return result;
+            }
+
             // clear session values
             this.userDataRepository.ClearForm(form.Id);
 
