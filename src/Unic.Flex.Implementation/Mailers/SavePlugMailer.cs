@@ -80,9 +80,7 @@
                 if (!string.IsNullOrWhiteSpace(bcc)) bcc.Split(new[] { ";" }, StringSplitOptions.RemoveEmptyEntries).ForEach(address => x.Bcc.Add(address));
 
                 // add attachments
-                foreach (var fileField in form
-                    .GetSections()
-                    .SelectMany(section => section.Fields)
+                foreach (var fileField in fields
                     .OfType<FileUploadField>()
                     .Where(field => field.Value != null))
                 {
