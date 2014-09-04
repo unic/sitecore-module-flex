@@ -1,12 +1,15 @@
 ﻿namespace Unic.Flex.Implementation.Mailers
 {
+    using System;
     using System.Linq;
     using System.Net.Mail;
     using System.Web;
+    using Castle.Core.Internal;
     using Mvc.Mailer;
     using Unic.Configuration;
     using Unic.Flex.Implementation.Configuration;
     using Unic.Flex.Implementation.Fields.InputFields;
+    using Unic.Flex.Implementation.Plugs.SavePlugs;
     using Unic.Flex.Model.Configuration;
     using Unic.Flex.Model.Configuration.Extensions;
     using Unic.Flex.Model.DomainModel.Forms;
@@ -26,31 +29,42 @@
             this.configurationManager = configurationManager;
         }
 
-        public virtual MvcMailMessage GetMessage(Form form, string theme)
+        public virtual MvcMailMessage GetMessage(Form form, SendEmail plug)
         {
-            this.theme = theme;
-            
             // ensure the mailer has been initialized
             if (this.ControllerContext == null)
             {
                 this.Initialize(HttpContext.Current.Request.RequestContext);
             }
 
+            // set the theme
+            this.theme = plug.Theme != null ? plug.Theme.Value : string.Empty;
+
             // add data
             this.ViewBag.Form = form;
-            this.ViewBag.Theme = theme;
+            this.ViewBag.Theme = this.theme;
             
             // get the layouts
             this.ViewBag.HtmlLayout = this.presentationService.ResolveView(this.ControllerContext, "Mailers/_Layout", this.theme);
             this.ViewBag.TextLayout = this.presentationService.ResolveView(this.ControllerContext, "Mailers/_Layout.text", this.theme);
+
+            // get email addresses
+            var from = this.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.From), plug.From);
+            var to = this.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.To), plug.To);
+            var cc = this.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.Cc), plug.Cc);
+            var bcc = this.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.Bcc), plug.Bcc);
             
             // populate the mail
             return this.Populate(x =>
             {
                 x.ViewName = this.presentationService.ResolveView(this.ControllerContext, "Mailers/SavePlug/Form", this.theme);
                 x.Subject = "Test email";
-                x.From = new MailAddress("noreply@post.ch");
-                x.To.Add("kevin.brechbuehl@unic.com");
+
+                // add addresses
+                x.From = new MailAddress(from);
+                to.Split(new[] { ";" }, StringSplitOptions.RemoveEmptyEntries).ForEach(address => x.To.Add(address));
+                if (!string.IsNullOrWhiteSpace(cc)) cc.Split(new[] { ";" }, StringSplitOptions.RemoveEmptyEntries).ForEach(address => x.CC.Add(address));
+                if (!string.IsNullOrWhiteSpace(bcc)) bcc.Split(new[] { ";" }, StringSplitOptions.RemoveEmptyEntries).ForEach(address => x.Bcc.Add(address));
 
                 // add attachments
                 foreach (var fileField in form
@@ -72,6 +86,15 @@
         public override string TextViewName(string viewName)
         {
             return this.presentationService.ResolveView(this.ControllerContext, "Mailers/SavePlug/Form.text", this.theme);
+        }
+
+        private string GetEmailAddresses(string globalConfig, string plugConfig)
+        {
+            var config = !string.IsNullOrWhiteSpace(plugConfig) ? plugConfig : globalConfig;
+
+            // todo: replace {bla} from settings key Flex.EmailAddresses.bla
+
+            return config;
         }
     }
 }

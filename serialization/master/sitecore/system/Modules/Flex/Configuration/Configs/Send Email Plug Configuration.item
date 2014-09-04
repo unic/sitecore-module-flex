@@ -9,24 +9,10 @@ master: {00000000-0000-0000-0000-000000000000}
 template: {A7A700A6-B553-4080-93E7-9EB9F5A3F0E3}
 templatekey: Send Email Plug Configuration
 
-----field----
-field: {FCAFA161-B9DE-41F6-89B5-E94DF856005A}
-name: Type
-key: type
-content-length: 91
-
-Unic.Flex.Implementation.Configuration.SendEmailPlugConfiguration, Unic.Flex.Implementation
-----field----
-field: {4F90136A-2FF0-4A07-B598-B0F0EDAAD814}
-name: From
-key: from
-content-length: 15
-
-noreply@post.ch
 ----version----
 language: en
 version: 1
-revision: c4c61b6a-63a3-4045-8823-f16751ab73ce
+revision: facee859-c160-4615-8a40-12f11b7faf6b
 
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
@@ -41,14 +27,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-c4c61b6a-63a3-4045-8823-f16751ab73ce
+facee859-c160-4615-8a40-12f11b7faf6b
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20140903T112856:635453405369476714
+20140904T110421:635454254616263457
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

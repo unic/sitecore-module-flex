@@ -9,10 +9,45 @@ master: {00000000-0000-0000-0000-000000000000}
 template: {A7A700A6-B553-4080-93E7-9EB9F5A3F0E3}
 templatekey: Send Email Plug Configuration
 
+----field----
+field: {FCAFA161-B9DE-41F6-89B5-E94DF856005A}
+name: Type
+key: type
+content-length: 91
+
+Unic.Flex.Implementation.Configuration.SendEmailPlugConfiguration, Unic.Flex.Implementation
+----field----
+field: {4F90136A-2FF0-4A07-B598-B0F0EDAAD814}
+name: From
+key: from
+content-length: 13
+
+flex@unic.com
+----field----
+field: {109991EF-2912-4439-A3AE-B51E71D385AE}
+name: To
+key: to
+content-length: 0
+
+
+----field----
+field: {C823FE50-E870-4818-A6E6-33340BD325C3}
+name: Cc
+key: cc
+content-length: 0
+
+
+----field----
+field: {75918506-8605-4193-9860-CA3D006D13B7}
+name: Bcc
+key: bcc
+content-length: 0
+
+
 ----version----
 language: en
 version: 1
-revision: 77e7bed6-88ea-4d2f-886d-72cc44bbc255
+revision: 9ca2a44e-a7a3-46c6-b21e-c2ab1a77fe7e
 
 ----field----
 field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
@@ -41,14 +76,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-77e7bed6-88ea-4d2f-886d-72cc44bbc255
+9ca2a44e-a7a3-46c6-b21e-c2ab1a77fe7e
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20140903T104712:635453380326225350
+20140904T110553:635454255537133980
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

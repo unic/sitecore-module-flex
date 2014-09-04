@@ -22,6 +22,18 @@
         [SitecoreSharedField("Theme")]
         public virtual Specification Theme { get; set; }
 
+        [SitecoreField("From")]
+        public virtual string From { get; set; }
+
+        [SitecoreField("To")]
+        public virtual string To { get; set; }
+
+        [SitecoreField("Cc")]
+        public virtual string Cc { get; set; }
+
+        [SitecoreField("Bcc")]
+        public virtual string Bcc { get; set; }
+
         public SendEmail(IMailRepository mailRepository, ISavePlugMailer savePlugMailer)
         {
             this.mailRepository = mailRepository;
@@ -32,7 +44,7 @@
         {
             Assert.ArgumentNotNull(form, "form");
 
-            var mailMessage = this.savePlugMailer.GetMessage(form, this.Theme != null ? this.Theme.Value : string.Empty);
+            var mailMessage = this.savePlugMailer.GetMessage(form, this);
             this.mailRepository.SendMail(mailMessage);
         }
     }
