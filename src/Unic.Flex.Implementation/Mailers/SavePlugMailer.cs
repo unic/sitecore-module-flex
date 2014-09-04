@@ -57,6 +57,10 @@
             this.ViewBag.TextMailIntroduction = this.mailService.ReplaceTokens(plug.TextMailIntroduction, fields);
             this.ViewBag.TextMailFooter = this.mailService.ReplaceTokens(plug.TextMailFooter, fields);
 
+            // todo: add receiver field -> if the "to" address depends on a dropdown in the text (i.e. a "topics" field)
+
+            // todo: add reply-to address -> if the user has entered an email address in the form, this should be the reply-to address
+
             // get email addresses
             var from = this.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.From), plug.From);
             var to = this.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.To), plug.To);
