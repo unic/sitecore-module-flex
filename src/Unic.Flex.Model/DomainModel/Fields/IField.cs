@@ -33,7 +33,15 @@
     /// Non-generic interface for a field.
     /// </summary>
     public interface IField : ITooltip
-    {   
+    {
+        /// <summary>
+        /// Gets or sets the item identifier.
+        /// </summary>
+        /// <value>
+        /// The item identifier.
+        /// </value>
+        Guid ItemId { get; set; }
+        
         /// <summary>
         /// Gets or sets the value.
         /// </summary>

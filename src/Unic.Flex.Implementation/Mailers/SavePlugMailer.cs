@@ -10,6 +10,7 @@
     using Unic.Flex.Implementation.Configuration;
     using Unic.Flex.Implementation.Fields.InputFields;
     using Unic.Flex.Implementation.Plugs.SavePlugs;
+    using Unic.Flex.Implementation.Validators;
     using Unic.Flex.Mailing;
     using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Presentation;
@@ -86,15 +87,30 @@
             this.ViewBag.TextMailIntroduction = this.mailService.ReplaceTokens(plug.TextMailIntroduction, fields);
             this.ViewBag.TextMailFooter = this.mailService.ReplaceTokens(plug.TextMailFooter, fields);
 
-            // todo: add receiver field -> if the "to" address depends on a dropdown in the text (i.e. a "topics" field)
-
             // todo: add reply-to address -> if the user has entered an email address in the form, this should be the reply-to address
 
             // get email addresses
             var from = this.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.From), plug.From);
-            var to = this.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.To), plug.To);
             var cc = this.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.Cc), plug.Cc);
             var bcc = this.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.Bcc), plug.Bcc);
+
+            // get the receiver email address
+            var to = string.Empty;
+            var receiverField = plug.ReceiverField;
+            if (receiverField != null)
+            {
+                var formField = form.GetSections().SelectMany(s => s.Fields).FirstOrDefault(f => f.ItemId == receiverField.ItemId);
+                var receiverFieldEmail = formField != null ? formField.Value as string : string.Empty;
+                if (!string.IsNullOrWhiteSpace(receiverFieldEmail) && (new EmailValidator()).IsValid(receiverFieldEmail))
+                {
+                    to = receiverFieldEmail;
+                }
+            }
+
+            if (string.IsNullOrWhiteSpace(to))
+            {
+                to = this.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.To), plug.To);
+            }
             
             // populate the mail
             return this.Populate(x =>

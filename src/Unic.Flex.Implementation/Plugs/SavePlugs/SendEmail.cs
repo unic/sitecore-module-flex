@@ -1,9 +1,11 @@
 ﻿namespace Unic.Flex.Implementation.Plugs.SavePlugs
 {
+    using Glass.Mapper.Sc.Configuration;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Sitecore.Diagnostics;
     using Unic.Flex.Implementation.Mailers;
     using Unic.Flex.Mailing;
+    using Unic.Flex.Model.DomainModel.Fields;
     using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.DomainModel.Global;
     using Unic.Flex.Model.DomainModel.Plugs.SavePlugs;
@@ -125,6 +127,15 @@
         /// </value>
         [SitecoreField("Text Mail Footer")]
         public virtual string TextMailFooter { get; set; }
+
+        /// <summary>
+        /// Gets or sets the receiver field.
+        /// </summary>
+        /// <value>
+        /// The receiver field.
+        /// </value>
+        [SitecoreField("Receiver Field", Setting = SitecoreFieldSettings.InferType)]
+        public virtual IField ReceiverField { get; set; }
 
         /// <summary>
         /// Executes the save plug.
