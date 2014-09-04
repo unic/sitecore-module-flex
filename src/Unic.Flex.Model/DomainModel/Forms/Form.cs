@@ -135,7 +135,7 @@
                 steps = steps.Where(step => step.StepNumber == stepNumber);
             }
 
-            return steps.SelectMany(s => s.GetSections());
+            return steps.Where(step => !(step is Summary)).SelectMany(s => s.GetSections());
         }
     }
 }

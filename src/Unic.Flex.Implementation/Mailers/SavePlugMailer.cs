@@ -1,10 +1,12 @@
 ﻿namespace Unic.Flex.Implementation.Mailers
 {
+    using System.Linq;
     using System.Net.Mail;
     using System.Web;
     using Mvc.Mailer;
     using Unic.Configuration;
     using Unic.Flex.Implementation.Configuration;
+    using Unic.Flex.Implementation.Fields.InputFields;
     using Unic.Flex.Model.Configuration;
     using Unic.Flex.Model.Configuration.Extensions;
     using Unic.Flex.Model.DomainModel.Forms;
@@ -49,6 +51,16 @@
                 x.Subject = "Test email";
                 x.From = new MailAddress("noreply@post.ch");
                 x.To.Add("kevin.brechbuehl@unic.com");
+
+                // add attachments
+                foreach (var fileField in form
+                    .GetSections()
+                    .SelectMany(section => section.Fields)
+                    .OfType<FileUploadField>()
+                    .Where(field => field.Value != null))
+                {
+                    x.Attachments.Add(new Attachment(fileField.Value.InputStream, fileField.Value.FileName));
+                }
             });
         }
 
