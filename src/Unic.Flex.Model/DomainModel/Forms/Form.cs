@@ -87,6 +87,7 @@
         /// <value>
         /// The load plugs.
         /// </value>
+        // todo: plugs should be loaded also if no language version is available
         [SitecoreQuery("./Load Plugs/*", IsLazy = true, IsRelative = true, InferType = true)]
         public virtual IEnumerable<ILoadPlug> LoadPlugs { get; set; }
 
@@ -96,6 +97,7 @@
         /// <value>
         /// The save plugs.
         /// </value>
+        // todo: plugs should be loaded also if no language version is available
         [SitecoreQuery("./Save Plugs/*", IsLazy = true, IsRelative = true, InferType = true)]
         public virtual IEnumerable<ISavePlug> SavePlugs { get; set; }
 
