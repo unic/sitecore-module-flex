@@ -14,16 +14,37 @@
     using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Presentation;
 
+    /// <summary>
+    /// Mailer implementation for the send email plug
+    /// </summary>
     public class SavePlugMailer : MailerBase, ISavePlugMailer
     {
+        /// <summary>
+        /// The presentation service
+        /// </summary>
         private readonly IPresentationService presentationService;
 
+        /// <summary>
+        /// The configuration manager
+        /// </summary>
         private readonly IConfigurationManager configurationManager;
 
+        /// <summary>
+        /// The mail service
+        /// </summary>
         private readonly IMailService mailService;
 
+        /// <summary>
+        /// The theme
+        /// </summary>
         private string theme;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SavePlugMailer"/> class.
+        /// </summary>
+        /// <param name="presentationService">The presentation service.</param>
+        /// <param name="configurationManager">The configuration manager.</param>
+        /// <param name="mailService">The mail service.</param>
         public SavePlugMailer(IPresentationService presentationService, IConfigurationManager configurationManager, IMailService mailService)
         {
             this.presentationService = presentationService;
@@ -31,6 +52,14 @@
             this.mailService = mailService;
         }
 
+        /// <summary>
+        /// Gets the message.
+        /// </summary>
+        /// <param name="form">The form.</param>
+        /// <param name="plug">The plug.</param>
+        /// <returns>
+        /// Message to be sent over the mvc mailer
+        /// </returns>
         public virtual MvcMailMessage GetMessage(Form form, SendEmail plug)
         {
             // ensure the mailer has been initialized
