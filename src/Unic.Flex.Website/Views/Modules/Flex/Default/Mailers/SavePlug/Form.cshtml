@@ -27,5 +27,6 @@
 }
 
 <div style="margin-top: 50px; padding-top: 10px; border-top: 1px solid black; font-size: 90%">
-    @Translate.TextByDomain(Settings.GetSetting("Flex.DictionaryDomain"), "Form Title"): <a href="@formUrl">@formUrl</a>
+    @Translate.TextByDomain(Settings.GetSetting("Flex.DictionaryDomain"), "Form Title"): <a href="@formUrl">@formUrl</a><br/>
+    @Translate.TextByDomain(Settings.GetSetting("Flex.DictionaryDomain"), "Language Name"): @Sitecore.Context.Language.Name
 </div>
