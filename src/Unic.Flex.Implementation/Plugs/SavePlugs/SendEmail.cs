@@ -10,6 +10,7 @@
     using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.DomainModel.Global;
     using Unic.Flex.Model.DomainModel.Plugs.SavePlugs;
+    using Unic.Flex.Model.GlassExtensions.Attributes;
 
     [SitecoreType(TemplateId = "{DF5C2C2F-4A48-4206-9DFB-0DCDE27E2233}")]
     public class SendEmail : SavePlugBase
@@ -18,7 +19,7 @@
 
         private readonly ISavePlugMailer savePlugMailer;
 
-        [SitecoreField("Theme")]
+        [SitecoreSharedField("Theme")]
         public virtual Specification Theme { get; set; }
 
         public SendEmail(IMailRepository mailRepository, ISavePlugMailer savePlugMailer)
