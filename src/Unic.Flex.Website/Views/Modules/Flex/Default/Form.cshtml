@@ -16,5 +16,6 @@
                                                             data_flexstyles_options = "{'uniformOptions': {'fileButtonHtml' : '" + Translate.Text("Choose file") + "', 'fileDefaultHtml': '" + Translate.Text("No file choosen") + "'}}"
                                                         }))
 {
+    @Html.AntiForgeryToken()
     @Html.FlexComponent(m => m.Step)
 }

@@ -187,6 +187,7 @@
         /// <param name="model">The model.</param>
         /// <returns>Result of the action.</returns>
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Form(IFormViewModel model)
         {
             // todo: add Unic.Formhandler() here to verify that exactly this form was executed
