@@ -17,6 +17,15 @@
         public string From { get; set; }
 
         /// <summary>
+        /// Gets or sets the reply to.
+        /// </summary>
+        /// <value>
+        /// The reply to.
+        /// </value>
+        [Configuration(FieldName = "Reply To")]
+        public string ReplyTo { get; set; }
+
+        /// <summary>
         /// Gets or sets the to address.
         /// </summary>
         /// <value>

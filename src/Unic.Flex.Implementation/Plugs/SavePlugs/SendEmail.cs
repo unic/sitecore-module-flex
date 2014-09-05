@@ -58,6 +58,15 @@
         public virtual string From { get; set; }
 
         /// <summary>
+        /// Gets or sets the reply to.
+        /// </summary>
+        /// <value>
+        /// The reply to.
+        /// </value>
+        [SitecoreField("Reply To")]
+        public virtual string ReplyTo { get; set; }
+
+        /// <summary>
         /// Gets or sets the to address.
         /// </summary>
         /// <value>

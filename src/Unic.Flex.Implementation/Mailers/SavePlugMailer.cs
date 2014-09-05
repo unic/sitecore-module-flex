@@ -92,15 +92,19 @@
             var from = this.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.From), plug.From);
             var cc = this.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.Cc), plug.Cc);
             var bcc = this.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.Bcc), plug.Bcc);
-            var replyTo = this.GetEmailFromField(plug.ReplyToField, form);
-
-            // todo: add reply to to plug config and global config
-
+            
             // get the receiver email address
             var to = this.GetMappedEmailFromField(plug.ReceiverField, form, plug);
             if (string.IsNullOrWhiteSpace(to))
             {
                 to = this.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.To), plug.To);
+            }
+
+            // get reply to
+            var replyTo = this.GetEmailFromField(plug.ReplyToField, form);
+            if (string.IsNullOrWhiteSpace(replyTo))
+            {
+                replyTo = this.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.ReplyTo), plug.ReplyTo);
             }
             
             // populate the mail
