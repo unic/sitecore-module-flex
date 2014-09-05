@@ -179,6 +179,8 @@
                     // add required validator
                     if (field.IsRequired)
                     {
+                        //// todo: add "*" to the label -> set the character in the global config (also add a message to the FormViewModel which can be placed at the beginning of the form, i.e. "Fields with * are requried"
+                        
                         if (TypeHelper.IsSubclassOfRawGeneric(typeof(MulticheckListField<>), field.GetType()))
                         {
                             validatableObject.AddValidator(new MulticheckRequired { ValidationMessage = field.ValidationMessage });

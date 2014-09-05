@@ -7,6 +7,8 @@
     /// </summary>
     public abstract class PlugBase : ItemBase
     {
+        // todo: remove this message here and move it to the form -> 1 error message per form
+        
         /// <summary>
         /// Gets or sets the error message.
         /// </summary>
