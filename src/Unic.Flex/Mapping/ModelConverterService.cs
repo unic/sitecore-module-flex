@@ -176,6 +176,8 @@
                     // bind properties
                     fieldViewModel.BindProperties();
 
+                    //// todo: what do we do with the (optional) text in the field? Automatically set? Set by authors? What do we add to the framework?
+
                     // add required validator
                     if (field.IsRequired)
                     {
