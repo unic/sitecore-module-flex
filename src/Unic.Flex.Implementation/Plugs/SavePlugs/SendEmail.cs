@@ -1,5 +1,6 @@
 ﻿namespace Unic.Flex.Implementation.Plugs.SavePlugs
 {
+    using System.Collections.Specialized;
     using Glass.Mapper.Sc.Configuration;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Sitecore.Diagnostics;
@@ -136,6 +137,15 @@
         /// </value>
         [SitecoreField("Receiver Field", Setting = SitecoreFieldSettings.InferType)]
         public virtual IField ReceiverField { get; set; }
+
+        /// <summary>
+        /// Gets or sets the receiver email mapping.
+        /// </summary>
+        /// <value>
+        /// The receiver email mapping.
+        /// </value>
+        [SitecoreField("Receiver Email Mapping")]
+        public virtual NameValueCollection ReceiverEmailMapping { get; set; }
 
         /// <summary>
         /// Gets or sets the reply to field.
