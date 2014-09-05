@@ -26,13 +26,13 @@ content-length: 228
 field: {F359E4AD-7980-4DFA-820C-7FB29122EB84}
 name: Configurations
 key: configurations
-content-length: 38
+content-length: 77
 
-{C65A36C1-C91D-4810-A4D4-B9DB61440C48}
+{C65A36C1-C91D-4810-A4D4-B9DB61440C48}|{8526BB40-E0E6-402E-9CF6-60B65DA3C82C}
 ----version----
 language: en
 version: 1
-revision: 451ba8c8-e4a5-4a01-a263-e64e26faa124
+revision: 06ad1484-6f20-48e6-b8e1-1a702ef80f1b
 
 ----field----
 field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
@@ -61,14 +61,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-451ba8c8-e4a5-4a01-a263-e64e26faa124
+06ad1484-6f20-48e6-b8e1-1a702ef80f1b
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20140620T085256:635388511769537374
+20140903T113013:635453406131334231
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

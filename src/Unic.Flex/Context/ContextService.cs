@@ -78,12 +78,8 @@
 
             Profiler.OnStart(this, "Flex :: Populating values from user data storage");
 
-            foreach (var stepSection in form.Steps.SelectMany(step => step.Sections))
+            foreach (var section in form.Steps.SelectMany(step => step.GetSections()))
             {
-                var reusableSection = stepSection as ReusableSection;
-                var section = reusableSection != null ? reusableSection.Section : stepSection as StandardSection;
-                if (section == null) continue;
-
                 foreach (var field in section.Fields)
                 {
                     field.Value = this.userDataRepository.IsFieldStored(form.Id, field.Key)

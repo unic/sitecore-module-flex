@@ -38,10 +38,9 @@
             Assert.ArgumentNotNull(form, "form");
 
             var queryString = HttpContext.Current.Request.QueryString;
-            foreach (var section in form.Steps.SelectMany(step => step.Sections))
+            foreach (var section in form.Steps.SelectMany(step => step.GetSections()))
             {
-                var standardSection = section as StandardSection ?? ((ReusableSection)section).Section;
-                foreach (var field in standardSection.Fields)
+                foreach (var field in section.Fields)
                 {
                     if (string.IsNullOrWhiteSpace(field.Key)) continue;
                     

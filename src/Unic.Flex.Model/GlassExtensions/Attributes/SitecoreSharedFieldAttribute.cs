@@ -11,6 +11,21 @@
     public class SitecoreSharedFieldAttribute : SitecoreFieldAttribute
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="SitecoreSharedFieldAttribute"/> class.
+        /// </summary>
+        public SitecoreSharedFieldAttribute()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SitecoreSharedFieldAttribute"/> class.
+        /// </summary>
+        /// <param name="fieldName">Name of the field.</param>
+        public SitecoreSharedFieldAttribute(string fieldName) : base(fieldName)
+        {
+        }
+        
+        /// <summary>
         /// Configures the specified property info.
         /// </summary>
         /// <param name="propertyInfo">The property info.</param>

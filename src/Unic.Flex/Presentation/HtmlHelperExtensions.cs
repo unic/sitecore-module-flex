@@ -31,7 +31,7 @@
         }
 
         /// <summary>
-        /// Generate the partial view for a Flex component, regardless the themes view etc..
+        /// Generate the partial view for a Flex component, regardless the themes view etc.
         /// </summary>
         /// <typeparam name="TModel">The type of the model.</typeparam>
         /// <typeparam name="TProperty">The type of the property.</typeparam>
@@ -56,6 +56,38 @@
                             HtmlFieldPrefix = htmlHelper.GetName(propertyName)
                         }
                     });
+        }
+
+        /// <summary>
+        /// Generate the partial view for a model and specific view, regardless the themes view etc.
+        /// </summary>
+        /// <typeparam name="TModel">The type of the model.</typeparam>
+        /// <typeparam name="TProperty">The type of the property.</typeparam>
+        /// <param name="htmlHelper">The HTML helper.</param>
+        /// <param name="expression">The expression.</param>
+        /// <param name="viewName">Name of the view.</param>
+        /// <param name="theme">The theme.</param>
+        /// <returns>Html string with the markup for the partial view.</returns>
+        public static MvcHtmlString FlexComponent<TModel, TProperty>(
+            this HtmlHelper<TModel> htmlHelper,
+            Expression<Func<TModel, TProperty>> expression,
+            string viewName,
+            string theme = "")
+        {
+            var modelMetaData = ModelMetadata.FromLambdaExpression(expression, htmlHelper.ViewData);
+            var model = modelMetaData.Model;
+            var propertyName = ExpressionHelper.GetExpressionText(expression);
+
+            return htmlHelper.Partial(
+                PresentationService.Value.ResolveView(htmlHelper.ViewContext, viewName, theme),
+                model,
+                new ViewDataDictionary(htmlHelper.ViewData)
+                {
+                    TemplateInfo = new TemplateInfo
+                    {
+                        HtmlFieldPrefix = htmlHelper.GetName(propertyName)
+                    }
+                });
         }
 
         /// <summary>

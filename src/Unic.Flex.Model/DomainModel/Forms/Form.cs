@@ -87,6 +87,7 @@
         /// <value>
         /// The load plugs.
         /// </value>
+        //// todo: plugs should be loaded also if no language version is available
         [SitecoreQuery("./Load Plugs/*", IsLazy = true, IsRelative = true, InferType = true)]
         public virtual IEnumerable<ILoadPlug> LoadPlugs { get; set; }
 
@@ -96,6 +97,7 @@
         /// <value>
         /// The save plugs.
         /// </value>
+        //// todo: plugs should be loaded also if no language version is available
         [SitecoreQuery("./Save Plugs/*", IsLazy = true, IsRelative = true, InferType = true)]
         public virtual IEnumerable<ISavePlug> SavePlugs { get; set; }
 
@@ -135,14 +137,7 @@
                 steps = steps.Where(step => step.StepNumber == stepNumber);
             }
 
-            foreach (var section in steps.SelectMany(s => s.Sections))
-            {
-                var reusableSection = section as ReusableSection;
-                var realSection = (reusableSection == null ? section : reusableSection.Section) as StandardSection;
-                if (realSection == null) continue;
-
-                yield return realSection;
-            }
+            return steps.Where(step => !(step is Summary)).SelectMany(s => s.GetSections());
         }
     }
 }

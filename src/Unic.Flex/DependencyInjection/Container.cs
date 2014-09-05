@@ -1,7 +1,9 @@
 ﻿namespace Unic.Flex.DependencyInjection
 {
+    using System;
     using Ninject;
     using Ninject.Modules;
+    using Sitecore.Pipelines.GetTranslation;
 
     /// <summary>
     /// Dependency injection container.
@@ -32,6 +34,16 @@
         public static T Resolve<T>()
         {
             return kernel.Get<T>();
+        }
+
+        /// <summary>
+        /// Resolves the specified type from the container.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns>Instance of the type</returns>
+        public static object Resolve(Type type)
+        {
+            return kernel.Get(type);
         }
     }
 }

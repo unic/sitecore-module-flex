@@ -60,6 +60,7 @@ namespace Unic.Flex.Website
         private static IEnumerable<INinjectModule> GetModules()
         {
             yield return new Config();
+            yield return new Implementation.DependencyInjection.Config();
         }     
     }
 }

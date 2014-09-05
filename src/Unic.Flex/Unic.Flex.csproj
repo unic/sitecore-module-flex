@@ -52,6 +52,10 @@
       <Private>True</Private>
       <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
+    <Reference Include="Mvc.Mailer">
+      <HintPath>..\..\packages\MvcMailer.4.5\lib\45\Mvc.Mailer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
@@ -117,6 +121,10 @@
     <Compile Include="Globalization\IDictionaryRepository.cs" />
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\SitecoreLogger.cs" />
+    <Compile Include="Mailing\IMailRepository.cs" />
+    <Compile Include="Mailing\IMailService.cs" />
+    <Compile Include="Mailing\MailRepository.cs" />
+    <Compile Include="Mailing\MailService.cs" />
     <Compile Include="Mapping\IUserDataRepository.cs" />
     <Compile Include="Mapping\UserDataRepository.cs" />
     <Compile Include="ModelBinding\FieldModelBinder.cs" />
@@ -124,6 +132,7 @@
     <Compile Include="Mapping\IModelConverterService.cs" />
     <Compile Include="ModelBinding\ListModelBinder.cs" />
     <Compile Include="Mapping\ModelConverterService.cs" />
+    <Compile Include="Pipelines\ObjectConstruction\NinjectInjectorTask.cs" />
     <Compile Include="Plugs\IPlugsService.cs" />
     <Compile Include="Plugs\PlugsService.cs" />
     <Compile Include="Presentation\HtmlHelperExtensions.cs" />
@@ -149,7 +158,6 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets" Condition="Exists('..\..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -130,7 +130,7 @@
         /// <value>
         /// The CSS class.
         /// </value>
-        [SitecoreSharedField(FieldName = "Css Class")]
+        [SitecoreSharedField("Css Class")]
         public virtual Specification CustomCssClass { get; set; }
 
         /// <summary>
