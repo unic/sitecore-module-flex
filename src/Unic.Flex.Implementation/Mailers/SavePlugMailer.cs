@@ -158,8 +158,14 @@
             var fieldValue = this.GetFieldValue(field, form);
             if (string.IsNullOrWhiteSpace(fieldValue)) return string.Empty;
 
+            var emailValidator = new EmailValidator();
             var email = plug.ReceiverEmailMapping.Get(fieldValue);
-            return (!string.IsNullOrWhiteSpace(email) && (new EmailValidator()).IsValid(email)) ? email : string.Empty;
+            if (!string.IsNullOrWhiteSpace(email) && email.Split(new[] { ";" }, StringSplitOptions.RemoveEmptyEntries).All(emailValidator.IsValid))
+            {
+                return email;
+            }
+            
+            return emailValidator.IsValid(fieldValue) ? fieldValue : string.Empty;
         }
 
         /// <summary>
