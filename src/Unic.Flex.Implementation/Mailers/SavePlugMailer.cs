@@ -99,6 +99,8 @@
             if (string.IsNullOrWhiteSpace(to))
             {
                 to = this.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.To), plug.To);
+
+                // todo: beim receiver field muess noch eine mapping tabelle erstellt werden -> wert im receiver feld wird dann gemappt zu e-mail -> name-value -> nur für "to"
             }
             
             // populate the mail
