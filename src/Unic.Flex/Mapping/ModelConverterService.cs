@@ -152,22 +152,17 @@
             }
 
             // iterate through sections and add them
-            foreach (var section in step.Sections)
+            foreach (var section in step.GetSections())
             {
-                // get the real section, because a reusable section just contains a section
-                var reusableSection = section as ReusableSection;
-                var realSection = (reusableSection == null ? section : reusableSection.Section) as StandardSection;
-                if (realSection == null) continue;
-
                 // map the current section to it's view model
-                var sectionViewModel = this.GetViewModel<ISectionViewModel>(realSection);
-                Mapper.Map(realSection, sectionViewModel, realSection.GetType(), sectionViewModel.GetType());
+                var sectionViewModel = this.GetViewModel<ISectionViewModel>(section);
+                Mapper.Map(section, sectionViewModel, section.GetType(), sectionViewModel.GetType());
 
                 // add tooltip
-                sectionViewModel.Tooltip = new TooltipViewModel { TooltipTitle = realSection.TooltipTitle, TooltipText = realSection.TooltipText };
+                sectionViewModel.Tooltip = new TooltipViewModel { TooltipTitle = section.TooltipTitle, TooltipText = section.TooltipText };
 
                 // iterate through the fields and add them
-                foreach (var field in realSection.Fields)
+                foreach (var field in section.Fields)
                 {
                     // skip if on summary the field should not be shown
                     if (summary != null && !field.ShowInSummary) continue;
