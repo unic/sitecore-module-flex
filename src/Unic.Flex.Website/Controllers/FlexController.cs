@@ -3,8 +3,11 @@
     using System;
     using System.Linq;
     using System.Web.Mvc;
+    using Sitecore.Diagnostics;
     using Unic.Flex.Context;
+    using Unic.Flex.Database;
     using Unic.Flex.Definitions;
+    using Unic.Flex.DependencyInjection;
     using Unic.Flex.Logging;
     using Unic.Flex.Mapping;
     using Unic.Flex.Model.Exceptions;
@@ -13,7 +16,7 @@
     using Unic.Flex.Model.ViewModel.Forms;
     using Unic.Flex.Plugs;
     using Unic.Flex.Presentation;
-    using Unic.Profiling;
+    using Profiler = Unic.Profiling.Profiler;
 
     /// <summary>
     /// The one and only controller for Flex
@@ -122,6 +125,17 @@
         /// <returns>Result of this action.</returns>
         public ActionResult Form()
         {
+
+            using (var unitOfWork = Container.Resolve<IUnitOfWork>())
+            {
+                var forms = unitOfWork.FormRepository.Get();
+                Log.Error("------------------ Forms count: " + forms.Count(), this);
+            }
+            
+            
+            
+            
+            
             Profiler.OnStart(this, ProfileGetEventName);
             
             // get the form

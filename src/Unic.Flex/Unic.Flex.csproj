@@ -40,6 +40,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Castle.Core.3.3.0\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Glass.Mapper, Version=3.0.11.23, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Glass.Mapper.3.0.11.23\lib\net45\Glass.Mapper.dll</HintPath>
@@ -114,6 +120,11 @@
     <Compile Include="Context\IUrlService.cs" />
     <Compile Include="Context\UrlExtensions.cs" />
     <Compile Include="Context\UrlService.cs" />
+    <Compile Include="Database\DatabaseRepository.cs" />
+    <Compile Include="Database\FlexDbContext.cs" />
+    <Compile Include="Database\IDatabaseRepository.cs" />
+    <Compile Include="Database\IUnitOfWork.cs" />
+    <Compile Include="Database\UnitOfWork.cs" />
     <Compile Include="Definitions\Constants.cs" />
     <Compile Include="DependencyInjection\Config.cs" />
     <Compile Include="DependencyInjection\Container.cs" />

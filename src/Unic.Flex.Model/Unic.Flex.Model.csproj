@@ -102,6 +102,9 @@
     <Compile Include="DomainModel\Plugs\SavePlugs\ISavePlug.cs" />
     <Compile Include="DomainModel\Plugs\SavePlugs\SavePlugBase.cs" />
     <Compile Include="DomainModel\Components\INavigationPane.cs" />
+    <Compile Include="Entities\Form.cs" />
+    <Compile Include="Entities\Session.cs" />
+    <Compile Include="Entities\Field.cs" />
     <Compile Include="Exceptions\ExceptionState.cs" />
     <Compile Include="Exceptions\IExceptionState.cs" />
     <Compile Include="Validation\AjaxValidator.cs" />
