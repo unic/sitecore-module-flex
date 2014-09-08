@@ -6,7 +6,7 @@
     /// Reusable field model.
     /// </summary>
     [SitecoreType(TemplateId = "{C71F2A06-56B1-4045-A96E-FDF1F3E76284}")]
-    public class ReusableField : FieldBase
+    public class ReusableField : FieldBase<object>
     {
     }
 }
