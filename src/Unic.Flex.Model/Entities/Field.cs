@@ -45,5 +45,6 @@
         public virtual string Value { get; set; }
 
         //// todo: add blob values for attachments
+        //// todo: remove all data from database, reset the auto incerement value and save empty .bak file (or similar) to file system 
     }
 }
