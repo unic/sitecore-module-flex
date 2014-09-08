@@ -6,11 +6,6 @@
 
     public class Form
     {
-        public Form()
-        {
-            this.Sessions = new HashSet<Session>();
-        }
-        
         [Required]
         public virtual int Id { get; set; }
 

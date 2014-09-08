@@ -6,11 +6,6 @@
 
     public class Session
     {
-        public Session()
-        {
-            this.Fields = new HashSet<Field>();
-        }
-        
         [Required]
         public virtual int Id { get; set; }
 

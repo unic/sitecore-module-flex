@@ -125,17 +125,6 @@
         /// <returns>Result of this action.</returns>
         public ActionResult Form()
         {
-
-            using (var unitOfWork = Container.Resolve<IUnitOfWork>())
-            {
-                var forms = unitOfWork.FormRepository.Get();
-                Log.Error("------------------ Forms count: " + forms.Count(), this);
-            }
-            
-            
-            
-            
-            
             Profiler.OnStart(this, ProfileGetEventName);
             
             // get the form
