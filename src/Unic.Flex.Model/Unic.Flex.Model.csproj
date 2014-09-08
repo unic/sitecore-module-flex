@@ -96,6 +96,7 @@
     <Compile Include="DomainModel\Fields\IField.cs" />
     <Compile Include="DomainModel\Fields\ListFields\ListField.cs" />
     <Compile Include="DomainModel\Fields\ListFields\MulticheckListField.cs" />
+    <Compile Include="DomainModel\Fields\ReusableField.cs" />
     <Compile Include="DomainModel\Global\Specification.cs" />
     <Compile Include="DomainModel\Plugs\LoadPlugs\ILoadPlug.cs" />
     <Compile Include="DomainModel\Plugs\LoadPlugs\LoadPlugBase.cs" />
