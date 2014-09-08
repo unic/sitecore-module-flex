@@ -1,8 +1,11 @@
 ﻿namespace Unic.Flex.Model.DomainModel.Fields
 {
+    using System;
+    using Glass.Mapper.Sc.Configuration;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using Unic.Flex.Model.DomainModel.Components;
     using Unic.Flex.Model.DomainModel.Global;
     using Unic.Flex.Model.GlassExtensions.Attributes;
     using Unic.Flex.Model.Validation;
@@ -96,7 +99,7 @@
     /// Abstract base class for all fields
     /// </summary>
     [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1402:FileMayOnlyContainASingleClass", Justification = "Reviewed. Suppression is OK here.")]
-    public abstract class FieldBase : ItemBase
+    public abstract class FieldBase : ItemBase, IReusableComponent<IField>
     {
         //// todo: think about the concept of reusable fields (same as with sections) -> check if this could be done with a custom glass type mapper (also for the sections)
         
@@ -223,5 +226,33 @@
         /// </value>
         [SitecoreField("Placeholder")]
         public virtual string Placeholder { get; set; }
+
+        /// <summary>
+        /// Gets or sets the reusable component.
+        /// </summary>
+        /// <value>
+        /// The reusable component.
+        /// </value>
+        [SitecoreField("Field", Setting = SitecoreFieldSettings.InferType)]
+        public virtual IField ReusableComponent { get; set; }
+        
+        /// <summary>
+        /// Gets or sets the reusable component.
+        /// </summary>
+        /// <value>
+        /// The reusable component.
+        /// </value>
+        object IReusableComponent.ReusableComponent
+        {
+            get
+            {
+                return this.ReusableComponent;
+            }
+
+            set
+            {
+                this.ReusableComponent = value as IField;
+            }
+        }
     }
 }

@@ -1,0 +1,51 @@
+----item----
+version: 1
+id: {81FC5997-3CE6-43A7-B772-7659C7A7CD72}
+database: master
+path: /sitecore/templates/Flex/Fields/Reusable Field/Form Configuration
+parent: {C71F2A06-56B1-4045-A96E-FDF1F3E76284}
+name: Form Configuration
+master: {00000000-0000-0000-0000-000000000000}
+template: {E269FBB5-3750-427A-9149-7AA950B49301}
+templatekey: Template section
+
+----version----
+language: en
+version: 1
+revision: 35174d47-019f-42d0-b186-72082f917d4c
+
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20140908T144319
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+35174d47-019f-42d0-b186-72082f917d4c
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20140908T205404:635458064444263214
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

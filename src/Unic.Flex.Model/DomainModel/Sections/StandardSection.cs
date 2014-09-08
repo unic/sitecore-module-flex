@@ -36,7 +36,7 @@
         /// <value>
         /// The fields.
         /// </value>
-        [SitecoreChildren(IsLazy = true, InferType = true)]
+        [SitecoreReusableChildren(IsLazy = true, InferType = true)]
         public virtual IEnumerable<IField> Fields { get; set; }
 
         /// <summary>

@@ -20,9 +20,9 @@ Droptree
 field: {1EB8AE32-E190-44A6-968D-ED904C794EBF}
 name: Source
 key: source
-content-length: 31
+content-length: 91
 
-query:./../../../../../Sections
+query:./ancestor-or-self::*[@@templateid='{7212DD21-1769-43AA-AF6A-92756C97A269}']/Sections
 ----field----
 field: {BE351A73-FCB0-4213-93FA-C302D8AB4F51}
 name: Shared
@@ -40,7 +40,7 @@ content-length: 3
 ----version----
 language: en
 version: 1
-revision: d5068906-fb3a-48e5-9ef5-07a458b69684
+revision: 3fa93b61-78c4-4105-9bbb-ac4955e1e356
 
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
@@ -55,14 +55,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-d5068906-fb3a-48e5-9ef5-07a458b69684
+3fa93b61-78c4-4105-9bbb-ac4955e1e356
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20140428T135252:635342899729777743
+20140908T205448:635458064888448392
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
