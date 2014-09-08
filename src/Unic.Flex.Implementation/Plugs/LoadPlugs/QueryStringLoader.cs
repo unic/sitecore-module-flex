@@ -38,7 +38,7 @@
             Assert.ArgumentNotNull(form, "form");
 
             var queryString = HttpContext.Current.Request.QueryString;
-            foreach (var section in form.Steps.SelectMany(step => step.GetSections()))
+            foreach (var section in form.Steps.SelectMany(step => step.Sections))
             {
                 foreach (var field in section.Fields)
                 {

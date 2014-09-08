@@ -3,7 +3,7 @@
 
 <h2 style="margin-top: 40px; text-decoration: underline">@Model.Title</h2>
 
-@foreach (var standardSection in @Model.GetSections())
+@foreach (var standardSection in @Model.Sections)
 {
     @Html.FlexComponent(m => standardSection, "Mailers/SavePlug/Section", (string)ViewBag.Theme)
 }

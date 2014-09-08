@@ -78,7 +78,7 @@
 
             Profiler.OnStart(this, "Flex :: Populating values from user data storage");
 
-            foreach (var section in form.Steps.SelectMany(step => step.GetSections()))
+            foreach (var section in form.Steps.SelectMany(step => step.Sections))
             {
                 foreach (var field in section.Fields)
                 {

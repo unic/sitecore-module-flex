@@ -90,6 +90,7 @@
     <Compile Include="Configuration\Converters\SpecificationConverter.cs" />
     <Compile Include="Configuration\Extensions\ConfigurationManagerExtensions.cs" />
     <Compile Include="Configuration\PresentationConfiguration.cs" />
+    <Compile Include="DomainModel\Components\IReusableComponent.cs" />
     <Compile Include="DomainModel\Components\ITooltip.cs" />
     <Compile Include="DomainModel\Fields\FieldBase.cs" />
     <Compile Include="DomainModel\Fields\IField.cs" />
@@ -102,6 +103,9 @@
     <Compile Include="DomainModel\Plugs\SavePlugs\ISavePlug.cs" />
     <Compile Include="DomainModel\Plugs\SavePlugs\SavePlugBase.cs" />
     <Compile Include="DomainModel\Components\INavigationPane.cs" />
+    <Compile Include="GlassExtensions\Attributes\SitecoreReusableChildrenAttribute.cs" />
+    <Compile Include="GlassExtensions\Configurations\SitecoreReusableChildrenConfiguration.cs" />
+    <Compile Include="GlassExtensions\Handlers\SitecoreReusableChildrenTypeMapper.cs" />
     <Compile Include="Validation\AjaxValidator.cs" />
     <Compile Include="Validation\HoneypotValidator.cs" />
     <Compile Include="Validation\MulticheckRequired.cs" />
@@ -132,7 +136,6 @@
     <Compile Include="Presentation\IPresentationComponent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DomainModel\Sections\ReusableSection.cs" />
-    <Compile Include="DomainModel\Sections\SectionBase.cs" />
     <Compile Include="ViewModel\Forms\IFormViewModel.cs" />
     <Compile Include="ViewModel\Sections\ISectionViewModel.cs" />
     <Compile Include="ViewModel\Sections\StandardSectionViewModel.cs" />

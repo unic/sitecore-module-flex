@@ -10,7 +10,7 @@
     /// The standard section.
     /// </summary>
     [SitecoreType(TemplateId = "{B2B5CAB2-2BD7-4FFE-80B1-7607A310771E}")]
-    public class StandardSection : SectionBase, ITooltip
+    public class StandardSection : ItemBase, ITooltip, IReusableComponent<StandardSection>
     {
         /// <summary>
         /// Gets or sets the title.
@@ -56,5 +56,33 @@
         /// </value>
         [SitecoreField("Tooltip Text")]
         public virtual string TooltipText { get; set; }
+
+        /// <summary>
+        /// Gets or sets the reusable component.
+        /// </summary>
+        /// <value>
+        /// The reusable component.
+        /// </value>
+        [SitecoreField("Section")]
+        public virtual StandardSection ReusableComponent { get; set; }
+
+        /// <summary>
+        /// Gets or sets the reusable component.
+        /// </summary>
+        /// <value>
+        /// The reusable component.
+        /// </value>
+        object IReusableComponent.ReusableComponent
+        {
+            get
+            {
+                return this.ReusableComponent;
+            }
+
+            set
+            {
+                this.ReusableComponent = value as StandardSection;
+            }
+        }
     }
 }

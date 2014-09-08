@@ -152,7 +152,7 @@
             }
 
             // iterate through sections and add them
-            foreach (var section in step.GetSections())
+            foreach (var section in step.Sections)
             {
                 // map the current section to it's view model
                 var sectionViewModel = this.GetViewModel<ISectionViewModel>(section);

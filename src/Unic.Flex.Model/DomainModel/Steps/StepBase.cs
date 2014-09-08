@@ -3,6 +3,7 @@
     using Glass.Mapper.Sc.Configuration.Attributes;
     using System.Collections.Generic;
     using Unic.Flex.Model.DomainModel.Sections;
+    using Unic.Flex.Model.GlassExtensions.Attributes;
 
     /// <summary>
     /// Base class for all steps.
@@ -40,23 +41,7 @@
         /// <value>
         /// The sections.
         /// </value>
-        [SitecoreChildren(IsLazy = true, InferType = true)]
-        public virtual IEnumerable<SectionBase> Sections { get; set; }
-
-        /// <summary>
-        /// Gets all the real sections.
-        /// </summary>
-        /// <returns>All real sections of this step</returns>
-        public virtual IEnumerable<StandardSection> GetSections()
-        {
-            foreach (var section in this.Sections)
-            {
-                var reusableSection = section as ReusableSection;
-                var realSection = (reusableSection == null ? section : reusableSection.Section) as StandardSection;
-                if (realSection == null) continue;
-
-                yield return realSection;
-            }
-        }
+        [SitecoreReusableChildren(IsLazy = true, InferType = true)]
+        public virtual IEnumerable<StandardSection> Sections { get; set; }
     }
 }
