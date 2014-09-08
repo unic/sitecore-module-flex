@@ -32,7 +32,7 @@
     /// <summary>
     /// Non-generic interface for a field.
     /// </summary>
-    public interface IField : ITooltip
+    public interface IField : ITooltip, IReusableComponent<IField>
     {
         /// <summary>
         /// Gets or sets the item identifier.

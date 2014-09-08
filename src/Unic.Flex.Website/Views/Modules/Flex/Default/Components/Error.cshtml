@@ -1,15 +1,10 @@
 ﻿@model Unic.Flex.Model.ViewModel.Components.ErrorViewModel
 
-@if (Model.Messages.Any())
+@if (!string.IsNullOrWhiteSpace(Model.Message))
 {
     <div class="flex_formcontainer">
         <div class="validation-summary-errors">
-            <ul>
-                @foreach (var message in Model.Messages)
-                {
-                    <li>@message</li>
-                }
-            </ul>
+            @Html.Raw(Model.Message)
         </div>
     </div>
 }

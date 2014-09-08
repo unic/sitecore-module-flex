@@ -74,9 +74,9 @@
             {
                 if (!this.hasValuesPopulated && HttpContext.Current.Session != null)
                 {
-                    this.contextService.PopulateFormValues(this.form);
-                    this.plugService.ExecuteLoadPlugs(this.form);
                     this.hasValuesPopulated = true;
+                    this.contextService.PopulateFormValues(this.form);
+                    this.plugService.ExecuteLoadPlugs(this);
                 }
                 
                 return this.form;
@@ -95,6 +95,14 @@
         /// The view model.
         /// </value>
         public IFormViewModel ViewModel { get; set; }
+
+        /// <summary>
+        /// Gets or sets the error message.
+        /// </summary>
+        /// <value>
+        /// The error message.
+        /// </value>
+        public string ErrorMessage { get; set; }
 
         /// <summary>
         /// Sets the context item.

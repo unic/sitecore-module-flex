@@ -73,6 +73,15 @@
         public virtual ItemBase SuccessRedirect { get; set; }
 
         /// <summary>
+        /// Gets or sets the error message.
+        /// </summary>
+        /// <value>
+        /// The error message.
+        /// </value>
+        [SitecoreDictionaryFallbackField("Error Message", "Default error")]
+        public virtual string ErrorMessage { get; set; }
+
+        /// <summary>
         /// Gets or sets the steps.
         /// </summary>
         /// <value>
@@ -137,7 +146,7 @@
                 steps = steps.Where(step => step.StepNumber == stepNumber);
             }
 
-            return steps.Where(step => !(step is Summary)).SelectMany(s => s.GetSections());
+            return steps.Where(step => !(step is Summary)).SelectMany(s => s.Sections);
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿namespace Unic.Flex.Model.ViewModel.Components
 {
-    using System.Collections.Generic;
     using Unic.Flex.Model.Presentation;
 
     /// <summary>
@@ -9,12 +8,12 @@
     public class ErrorViewModel : IPresentationComponent
     {
         /// <summary>
-        /// Gets or sets the messages.
+        /// Gets or sets the message.
         /// </summary>
         /// <value>
-        /// The messages.
+        /// The message.
         /// </value>
-        public IEnumerable<string> Messages { get; set; }
+        public string Message { get; set; }
 
         /// <summary>
         /// Gets the name of the view.

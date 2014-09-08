@@ -6,7 +6,7 @@
 @Model.Title
 ---------------------------------------
 
-@foreach (var standardSection in @Model.GetSections())
+@foreach (var standardSection in @Model.Sections)
 {
     @Html.FlexComponent(m => standardSection, "Mailers/SavePlug/Section.text", (string)ViewBag.Theme)
 }

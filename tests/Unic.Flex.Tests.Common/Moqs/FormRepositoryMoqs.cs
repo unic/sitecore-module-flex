@@ -71,7 +71,7 @@
             // generate the step
             var step = new SingleStep();
             step.StepNumber = 1;
-            step.Sections = new List<SectionBase> { firstSection, secondSection };
+            step.Sections = new List<StandardSection> { firstSection, secondSection };
 
             // generate the form
             var form = new Form();

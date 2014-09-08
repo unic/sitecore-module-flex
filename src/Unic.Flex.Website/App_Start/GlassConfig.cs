@@ -56,6 +56,8 @@ namespace Unic.Flex.Website
 
             // register custom type mapper
             container.Register(Component.For<AbstractDataMapper>().ImplementedBy<SitecoreDictionaryFallbackFieldTypeMapper>().LifeStyle.Transient);
+            container.Register(Component.For<AbstractDataMapper>().ImplementedBy<SitecoreSharedFieldTypeMapper>().LifeStyle.Transient);
+            container.Register(Component.For<AbstractDataMapper>().ImplementedBy<SitecoreReusableChildrenTypeMapper>().LifeStyle.Transient);
 
             // register ninject object creation
             container.Register(Component.For<IObjectConstructionTask>().ImplementedBy<NinjectInjectorTask>().LifestylePerWebRequest());
