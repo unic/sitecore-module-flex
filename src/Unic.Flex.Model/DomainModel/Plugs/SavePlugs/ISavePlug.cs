@@ -8,14 +8,6 @@
     public interface ISavePlug
     {
         /// <summary>
-        /// Gets or sets the error message.
-        /// </summary>
-        /// <value>
-        /// The error message.
-        /// </value>
-        string ErrorMessage { get; set; }
-
-        /// <summary>
         /// Executes the load plug.
         /// </summary>
         /// <param name="form">The form.</param>

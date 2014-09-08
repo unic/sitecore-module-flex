@@ -7,7 +7,6 @@
     using Unic.Flex.Definitions;
     using Unic.Flex.Logging;
     using Unic.Flex.Mapping;
-    using Unic.Flex.Model.Exceptions;
     using Unic.Flex.Model.Validation;
     using Unic.Flex.Model.ViewModel.Components;
     using Unic.Flex.Model.ViewModel.Forms;
@@ -82,15 +81,10 @@
         /// </summary>
         private readonly ILogger logger;
 
-        /// <summary>
-        /// The exception state
-        /// </summary>
-        private readonly IExceptionState exceptionState;
-
         #endregion
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="FlexController"/> class.
+        /// Initializes a new instance of the <see cref="FlexController" /> class.
         /// </summary>
         /// <param name="presentationService">The presentation service.</param>
         /// <param name="modelConverter">The model converter.</param>
@@ -101,8 +95,7 @@
         /// <param name="urlService">The URL service.</param>
         /// <param name="formRepository">The form repository.</param>
         /// <param name="logger">The logger.</param>
-        /// <param name="exceptionState">State of the exception.</param>
-        public FlexController(IPresentationService presentationService, IModelConverterService modelConverter, IContextService contextService, IUserDataRepository userDataRepository, IPlugsService plugsService, IFlexContext flexContext, IUrlService urlService, IFormRepository formRepository, ILogger logger, IExceptionState exceptionState)
+        public FlexController(IPresentationService presentationService, IModelConverterService modelConverter, IContextService contextService, IUserDataRepository userDataRepository, IPlugsService plugsService, IFlexContext flexContext, IUrlService urlService, IFormRepository formRepository, ILogger logger)
         {
             this.presentationService = presentationService;
             this.modelConverter = modelConverter;
@@ -113,7 +106,6 @@
             this.urlService = urlService;
             this.formRepository = formRepository;
             this.logger = logger;
-            this.exceptionState = exceptionState;
         }
 
         /// <summary>
@@ -133,7 +125,7 @@
             if (currentStep == null) return new EmptyResult();
 
             // show errors
-            if (this.exceptionState.HasErrors)
+            if (!string.IsNullOrWhiteSpace(this.flexContext.ErrorMessage))
             {
                 var result = this.ShowError();
                 Profiler.OnEnd(this, ProfileGetEventName);
@@ -230,11 +222,11 @@
 
             // execute save plugs
             Profiler.OnStart(this, ProfileExecuteSavePlugsEventName);
-            this.plugsService.ExecuteSavePlugs(form);
+            this.plugsService.ExecuteSavePlugs(this.flexContext);
             Profiler.OnEnd(this, ProfileExecuteSavePlugsEventName);
 
             // show errors
-            if (this.exceptionState.HasErrors)
+            if (!string.IsNullOrWhiteSpace(this.flexContext.ErrorMessage))
             {
                 var result = this.ShowError();
                 Profiler.OnEnd(this, ProfilePostEventName);
@@ -306,7 +298,7 @@
         /// <returns>View for showing errors</returns>
         private ActionResult ShowError()
         {
-            var model = new ErrorViewModel { Messages = this.exceptionState.Messages };
+            var model = new ErrorViewModel { Message = this.flexContext.ErrorMessage };
             var view = this.presentationService.ResolveView(this.ControllerContext, model);
             return this.View(view, model);
         }

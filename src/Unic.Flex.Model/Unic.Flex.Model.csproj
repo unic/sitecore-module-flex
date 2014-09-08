@@ -102,8 +102,6 @@
     <Compile Include="DomainModel\Plugs\SavePlugs\ISavePlug.cs" />
     <Compile Include="DomainModel\Plugs\SavePlugs\SavePlugBase.cs" />
     <Compile Include="DomainModel\Components\INavigationPane.cs" />
-    <Compile Include="Exceptions\ExceptionState.cs" />
-    <Compile Include="Exceptions\IExceptionState.cs" />
     <Compile Include="Validation\AjaxValidator.cs" />
     <Compile Include="Validation\HoneypotValidator.cs" />
     <Compile Include="Validation\MulticheckRequired.cs" />

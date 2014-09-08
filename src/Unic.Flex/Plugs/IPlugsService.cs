@@ -1,6 +1,6 @@
 ﻿namespace Unic.Flex.Plugs
 {
-    using Unic.Flex.Model.DomainModel.Forms;
+    using Unic.Flex.Context;
 
     /// <summary>
     /// Service for the plug framework
@@ -10,13 +10,13 @@
         /// <summary>
         /// Executes the load plugs.
         /// </summary>
-        /// <param name="form">The form.</param>
-        void ExecuteLoadPlugs(Form form);
+        /// <param name="context">The context.</param>
+        void ExecuteLoadPlugs(IFlexContext context);
 
         /// <summary>
         /// Executes the save plugs.
         /// </summary>
-        /// <param name="form">The form.</param>
-        void ExecuteSavePlugs(Form form);
+        /// <param name="context">The context.</param>
+        void ExecuteSavePlugs(IFlexContext context);
     }
 }

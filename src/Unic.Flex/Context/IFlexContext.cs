@@ -35,6 +35,14 @@
         IFormViewModel ViewModel { get; set; }
 
         /// <summary>
+        /// Gets or sets the error message.
+        /// </summary>
+        /// <value>
+        /// The error message.
+        /// </value>
+        string ErrorMessage { get; set; }
+
+        /// <summary>
         /// Sets the context item.
         /// </summary>
         /// <param name="contextItem">The context item.</param>
