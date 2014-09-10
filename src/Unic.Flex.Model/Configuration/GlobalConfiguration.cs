@@ -15,5 +15,14 @@
         /// </value>
         [Configuration(FieldName = "Optional Fields Label Text")]
         public string OptionalFieldsLabelText { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether async plug execution is allowed.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if async plug execution is allowed; otherwise, <c>false</c>.
+        /// </value>
+        [Configuration(FieldName = "Is Async Execution Allowed")]
+        public bool IsAsyncExecutionAllowed { get; set; }
     }
 }
