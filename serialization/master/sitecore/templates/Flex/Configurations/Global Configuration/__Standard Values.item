@@ -19,15 +19,15 @@ Unic.Flex.Model.Configuration.GlobalConfiguration, Unic.Flex.Model
 ----version----
 language: en
 version: 1
-revision: 0ccd212e-6f00-45bc-ac2c-0a05e041abde
+revision: 37e53151-4aec-415e-9b5d-447c0173a7cd
 
 ----field----
 field: {D2732E5D-6BA5-4906-8EF3-C27252DB9754}
 name: Optional Fields Label Text
 key: optional fields label text
-content-length: 10
+content-length: 0
 
-(optional)
+
 ----field----
 field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
 name: __Owner
@@ -55,14 +55,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-0ccd212e-6f00-45bc-ac2c-0a05e041abde
+37e53151-4aec-415e-9b5d-447c0173a7cd
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20140910T100253:635459401733955924
+20140910T151229:635459587492407850
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
