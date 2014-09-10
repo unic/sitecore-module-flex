@@ -6,9 +6,11 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Unic.Configuration;
     using Unic.Flex.Context;
     using Unic.Flex.Definitions;
     using Unic.Flex.Globalization;
+    using Unic.Flex.Model.Configuration;
     using Unic.Flex.Model.DomainModel.Fields.ListFields;
     using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.DomainModel.Sections;
@@ -44,6 +46,11 @@
         private readonly IDictionaryRepository dictionaryRepository;
 
         /// <summary>
+        /// The configuration manager
+        /// </summary>
+        private readonly IConfigurationManager configurationManager;
+
+        /// <summary>
         /// The URL service
         /// </summary>
         private readonly IUrlService urlService;
@@ -53,11 +60,13 @@
         /// </summary>
         /// <param name="dictionaryRepository">The dictionary repository.</param>
         /// <param name="urlService">The URL service.</param>
-        public ModelConverterService(IDictionaryRepository dictionaryRepository, IUrlService urlService)
+        /// <param name="configurationManager">The configuration manager.</param>
+        public ModelConverterService(IDictionaryRepository dictionaryRepository, IUrlService urlService, IConfigurationManager configurationManager)
         {
             this.viewModelTypeCache = new Dictionary<string, Type>();
             this.dictionaryRepository = dictionaryRepository;
             this.urlService = urlService;
+            this.configurationManager = configurationManager;
         }
 
         /// <summary>
@@ -115,6 +124,9 @@
         {
             Assert.ArgumentNotNull(form, "form");
             Assert.ArgumentNotNull(step, "step");
+
+            // get config
+            var optionalLabelText = this.configurationManager.Get<GlobalConfiguration>(c => c.OptionalFieldsLabelText);
 
             // handle summary step
             var summary = step as Summary;
@@ -176,8 +188,6 @@
                     // bind properties
                     fieldViewModel.BindProperties();
 
-                    //// todo: what do we do with the (optional) text in the field? Automatically set? Set by authors? What do we add to the framework?
-
                     // add required validator
                     if (field.IsRequired)
                     {
@@ -189,6 +199,10 @@
                         {
                             validatableObject.AddValidator(new RequiredValidator { ValidationMessage = field.ValidationMessage });    
                         }       
+                    }
+                    else if (!string.IsNullOrWhiteSpace(optionalLabelText))
+                    {
+                        fieldViewModel.LabelAddition = optionalLabelText;
                     }
 
                     // add all other validators

@@ -89,6 +89,7 @@
   <ItemGroup>
     <Compile Include="Configuration\Converters\SpecificationConverter.cs" />
     <Compile Include="Configuration\Extensions\ConfigurationManagerExtensions.cs" />
+    <Compile Include="Configuration\GlobalConfiguration.cs" />
     <Compile Include="Configuration\PresentationConfiguration.cs" />
     <Compile Include="DomainModel\Components\IReusableComponent.cs" />
     <Compile Include="DomainModel\Components\ITooltip.cs" />

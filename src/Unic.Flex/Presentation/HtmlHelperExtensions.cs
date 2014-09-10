@@ -98,12 +98,22 @@
         /// <param name="htmlHelper">The HTML helper.</param>
         /// <param name="expression">The expression.</param>
         /// <param name="labelText">The label text.</param>
-        /// <returns>Html string with the markup for a label</returns>
+        /// <param name="labelAdditionText">The label addition text.</param>
+        /// <returns>
+        /// Html string with the markup for a label
+        /// </returns>
         public static MvcHtmlString FlexLabel<TModel, TValue>(
             this HtmlHelper<TModel> htmlHelper,
             Expression<Func<TModel, TValue>> expression,
-            string labelText)
+            string labelText,
+            string labelAdditionText = "")
         {
+            // add the label addition text
+            if (!string.IsNullOrWhiteSpace(labelAdditionText))
+            {
+                labelText += string.Format(" {0}", labelAdditionText);
+            }
+            
             return htmlHelper.LabelFor(
                 expression,
                 labelText,

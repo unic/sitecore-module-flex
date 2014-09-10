@@ -3,11 +3,19 @@
 @using Unic.Flex.Presentation
 @model Unic.Flex.Implementation.Fields.ListFields.CheckBoxListFieldViewModel
 
+@{
+    var label = Model.Label;
+    if (!string.IsNullOrWhiteSpace(Model.LabelAddition))
+    {
+        label += string.Format(" {0}", Model.LabelAddition);
+    }
+}
+
 <li class="flex_listitem @Model.CssClass">
     
     <fieldset role="listbox" aria-multiselectable="true">
         <legend class="flex_label" id="@Html.IdForModel()">
-            @Model.Label
+            @label
         </legend>
         
         <div class="flex_checkboxgroupoptions">

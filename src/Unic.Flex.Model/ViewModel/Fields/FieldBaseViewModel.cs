@@ -80,6 +80,14 @@
         public virtual string Label { get; set; }
 
         /// <summary>
+        /// Gets or sets the label addition.
+        /// </summary>
+        /// <value>
+        /// The label addition.
+        /// </value>
+        public virtual string LabelAddition { get; set; }
+
+        /// <summary>
         /// Gets or sets the value.
         /// </summary>
         /// <value>

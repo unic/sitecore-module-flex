@@ -1,10 +1,13 @@
 ﻿namespace Unic.Flex.Tests.Mapping
 {
     using System;
+    using System.Linq.Expressions;
     using Moq;
     using Moq.Protected;
     using NUnit.Framework;
+    using Unic.Configuration;
     using Unic.Flex.Mapping;
+    using Unic.Flex.Model.Configuration;
     using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.DomainModel.Steps;
     using Unic.Flex.Model.ViewModel.Forms;
@@ -40,7 +43,7 @@
             {
                 // prepare
                 var form = this.GetForm(FormRepositoryMoqs.GetNullFormRepository());
-                var converter = new ModelConverterService(SimpleMoqs.GetDictionaryRepository(), null);
+                var converter = new ModelConverterService(SimpleMoqs.GetDictionaryRepository(), null, null);
 
                 // act
                 var viewModel = converter.ConvertToViewModel(form);
@@ -56,8 +59,11 @@
             public void WillReturnCorrectViewModelForSingleStepForm()
             {
                 // prepare
+                var configMock = new Mock<IConfigurationManager>();
+                configMock.Setup(method => method.Get(It.IsAny<Expression<Func<GlobalConfiguration, string>>>())).Returns("(optional)");
+
                 var form = this.GetForm(FormRepositoryMoqs.GetSingleStepFormRepository());
-                var converter = new ModelConverterService(SimpleMoqs.GetDictionaryRepository(), null);
+                var converter = new ModelConverterService(SimpleMoqs.GetDictionaryRepository(), null, configMock.Object);
 
                 // act
                 var viewModel = converter.ConvertToViewModel(form);
@@ -94,7 +100,7 @@
             public void WillThrowExceptionWhenViewModelWasNotFound()
             {
                 // arrange
-                var converter = new ModelConverterService(SimpleMoqs.GetDictionaryRepository(), null);
+                var converter = new ModelConverterService(SimpleMoqs.GetDictionaryRepository(), null, null);
                 var domainModel = new object();
 
                 // act
@@ -112,7 +118,7 @@
             public void WillThrowExceptionWhenViewModelWasWrongType()
             {
                 // arrange
-                var converter = new ModelConverterService(SimpleMoqs.GetDictionaryRepository(), null);
+                var converter = new ModelConverterService(SimpleMoqs.GetDictionaryRepository(), null, null);
                 var domainModel = new SingleStep();
 
                 // act
@@ -129,7 +135,7 @@
             public void ShouldReturnCorrectViewModelInstance()
             {
                 // arrange
-                var converter = new ModelConverterService(SimpleMoqs.GetDictionaryRepository(), null);
+                var converter = new ModelConverterService(SimpleMoqs.GetDictionaryRepository(), null, null);
                 var domainModel = new Form();
 
                 // act
@@ -147,7 +153,7 @@
             public void ShouldReturnCorrectViewModelInstanceFromCache()
             {
                 // arrange
-                var serviceMock = new Mock<ModelConverterService>(SimpleMoqs.GetDictionaryRepository(), null) { CallBase = true };
+                var serviceMock = new Mock<ModelConverterService>(SimpleMoqs.GetDictionaryRepository(), null, null) { CallBase = true };
                 var converter = serviceMock.Object;
                 var domainModel = new Form();
 

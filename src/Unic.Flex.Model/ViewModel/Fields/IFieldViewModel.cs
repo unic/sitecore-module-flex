@@ -66,6 +66,14 @@
         string Label { get; set; }
 
         /// <summary>
+        /// Gets or sets the label addition.
+        /// </summary>
+        /// <value>
+        /// The label addition.
+        /// </value>
+        string LabelAddition { get; set; }
+
+        /// <summary>
         /// Gets or sets the CSS class.
         /// </summary>
         /// <value>
