@@ -6,6 +6,7 @@
     using Ninject.Web.Common;
     using Unic.Configuration;
     using Unic.Flex.Context;
+    using Unic.Flex.Database;
     using Unic.Flex.Globalization;
     using Unic.Flex.Logging;
     using Unic.Flex.Mailing;
@@ -38,6 +39,7 @@
             Bind<IDictionaryRepository>().To<DictionaryRepository>().InSingletonScope();
             Bind<IFormRepository>().To<FormRepository>();
             Bind<IUserDataRepository>().To<UserDataRepository>();
+            Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
 
             // model binding and converting
             Bind<IModelBinder>().To<FormModelBinder>();
