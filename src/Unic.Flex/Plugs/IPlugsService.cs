@@ -18,5 +18,11 @@
         /// </summary>
         /// <param name="context">The context.</param>
         void ExecuteSavePlugs(IFlexContext context);
+
+        /// <summary>
+        /// Executes the tasks.
+        /// </summary>
+        /// <param name="sessionId">The session identifier.</param>
+        void ExecuteTasks(int sessionId = 0);
     }
 }
