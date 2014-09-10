@@ -51,7 +51,5 @@
         /// The file.
         /// </value>
         public virtual File File { get; set; }
-
-        //// todo: remove all data from database, reset the auto incerement value and save empty .bak file (or similar) to file system 
     }
 }
