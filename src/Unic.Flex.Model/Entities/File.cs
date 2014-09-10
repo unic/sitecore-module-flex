@@ -1,12 +1,11 @@
 ﻿namespace Unic.Flex.Model.Entities
 {
-    using System;
     using System.ComponentModel.DataAnnotations;
 
     /// <summary>
-    /// Field entity
+    /// Entity for storing a file in the database.
     /// </summary>
-    public class Field
+    public class File
     {
         /// <summary>
         /// Gets or sets the identifier.
@@ -18,40 +17,39 @@
         public virtual int Id { get; set; }
 
         /// <summary>
-        /// Gets or sets the session.
+        /// Gets or sets the type of the content.
         /// </summary>
         /// <value>
-        /// The session.
+        /// The type of the content.
         /// </value>
         [Required]
-        public virtual Session Session { get; set; }
+        public virtual string ContentType { get; set; }
 
         /// <summary>
-        /// Gets or sets the item identifier.
+        /// Gets or sets the length of the content.
         /// </summary>
         /// <value>
-        /// The item identifier.
+        /// The length of the content.
         /// </value>
         [Required]
-        public virtual Guid ItemId { get; set; }
+        public virtual int ContentLength { get; set; }
 
         /// <summary>
-        /// Gets or sets the value.
+        /// Gets or sets the name of the file.
         /// </summary>
         /// <value>
-        /// The value.
+        /// The name of the file.
         /// </value>
         [Required]
-        public virtual string Value { get; set; }
+        public virtual string FileName { get; set; }
 
         /// <summary>
-        /// Gets or sets the file.
+        /// Gets or sets the data.
         /// </summary>
         /// <value>
-        /// The file.
+        /// The data.
         /// </value>
-        public virtual File File { get; set; }
-
-        //// todo: remove all data from database, reset the auto incerement value and save empty .bak file (or similar) to file system 
+        [Required]
+        public virtual byte[] Data { get; set; }
     }
 }

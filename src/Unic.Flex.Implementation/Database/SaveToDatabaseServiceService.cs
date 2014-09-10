@@ -2,11 +2,14 @@
 {
     using System;
     using System.Collections.ObjectModel;
+    using System.IO;
     using System.Linq;
     using Sitecore.Diagnostics;
     using Unic.Flex.Database;
     using Unic.Flex.DependencyInjection;
+    using Unic.Flex.Implementation.Fields.InputFields;
     using Unic.Flex.Model.Entities;
+    using File = Unic.Flex.Model.Entities.File;
     using Form = Unic.Flex.Model.DomainModel.Forms.Form;
 
     /// <summary>
@@ -51,9 +54,26 @@
             // add fields
             foreach (var field in form.GetSections().SelectMany(section => section.Fields))
             {
-                //// todo: handle blobs
+                // create field entity
+                var fieldEntity = new Field { ItemId = field.ItemId, Value = field.TextValue };
+                
+                // add blobs
+                var fileUploadField = field as FileUploadField;
+                if (fileUploadField != null && fileUploadField.Value != null)
+                {
+                    fieldEntity.File = new File
+                                           {
+                                               ContentLength = fileUploadField.Value.ContentLength,
+                                               ContentType = fileUploadField.Value.ContentType,
+                                               FileName = fileUploadField.Value.FileName
+                                           };
 
-                sessionEntity.Fields.Add(new Field { ItemId = field.ItemId, Value = field.TextValue });
+                    var stream = new MemoryStream();
+                    fileUploadField.Value.InputStream.CopyTo(stream);
+                    fieldEntity.File.Data = stream.ToArray();
+                }
+
+                sessionEntity.Fields.Add(fieldEntity);
             }
 
             // save data to database

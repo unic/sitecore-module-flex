@@ -104,6 +104,7 @@
     <Compile Include="DomainModel\Plugs\SavePlugs\ISavePlug.cs" />
     <Compile Include="DomainModel\Plugs\SavePlugs\SavePlugBase.cs" />
     <Compile Include="DomainModel\Components\INavigationPane.cs" />
+    <Compile Include="Entities\File.cs" />
     <Compile Include="Entities\Form.cs" />
     <Compile Include="Entities\Session.cs" />
     <Compile Include="Entities\Field.cs" />
