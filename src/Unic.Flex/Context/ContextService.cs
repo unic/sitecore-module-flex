@@ -101,14 +101,14 @@
             Assert.ArgumentNotNull(form, "form");
             Assert.ArgumentNotNull(viewModel, "viewModel");
 
-            Profiler.OnStart(this, "Flex :: Store form values to user data sotrage");
+            Profiler.OnStart(this, "Flex :: Store form values to user data storage");
 
             foreach (var field in viewModel.Step.Sections.SelectMany(section => section.Fields))
             {
                 this.userDataRepository.SetValue(form.Id, field.Key, field.Value);
             }
 
-            Profiler.OnEnd(this, "Flex :: Store form values to user data sotrage");
+            Profiler.OnEnd(this, "Flex :: Store form values to user data storage");
         }
 
         /// <summary>
