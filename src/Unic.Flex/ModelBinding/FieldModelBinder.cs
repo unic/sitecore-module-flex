@@ -1,8 +1,11 @@
 ﻿namespace Unic.Flex.ModelBinding
 {
     using System.ComponentModel.DataAnnotations;
+    using System.IO;
     using System.Web;
     using System.Web.Mvc;
+    using Unic.Flex.Definitions;
+    using Unic.Flex.Model.Types;
     using Unic.Flex.Model.ViewModel.Fields;
 
     /// <summary>
@@ -29,13 +32,38 @@
             var initialModel = (IFieldViewModel)bindingContext.Model;
             this.initialValue = initialModel.Value;
 
-            // bind the model with the default model binder
-            var model = base.BindModel(controllerContext, bindingContext);
+            // bind the model with the default model binder or directly request file from post
+            object model = null;
+            if (initialModel.GetType().GetProperty(Constants.ValueIdSuffix).PropertyType == typeof(UploadedFile))
+            {
+                var postedFile = controllerContext.HttpContext.Request.Files[string.Join(".", bindingContext.ModelName, Constants.ValueIdSuffix)];
+                if (postedFile != null)
+                {
+                    var uploadedFile = new UploadedFile
+                                {
+                                    ContentLength = postedFile.ContentLength,
+                                    ContentType = postedFile.ContentType,
+                                    FileName = postedFile.FileName
+                                };
+
+                    using (var stream = new MemoryStream())
+                    {
+                        postedFile.InputStream.CopyTo(stream);
+                        uploadedFile.Data = stream.ToArray();
+                    }
+
+                    model = uploadedFile;
+                }
+            }
+            else
+            {
+                model = base.BindModel(controllerContext, bindingContext);   
+            }
 
             // return the binded model if it could be binded
             if (model != null) return model;
 
-            // otherwise no values has been posted -> reset the field value, to validation and return the initial model
+            // otherwise no values has been posted -> reset the field value, do validation and return the initial model
             initialModel.Value = null;
             ForceModelValidation(bindingContext);
             return initialModel;
@@ -52,7 +80,7 @@
 
             // set the file uploaded to the initial file (because it maybe wasn't posted but was posted before)
             var model = (IFieldViewModel)bindingContext.Model;
-            if (model.Value == null && model.Type == typeof(HttpPostedFileBase))
+            if (model.Value == null && model.Type == typeof(UploadedFile))
             {
                 model.Value = this.initialValue;
             }

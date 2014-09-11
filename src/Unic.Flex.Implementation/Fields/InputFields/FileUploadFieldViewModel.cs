@@ -1,12 +1,12 @@
 ﻿namespace Unic.Flex.Implementation.Fields.InputFields
 {
-    using System.Web;
+    using Unic.Flex.Model.Types;
     using Unic.Flex.Model.ViewModel.Fields.InputFields;
 
     /// <summary>
     /// View model for file upload fields
     /// </summary>
-    public class FileUploadFieldViewModel : InputFieldViewModel<HttpPostedFileBase>
+    public class FileUploadFieldViewModel : InputFieldViewModel<UploadedFile>
     {
         /// <summary>
         /// Gets the name of the view.

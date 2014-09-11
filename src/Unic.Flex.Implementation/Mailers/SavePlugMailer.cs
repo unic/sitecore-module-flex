@@ -1,5 +1,6 @@
 ﻿namespace Unic.Flex.Implementation.Mailers
 {
+    using System.IO;
     using Castle.Core.Internal;
     using Mvc.Mailer;
     using System;
@@ -125,7 +126,7 @@
                     .OfType<FileUploadField>()
                     .Where(field => field.Value != null))
                 {
-                    x.Attachments.Add(new Attachment(fileField.Value.InputStream, fileField.Value.FileName));
+                    x.Attachments.Add(new Attachment(new MemoryStream(fileField.Value.Data), fileField.Value.FileName));
                 }
             });
         }
