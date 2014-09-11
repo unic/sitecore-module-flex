@@ -96,7 +96,7 @@
   <ItemGroup>
     <Compile Include="Configuration\SendEmailPlugConfiguration.cs" />
     <Compile Include="Database\ISaveToDatabaseService.cs" />
-    <Compile Include="Database\SaveToDatabaseServiceService.cs" />
+    <Compile Include="Database\SaveToDatabaseService.cs" />
     <Compile Include="DependencyInjection\Config.cs" />
     <Compile Include="Fields\InputFields\CheckBoxField.cs" />
     <Compile Include="Fields\InputFields\CheckBoxFieldViewModel.cs" />

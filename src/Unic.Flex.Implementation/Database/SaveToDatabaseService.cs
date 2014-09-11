@@ -15,7 +15,7 @@
     /// <summary>
     /// Service for saving form to database.
     /// </summary>
-    public class SaveToDatabaseServiceService : ISaveToDatabaseService
+    public class SaveToDatabaseService : ISaveToDatabaseService
     {
         /// <summary>
         /// The unit of workThe unit of work
@@ -23,10 +23,10 @@
         private readonly IUnitOfWork unitOfWork;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SaveToDatabaseServiceService"/> class.
+        /// Initializes a new instance of the <see cref="SaveToDatabaseService"/> class.
         /// </summary>
         /// <param name="unitOfWork">The unit of work.</param>
-        public SaveToDatabaseServiceService(IUnitOfWork unitOfWork)
+        public SaveToDatabaseService(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
         }

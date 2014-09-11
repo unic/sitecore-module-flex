@@ -17,7 +17,7 @@
             //// todo: check if all scopes of these injetions are valid
 
             Bind<ISavePlugMailer>().To<SavePlugMailer>();
-            Bind<ISaveToDatabaseService>().To<SaveToDatabaseServiceService>();
+            Bind<ISaveToDatabaseService>().To<SaveToDatabaseService>();
         }
     }
 }
