@@ -68,7 +68,7 @@
                 catch (Exception exception)
                 {
                     context.ErrorMessage = form.ErrorMessage;
-                    this.logger.Error("Error while exeuting load plug", this, exception);
+                    this.logger.Error("Error while executing load plug", this, exception);
                     return;
                 }
             }
@@ -124,7 +124,7 @@
             {
                 // todo: Include rollback (delete async tasks and rollback sync plugs)
                 context.ErrorMessage = form.ErrorMessage;
-                this.logger.Error("Error while exeuting save plug", this, exception);
+                this.logger.Error("Error while executing save plug", this, exception);
             }
         }
 
