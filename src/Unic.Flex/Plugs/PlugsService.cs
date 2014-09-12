@@ -1,6 +1,8 @@
 ﻿namespace Unic.Flex.Plugs
 {
+    using System.Collections.Generic;
     using System.Linq;
+    using Newtonsoft.Json;
     using Sitecore.Diagnostics;
     using System;
     using Unic.Configuration;
@@ -88,7 +90,7 @@
 
             // does the form has at least one async plug?
             //// todo: change the checkbox in the config to be a droplink instead of checkbox and get this value here from global config -> can be done after checkbox upgrade
-            var isAsyncExecutionAllowed = false; // this.configurationManager.Get<GlobalConfiguration>(c => c.IsAsyncExecutionAllowed);
+            var isAsyncExecutionAllowed = true; // this.configurationManager.Get<GlobalConfiguration>(c => c.IsAsyncExecutionAllowed);
             var hasAsyncPlug = isAsyncExecutionAllowed && form.SavePlugs.Any(plug => plug.IsAsync);
 
             try
@@ -135,6 +137,19 @@
 
         protected virtual int AddFormSessionForAsyncTask(Form form)
         {
+            var data = this.userDataRepository.GetFormValues(form.Id);
+
+            var serialized = JsonConvert.SerializeObject(data);
+
+            var newData = JsonConvert.DeserializeObject<IDictionary<string, object>>(serialized);
+
+            /*
+             * todo
+             * - serialize and save data to database
+             * - while loading, deserialize data into "Form" instance and execute plugs
+             * - while deserializing, the files are of type "JObject" and should be deserialized with JsonConvert again
+             */
+
             return 1;
         }
         
