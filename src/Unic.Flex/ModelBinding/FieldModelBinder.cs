@@ -52,7 +52,8 @@
                         uploadedFile.Data = stream.ToArray();
                     }
 
-                    model = uploadedFile;
+                    initialModel.Value = uploadedFile;
+                    model = initialModel;
                 }
             }
             else
