@@ -1,8 +1,7 @@
 ﻿namespace Unic.Flex.ModelBinding
 {
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
-    using System.IO;
-    using System.Web;
     using System.Web.Mvc;
     using Unic.Flex.Definitions;
     using Unic.Flex.Model.Types;
@@ -32,34 +31,8 @@
             var initialModel = (IFieldViewModel)bindingContext.Model;
             this.initialValue = initialModel.Value;
 
-            // bind the model with the default model binder or directly request file from post
-            object model = null;
-            if (initialModel.GetType().GetProperty(Constants.ValueIdSuffix).PropertyType == typeof(UploadedFile))
-            {
-                var postedFile = controllerContext.HttpContext.Request.Files[string.Join(".", bindingContext.ModelName, Constants.ValueIdSuffix)];
-                if (postedFile != null)
-                {
-                    var uploadedFile = new UploadedFile
-                                {
-                                    ContentLength = postedFile.ContentLength,
-                                    ContentType = postedFile.ContentType,
-                                    FileName = postedFile.FileName
-                                };
-
-                    using (var stream = new MemoryStream())
-                    {
-                        postedFile.InputStream.CopyTo(stream);
-                        uploadedFile.Data = stream.ToArray();
-                    }
-
-                    initialModel.Value = uploadedFile;
-                    model = initialModel;
-                }
-            }
-            else
-            {
-                model = base.BindModel(controllerContext, bindingContext);   
-            }
+            // bind the model with the default model binder
+            var model = base.BindModel(controllerContext, bindingContext);
 
             // return the binded model if it could be binded
             if (model != null) return model;
@@ -68,6 +41,23 @@
             initialModel.Value = null;
             ForceModelValidation(bindingContext);
             return initialModel;
+        }
+
+        /// <summary>
+        /// Binds the specified property by using the specified controller context and binding context and the specified property descriptor.
+        /// </summary>
+        /// <param name="controllerContext">The context within which the controller operates. The context information includes the controller, HTTP content, request context, and route data.</param>
+        /// <param name="bindingContext">The context within which the model is bound. The context includes information such as the model object, model name, model type, property filter, and value provider.</param>
+        /// <param name="propertyDescriptor">Describes a property to be bound. The descriptor provides information such as the component type, property type, and property value. It also provides methods to get or set the property value.</param>
+        protected override void BindProperty(ControllerContext controllerContext, ModelBindingContext bindingContext, PropertyDescriptor propertyDescriptor)
+        {
+            if (propertyDescriptor.DisplayName == Constants.ValueIdSuffix)
+            {
+                var properties = TypeDescriptor.GetProperties(bindingContext.Model.GetType());
+                propertyDescriptor = properties.Find(Constants.ValueIdSuffix, false);
+            }
+
+            base.BindProperty(controllerContext, bindingContext, propertyDescriptor);
         }
 
         /// <summary>

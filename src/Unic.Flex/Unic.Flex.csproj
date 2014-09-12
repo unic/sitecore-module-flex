@@ -143,6 +143,7 @@
     <Compile Include="Mapping\IModelConverterService.cs" />
     <Compile Include="ModelBinding\ListModelBinder.cs" />
     <Compile Include="Mapping\ModelConverterService.cs" />
+    <Compile Include="ModelBinding\UploadedFileModelBinder.cs" />
     <Compile Include="Pipelines\ObjectConstruction\NinjectInjectorTask.cs" />
     <Compile Include="Plugs\IPlugsService.cs" />
     <Compile Include="Plugs\PlugsService.cs" />

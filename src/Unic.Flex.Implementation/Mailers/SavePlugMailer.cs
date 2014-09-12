@@ -1,9 +1,9 @@
 ﻿namespace Unic.Flex.Implementation.Mailers
 {
-    using System.IO;
     using Castle.Core.Internal;
     using Mvc.Mailer;
     using System;
+    using System.IO;
     using System.Linq;
     using System.Net.Mail;
     using System.Web;

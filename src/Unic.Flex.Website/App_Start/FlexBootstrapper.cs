@@ -2,12 +2,12 @@
 
 namespace Unic.Flex.Website
 {
-    using Ninject;
     using System.Collections.Generic;
     using System.Web.Mvc;
     using Unic.Configuration.Converter;
     using Unic.Flex.DependencyInjection;
     using Unic.Flex.Model.Configuration.Converters;
+    using Unic.Flex.Model.Types;
     using Unic.Flex.Model.ViewModel.Fields;
     using Unic.Flex.Model.ViewModel.Forms;
     using Unic.Flex.Model.ViewModel.Sections;
@@ -39,6 +39,7 @@ namespace Unic.Flex.Website
             ModelBinders.Binders.Add(typeof(IList<IFieldViewModel>), new ListModelBinder());
             ModelBinders.Binders.Add(typeof(IList<SelectListItem>), new ListModelBinder());
             ModelBinders.Binders.Add(typeof(IFieldViewModel), new FieldModelBinder());
+            ModelBinders.Binders.Add(typeof(UploadedFile), new UploadedFileModelBinder());
         }
 
         /// <summary>
