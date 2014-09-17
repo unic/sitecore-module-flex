@@ -37,6 +37,8 @@
         {
             Assert.ArgumentNotNull(form, "form");
 
+            // todo: is here some kind of security check for querystring validations?
+
             var queryString = HttpContext.Current.Request.QueryString;
             foreach (var section in form.Steps.SelectMany(step => step.Sections))
             {
