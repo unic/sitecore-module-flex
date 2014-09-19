@@ -1,5 +1,6 @@
 ﻿namespace Unic.Flex.Context
 {
+    using System.Collections.Generic;
     using Glass.Mapper.Sc;
     using Sitecore.Data.Items;
     using Unic.Flex.Model.DomainModel.Forms;
@@ -25,6 +26,13 @@
         /// </summary>
         /// <param name="form">The form domain model.</param>
         void PopulateFormValues(Form form);
+
+        /// <summary>
+        /// Populates the form values from a dictionary.
+        /// </summary>
+        /// <param name="form">The form.</param>
+        /// <param name="values">The values.</param>
+        void PopulateFormValues(Form form, IDictionary<string, object> values);
 
         /// <summary>
         /// Stores the form values into the session.

@@ -149,7 +149,9 @@
     <Compile Include="ModelBinding\UploadedFileModelBinder.cs" />
     <Compile Include="Pipelines\ObjectConstruction\NinjectInjectorTask.cs" />
     <Compile Include="Plugs\IPlugsService.cs" />
+    <Compile Include="Plugs\ITaskService.cs" />
     <Compile Include="Plugs\PlugsService.cs" />
+    <Compile Include="Plugs\TaskService.cs" />
     <Compile Include="Presentation\HtmlHelperExtensions.cs" />
     <Compile Include="Mapping\FormRepository.cs" />
     <Compile Include="Mapping\IFormRepository.cs" />

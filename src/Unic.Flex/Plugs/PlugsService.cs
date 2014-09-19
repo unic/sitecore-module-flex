@@ -1,17 +1,13 @@
 ﻿namespace Unic.Flex.Plugs
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using Newtonsoft.Json;
     using Sitecore.Diagnostics;
     using System;
+    using System.Linq;
     using Unic.Configuration;
     using Unic.Flex.Context;
     using Unic.Flex.Logging;
     using Unic.Flex.Mapping;
-    using Unic.Flex.Model.Configuration;
-    using Unic.Flex.Model.DomainModel.Forms;
-    using Unic.Flex.Model.DomainModel.Plugs.SavePlugs;
+    using Unic.Flex.Model.Entities;
 
     /// <summary>
     /// Service for the plug framework.
@@ -34,16 +30,23 @@
         private readonly IConfigurationManager configurationManager;
 
         /// <summary>
+        /// The task service
+        /// </summary>
+        private readonly ITaskService taskService;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="PlugsService" /> class.
         /// </summary>
         /// <param name="userDataRepository">The user data repository.</param>
         /// <param name="logger">The logger.</param>
         /// <param name="configurationManager">The configuration manager.</param>
-        public PlugsService(IUserDataRepository userDataRepository, ILogger logger, IConfigurationManager configurationManager)
+        /// <param name="taskService">The task service.</param>
+        public PlugsService(IUserDataRepository userDataRepository, ILogger logger, IConfigurationManager configurationManager, ITaskService taskService)
         {
             this.userDataRepository = userDataRepository;
             this.logger = logger;
             this.configurationManager = configurationManager;
+            this.taskService = taskService;
         }
 
         /// <summary>
@@ -96,10 +99,10 @@
             try
             {
                 // add the form to the database
-                var sessionId = 0;
+                Job job = null;
                 if (hasAsyncPlug)
                 {
-                    sessionId = this.AddFormSessionForAsyncTask(form);
+                    job = this.taskService.GetJob(form);
                 }
 
                 // execute the plugs
@@ -107,7 +110,7 @@
                 {
                     if (isAsyncExecutionAllowed && plug.IsAsync)
                     {
-                        this.AddAsyncTask(plug, form);
+                        job.Tasks.Add(this.taskService.GetTask(plug));
                     }
                     else
                     {
@@ -116,10 +119,11 @@
                     }
                 }
 
-                // start the task to execute the async tasks
+                // save the data to database and start the task to execute the async tasks
                 if (hasAsyncPlug)
                 {
-                    this.ExecuteTasks(sessionId);
+                    this.taskService.Save(job);
+                    this.taskService.Execute(job);
                 }
             }
             catch (Exception exception)
@@ -128,34 +132,6 @@
                 context.ErrorMessage = form.ErrorMessage;
                 this.logger.Error("Error while executing save plug", this, exception);
             }
-        }
-
-        public virtual void ExecuteTasks(int sessionId = 0)
-        {
-            // todo: execute the task(s)
-        }
-
-        protected virtual int AddFormSessionForAsyncTask(Form form)
-        {
-            var data = this.userDataRepository.GetFormValues(form.Id);
-
-            var serialized = JsonConvert.SerializeObject(data);
-
-            var newData = JsonConvert.DeserializeObject<IDictionary<string, object>>(serialized);
-
-            /*
-             * todo
-             * - serialize and save data to database
-             * - while loading, deserialize data into "Form" instance and execute plugs
-             * - while deserializing, the files are of type "JObject" and should be deserialized with JsonConvert again
-             */
-
-            return 1;
-        }
-        
-        protected virtual void AddAsyncTask(ISavePlug plug, Form form)
-        {
-            
         }
     }
 }

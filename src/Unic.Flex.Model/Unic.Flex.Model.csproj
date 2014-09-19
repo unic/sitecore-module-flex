@@ -109,6 +109,8 @@
     <Compile Include="Entities\Form.cs" />
     <Compile Include="Entities\Session.cs" />
     <Compile Include="Entities\Field.cs" />
+    <Compile Include="Entities\Job.cs" />
+    <Compile Include="Entities\Task.cs" />
     <Compile Include="GlassExtensions\Attributes\SitecoreReusableChildrenAttribute.cs" />
     <Compile Include="GlassExtensions\Configurations\SitecoreReusableChildrenConfiguration.cs" />
     <Compile Include="GlassExtensions\Handlers\SitecoreReusableChildrenTypeMapper.cs" />

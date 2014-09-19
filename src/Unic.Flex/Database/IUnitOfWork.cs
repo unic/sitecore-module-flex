@@ -17,6 +17,14 @@
         IDatabaseRepository<Form> FormRepository { get; }
 
         /// <summary>
+        /// Gets the job repository.
+        /// </summary>
+        /// <value>
+        /// The job repository.
+        /// </value>
+        IDatabaseRepository<Job> JobRepository { get; }
+
+        /// <summary>
         /// Saves changes to the data provider.
         /// </summary>
         void Save();

@@ -1,5 +1,6 @@
 ﻿namespace Unic.Flex.Model.DomainModel.Plugs.SavePlugs
 {
+    using System;
     using Unic.Flex.Model.DomainModel.Forms;
 
     /// <summary>
@@ -7,6 +8,14 @@
     /// </summary>
     public interface ISavePlug
     {
+        /// <summary>
+        /// Gets or sets the item identifier.
+        /// </summary>
+        /// <value>
+        /// The item identifier.
+        /// </value>
+        Guid ItemId { get; set; }
+        
         /// <summary>
         /// Gets a value indicating whether this plug should be executed asynchronous.
         /// </summary>

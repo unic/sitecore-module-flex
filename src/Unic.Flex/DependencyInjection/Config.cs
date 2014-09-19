@@ -34,6 +34,7 @@
             Bind<IContextService>().To<ContextService>();
             Bind<IPresentationService>().To<PresentationService>();
             Bind<IPlugsService>().To<PlugsService>();
+            Bind<ITaskService>().To<TaskService>().InRequestScope();
             
             // data access
             Bind<IDictionaryRepository>().To<DictionaryRepository>().InSingletonScope();

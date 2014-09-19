@@ -44,7 +44,7 @@
             this.flexContext = Container.Resolve<IFlexContext>();
             
             // resolve item
-            var item = this.flexContext.Item != null ? this.flexContext.Item.InnerItem : null;
+            var item = this.flexContext.Item != null ? Sitecore.Context.Database.GetItem(this.flexContext.Item.ItemId.ToString()) : null;
             var rewriteContextItem = false;
 
             // get the current path

@@ -1,6 +1,9 @@
 ﻿namespace Unic.Flex.Context
 {
+    using System.Collections.Generic;
     using Glass.Mapper.Sc;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
     using Sitecore.Configuration;
     using Sitecore.Data;
     using Sitecore.Data.Items;
@@ -10,6 +13,7 @@
     using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.DomainModel.Sections;
     using Unic.Flex.Model.DomainModel.Steps;
+    using Unic.Flex.Model.Types;
     using Unic.Flex.Model.ViewModel.Forms;
     using Profiler = Unic.Profiling.Profiler;
 
@@ -89,6 +93,39 @@
             }
 
             Profiler.OnEnd(this, "Flex :: Populating values from user data storage");
+        }
+
+        /// <summary>
+        /// Populates the form values from a dictionary.
+        /// </summary>
+        /// <param name="form">The form.</param>
+        /// <param name="values">The values.</param>
+        public virtual void PopulateFormValues(Form form, IDictionary<string, object> values)
+        {
+            Assert.ArgumentNotNull(form, "form");
+
+            Profiler.OnStart(this, "Flex :: Populating values from dictionary");
+
+            foreach (var section in form.Steps.SelectMany(step => step.Sections))
+            {
+                foreach (var field in section.Fields)
+                {
+                    if (values.ContainsKey(field.Key))
+                    {
+                        var value = values[field.Key];
+
+                        // deserialize JObject again, because if this is the type, then it's an uploaded file within it
+                        var fileValue = value as JObject;
+                        field.Value = fileValue != null ? fileValue.ToObject<UploadedFile>() : value;
+                    }
+                    else
+                    {
+                        field.Value = field.DefaultValue;
+                    }
+                }
+            }
+
+            Profiler.OnEnd(this, "Flex :: Populating values from dictionary");
         }
 
         /// <summary>

@@ -1,9 +1,8 @@
 ﻿namespace Unic.Flex.Model.DomainModel
 {
-    using System;
     using Glass.Mapper.Sc.Configuration;
     using Glass.Mapper.Sc.Configuration.Attributes;
-    using Sitecore.Data.Items;
+    using System;
 
     /// <summary>
     /// Base class for all items.
@@ -28,14 +27,5 @@
         /// </value>
         [SitecoreInfo(SitecoreInfoType.Url)]
         public virtual string Url { get; set; }
-
-        /// <summary>
-        /// Gets or sets the inner item.
-        /// </summary>
-        /// <value>
-        /// The inner item.
-        /// </value>
-        [SitecoreItem]
-        public virtual Item InnerItem { get; set; }
     }
 }
