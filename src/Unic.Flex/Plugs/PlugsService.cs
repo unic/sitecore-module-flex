@@ -114,7 +114,6 @@
                     }
                     else
                     {
-                        // todo: execute each plug in a task with .WaitAll at the end
                         plug.Execute(form);
                     }
                 }
