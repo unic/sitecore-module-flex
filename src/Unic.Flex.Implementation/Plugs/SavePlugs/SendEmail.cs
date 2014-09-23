@@ -40,6 +40,21 @@
         }
 
         /// <summary>
+        /// Gets a value indicating whether this plug should be executed asynchronous. Because we use MvcMailer we can't use this in
+        /// a background process.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this plug should be executed asynchronous; otherwise, <c>false</c>.
+        /// </value>
+        public override bool IsAsync
+        {
+            get
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the theme.
         /// </summary>
         /// <value>
