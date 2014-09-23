@@ -18,6 +18,15 @@
         public virtual int Id { get; set; }
 
         /// <summary>
+        /// Gets or sets the job identifier.
+        /// </summary>
+        /// <value>
+        /// The job identifier.
+        /// </value>
+        [Required]
+        public virtual int JobId { get; set; }
+
+        /// <summary>
         /// Gets or sets the item identifier.
         /// </summary>
         /// <value>

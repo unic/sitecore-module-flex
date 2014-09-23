@@ -24,5 +24,14 @@
         /// </value>
         [Configuration(FieldName = "Is Async Execution Allowed")]
         public bool IsAsyncExecutionAllowed { get; set; }
+
+        /// <summary>
+        /// Gets or sets the maximum retries.
+        /// </summary>
+        /// <value>
+        /// The maximum retries.
+        /// </value>
+        [Configuration(FieldName = "Max Retries")]
+        public int MaxRetries { get; set; }
     }
 }

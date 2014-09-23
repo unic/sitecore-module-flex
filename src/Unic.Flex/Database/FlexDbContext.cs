@@ -52,6 +52,10 @@
 
             // add this because the sql server assembly won't copied if there is no strongly typed reference to it
             var addReference = typeof(System.Data.Entity.SqlServer.SqlProviderServices);
+
+            // add needed relationships
+            modelBuilder.Entity<Task>().HasKey(task => new { task.Id, task.JobId });
+            modelBuilder.Entity<Task>().HasRequired(x => x.Job).WithMany(x => x.Tasks).HasForeignKey(x => x.JobId);
         }
     }
 }

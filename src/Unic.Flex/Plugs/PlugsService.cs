@@ -121,7 +121,7 @@
                 // save the data to database and start the task to execute the async tasks
                 if (hasAsyncPlug)
                 {
-                    this.taskService.Save(job);
+                    job = this.taskService.Save(job);
                     this.taskService.Execute(job, Sitecore.Context.Site); //// todo: do not access the sitecore context here directly
                 }
             }

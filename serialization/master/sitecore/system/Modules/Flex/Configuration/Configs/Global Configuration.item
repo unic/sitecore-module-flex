@@ -16,10 +16,17 @@ key: is async execution allowed
 content-length: 1
 
 1
+----field----
+field: {A0031BFA-74AC-46D3-8178-97DBE480E52B}
+name: Max Retries
+key: max retries
+content-length: 1
+
+3
 ----version----
 language: en
 version: 1
-revision: 15e0ae55-03f9-412f-aca8-ac5d21b6ffc0
+revision: 0954369c-752d-47ab-9aff-57b93455358e
 
 ----field----
 field: {D2732E5D-6BA5-4906-8EF3-C27252DB9754}
@@ -41,14 +48,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-15e0ae55-03f9-412f-aca8-ac5d21b6ffc0
+0954369c-752d-47ab-9aff-57b93455358e
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20140910T151616:635459589768221118
+20140923T114140:635470693008984272
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
