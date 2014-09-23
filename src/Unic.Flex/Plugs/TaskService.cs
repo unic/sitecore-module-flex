@@ -1,10 +1,14 @@
 ﻿namespace Unic.Flex.Plugs
 {
+    using Newtonsoft.Json;
+    using Sitecore.Diagnostics;
+    using Sitecore.Sites;
+    using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using Newtonsoft.Json;
     using Unic.Flex.Context;
     using Unic.Flex.Database;
+    using Unic.Flex.Logging;
     using Unic.Flex.Mapping;
     using Unic.Flex.Model.DomainModel.Plugs.SavePlugs;
     using Unic.Flex.Model.Entities;
@@ -31,32 +35,73 @@
         private readonly IUserDataRepository userDataRepository;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TaskService"/> class.
+        /// The logger
+        /// </summary>
+        private readonly ILogger logger;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TaskService" /> class.
         /// </summary>
         /// <param name="unitOfWork">The unit of work.</param>
         /// <param name="contextService">The context service.</param>
         /// <param name="userDataRepository">The user data repository.</param>
-        public TaskService(IUnitOfWork unitOfWork, IContextService contextService, IUserDataRepository userDataRepository)
+        /// <param name="logger">The logger.</param>
+        public TaskService(IUnitOfWork unitOfWork, IContextService contextService, IUserDataRepository userDataRepository, ILogger logger)
         {
             this.unitOfWork = unitOfWork;
             this.contextService = contextService;
             this.userDataRepository = userDataRepository;
+            this.logger = logger;
         }
 
         /// <summary>
         /// Executes the specified job.
         /// </summary>
         /// <param name="job">The job.</param>
-        public virtual void Execute(Job job)
+        /// <param name="site">The site.</param>
+        public virtual void Execute(Job job, SiteContext site)
         {
-            var form = this.contextService.LoadForm(job.ItemId.ToString());
-            var formValues = JsonConvert.DeserializeObject<IDictionary<string, object>>(job.Data);
-            this.contextService.PopulateFormValues(form, formValues);
-
-            foreach (var plug in form.SavePlugs)
+            Assert.ArgumentNotNull(job, "job");
+            Assert.ArgumentNotNull(site, "site");
+            
+            System.Threading.Tasks.Task.Factory.StartNew(() =>
             {
-                plug.Execute(form);
-            }
+                using (new SiteContextSwitcher(site))
+                {
+                    try
+                    {
+                        var form = this.contextService.LoadForm(job.ItemId.ToString());
+                        var formValues = JsonConvert.DeserializeObject<IDictionary<string, object>>(job.Data);
+                        this.contextService.PopulateFormValues(form, formValues);
+
+                        foreach (var plug in form.SavePlugs)
+                        {
+                            System.Threading.Tasks.Task.Factory.StartNew(
+                                () =>
+                                    {
+                                        try
+                                        {
+                                            plug.Execute(form);
+
+                                            //// todo: remove task from database because it's done
+                                        }
+                                        catch (Exception exception)
+                                        {
+                                            //// todo: increment retry count by 1
+                                            this.logger.Error("Error while asynchronously execute save plug", this, exception);
+                                        }
+                                    });
+                        }
+
+                        //// todo: wait for all tasks and remove the "job" if all task have run
+                    }
+                    catch (Exception exception)
+                    {
+                        //// todo: handle exception correctly and do needed action (send email?)
+                        this.logger.Error("Error while asynchronously execute job", this, exception);
+                    }
+                }
+            });
         }
 
         /// <summary>

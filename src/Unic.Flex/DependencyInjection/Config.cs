@@ -47,7 +47,7 @@
             Bind<IModelConverterService>().To<ModelConverterService>().InSingletonScope();
 
             // context
-            Bind<ISitecoreContext>().To<SitecoreContext>().InRequestScope();
+            Bind<ISitecoreContext>().To<SitecoreContext>();
             Bind<IFlexContext>().To<FlexContext>().InRequestScope();
 
             // mailing

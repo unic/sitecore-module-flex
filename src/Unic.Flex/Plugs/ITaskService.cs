@@ -1,5 +1,6 @@
 ﻿namespace Unic.Flex.Plugs
 {
+    using Sitecore.Sites;
     using Unic.Flex.Model.DomainModel.Plugs.SavePlugs;
     using Unic.Flex.Model.Entities;
 
@@ -12,7 +13,8 @@
         /// Executes the specified job.
         /// </summary>
         /// <param name="job">The job.</param>
-        void Execute(Job job);
+        /// <param name="site">The site.</param>
+        void Execute(Job job, SiteContext site);
 
         /// <summary>
         /// Gets the job for a given form domain model.
