@@ -5,6 +5,7 @@
     using System.Web;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Unic.Flex.Model.GlassExtensions.Attributes;
+    using Unic.Flex.Model.Types;
     using Unic.Flex.Model.Validation;
 
     /// <summary>
@@ -56,7 +57,7 @@
         {
             if (value == null || string.IsNullOrWhiteSpace(this.ValidFileExtensions)) return true;
 
-            var fileValue = value as HttpPostedFileBase;
+            var fileValue = value as UploadedFile;
             if (fileValue == null) return true;
 
             var extension = fileValue.FileName.Substring(fileValue.FileName.LastIndexOf('.'));

@@ -2,10 +2,12 @@
 {
     using Sitecore.Diagnostics;
     using System;
+    using System.Linq;
+    using Unic.Configuration;
     using Unic.Flex.Context;
     using Unic.Flex.Logging;
     using Unic.Flex.Mapping;
-    using Unic.Flex.Model.DomainModel.Forms;
+    using Unic.Flex.Model.Entities;
 
     /// <summary>
     /// Service for the plug framework.
@@ -23,21 +25,35 @@
         private readonly ILogger logger;
 
         /// <summary>
+        /// The configuration manager
+        /// </summary>
+        private readonly IConfigurationManager configurationManager;
+
+        /// <summary>
+        /// The task service
+        /// </summary>
+        private readonly ITaskService taskService;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="PlugsService" /> class.
         /// </summary>
         /// <param name="userDataRepository">The user data repository.</param>
         /// <param name="logger">The logger.</param>
-        public PlugsService(IUserDataRepository userDataRepository, ILogger logger)
+        /// <param name="configurationManager">The configuration manager.</param>
+        /// <param name="taskService">The task service.</param>
+        public PlugsService(IUserDataRepository userDataRepository, ILogger logger, IConfigurationManager configurationManager, ITaskService taskService)
         {
             this.userDataRepository = userDataRepository;
             this.logger = logger;
+            this.configurationManager = configurationManager;
+            this.taskService = taskService;
         }
 
         /// <summary>
         /// Executes the load plugs.
         /// </summary>
         /// <param name="context">The context.</param>
-        public void ExecuteLoadPlugs(IFlexContext context)
+        public virtual void ExecuteLoadPlugs(IFlexContext context)
         {
             Assert.ArgumentNotNull(context, "context");
 
@@ -57,7 +73,7 @@
                 catch (Exception exception)
                 {
                     context.ErrorMessage = form.ErrorMessage;
-                    this.logger.Error("Error while exeuting load plug", this, exception);
+                    this.logger.Error("Error while executing load plug", this, exception);
                     return;
                 }
             }
@@ -67,7 +83,7 @@
         /// Executes the save plugs.
         /// </summary>
         /// <param name="context">The context.</param>
-        public void ExecuteSavePlugs(IFlexContext context)
+        public virtual void ExecuteSavePlugs(IFlexContext context)
         {
             Assert.ArgumentNotNull(context, "context");
 
@@ -75,20 +91,45 @@
             var form = context.Form;
             if (form == null) return;
 
-            // todo: we currently don't know exactly how we should execute these plugs (i.e. sync/async, revirsible, etc.) -> so change the implementation when it's clear
-            foreach (var plug in form.SavePlugs)
+            // does the form has at least one async plug?
+            //// todo: change the checkbox in the config to be a droplink instead of checkbox and get this value here from global config -> can be done after checkbox upgrade
+            var isAsyncExecutionAllowed = true; // this.configurationManager.Get<GlobalConfiguration>(c => c.IsAsyncExecutionAllowed);
+            var hasAsyncPlug = isAsyncExecutionAllowed && form.SavePlugs.Any(plug => plug.IsAsync);
+
+            try
             {
-                try
+                // add the form to the database
+                Job job = null;
+                if (hasAsyncPlug)
                 {
-                    plug.Execute(form);
+                    job = this.taskService.GetJob(form);
                 }
-                catch (Exception exception)
+
+                // execute the plugs
+                foreach (var plug in form.SavePlugs)
                 {
-                    // todo: Include rollback
-                    context.ErrorMessage = form.ErrorMessage;
-                    this.logger.Error("Error while exeuting save plug", this, exception);
-                    return;
+                    if (isAsyncExecutionAllowed && plug.IsAsync)
+                    {
+                        job.Tasks.Add(this.taskService.GetTask(plug));
+                    }
+                    else
+                    {
+                        plug.Execute(form);
+                    }
                 }
+
+                // save the data to database and start the task to execute the async tasks
+                if (hasAsyncPlug)
+                {
+                    job = this.taskService.Save(job);
+                    this.taskService.Execute(job, Sitecore.Context.Site); //// todo: do not access the sitecore context here directly
+                }
+            }
+            catch (Exception exception)
+            {
+                // todo: Include rollback (delete async tasks and rollback sync plugs)
+                context.ErrorMessage = form.ErrorMessage;
+                this.logger.Error("Error while executing save plug", this, exception);
             }
         }
     }

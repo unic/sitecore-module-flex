@@ -22,7 +22,6 @@
             <Binaries
 				Include="	$(MSBuildStartupDirectory)\..\bin\*"
 				Exclude="	$(MSBuildStartupDirectory)\..\bin\*.xml;
-							$(MSBuildStartupDirectory)\..\bin\*.pdb;
 							$(MSBuildStartupDirectory)\..\bin\Sitecore.*" />
         </ItemGroup>
 

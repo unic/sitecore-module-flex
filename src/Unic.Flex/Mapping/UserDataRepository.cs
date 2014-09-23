@@ -52,7 +52,7 @@
         /// <returns>
         /// Value loaded from the storage provider
         /// </returns>
-        public object GetValue(string formId, string fieldId)
+        public virtual object GetValue(string formId, string fieldId)
         {
             var formSession = this.GetFormValues(formId);
             if (formSession == null) return null;
@@ -65,7 +65,7 @@
         /// <param name="formId">The form identifier.</param>
         /// <param name="fieldId">The field identifier.</param>
         /// <param name="value">The value.</param>
-        public void SetValue(string formId, string fieldId, object value)
+        public virtual void SetValue(string formId, string fieldId, object value)
         {
             var session = this.FormSession;
             if (!session.ContainsKey(formId))
@@ -84,7 +84,7 @@
         /// <returns>
         ///   <c>true</c> if the form is currently stored in the storage provider, <c>false</c> otherwise.
         /// </returns>
-        public bool IsFormStored(string formId)
+        public virtual bool IsFormStored(string formId)
         {
             return this.FormSession.ContainsKey(formId);
         }
@@ -97,7 +97,7 @@
         /// <returns>
         ///   <c>true</c> if the field is curretly stored in the storage provider, <c>false</c> otherwise.
         /// </returns>
-        public bool IsFieldStored(string formId, string fieldId)
+        public virtual bool IsFieldStored(string formId, string fieldId)
         {
             var formSession = this.GetFormValues(formId);
             return formSession != null && formSession.ContainsKey(fieldId);
@@ -107,7 +107,7 @@
         /// Clears the form values completely out of the storage provider.
         /// </summary>
         /// <param name="formId">The form identifier.</param>
-        public void ClearForm(string formId)
+        public virtual void ClearForm(string formId)
         {
             var session = this.FormSession;
             if (!session.ContainsKey(formId)) return;
@@ -121,7 +121,7 @@
         /// </summary>
         /// <param name="formId">The form identifier.</param>
         /// <param name="stepNumber">The step number.</param>
-        public void CompleteStep(string formId, int stepNumber)
+        public virtual void CompleteStep(string formId, int stepNumber)
         {
             var completedSteps = this.GetValue(formId, CompetedStepsKey) as List<int> ?? new List<int>();
             completedSteps.Add(stepNumber);
@@ -133,7 +133,7 @@
         /// </summary>
         /// <param name="formId">The form identifier.</param>
         /// <param name="stepNumber">The step number.</param>
-        public void RevertToStep(string formId, int stepNumber)
+        public virtual void RevertToStep(string formId, int stepNumber)
         {
             var completedSteps = this.GetValue(formId, CompetedStepsKey) as List<int>;
             if (completedSteps == null) return;
@@ -150,7 +150,7 @@
         /// <returns>
         /// Boolean value if the given step has been completed or not
         /// </returns>
-        public bool IsStepCompleted(string formId, int stepNumber)
+        public virtual bool IsStepCompleted(string formId, int stepNumber)
         {
             var completedSteps = this.GetValue(formId, CompetedStepsKey) as List<int>;
             return completedSteps != null && completedSteps.Contains(stepNumber);
@@ -161,7 +161,7 @@
         /// </summary>
         /// <param name="formId">The form identifier.</param>
         /// <returns>Key-Value based dictionary with values</returns>
-        private IDictionary<string, object> GetFormValues(string formId)
+        public virtual IDictionary<string, object> GetFormValues(string formId)
         {
             var session = this.FormSession;
             return session.ContainsKey(formId) ? session[formId] : null;

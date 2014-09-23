@@ -4,12 +4,14 @@ namespace Unic.Flex.Website
 {
     using AutoMapper;
     using Unic.Flex.Context;
-    using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.DomainModel.Sections;
     using Unic.Flex.Model.DomainModel.Steps;
+    using Unic.Flex.Model.Entities;
+    using Unic.Flex.Model.Types;
     using Unic.Flex.Model.ViewModel.Forms;
     using Unic.Flex.Model.ViewModel.Sections;
     using Unic.Flex.Model.ViewModel.Steps;
+    using Form = Unic.Flex.Model.DomainModel.Forms.Form;
 
     /// <summary>
     /// Configuration for AutoMapper module.
@@ -44,6 +46,9 @@ namespace Unic.Flex.Website
 
             // Sections
             Mapper.CreateMap<StandardSection, StandardSectionViewModel>().ForMember(m => m.Fields, o => o.Ignore());
+
+            // Files
+            Mapper.CreateMap<UploadedFile, File>();
         }
     }
 }

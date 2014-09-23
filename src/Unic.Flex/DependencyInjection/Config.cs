@@ -34,19 +34,20 @@
             Bind<IContextService>().To<ContextService>();
             Bind<IPresentationService>().To<PresentationService>();
             Bind<IPlugsService>().To<PlugsService>();
+            Bind<ITaskService>().To<TaskService>();
             
             // data access
-            Bind<IDictionaryRepository>().To<DictionaryRepository>().InSingletonScope();
+            Bind<IDictionaryRepository>().To<DictionaryRepository>();
             Bind<IFormRepository>().To<FormRepository>();
             Bind<IUserDataRepository>().To<UserDataRepository>();
-            Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
+            Bind<IUnitOfWork>().To<UnitOfWork>();
 
             // model binding and converting
             Bind<IModelBinder>().To<FormModelBinder>();
             Bind<IModelConverterService>().To<ModelConverterService>().InSingletonScope();
 
             // context
-            Bind<ISitecoreContext>().To<SitecoreContext>().InRequestScope();
+            Bind<ISitecoreContext>().To<SitecoreContext>();
             Bind<IFlexContext>().To<FlexContext>().InRequestScope();
 
             // mailing

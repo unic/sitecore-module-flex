@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Web;
+    using Unic.Flex.Model.Types;
 
     /// <summary>
     /// Validator to validate if field has a value
@@ -51,7 +52,7 @@
             var stringArrayValue = value as string[];
             if (stringArrayValue != null) return stringArrayValue.Any(v => !string.IsNullOrWhiteSpace(v));
 
-            var fileValue = value as HttpPostedFileBase;
+            var fileValue = value as UploadedFile;
             if (fileValue != null) return true;
 
             return false;

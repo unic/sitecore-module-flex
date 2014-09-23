@@ -24,6 +24,11 @@
         private IDatabaseRepository<Form> formRepository;
 
         /// <summary>
+        /// The job repository
+        /// </summary>
+        private IDatabaseRepository<Job> jobRepository;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="UnitOfWork"/> class.
         /// </summary>
         public UnitOfWork()
@@ -42,6 +47,20 @@
             get
             {
                 return this.formRepository ?? (this.formRepository = new DatabaseRepository<Form>(this.context));
+            }
+        }
+
+        /// <summary>
+        /// Gets the jobs repository.
+        /// </summary>
+        /// <value>
+        /// The jobs repository.
+        /// </value>
+        public IDatabaseRepository<Job> JobRepository
+        {
+            get
+            {
+                return this.jobRepository ?? (this.jobRepository = new DatabaseRepository<Job>(this.context));
             }
         }
 

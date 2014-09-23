@@ -3,6 +3,7 @@
     using Castle.Core.Internal;
     using Mvc.Mailer;
     using System;
+    using System.IO;
     using System.Linq;
     using System.Net.Mail;
     using System.Web;
@@ -125,7 +126,7 @@
                     .OfType<FileUploadField>()
                     .Where(field => field.Value != null))
                 {
-                    x.Attachments.Add(new Attachment(fileField.Value.InputStream, fileField.Value.FileName));
+                    x.Attachments.Add(new Attachment(new MemoryStream(fileField.Value.Data), fileField.Value.FileName));
                 }
             });
         }

@@ -1,12 +1,11 @@
 ﻿namespace Unic.Flex.Implementation.Database
 {
+    using AutoMapper;
+    using Sitecore.Diagnostics;
     using System;
     using System.Collections.ObjectModel;
-    using System.IO;
     using System.Linq;
-    using Sitecore.Diagnostics;
     using Unic.Flex.Database;
-    using Unic.Flex.DependencyInjection;
     using Unic.Flex.Implementation.Fields.InputFields;
     using Unic.Flex.Model.Entities;
     using File = Unic.Flex.Model.Entities.File;
@@ -15,7 +14,7 @@
     /// <summary>
     /// Service for saving form to database.
     /// </summary>
-    public class SaveToDatabaseServiceService : ISaveToDatabaseService
+    public class SaveToDatabaseService : ISaveToDatabaseService
     {
         /// <summary>
         /// The unit of workThe unit of work
@@ -23,10 +22,10 @@
         private readonly IUnitOfWork unitOfWork;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SaveToDatabaseServiceService"/> class.
+        /// Initializes a new instance of the <see cref="SaveToDatabaseService"/> class.
         /// </summary>
         /// <param name="unitOfWork">The unit of work.</param>
-        public SaveToDatabaseServiceService(IUnitOfWork unitOfWork)
+        public SaveToDatabaseService(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
         }
@@ -61,16 +60,7 @@
                 var fileUploadField = field as FileUploadField;
                 if (fileUploadField != null && fileUploadField.Value != null)
                 {
-                    fieldEntity.File = new File
-                                           {
-                                               ContentLength = fileUploadField.Value.ContentLength,
-                                               ContentType = fileUploadField.Value.ContentType,
-                                               FileName = fileUploadField.Value.FileName
-                                           };
-
-                    var stream = new MemoryStream();
-                    fileUploadField.Value.InputStream.CopyTo(stream);
-                    fieldEntity.File.Data = stream.ToArray();
+                    fieldEntity.File = Mapper.Map<File>(fileUploadField.Value);
                 }
 
                 sessionEntity.Fields.Add(fieldEntity);

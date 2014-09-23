@@ -1,5 +1,7 @@
 ﻿namespace Unic.Flex.Mapping
 {
+    using System.Collections.Generic;
+
     /// <summary>
     /// Repository containg data access to user generated form data
     /// </summary>
@@ -63,5 +65,12 @@
         /// <param name="stepNumber">The step number.</param>
         /// <returns>Boolean value if the given step has been completed or not</returns>
         bool IsStepCompleted(string formId, int stepNumber);
+
+        /// <summary>
+        /// Gets the values from the session for a specific form.
+        /// </summary>
+        /// <param name="formId">The form identifier.</param>
+        /// <returns>Key-Value based dictionary with values</returns>
+        IDictionary<string, object> GetFormValues(string formId);
     }
 }

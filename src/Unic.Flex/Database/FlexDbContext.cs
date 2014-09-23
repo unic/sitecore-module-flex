@@ -24,6 +24,14 @@
         public virtual DbSet<Form> Forms { get; set; }
 
         /// <summary>
+        /// Gets or sets the jobs.
+        /// </summary>
+        /// <value>
+        /// The jobs.
+        /// </value>
+        public virtual DbSet<Job> Jobs { get; set; }
+
+        /// <summary>
         /// This method is called when the model for a derived context has been initialized, but
         /// before the model has been locked down and used to initialize the context.  The default
         /// implementation of this method does nothing, but it can be overridden in a derived class
@@ -44,6 +52,10 @@
 
             // add this because the sql server assembly won't copied if there is no strongly typed reference to it
             var addReference = typeof(System.Data.Entity.SqlServer.SqlProviderServices);
+
+            // add needed relationships
+            modelBuilder.Entity<Task>().HasKey(task => new { task.Id, task.JobId });
+            modelBuilder.Entity<Task>().HasRequired(x => x.Job).WithMany(x => x.Tasks).HasForeignKey(x => x.JobId);
         }
     }
 }
