@@ -11652,7 +11652,11 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
 ;(function(window, document, $, Unic, undefined) {
 	'use strict';
 
-	var $document = $(document);
+	var $document = $(document),
+		interval = $.extend({
+			resize: 50,
+			scroll: 50
+		}, Unic.settings && Unic.settings.eventInterval);
 
 	$.extend(true, Unic, {
 		events: {
@@ -11664,10 +11668,10 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
 	$(window)
 		.on('resize.unic', _.debounce($.proxy(function(event) {
 			$document.triggerHandler(Unic.events.resize, event);
-		}, this), 50))
+		}, this), interval.resize))
 		.on('scroll.unic', _.debounce($.proxy(function(event) {
 			$document.triggerHandler(Unic.events.scroll, event);
-		}, this), 50));
+		}, this), interval.scroll));
 
 })(window, document, jQuery, Unic);
 
@@ -16361,7 +16365,7 @@ $.extend($.fn, {
  * - validation
  * - belongsto
  * - showpassword
- * @author RoM, Unic AG
+ * @author RMa, Unic AG
  * @license All rights reserved Unic AG
  */
 ;(function(window, document, $, Unic, undefined) {
@@ -16371,9 +16375,12 @@ $.extend($.fn, {
 
 	var pluginName = 'flexform',
 		events = {
+			EVENT_VALIDATION_INVALID: pluginName +'_validation_invalid'
 		},
 		defaults = {
-			cssprefix: 'flex'
+			cssprefix: 'flex',
+			dovalidation: true,
+			dataattribute: pluginName // configurable because of legacy implementations in Post
 		};
 	pluginName = pluginName.toLowerCase();
 
@@ -16399,22 +16406,23 @@ $.extend($.fn, {
 	 * Initialize module, bind events
 	 */
 	Plugin.prototype.init = function() {
-		this._initBelongsto();
-		this._initValidation();
-		this._initMultistep();
-
-		if (!Modernizr.placeholder) {
-			this.$element.find('input, textarea').placeholder();
-		}
-
-		this.$element.on('change.' + pluginName, '[data-' + pluginName + '=showpasswordtrigger]', _.bind(this._handleShowPassword, this));
-		this.$element.on('submit.' + pluginName, _.bind(this._handleSubmit, this));
-
 		// Init dependent flex-modules
 		if (Unic.modules.flexstyles) {
 			this.$element.attr('data-init', this.$element.attr('data-init') + ' flexstyles');
 		}
-		$document.trigger('additional_forminit');
+		$document.trigger('additional_forminit', this.options);
+
+		this._initBelongsto();
+		this._initValidation();
+		this._initMultistep();
+		this._initAllCheckbox();
+
+		if (!Modernizr.placeholder && typeof($.fn.placeholder) === 'function') {
+			this.$element.find('input, textarea').placeholder();
+		}
+
+		this.$element.on('change.' + pluginName, '[data-' + this.options.dataattribute + '=showpasswordtrigger]', _.bind(this._handleShowPassword, this));
+		this.$element.on('submit.' + pluginName, _.bind(this._handleSubmit, this));
 	};
 
 	/**
@@ -16431,6 +16439,14 @@ $.extend($.fn, {
 	 * @private
 	 */
 	Plugin.prototype._initValidation = function(){
+		if	(!this.options.dovalidation) {
+			return;
+		}
+
+		this.$element.on('invalid-form.validate.' + pluginName, _.bind(function () {
+			$document.trigger(events.EVENT_VALIDATION_INVALID, this.$element);
+		}, this));
+
 		// http://weblogs.asp.net/imranbaloch/overriding-unobtrusive-client-side-validation-settings-in-asp-net-mvc-3
 		// var validator = this.$element.data('validator');
 
@@ -16462,7 +16478,7 @@ $.extend($.fn, {
 	 * @private
 	 */
 	Plugin.prototype._initBelongsto = function(){
-		var $elements = this.$element.find('[data-' + pluginName + '-belongsto]');
+		var $elements = this.$element.find('[data-' + this.options.dataattribute + '-belongsto]');
 		$elements.hide().closest('li').hide();
 		$elements.each(_.bind(this._handleBelongsto, this));
 
@@ -16475,13 +16491,13 @@ $.extend($.fn, {
 	 * @private
 	 */
 	Plugin.prototype._changeBelongsto = function(){
-		var $elements = this.$element.find('[data-' + pluginName + '-belongsto]');
+		var $elements = this.$element.find('[data-' + this.options.dataattribute + '-belongsto]');
 		$elements.each(_.bind(this._handleBelongsto, this));
 	};
 
 	Plugin.prototype._initMultistep = function(){
-		var $multistepnavigation = this.$element.find('[data-' + pluginName + '=multistepnavigation]'),
-			$items = $multistepnavigation.find('[data-' + pluginName + '=multistepnavigationitem]');
+		var $multistepnavigation = this.$element.find('[data-' + this.options.dataattribute + '=multistepnavigation]'),
+			$items = $multistepnavigation.find('[data-' + this.options.dataattribute + '=multistepnavigationitem]');
 		$items.css('width', (1/$items.length)*100 + '%');
 	};
 
@@ -16493,11 +16509,68 @@ $.extend($.fn, {
 	 */
 	Plugin.prototype._handleBelongsto = function(index, element){
 		var $field = $(element);
-		var value = $field.data(pluginName + '-belongsto');
+		var value = $field.data(this.options.dataattribute + '-belongsto');
 		if(this.$element.find(':checked[id=' + value + '], :selected[value=' + value + ']').length) {
 			$field.show().closest('li').show();
 		} else {
 			$field.hide().closest('li').hide();
+		}
+	};
+
+	/**
+	 * Inits the "all" Checkbox for Checkbox-Groups.
+	 */
+	Plugin.prototype._initAllCheckbox = function() {
+		this.$element.find('[data-' + pluginName + '=all]').each(_.bind(function(index, element){
+			var $checkbox = $(element),
+				$group = $checkbox.closest('[data-' + pluginName + '=allgroup]');
+			this._setAllCheckbox($group);
+		}, this));
+		this.$element.on('change.' + pluginName, '[data-' + pluginName + '=allgroup]', _.bind(function(event){
+			this._handleAllCheckbox(event.target);
+		}, this));
+	};
+
+	/**
+	 * Handles one specific "All"-Checkbox
+	 * @param checkbox {object} The DOM-element of the checkbox.
+	 * @private
+	 */
+	Plugin.prototype._handleAllCheckbox = function(checkbox){
+		var $checkbox = $(checkbox),
+			$group = $checkbox.closest('[data-' + pluginName + '=allgroup]'),
+			value = $checkbox.is(':checked');
+
+		if ($checkbox.is('[data-' + pluginName + '=all]')) {
+			// User clicked on 'all'
+			if (value) {
+				$group.find(':checkbox').attr('aria-checked', true).prop('checked', true).attr('checked', 'checked');
+			} else {
+				$group.find(':checkbox').attr('aria-checked', false).prop('checked', false).removeAttr('checked');
+			}
+		} else {
+			// User clicked on another checkbox
+			this._setAllCheckbox($group);
+		}
+
+		if ($.uniform) {
+			$.uniform.update(':checkbox');
+		}
+	};
+
+	/**
+	 * Sets the all-checkbox according to the state inside the group.
+	 * @param $group {jQuery} The group-element.
+	 * @private
+	 */
+	Plugin.prototype._setAllCheckbox = function($group){
+		var totalBoxes = $group.find(':checkbox'),
+			checkedBoxes = $group.find(':checked[data-' + pluginName + '!=all]');
+
+		if (checkedBoxes.length === totalBoxes.length - 1) {
+			$group.find('[data-' + pluginName + '=all]').attr('aria-checked', true).prop('checked', true).attr('checked', 'checked');
+		} else {
+			$group.find('[data-' + pluginName + '=all]').attr('aria-checked', false).prop('checked', false).removeAttr('checked');
 		}
 	};
 
@@ -16508,7 +16581,7 @@ $.extend($.fn, {
 	 */
 	Plugin.prototype._handleShowPassword = function(event){
 		var $checkbox = $(event.currentTarget),
-			$container = $checkbox.closest('[data-' + pluginName + '=showpassword]');
+			$container = $checkbox.closest('[data-' + this.options.dataattribute + '=showpassword]');
 
 		$container.find(':password:visible, :text:visible').each(function(){
 			var $current = $(this),
@@ -16517,7 +16590,7 @@ $.extend($.fn, {
 			$current.siblings(':text, :password').val(currentVal);
 		});
 
-		$container.toggleClass(this.options.prefix + '_show_active', $checkbox.is(':checked'));
+		$container.toggleClass(this.options.cssprefix + '_show_active', $checkbox.is(':checked'));
 
 		// Handle Disabling Fields - Do not send invisible field, therefore disable it.
 		$container.find(':password:visible, :text:visible').removeAttr('disabled').removeAttr('aria-disabled');
@@ -16532,7 +16605,7 @@ $.extend($.fn, {
 	Plugin.prototype._handleSubmit = function(event){
 		var $form = $(event.currentTarget);
 
-		var $showpasswordtrigger = $form.find('[data-' + pluginName + '=showpasswordtrigger]');
+		var $showpasswordtrigger = $form.find('[data-' + this.options.dataattribute + '=showpasswordtrigger]');
 		if($showpasswordtrigger.length) {
 			$showpasswordtrigger.prop('checked', false).trigger('change');
 		}
@@ -16552,7 +16625,7 @@ $.extend($.fn, {
 ;(function(window, document, $, Unic, undefined) {
 	'use strict';
 
-	var pluginName = 'tooltips',
+	var pluginName = 'tooltip',
 		events = {
 		},
 		defaults = {
@@ -16605,7 +16678,7 @@ $.extend($.fn, {
 		event.preventDefault();
 
 		var $link = $(event.currentTarget),
-			$tooltip = $link.closest('[data-init=' + pluginName + ']').find('[data-' + pluginName + '=tooltip]'),
+			$tooltip = $(event.delegateTarget).find('[data-' + pluginName + '=tooltip]'),
 			expanded = $link.next().is(':visible');
 
 		// Toggle tooltip

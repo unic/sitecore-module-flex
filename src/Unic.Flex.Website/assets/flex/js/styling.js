@@ -1083,7 +1083,7 @@ Enjoy!
 		events = {
 		},
 		defaults = {
-			prefix: 'flex',
+			cssprefix: 'flex',
 			uniformOptions: {
 				activeClass: 'flex_active',
 				autoHide: true,
@@ -1112,6 +1112,9 @@ Enjoy!
 				textareaClass: 'flex_uniform',
 				useID: true,
 				wrapperClass: null
+			},
+			checkboxState: {
+				checkedClass: 'flex_element_checked'
 			}
 		};
 	pluginName = pluginName.toLowerCase();
@@ -1140,6 +1143,7 @@ Enjoy!
 	 */
 	Plugin.prototype.init = function() {
 		this._initFormStyles();
+		this._updateCheckboxState();
 	};
 
 	/**
@@ -1158,14 +1162,36 @@ Enjoy!
 	Plugin.prototype._initFormStyles = function(){
 		this.$element.find('select, :checkbox, :radio, [type=file]').uniform(this.options.uniformOptions);
 
-		this.$element.find('.' + this.options.prefix + '_selector > span').attr('aria-hidden', 'true');
+		this.$element.find('.' + this.options.cssprefix + '_selector > span').attr('aria-hidden', 'true');
+	};
+
+	/**
+	 * Handler to style labels and container of checkboxes differently according the state.
+	 * @private
+	 */
+	Plugin.prototype._updateCheckboxState = function(){
+		// Update initially selected.
+		this.$element.find(':checkbox:checked, :radio:checked').closest('.' + this.options.uniformOptions.checkboxClass).addClass(this.options.checkboxState.checkedClass);
+
+		// Change event to handle label color.
+		this.$element.on('change.' + pluginName, ':checkbox, :radio', _.bind(function(event) {
+			var $node = $(event.currentTarget),
+				$parentWrapper = $node.closest('.' + this.options.uniformOptions.checkboxClass);
+
+			if ($node.is(':checked')) {
+				$parentWrapper.addClass(this.options.checkboxState.checkedClass);
+				$parentWrapper.siblings().removeClass(this.options.checkboxState.checkedClass);
+			} else {
+				$parentWrapper.removeClass(this.options.checkboxState.checkedClass);
+			}
+		}, this));
 	};
 
 	// Make the plugin available through jQuery (and the global project namespace)
 	Unic.modules.PluginHelper.register(Plugin, pluginName, ['ready', 'ajax_loaded']);
 
-	$document.on('additional_forminit', function(){
-		$.fn[pluginName].apply($('[data-init~=' + pluginName + ']'), [{}]);
+	$document.on('additional_forminit', function(event, options){
+		$.fn[pluginName].apply($('[data-init~=' + pluginName + ']'), [options]);
 	});
 
 })(window, document,  jQuery, Unic);

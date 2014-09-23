@@ -420,14 +420,14 @@ table {
  *
  * http://nicolasgallagher.com/micro-clearfix-hack/
  */
-.clearfix, .flex_mod_multistepnavigation {
+.clearfix, .flex_mod_multistepnavigation, .flex_summary .flex_summary_item {
   *zoom: 1;
 }
-.clearfix:before, .flex_mod_multistepnavigation:before, .clearfix:after, .flex_mod_multistepnavigation:after {
+.clearfix:before, .flex_mod_multistepnavigation:before, .flex_summary .flex_summary_item:before, .clearfix:after, .flex_mod_multistepnavigation:after, .flex_summary .flex_summary_item:after {
   content: " ";
   display: table;
 }
-.clearfix:after, .flex_mod_multistepnavigation:after {
+.clearfix:after, .flex_mod_multistepnavigation:after, .flex_summary .flex_summary_item:after {
   clear: both;
 }
 
@@ -542,6 +542,14 @@ nav ol, .flex_formcontainer fieldset ul, .flex_formcontainer fieldset ol,
   width: 50%;
   float: left;
 }
+.flex_formcontainer input[type=number] {
+  -moz-appearance: textfield;
+}
+.flex_formcontainer input[type=number]::-webkit-inner-spin-button,
+.flex_formcontainer input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 .flex_formcontainer input[type=submit].u_var_small, .flex_formcontainer button[type=submit].u_var_small {
   line-height: 1;
 }
@@ -551,14 +559,6 @@ nav ol, .flex_formcontainer fieldset ul, .flex_formcontainer fieldset ol,
 }
 .flex_formcontainer .flex_listitem {
   position: relative;
-}
-.flex_formcontainer input[type=number] {
-  -moz-appearance: textfield;
-}
-.flex_formcontainer input[type=number]::-webkit-inner-spin-button,
-.flex_formcontainer input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
 }
 .flex_formcontainer fieldset {
   border: none;
@@ -572,6 +572,9 @@ nav ol, .flex_formcontainer fieldset ul, .flex_formcontainer fieldset ol,
 .flex_formcontainer fieldset legend {
   position: relative;
 }
+.flex_formcontainer fieldset legend.flex_label {
+  display: inline-block;
+}
 .flex_formcontainer fieldset legend:not(.flex_label) {
   font-family: Georgia, serif;
   font-size: 1.4em;
@@ -584,8 +587,17 @@ nav ol, .flex_formcontainer fieldset ul, .flex_formcontainer fieldset ol,
 .flex_formcontainer fieldset li, .flex_formcontainer fieldset .flex_listitem {
   margin-bottom: 1em;
 }
+.flex_formcontainer .info3-block {
+  display: none;
+}
+.flex_formcontainer .flex_radiogroup {
+  position: relative;
+}
+.flex_formcontainer .flex_radiogroup fieldset {
+  padding: 0;
+}
 .flex_formcontainer .flex_radiogroup .flex_radio {
-  float: left;
+  display: inline-block;
   padding-right: 0.3125em;
 }
 .flex_formcontainer .flex_radiogroup .flex_label {
@@ -593,7 +605,7 @@ nav ol, .flex_formcontainer fieldset ul, .flex_formcontainer fieldset ol,
 }
 .flex_formcontainer .flex_singlecheckbox .flex_checker,
 .flex_formcontainer .flex_checkboxgroup .flex_checker {
-  float: left;
+  display: inline-block;
   padding-right: 0.3125em;
 }
 .flex_formcontainer .flex_singlecheckbox .flex_label,
@@ -642,6 +654,10 @@ nav ol, .flex_formcontainer fieldset ul, .flex_formcontainer fieldset ol,
 .flex_formcontainer .flex_showpassword.flex_show_active input[type=text] {
   display: block;
 }
+.flex_formcontainer .flex_showpassword .flex_singlecheckbox {
+  margin-top: 0.5em;
+  padding-left: 50%;
+}
 
 .flex_formcontainer .validation-summary-valid {
   display: none;
@@ -654,13 +670,6 @@ nav ol, .flex_formcontainer fieldset ul, .flex_formcontainer fieldset ol,
 }
 .flex_formcontainer .field-validation-error {
   color: #a6643a;
-}
-
-.flex_listitem {
-  position: relative;
-}
-.flex_listitem .flex_label {
-  display: block;
 }
 
 /* Placeholders */
@@ -828,7 +837,7 @@ nav ol, .flex_formcontainer fieldset ul, .flex_formcontainer fieldset ol,
   color: #626262;
   outline: none;
 }
-.flex_tooltipcontainer > a:after {
+.flex_tooltipcontainer > a:before {
   content: 'i';
   font-family: Georgia, serif;
   font-size: 1.3125em;
@@ -867,7 +876,7 @@ nav ol, .flex_formcontainer fieldset ul, .flex_formcontainer fieldset ol,
   right: 1.25em;
   top: 1.25em;
 }
-.flex_tooltipcontainer .flex_tooltipclose:after {
+.flex_tooltipcontainer .flex_tooltipclose:before {
   content: 'x';
   font-family: Georgia, serif;
   font-size: 1.3125em;
@@ -900,6 +909,11 @@ nav ol, .flex_formcontainer fieldset ul, .flex_formcontainer fieldset ol,
   opacity: 0.5;
 }
 
-.info3-block {
-  display: none;
+.flex_summary .flex_summary_item h2, .flex_summary .flex_summary_item h3, .flex_summary .flex_summary_item h4 {
+  float: left;
+  width: 50%;
+  margin: 0;
+}
+.flex_summary .flex_summary_item div {
+  float: left;
 }
