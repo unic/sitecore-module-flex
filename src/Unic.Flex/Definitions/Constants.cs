@@ -46,6 +46,11 @@
         public const string TextIdSuffix = "Text";
 
         /// <summary>
+        /// The checkbox identifier suffix
+        /// </summary>
+        public const string CheckboxIdSuffix = "Checkbox";
+
+        /// <summary>
         /// The label CSS class
         /// </summary>
         public const string LabelCssClass = "flex_label";
