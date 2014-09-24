@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
+    using Glass.Mapper.Sc.Configuration.Attributes;
 
     /// <summary>
     /// Base class for all list fields.
@@ -25,7 +26,7 @@
         /// <value>
         /// The items.
         /// </value>
-        public IList<SelectListItem> Items { get; private set; }
+        public virtual IList<SelectListItem> Items { get; private set; }
 
         /// <summary>
         /// Gets the text value.
