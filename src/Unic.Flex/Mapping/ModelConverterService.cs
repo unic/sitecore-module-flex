@@ -132,7 +132,6 @@
             var summary = step as Summary;
             if (summary != null)
             {
-                // todo: this need to be done someway different -> also we need to structure the sections by step and not only the sections
                 step.Sections = form.Steps.SelectMany(s => s.Sections).ToList();
             }
 
