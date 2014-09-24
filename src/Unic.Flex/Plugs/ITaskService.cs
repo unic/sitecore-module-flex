@@ -10,6 +10,12 @@
     public interface ITaskService
     {
         /// <summary>
+        /// Executes all jobs.
+        /// </summary>
+        /// <param name="site">The site.</param>
+        void ExecuteAll(SiteContext site);
+        
+        /// <summary>
         /// Executes the specified job.
         /// </summary>
         /// <param name="job">The job.</param>

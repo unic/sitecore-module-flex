@@ -2,12 +2,11 @@
 {
     using System;
     using System.Linq;
+    using System.Net;
+    using System.Security.Cryptography;
     using System.Web.Mvc;
-    using Sitecore.Diagnostics;
     using Unic.Flex.Context;
-    using Unic.Flex.Database;
     using Unic.Flex.Definitions;
-    using Unic.Flex.DependencyInjection;
     using Unic.Flex.Logging;
     using Unic.Flex.Mapping;
     using Unic.Flex.Model.Validation;
@@ -15,6 +14,7 @@
     using Unic.Flex.Model.ViewModel.Forms;
     using Unic.Flex.Plugs;
     using Unic.Flex.Presentation;
+    using Unic.Flex.Utilities;
     using Profiler = Unic.Profiling.Profiler;
 
     /// <summary>
@@ -84,6 +84,11 @@
         /// </summary>
         private readonly ILogger logger;
 
+        /// <summary>
+        /// The task service
+        /// </summary>
+        private readonly ITaskService taskService;
+
         #endregion
 
         /// <summary>
@@ -98,7 +103,8 @@
         /// <param name="urlService">The URL service.</param>
         /// <param name="formRepository">The form repository.</param>
         /// <param name="logger">The logger.</param>
-        public FlexController(IPresentationService presentationService, IModelConverterService modelConverter, IContextService contextService, IUserDataRepository userDataRepository, IPlugsService plugsService, IFlexContext flexContext, IUrlService urlService, IFormRepository formRepository, ILogger logger)
+        /// <param name="taskService">The task service.</param>
+        public FlexController(IPresentationService presentationService, IModelConverterService modelConverter, IContextService contextService, IUserDataRepository userDataRepository, IPlugsService plugsService, IFlexContext flexContext, IUrlService urlService, IFormRepository formRepository, ILogger logger, ITaskService taskService)
         {
             this.presentationService = presentationService;
             this.modelConverter = modelConverter;
@@ -109,6 +115,7 @@
             this.urlService = urlService;
             this.formRepository = formRepository;
             this.logger = logger;
+            this.taskService = taskService;
         }
 
         /// <summary>
@@ -293,6 +300,44 @@
             }
 
             return this.Content("OK"); // todo: return whatever is needed from the frontend
+        }
+
+        /// <summary>
+        /// Executes the plugs asynchronous which are stored within the database.
+        /// </summary>
+        /// <param name="timestamp">The timestamp.</param>
+        /// <param name="hash">The hash.</param>
+        /// <returns>true/false wheater the result was ok or there was an error</returns>
+        public ActionResult ExecutePlugs(string timestamp, string hash)
+        {
+            // check the hash
+            if (!SecurityUtil.VerifyMd5Hash(MD5.Create(), timestamp, hash))
+            {
+                this.logger.Warn("Invalid request/hash for executing plugs", this);
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            // check if async execution is allowed
+            //// todo: change the checkbox in the config to be a droplink instead of checkbox and get this value here from global config -> can be done after checkbox upgrade
+            var isAsyncExecutionAllowed = true; // this.configurationManager.Get<GlobalConfiguration>(c => c.IsAsyncExecutionAllowed);
+            if (!isAsyncExecutionAllowed)
+            {
+                this.logger.Warn("Invalid request due to disabled async plugs execution", this);
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            try
+            {
+                // execute all plugs
+                this.taskService.ExecuteAll(Sitecore.Context.Site); //// todo: do not statically request the sitecore.context here
+            }
+            catch (Exception exception)
+            {
+                this.logger.Error("Error while asynchronous executing plugs", this, exception);
+                return this.Content(false.ToString());
+            }
+            
+            return this.Content(true.ToString());
         }
 
         /// <summary>

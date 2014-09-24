@@ -54,6 +54,7 @@
         /// <param name="contextService">The context service.</param>
         /// <param name="userDataRepository">The user data repository.</param>
         /// <param name="logger">The logger.</param>
+        /// <param name="configurationManager">The configuration manager.</param>
         public TaskService(IUnitOfWork unitOfWork, IContextService contextService, IUserDataRepository userDataRepository, ILogger logger, IConfigurationManager configurationManager)
         {
             this.unitOfWork = unitOfWork;
@@ -61,6 +62,19 @@
             this.userDataRepository = userDataRepository;
             this.logger = logger;
             this.configurationManager = configurationManager;
+        }
+
+        /// <summary>
+        /// Executes all jobs.
+        /// </summary>
+        /// <param name="site">The site.</param>
+        public virtual void ExecuteAll(SiteContext site)
+        {
+            var jobs = this.unitOfWork.JobRepository.Get();
+            foreach (var job in jobs)
+            {
+                this.Execute(job, site);
+            }
         }
 
         /// <summary>
