@@ -87,15 +87,16 @@
             Assert.ArgumentNotNull(job, "job");
             Assert.ArgumentNotNull(site, "site");
 
-            // get max retries
+            // get config values
             var maxRetries = this.configurationManager.Get<GlobalConfiguration>(c => c.MaxRetries);
+            var timeBetweenTries = this.configurationManager.Get<GlobalConfiguration>(c => c.TimeBetweenTries);
 
             // start thread and execute specific job
             System.Threading.Tasks.Task.Factory.StartNew(() =>
             {
                 using (new SiteContextSwitcher(site))
                 {
-                    this.ExecuteJob(job, maxRetries);
+                    this.ExecuteJob(job, maxRetries, timeBetweenTries);
                 }
             }).ContinueWith(task => this.unitOfWork.Save());
         }
@@ -130,7 +131,8 @@
         {
             return new Task
             {
-                ItemId = plug.ItemId
+                ItemId = plug.ItemId,
+                LastTry = DateTime.Now
             };
         }
 
@@ -153,7 +155,8 @@
         /// </summary>
         /// <param name="job">The job.</param>
         /// <param name="maxRetries">The maximum retries.</param>
-        private void ExecuteJob(Job job, int maxRetries)
+        /// <param name="timeBetweenTries">The time between tries.</param>
+        private void ExecuteJob(Job job, int maxRetries, int timeBetweenTries)
         {
             try
             {
@@ -162,11 +165,19 @@
                 var formValues = JsonConvert.DeserializeObject<IDictionary<string, object>>(job.Data);
                 this.contextService.PopulateFormValues(form, formValues);
 
-                foreach (var task in job.Tasks.Where(t => t.RetryCount < maxRetries))
+                foreach (var task in job.Tasks.Where(t => t.NumberOfTries <= maxRetries))
                 {
+                    // check if we already can execute the plug
+                    if (task.NumberOfTries > 0 && !this.ShouldRun(task.LastTry, task.NumberOfTries, timeBetweenTries))
+                    {
+                        continue;
+                    }
+
+                    // get the plug
                     var plug = form.SavePlugs.FirstOrDefault(p => p.ItemId == task.ItemId);
                     if (plug == null) continue;
 
+                    // execute the plug
                     tasks.Add(System.Threading.Tasks.Task.Factory.StartNew(() => this.ExecuteTask(job, task, form, plug)));
                 }
 
@@ -199,10 +210,25 @@
             catch (Exception exception)
             {
                 this.logger.Error("Error while asynchronously execute save plug", this, exception);
-                task.RetryCount++;
+                task.NumberOfTries++;
+                task.LastTry = DateTime.Now;
 
                 //// todo: send email if retry count is too high
             }
+        }
+
+        /// <summary>
+        /// Check if the task should run with the exponential backoff algorithm.
+        /// </summary>
+        /// <param name="lastTry">The last try.</param>
+        /// <param name="numberOfTries">The number of tries.</param>
+        /// <param name="timeBetweenTries">The time between tries.</param>
+        /// <returns>Boolean value if the task with specific parameters should be run or not</returns>
+        private bool ShouldRun(DateTime lastTry, int numberOfTries, int timeBetweenTries)
+        {
+            var backoffTime = Math.Pow(2, numberOfTries - 1) * timeBetweenTries;
+            var nextTry = lastTry.AddMinutes(backoffTime);
+            return DateTime.Now >= nextTry;
         }
     }
 }
