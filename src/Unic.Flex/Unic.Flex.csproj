@@ -117,6 +117,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Agents\PlugExecution.cs" />
     <Compile Include="Context\ContextService.cs" />
     <Compile Include="Context\FlexContext.cs" />
     <Compile Include="Context\IContextService.cs" />
@@ -163,6 +164,7 @@
     <Compile Include="Presentation\PresentationService.cs" />
     <Compile Include="Rules\Conditions\FormCondition.cs" />
     <Compile Include="Rules\Conditions\InstanceCondition.cs" />
+    <Compile Include="Utilities\SecurityUtil.cs" />
     <Compile Include="Validators\FieldValidators\RegularExpressionValidator.cs" />
     <Compile Include="Utilities\TypeHelper.cs" />
   </ItemGroup>

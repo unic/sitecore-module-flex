@@ -23,10 +23,17 @@ key: max retries
 content-length: 1
 
 3
+----field----
+field: {8E395747-4E02-49AB-99D4-64B259A3CEC9}
+name: Time Between Tries
+key: time between tries
+content-length: 2
+
+30
 ----version----
 language: en
 version: 1
-revision: 0954369c-752d-47ab-9aff-57b93455358e
+revision: f864e00f-7c1a-405a-ab3e-e6a69febd92c
 
 ----field----
 field: {D2732E5D-6BA5-4906-8EF3-C27252DB9754}
@@ -48,14 +55,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-0954369c-752d-47ab-9aff-57b93455358e
+f864e00f-7c1a-405a-ab3e-e6a69febd92c
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20140923T114140:635470693008984272
+20140924T113453:635471552933564428
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

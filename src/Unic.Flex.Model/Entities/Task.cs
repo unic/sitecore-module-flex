@@ -36,13 +36,22 @@
         public virtual Guid ItemId { get; set; }
 
         /// <summary>
-        /// Gets or sets the retry count.
+        /// Gets or sets the number of tries.
         /// </summary>
         /// <value>
-        /// The retry count.
+        /// The number of tries.
         /// </value>
         [Required]
-        public virtual int RetryCount { get; set; }
+        public virtual int NumberOfTries { get; set; }
+
+        /// <summary>
+        /// Gets or sets the last try.
+        /// </summary>
+        /// <value>
+        /// The last try.
+        /// </value>
+        [Required]
+        public virtual DateTime LastTry { get; set; }
 
         /// <summary>
         /// Gets or sets the job.

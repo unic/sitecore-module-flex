@@ -33,5 +33,14 @@
         /// </value>
         [Configuration(FieldName = "Max Retries")]
         public int MaxRetries { get; set; }
+
+        /// <summary>
+        /// Gets or sets the time between tries.
+        /// </summary>
+        /// <value>
+        /// The time between tries.
+        /// </value>
+        [Configuration(FieldName = "Time Between Tries")]
+        public int TimeBetweenTries { get; set; }
     }
 }
