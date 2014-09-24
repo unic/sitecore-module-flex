@@ -42,6 +42,14 @@
         public virtual string Title { get; set; }
 
         /// <summary>
+        /// Gets or sets the step title.
+        /// </summary>
+        /// <value>
+        /// The step title.
+        /// </value>
+        public virtual string StepTitle { get; set; }
+
+        /// <summary>
         /// Gets or sets the tooltip.
         /// </summary>
         /// <value>

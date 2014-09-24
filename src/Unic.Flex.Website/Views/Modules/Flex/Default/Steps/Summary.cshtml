@@ -2,22 +2,44 @@
 @using Unic.Flex.Presentation
 @model Unic.Flex.Model.ViewModel.Steps.SummaryViewModel
 
-@if (Model.ShowNavigationPane && Model.NavigationPane != null)
-{
-    @Html.FlexComponent(m => m.NavigationPane)
-}
-
-@foreach (var stepSection in Model.Sections)
-{
-    <h3>@stepSection.Title</h3>
-    foreach (var field in stepSection.Fields)
+@{
+    var stepTitle = string.Empty;
+    
+    if (Model.ShowNavigationPane && Model.NavigationPane != null)
     {
-        <span>@field.Label</span>
-        <span>: </span>
-        <span>@field.TextValue</span>
-        <br/>
+        @Html.FlexComponent(m => m.NavigationPane)
     }
 }
+
+<section class="flex_summary">
+    
+    <h1 class="visuallyhidden">@Model.Title</h1>
+    <p>@Model.Introduction</p>
+
+    @foreach (var stepSection in Model.Sections)
+    {
+        if (stepTitle != stepSection.StepTitle)
+        {
+            stepTitle = stepSection.StepTitle;
+            <h2>@stepTitle</h2>
+        }
+
+        if (!stepSection.DisableFieldset && !string.IsNullOrWhiteSpace(stepSection.Title))
+        {
+            <h3>@stepSection.Title</h3>
+        }
+
+        <ul class="flex_summary_list">
+            @foreach (var field in stepSection.Fields)
+            {
+                <li class="flex_summary_item">
+                    <strong>@field.Label</strong>
+                    <div>@Html.Raw(field.TextValue.Replace(Environment.NewLine, "<br/>"))</div>
+                </li>
+            }
+        </ul>
+    }
+</section>
 
 @if (!string.IsNullOrWhiteSpace(Model.PreviousStepUrl))
 {

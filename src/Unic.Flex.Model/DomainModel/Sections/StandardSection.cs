@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using Unic.Flex.Model.DomainModel.Components;
     using Unic.Flex.Model.DomainModel.Fields;
+    using Unic.Flex.Model.DomainModel.Steps;
     using Unic.Flex.Model.GlassExtensions.Attributes;
 
     /// <summary>
@@ -20,6 +21,21 @@
         /// </value>
         [SitecoreField("Title")]
         public virtual string Title { get; set; }
+
+        /// <summary>
+        /// Gets the step title.
+        /// </summary>
+        /// <value>
+        /// The step title.
+        /// </value>
+        public virtual string StepTitle
+        {
+            get
+            {
+                var step = this.Parent as StepBase;
+                return step != null ? step.Title : string.Empty;
+            }
+        }
 
         /// <summary>
         /// Gets or sets a value indicating whether to disable the fieldset markup.

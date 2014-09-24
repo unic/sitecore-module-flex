@@ -1,5 +1,6 @@
 ﻿namespace Unic.Flex.Model.DomainModel.Fields.ListFields
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
@@ -67,7 +68,7 @@
         private string GetTextValue(IEnumerable<string> value)
         {
             return string.Join(
-                ", ",
+                Environment.NewLine,
                 this.Items.Where(item => !string.IsNullOrWhiteSpace(item.Value))
                     .Where(item => value.Contains(item.Value))
                     .Select(item => item.Text));

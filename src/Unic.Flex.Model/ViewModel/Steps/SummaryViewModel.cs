@@ -32,6 +32,14 @@
         public virtual NavigationPaneViewModel NavigationPane { get; set; }
 
         /// <summary>
+        /// Gets or sets the introduction.
+        /// </summary>
+        /// <value>
+        /// The introduction.
+        /// </value>
+        public virtual string Introduction { get; set; }
+
+        /// <summary>
         /// Gets the name of the view.
         /// </summary>
         /// <value>

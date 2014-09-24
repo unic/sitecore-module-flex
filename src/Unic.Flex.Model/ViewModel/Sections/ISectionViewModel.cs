@@ -25,5 +25,21 @@
         /// The title.
         /// </value>
         string Title { get; set; }
+
+        /// <summary>
+        /// Gets or sets the step title.
+        /// </summary>
+        /// <value>
+        /// The step title.
+        /// </value>
+        string StepTitle { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to disable the fieldset markup.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if the fieldset markup should not be outputed; otherwise, <c>false</c>.
+        /// </value>
+        bool DisableFieldset { get; set; }
     }
 }

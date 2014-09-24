@@ -1,9 +1,8 @@
 ﻿namespace Unic.Flex.DependencyInjection
 {
-    using System;
     using Ninject;
     using Ninject.Modules;
-    using Sitecore.Pipelines.GetTranslation;
+    using System;
 
     /// <summary>
     /// Dependency injection container.
