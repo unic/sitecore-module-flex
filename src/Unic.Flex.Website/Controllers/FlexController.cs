@@ -329,7 +329,7 @@
             try
             {
                 // execute all plugs
-                this.taskService.ExecuteAll(Sitecore.Context.Site); //// todo: do not statically request the sitecore.context here
+                this.taskService.ExecuteAll(this.flexContext.SiteContext);
             }
             catch (Exception exception)
             {

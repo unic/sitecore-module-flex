@@ -122,7 +122,7 @@
                 if (hasAsyncPlug)
                 {
                     job = this.taskService.Save(job);
-                    this.taskService.Execute(job, Sitecore.Context.Site); //// todo: do not access the sitecore context here directly
+                    this.taskService.Execute(job, context.SiteContext);
                 }
             }
             catch (Exception exception)

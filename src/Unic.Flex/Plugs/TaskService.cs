@@ -1,5 +1,6 @@
 ﻿namespace Unic.Flex.Plugs
 {
+    using System.Net.Mail;
     using Newtonsoft.Json;
     using Sitecore.Diagnostics;
     using Sitecore.Sites;
@@ -10,6 +11,7 @@
     using Unic.Configuration;
     using Unic.Flex.Context;
     using Unic.Flex.Database;
+    using Unic.Flex.Globalization;
     using Unic.Flex.Logging;
     using Unic.Flex.Mapping;
     using Unic.Flex.Model.Configuration;
@@ -48,6 +50,11 @@
         private readonly IConfigurationManager configurationManager;
 
         /// <summary>
+        /// The dictionary repository
+        /// </summary>
+        private readonly IDictionaryRepository dictionaryRepository;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="TaskService" /> class.
         /// </summary>
         /// <param name="unitOfWork">The unit of work.</param>
@@ -55,13 +62,15 @@
         /// <param name="userDataRepository">The user data repository.</param>
         /// <param name="logger">The logger.</param>
         /// <param name="configurationManager">The configuration manager.</param>
-        public TaskService(IUnitOfWork unitOfWork, IContextService contextService, IUserDataRepository userDataRepository, ILogger logger, IConfigurationManager configurationManager)
+        /// <param name="dictionaryRepository">The dictionary repository.</param>
+        public TaskService(IUnitOfWork unitOfWork, IContextService contextService, IUserDataRepository userDataRepository, ILogger logger, IConfigurationManager configurationManager, IDictionaryRepository dictionaryRepository)
         {
             this.unitOfWork = unitOfWork;
             this.contextService = contextService;
             this.userDataRepository = userDataRepository;
             this.logger = logger;
             this.configurationManager = configurationManager;
+            this.dictionaryRepository = dictionaryRepository;
         }
 
         /// <summary>
@@ -156,7 +165,7 @@
         /// <param name="job">The job.</param>
         /// <param name="maxRetries">The maximum retries.</param>
         /// <param name="timeBetweenTries">The time between tries.</param>
-        private void ExecuteJob(Job job, int maxRetries, int timeBetweenTries)
+        protected virtual void ExecuteJob(Job job, int maxRetries, int timeBetweenTries)
         {
             try
             {
@@ -178,7 +187,7 @@
                     if (plug == null) continue;
 
                     // execute the plug
-                    tasks.Add(System.Threading.Tasks.Task.Factory.StartNew(() => this.ExecuteTask(job, task, form, plug)));
+                    tasks.Add(System.Threading.Tasks.Task.Factory.StartNew(() => this.ExecuteTask(job, task, form, plug, maxRetries)));
                 }
 
                 System.Threading.Tasks.Task.WaitAll(tasks.ToArray());
@@ -200,7 +209,8 @@
         /// <param name="task">The task.</param>
         /// <param name="form">The form.</param>
         /// <param name="plug">The plug.</param>
-        private void ExecuteTask(Job job, Task task, Form form, ISavePlug plug)
+        /// <param name="maxRetries">The maximum retries.</param>
+        protected virtual void ExecuteTask(Job job, Task task, Form form, ISavePlug plug, int maxRetries)
         {
             try
             {
@@ -213,7 +223,10 @@
                 task.NumberOfTries++;
                 task.LastTry = DateTime.Now;
 
-                //// todo: send email if retry count is too high
+                if (task.NumberOfTries > maxRetries)
+                {
+                    this.SendFailureEmail(job, task);
+                }
             }
         }
 
@@ -224,11 +237,27 @@
         /// <param name="numberOfTries">The number of tries.</param>
         /// <param name="timeBetweenTries">The time between tries.</param>
         /// <returns>Boolean value if the task with specific parameters should be run or not</returns>
-        private bool ShouldRun(DateTime lastTry, int numberOfTries, int timeBetweenTries)
+        protected virtual bool ShouldRun(DateTime lastTry, int numberOfTries, int timeBetweenTries)
         {
             var backoffTime = Math.Pow(2, numberOfTries - 1) * timeBetweenTries;
             var nextTry = lastTry.AddMinutes(backoffTime);
             return DateTime.Now >= nextTry;
+        }
+
+        /// <summary>
+        /// Sends the failure email.
+        /// </summary>
+        /// <param name="job">The job.</param>
+        /// <param name="task">The task.</param>
+        protected virtual void SendFailureEmail(Job job, Task task)
+        {
+            var from = Sitecore.Configuration.Settings.GetSetting("Flex.EmailAddresses.PlugExecutionFailureFrom");
+            var to = Sitecore.Configuration.Settings.GetSetting("Flex.EmailAddresses.PlugExecutionFailureTo");
+            var subject = this.dictionaryRepository.GetText("Plug Execution Failure Subject");
+            var body = this.dictionaryRepository.GetText("Plug Execution Failure Body");
+
+            var message = new MailMessage(from, to, subject, string.Format(body, job.ItemId, task.ItemId));
+            Sitecore.MainUtil.SendMail(message);
         }
     }
 }

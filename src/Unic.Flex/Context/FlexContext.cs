@@ -3,6 +3,7 @@
     using Glass.Mapper.Sc;
     using Sitecore.Data.Items;
     using System.Web;
+    using Sitecore.Sites;
     using Unic.Flex.Model.DomainModel;
     using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.ViewModel.Forms;
@@ -52,6 +53,7 @@
             this.sitecoreContext = sitecoreContext;
 
             this.SetContextItem(Sitecore.Context.Item);
+            this.SiteContext = Sitecore.Context.Site;
         }
 
         /// <summary>
@@ -103,6 +105,14 @@
         /// The error message.
         /// </value>
         public string ErrorMessage { get; set; }
+
+        /// <summary>
+        /// Gets or sets the site context.
+        /// </summary>
+        /// <value>
+        /// The site context.
+        /// </value>
+        public SiteContext SiteContext { get; set; }
 
         /// <summary>
         /// Sets the context item.
