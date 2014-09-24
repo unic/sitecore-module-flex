@@ -1,5 +1,6 @@
 ﻿namespace Unic.Flex.Implementation.Fields.ListFields
 {
+    using System.Linq;
     using System.Web.Mvc;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Unic.Flex.Model.DomainModel.Fields.ListFields;
@@ -17,8 +18,22 @@
         {
             //// todo: this values should be provided from Sitecore
             
-            this.Items.Add(new SelectListItem { Text = "Apple", Value = "apple_value" });
-            this.Items.Add(new SelectListItem { Text = "Oranges", Value = "oranges_value" });
+            this.Items.Add(new SelectListItem { Text = "Apple", Value = "apple_value", Selected = true });
+            this.Items.Add(new SelectListItem { Text = "Oranges", Value = "oranges_value", Selected = true });
+        }
+
+        /// <summary>
+        /// Gets the default value.
+        /// </summary>
+        /// <value>
+        /// The default value.
+        /// </value>
+        public override string[] DefaultValue
+        {
+            get
+            {
+                return this.Items.Where(item => item.Selected).Select(item => item.Value).ToArray();
+            }
         }
 
         /// <summary>
