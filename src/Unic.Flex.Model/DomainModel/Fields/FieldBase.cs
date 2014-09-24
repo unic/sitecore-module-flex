@@ -101,8 +101,6 @@
     [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1402:FileMayOnlyContainASingleClass", Justification = "Reviewed. Suppression is OK here.")]
     public abstract class FieldBase : ItemBase, IReusableComponent<IField>
     {
-        //// todo: think about the concept of reusable fields (same as with sections) -> check if this could be done with a custom glass type mapper (also for the sections)
-        
         /// <summary>
         /// Initializes a new instance of the <see cref="FieldBase"/> class.
         /// </summary>
