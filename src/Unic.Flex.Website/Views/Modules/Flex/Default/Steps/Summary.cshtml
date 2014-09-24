@@ -34,7 +34,12 @@
             {
                 <li class="flex_summary_item">
                     <strong>@field.Label</strong>
-                    <div>@Html.Raw(field.TextValue.Replace(Environment.NewLine, "<br/>"))</div>
+                    <div>
+                        @foreach (var item in field.TextValue.Split(new[] { Environment.NewLine }, StringSplitOptions.None))
+                        {
+                            @item<br />
+                        }
+                    </div>
                 </li>
             }
         </ul>
