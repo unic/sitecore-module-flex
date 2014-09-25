@@ -1,7 +1,7 @@
 ﻿namespace Unic.Flex.Model.ViewModel.Fields.ListFields
 {
     using System.Collections.Generic;
-    using System.Web.Mvc;
+    using Unic.Flex.Model.ListFieldSources;
 
     /// <summary>
     /// Base for all list field view models.
@@ -15,6 +15,6 @@
         /// <value>
         /// The items.
         /// </value>
-        public IList<SelectListItem> Items { get; set; }
+        public IList<ListItem> Items { get; set; }
     }
 }

@@ -3,8 +3,9 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Web.Mvc;
-    using Glass.Mapper.Sc.Configuration.Attributes;
+    using Glass.Mapper.Sc.Configuration;
+    using Unic.Flex.Model.GlassExtensions.Attributes;
+    using Unic.Flex.Model.ListFieldSources;
 
     /// <summary>
     /// Base class for all list fields.
@@ -13,20 +14,27 @@
     public abstract class ListField<TValue> : FieldBase<TValue>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ListField{TValue}"/> class.
-        /// </summary>
-        protected ListField()
-        {
-            this.Items = new List<SelectListItem>();
-        }
-
-        /// <summary>
         /// Gets the items.
         /// </summary>
         /// <value>
         /// The items.
         /// </value>
-        public virtual IList<SelectListItem> Items { get; private set; }
+        public virtual IList<ListItem> Items
+        {
+            get
+            {
+                return this.ItemsProvider != null ? this.ItemsProvider.GetItems().ToList() : new List<ListItem>();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the items provider.
+        /// </summary>
+        /// <value>
+        /// The items provider.
+        /// </value>
+        [SitecoreSharedField("Source Items", Setting = SitecoreFieldSettings.InferType)]
+        public virtual IListFieldItemProvider ItemsProvider { get; set; }
 
         /// <summary>
         /// Gets the text value.

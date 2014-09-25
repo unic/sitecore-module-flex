@@ -114,6 +114,9 @@
     <Compile Include="GlassExtensions\Attributes\SitecoreReusableChildrenAttribute.cs" />
     <Compile Include="GlassExtensions\Configurations\SitecoreReusableChildrenConfiguration.cs" />
     <Compile Include="GlassExtensions\Handlers\SitecoreReusableChildrenTypeMapper.cs" />
+    <Compile Include="ListFieldSources\IListFieldItemProvider.cs" />
+    <Compile Include="ListFieldSources\ListItem.cs" />
+    <Compile Include="ListFieldSources\ListItemExtensions.cs" />
     <Compile Include="Types\UploadedFile.cs" />
     <Compile Include="Validation\AjaxValidator.cs" />
     <Compile Include="Validation\HoneypotValidator.cs" />

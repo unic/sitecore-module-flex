@@ -1,6 +1,5 @@
 ﻿namespace Unic.Flex.Plugs
 {
-    using System.Net.Mail;
     using Newtonsoft.Json;
     using Sitecore.Diagnostics;
     using Sitecore.Sites;
@@ -8,6 +7,7 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
+    using System.Net.Mail;
     using Unic.Configuration;
     using Unic.Flex.Context;
     using Unic.Flex.Database;
