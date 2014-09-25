@@ -7,7 +7,6 @@
     /// <summary>
     /// Base class for all items.
     /// </summary>
-    [SitecoreType]
     public class ItemBase
     {
         /// <summary>
