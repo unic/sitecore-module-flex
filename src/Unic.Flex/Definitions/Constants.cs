@@ -54,5 +54,15 @@
         /// The label CSS class
         /// </summary>
         public const string LabelCssClass = "flex_label";
+
+        /// <summary>
+        /// The controller field name
+        /// </summary>
+        public const string FormHandlerControllerFieldName = "fhController";
+
+        /// <summary>
+        /// The action field name
+        /// </summary>
+        public const string FormHandlerActionFieldName = "fhAction";
     }
 }

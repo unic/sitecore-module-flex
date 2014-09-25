@@ -5,8 +5,10 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Text;
+    using System.Web;
     using System.Web.Mvc;
     using System.Web.Mvc.Html;
+    using Sitecore.Mvc.Presentation;
     using Unic.Flex.Definitions;
     using Unic.Flex.DependencyInjection;
     using Unic.Flex.Model.Presentation;
@@ -196,6 +198,56 @@
         public static string FormatAttributes(this HtmlHelper htmlHelper, IDictionary<string, object> attributes)
         {
             return attributes.Aggregate(new StringBuilder(), (sb, kvp) => sb.AppendFormat("{0}=\"{1}\" ", kvp.Key, kvp.Value)).ToString();
+        }
+
+        /// <summary>
+        /// Get form handler with two additional hidden fields for the current controller/action.
+        /// </summary>
+        /// <param name="htmlHelper">The HTML helper.</param>
+        /// <returns>Html string with the hidden fields</returns>
+        public static HtmlString FormHandler(this HtmlHelper htmlHelper)
+        {
+            // get controller and action
+            var action = GetValueFromCurrentRendering("Controller Action");
+            var controller = GetValueFromCurrentRendering("Controller");
+            if (!string.IsNullOrWhiteSpace(controller) && controller.Contains(","))
+            {
+                controller = controller.Split(',').First().Split('.').Last().Trim();
+            }
+
+            if (!string.IsNullOrWhiteSpace(controller) && !controller.Contains("Controller"))
+            {
+                controller += "Controller";
+            }
+            
+            // empty result
+            if (string.IsNullOrWhiteSpace(controller) || string.IsNullOrWhiteSpace(action))
+            {
+                return new HtmlString(string.Empty);
+            }
+
+            // append the hidden fields
+            return new HtmlString(string.Format(
+                "{0}{1}",
+                htmlHelper.Hidden(Constants.FormHandlerControllerFieldName, controller),
+                htmlHelper.Hidden(Constants.FormHandlerActionFieldName, action)));
+        }
+
+        /// <summary>
+        /// Gets the value from current rendering.
+        /// </summary>
+        /// <param name="fieldName">Name of the field.</param>
+        /// <returns>Value of specific field of the current rendering</returns>
+        private static string GetValueFromCurrentRendering(string fieldName)
+        {
+            var context = RenderingContext.CurrentOrNull;
+            if (context == null || context.Rendering == null) return string.Empty;
+
+            var value = context.Rendering[fieldName];
+            if (!string.IsNullOrWhiteSpace(value)) return value;
+
+            var renderingItem = context.Rendering.RenderingItem;
+            return renderingItem != null ? renderingItem.InnerItem[fieldName] : string.Empty;
         }
     }
 }

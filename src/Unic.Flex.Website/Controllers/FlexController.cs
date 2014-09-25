@@ -5,6 +5,7 @@
     using System.Net;
     using System.Security.Cryptography;
     using System.Web.Mvc;
+    using Unic.Flex.Attributes;
     using Unic.Flex.Context;
     using Unic.Flex.Definitions;
     using Unic.Flex.Logging;
@@ -106,6 +107,8 @@
         /// <param name="taskService">The task service.</param>
         public FlexController(IPresentationService presentationService, IModelConverterService modelConverter, IContextService contextService, IUserDataRepository userDataRepository, IPlugsService plugsService, IFlexContext flexContext, IUrlService urlService, IFormRepository formRepository, ILogger logger, ITaskService taskService)
         {
+            //// todo: check if all service/repository classes have virtual methods
+            
             this.presentationService = presentationService;
             this.modelConverter = modelConverter;
             this.contextService = contextService;
@@ -189,11 +192,10 @@
         /// <param name="model">The model.</param>
         /// <returns>Result of the action.</returns>
         [HttpPost]
+        [ValidateFormHandler]
         [ValidateAntiForgeryToken]
         public ActionResult Form(IFormViewModel model)
         {
-            //// todo: add Unic.Formhandler() here to verify that exactly this form was executed
-            
             Profiler.OnStart(this, ProfilePostEventName);
             
             // get the current form
