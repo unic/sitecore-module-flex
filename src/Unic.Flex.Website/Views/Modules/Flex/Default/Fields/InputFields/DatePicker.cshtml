@@ -1,0 +1,14 @@
+﻿@using System.Globalization
+@using System.Web.Mvc.Html
+@using Unic.Flex.Presentation
+@model Unic.Flex.Implementation.Fields.InputFields.DatePickerFieldViewModel
+
+<li class="flex_listitem @Model.CssClass" data-init="flexdatepicker">
+    @Html.FlexLabel(m => m.Value, Model.Label, Model.LabelAddition)
+    @Html.TextBoxFor(m => m.Value, Model.DateFormat, Html.GetAttributes(Model))
+    
+    <a href="#" data-flexdatepicker="trigger">TODO: Translate: Show Datepicker</a>
+
+    @Html.FlexValidator(model => model.Value)
+    @Html.FlexComponent(model => model.Tooltip)
+</li>
