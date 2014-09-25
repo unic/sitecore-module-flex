@@ -127,7 +127,6 @@
             }
             catch (Exception exception)
             {
-                // todo: Include rollback (delete async tasks and rollback sync plugs)
                 context.ErrorMessage = form.ErrorMessage;
                 this.logger.Error("Error while executing save plug", this, exception);
             }
