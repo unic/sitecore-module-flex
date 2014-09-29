@@ -1,13 +1,14 @@
-﻿@using System.Globalization
-@using System.Web.Mvc.Html
+﻿@using System.Web.Mvc.Html
+@using Sitecore.Configuration
+@using Sitecore.Globalization
 @using Unic.Flex.Presentation
 @model Unic.Flex.Implementation.Fields.InputFields.DatePickerFieldViewModel
 
-<li class="flex_listitem @Model.CssClass" data-init="flexdatepicker">
+<li class="flex_listitem @Model.CssClass" data-init="flexdatepicker" data-flexdatepicker-options="{'locale': '@Model.Locale'}">
     @Html.FlexLabel(m => m.Value, Model.Label, Model.LabelAddition)
     @Html.TextBoxFor(m => m.Value, Model.DateFormat, Html.GetAttributes(Model))
-    
-    <a href="#" data-flexdatepicker="trigger">TODO: Translate: Show Datepicker</a>
+
+    <a href="#" data-flexdatepicker="trigger">@Translate.TextByDomain(Settings.GetSetting("Flex.DictionaryDomain"), "Show Datepicker")</a>
 
     @Html.FlexValidator(model => model.Value)
     @Html.FlexComponent(model => model.Tooltip)

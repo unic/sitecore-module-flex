@@ -51,6 +51,20 @@
         }
 
         /// <summary>
+        /// Gets the locale.
+        /// </summary>
+        /// <value>
+        /// The locale.
+        /// </value>
+        public virtual string Locale
+        {
+            get
+            {
+                return Sitecore.Context.Language.CultureInfo.TwoLetterISOLanguageName.ToLowerInvariant();
+            }
+        }
+
+        /// <summary>
         /// Binds the needed attributes and properties after converting from domain model to the view model
         /// </summary>
         public override void BindProperties()
