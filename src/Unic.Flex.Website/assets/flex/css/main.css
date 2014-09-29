@@ -436,7 +436,7 @@ table {
  */
 nav ul,
 nav ol, .flex_formcontainer fieldset ul, .flex_formcontainer fieldset ol,
-.flex_formcontainer section ul, .flex_formcontainer section ol, .flex_mod_multistepnavigation ul {
+.flex_formcontainer section ul, .flex_formcontainer section ol, .flex_mod_multistepnavigation ul, .flex_autocomplete_wrapper ul {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -955,4 +955,32 @@ nav ol, .flex_formcontainer fieldset ul, .flex_formcontainer fieldset ol,
 }
 .flex_summary .flex_summary_item div {
   float: left;
+}
+
+.flex_autocomplete_wrapper {
+  position: absolute;
+  left: 0;
+  background: white;
+  z-index: 10;
+  width: 100%;
+  max-height: 12em;
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: none;
+  margin-left: 50%;
+  width: 50%;
+}
+.flex_is_open .flex_autocomplete_wrapper {
+  display: block;
+}
+.flex_autocomplete_wrapper li {
+  margin-bottom: 0 !important;
+}
+.flex_autocomplete_wrapper li.u_var_noresult {
+  color: #a6643a;
+}
+.flex_autocomplete_wrapper strong {
+  display: block;
+  color: black;
+  padding: 0.8em 0.8em;
 }

@@ -9936,7 +9936,7 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
 /**
  * @license
  * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
- * Build: `lodash include="debounce,keys,bind,find" -o ../../source/assets/.tmp/lodash.js -d`
+ * Build: `lodash include="debounce,keys,bind,find,contains,each" -o ../../source/assets/.tmp/lodash.js -d`
  * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
  * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
  * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -10032,6 +10032,28 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
   }
 
   /*--------------------------------------------------------------------------*/
+
+  /**
+   * The base implementation of `_.indexOf` without support for binary searches
+   * or `fromIndex` constraints.
+   *
+   * @private
+   * @param {Array} array The array to search.
+   * @param {*} value The value to search for.
+   * @param {number} [fromIndex=0] The index to search from.
+   * @returns {number} Returns the index of the matched value or `-1`.
+   */
+  function baseIndexOf(array, value, fromIndex) {
+    var index = (fromIndex || 0) - 1,
+        length = array ? array.length : 0;
+
+    while (++index < length) {
+      if (array[index] === value) {
+        return index;
+      }
+    }
+    return -1;
+  }
 
   /**
    * Gets an array from the array pool or creates a new one if the pool is empty.
@@ -10934,6 +10956,19 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
   }
 
   /**
+   * Gets the appropriate "indexOf" function. If the `_.indexOf` method is
+   * customized, this method returns the custom method, otherwise it returns
+   * the `baseIndexOf` function.
+   *
+   * @private
+   * @returns {Function} Returns the "indexOf" function.
+   */
+  function getIndexOf() {
+    var result = (result = lodash.indexOf) === indexOf ? baseIndexOf : result;
+    return result;
+  }
+
+  /**
    * Checks if `value` is a native function.
    *
    * @private
@@ -11188,6 +11223,54 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
   /*--------------------------------------------------------------------------*/
 
   /**
+   * Checks if a given value is present in a collection using strict equality
+   * for comparisons, i.e. `===`. If `fromIndex` is negative, it is used as the
+   * offset from the end of the collection.
+   *
+   * @static
+   * @memberOf _
+   * @alias include
+   * @category Collections
+   * @param {Array|Object|string} collection The collection to iterate over.
+   * @param {*} target The value to check for.
+   * @param {number} [fromIndex=0] The index to search from.
+   * @returns {boolean} Returns `true` if the `target` element is found, else `false`.
+   * @example
+   *
+   * _.contains([1, 2, 3], 1);
+   * // => true
+   *
+   * _.contains([1, 2, 3], 1, 2);
+   * // => false
+   *
+   * _.contains({ 'name': 'fred', 'age': 40 }, 'fred');
+   * // => true
+   *
+   * _.contains('pebbles', 'eb');
+   * // => true
+   */
+  function contains(collection, target, fromIndex) {
+    var index = -1,
+        indexOf = getIndexOf(),
+        length = collection ? collection.length : 0,
+        result = false;
+
+    fromIndex = (fromIndex < 0 ? nativeMax(0, length + fromIndex) : fromIndex) || 0;
+    if (isArray(collection)) {
+      result = indexOf(collection, target, fromIndex) > -1;
+    } else if (typeof length == 'number') {
+      result = (isString(collection) ? collection.indexOf(target, fromIndex) : indexOf(collection, target, fromIndex)) > -1;
+    } else {
+      baseEach(collection, function(value) {
+        if (++index >= fromIndex) {
+          return !(result = value === target);
+        }
+      });
+    }
+    return result;
+  }
+
+  /**
    * Iterates over elements of a collection, returning the first element that
    * the callback returns truey for. The callback is bound to `thisArg` and
    * invoked with three arguments; (value, index|key, collection).
@@ -11253,6 +11336,150 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
       });
       return result;
     }
+  }
+
+  /**
+   * Iterates over elements of a collection, executing the callback for each
+   * element. The callback is bound to `thisArg` and invoked with three arguments;
+   * (value, index|key, collection). Callbacks may exit iteration early by
+   * explicitly returning `false`.
+   *
+   * Note: As with other "Collections" methods, objects with a `length` property
+   * are iterated like arrays. To avoid this behavior `_.forIn` or `_.forOwn`
+   * may be used for object iteration.
+   *
+   * @static
+   * @memberOf _
+   * @alias each
+   * @category Collections
+   * @param {Array|Object|string} collection The collection to iterate over.
+   * @param {Function} [callback=identity] The function called per iteration.
+   * @param {*} [thisArg] The `this` binding of `callback`.
+   * @returns {Array|Object|string} Returns `collection`.
+   * @example
+   *
+   * _([1, 2, 3]).forEach(function(num) { console.log(num); }).join(',');
+   * // => logs each number and returns '1,2,3'
+   *
+   * _.forEach({ 'one': 1, 'two': 2, 'three': 3 }, function(num) { console.log(num); });
+   * // => logs each number and returns the object (property order is not guaranteed across environments)
+   */
+  function forEach(collection, callback, thisArg) {
+    if (callback && typeof thisArg == 'undefined' && isArray(collection)) {
+      var index = -1,
+          length = collection.length;
+
+      while (++index < length) {
+        if (callback(collection[index], index, collection) === false) {
+          break;
+        }
+      }
+    } else {
+      baseEach(collection, callback, thisArg);
+    }
+    return collection;
+  }
+
+  /*--------------------------------------------------------------------------*/
+
+  /**
+   * Gets the index at which the first occurrence of `value` is found using
+   * strict equality for comparisons, i.e. `===`. If the array is already sorted
+   * providing `true` for `fromIndex` will run a faster binary search.
+   *
+   * @static
+   * @memberOf _
+   * @category Arrays
+   * @param {Array} array The array to search.
+   * @param {*} value The value to search for.
+   * @param {boolean|number} [fromIndex=0] The index to search from or `true`
+   *  to perform a binary search on a sorted array.
+   * @returns {number} Returns the index of the matched value or `-1`.
+   * @example
+   *
+   * _.indexOf([1, 2, 3, 1, 2, 3], 2);
+   * // => 1
+   *
+   * _.indexOf([1, 2, 3, 1, 2, 3], 2, 3);
+   * // => 4
+   *
+   * _.indexOf([1, 1, 2, 2, 3, 3], 2, true);
+   * // => 2
+   */
+  function indexOf(array, value, fromIndex) {
+    if (typeof fromIndex == 'number') {
+      var length = array ? array.length : 0;
+      fromIndex = (fromIndex < 0 ? nativeMax(0, length + fromIndex) : fromIndex || 0);
+    } else if (fromIndex) {
+      var index = sortedIndex(array, value);
+      return array[index] === value ? index : -1;
+    }
+    return baseIndexOf(array, value, fromIndex);
+  }
+
+  /**
+   * Uses a binary search to determine the smallest index at which a value
+   * should be inserted into a given sorted array in order to maintain the sort
+   * order of the array. If a callback is provided it will be executed for
+   * `value` and each element of `array` to compute their sort ranking. The
+   * callback is bound to `thisArg` and invoked with one argument; (value).
+   *
+   * If a property name is provided for `callback` the created "_.pluck" style
+   * callback will return the property value of the given element.
+   *
+   * If an object is provided for `callback` the created "_.where" style callback
+   * will return `true` for elements that have the properties of the given object,
+   * else `false`.
+   *
+   * @static
+   * @memberOf _
+   * @category Arrays
+   * @param {Array} array The array to inspect.
+   * @param {*} value The value to evaluate.
+   * @param {Function|Object|string} [callback=identity] The function called
+   *  per iteration. If a property name or object is provided it will be used
+   *  to create a "_.pluck" or "_.where" style callback, respectively.
+   * @param {*} [thisArg] The `this` binding of `callback`.
+   * @returns {number} Returns the index at which `value` should be inserted
+   *  into `array`.
+   * @example
+   *
+   * _.sortedIndex([20, 30, 50], 40);
+   * // => 2
+   *
+   * // using "_.pluck" callback shorthand
+   * _.sortedIndex([{ 'x': 20 }, { 'x': 30 }, { 'x': 50 }], { 'x': 40 }, 'x');
+   * // => 2
+   *
+   * var dict = {
+   *   'wordToNumber': { 'twenty': 20, 'thirty': 30, 'fourty': 40, 'fifty': 50 }
+   * };
+   *
+   * _.sortedIndex(['twenty', 'thirty', 'fifty'], 'fourty', function(word) {
+   *   return dict.wordToNumber[word];
+   * });
+   * // => 2
+   *
+   * _.sortedIndex(['twenty', 'thirty', 'fifty'], 'fourty', function(word) {
+   *   return this.wordToNumber[word];
+   * }, dict);
+   * // => 2
+   */
+  function sortedIndex(array, value, callback, thisArg) {
+    var low = 0,
+        high = array ? array.length : low;
+
+    // explicitly reference `identity` for better inlining in Firefox
+    callback = callback ? lodash.createCallback(callback, thisArg, 1) : identity;
+    value = callback(value);
+
+    while (low < high) {
+      var mid = (low + high) >>> 1;
+      (callback(array[mid]) < value)
+        ? low = mid + 1
+        : high = mid;
+    }
+    return low;
   }
 
   /*--------------------------------------------------------------------------*/
@@ -11579,14 +11806,19 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
   lodash.bind = bind;
   lodash.createCallback = createCallback;
   lodash.debounce = debounce;
+  lodash.forEach = forEach;
   lodash.forIn = forIn;
   lodash.keys = keys;
   lodash.property = property;
 
+  lodash.each = forEach;
+
   /*--------------------------------------------------------------------------*/
 
+  lodash.contains = contains;
   lodash.find = find;
   lodash.identity = identity;
+  lodash.indexOf = indexOf;
   lodash.isArguments = isArguments;
   lodash.isArray = isArray;
   lodash.isFunction = isFunction;
@@ -11594,9 +11826,11 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
   lodash.isString = isString;
   lodash.noop = noop;
   lodash.now = now;
+  lodash.sortedIndex = sortedIndex;
 
   lodash.detect = find;
   lodash.findWhere = find;
+  lodash.include = contains;
 
   /*--------------------------------------------------------------------------*/
 
@@ -18738,6 +18972,120 @@ return $.datepicker;
 
 }));
 
+/* German initialisation for the jQuery UI date picker plugin. */
+/* Written by Milian Wolff (mail@milianw.de). */
+(function( factory ) {
+	if ( typeof define === "function" && define.amd ) {
+
+		// AMD. Register as an anonymous module.
+		define([ "../datepicker" ], factory );
+	} else {
+
+		// Browser globals
+		factory( jQuery.datepicker );
+	}
+}(function( datepicker ) {
+
+datepicker.regional['de'] = {
+	closeText: 'Schließen',
+	prevText: '&#x3C;Zurück',
+	nextText: 'Vor&#x3E;',
+	currentText: 'Heute',
+	monthNames: ['Januar','Februar','März','April','Mai','Juni',
+	'Juli','August','September','Oktober','November','Dezember'],
+	monthNamesShort: ['Jan','Feb','Mär','Apr','Mai','Jun',
+	'Jul','Aug','Sep','Okt','Nov','Dez'],
+	dayNames: ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'],
+	dayNamesShort: ['So','Mo','Di','Mi','Do','Fr','Sa'],
+	dayNamesMin: ['So','Mo','Di','Mi','Do','Fr','Sa'],
+	weekHeader: 'KW',
+	dateFormat: 'dd.mm.yy',
+	firstDay: 1,
+	isRTL: false,
+	showMonthAfterYear: false,
+	yearSuffix: ''};
+datepicker.setDefaults(datepicker.regional['de']);
+
+return datepicker.regional['de'];
+
+}));
+
+/* Swiss-French initialisation for the jQuery UI date picker plugin. */
+/* Written Martin Voelkle (martin.voelkle@e-tc.ch). */
+(function( factory ) {
+	if ( typeof define === "function" && define.amd ) {
+
+		// AMD. Register as an anonymous module.
+		define([ "../datepicker" ], factory );
+	} else {
+
+		// Browser globals
+		factory( jQuery.datepicker );
+	}
+}(function( datepicker ) {
+
+datepicker.regional['fr-CH'] = {
+	closeText: 'Fermer',
+	prevText: '&#x3C;Préc',
+	nextText: 'Suiv&#x3E;',
+	currentText: 'Courant',
+	monthNames: ['janvier', 'février', 'mars', 'avril', 'mai', 'juin',
+		'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'],
+	monthNamesShort: ['janv.', 'févr.', 'mars', 'avril', 'mai', 'juin',
+		'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.'],
+	dayNames: ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'],
+	dayNamesShort: ['dim.', 'lun.', 'mar.', 'mer.', 'jeu.', 'ven.', 'sam.'],
+	dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+	weekHeader: 'Sm',
+	dateFormat: 'dd.mm.yy',
+	firstDay: 1,
+	isRTL: false,
+	showMonthAfterYear: false,
+	yearSuffix: ''};
+datepicker.setDefaults(datepicker.regional['fr-CH']);
+
+return datepicker.regional['fr-CH'];
+
+}));
+
+/* Italian initialisation for the jQuery UI date picker plugin. */
+/* Written by Antonello Pasella (antonello.pasella@gmail.com). */
+(function( factory ) {
+	if ( typeof define === "function" && define.amd ) {
+
+		// AMD. Register as an anonymous module.
+		define([ "../datepicker" ], factory );
+	} else {
+
+		// Browser globals
+		factory( jQuery.datepicker );
+	}
+}(function( datepicker ) {
+
+datepicker.regional['it-CH'] = {
+	closeText: 'Chiudi',
+	prevText: '&#x3C;Prec',
+	nextText: 'Succ&#x3E;',
+	currentText: 'Oggi',
+	monthNames: ['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno',
+		'Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'],
+	monthNamesShort: ['Gen','Feb','Mar','Apr','Mag','Giu',
+		'Lug','Ago','Set','Ott','Nov','Dic'],
+	dayNames: ['Domenica','Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato'],
+	dayNamesShort: ['Dom','Lun','Mar','Mer','Gio','Ven','Sab'],
+	dayNamesMin: ['Do','Lu','Ma','Me','Gi','Ve','Sa'],
+	weekHeader: 'Sm',
+	dateFormat: 'dd.mm.yy',
+	firstDay: 1,
+	isRTL: false,
+	showMonthAfterYear: false,
+	yearSuffix: ''};
+datepicker.setDefaults(datepicker.regional['it-CH']);
+
+return datepicker.regional['it-CH'];
+
+}));
+
 /**
  * Default Form-Functionalities:
  * - validation
@@ -19075,8 +19423,8 @@ return $.datepicker;
 })(window, document, jQuery, Unic);
 
 /**
- * Carousel
- * @author ThJ, Unic AG
+ * Datepicker
+ * @author RMa, Unic AG
  * @license All rights reserved Unic AG
  */
 
@@ -19088,6 +19436,10 @@ return $.datepicker;
 	var pluginName = 'flexdatepicker',
 		events = {/* eventname: pluginName +'_eventname' */},
 		defaults = {
+			locale: 'en',
+			showOtherMonths: true,
+			selectOtherMonths: true,
+			firstDay: 1
 		};
 
 	// Globally accessible data like event names
@@ -19116,10 +19468,13 @@ return $.datepicker;
 		this.$element.on('click.' + pluginName, '[data-' + pluginName + '=trigger]', _.bind(this._showDatePicker, this));
 		this.$datefield = this.$element.find('input');
 
-		this.$datefield.datepicker({
-			showOtherMonths: true,
-			selectOtherMonths: true
-		});
+		if (this.options.dateFormat) {
+			this.options.dateFormat = window.convertDateFormatToUI(this.options.dateFormat);
+		}
+
+		$.datepicker.setDefaults( $.datepicker.regional[this.options.locale] );
+
+		this.$datefield.datepicker(this.options);
 	};
 
 	/**
@@ -19129,6 +19484,161 @@ return $.datepicker;
 	Plugin.prototype._showDatePicker = function(event){
 		event.preventDefault();
 		this.$datefield.datepicker('show');
+	};
+
+	// Make the plugin available through jQuery (and the global project namespace)
+	Unic.modules.PluginHelper.register(Plugin, pluginName, ['ready', 'ajax_loaded']);
+
+})(window, document, jQuery, Unic);
+
+/**
+ * Autocomplete-Plugin
+ * @author RMa, Unic AG
+ * @license All rights reserved Unic AG
+ */
+
+;(function(window, document, $, Unic, undefined) {
+	'use strict';
+
+	// globals
+	var $document = $(document);
+
+	var pluginName = 'flexautocomplete',
+		events = {/* eventname: pluginName +'_eventname' */},
+		defaults = {
+			delay: 300,
+			wrapperClass: 'flex_autocomplete_wrapper',
+			openClass: 'flex_is_open',
+			parameterName: 'query',
+			disabledKeys: [40, 39, 13, 38, 37, 27],
+			noResults: 'No Result available'
+		};
+
+	// Globally accessible data like event names
+	Unic.modules[pluginName] = {
+		events: events
+	};
+
+	/**
+	 * Create an instance of the module
+	 * @param {object} element The DOM element to bind the module
+	 * @param {object} options Options overwriting the defaults
+	 * @constructor
+	 */
+	var Plugin = function(element, options) {
+		// Call super constructor
+		this.helper = Unic.modules.PluginHelper;
+		this.helper(pluginName, defaults, element, options);
+	};
+
+	Plugin.prototype = $.extend(true, {}, Unic.modules.PluginHelper.prototype, Plugin.prototype);
+
+	/**
+	 * Initialize module, bind events
+	 */
+	Plugin.prototype.init = function() {
+		this.timeout = false;
+		this.$parent = this.$element.parent();
+		this.$listcontainer = $('<div></div>').insertAfter(this.$element);
+		this.$listcontainer.addClass(this.options.wrapperClass);
+
+		this.$list = $('<ul></ul>').appendTo(this.$listcontainer);
+
+		this._initAccessibility();
+
+		// Init Scrollbar
+		this.$listcontainer.addClass('u_scrollable_content');
+		this.$parent.attr('data-customscrollbar', 'init').attr('data-customscrollbar-options', JSON.stringify({snapAmount: 0, autoHideScrollbar: false, keyboard:{ enable: false }}));
+		$document.trigger('ajax_loaded', this.$parent);
+
+		this.$element.on('keydown', _.bind(this._handleKeydown, this));
+		$document.on('click', _.bind(this._hideList, this));
+		this.$list.on('click', 'a', _.bind(this._selectValue, this));
+	};
+
+	Plugin.prototype._initAccessibility = function(){
+		this.id = this.$element.attr('id');
+		this.$element.attr('aria-owns', this.id + '-list').attr('aria-autocomplete', 'list');
+
+		this.$parent.attr('data-accessibledropdown', 'init').attr('data-accessibledropdown-options', '{"openClass":"' + this.options.openClass + '"}');
+		$document.trigger('ajax_loaded', this.$parent);
+	};
+
+	Plugin.prototype._handleKeydown = function(event) {
+		if(!_.contains(this.options.disabledKeys, event.which)) {
+			if(this.timeout) {
+				clearTimeout(this.timeout);
+				this.timeout = false;
+			}
+			this.timeout = setTimeout(_.bind(this._getResults, this), this.options.delay);
+		}
+	};
+
+	Plugin.prototype._getResults = function() {
+		if(this.$element.val() !== '') {
+			var data = '',
+				$form = this.$element.closest('form'),
+				separator = this.options.url.indexOf('?') === -1 ? '?' : '&';
+
+			if ($form.length) {
+				data = $form.serialize();
+			} else {
+				data = this.options.parameterName + '=' + this.$element.val();
+			}
+			$.get(this.options.url + separator + data, _.bind(this._updateList, this));
+		} else {
+			this._hideList();
+		}
+	};
+
+	Plugin.prototype._updateList = function(data) {
+		this.$list.empty();
+		this.$list.attr('role', 'listbox').attr('aria-expanded', 'true');
+		this.$parent.addClass(this.options.openClass);
+
+		_.each(data, _.bind(function(element){
+			if(element.indexOf('title') >= 0) {
+				this.$list.append('<li>' + element + '</li>');
+			} else {
+				this.$list.append('<li><a href="#" tabindex="-1" role="option">' + element + '</a></li>');
+			}
+		}, this));
+
+		// No data here
+		if(!data || data === '' || !data.length) {
+			this.$list.append('<li class="u_var_noresult">' + this.options.noResults + '</li>');
+		}
+
+		if(Unic.modules.customscrollbar) {
+			this.$element.trigger(Unic.modules.customscrollbar.events.EVENT_SCROLLBAR_UPDATE);
+		}
+	};
+
+	Plugin.prototype._hideList = function(event){
+		if(!event) {
+			this.$parent.removeClass(this.options.openClass);
+			this.$list.attr('aria-expanded', 'false');
+		} else {
+			if(!$.contains(this.$listcontainer.get(0), event.target)) {
+				this.$parent.removeClass(this.options.openClass);
+				this.$list.attr('aria-expanded', 'false');
+			}
+			if (this.$element.get(0) === event.target && !this.$list.is(':empty')) {
+				this.$parent.addClass(this.options.openClass);
+				this.$list.attr('aria-expanded', 'true');
+			}
+		}
+	};
+
+	Plugin.prototype._selectValue = function(event){
+		event.preventDefault();
+		event.stopImmediatePropagation();
+		this.$element.val($(event.currentTarget).text());
+		this._hideList();
+	};
+
+	Plugin.prototype.destroy = function() {
+		this.$element.off('.'+pluginName);
 	};
 
 	// Make the plugin available through jQuery (and the global project namespace)
@@ -19179,12 +19689,16 @@ return $.datepicker;
  * @requires ../../vendor/Microsoft.jQuery.Unobtrusive.Validation/jquery.validate.unobtrusive.js
  * @requires ../../vendor/jquery-ui/ui/core.js
  * @requires ../../vendor/jquery-ui/ui/datepicker.js
+ * @requires ../../vendor/jquery-ui/ui/i18n/datepicker-de.js
+ * @requires ../../vendor/jquery-ui/ui/i18n/datepicker-fr-CH.js
+ * @requires ../../vendor/jquery-ui/ui/i18n/datepicker-it-CH.js
  *
  * //requires ../../.tmp/templates.js
  * @requires ../../.tmp/lodash.js
  * @requires ../../../modules/form/form.js
  * @requires ../../../modules/tooltips/tooltips.js
  * @requires ../../../modules/inputfields/_datepicker.js
+ * @requires ../../../modules/autocomplete/_autocomplete.js
  *
  *
  * @requires ../../vendor/unic-js-module/init.js
@@ -19192,3 +19706,22 @@ return $.datepicker;
 
 console.log('main');
 console.log(Modernizr.touchevents);
+
+
+// Convert .NET-DateFormat to jQuery UI.
+// .NET: http://msdn.microsoft.com/de-de/library/vstudio/8kb3ddd4.aspx
+// ui: http://api.jqueryui.com/datepicker/#utility-formatDate
+window.convertDateFormatToUI = function(formatstring){
+	'use strict';
+
+	var newFormat = formatstring
+		.replace(/(\b)(M{2})(\b)/g, 'mm')
+		.replace(/(\b)(M{1})(\b)/g, 'm')
+		.replace(/ddd/g, 'D') // day name short
+		.replace(/dddd/g, 'DD') // day name long
+		.replace(/MMMM/g, 'MM')
+		.replace(/MMM/g, 'M')
+		.replace(/yy/g, 'y');
+
+	return newFormat;
+};
