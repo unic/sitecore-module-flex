@@ -10,19 +10,6 @@
     public class DatePickerFieldViewModel : InputFieldViewModel<DateTime?>
     {
         /// <summary>
-        /// The date format
-        /// </summary>
-        private readonly string dateFormat;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DatePickerFieldViewModel"/> class.
-        /// </summary>
-        public DatePickerFieldViewModel()
-        {
-            this.dateFormat = Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern;
-        }
-        
-        /// <summary>
         /// Gets the name of the view.
         /// </summary>
         /// <value>
@@ -46,7 +33,7 @@
         {
             get
             {
-                return "{0:" + this.dateFormat + "}";
+                return Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern;
             }
         }
 
