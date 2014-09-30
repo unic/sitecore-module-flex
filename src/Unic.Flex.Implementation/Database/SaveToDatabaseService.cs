@@ -1,6 +1,8 @@
 ﻿namespace Unic.Flex.Implementation.Database
 {
+    using System.Threading;
     using AutoMapper;
+    using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
     using System;
     using System.Collections.ObjectModel;
@@ -68,6 +70,50 @@
 
             // save data to database
             this.unitOfWork.Save();
+        }
+
+        /// <summary>
+        /// Determines whether the specified form identifier has entries.
+        /// </summary>
+        /// <param name="formId">The form identifier.</param>
+        /// <returns>
+        /// Boolean value wheather the form has entries in the database.
+        /// </returns>
+        public virtual bool HasEntries(Guid formId)
+        {
+            var form = this.unitOfWork.FormRepository.Get(f => f.ItemId == formId).FirstOrDefault();
+            if (form == null) return false;
+
+            return form.Sessions != null && form.Sessions.Any();
+        }
+
+        /// <summary>
+        /// Determines whether the curent user has permission to export the given form.
+        /// </summary>
+        /// <param name="formId">The form identifier.</param>
+        /// <returns>
+        /// Boolean value wheather the user has permission to export the form.
+        /// </returns>
+        public virtual bool HasExportPermissions(Guid formId)
+        {
+            // todo: abstract Sitecore.Context
+            
+            if (Sitecore.Context.User.IsAdministrator) return true;
+
+            var item = Sitecore.Context.Database.GetItem(formId.ToString());
+            return Sitecore.Context.User.IsAuthenticated && item.Security.CanWrite(Sitecore.Context.User);
+        }
+
+        /// <summary>
+        /// Exports the form.
+        /// </summary>
+        /// <param name="formId">The form identifier.</param>
+        /// <param name="fileName">Name of the file.</param>
+        public virtual void ExportForm(Guid formId, string fileName)
+        {
+            Thread.Sleep(3000);
+
+            // todo: implement
         }
     }
 }

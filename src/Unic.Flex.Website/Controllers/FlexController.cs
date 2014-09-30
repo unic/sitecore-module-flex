@@ -8,6 +8,7 @@
     using Unic.Flex.Attributes;
     using Unic.Flex.Context;
     using Unic.Flex.Definitions;
+    using Unic.Flex.Implementation.Database;
     using Unic.Flex.Logging;
     using Unic.Flex.Mapping;
     using Unic.Flex.Model.Validation;
@@ -90,6 +91,11 @@
         /// </summary>
         private readonly ITaskService taskService;
 
+        /// <summary>
+        /// The save to database service
+        /// </summary>
+        private readonly ISaveToDatabaseService saveToDatabaseService;
+
         #endregion
 
         /// <summary>
@@ -105,7 +111,8 @@
         /// <param name="formRepository">The form repository.</param>
         /// <param name="logger">The logger.</param>
         /// <param name="taskService">The task service.</param>
-        public FlexController(IPresentationService presentationService, IModelConverterService modelConverter, IContextService contextService, IUserDataRepository userDataRepository, IPlugsService plugsService, IFlexContext flexContext, IUrlService urlService, IFormRepository formRepository, ILogger logger, ITaskService taskService)
+        /// <param name="saveToDatabaseService">The save to database service.</param>
+        public FlexController(IPresentationService presentationService, IModelConverterService modelConverter, IContextService contextService, IUserDataRepository userDataRepository, IPlugsService plugsService, IFlexContext flexContext, IUrlService urlService, IFormRepository formRepository, ILogger logger, ITaskService taskService, ISaveToDatabaseService saveToDatabaseService)
         {
             //// todo: check if all service/repository classes have virtual methods
             
@@ -119,6 +126,7 @@
             this.formRepository = formRepository;
             this.logger = logger;
             this.taskService = taskService;
+            this.saveToDatabaseService = saveToDatabaseService;
         }
 
         /// <summary>
@@ -340,6 +348,26 @@
             }
             
             return this.Content(true.ToString());
+        }
+
+        /// <summary>
+        /// Get the exported Excel file from the database.
+        /// </summary>
+        /// <param name="formId">The form identifier.</param>
+        /// <param name="fileName">Name of the file.</param>
+        /// <returns>The file from the temp folder.</returns>
+        public ActionResult DatabasePlugExport(Guid formId, string fileName)
+        {
+            // check permission
+            if (!this.saveToDatabaseService.HasExportPermissions(formId))
+            {
+                this.logger.Warn(string.Format("Try for exporting form '{0}' with insufficient permissions", formId), this);
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+            
+            // todo: implement
+            
+            return this.File(new byte[0], "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
         }
 
         /// <summary>
