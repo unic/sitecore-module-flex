@@ -1,14 +1,22 @@
 ﻿namespace Unic.Flex.Implementation.Database
 {
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.IO;
     using System.Threading;
     using AutoMapper;
+    using OfficeOpenXml;
+    using OfficeOpenXml.Style;
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
     using System;
     using System.Collections.ObjectModel;
     using System.Linq;
+    using Sitecore.Rules.Conditions.ItemConditions;
     using Unic.Flex.Database;
+    using Unic.Flex.Globalization;
     using Unic.Flex.Implementation.Fields.InputFields;
+    using Unic.Flex.Mapping;
     using Unic.Flex.Model.Entities;
     using File = Unic.Flex.Model.Entities.File;
     using Form = Unic.Flex.Model.DomainModel.Forms.Form;
@@ -24,12 +32,26 @@
         private readonly IUnitOfWork unitOfWork;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SaveToDatabaseService"/> class.
+        /// The form repository
+        /// </summary>
+        private readonly IFormRepository formRepository;
+
+        /// <summary>
+        /// The dictionary repository
+        /// </summary>
+        private readonly IDictionaryRepository dictionaryRepository;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SaveToDatabaseService" /> class.
         /// </summary>
         /// <param name="unitOfWork">The unit of work.</param>
-        public SaveToDatabaseService(IUnitOfWork unitOfWork)
+        /// <param name="formRepository">The form repository.</param>
+        /// <param name="dictionaryRepository">The dictionary repository.</param>
+        public SaveToDatabaseService(IUnitOfWork unitOfWork, IFormRepository formRepository, IDictionaryRepository dictionaryRepository)
         {
             this.unitOfWork = unitOfWork;
+            this.formRepository = formRepository;
+            this.dictionaryRepository = dictionaryRepository;
         }
 
         /// <summary>
@@ -111,9 +133,67 @@
         /// <param name="fileName">Name of the file.</param>
         public virtual void ExportForm(Guid formId, string fileName)
         {
-            Thread.Sleep(3000);
+            // get the form
+            var form = this.formRepository.LoadForm(formId.ToString());
+            if (form == null || form.ItemId != formId) return;
 
-            // todo: implement
+            // get the form data
+            var formData = this.unitOfWork.FormRepository.Get(f => f.ItemId == formId).FirstOrDefault();
+            if (formData == null || !formData.Sessions.Any()) return;
+
+            // generate worksheet
+            var file = new FileInfo(fileName);
+            using (var package = new ExcelPackage(file))
+            {
+                // get worksheet
+                var worksheet = package.Workbook.Worksheets.Add(form.Title);
+
+                // get list of field id's added
+                var fields = new List<Guid>();
+
+                // add header
+                worksheet.Cells[1, 1].Value = this.dictionaryRepository.GetText("Column Timestamp");
+                worksheet.Cells[1, 2].Value = this.dictionaryRepository.GetText("Column Language");
+
+                var column = 3;
+                foreach (var field in form.GetSections().SelectMany(s => s.Fields).Where(f => !string.IsNullOrWhiteSpace(f.Label)))
+                {
+                    worksheet.Cells[1, column].Value = field.Label;
+                    worksheet.Cells[1, column].Style.Fill.PatternType = ExcelFillStyle.Solid;
+                    worksheet.Cells[1, column].Style.Fill.BackgroundColor.SetColor(Color.LightGray);
+                    worksheet.Cells[1, column].Style.Font.Bold = true;
+
+                    // todo: format the cells somehow different (also don't miss the timestamp and language cell
+                    
+                    fields.Add(field.ItemId);
+                    column++;
+                }
+
+                // add content
+                var row = 2;
+                foreach (var session in formData.Sessions)
+                {
+                    // todo: correctly format timestamp cell as a date
+                    worksheet.Cells[row, 1].Value = session.Timestamp;
+                    worksheet.Cells[row, 2].Value = session.Language;
+
+                    column = 3;
+                    foreach (var fieldId in fields)
+                    {
+                        var field = session.Fields.FirstOrDefault(f => f.ItemId == fieldId);
+                        var fieldValue = field != null ? field.Value : "-";
+                        worksheet.Cells[row, column++].Value = fieldValue;
+                    }
+
+                    row++;
+                }
+
+                // autofit cells
+                worksheet.Cells.AutoFitColumns();
+
+                // save
+                package.Save();
+            }
         }
     }
 }

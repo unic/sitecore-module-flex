@@ -365,9 +365,9 @@
                 return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
             
-            // todo: implement
-            
-            return this.File(new byte[0], "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+            // todo: load file and delete it after loading
+
+            return this.File(fileName, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "bla.xlsx");
         }
 
         /// <summary>

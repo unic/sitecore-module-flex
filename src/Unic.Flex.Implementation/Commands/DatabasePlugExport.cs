@@ -2,6 +2,7 @@
 {
     using Sitecore;
     using Sitecore.Configuration;
+    using Sitecore.Data;
     using Sitecore.Diagnostics;
     using Sitecore.Shell.Applications.Dialogs.ProgressBoxes;
     using Sitecore.Shell.Framework.Commands;
@@ -42,9 +43,12 @@
         /// </summary>
         public DatabasePlugExport()
         {
-            this.saveToDatabaseService = Container.Resolve<ISaveToDatabaseService>();
-            this.logger = Container.Resolve<ILogger>();
-            this.dictionaryRepository = Container.Resolve<IDictionaryRepository>();
+            using (new DatabaseSwitcher(Factory.GetDatabase("master")))
+            {
+                this.saveToDatabaseService = Container.Resolve<ISaveToDatabaseService>();
+                this.logger = Container.Resolve<ILogger>();
+                this.dictionaryRepository = Container.Resolve<IDictionaryRepository>();
+            }
         }
 
         /// <summary>
@@ -64,13 +68,6 @@
             var fileName = this.GetTempFileName();
             ProgressBox.Execute(this.dictionaryRepository.GetText("Exporting form"), this.dictionaryRepository.GetText("Flex Form Export"), this.Export, itemId, fileName);
             
-            // verify if the file could be written
-            if (!File.Exists(fileName))
-            {
-                SheerResponse.Alert(this.dictionaryRepository.GetText("Excel Export Error"));
-                return;
-            }
-
             // dowload the document
             var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
             var downloadUrl = urlHelper.Action("DatabasePlugExport", "Flex", new { formId = itemId, fileName = fileName });
@@ -121,7 +118,7 @@
             }
             catch (Exception exception)
             {
-                this.logger.Error("Error while exporting form", exception);
+                this.logger.Error(string.Format("Error while exporting form: {0}", exception.Message), exception);
             }
         }
 
