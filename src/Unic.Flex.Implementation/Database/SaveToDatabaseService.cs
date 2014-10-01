@@ -18,7 +18,9 @@
     using Unic.Flex.Globalization;
     using Unic.Flex.Implementation.Fields.InputFields;
     using Unic.Flex.Mapping;
+    using Unic.Flex.Model.DomainModel.Fields.ListFields;
     using Unic.Flex.Model.Entities;
+    using Unic.Flex.Utilities;
     using File = Unic.Flex.Model.Entities.File;
     using Form = Unic.Flex.Model.DomainModel.Forms.Form;
 
@@ -141,7 +143,7 @@
                 var worksheet = package.Workbook.Worksheets.Add(form.Title);
 
                 // get list of field id's added
-                var fields = new List<Guid>();
+                var fields = new List<FieldItem>();
 
                 // add header
                 worksheet.Cells[1, 1].Value = this.dictionaryRepository.GetText("Column Timestamp");
@@ -151,7 +153,7 @@
                 foreach (var field in form.GetSections().SelectMany(s => s.Fields).Where(f => !string.IsNullOrWhiteSpace(f.Label)))
                 {
                     worksheet.Cells[1, column].Value = field.Label;
-                    fields.Add(field.ItemId);
+                    fields.Add(new FieldItem { Id = field.ItemId, Type = field.GetType() });
                     column++;
                 }
 
@@ -166,15 +168,13 @@
                 foreach (var session in formData.Sessions)
                 {
                     worksheet.Cells[row, 1].Value = session.Timestamp;
-                    worksheet.Cells[row, 1].Style.Numberformat.Format = "mm-dd-yy";
+                    worksheet.Cells[row, 1].Style.Numberformat.Format = "m/d/yy h:mm";
                     worksheet.Cells[row, 2].Value = session.Language;
 
                     column = 3;
-                    foreach (var fieldId in fields)
+                    foreach (var item in fields)
                     {
-                        var field = session.Fields.FirstOrDefault(f => f.ItemId == fieldId);
-                        var fieldValue = field != null ? field.Value : "-";
-                        worksheet.Cells[row, column++].Value = fieldValue;
+                        worksheet.Cells[row, column++].Value = this.GetExportValue(item, session.Fields.FirstOrDefault(f => f.ItemId == item.Id));
                     }
 
                     row++;
@@ -182,10 +182,46 @@
 
                 // autofit cells
                 worksheet.Cells.AutoFitColumns();
+                worksheet.Column(1).Width += 2;
 
                 // save
                 package.Save();
             }
+        }
+
+        /// <summary>
+        /// Gets the export value.
+        /// </summary>
+        /// <param name="fieldItem">The field item.</param>
+        /// <param name="field">The field.</param>
+        /// <returns>The formatted exported value</returns>
+        private string GetExportValue(FieldItem fieldItem, Field field)
+        {
+            if (fieldItem == null) return "-";
+            if (TypeHelper.IsSubclassOfRawGeneric(typeof(ListField<>), fieldItem.Type)) return field.Value.Replace(Environment.NewLine, ", ");
+            return field.Value;
+        }
+
+        /// <summary>
+        /// A container class for a field item.
+        /// </summary>
+        private class FieldItem
+        {
+            /// <summary>
+            /// Gets or sets the identifier.
+            /// </summary>
+            /// <value>
+            /// The identifier.
+            /// </value>
+            public Guid Id { get; set; }
+
+            /// <summary>
+            /// Gets or sets the type.
+            /// </summary>
+            /// <value>
+            /// The type.
+            /// </value>
+            public Type Type { get; set; }
         }
     }
 }
