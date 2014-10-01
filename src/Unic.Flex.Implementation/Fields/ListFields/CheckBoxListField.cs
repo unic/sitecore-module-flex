@@ -2,6 +2,7 @@
 {
     using Glass.Mapper.Sc.Configuration.Attributes;
     using System.Linq;
+    using Newtonsoft.Json.Linq;
     using Unic.Flex.Model.DomainModel.Fields.ListFields;
 
     /// <summary>
@@ -33,6 +34,13 @@
             if (value is string)
             {
                 base.SetValue(value.ToString().Split(','));
+                return;
+            }
+
+            var jsonValue = value as JArray;
+            if (jsonValue != null)
+            {
+                base.SetValue(jsonValue.Select(token => token.ToString()).ToArray());
                 return;
             }
             
