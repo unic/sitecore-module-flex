@@ -30,10 +30,17 @@ key: __icon
 content-length: 29
 
 software/32x32/components.png
+----field----
+field: {0C894AAB-962B-4A84-B923-CB24B05E60D2}
+name: __Ribbon
+key: __ribbon
+content-length: 38
+
+{D9A5D7EB-8220-4D25-A4F4-2B773BEC6905}
 ----version----
 language: en
 version: 1
-revision: 68b467a6-51b8-40cc-8c9b-9b0a699c601b
+revision: ef3cb7df-5db2-4893-af82-6b1c72ceafa3
 
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
@@ -55,14 +62,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-68b467a6-51b8-40cc-8c9b-9b0a699c601b
+ef3cb7df-5db2-4893-af82-6b1c72ceafa3
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20140424T155604:635339517645378819
+20140929T150116:635475996769303886
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

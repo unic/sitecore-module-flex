@@ -1,13 +1,16 @@
 ﻿namespace Unic.Flex.Website.Controllers
 {
     using System;
+    using System.IO;
     using System.Linq;
     using System.Net;
     using System.Security.Cryptography;
     using System.Web.Mvc;
+    using Sitecore;
+    using Sitecore.Configuration;
     using Unic.Flex.Attributes;
     using Unic.Flex.Context;
-    using Unic.Flex.Definitions;
+    using Unic.Flex.Implementation.Database;
     using Unic.Flex.Logging;
     using Unic.Flex.Mapping;
     using Unic.Flex.Model.Validation;
@@ -16,6 +19,7 @@
     using Unic.Flex.Plugs;
     using Unic.Flex.Presentation;
     using Unic.Flex.Utilities;
+    using Constants = Unic.Flex.Definitions.Constants;
     using Profiler = Unic.Profiling.Profiler;
 
     /// <summary>
@@ -90,6 +94,11 @@
         /// </summary>
         private readonly ITaskService taskService;
 
+        /// <summary>
+        /// The save to database service
+        /// </summary>
+        private readonly ISaveToDatabaseService saveToDatabaseService;
+
         #endregion
 
         /// <summary>
@@ -105,7 +114,8 @@
         /// <param name="formRepository">The form repository.</param>
         /// <param name="logger">The logger.</param>
         /// <param name="taskService">The task service.</param>
-        public FlexController(IPresentationService presentationService, IModelConverterService modelConverter, IContextService contextService, IUserDataRepository userDataRepository, IPlugsService plugsService, IFlexContext flexContext, IUrlService urlService, IFormRepository formRepository, ILogger logger, ITaskService taskService)
+        /// <param name="saveToDatabaseService">The save to database service.</param>
+        public FlexController(IPresentationService presentationService, IModelConverterService modelConverter, IContextService contextService, IUserDataRepository userDataRepository, IPlugsService plugsService, IFlexContext flexContext, IUrlService urlService, IFormRepository formRepository, ILogger logger, ITaskService taskService, ISaveToDatabaseService saveToDatabaseService)
         {
             //// todo: check if all service/repository classes have virtual methods
             
@@ -119,6 +129,7 @@
             this.formRepository = formRepository;
             this.logger = logger;
             this.taskService = taskService;
+            this.saveToDatabaseService = saveToDatabaseService;
         }
 
         /// <summary>
@@ -343,6 +354,48 @@
         }
 
         /// <summary>
+        /// Get the exported Excel file from the database.
+        /// </summary>
+        /// <param name="formId">The form identifier.</param>
+        /// <param name="fileName">Name of the file.</param>
+        /// <param name="hash">The hash.</param>
+        /// <returns>
+        /// The file from the temp folder.
+        /// </returns>
+        public ActionResult DatabasePlugExport(Guid formId, string fileName, string hash)
+        {
+            // check permission
+            if (!this.saveToDatabaseService.HasExportPermissions(formId))
+            {
+                this.logger.Warn(string.Format("Try for exporting form '{0}' with insufficient permissions", formId), this);
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+
+            // verify hash
+            if (!SecurityUtil.VerifyMd5Hash(MD5.Create(), string.Join("_", formId, fileName), hash))
+            {
+                this.logger.Warn(string.Format("Try for exporting form '{0}' with invalid hash", formId), this);
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            
+            // get the correct path to the temp folder
+            var filePath = Path.Combine(MainUtil.MapPath(Settings.TempFolderPath), fileName);
+            if (!System.IO.File.Exists(filePath))
+            {
+                this.logger.Warn(string.Format("Try for exporting form '{0}', but generated file '{1}' is not available anymore", formId, filePath), this);
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+
+            // load the form to get the filename
+            var form = this.contextService.LoadForm(formId.ToString());
+
+            // get the file, delete it and return the stream
+            var data = this.GetFileData(filePath);
+            System.IO.File.Delete(filePath);
+            return this.File(data, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", string.Format("{0}.xlsx", form.Title));
+        }
+
+        /// <summary>
         /// Shows the error.
         /// </summary>
         /// <returns>View for showing errors</returns>
@@ -363,6 +416,23 @@
             var model = new SuccessMessageViewModel { Message = message };
             var view = this.presentationService.ResolveView(this.ControllerContext, model);
             return this.View(view, model);
+        }
+
+        /// <summary>
+        /// Gets the file data.
+        /// </summary>
+        /// <param name="path">The path.</param>
+        /// <returns>File data of specific file.</returns>
+        private byte[] GetFileData(string path)
+        {
+            using (var stream = System.IO.File.Open(path, FileMode.Open, FileAccess.Read))
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    stream.CopyTo(memoryStream);
+                    return memoryStream.ToArray();
+                }
+            }
         }
     }
 }

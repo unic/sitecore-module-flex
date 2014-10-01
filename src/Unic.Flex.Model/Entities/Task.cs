@@ -2,6 +2,7 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     /// <summary>
     /// Entity to store a specific task/plug.
@@ -15,6 +16,7 @@
         /// The identifier.
         /// </value>
         [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public virtual int Id { get; set; }
 
         /// <summary>

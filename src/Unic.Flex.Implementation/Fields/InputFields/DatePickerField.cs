@@ -27,5 +27,19 @@
         /// </value>
         [SitecoreField("Default Value")]
         public override DateTime? DefaultValue { get; set; }
+
+        /// <summary>
+        /// Gets the text value.
+        /// </summary>
+        /// <value>
+        /// The text value.
+        /// </value>
+        public override string TextValue
+        {
+            get
+            {
+                return !this.Value.HasValue ? base.TextValue : this.Value.Value.ToShortDateString();
+            }
+        }
     }
 }
