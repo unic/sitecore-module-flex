@@ -28,36 +28,22 @@
         /// <summary>
         /// The save to database service
         /// </summary>
-        private readonly ISaveToDatabaseService saveToDatabaseService;
+        private ISaveToDatabaseService saveToDatabaseService;
 
         /// <summary>
         /// The logger
         /// </summary>
-        private readonly ILogger logger;
+        private ILogger logger;
 
         /// <summary>
         /// The dictionary repository
         /// </summary>
-        private readonly IDictionaryRepository dictionaryRepository;
+        private IDictionaryRepository dictionaryRepository;
 
         /// <summary>
         /// The context service
         /// </summary>
-        private readonly IContextService contextService;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DatabasePlugExport"/> class.
-        /// </summary>
-        public DatabasePlugExport()
-        {
-            using (new DatabaseSwitcher(Factory.GetDatabase("master")))
-            {
-                this.saveToDatabaseService = Container.Resolve<ISaveToDatabaseService>();
-                this.logger = Container.Resolve<ILogger>();
-                this.dictionaryRepository = Container.Resolve<IDictionaryRepository>();
-                this.contextService = Container.Resolve<IContextService>();
-            }
-        }
+        private IContextService contextService;
 
         /// <summary>
         /// Executes the specified context.
@@ -70,6 +56,9 @@
             // get the item to process
             var item = context.Items.FirstOrDefault();
             Assert.IsNotNull(item, "Item must not be null");
+
+            // initialize
+            this.Initialize();
 
             // generate the excel
             var form = this.contextService.LoadForm(item.ID.ToString());
@@ -144,6 +133,20 @@
             while (File.Exists(path));
         
             return path;
+        }
+
+        /// <summary>
+        /// Initializes this instance.
+        /// </summary>
+        private void Initialize()
+        {
+            using (new DatabaseSwitcher(Factory.GetDatabase("master")))
+            {
+                this.saveToDatabaseService = Container.Resolve<ISaveToDatabaseService>();
+                this.logger = Container.Resolve<ILogger>();
+                this.dictionaryRepository = Container.Resolve<IDictionaryRepository>();
+                this.contextService = Container.Resolve<IContextService>();
+            }
         }
     }
 }
