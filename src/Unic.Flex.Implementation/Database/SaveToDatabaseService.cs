@@ -1,23 +1,18 @@
 ﻿namespace Unic.Flex.Implementation.Database
 {
-    using System.Collections.Generic;
-    using System.Drawing;
-    using System.IO;
-    using System.Threading;
     using AutoMapper;
     using OfficeOpenXml;
     using OfficeOpenXml.Style;
-    using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
     using System;
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Drawing;
+    using System.IO;
     using System.Linq;
-    using Sitecore.Rules.Conditions.ItemConditions;
     using Unic.Flex.Database;
-    using Unic.Flex.DependencyInjection;
     using Unic.Flex.Globalization;
     using Unic.Flex.Implementation.Fields.InputFields;
-    using Unic.Flex.Mapping;
     using Unic.Flex.Model.DomainModel.Fields.ListFields;
     using Unic.Flex.Model.Entities;
     using Unic.Flex.Utilities;
@@ -114,7 +109,7 @@
         /// </returns>
         public virtual bool HasExportPermissions(Guid formId)
         {
-            // todo: abstract Sitecore.Context
+            //// todo: abstract Sitecore.Context
             
             if (Sitecore.Context.User.IsAdministrator) return true;
 

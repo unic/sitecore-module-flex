@@ -1,6 +1,5 @@
 ﻿namespace Unic.Flex.Implementation.Commands
 {
-    using System.Security.Cryptography;
     using Sitecore;
     using Sitecore.Configuration;
     using Sitecore.Data;
@@ -12,6 +11,7 @@
     using System;
     using System.IO;
     using System.Linq;
+    using System.Security.Cryptography;
     using System.Web;
     using System.Web.Mvc;
     using Unic.Flex.Context;
