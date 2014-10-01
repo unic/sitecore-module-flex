@@ -151,21 +151,20 @@
                 foreach (var field in form.GetSections().SelectMany(s => s.Fields).Where(f => !string.IsNullOrWhiteSpace(f.Label)))
                 {
                     worksheet.Cells[1, column].Value = field.Label;
-                    worksheet.Cells[1, column].Style.Fill.PatternType = ExcelFillStyle.Solid;
-                    worksheet.Cells[1, column].Style.Fill.BackgroundColor.SetColor(Color.LightGray);
-                    worksheet.Cells[1, column].Style.Font.Bold = true;
-
-                    // todo: format the cells somehow different (also don't miss the timestamp and language cell
-                    
                     fields.Add(field.ItemId);
                     column++;
                 }
+
+                // format header row
+                var cells = worksheet.Cells[1, 1, 1, column - 1];
+                cells.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                cells.Style.Fill.BackgroundColor.SetColor(Color.LightGray);
+                cells.Style.Font.Bold = true;
 
                 // add content
                 var row = 2;
                 foreach (var session in formData.Sessions)
                 {
-                    // todo: correctly format timestamp cell as a date
                     worksheet.Cells[row, 1].Value = session.Timestamp;
                     worksheet.Cells[row, 1].Style.Numberformat.Format = "mm-dd-yy";
                     worksheet.Cells[row, 2].Value = session.Language;
