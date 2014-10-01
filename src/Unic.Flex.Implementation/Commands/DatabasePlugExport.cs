@@ -1,5 +1,6 @@
 ﻿namespace Unic.Flex.Implementation.Commands
 {
+    using System.Security.Cryptography;
     using Sitecore;
     using Sitecore.Configuration;
     using Sitecore.Data;
@@ -19,6 +20,7 @@
     using Unic.Flex.Implementation.Database;
     using Unic.Flex.Logging;
     using Unic.Flex.Model.DomainModel.Forms;
+    using Unic.Flex.Utilities;
 
     /// <summary>
     /// Command to export form data from databae to excel
@@ -62,12 +64,14 @@
 
             // generate the excel
             var form = this.contextService.LoadForm(item.ID.ToString());
-            var fileName = this.GetTempFileName();
-            ProgressBox.Execute(this.dictionaryRepository.GetText("Exporting form"), this.dictionaryRepository.GetText("Flex Form Export"), this.Export, form, fileName);
+            var filePath = this.GetTempFileName();
+            ProgressBox.Execute(this.dictionaryRepository.GetText("Exporting form"), this.dictionaryRepository.GetText("Flex Form Export"), this.Export, form, filePath);
             
             // dowload the document
+            var fileName = filePath.Substring(filePath.LastIndexOf('\\') + 1);
+            var hash = SecurityUtil.GetMd5Hash(MD5.Create(), string.Join("_", form.ItemId, fileName));
             var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
-            var downloadUrl = urlHelper.Action("DatabasePlugExport", "Flex", new { formId = form.ItemId, fileName = fileName });
+            var downloadUrl = urlHelper.Action("DatabasePlugExport", "Flex", new { formId = form.ItemId, fileName = fileName, hash = hash });
             SheerResponse.SetLocation(downloadUrl);
         }
 
@@ -85,15 +89,16 @@
             Assert.IsNotNull(item, "Item must not be null");
 
             var itemId = item.ID.ToGuid();
+            var service = Container.Resolve<ISaveToDatabaseService>();
 
             // check if the user has permission to export the form
-            if (!this.saveToDatabaseService.HasExportPermissions(itemId))
+            if (!service.HasExportPermissions(itemId))
             {
                 return CommandState.Disabled;
             }
 
             // check if the current form has entries to export in the database
-            if (!this.saveToDatabaseService.HasEntries(itemId))
+            if (!service.HasEntries(itemId))
             {
                 return CommandState.Disabled;
             }
