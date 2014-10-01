@@ -13,10 +13,12 @@
     using System.Linq;
     using System.Web;
     using System.Web.Mvc;
+    using Unic.Flex.Context;
     using Unic.Flex.DependencyInjection;
     using Unic.Flex.Globalization;
     using Unic.Flex.Implementation.Database;
     using Unic.Flex.Logging;
+    using Unic.Flex.Model.DomainModel.Forms;
 
     /// <summary>
     /// Command to export form data from databae to excel
@@ -39,6 +41,11 @@
         private readonly IDictionaryRepository dictionaryRepository;
 
         /// <summary>
+        /// The context service
+        /// </summary>
+        private readonly IContextService contextService;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="DatabasePlugExport"/> class.
         /// </summary>
         public DatabasePlugExport()
@@ -48,6 +55,7 @@
                 this.saveToDatabaseService = Container.Resolve<ISaveToDatabaseService>();
                 this.logger = Container.Resolve<ILogger>();
                 this.dictionaryRepository = Container.Resolve<IDictionaryRepository>();
+                this.contextService = Container.Resolve<IContextService>();
             }
         }
 
@@ -64,13 +72,13 @@
             Assert.IsNotNull(item, "Item must not be null");
 
             // generate the excel
-            var itemId = item.ID.ToGuid();
+            var form = this.contextService.LoadForm(item.ID.ToString());
             var fileName = this.GetTempFileName();
-            ProgressBox.Execute(this.dictionaryRepository.GetText("Exporting form"), this.dictionaryRepository.GetText("Flex Form Export"), this.Export, itemId, fileName);
+            ProgressBox.Execute(this.dictionaryRepository.GetText("Exporting form"), this.dictionaryRepository.GetText("Flex Form Export"), this.Export, form, fileName);
             
             // dowload the document
             var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
-            var downloadUrl = urlHelper.Action("DatabasePlugExport", "Flex", new { formId = itemId, fileName = fileName });
+            var downloadUrl = urlHelper.Action("DatabasePlugExport", "Flex", new { formId = form.ItemId, fileName = fileName });
             SheerResponse.SetLocation(downloadUrl);
         }
 
@@ -112,9 +120,9 @@
         {
             try
             {
-                var formId = (Guid)arguments[0];
+                var form = (Form)arguments[0];
                 var fileName = (string)arguments[1];
-                this.saveToDatabaseService.ExportForm(formId, fileName);
+                this.saveToDatabaseService.ExportForm(form, fileName);
             }
             catch (Exception exception)
             {

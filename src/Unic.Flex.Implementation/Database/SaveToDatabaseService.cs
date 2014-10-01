@@ -33,12 +33,19 @@
         private readonly IUnitOfWork unitOfWork;
 
         /// <summary>
+        /// The dictionary repository
+        /// </summary>
+        private readonly IDictionaryRepository dictionaryRepository;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="SaveToDatabaseService" /> class.
         /// </summary>
         /// <param name="unitOfWork">The unit of work.</param>
-        public SaveToDatabaseService(IUnitOfWork unitOfWork)
+        /// <param name="dictionaryRepository">The dictionary repository.</param>
+        public SaveToDatabaseService(IUnitOfWork unitOfWork, IDictionaryRepository dictionaryRepository)
         {
             this.unitOfWork = unitOfWork;
+            this.dictionaryRepository = dictionaryRepository;
         }
 
         /// <summary>
@@ -116,19 +123,14 @@
         /// <summary>
         /// Exports the form.
         /// </summary>
-        /// <param name="formId">The form identifier.</param>
+        /// <param name="form">The form.</param>
         /// <param name="fileName">Name of the file.</param>
-        public virtual void ExportForm(Guid formId, string fileName)
+        public virtual void ExportForm(Form form, string fileName)
         {
-            var formRepository = Container.Resolve<IFormRepository>();
-            var dictionaryRepository = Container.Resolve<IDictionaryRepository>();
+            Assert.ArgumentNotNull(form, "form");
             
-            // get the form
-            var form = formRepository.LoadForm(formId.ToString());
-            if (form == null || form.ItemId != formId) return;
-
             // get the form data
-            var formData = this.unitOfWork.FormRepository.Get(f => f.ItemId == formId).FirstOrDefault();
+            var formData = this.unitOfWork.FormRepository.Get(f => f.ItemId == form.ItemId).FirstOrDefault();
             if (formData == null || !formData.Sessions.Any()) return;
 
             // generate worksheet
@@ -142,8 +144,8 @@
                 var fields = new List<Guid>();
 
                 // add header
-                worksheet.Cells[1, 1].Value = dictionaryRepository.GetText("Column Timestamp");
-                worksheet.Cells[1, 2].Value = dictionaryRepository.GetText("Column Language");
+                worksheet.Cells[1, 1].Value = this.dictionaryRepository.GetText("Column Timestamp");
+                worksheet.Cells[1, 2].Value = this.dictionaryRepository.GetText("Column Language");
 
                 var column = 3;
                 foreach (var field in form.GetSections().SelectMany(s => s.Fields).Where(f => !string.IsNullOrWhiteSpace(f.Label)))

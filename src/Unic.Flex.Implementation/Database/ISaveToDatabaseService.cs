@@ -33,8 +33,8 @@
         /// <summary>
         /// Exports the form.
         /// </summary>
-        /// <param name="formId">The form identifier.</param>
+        /// <param name="form">The form.</param>
         /// <param name="fileName">Name of the file.</param>
-        void ExportForm(Guid formId, string fileName);
+        void ExportForm(Form form, string fileName);
     }
 }
