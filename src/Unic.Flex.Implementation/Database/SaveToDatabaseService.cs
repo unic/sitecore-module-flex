@@ -14,6 +14,7 @@
     using System.Linq;
     using Sitecore.Rules.Conditions.ItemConditions;
     using Unic.Flex.Database;
+    using Unic.Flex.DependencyInjection;
     using Unic.Flex.Globalization;
     using Unic.Flex.Implementation.Fields.InputFields;
     using Unic.Flex.Mapping;
@@ -32,26 +33,12 @@
         private readonly IUnitOfWork unitOfWork;
 
         /// <summary>
-        /// The form repository
-        /// </summary>
-        private readonly IFormRepository formRepository;
-
-        /// <summary>
-        /// The dictionary repository
-        /// </summary>
-        private readonly IDictionaryRepository dictionaryRepository;
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="SaveToDatabaseService" /> class.
         /// </summary>
         /// <param name="unitOfWork">The unit of work.</param>
-        /// <param name="formRepository">The form repository.</param>
-        /// <param name="dictionaryRepository">The dictionary repository.</param>
-        public SaveToDatabaseService(IUnitOfWork unitOfWork, IFormRepository formRepository, IDictionaryRepository dictionaryRepository)
+        public SaveToDatabaseService(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
-            this.formRepository = formRepository;
-            this.dictionaryRepository = dictionaryRepository;
         }
 
         /// <summary>
@@ -133,8 +120,11 @@
         /// <param name="fileName">Name of the file.</param>
         public virtual void ExportForm(Guid formId, string fileName)
         {
+            var formRepository = Container.Resolve<IFormRepository>();
+            var dictionaryRepository = Container.Resolve<IDictionaryRepository>();
+            
             // get the form
-            var form = this.formRepository.LoadForm(formId.ToString());
+            var form = formRepository.LoadForm(formId.ToString());
             if (form == null || form.ItemId != formId) return;
 
             // get the form data
@@ -152,8 +142,8 @@
                 var fields = new List<Guid>();
 
                 // add header
-                worksheet.Cells[1, 1].Value = this.dictionaryRepository.GetText("Column Timestamp");
-                worksheet.Cells[1, 2].Value = this.dictionaryRepository.GetText("Column Language");
+                worksheet.Cells[1, 1].Value = dictionaryRepository.GetText("Column Timestamp");
+                worksheet.Cells[1, 2].Value = dictionaryRepository.GetText("Column Language");
 
                 var column = 3;
                 foreach (var field in form.GetSections().SelectMany(s => s.Fields).Where(f => !string.IsNullOrWhiteSpace(f.Label)))
