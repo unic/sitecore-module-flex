@@ -175,6 +175,7 @@
                 {
                     // todo: correctly format timestamp cell as a date
                     worksheet.Cells[row, 1].Value = session.Timestamp;
+                    worksheet.Cells[row, 1].Style.Numberformat.Format = "mm-dd-yy";
                     worksheet.Cells[row, 2].Value = session.Language;
 
                     column = 3;
