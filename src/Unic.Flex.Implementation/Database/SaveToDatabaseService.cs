@@ -109,8 +109,6 @@
         /// </returns>
         public virtual bool HasExportPermissions(Guid formId)
         {
-            //// todo: abstract Sitecore.Context
-            
             if (Sitecore.Context.User.IsAdministrator) return true;
 
             var item = Sitecore.Context.Database.GetItem(formId.ToString());
