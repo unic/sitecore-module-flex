@@ -25,8 +25,6 @@
         /// </summary>
         public override void Load()
         {
-            // todo: check if all scopes of these injetions are valid
-            
             // logging
             Bind<ILogger>().To<SitecoreLogger>().InSingletonScope();
             
