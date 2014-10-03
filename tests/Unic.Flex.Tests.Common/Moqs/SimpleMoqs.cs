@@ -2,8 +2,11 @@
 {
     using Moq;
     using System;
+    using System.Linq.Expressions;
+    using Unic.Configuration;
     using Unic.Flex.Globalization;
     using Unic.Flex.Logging;
+    using Unic.Flex.Model.Configuration;
 
     /// <summary>
     /// Class to retrieve simple moq classes.
@@ -31,6 +34,17 @@
         {
             var mock = new Mock<IDictionaryRepository>();
             mock.Setup(method => method.GetText(It.IsAny<string>())).Returns((string key) => key);
+            return mock.Object;
+        }
+
+        /// <summary>
+        /// Gets the configuration manager.
+        /// </summary>
+        /// <returns>A configuration manager moq</returns>
+        public static IConfigurationManager GetConfigurationManager()
+        {
+            var mock = new Mock<IConfigurationManager>();
+            mock.Setup(method => method.Get(It.IsAny<Expression<Func<GlobalConfiguration, string>>>())).Returns("(optional)");
             return mock.Object;
         }
     }

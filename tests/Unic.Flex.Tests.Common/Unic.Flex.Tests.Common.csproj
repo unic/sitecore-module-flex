@@ -52,8 +52,13 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="Unic.Configuration, Version=0.3.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Unic.Configuration.0.3.0.1\lib\net45\Unic.Configuration.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AutoMapperMockConfig.cs" />
     <Compile Include="Moqs\FormRepositoryMoqs.cs" />
     <Compile Include="Moqs\SimpleMoqs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -63,9 +68,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Unic.Flex.Implementation\Unic.Flex.Implementation.csproj">
+      <Project>{5a1f1575-4fef-4801-9c6c-a96cf0860885}</Project>
+      <Name>Unic.Flex.Implementation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Unic.Flex.Model\Unic.Flex.Model.csproj">
       <Project>{c47272b9-c13f-4f53-b9f3-d3066bb45810}</Project>
       <Name>Unic.Flex.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Unic.Flex.Website\Unic.Flex.Website.csproj">
+      <Project>{577b0929-df4e-437a-8601-def9d3974332}</Project>
+      <Name>Unic.Flex.Website</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Unic.Flex\Unic.Flex.csproj">
       <Project>{18b25ae3-f6aa-4a59-a49b-051ceb4487d8}</Project>

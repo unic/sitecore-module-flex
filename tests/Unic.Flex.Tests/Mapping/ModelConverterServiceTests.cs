@@ -1,18 +1,18 @@
 ﻿namespace Unic.Flex.Tests.Mapping
 {
-    using System;
-    using System.Linq.Expressions;
     using Moq;
     using Moq.Protected;
     using NUnit.Framework;
-    using Unic.Configuration;
+    using System;
+    using System.Linq;
     using Unic.Flex.Mapping;
-    using Unic.Flex.Model.Configuration;
     using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.DomainModel.Steps;
+    using Unic.Flex.Model.ViewModel.Fields.InputFields;
     using Unic.Flex.Model.ViewModel.Forms;
+    using Unic.Flex.Model.ViewModel.Steps;
+    using Unic.Flex.Tests.Common;
     using Unic.Flex.Tests.Common.Moqs;
-    using Unic.Flex.Website;
 
     /// <summary>
     /// Tests for model converting
@@ -31,7 +31,7 @@
             [TestFixtureSetUp]
             public void InitializeTests()
             {
-                AutoMapperConfig.Configure();
+                new AutoMapperMockConfig().Configure();
             }
             
             /// <summary>
@@ -59,11 +59,8 @@
             public void WillReturnCorrectViewModelForSingleStepForm()
             {
                 // prepare
-                var configMock = new Mock<IConfigurationManager>();
-                configMock.Setup(method => method.Get(It.IsAny<Expression<Func<GlobalConfiguration, string>>>())).Returns("(optional)");
-
                 var form = this.GetForm(FormRepositoryMoqs.GetSingleStepFormRepository());
-                var converter = new ModelConverterService(SimpleMoqs.GetDictionaryRepository(), null, configMock.Object);
+                var converter = new ModelConverterService(SimpleMoqs.GetDictionaryRepository(), null, SimpleMoqs.GetConfigurationManager());
 
                 // act
                 var viewModel = converter.ConvertToViewModel(form);
@@ -71,8 +68,55 @@
                 // assert
                 Assert.NotNull(viewModel);
                 Assert.NotNull(viewModel.Step);
+                Assert.IsTrue(viewModel.Step.Sections.Count == form.GetSections().Count());
+                Assert.IsTrue(viewModel.Step.Sections.First().Fields.Last().GetType() == typeof(HoneypotFieldViewModel));
+                Assert.IsTrue(viewModel.Step.Sections.First().Fields.Count == form.GetSections().SelectMany(s => s.Fields).Count() + 1);
+                Assert.IsTrue(viewModel.Step.Sections.First().Fields.First().Key == "singlelinetext");
+                Assert.IsTrue(viewModel.Step.Sections.First().Fields.First().ViewName == "Fields/InputFields/SinglelineText");
+                Assert.IsTrue(viewModel.Step.Sections.First().Fields.First().CssClass.Trim() == "flex_singletextfield");
+            }
 
-                // todo: add more test cases
+            /// <summary>
+            /// Converter should return correct view model for a multi step form
+            /// </summary>
+            [Test]
+            public void WillReturnCorrectViewModelForMultiStepForm()
+            {
+                // prepare
+                var form = this.GetForm(FormRepositoryMoqs.GetMultiStepFormRepository());
+                var converter = new ModelConverterService(SimpleMoqs.GetDictionaryRepository(), null, SimpleMoqs.GetConfigurationManager());
+
+                // act
+                var viewModel = converter.ConvertToViewModel(form);
+
+                // assert
+                Assert.NotNull(viewModel);
+                Assert.NotNull(viewModel.Step);
+                Assert.IsTrue(viewModel.Step.Sections.Count == form.GetActiveStep().Sections.Count());
+                Assert.IsTrue(viewModel.Step.Sections.First().Fields.Last().GetType() == typeof(HoneypotFieldViewModel));
+                Assert.IsTrue(viewModel.Step.Sections.First().Fields.Count == form.GetActiveStep().Sections.SelectMany(s => s.Fields).Count() + 1);
+            }
+
+            /// <summary>
+            /// Converter should return correct summaryview model for a multi step form
+            /// </summary>
+            [Test]
+            public void WillReturnCorrectViewModelForSummaryInMultiStepForm()
+            {
+                // prepare
+                var form = this.GetForm(FormRepositoryMoqs.GetMultiStepFormRepository());
+                form.Steps.Last().IsActive = true;
+                var converter = new ModelConverterService(SimpleMoqs.GetDictionaryRepository(), null, SimpleMoqs.GetConfigurationManager());
+
+                // act
+                var viewModel = converter.ConvertToViewModel(form);
+
+                // assert
+                Assert.NotNull(viewModel);
+                Assert.NotNull(viewModel.Step);
+                Assert.IsTrue(viewModel.Step.GetType() == typeof(SummaryViewModel));
+                Assert.IsTrue(viewModel.Step.Sections.Count == form.Steps.OfType<MultiStep>().SelectMany(s => s.Sections).Count());
+                Assert.IsTrue(viewModel.Step.Sections.SelectMany(s => s.Fields).Count() == form.Steps.OfType<MultiStep>().SelectMany(s => s.Sections).SelectMany(s => s.Fields).Count());
             }
 
             /// <summary>
