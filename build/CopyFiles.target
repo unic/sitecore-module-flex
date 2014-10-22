@@ -8,12 +8,14 @@
             <GeneralFiles
 				Include="	$(MSBuildStartupDirectory)\..\**"
 				Exclude="	$(MSBuildStartupDirectory)\..\**\*.cs;
+							$(MSBuildStartupDirectory)\..\**\*.cs.pp;
 							$(MSBuildStartupDirectory)\..\*.csproj*;
 							$(MSBuildStartupDirectory)\..\*.idc;
 							$(MSBuildStartupDirectory)\..\*.xml;
 							$(MSBuildStartupDirectory)\..\bin\**;
 							$(MSBuildStartupDirectory)\..\obj\**;
 							$(MSBuildStartupDirectory)\..\web.config;
+							$(MSBuildStartupDirectory)\..\packages.config;
 							$(MSBuildStartupDirectory)\..\Properties\**" />
 					
             <AppConfigFiles

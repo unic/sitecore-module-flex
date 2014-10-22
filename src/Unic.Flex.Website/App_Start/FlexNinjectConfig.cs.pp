@@ -1,7 +1,7 @@
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Unic.Flex.Website.NinjectConfig), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(Unic.Flex.Website.NinjectConfig), "Stop")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof($rootnamespace$.FlexNinjectConfig), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof($rootnamespace$.FlexNinjectConfig), "Stop")]
 
-namespace Unic.Flex.Website
+namespace $rootnamespace$
 {
     using System;
     using System.Collections.Generic;
@@ -16,7 +16,7 @@ namespace Unic.Flex.Website
     /// <summary>
     /// Ninject configuration initializer
     /// </summary>
-    public static class NinjectConfig 
+    public static class FlexNinjectConfig 
     {
         /// <summary>
         /// The bootstrapper

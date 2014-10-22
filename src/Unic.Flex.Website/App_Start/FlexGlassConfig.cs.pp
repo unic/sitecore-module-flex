@@ -1,6 +1,6 @@
-[assembly: WebActivatorEx.PostApplicationStartMethod(typeof(Unic.Flex.Website.GlassConfig), "Start")]
+[assembly: WebActivatorEx.PostApplicationStartMethod(typeof($rootnamespace$.FlexGlassConfig), "Start")]
 
-namespace Unic.Flex.Website
+namespace $rootnamespace$
 {
     using System.Web.Hosting;
     using Castle.MicroKernel.Registration;
@@ -16,7 +16,7 @@ namespace Unic.Flex.Website
     /// <summary>
     /// Configuration initializer for Sitecore Glass Mapper
     /// </summary>
-    public static class GlassConfig
+    public static class FlexGlassConfig
     {
         /// <summary>
         /// Called when application is stared -> configure Glass Mapper

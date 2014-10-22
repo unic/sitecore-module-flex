@@ -26,6 +26,15 @@
         }
 
         /// <summary>
+        /// Sets the kernel.
+        /// </summary>
+        /// <param name="newKernel">The new kernel.</param>
+        public static void SetKernel(IKernel newKernel)
+        {
+            kernel = newKernel;
+        }
+
+        /// <summary>
         /// Resolves an instance of given type from the container.
         /// </summary>
         /// <typeparam name="T">Type of the class to resolve</typeparam>
