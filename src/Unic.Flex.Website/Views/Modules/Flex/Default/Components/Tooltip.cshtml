@@ -4,20 +4,20 @@
 
 @if (Model.ShowTooltip)
 {
-    <div class="flex_tooltipcontainer" id="@Html.IdForModel()" data-init="tooltips">
-        <a href="#" role="tooltip" aria-haspopup="true" data-tooltips="link">
+    <div class="flex_tooltipcontainer" id="@Html.IdForModel()" data-init="flextooltips">
+        <a href="#" role="tooltip" aria-haspopup="true" data-flextooltip="link">
             <span>
                 @Translate.Text("Info")
             </span>
         </a>
-        <span class="flex_tooltip" aria-expanded="false" data-tooltips="tooltip">
+        <span class="flex_tooltip" aria-expanded="false" data-flextooltip="tooltip">
             <span class="flex_tooltipheader">
                 @Model.TooltipTitle
             </span>
             <span class="flex_tooltipcontent">
                 @Model.TooltipText
             </span>
-            <a href="#" class="flex_tooltipclose" data-tooltips="close">
+            <a href="#" class="flex_tooltipclose" data-flextooltip="close">
                 <span>
                     @Translate.Text("Close")
                 </span>
