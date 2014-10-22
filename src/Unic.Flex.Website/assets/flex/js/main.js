@@ -11877,13 +11877,13 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
 
 /**
  * Debounced global resize and scroll event listeners triggering custom events to listen to
- * @author ThJ, Unic AG
+ * @author ThJ, OrT, Unic AG
  * @license All rights reserved Unic AG
  * @requires ../../vendor/jquery/jquery.js
  * @requires ../../.tmp/lodash.js
  */
 
-;(function(window, document, $, Unic, undefined) {
+;(function(window, document, $, _, Unic, undefined) {
 	'use strict';
 
 	var $document = $(document),
@@ -11900,14 +11900,14 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
 	});
 
 	$(window)
-		.on('resize.unic', _.debounce($.proxy(function(event) {
+		.on('resize.unic', _.debounce(_.bind(function(event) {
 			$document.triggerHandler(Unic.events.resize, event);
 		}, this), interval.resize))
-		.on('scroll.unic', _.debounce($.proxy(function(event) {
+		.on('scroll.unic', _.debounce(_.bind(function(event) {
 			$document.triggerHandler(Unic.events.scroll, event);
 		}, this), interval.scroll));
 
-})(window, document, jQuery, Unic);
+})(window, document, jQuery, _, Unic);
 
 /*!
 
@@ -14843,7 +14843,7 @@ var __module0__ = (function(__dependency1__, __dependency2__, __dependency3__, _
 }(this, document, jQuery));
 
 /*!
- * jQuery Validation Plugin v1.13.0
+ * jQuery Validation Plugin v1.13.1
  *
  * http://jqueryvalidation.org/
  *
@@ -14906,7 +14906,7 @@ $.extend($.fn, {
 					event.preventDefault();
 				}
 				function handle() {
-					var hidden;
+					var hidden, result;
 					if ( validator.settings.submitHandler ) {
 						if ( validator.submitButton ) {
 							// insert a hidden input as a replacement for the missing submit button
@@ -14915,10 +14915,13 @@ $.extend($.fn, {
 								.val( $( validator.submitButton ).val() )
 								.appendTo( validator.currentForm );
 						}
-						validator.settings.submitHandler.call( validator, validator.currentForm, event );
+						result = validator.settings.submitHandler.call( validator, validator.currentForm, event );
 						if ( validator.submitButton ) {
 							// and clean up afterwards; thanks to no-block-scope, hidden can be referenced
 							hidden.remove();
+						}
+						if ( result !== undefined ) {
+							return result;
 						}
 						return false;
 					}
@@ -15089,6 +15092,7 @@ $.extend( $.validator, {
 		errorClass: "error",
 		validClass: "valid",
 		errorElement: "label",
+		focusCleanup: false,
 		focusInvalid: true,
 		errorContainer: $( [] ),
 		errorLabelContainer: $( [] ),
@@ -15098,8 +15102,8 @@ $.extend( $.validator, {
 		onfocusin: function( element ) {
 			this.lastActive = element;
 
-			// hide error label and remove error class on focus if enabled
-			if ( this.settings.focusCleanup && !this.blockFocusCleanup ) {
+			// Hide error label and remove error class on focus if enabled
+			if ( this.settings.focusCleanup ) {
 				if ( this.settings.unhighlight ) {
 					this.settings.unhighlight.call( this, element, this.settings.errorClass, this.settings.validClass );
 				}
@@ -15376,7 +15380,7 @@ $.extend( $.validator, {
 			// select all valid inputs inside the form (no submit or reset buttons)
 			return $( this.currentForm )
 			.find( "input, select, textarea" )
-			.not( ":submit, :reset, :image, [disabled]" )
+			.not( ":submit, :reset, :image, [disabled], [readonly]" )
 			.not( this.settings.ignore )
 			.filter( function() {
 				if ( !this.name && validator.settings.debug && window.console ) {
@@ -15626,11 +15630,11 @@ $.extend( $.validator, {
 					// If the element is not a child of an associated label, then it's necessary
 					// to explicitly apply aria-describedby
 
-					errorID = error.attr( "id" );
+					errorID = error.attr( "id" ).replace( /(:|\.|\[|\])/g, "\\$1");
 					// Respect existing non-error aria-describedby
 					if ( !describedBy ) {
 						describedBy = errorID;
-					} else if ( !describedBy.match( new RegExp( "\b" + errorID + "\b" ) ) ) {
+					} else if ( !describedBy.match( new RegExp( "\\b" + errorID + "\\b" ) ) ) {
 						// Add to end of list if not already present
 						describedBy += " " + errorID;
 					}
@@ -15663,6 +15667,7 @@ $.extend( $.validator, {
 			var name = this.idOrName( element ),
 				describer = $( element ).attr( "aria-describedby" ),
 				selector = "label[for='" + name + "'], label[for='" + name + "'] *";
+
 			// aria-describedby should directly reference the error element
 			if ( describer ) {
 				selector = selector + ", #" + describer.replace( /\s+/g, ", #" );
@@ -15677,11 +15682,14 @@ $.extend( $.validator, {
 		},
 
 		validationTargetFor: function( element ) {
-			// if radio/checkbox, validate first element in group instead
+
+			// If radio/checkbox, validate first element in group instead
 			if ( this.checkable( element ) ) {
-				element = this.findByName( element.name ).not( this.settings.ignore )[ 0 ];
+				element = this.findByName( element.name );
 			}
-			return element;
+
+			// Always apply ignore filter
+			return $( element ).not( this.settings.ignore )[ 0 ];
 		},
 
 		checkable: function( element ) {
@@ -15909,12 +15917,12 @@ $.extend( $.validator, {
 
 		if ( $.validator.autoCreateRanges ) {
 			// auto-create ranges
-			if ( rules.min && rules.max ) {
+			if ( rules.min != null && rules.max != null ) {
 				rules.range = [ rules.min, rules.max ];
 				delete rules.min;
 				delete rules.max;
 			}
-			if ( rules.minlength && rules.maxlength ) {
+			if ( rules.minlength != null && rules.maxlength != null ) {
 				rules.rangelength = [ rules.minlength, rules.maxlength ];
 				delete rules.minlength;
 				delete rules.maxlength;
@@ -16039,19 +16047,19 @@ $.extend( $.validator, {
 
 		// http://jqueryvalidation.org/minlength-method/
 		minlength: function( value, element, param ) {
-			var length = $.isArray( value ) ? value.length : this.getLength( $.trim( value ), element );
+			var length = $.isArray( value ) ? value.length : this.getLength( value, element );
 			return this.optional( element ) || length >= param;
 		},
 
 		// http://jqueryvalidation.org/maxlength-method/
 		maxlength: function( value, element, param ) {
-			var length = $.isArray( value ) ? value.length : this.getLength( $.trim( value ), element );
+			var length = $.isArray( value ) ? value.length : this.getLength( value, element );
 			return this.optional( element ) || length <= param;
 		},
 
 		// http://jqueryvalidation.org/rangelength-method/
 		rangelength: function( value, element, param ) {
-			var length = $.isArray( value ) ? value.length : this.getLength( $.trim( value ), element );
+			var length = $.isArray( value ) ? value.length : this.getLength( value, element );
 			return this.optional( element ) || ( length >= param[ 0 ] && length <= param[ 1 ] );
 		},
 
@@ -19351,12 +19359,13 @@ return datepicker.regional['it-CH'];
 ;(function(window, document, $, Unic, undefined) {
 	'use strict';
 
-	var pluginName = 'tooltip',
+	var pluginName = 'flextooltip',
 		events = {
 		},
 		defaults = {
 			tooltipSpeed: 0,
-			prefix: 'flex'
+			prefix: 'flex',
+			dataattribute: pluginName // configurable because of legacy implementations in Post
 		};
 
 	// Globally accessible data like event names
@@ -19383,8 +19392,8 @@ return datepicker.regional['it-CH'];
 	 * Initialize module, bind events
 	 */
 	Plugin.prototype.init = function() {
-		this.$element.on('click.' + pluginName, '[data-' + pluginName + '=link]', _.bind(this.toggleTooltip, this));
-		this.$element.on('click.' + pluginName, '[data-' + pluginName + '=close]', _.bind(this.toggleTooltip, this));
+		this.$element.on('click.' + pluginName, '[data-' + this.options.dataattribute + '=link]', _.bind(this.toggleTooltip, this));
+		this.$element.on('click.' + pluginName, '[data-' + this.options.dataattribute + '=close]', _.bind(this.toggleTooltip, this));
 	};
 
 	/**
@@ -19404,7 +19413,7 @@ return datepicker.regional['it-CH'];
 		event.preventDefault();
 
 		var $link = $(event.currentTarget),
-			$tooltip = $(event.delegateTarget).find('[data-' + pluginName + '=tooltip]'),
+			$tooltip = $(event.delegateTarget).find('[data-' + this.options.dataattribute + '=tooltip]'),
 			expanded = $link.next().is(':visible');
 
 		// Toggle tooltip
@@ -19412,8 +19421,8 @@ return datepicker.regional['it-CH'];
 			.fadeToggle(this.options.tooltipSpeed);
 
 		// Toggle tooltip link class
-		$link.closest('[data-' + pluginName + '=init]')
-			.find('[data-' + pluginName + '=link]')
+		$link.closest('[data-' + this.options.dataattribute + '=init]')
+			.find('[data-' + this.options.dataattribute + '=link]')
 			.toggleClass(this.options.prefix + '_tooltip_visible');
 	};
 
@@ -19484,6 +19493,78 @@ return datepicker.regional['it-CH'];
 	Plugin.prototype._showDatePicker = function(event){
 		event.preventDefault();
 		this.$datefield.datepicker('show');
+	};
+
+	// Make the plugin available through jQuery (and the global project namespace)
+	Unic.modules.PluginHelper.register(Plugin, pluginName, ['ready', 'ajax_loaded']);
+
+})(window, document, jQuery, Unic);
+
+/**
+ * Plugin to handle File Input-Fields in Flex.
+ * @author RMa, Unic AG
+ * @license All rights reserved Unic AG
+ */
+
+(function(window, document, $, Unic, undefined) {
+	'use strict';
+
+//	var $document = $(document);
+
+	var pluginName = 'flexfileinput',
+		events = {/* eventname: pluginName +'_eventname' */},
+		defaults = {
+
+		};
+
+	// Globally accessible data like event names
+	Unic.modules[pluginName] = {
+		events: events
+	};
+
+	/**
+	 * Create an instance of the module
+	 * @param {object} element The DOM element to bind the module
+	 * @param {object} options Options overwriting the defaults
+	 * @constructor
+	 */
+	var Plugin = function(element, options) {
+		// Call super constructor
+		this.helper = Unic.modules.PluginHelper;
+		this.helper(pluginName, defaults, element, options);
+	};
+
+	Plugin.prototype = $.extend(true, {}, Unic.modules.PluginHelper.prototype, Plugin.prototype);
+
+	/**
+	 * Initialize module, bind events
+	 */
+	Plugin.prototype.init = function() {
+		this.$element.on('click.' + pluginName, '[data-' + pluginName + '=remove]', _.bind(this._clearFile, this));
+		this.$fileinput = this.$element.find('input');
+	};
+
+	/**
+	 * Clears the choosen File.
+	 * @private
+	 */
+	Plugin.prototype._clearFile = function(event){
+		event.preventDefault();
+
+		console.log(this.$fileinput, this.options.url);
+
+		$.ajax({
+			type: 'GET',
+			url: this.options.clearUrl,
+			success: _.bind(function(){
+				this.$element.wrap('<form>').closest('form').get(0).reset();
+				this.$element.unwrap();
+				this.$fileinput.trigger('change');
+			}, this),
+			error: _.bind(function(){
+				console.log('TODO: What to do here?!?');
+			}, this)
+		});
 	};
 
 	// Make the plugin available through jQuery (and the global project namespace)
@@ -19634,6 +19715,7 @@ return datepicker.regional['it-CH'];
 		event.preventDefault();
 		event.stopImmediatePropagation();
 		this.$element.val($(event.currentTarget).text());
+		this.$element.focus();
 		this._hideList();
 	};
 
@@ -19698,6 +19780,7 @@ return datepicker.regional['it-CH'];
  * @requires ../../../modules/form/form.js
  * @requires ../../../modules/tooltips/tooltips.js
  * @requires ../../../modules/inputfields/_datepicker.js
+ * @requires ../../../modules/inputfields/_fileinput.js
  * @requires ../../../modules/autocomplete/_autocomplete.js
  *
  *
