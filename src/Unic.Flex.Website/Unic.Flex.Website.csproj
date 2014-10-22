@@ -158,8 +158,8 @@
   <ItemGroup>
     <Compile Include="App_Start\AutoMapperConfig.cs" />
     <Compile Include="App_Start\FlexBootstrapper.cs" />
-    <None Include="App_Start\FlexGlassConfig.cs.pp" />
-    <None Include="App_Start\FlexNinjectConfig.cs.pp" />
+    <Content Include="App_Start\FlexGlassConfig.cs.pp" />
+    <Content Include="App_Start\FlexNinjectConfig.cs.pp" />
     <Compile Include="Controllers\FlexController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -169,7 +169,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Config\Include\Serialization.config" />
+    <None Include="App_Config\Include\Serialization.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Modules\Flex\Default\Form.cshtml" />
@@ -189,7 +189,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="web.config" />
+    <None Include="web.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Config\Include\Unic.Flex.config" />
@@ -234,7 +234,7 @@
     <Content Include="Views\Modules\Flex\Default\Fields\InputFields\Email.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Config\Include\Glass.Mapper.Sc.Mvc.config" />
+    <None Include="App_Config\Include\Glass.Mapper.Sc.Mvc.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Modules\Flex\Default\Components\NavigationPane.cshtml" />

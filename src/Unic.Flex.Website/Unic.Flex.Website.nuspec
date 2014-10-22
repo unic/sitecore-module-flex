@@ -15,9 +15,6 @@
   <files>
 	<file src="..\..\tools\**\*.*" target="tools" />
 	<file src="..\..\serialization\**\*.*" target="serialization" />
-	<file src="App_Config\**\Unic.*.config" target="content\App_Config" />
-	<file src="App_Start\**\*.cs.pp" target="content\App_Start" />
-	<file src="Views\Modules\Flex\**\*.cshtml" target="content\Views" />
 	<file src="Assets\**\*.*" target="content\Assets" />
   </files>
 </package>
