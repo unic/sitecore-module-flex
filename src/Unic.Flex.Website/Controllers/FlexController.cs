@@ -6,10 +6,12 @@
     using System.Net;
     using System.Security.Cryptography;
     using System.Web.Mvc;
+    using Glass.Mapper.Sc;
     using Sitecore;
     using Sitecore.Configuration;
     using Unic.Flex.Attributes;
     using Unic.Flex.Context;
+    using Unic.Flex.Globalization;
     using Unic.Flex.Implementation.Database;
     using Unic.Flex.Logging;
     using Unic.Flex.Mapping;
@@ -99,6 +101,11 @@
         /// </summary>
         private readonly ISaveToDatabaseService saveToDatabaseService;
 
+        /// <summary>
+        /// The dictionary repository
+        /// </summary>
+        private readonly IDictionaryRepository dictionaryRepository;
+
         #endregion
 
         /// <summary>
@@ -115,7 +122,8 @@
         /// <param name="logger">The logger.</param>
         /// <param name="taskService">The task service.</param>
         /// <param name="saveToDatabaseService">The save to database service.</param>
-        public FlexController(IPresentationService presentationService, IModelConverterService modelConverter, IContextService contextService, IUserDataRepository userDataRepository, IPlugsService plugsService, IFlexContext flexContext, IUrlService urlService, IFormRepository formRepository, ILogger logger, ITaskService taskService, ISaveToDatabaseService saveToDatabaseService)
+        /// <param name="dictionaryRepository">The dictionary repository.</param>
+        public FlexController(IPresentationService presentationService, IModelConverterService modelConverter, IContextService contextService, IUserDataRepository userDataRepository, IPlugsService plugsService, IFlexContext flexContext, IUrlService urlService, IFormRepository formRepository, ILogger logger, ITaskService taskService, ISaveToDatabaseService saveToDatabaseService, IDictionaryRepository dictionaryRepository)
         {
             //// todo: check if all service/repository classes have virtual methods
             
@@ -130,6 +138,7 @@
             this.logger = logger;
             this.taskService = taskService;
             this.saveToDatabaseService = saveToDatabaseService;
+            this.dictionaryRepository = dictionaryRepository;
         }
 
         /// <summary>
@@ -138,6 +147,12 @@
         /// <returns>Result of this action.</returns>
         public ActionResult Form()
         {
+            // form is not available in page editor
+            if (GlassHtml.IsInEditingMode)
+            {
+                return this.ShowError(this.dictionaryRepository.GetText("Page Editor Message"));
+            }
+
             Profiler.OnStart(this, ProfileGetEventName);
             
             // get the form
@@ -207,6 +222,12 @@
         [ValidateAntiForgeryToken]
         public ActionResult Form(IFormViewModel model)
         {
+            // form is not available in page editor
+            if (GlassHtml.IsInEditingMode)
+            {
+                return this.ShowError(this.dictionaryRepository.GetText("Page Editor Message"));
+            }
+            
             Profiler.OnStart(this, ProfilePostEventName);
             
             // get the current form
@@ -398,10 +419,18 @@
         /// <summary>
         /// Shows the error.
         /// </summary>
-        /// <returns>View for showing errors</returns>
-        private ActionResult ShowError()
+        /// <param name="message">The message.</param>
+        /// <returns>
+        /// View for showing errors
+        /// </returns>
+        private ActionResult ShowError(string message = "")
         {
-            var model = new ErrorViewModel { Message = this.flexContext.ErrorMessage };
+            if (string.IsNullOrWhiteSpace(message))
+            {
+                message = this.flexContext.ErrorMessage;
+            }
+
+            var model = new ErrorViewModel { Message = message };
             var view = this.presentationService.ResolveView(this.ControllerContext, model);
             return this.View(view, model);
         }

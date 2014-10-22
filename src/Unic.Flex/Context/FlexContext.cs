@@ -74,7 +74,7 @@
         {
             get
             {
-                if (!this.hasValuesPopulated && HttpContext.Current.Session != null)
+                if (this.form != null && !this.hasValuesPopulated && HttpContext.Current.Session != null)
                 {
                     this.hasValuesPopulated = true;
                     this.contextService.PopulateFormValues(this.form);
