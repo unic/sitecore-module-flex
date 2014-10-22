@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Unic AG")]
-[assembly: AssemblyProduct("Unic.Flex.ServiceLayer")]
+[assembly: AssemblyProduct("Unic.Flex.Core")]
 [assembly: AssemblyCopyright("Copyright © Unic AG 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
