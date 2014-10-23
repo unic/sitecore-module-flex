@@ -103,7 +103,7 @@
         /// <returns>
         /// Item if found or null
         /// </returns>
-        private Item ResolveItem(string url)
+        protected virtual Item ResolveItem(string url)
         {
             // get root item
             var startPath = Sitecore.Context.Site.StartPath;
@@ -113,7 +113,6 @@
 
             // resolve item from path
             if (string.IsNullOrWhiteSpace(url)) return item;
-            url = Sitecore.MainUtil.DecodeName(url);
             var urlParts = url.Split(new[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
             foreach (var part in urlParts)
             {
@@ -134,7 +133,7 @@
         {
             Assert.ArgumentNotNull(item, "item");
             Assert.ArgumentNotNullOrEmpty(name, "name");
-            return item.Axes.SelectSingleItem(string.Format("*[@@name = '{0}' or @__Display name = '{0}']", name));
+            return item.Axes.SelectSingleItem(string.Format("*[CompareCaseInsensitive(@@name, '{0}') or CompareCaseInsensitive(@__Display name, '{0}') or CompareCaseInsensitive(@@name, '{1}') or CompareCaseInsensitive(@__Display name, '{1}')]", name, Sitecore.MainUtil.DecodeName(name)));
         }
 
         /// <summary>

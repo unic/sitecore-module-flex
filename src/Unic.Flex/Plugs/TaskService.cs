@@ -2,6 +2,7 @@
 {
     using Newtonsoft.Json;
     using Sitecore.Diagnostics;
+    using Sitecore.Globalization;
     using Sitecore.Sites;
     using System;
     using System.Collections.Generic;
@@ -100,12 +101,18 @@
             var maxRetries = this.configurationManager.Get<GlobalConfiguration>(c => c.MaxRetries);
             var timeBetweenTries = this.configurationManager.Get<GlobalConfiguration>(c => c.TimeBetweenTries);
 
+            // get the original language
+            var language = Sitecore.Context.Language;
+
             // start thread and execute specific job
             System.Threading.Tasks.Task.Factory.StartNew(() =>
             {
                 using (new SiteContextSwitcher(site))
                 {
-                    this.ExecuteJob(job, maxRetries, timeBetweenTries);
+                    using (new LanguageSwitcher(language))
+                    {
+                        this.ExecuteJob(job, maxRetries, timeBetweenTries);
+                    }
                 }
             }).ContinueWith(task => this.unitOfWork.Save());
         }
