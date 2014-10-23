@@ -59,8 +59,8 @@ namespace $rootnamespace$
         /// <returns>List of ninject modules</returns>
         private static IEnumerable<INinjectModule> GetModules()
         {
-            yield return new Config();
-            yield return new Implementation.DependencyInjection.Config();
+            yield return new Unic.Flex.DependencyInjection.Config();
+            yield return new Unic.Flex.Implementation.DependencyInjection.Config();
         }     
     }
 }
