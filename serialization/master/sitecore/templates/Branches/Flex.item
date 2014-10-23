@@ -9,10 +9,17 @@ master: {00000000-0000-0000-0000-000000000000}
 template: {85ADBF5B-E836-4932-A333-FE0F9FA1ED1E}
 templatekey: Branch Folder
 
+----field----
+field: {06D5295C-ED2F-4A54-9BF2-26228D113318}
+name: __Icon
+key: __icon
+content-length: 35
+
+applications/32x32/folder_green.png
 ----version----
 language: en
 version: 1
-revision: 8eb6fcce-a957-425c-9791-a6f23e46b2ac
+revision: 13454b26-3ce1-4f5b-ab86-cb61e91f853e
 
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
@@ -27,14 +34,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-8eb6fcce-a957-425c-9791-a6f23e46b2ac
+13454b26-3ce1-4f5b-ab86-cb61e91f853e
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20140424T153809:635339506891023705
+20141023T074951:635496473910746552
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
