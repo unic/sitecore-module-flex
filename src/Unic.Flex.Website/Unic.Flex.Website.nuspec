@@ -12,9 +12,9 @@
     <copyright>$copyright$</copyright>
     <tags>Sitecore Unic MVC Forms</tags>
     <dependencies>
-        <dependency id="Unic.Flex.Core" />
-        <dependency id="Unic.Flex.Implementation" />
-        <dependency id="Unic.Flex.Model" />
+        <dependency id="Unic.Flex.Core" version="$NuGetVersion$" />
+        <dependency id="Unic.Flex.Implementation" version="$NuGetVersion$" />
+        <dependency id="Unic.Flex.Model" version="$NuGetVersion$" />
     </dependencies>
   </metadata>
   <files>
