@@ -7,32 +7,36 @@
     @Html.FlexComponent(m => m.NavigationPane)
 }
 
-@for (int i = 0; i < Model.Sections.Count; i++)
-{
-    @Html.FlexComponent(m => m.Sections[i])
-}
+<div class="flex_multistep_active">
 
-<div class="flex_formfooter flex_var_multistep">
-    <div class="flex_buttoncontainer">
-        @if (!string.IsNullOrWhiteSpace(Model.CancelUrl))
-        {
-            <a class="flex_button_secondary" href="@Model.CancelUrl">@Model.CancelText</a>
-        }
+    @for (int i = 0; i < Model.Sections.Count; i++)
+    {
+        @Html.FlexComponent(m => m.Sections[i])
+    }
 
-        @if (!string.IsNullOrWhiteSpace(Model.PreviousStepUrl))
-        {
-            <a class="flex_button_secondary" href="@Model.PreviousStepUrl">@Translate.Text("Previous Step")</a>
-        }
-        
-        @if (Model.IsSkippable)
-        {
-            <a class="flex_button_secondary" href="@Model.NextStepUrl">@Translate.Text("Skip Step")</a>
-        }
-        
-        <button type="submit" role="button">
-            <span>
-                @string.Format("{0}", Model.IsLastStep ? Translate.Text("Finish Form") : Translate.Text("Next Step"))
-            </span>
-        </button>
+    <div class="flex_formfooter flex_var_multistep">
+        <div class="flex_buttoncontainer">
+            @if (!string.IsNullOrWhiteSpace(Model.CancelUrl))
+            {
+                <a class="flex_button_secondary" href="@Model.CancelUrl">@Model.CancelText</a>
+            }
+
+            @if (!string.IsNullOrWhiteSpace(Model.PreviousStepUrl))
+            {
+                <a class="flex_button_secondary" href="@Model.PreviousStepUrl">@Translate.Text("Previous Step")</a>
+            }
+
+            @if (Model.IsSkippable)
+            {
+                <a class="flex_button_secondary" href="@Model.NextStepUrl">@Translate.Text("Skip Step")</a>
+            }
+
+            <button type="submit" role="button">
+                <span>
+                    @string.Format("{0}", Model.IsLastStep ? Translate.Text("Finish Form") : Translate.Text("Next Step"))
+                </span>
+            </button>
+        </div>
     </div>
+
 </div>

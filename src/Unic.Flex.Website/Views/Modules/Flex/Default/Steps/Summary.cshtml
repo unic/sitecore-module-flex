@@ -11,57 +11,61 @@
     }
 }
 
-<section class="flex_summary">
-    
-    <h1 class="visuallyhidden">@Model.Title</h1>
-    <p>@Model.Introduction</p>
+<div class="flex_multistep_active">
 
-    @foreach (var stepSection in Model.Sections)
-    {
-        if (stepTitle != stepSection.StepTitle)
+    <section class="flex_summary">
+
+        <h1 class="visuallyhidden">@Model.Title</h1>
+        <p>@Model.Introduction</p>
+
+        @foreach (var stepSection in Model.Sections)
         {
-            stepTitle = stepSection.StepTitle;
-            <h2>@stepTitle</h2>
-        }
-
-        if (!stepSection.DisableFieldset && !string.IsNullOrWhiteSpace(stepSection.Title))
-        {
-            <h3>@stepSection.Title</h3>
-        }
-
-        <ul class="flex_summary_list">
-            @foreach (var field in stepSection.Fields)
+            if (stepTitle != stepSection.StepTitle)
             {
-                <li class="flex_summary_item">
-                    <strong>@field.Label</strong>
-                    <div>
-                        @foreach (var item in field.TextValue.Split(new[] { Environment.NewLine }, StringSplitOptions.None))
-                        {
-                            @item<br />
-                        }
-                    </div>
-                </li>
+                stepTitle = stepSection.StepTitle;
+                <h2>@stepTitle</h2>
             }
-        </ul>
-    }
-</section>
 
-<div class="flex_formfooter flex_var_multistep">
-    <div class="flex_buttoncontainer">
-        @if (!string.IsNullOrWhiteSpace(Model.CancelUrl))
-        {
-            <a class="flex_button_secondary" href="@Model.CancelUrl">@Model.CancelText</a>
+            if (!stepSection.DisableFieldset && !string.IsNullOrWhiteSpace(stepSection.Title))
+            {
+                <h3>@stepSection.Title</h3>
+            }
+
+            <ul class="flex_summary_list">
+                @foreach (var field in stepSection.Fields)
+                {
+                    <li class="flex_summary_item">
+                        <strong>@field.Label</strong>
+                        <div>
+                            @foreach (var item in field.TextValue.Split(new[] { Environment.NewLine }, StringSplitOptions.None))
+                            {
+                                @item<br />
+                            }
+                        </div>
+                    </li>
+                }
+            </ul>
         }
-        
-        @if (!string.IsNullOrWhiteSpace(Model.PreviousStepUrl))
-        {
-            <a class="flex_button_secondary" href="@Model.PreviousStepUrl">@Translate.Text("Previous Step")</a>
-        }
-        
-        <button type="submit" role="button">
-            <span>
-                @Translate.Text("Finish Form")
-            </span>
-        </button>
+    </section>
+
+    <div class="flex_formfooter flex_var_multistep">
+        <div class="flex_buttoncontainer">
+            @if (!string.IsNullOrWhiteSpace(Model.CancelUrl))
+            {
+                <a class="flex_button_secondary" href="@Model.CancelUrl">@Model.CancelText</a>
+            }
+
+            @if (!string.IsNullOrWhiteSpace(Model.PreviousStepUrl))
+            {
+                <a class="flex_button_secondary" href="@Model.PreviousStepUrl">@Translate.Text("Previous Step")</a>
+            }
+
+            <button type="submit" role="button">
+                <span>
+                    @Translate.Text("Finish Form")
+                </span>
+            </button>
+        </div>
     </div>
+
 </div>
