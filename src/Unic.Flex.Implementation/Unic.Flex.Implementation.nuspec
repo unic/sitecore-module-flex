@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Unic.Flex.Implementation</id>
-    <version>$version$</version>
+    <version>0.0.0</version>
     <authors>Kevin Brechbühl</authors>
     <owners>Unic AG</owners>
     <projectUrl>https://git.unic.com/projects/BUECS/repos/sitecore-module-flex</projectUrl>
