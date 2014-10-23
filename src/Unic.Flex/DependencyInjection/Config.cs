@@ -7,6 +7,7 @@
     using Unic.Configuration;
     using Unic.Flex.Context;
     using Unic.Flex.Database;
+    using Unic.Flex.Definitions;
     using Unic.Flex.Globalization;
     using Unic.Flex.Logging;
     using Unic.Flex.Mailing;
@@ -45,7 +46,7 @@
             Bind<IModelConverterService>().To<ModelConverterService>().InSingletonScope();
 
             // context
-            Bind<ISitecoreContext>().To<SitecoreContext>();
+            Bind<ISitecoreContext>().To<SitecoreContext>().WithConstructorArgument("contextName", Constants.GlassMapperContextName);
             Bind<IFlexContext>().To<FlexContext>().InRequestScope();
 
             // mailing

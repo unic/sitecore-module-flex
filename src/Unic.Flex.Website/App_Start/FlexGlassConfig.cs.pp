@@ -10,8 +10,7 @@ namespace $rootnamespace$
     using Glass.Mapper.Configuration.Attributes;
     using Glass.Mapper.Pipelines.ObjectConstruction;
     using Glass.Mapper.Sc.CastleWindsor;
-    using Unic.Flex.Model.GlassExtensions.Handlers;
-    using Unic.Flex.Pipelines.ObjectConstruction;
+    using Unic.Flex.Definitions;
 
     /// <summary>
     /// Configuration initializer for Sitecore Glass Mapper
@@ -30,7 +29,7 @@ namespace $rootnamespace$
             CastleConfig(resolver.Container);
 
             // create a context
-            var context = Context.Create(resolver);
+            var context = Context.Create(resolver, Constants.GlassMapperContextName);
             context.Load(GlassLoaders());
         }
 
@@ -55,12 +54,12 @@ namespace $rootnamespace$
             var config = new Config();
 
             // register custom type mapper
-            container.Register(Component.For<AbstractDataMapper>().ImplementedBy<SitecoreDictionaryFallbackFieldTypeMapper>().LifeStyle.Transient);
-            container.Register(Component.For<AbstractDataMapper>().ImplementedBy<SitecoreSharedFieldTypeMapper>().LifeStyle.Transient);
-            container.Register(Component.For<AbstractDataMapper>().ImplementedBy<SitecoreReusableChildrenTypeMapper>().LifeStyle.Transient);
+            container.Register(Component.For<AbstractDataMapper>().ImplementedBy<Unic.Flex.Model.GlassExtensions.Handlers.SitecoreDictionaryFallbackFieldTypeMapper>().LifeStyle.Transient);
+            container.Register(Component.For<AbstractDataMapper>().ImplementedBy<Unic.Flex.Model.GlassExtensions.Handlers.SitecoreSharedFieldTypeMapper>().LifeStyle.Transient);
+            container.Register(Component.For<AbstractDataMapper>().ImplementedBy<Unic.Flex.Model.GlassExtensions.Handlers.SitecoreReusableChildrenTypeMapper>().LifeStyle.Transient);
 
             // register ninject object creation
-            container.Register(Component.For<IObjectConstructionTask>().ImplementedBy<NinjectInjectorTask>().LifestylePerWebRequest());
+            container.Register(Component.For<IObjectConstructionTask>().ImplementedBy<Unic.Flex.Pipelines.ObjectConstruction.NinjectInjectorTask>().LifestylePerWebRequest());
 
             // install the config
             container.Install(new SitecoreInstaller(config));

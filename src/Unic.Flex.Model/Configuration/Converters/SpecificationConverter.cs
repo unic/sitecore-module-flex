@@ -22,7 +22,7 @@
 
             using (new VersionCountDisabler())
             {
-                return string.IsNullOrWhiteSpace(field.Value) ? null : (new SitecoreContext()).GetItem<Specification>(field.Value);
+                return string.IsNullOrWhiteSpace(field.Value) ? null : (new SitecoreContext("Flex")).GetItem<Specification>(field.Value);
             }
         }
     }

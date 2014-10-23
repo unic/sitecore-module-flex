@@ -64,5 +64,10 @@
         /// The action field name
         /// </summary>
         public const string FormHandlerActionFieldName = "fhAction";
+
+        /// <summary>
+        /// The glass mapper context name
+        /// </summary>
+        public const string GlassMapperContextName = "Flex";
     }
 }
