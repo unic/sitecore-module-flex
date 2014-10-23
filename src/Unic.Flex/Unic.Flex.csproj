@@ -141,6 +141,7 @@
     <Compile Include="DependencyInjection\Container.cs" />
     <Compile Include="Globalization\DictionaryRepository.cs" />
     <Compile Include="Globalization\IDictionaryRepository.cs" />
+    <Compile Include="Globalization\TranslationHelper.cs" />
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\SitecoreLogger.cs" />
     <Compile Include="Mailing\IMailRepository.cs" />

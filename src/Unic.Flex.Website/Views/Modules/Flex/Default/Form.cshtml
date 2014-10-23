@@ -1,6 +1,6 @@
 ﻿@using System.Web.Mvc
 @using System.Web.Mvc.Html
-@using Sitecore.Globalization
+@using Unic.Flex.Globalization
 @using Unic.Flex.Implementation.Fields.InputFields
 @using Unic.Flex.Presentation
 @model Unic.Flex.Model.ViewModel.Forms.FormViewModel
@@ -13,7 +13,7 @@
                                                             @class = "flex_formcontainer",
                                                             enctype = Model.Step.Sections.SelectMany(s => s.Fields).Any(f => f is FileUploadFieldViewModel) ? "multipart/form-data" : "application/x-www-form-urlencoded",
                                                             data_init = "flexform",
-                                                            data_flexstyles_options = "{'uniformOptions': {'fileButtonHtml' : '" + Translate.Text("Choose file") + "', 'fileDefaultHtml': '" + Translate.Text("No file choosen") + "'}}"
+                                                            data_flexstyles_options = "{'uniformOptions': {'fileButtonHtml' : '" + TranslationHelper.FlexText("Choose file") + "', 'fileDefaultHtml': '" + TranslationHelper.FlexText("No file choosen") + "'}}"
                                                         }))
 {
     @Html.AntiForgeryToken()

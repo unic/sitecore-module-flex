@@ -1,8 +1,6 @@
 ﻿@using System.Linq
-@using System.Web
-@using Sitecore.Configuration
-@using Sitecore.Globalization
 @using Unic.Flex.Context
+@using Unic.Flex.Globalization
 @using Unic.Flex.Model.DomainModel.Forms
 @using Unic.Flex.Model.DomainModel.Steps
 @using Unic.Flex.Presentation
@@ -31,6 +29,6 @@
 @Html.Raw(ViewBag.HtmlMailFooter)
 
 <div style="margin-top: 50px; padding-top: 10px; border-top: 1px solid black; font-size: 90%">
-    @Translate.TextByDomain(Settings.GetSetting("Flex.DictionaryDomain"), "Form Title"): <a href="@formUrl">@formUrl</a><br/>
-    @Translate.TextByDomain(Settings.GetSetting("Flex.DictionaryDomain"), "Language Name"): @Sitecore.Context.Language.Name
+    @TranslationHelper.FlexText("Form Title"): <a href="@formUrl">@formUrl</a><br/>
+    @TranslationHelper.FlexText("Language Name"): @Sitecore.Context.Language.Name
 </div>

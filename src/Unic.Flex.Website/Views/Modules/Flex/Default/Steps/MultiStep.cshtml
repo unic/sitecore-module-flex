@@ -1,4 +1,4 @@
-﻿@using Sitecore.Globalization
+﻿@using Unic.Flex.Globalization
 @using Unic.Flex.Presentation
 @model Unic.Flex.Model.ViewModel.Steps.MultiStepViewModel
 
@@ -23,17 +23,17 @@
 
             @if (!string.IsNullOrWhiteSpace(Model.PreviousStepUrl))
             {
-                <a class="flex_button_secondary" href="@Model.PreviousStepUrl">@Translate.Text("Previous Step")</a>
+                <a class="flex_button_secondary" href="@Model.PreviousStepUrl">@TranslationHelper.FlexText("Previous Step")</a>
             }
 
             @if (Model.IsSkippable)
             {
-                <a class="flex_button_secondary" href="@Model.NextStepUrl">@Translate.Text("Skip Step")</a>
+                <a class="flex_button_secondary" href="@Model.NextStepUrl">@TranslationHelper.FlexText("Skip Step")</a>
             }
 
             <button type="submit" role="button">
                 <span>
-                    @string.Format("{0}", Model.IsLastStep ? Translate.Text("Finish Form") : Translate.Text("Next Step"))
+                    @string.Format("{0}", Model.IsLastStep ? TranslationHelper.FlexText("Finish Form") : TranslationHelper.FlexText("Next Step"))
                 </span>
             </button>
         </div>

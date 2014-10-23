@@ -1,4 +1,5 @@
 ﻿@using Sitecore.Globalization
+@using Unic.Flex.Globalization
 @model Unic.Flex.Model.ViewModel.Components.NavigationPaneViewModel
 
 <div class="flex_mod_multistepnavigation" data-flexform="multistepnavigation">
@@ -10,7 +11,7 @@
             {
                 <li class="flex_var_active" data-flexform="multistepnavigationitem">
                     <span class="flex_multistepitem">
-                        <span class="visuallyhidden">@Translate.Text("Your are on step") </span>
+                        <span class="visuallyhidden">@TranslationHelper.FlexText("Your are on step") </span>
                         @step.Title
                     </span>
                 </li>
@@ -19,7 +20,7 @@
             {
                 <li data-flexform="multistepnavigationitem">
                     <a href="@step.Url" class="flex_multistepitem">
-                        <span class="visuallyhidden">@Translate.Text("Go to step") </span>
+                        <span class="visuallyhidden">@TranslationHelper.FlexText("Go to step") </span>
                         @step.Title
                     </a>
                 </li>

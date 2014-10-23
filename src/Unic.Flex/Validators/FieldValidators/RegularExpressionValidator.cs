@@ -3,6 +3,7 @@
     using Sitecore.Data.Validators;
     using Sitecore.Globalization;
     using System.Text.RegularExpressions;
+    using Unic.Flex.Globalization;
 
     /// <summary>
     /// Sitecore validator to check for a valid regular expression.
@@ -41,7 +42,7 @@
             }
             catch
             {
-                this.Text = Translate.Text("The regular expression in field \"{0}\" is not valid", field.Name);
+                this.Text = TranslationHelper.FlexText(string.Format("The regular expression in field \"{0}\" is not valid", field.Name));
                 return this.GetFailedResult(ValidatorResult.Error);   
             }
         }

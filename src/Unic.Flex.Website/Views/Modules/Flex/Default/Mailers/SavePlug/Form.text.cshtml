@@ -1,7 +1,6 @@
 ﻿@using System.Linq
-@using Sitecore.Configuration
-@using Sitecore.Globalization
 @using Unic.Flex.Context
+@using Unic.Flex.Globalization
 @using Unic.Flex.Model.DomainModel.Forms
 @using Unic.Flex.Model.DomainModel.Steps
 @using Unic.Flex.Presentation
@@ -30,5 +29,5 @@
 @ViewBag.TextMailFooter
 
 --
-@Translate.TextByDomain(Settings.GetSetting("Flex.DictionaryDomain"), "Form Title"): @formUrl
-@Translate.TextByDomain(Settings.GetSetting("Flex.DictionaryDomain"), "Language Name"): @Sitecore.Context.Language.Name
+@TranslationHelper.FlexText("Form Title"): @formUrl
+@TranslationHelper.FlexText("Language Name"): @Sitecore.Context.Language.Name

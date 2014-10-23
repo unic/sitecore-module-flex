@@ -1,4 +1,4 @@
-﻿@using Sitecore.Globalization
+﻿@using Unic.Flex.Globalization
 @using Unic.Flex.Presentation
 @model Unic.Flex.Model.ViewModel.Steps.SummaryViewModel
 
@@ -57,12 +57,12 @@
 
             @if (!string.IsNullOrWhiteSpace(Model.PreviousStepUrl))
             {
-                <a class="flex_button_secondary" href="@Model.PreviousStepUrl">@Translate.Text("Previous Step")</a>
+                <a class="flex_button_secondary" href="@Model.PreviousStepUrl">@TranslationHelper.FlexText("Previous Step")</a>
             }
 
             <button type="submit" role="button">
                 <span>
-                    @Translate.Text("Finish Form")
+                    @TranslationHelper.FlexText("Finish Form")
                 </span>
             </button>
         </div>
