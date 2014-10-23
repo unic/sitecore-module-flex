@@ -1,7 +1,7 @@
 ﻿namespace Unic.Flex.Tests.Common
 {
     using Unic.Flex.Model.DomainModel.Steps;
-    using Unic.Flex.Website;
+    using Unic.Flex.Website.App_Start;
 
     /// <summary>
     /// Auto Mapper config mock for using in unit tests.

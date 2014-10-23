@@ -1,6 +1,6 @@
-﻿[assembly: WebActivatorEx.PostApplicationStartMethod(typeof(Unic.Flex.Website.AutoMapperConfig), "PostStart")]
+﻿[assembly: WebActivatorEx.PostApplicationStartMethod(typeof(Unic.Flex.Website.App_Start.AutoMapperConfig), "PostStart")]
 
-namespace Unic.Flex.Website
+namespace Unic.Flex.Website.App_Start
 {
     using AutoMapper;
     using Unic.Flex.Context;

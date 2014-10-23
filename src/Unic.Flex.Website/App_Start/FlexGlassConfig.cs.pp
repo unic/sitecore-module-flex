@@ -1,6 +1,6 @@
-[assembly: WebActivatorEx.PostApplicationStartMethod(typeof($rootnamespace$.FlexGlassConfig), "Start")]
+[assembly: WebActivatorEx.PostApplicationStartMethod(typeof($rootnamespace$.App_Start.FlexGlassConfig), "Start")]
 
-namespace $rootnamespace$
+namespace $rootnamespace$.App_Start
 {
     using System.Web.Hosting;
     using Castle.MicroKernel.Registration;

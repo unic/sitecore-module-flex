@@ -1,6 +1,6 @@
-﻿[assembly: WebActivatorEx.PostApplicationStartMethod(typeof(Unic.Flex.Website.FlexBootstrapper), "PostStart")]
+﻿[assembly: WebActivatorEx.PostApplicationStartMethod(typeof(Unic.Flex.Website.App_Start.FlexBootstrapper), "PostStart")]
 
-namespace Unic.Flex.Website
+namespace Unic.Flex.Website.App_Start
 {
     using System.Collections.Generic;
     using System.Web.Mvc;

@@ -1,7 +1,7 @@
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof($rootnamespace$.FlexNinjectConfig), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof($rootnamespace$.FlexNinjectConfig), "Stop")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof($rootnamespace$.App_Start.FlexNinjectConfig), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof($rootnamespace$.App_Start.FlexNinjectConfig), "Stop")]
 
-namespace $rootnamespace$
+namespace $rootnamespace$.App_Start
 {
     using System;
     using System.Collections.Generic;
