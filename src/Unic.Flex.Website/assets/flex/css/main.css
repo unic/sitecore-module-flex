@@ -953,6 +953,9 @@ nav ol, .flex_formcontainer fieldset ul, .flex_formcontainer fieldset ol,
   opacity: 0.5;
 }
 
+.flex_summary {
+  margin-bottom: 1em;
+}
 .flex_summary .flex_summary_item strong {
   float: left;
   width: 50%;
