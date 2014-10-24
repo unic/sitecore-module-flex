@@ -8,35 +8,38 @@
 }
 
 <div class="flex_multistep_active">
+    <section class="flex_multistep_content">
+        <h1 class="visuallyhidden">@Model.Title</h1>
 
-    @for (int i = 0; i < Model.Sections.Count; i++)
-    {
-        @Html.FlexComponent(m => m.Sections[i])
-    }
+        @for (int i = 0; i < Model.Sections.Count; i++)
+        {
+            @Html.FlexComponent(m => m.Sections[i])
+        }
 
-    <div class="flex_formfooter flex_var_multistep">
-        <div class="flex_buttoncontainer">
-            @if (!string.IsNullOrWhiteSpace(Model.CancelUrl))
-            {
-                <a class="flex_button_secondary" href="@Model.CancelUrl">@Model.CancelText</a>
-            }
+        <div class="flex_formfooter flex_var_multistep">
+            <div class="flex_buttoncontainer">
+                @if (!string.IsNullOrWhiteSpace(Model.CancelUrl))
+                {
+                    <a class="flex_button_secondary" href="@Model.CancelUrl">@Model.CancelText</a>
+                }
 
-            @if (!string.IsNullOrWhiteSpace(Model.PreviousStepUrl))
-            {
-                <a class="flex_button_secondary" href="@Model.PreviousStepUrl">@TranslationHelper.FlexText("Previous Step")</a>
-            }
+                @if (!string.IsNullOrWhiteSpace(Model.PreviousStepUrl))
+                {
+                    <a class="flex_button_secondary" href="@Model.PreviousStepUrl">@TranslationHelper.FlexText("Previous Step")</a>
+                }
 
-            @if (Model.IsSkippable)
-            {
-                <a class="flex_button_secondary" href="@Model.NextStepUrl">@TranslationHelper.FlexText("Skip Step")</a>
-            }
+                @if (Model.IsSkippable)
+                {
+                    <a class="flex_button_secondary" href="@Model.NextStepUrl">@TranslationHelper.FlexText("Skip Step")</a>
+                }
 
-            <button type="submit" role="button">
-                <span>
-                    @string.Format("{0}", Model.IsLastStep ? TranslationHelper.FlexText("Finish Form") : TranslationHelper.FlexText("Next Step"))
-                </span>
-            </button>
+                <button type="submit" role="button">
+                    <span>
+                        @string.Format("{0}", Model.IsLastStep ? TranslationHelper.FlexText("Finish Form") : TranslationHelper.FlexText("Next Step"))
+                    </span>
+                </button>
+            </div>
         </div>
-    </div>
 
+    </section>
 </div>
