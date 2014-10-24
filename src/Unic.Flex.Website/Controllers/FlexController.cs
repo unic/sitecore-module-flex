@@ -333,7 +333,7 @@
                 this.userDataRepository.SetValue(form, field, null);
             }
 
-            return this.Content("OK"); // todo: return whatever is needed from the frontend
+            return this.Content(true.ToString());
         }
 
         /// <summary>

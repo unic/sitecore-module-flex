@@ -1,19 +1,20 @@
 ﻿@using Unic.Flex.Context
 @using Unic.Flex.Definitions
 @using Unic.Flex.DependencyInjection
+@using Unic.Flex.Globalization
 @using Unic.Flex.Presentation
 @model Unic.Flex.Implementation.Fields.InputFields.FileUploadFieldViewModel
 
-<li class="flex_listitem @Model.CssClass">
-    
+<li class="flex_listitem @Model.CssClass" data-init="flexfileinput" data-flexfileinput-options='{"clearUrl": "@Url.Action("RemoveUploadedFile", "Flex", new { form = Container.Resolve<IFlexContext>().Form.Id, field = Model.Key })"}'>
+
     @Html.FlexLabel(m => m.Value, Model.Label, Model.LabelAddition)
 
     <input type="file" name="@Html.GetName(Constants.ValueIdSuffix)" id="@Html.GetId(Constants.ValueIdSuffix)" @Html.Raw(Html.FormatAttributes(Html.GetAttributes(Model))) />
-    
+
     @if (Model.Value != null)
     {
         <span>@Model.Value.FileName</span>
-        <a href="@Url.Action("RemoveUploadedFile", "Flex", new { form = Container.Resolve<IFlexContext>().Form.Id, field = Model.Key })">REMOVE FILE</a>
+        <a class="flex_fileinputremove" href="#" data-flexfileinput="remove">@TranslationHelper.FlexText("Delete file")</a>
     }
 
     @Html.FlexValidator(model => model.Value)
