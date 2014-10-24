@@ -96,6 +96,7 @@
     <Compile Include="Configuration\Extensions\ConfigurationManagerExtensions.cs" />
     <Compile Include="Configuration\GlobalConfiguration.cs" />
     <Compile Include="Configuration\PresentationConfiguration.cs" />
+    <Compile Include="DomainModel\Analytics\Goal.cs" />
     <Compile Include="DomainModel\Components\IReusableComponent.cs" />
     <Compile Include="DomainModel\Components\ITooltip.cs" />
     <Compile Include="DomainModel\Fields\FieldBase.cs" />

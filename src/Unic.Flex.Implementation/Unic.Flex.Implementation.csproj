@@ -154,6 +154,7 @@
     <Compile Include="Mailers\ISavePlugMailer.cs" />
     <Compile Include="Mailers\SavePlugMailer.cs" />
     <Compile Include="Plugs\LoadPlugs\QueryStringLoader.cs" />
+    <Compile Include="Plugs\SavePlugs\RegisterGoal.cs" />
     <Compile Include="Plugs\SavePlugs\SaveToDatabase.cs" />
     <Compile Include="Plugs\SavePlugs\SendEmail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

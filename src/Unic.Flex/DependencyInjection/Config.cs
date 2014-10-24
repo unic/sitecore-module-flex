@@ -5,6 +5,7 @@
     using Ninject.Modules;
     using Ninject.Web.Common;
     using Unic.Configuration;
+    using Unic.Flex.Analytics;
     using Unic.Flex.Context;
     using Unic.Flex.Database;
     using Unic.Flex.Definitions;
@@ -34,6 +35,7 @@
             Bind<IPresentationService>().To<PresentationService>();
             Bind<IPlugsService>().To<PlugsService>();
             Bind<ITaskService>().To<TaskService>();
+            Bind<IAnalyticsService>().To<AnalyticsService>();
             
             // data access
             Bind<IDictionaryRepository>().To<DictionaryRepository>();
