@@ -1,11 +1,9 @@
 ﻿namespace Unic.Flex.Context
 {
     using Glass.Mapper.Sc;
-    using Ninject;
     using Sitecore.Data.Items;
-    using System.Web;
     using Sitecore.Sites;
-    using Unic.Flex.Definitions;
+    using System.Web;
     using Unic.Flex.Model.DomainModel;
     using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.ViewModel.Forms;
@@ -48,7 +46,7 @@
         /// <param name="contextService">The context service.</param>
         /// <param name="plugService">The plug service.</param>
         /// <param name="sitecoreContext">The sitecore context.</param>
-        public FlexContext(IContextService contextService, IPlugsService plugService, [Named(Constants.InjectionName)]ISitecoreContext sitecoreContext)
+        public FlexContext(IContextService contextService, IPlugsService plugService, ISitecoreContext sitecoreContext)
         {
             this.contextService = contextService;
             this.plugService = plugService;

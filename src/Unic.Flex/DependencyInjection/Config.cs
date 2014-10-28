@@ -1,5 +1,6 @@
 ﻿namespace Unic.Flex.DependencyInjection
 {
+    using System;
     using System.Web.Mvc;
     using Glass.Mapper.Sc;
     using Ninject.Modules;
@@ -44,6 +45,7 @@
             Bind<IUnitOfWork>().To<UnitOfWork>();
 
             // model binding and converting
+            Bind<IModelBinder>().To<FormModelBinder>();
             Bind<IModelConverterService>().To<ModelConverterService>().InSingletonScope();
 
             // context
@@ -57,9 +59,16 @@
             Bind<IUrlService>().To<UrlService>().InSingletonScope();
 
             // third party classes
-            Bind<IModelBinder>().To<FormModelBinder>().Named(Constants.InjectionName);
-            Bind<IConfigurationManager>().To<ConfigurationManager>().Named(Constants.InjectionName);
-            Bind<ISitecoreContext>().To<SitecoreContext>().Named(Constants.InjectionName).WithConstructorArgument("contextName", Constants.GlassMapperContextName);
+            Bind<IConfigurationManager>().To<ConfigurationManager>().When(request => request.Target != null
+                    && request.Target.Member.DeclaringType != null
+                    && request.Target.Member.DeclaringType.FullName.StartsWith(Constants.RootNamespace));
+
+            Bind<ISitecoreContext>()
+                .To<SitecoreContext>()
+                .When(request => request.Target != null
+                    && request.Target.Member.DeclaringType != null
+                    && request.Target.Member.DeclaringType.FullName.StartsWith(Constants.RootNamespace))
+                .WithConstructorArgument("contextName", Constants.GlassMapperContextName);
         }
     }
 }

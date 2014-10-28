@@ -71,8 +71,8 @@
         public const string GlassMapperContextName = "Flex";
 
         /// <summary>
-        /// The injection name
+        /// The root namespace
         /// </summary>
-        public const string InjectionName = "Flex";
+        public const string RootNamespace = "Unic.Flex";
     }
 }

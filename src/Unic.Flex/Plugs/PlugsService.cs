@@ -1,12 +1,10 @@
 ﻿namespace Unic.Flex.Plugs
 {
-    using Ninject;
     using Sitecore.Diagnostics;
     using System;
     using System.Linq;
     using Unic.Configuration;
     using Unic.Flex.Context;
-    using Unic.Flex.Definitions;
     using Unic.Flex.Logging;
     using Unic.Flex.Mapping;
     using Unic.Flex.Model.Entities;
@@ -43,7 +41,7 @@
         /// <param name="logger">The logger.</param>
         /// <param name="configurationManager">The configuration manager.</param>
         /// <param name="taskService">The task service.</param>
-        public PlugsService(IUserDataRepository userDataRepository, ILogger logger, [Named(Constants.InjectionName)]IConfigurationManager configurationManager, ITaskService taskService)
+        public PlugsService(IUserDataRepository userDataRepository, ILogger logger, IConfigurationManager configurationManager, ITaskService taskService)
         {
             this.userDataRepository = userDataRepository;
             this.logger = logger;

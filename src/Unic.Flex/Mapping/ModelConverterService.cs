@@ -2,7 +2,6 @@
 {
     using AutoMapper;
     using Castle.DynamicProxy;
-    using Ninject;
     using Sitecore.Diagnostics;
     using System;
     using System.Collections.Generic;
@@ -14,7 +13,6 @@
     using Unic.Flex.Model.Configuration;
     using Unic.Flex.Model.DomainModel.Fields.ListFields;
     using Unic.Flex.Model.DomainModel.Forms;
-    using Unic.Flex.Model.DomainModel.Sections;
     using Unic.Flex.Model.DomainModel.Steps;
     using Unic.Flex.Model.Validation;
     using Unic.Flex.Model.ViewModel.Components;
@@ -62,7 +60,7 @@
         /// <param name="dictionaryRepository">The dictionary repository.</param>
         /// <param name="urlService">The URL service.</param>
         /// <param name="configurationManager">The configuration manager.</param>
-        public ModelConverterService(IDictionaryRepository dictionaryRepository, IUrlService urlService, [Named(Constants.InjectionName)]IConfigurationManager configurationManager)
+        public ModelConverterService(IDictionaryRepository dictionaryRepository, IUrlService urlService, IConfigurationManager configurationManager)
         {
             this.viewModelTypeCache = new Dictionary<string, Type>();
             this.dictionaryRepository = dictionaryRepository;

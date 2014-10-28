@@ -1,10 +1,8 @@
 ﻿namespace Unic.Flex.Mapping
 {
-    using System;
     using Glass.Mapper.Sc;
-    using Ninject;
     using Sitecore.Diagnostics;
-    using Unic.Flex.Definitions;
+    using System;
     using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.Validation;
 
@@ -22,7 +20,7 @@
         /// Initializes a new instance of the <see cref="FormRepository"/> class.
         /// </summary>
         /// <param name="sitecoreContext">The sitecore context.</param>
-        public FormRepository([Named(Constants.InjectionName)]ISitecoreContext sitecoreContext)
+        public FormRepository(ISitecoreContext sitecoreContext)
         {
             this.sitecoreContext = sitecoreContext;
         }
