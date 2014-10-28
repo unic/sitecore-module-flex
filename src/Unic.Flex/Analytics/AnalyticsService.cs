@@ -1,5 +1,6 @@
 ﻿namespace Unic.Flex.Analytics
 {
+    using System;
     using Sitecore.Analytics.Data.Items;
     using Unic.Flex.Logging;
     using Unic.Flex.Model.DomainModel;
@@ -28,8 +29,8 @@
         /// Registers the goal.
         /// </summary>
         /// <param name="goal">The goal.</param>
-        /// <param name="item">The item.</param>
-        public void RegisterGoal(Goal goal, ItemBase item)
+        /// <param name="itemId">The item identifier.</param>
+        public void RegisterGoal(Goal goal, Guid itemId)
         {
             // check if analytics is enabled
             if (!Sitecore.Analytics.Tracker.IsActive)
@@ -50,7 +51,7 @@
             pageEventRow.DataKey = "Flex";
             pageEventRow.Data = "Form submit completed";
             pageEventRow.Text = goal.Description;
-            pageEventRow.ItemId = item.ItemId;
+            pageEventRow.ItemId = itemId;
             Sitecore.Analytics.Tracker.Submit();
         }
     }

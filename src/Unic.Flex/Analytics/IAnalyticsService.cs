@@ -1,5 +1,6 @@
 ﻿namespace Unic.Flex.Analytics
 {
+    using System;
     using Unic.Flex.Model.DomainModel;
     using Unic.Flex.Model.DomainModel.Analytics;
 
@@ -12,7 +13,7 @@
         /// Registers the goal.
         /// </summary>
         /// <param name="goal">The goal.</param>
-        /// <param name="item">The item.</param>
-        void RegisterGoal(Goal goal, ItemBase item);
+        /// <param name="itemId">The item identifier.</param>
+        void RegisterGoal(Goal goal, Guid itemId);
     }
 }
