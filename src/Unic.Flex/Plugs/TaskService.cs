@@ -1,6 +1,7 @@
 ﻿namespace Unic.Flex.Plugs
 {
     using Newtonsoft.Json;
+    using Ninject;
     using Sitecore.Diagnostics;
     using Sitecore.Globalization;
     using Sitecore.Sites;
@@ -12,6 +13,7 @@
     using Unic.Configuration;
     using Unic.Flex.Context;
     using Unic.Flex.Database;
+    using Unic.Flex.Definitions;
     using Unic.Flex.Globalization;
     using Unic.Flex.Logging;
     using Unic.Flex.Mapping;
@@ -64,7 +66,7 @@
         /// <param name="logger">The logger.</param>
         /// <param name="configurationManager">The configuration manager.</param>
         /// <param name="dictionaryRepository">The dictionary repository.</param>
-        public TaskService(IUnitOfWork unitOfWork, IContextService contextService, IUserDataRepository userDataRepository, ILogger logger, IConfigurationManager configurationManager, IDictionaryRepository dictionaryRepository)
+        public TaskService(IUnitOfWork unitOfWork, IContextService contextService, IUserDataRepository userDataRepository, ILogger logger, [Named(Constants.InjectionName)]IConfigurationManager configurationManager, IDictionaryRepository dictionaryRepository)
         {
             this.unitOfWork = unitOfWork;
             this.contextService = contextService;

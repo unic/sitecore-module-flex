@@ -29,7 +29,7 @@
         /// </summary>
         static HtmlHelperExtensions()
         {
-            PresentationService = new Lazy<IPresentationService>(Container.Resolve<IPresentationService>);
+            PresentationService = new Lazy<IPresentationService>(() => Container.Resolve<IPresentationService>());
         }
 
         /// <summary>

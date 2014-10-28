@@ -1,8 +1,10 @@
 ﻿namespace Unic.Flex.Presentation
 {
     using System.Web.Mvc;
+    using Ninject;
     using Sitecore.Diagnostics;
     using Unic.Configuration;
+    using Unic.Flex.Definitions;
     using Unic.Flex.Model.Configuration;
     using Unic.Flex.Model.Configuration.Extensions;
     using Unic.Flex.Model.Presentation;
@@ -31,7 +33,7 @@
         /// Initializes a new instance of the <see cref="PresentationService"/> class.
         /// </summary>
         /// <param name="configurationManager">The configuration manager.</param>
-        public PresentationService(IConfigurationManager configurationManager)
+        public PresentationService([Named(Constants.InjectionName)]IConfigurationManager configurationManager)
         {
             this.configurationManager = configurationManager;
         }

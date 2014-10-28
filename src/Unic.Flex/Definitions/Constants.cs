@@ -69,5 +69,10 @@
         /// The glass mapper context name
         /// </summary>
         public const string GlassMapperContextName = "Flex";
+
+        /// <summary>
+        /// The injection name
+        /// </summary>
+        public const string InjectionName = "Flex";
     }
 }

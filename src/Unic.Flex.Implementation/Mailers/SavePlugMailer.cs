@@ -7,7 +7,9 @@
     using System.Linq;
     using System.Net.Mail;
     using System.Web;
+    using Ninject;
     using Unic.Configuration;
+    using Unic.Flex.Definitions;
     using Unic.Flex.Implementation.Configuration;
     using Unic.Flex.Implementation.Fields.InputFields;
     using Unic.Flex.Implementation.Plugs.SavePlugs;
@@ -48,7 +50,7 @@
         /// <param name="presentationService">The presentation service.</param>
         /// <param name="configurationManager">The configuration manager.</param>
         /// <param name="mailService">The mail service.</param>
-        public SavePlugMailer(IPresentationService presentationService, IConfigurationManager configurationManager, IMailService mailService)
+        public SavePlugMailer(IPresentationService presentationService, [Named(Constants.InjectionName)]IConfigurationManager configurationManager, IMailService mailService)
         {
             this.presentationService = presentationService;
             this.configurationManager = configurationManager;

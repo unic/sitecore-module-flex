@@ -2,7 +2,9 @@
 {
     using System;
     using Glass.Mapper.Sc;
+    using Ninject;
     using Sitecore.Diagnostics;
+    using Unic.Flex.Definitions;
     using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.Validation;
 
@@ -20,7 +22,7 @@
         /// Initializes a new instance of the <see cref="FormRepository"/> class.
         /// </summary>
         /// <param name="sitecoreContext">The sitecore context.</param>
-        public FormRepository(ISitecoreContext sitecoreContext)
+        public FormRepository([Named(Constants.InjectionName)]ISitecoreContext sitecoreContext)
         {
             this.sitecoreContext = sitecoreContext;
         }

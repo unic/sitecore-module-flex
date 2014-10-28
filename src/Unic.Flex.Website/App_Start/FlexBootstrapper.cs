@@ -5,6 +5,7 @@ namespace Unic.Flex.Website.App_Start
     using System.Collections.Generic;
     using System.Web.Mvc;
     using Unic.Configuration.Converter;
+    using Unic.Flex.Definitions;
     using Unic.Flex.DependencyInjection;
     using Unic.Flex.Model.Configuration.Converters;
     using Unic.Flex.Model.Types;
@@ -32,7 +33,7 @@ namespace Unic.Flex.Website.App_Start
         /// </summary>
         private static void RegisterModelBinders()
         {
-            ModelBinders.Binders.Add(typeof(IFormViewModel), Container.Resolve<IModelBinder>());
+            ModelBinders.Binders.Add(typeof(IFormViewModel), Container.Resolve<IModelBinder>(Constants.InjectionName));
             ModelBinders.Binders.Add(typeof(IList<ISectionViewModel>), new ListModelBinder());
             ModelBinders.Binders.Add(typeof(IList<IFieldViewModel>), new ListModelBinder());
             ModelBinders.Binders.Add(typeof(IList<SelectListItem>), new ListModelBinder());

@@ -44,11 +44,9 @@
             Bind<IUnitOfWork>().To<UnitOfWork>();
 
             // model binding and converting
-            Bind<IModelBinder>().To<FormModelBinder>();
             Bind<IModelConverterService>().To<ModelConverterService>().InSingletonScope();
 
             // context
-            Bind<ISitecoreContext>().To<SitecoreContext>().WithConstructorArgument("contextName", Constants.GlassMapperContextName);
             Bind<IFlexContext>().To<FlexContext>().InRequestScope();
 
             // mailing
@@ -58,8 +56,10 @@
             // helpers
             Bind<IUrlService>().To<UrlService>().InSingletonScope();
 
-            // configuration module
-            Bind<IConfigurationManager>().To<ConfigurationManager>();
+            // third party classes
+            Bind<IModelBinder>().To<FormModelBinder>().Named(Constants.InjectionName);
+            Bind<IConfigurationManager>().To<ConfigurationManager>().Named(Constants.InjectionName);
+            Bind<ISitecoreContext>().To<SitecoreContext>().Named(Constants.InjectionName).WithConstructorArgument("contextName", Constants.GlassMapperContextName);
         }
     }
 }
