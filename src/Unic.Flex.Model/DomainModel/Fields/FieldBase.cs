@@ -222,7 +222,7 @@
         /// <value>
         /// The placeholder.
         /// </value>
-        [SitecoreField("Placeholder")]
+        [SitecoreDictionaryFallbackField("Placeholder", "Placeholder Text")]
         public virtual string Placeholder { get; set; }
 
         /// <summary>
