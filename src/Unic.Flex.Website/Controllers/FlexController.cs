@@ -264,6 +264,9 @@
                 return this.Redirect(nextStepUrl);
             }
 
+            // repopulate the values so we also have the actual values within the current form object
+            this.contextService.PopulateFormValues(this.flexContext.Form);
+
             // execute save plugs
             Profiler.OnStart(this, ProfileExecuteSavePlugsEventName);
             this.plugsService.ExecuteSavePlugs(this.flexContext);
