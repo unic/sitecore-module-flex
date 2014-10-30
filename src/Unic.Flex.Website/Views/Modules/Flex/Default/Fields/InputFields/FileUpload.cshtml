@@ -13,8 +13,13 @@
 
     @if (Model.Value != null)
     {
-        <span>@Model.Value.FileName</span>
-        <a class="flex_fileinputremove" href="#" data-flexfileinput="remove">@TranslationHelper.FlexText("Delete file")</a>
+        <div class="flex_fileinputcurrent" data-flexfileinput="current">
+            <span class="flex_currentfileinfo">
+                <span class="visuallyhidden">@TranslationHelper.FlexText("Current file"): </span>
+                <span class="flex_currentfilename">@Model.Value.FileName</span>
+            </span>
+            <a class="flex_fileinputremove" href="#" data-flexfileinput="remove">@TranslationHelper.FlexText("Delete file")</a>
+        </div>
     }
 
     @Html.FlexValidator(model => model.Value)
