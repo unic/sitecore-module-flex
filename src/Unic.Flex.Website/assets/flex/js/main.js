@@ -19479,11 +19479,23 @@ return datepicker.regional['it-CH'];
 
 		if (this.options.dateFormat) {
 			this.options.dateFormat = window.convertDateFormatToUI(this.options.dateFormat);
+
+			// Correct Validator
+			$.validator.methods.date = _.bind(function (value) {
+				var validDate = true;
+				try {
+					$.datepicker.parseDate(this.options.dateFormat, value);
+				} catch(ex) {
+					validDate = false;
+				}
+				return validDate;
+			}, this);
 		}
 
 		$.datepicker.setDefaults( $.datepicker.regional[this.options.locale] );
 
 		this.$datefield.datepicker(this.options);
+
 	};
 
 	/**
@@ -19541,7 +19553,6 @@ return datepicker.regional['it-CH'];
 	 */
 	Plugin.prototype.init = function() {
 		this.$element.on('click.' + pluginName, '[data-' + pluginName + '=remove]', _.bind(this._clearFile, this));
-		this.$fileinput = this.$element.find('input');
 	};
 
 	/**
@@ -19550,16 +19561,11 @@ return datepicker.regional['it-CH'];
 	 */
 	Plugin.prototype._clearFile = function(event){
 		event.preventDefault();
-
-		console.log(this.$fileinput, this.options.url);
-
 		$.ajax({
 			type: 'GET',
 			url: this.options.clearUrl,
 			success: _.bind(function(){
-				this.$element.wrap('<form>').closest('form').get(0).reset();
-				this.$element.unwrap();
-				this.$fileinput.trigger('change');
+				this.$element.find('[data-' + pluginName + '=current]').remove();
 			}, this),
 			error: _.bind(function(){
 				console.log('TODO: What to do here?!?');

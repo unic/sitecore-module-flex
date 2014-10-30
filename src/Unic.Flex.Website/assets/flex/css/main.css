@@ -761,6 +761,14 @@ nav ol, .flex_formcontainer fieldset ul, .flex_formcontainer fieldset ol,
   font-size: 0.9375em;
   color: #000000;
 }
+.flex_formcontainer input[type=text]:-webkit-autofill,
+.flex_formcontainer input[type=email]:-webkit-autofill,
+.flex_formcontainer input[type=tel]:-webkit-autofill,
+.flex_formcontainer input[type=number]:-webkit-autofill,
+.flex_formcontainer input[type=search]:-webkit-autofill,
+.flex_formcontainer input[type=password]:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important;
+}
 .flex_formcontainer input.placeholder[type=text],
 .flex_formcontainer input.placeholder[type=email],
 .flex_formcontainer input.placeholder[type=tel],
