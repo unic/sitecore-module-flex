@@ -11,7 +11,6 @@
         /// Sends the mail message.
         /// </summary>
         /// <param name="message">The message.</param>
-        /// <returns>Boolean value weather the email could be handed over to the SMTP server.</returns>
-        bool SendMail(MvcMailMessage message);
+        void SendMail(MvcMailMessage message);
     }
 }

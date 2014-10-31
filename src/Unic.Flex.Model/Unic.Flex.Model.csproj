@@ -119,8 +119,11 @@
     <Compile Include="Entities\Job.cs" />
     <Compile Include="Entities\Task.cs" />
     <Compile Include="GlassExtensions\Attributes\SitecoreReusableChildrenAttribute.cs" />
+    <Compile Include="GlassExtensions\Attributes\SitecoreReusableFieldAttribute.cs" />
     <Compile Include="GlassExtensions\Configurations\SitecoreReusableChildrenConfiguration.cs" />
+    <Compile Include="GlassExtensions\Configurations\SitecoreReusableFieldConfiguration.cs" />
     <Compile Include="GlassExtensions\Handlers\SitecoreReusableChildrenTypeMapper.cs" />
+    <Compile Include="GlassExtensions\Handlers\SitecoreReusableFieldTypeMapper.cs" />
     <Compile Include="ListFieldSources\IListFieldItemProvider.cs" />
     <Compile Include="ListFieldSources\ListItem.cs" />
     <Compile Include="ListFieldSources\ListItemExtensions.cs" />

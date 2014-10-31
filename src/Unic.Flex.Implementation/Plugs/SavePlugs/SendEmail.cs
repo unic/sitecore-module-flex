@@ -159,7 +159,7 @@
         /// <value>
         /// The receiver field.
         /// </value>
-        [SitecoreField("Receiver Field", Setting = SitecoreFieldSettings.InferType)]
+        [SitecoreReusableField("Receiver Field", Setting = SitecoreFieldSettings.InferType)]
         public virtual IField ReceiverField { get; set; }
 
         /// <summary>
@@ -177,7 +177,7 @@
         /// <value>
         /// The reply to field.
         /// </value>
-        [SitecoreField("Reply To Field", Setting = SitecoreFieldSettings.InferType)]
+        [SitecoreReusableField("Reply To Field", Setting = SitecoreFieldSettings.InferType)]
         public virtual IField ReplyToField { get; set; }
 
         /// <summary>

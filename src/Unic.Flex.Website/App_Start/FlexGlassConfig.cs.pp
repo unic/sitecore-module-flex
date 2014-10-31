@@ -56,6 +56,7 @@ namespace $rootnamespace$.App_Start
             // register custom type mapper
             container.Register(Component.For<AbstractDataMapper>().ImplementedBy<Unic.Flex.Model.GlassExtensions.Handlers.SitecoreDictionaryFallbackFieldTypeMapper>().LifeStyle.Transient);
             container.Register(Component.For<AbstractDataMapper>().ImplementedBy<Unic.Flex.Model.GlassExtensions.Handlers.SitecoreSharedFieldTypeMapper>().LifeStyle.Transient);
+			container.Register(Component.For<AbstractDataMapper>().ImplementedBy<Unic.Flex.Model.GlassExtensions.Handlers.SitecoreReusableFieldTypeMapper>().LifeStyle.Transient);
             container.Register(Component.For<AbstractDataMapper>().ImplementedBy<Unic.Flex.Model.GlassExtensions.Handlers.SitecoreReusableChildrenTypeMapper>().LifeStyle.Transient);
 
             // register ninject object creation
