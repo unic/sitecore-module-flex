@@ -44,14 +44,17 @@
         {
             if (value == null) return false;
 
+            var stringValue = value as string;
+            if (stringValue != null) return !string.IsNullOrWhiteSpace(stringValue);
+
+            var intValue = value as int?;
+            if (intValue != null) return true;
+
             var booleanValue = value as bool?;
             if (booleanValue != null) return (bool)value;
 
             var dateTimeValue = value as DateTime?;
             if (dateTimeValue != null) return true;
-
-            var stringValue = value as string;
-            if (stringValue != null) return !string.IsNullOrWhiteSpace(stringValue);
 
             var stringArrayValue = value as string[];
             if (stringArrayValue != null) return stringArrayValue.Any(v => !string.IsNullOrWhiteSpace(v));
