@@ -9,10 +9,17 @@ master: {00000000-0000-0000-0000-000000000000}
 template: {7EE0975B-0698-493E-B3A2-0B2EF33D0522}
 templatekey: Rendering Folder
 
+----field----
+field: {06D5295C-ED2F-4A54-9BF2-26228D113318}
+name: __Icon
+key: __icon
+content-length: 35
+
+applications/32x32/folder_green.png
 ----version----
 language: en
 version: 1
-revision: e272ce1f-4cc3-46ef-8fdc-183a6ac90da2
+revision: aad69de4-baa3-41c3-9c0d-affbea3b6d6d
 
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
@@ -27,14 +34,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-e272ce1f-4cc3-46ef-8fdc-183a6ac90da2
+aad69de4-baa3-41c3-9c0d-affbea3b6d6d
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20140424T150421:635339486618494183
+20141031T203824:635503847041412700
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
