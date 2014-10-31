@@ -38,24 +38,26 @@
         /// Resolves an instance of given type from the container.
         /// </summary>
         /// <typeparam name="T">Type of the class to resolve</typeparam>
+        /// <param name="name">The name.</param>
         /// <returns>
         /// Instance of the type
         /// </returns>
-        public static T Resolve<T>()
+        public static T Resolve<T>(string name = null)
         {
-            return kernel.Get<T>();
+            return kernel.Get<T>(name);
         }
 
         /// <summary>
         /// Resolves the specified type from the container.
         /// </summary>
         /// <param name="type">The type to resolve.</param>
+        /// <param name="name">The name.</param>
         /// <returns>
         /// Instance of the type
         /// </returns>
-        public static object Resolve(Type type)
+        public static object Resolve(Type type, string name = null)
         {
-            return kernel.Get(type);
+            return kernel.Get(type, name);
         }
     }
 }

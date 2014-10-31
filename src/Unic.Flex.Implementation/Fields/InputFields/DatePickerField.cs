@@ -1,7 +1,9 @@
 ﻿namespace Unic.Flex.Implementation.Fields.InputFields
 {
-    using System;
     using Glass.Mapper.Sc.Configuration.Attributes;
+    using System;
+    using System.Globalization;
+    using Unic.Flex.Globalization;
     using Unic.Flex.Implementation.Validators;
     using Unic.Flex.Model.DomainModel.Fields.InputFields;
 
@@ -12,10 +14,17 @@
     public class DatePickerField : InputField<DateTime?>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DatePickerField"/> class.
+        /// The culture service
         /// </summary>
-        public DatePickerField()
+        private readonly ICultureService cultureService;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DatePickerField" /> class.
+        /// </summary>
+        /// <param name="cultureService">The culture service.</param>
+        public DatePickerField(ICultureService cultureService)
         {
+            this.cultureService = cultureService;
             this.DefaultValidators.Add(new DateValidator());
         }
         
@@ -29,6 +38,20 @@
         public override DateTime? DefaultValue { get; set; }
 
         /// <summary>
+        /// Gets the date format.
+        /// </summary>
+        /// <value>
+        /// The date format.
+        /// </value>
+        public virtual string DateFormat
+        {
+            get
+            {
+                return this.cultureService.GetDateFormat();
+            }
+        }
+
+        /// <summary>
         /// Gets the text value.
         /// </summary>
         /// <value>
@@ -38,7 +61,7 @@
         {
             get
             {
-                return !this.Value.HasValue ? base.TextValue : this.Value.Value.ToShortDateString();
+                return !this.Value.HasValue ? base.TextValue : this.Value.Value.ToString(this.DateFormat, CultureInfo.InvariantCulture);
             }
         }
     }

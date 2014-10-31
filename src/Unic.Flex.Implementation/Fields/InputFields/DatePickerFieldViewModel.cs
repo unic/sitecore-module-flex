@@ -1,6 +1,7 @@
 ﻿namespace Unic.Flex.Implementation.Fields.InputFields
 {
     using System;
+    using System.Globalization;
     using System.Threading;
     using Unic.Flex.Model.ViewModel.Fields.InputFields;
 
@@ -9,6 +10,14 @@
     /// </summary>
     public class DatePickerFieldViewModel : InputFieldViewModel<DateTime?>
     {
+        /// <summary>
+        /// Gets or sets the date format.
+        /// </summary>
+        /// <value>
+        /// The date format.
+        /// </value>
+        public virtual string DateFormat { get; set; }
+        
         /// <summary>
         /// Gets the name of the view.
         /// </summary>
@@ -20,20 +29,6 @@
             get
             {
                 return "Fields/InputFields/DatePicker";
-            }
-        }
-
-        /// <summary>
-        /// Gets the date format.
-        /// </summary>
-        /// <value>
-        /// The date format.
-        /// </value>
-        public virtual string DateFormat
-        {
-            get
-            {
-                return Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern;
             }
         }
 
@@ -62,6 +57,11 @@
 
             this.Attributes.Add("aria-multiline", false);
             this.Attributes.Add("role", "textbox");
+
+            if (this.Value != null)
+            {
+                this.Attributes.Add("Value", this.Value.Value.ToString(this.DateFormat, CultureInfo.InvariantCulture));
+            }
         }
     }
 }

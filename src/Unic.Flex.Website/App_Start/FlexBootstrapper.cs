@@ -2,10 +2,10 @@
 
 namespace Unic.Flex.Website.App_Start
 {
+    using System;
     using System.Collections.Generic;
     using System.Web.Mvc;
     using Unic.Configuration.Converter;
-    using Unic.Flex.Definitions;
     using Unic.Flex.DependencyInjection;
     using Unic.Flex.Model.Configuration.Converters;
     using Unic.Flex.Model.Types;
@@ -33,12 +33,13 @@ namespace Unic.Flex.Website.App_Start
         /// </summary>
         private static void RegisterModelBinders()
         {
-            ModelBinders.Binders.Add(typeof(IFormViewModel), Container.Resolve<IModelBinder>());
+            ModelBinders.Binders.Add(typeof(IFormViewModel), Container.Resolve<IModelBinder>(typeof(FormModelBinder).FullName));
             ModelBinders.Binders.Add(typeof(IList<ISectionViewModel>), new ListModelBinder());
             ModelBinders.Binders.Add(typeof(IList<IFieldViewModel>), new ListModelBinder());
             ModelBinders.Binders.Add(typeof(IList<SelectListItem>), new ListModelBinder());
             ModelBinders.Binders.Add(typeof(IFieldViewModel), new FieldModelBinder());
             ModelBinders.Binders.Add(typeof(UploadedFile), new UploadedFileModelBinder());
+            ModelBinders.Binders.Add(typeof(DateTime?), Container.Resolve<IModelBinder>(typeof(DateTimeModelBinder).FullName));
         }
 
         /// <summary>

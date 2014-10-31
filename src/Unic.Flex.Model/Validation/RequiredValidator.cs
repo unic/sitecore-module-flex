@@ -1,5 +1,6 @@
 ﻿namespace Unic.Flex.Model.Validation
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web;
@@ -45,6 +46,9 @@
 
             var booleanValue = value as bool?;
             if (booleanValue != null) return (bool)value;
+
+            var dateTimeValue = value as DateTime?;
+            if (dateTimeValue != null) return true;
 
             var stringValue = value as string;
             if (stringValue != null) return !string.IsNullOrWhiteSpace(stringValue);

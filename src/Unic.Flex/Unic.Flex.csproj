@@ -144,7 +144,9 @@
     <Compile Include="Definitions\Constants.cs" />
     <Compile Include="DependencyInjection\Config.cs" />
     <Compile Include="DependencyInjection\Container.cs" />
+    <Compile Include="Globalization\CultureService.cs" />
     <Compile Include="Globalization\DictionaryRepository.cs" />
+    <Compile Include="Globalization\ICultureService.cs" />
     <Compile Include="Globalization\IDictionaryRepository.cs" />
     <Compile Include="Globalization\TranslationHelper.cs" />
     <Compile Include="Logging\ILogger.cs" />
@@ -155,6 +157,7 @@
     <Compile Include="Mailing\MailService.cs" />
     <Compile Include="Mapping\IUserDataRepository.cs" />
     <Compile Include="Mapping\UserDataRepository.cs" />
+    <Compile Include="ModelBinding\DateTimeModelBinder.cs" />
     <Compile Include="ModelBinding\FieldModelBinder.cs" />
     <Compile Include="ModelBinding\FormModelBinder.cs" />
     <Compile Include="Mapping\IModelConverterService.cs" />

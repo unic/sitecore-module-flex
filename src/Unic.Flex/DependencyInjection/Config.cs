@@ -37,6 +37,7 @@
             Bind<IPlugsService>().To<PlugsService>();
             Bind<ITaskService>().To<TaskService>();
             Bind<IAnalyticsService>().To<AnalyticsService>();
+            Bind<ICultureService>().To<CultureService>();
             
             // data access
             Bind<IDictionaryRepository>().To<DictionaryRepository>();
@@ -45,7 +46,8 @@
             Bind<IUnitOfWork>().To<UnitOfWork>();
 
             // model binding and converting
-            Bind<IModelBinder>().To<FormModelBinder>();
+            Bind<IModelBinder>().To<FormModelBinder>().Named(typeof(FormModelBinder).FullName);
+            Bind<IModelBinder>().To<DateTimeModelBinder>().Named(typeof(DateTimeModelBinder).FullName);
             Bind<IModelConverterService>().To<ModelConverterService>().InSingletonScope();
 
             // context
