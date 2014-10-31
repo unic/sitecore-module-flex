@@ -1,5 +1,6 @@
 ﻿namespace Unic.Flex.Model.DomainModel.Forms
 {
+    using System;
     using Glass.Mapper.Sc.Configuration;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Glass.Mapper.Sc.Fields;
@@ -147,6 +148,20 @@
             }
 
             return steps.Where(step => !(step is Summary)).SelectMany(s => s.Sections);
+        }
+
+        /// <summary>
+        /// Gets the field value.
+        /// </summary>
+        /// <param name="field">The field.</param>
+        /// <returns>
+        /// Value of the field in the form
+        /// </returns>
+        public virtual string GetFieldValue(IField field)
+        {
+            if (field == null) return string.Empty;
+            var formField = this.GetSections().SelectMany(s => s.Fields).FirstOrDefault(f => f.ItemId == field.ItemId);
+            return formField != null ? formField.Value as string : string.Empty;
         }
     }
 }

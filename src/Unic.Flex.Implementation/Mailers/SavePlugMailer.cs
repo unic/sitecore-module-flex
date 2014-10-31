@@ -149,7 +149,7 @@
         /// <returns>The email if valid, or empty string</returns>
         private string GetEmailFromField(IField field, Form form)
         {
-            var fieldValue = this.GetFieldValue(field, form);
+            var fieldValue = form.GetFieldValue(field);
             return (!string.IsNullOrWhiteSpace(fieldValue) && (new EmailValidator()).IsValid(fieldValue)) ? fieldValue : string.Empty;
         }
 
@@ -162,7 +162,7 @@
         /// <returns>The email address found in the mapping if available.</returns>
         private string GetMappedEmailFromField(IField field, Form form, SendEmail plug)
         {
-            var fieldValue = this.GetFieldValue(field, form);
+            var fieldValue = form.GetFieldValue(field);
             if (string.IsNullOrWhiteSpace(fieldValue)) return string.Empty;
 
             var emailValidator = new EmailValidator();
@@ -173,19 +173,6 @@
             }
             
             return emailValidator.IsValid(fieldValue) ? fieldValue : string.Empty;
-        }
-
-        /// <summary>
-        /// Gets the value of a field.
-        /// </summary>
-        /// <param name="field">The field.</param>
-        /// <param name="form">The form.</param>
-        /// <returns>The value from the field as a string</returns>
-        private string GetFieldValue(IField field, Form form)
-        {
-            if (field == null) return string.Empty;
-            var formField = form.GetSections().SelectMany(s => s.Fields).FirstOrDefault(f => f.ItemId == field.ItemId);
-            return formField != null ? formField.Value as string : string.Empty;
         }
 
         /// <summary>
