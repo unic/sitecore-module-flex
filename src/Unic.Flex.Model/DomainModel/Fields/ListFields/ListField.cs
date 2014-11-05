@@ -23,7 +23,7 @@
         {
             get
             {
-                return this.ItemsProvider != null ? this.ItemsProvider.GetItems().ToList() : new List<ListItem>();
+                return this.DataProvider != null ? this.DataProvider.GetItems().ToList() : new List<ListItem>();
             }
         }
 
@@ -33,8 +33,8 @@
         /// <value>
         /// The items provider.
         /// </value>
-        [SitecoreSharedField("Source Items", Setting = SitecoreFieldSettings.InferType)]
-        public virtual IDataProvider ItemsProvider { get; set; }
+        [SitecoreSharedField("Data Provider", Setting = SitecoreFieldSettings.InferType)]
+        public virtual IDataProvider DataProvider { get; set; }
 
         /// <summary>
         /// Gets the text value.

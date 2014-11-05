@@ -350,14 +350,10 @@
             }
 
             // get the value
-            var value = this.Request.Form[key];
-
-            // get the attached data from the provider
-            // todo: implement data provider
-            var list = new List<string> { "lala", "lalalalala", "blupp", "lappland" };
+            var value = this.Request.Form[key].ToLowerInvariant();
 
             // filter the list
-            var result = list.Where(entry => entry.StartsWith(value));
+            var result = fieldItem.Items.Where(entry => entry.ToLowerInvariant().StartsWith(value));
 
             // return the list with proposed values
             return this.Json(result, JsonRequestBehavior.DenyGet);
