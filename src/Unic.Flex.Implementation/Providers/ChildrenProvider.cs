@@ -2,13 +2,13 @@
 {
     using System.Collections.Generic;
     using Glass.Mapper.Sc.Configuration.Attributes;
-    using Unic.Flex.Model.ListFieldSources;
+    using Unic.Flex.Model.DataProviders;
 
     /// <summary>
     /// Provider for list field items which lists all child items.
     /// </summary>
     [SitecoreType(TemplateId = "{66926539-DC85-4A9F-BD60-8A950DD842B7}")]
-    public class ChildrenProvider : IListFieldItemProvider
+    public class ChildrenProvider : IDataProvider
     {
         /// <summary>
         /// Gets or sets the children.

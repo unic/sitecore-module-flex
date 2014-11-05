@@ -1,4 +1,4 @@
-﻿namespace Unic.Flex.Model.ListFieldSources
+﻿namespace Unic.Flex.Model.DataProviders
 {
     using Glass.Mapper.Sc.Configuration.Attributes;
 

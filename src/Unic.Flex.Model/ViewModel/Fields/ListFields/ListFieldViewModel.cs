@@ -1,7 +1,7 @@
 ﻿namespace Unic.Flex.Model.ViewModel.Fields.ListFields
 {
     using System.Collections.Generic;
-    using Unic.Flex.Model.ListFieldSources;
+    using Unic.Flex.Model.DataProviders;
 
     /// <summary>
     /// Base for all list field view models.

@@ -4,8 +4,8 @@
     using System.Collections.Generic;
     using System.Linq;
     using Glass.Mapper.Sc.Configuration;
+    using Unic.Flex.Model.DataProviders;
     using Unic.Flex.Model.GlassExtensions.Attributes;
-    using Unic.Flex.Model.ListFieldSources;
 
     /// <summary>
     /// Base class for all list fields.
@@ -34,7 +34,7 @@
         /// The items provider.
         /// </value>
         [SitecoreSharedField("Source Items", Setting = SitecoreFieldSettings.InferType)]
-        public virtual IListFieldItemProvider ItemsProvider { get; set; }
+        public virtual IDataProvider ItemsProvider { get; set; }
 
         /// <summary>
         /// Gets the text value.

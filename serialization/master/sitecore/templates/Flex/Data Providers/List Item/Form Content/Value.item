@@ -2,7 +2,7 @@
 version: 1
 id: {CC74B417-A552-42A1-8DA1-E46AFCFDEB8A}
 database: master
-path: /sitecore/templates/Flex/List Field Sources/List Item/Form Content/Value
+path: /sitecore/templates/Flex/Data Providers/List Item/Form Content/Value
 parent: {1C202EDB-F9EF-43DA-A092-711B7A979FC7}
 name: Value
 master: {00000000-0000-0000-0000-000000000000}

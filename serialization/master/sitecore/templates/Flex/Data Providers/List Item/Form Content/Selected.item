@@ -2,7 +2,7 @@
 version: 1
 id: {B7F0568A-9EF1-4276-98AD-44D796103DB9}
 database: master
-path: /sitecore/templates/Flex/List Field Sources/List Item/Form Content/Selected
+path: /sitecore/templates/Flex/Data Providers/List Item/Form Content/Selected
 parent: {1C202EDB-F9EF-43DA-A092-711B7A979FC7}
 name: Selected
 master: {00000000-0000-0000-0000-000000000000}

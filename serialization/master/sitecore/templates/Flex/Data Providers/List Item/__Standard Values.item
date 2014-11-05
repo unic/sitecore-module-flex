@@ -1,26 +1,40 @@
 ----item----
 version: 1
-id: {1C202EDB-F9EF-43DA-A092-711B7A979FC7}
+id: {F49D19B5-D4A0-4A35-A769-7D650AACFEDA}
 database: master
-path: /sitecore/templates/Flex/List Field Sources/List Item/Form Content
+path: /sitecore/templates/Flex/Data Providers/List Item/__Standard Values
 parent: {E4DE7509-97B6-4284-A9B9-BBC3452757F5}
-name: Form Content
+name: __Standard Values
 master: {00000000-0000-0000-0000-000000000000}
-template: {E269FBB5-3750-427A-9149-7AA950B49301}
-templatekey: Template section
+template: {E4DE7509-97B6-4284-A9B9-BBC3452757F5}
+templatekey: List Item
 
+----field----
+field: {CC74B417-A552-42A1-8DA1-E46AFCFDEB8A}
+name: Value
+key: value
+content-length: 5
+
+$name
 ----version----
 language: en
 version: 1
-revision: 6cfcef40-0bf1-4649-9831-9cb4c230f9a7
+revision: e67cbdf5-6a1b-4a03-8a0c-51b2079c5c6a
 
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\admin
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
 name: __Created
 key: __created
 content-length: 15
 
-20140925T124804
+20140925T124725
 ----field----
 field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
 name: __Created by
@@ -34,14 +48,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-6cfcef40-0bf1-4649-9831-9cb4c230f9a7
+e67cbdf5-6a1b-4a03-8a0c-51b2079c5c6a
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20140925T124805:635472460850041168
+20140925T124809:635472460897875729
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

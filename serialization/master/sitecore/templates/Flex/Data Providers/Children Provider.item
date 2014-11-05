@@ -1,10 +1,10 @@
 ----item----
 version: 1
-id: {AA34D784-5307-4DA2-B6A1-47D0469C93FD}
+id: {66926539-DC85-4A9F-BD60-8A950DD842B7}
 database: master
-path: /sitecore/templates/Flex/List Field Sources/List Field Sources Folder
+path: /sitecore/templates/Flex/Data Providers/Children Provider
 parent: {3E9F3C2C-024B-4A6D-B42C-5372ABB503FF}
-name: List Field Sources Folder
+name: Children Provider
 master: {00000000-0000-0000-0000-000000000000}
 template: {AB86861A-6030-46C5-B394-E8F99E8B87DB}
 templatekey: Template
@@ -22,18 +22,18 @@ name: __Standard values
 key: __standard values
 content-length: 38
 
-{5D5508D0-ECD1-4762-8330-60B34C566DA5}
+{97EAC936-8E2B-46AA-8124-0457FF739EF5}
 ----field----
 field: {06D5295C-ED2F-4A54-9BF2-26228D113318}
 name: __Icon
 key: __icon
-content-length: 34
+content-length: 29
 
-Applications/32x32/folder_into.png
+Business/32x32/data_table.png
 ----version----
 language: en
 version: 1
-revision: 86c7ab0c-5a29-4267-a11f-6315d67aa1fb
+revision: 8c10da25-efdf-4af8-b343-a549444348ce
 
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
@@ -41,7 +41,7 @@ name: __Created
 key: __created
 content-length: 15
 
-20140925T105019
+20140925T105634
 ----field----
 field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
 name: __Created by
@@ -55,14 +55,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-86c7ab0c-5a29-4267-a11f-6315d67aa1fb
+8c10da25-efdf-4af8-b343-a549444348ce
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20140925T105058:635472390587865637
+20140925T130037:635472468377024240
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
