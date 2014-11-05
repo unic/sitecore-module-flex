@@ -2,7 +2,6 @@
 {
     using System;
     using System.Globalization;
-    using System.Threading;
     using Unic.Flex.Model.ViewModel.Fields.InputFields;
 
     /// <summary>
@@ -17,6 +16,14 @@
         /// The date format.
         /// </value>
         public virtual string DateFormat { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to show the year and month changer.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if the year and month changer should be shown; otherwise, <c>false</c>.
+        /// </value>
+        public virtual bool ShowYearAndMonthChanger { get; set; }
         
         /// <summary>
         /// Gets the name of the view.

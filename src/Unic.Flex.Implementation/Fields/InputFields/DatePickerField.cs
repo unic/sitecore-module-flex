@@ -38,6 +38,15 @@
         public override DateTime? DefaultValue { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to show the year and month changer.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if the year and month changer should be shown; otherwise, <c>false</c>.
+        /// </value>
+        [SitecoreField("Show Year and Month Changer")]
+        public virtual bool ShowYearAndMonthChanger { get; set; }
+
+        /// <summary>
         /// Gets the date format.
         /// </summary>
         /// <value>
