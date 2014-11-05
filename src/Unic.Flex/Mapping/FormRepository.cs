@@ -39,15 +39,16 @@
         }
 
         /// <summary>
-        /// Loads a validator from the data source.
+        /// Loads an item from the data source.
         /// </summary>
+        /// <typeparam name="T">Type of the item to load</typeparam>
         /// <param name="id">The identifier.</param>
         /// <returns>
-        /// Validator if found
+        /// Item if found
         /// </returns>
-        public IValidator LoadValidator(Guid id)
+        public T LoadItem<T>(Guid id) where T : class
         {
-            return this.sitecoreContext.GetItem<IValidator>(id, inferType: true);
+            return this.sitecoreContext.GetItem<T>(id, inferType: true);
         }
     }
 }

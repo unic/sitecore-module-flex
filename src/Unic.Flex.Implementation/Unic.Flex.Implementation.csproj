@@ -121,6 +121,8 @@
     <Compile Include="Database\ISaveToDatabaseService.cs" />
     <Compile Include="Database\SaveToDatabaseService.cs" />
     <Compile Include="DependencyInjection\Config.cs" />
+    <Compile Include="Fields\InputFields\AutoCompleteField.cs" />
+    <Compile Include="Fields\InputFields\AutoCompleteFieldViewModel.cs" />
     <Compile Include="Fields\InputFields\CheckBoxField.cs" />
     <Compile Include="Fields\InputFields\CheckBoxFieldViewModel.cs" />
     <Compile Include="Fields\InputFields\DatePickerField.cs" />

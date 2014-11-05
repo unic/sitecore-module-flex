@@ -2,7 +2,6 @@
 {
     using System;
     using Unic.Flex.Model.DomainModel.Forms;
-    using Unic.Flex.Model.Validation;
 
     /// <summary>
     /// Repository containg data access for the forms.
@@ -19,10 +18,13 @@
         Form LoadForm(string dataSource);
 
         /// <summary>
-        /// Loads a validator from the data source.
+        /// Loads an item from the data source.
         /// </summary>
+        /// <typeparam name="T">Type of the item to load</typeparam>
         /// <param name="id">The identifier.</param>
-        /// <returns>Validator if found</returns>
-        IValidator LoadValidator(Guid id);
+        /// <returns>
+        /// Item if found
+        /// </returns>
+        T LoadItem<T>(Guid id) where T : class;
     }
 }

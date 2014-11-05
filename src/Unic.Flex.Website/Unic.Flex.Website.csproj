@@ -189,6 +189,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Views\Modules\Flex\Default\Fields\InputFields\AutoComplete.cshtml" />
     <None Include="web.config" />
   </ItemGroup>
   <ItemGroup>

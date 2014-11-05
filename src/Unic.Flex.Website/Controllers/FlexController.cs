@@ -1,6 +1,7 @@
 ﻿namespace Unic.Flex.Website.Controllers
 {
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Net;
@@ -13,6 +14,7 @@
     using Unic.Flex.Context;
     using Unic.Flex.Globalization;
     using Unic.Flex.Implementation.Database;
+    using Unic.Flex.Implementation.Fields.InputFields;
     using Unic.Flex.Logging;
     using Unic.Flex.Mapping;
     using Unic.Flex.Model.Validation;
@@ -303,14 +305,14 @@
         public ActionResult AjaxValidator(Guid validator)
         {
             // get the validator
-            var validatorItem = this.formRepository.LoadValidator(validator) as AjaxValidator;
+            var validatorItem = this.formRepository.LoadItem<IValidator>(validator) as AjaxValidator;
             if (validatorItem == null)
             {
                 this.logger.Warn(string.Format("Ajax validator with guid '{0}' not found", validator), this);
                 return this.Json(false, JsonRequestBehavior.AllowGet);
             }
 
-            // get the key of the valud
+            // get the key of the value
             var collection = validatorItem.HttpMethod == FormMethod.Post ? Request.Form : Request.QueryString;
             var key = collection.AllKeys.FirstOrDefault(x => x.EndsWith("Value"));
             if (string.IsNullOrWhiteSpace(key))
@@ -321,6 +323,44 @@
             
             // validate
             return this.Json(validatorItem.IsValid(collection[key]), JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
+        /// Get data for the auto complete field.
+        /// </summary>
+        /// <param name="field">The field.</param>
+        /// <returns>Json array with data to display</returns>
+        [HttpPost]
+        public ActionResult AutoCompleteField(Guid field)
+        {
+            // get the field
+            var fieldItem = this.formRepository.LoadItem<AutoCompleteField>(field);
+            if (fieldItem == null)
+            {
+                this.logger.Warn(string.Format("Auto complete field with guid '{0}' not found", field), this);
+                return this.Json(false, JsonRequestBehavior.DenyGet);
+            }
+
+            // get the key of the value
+            var key = Request.Form.AllKeys.FirstOrDefault(x => x.EndsWith("Value"));
+            if (string.IsNullOrWhiteSpace(key))
+            {
+                this.logger.Warn(string.Format("No valid value provided to get data for auto complete field '{0}'", field), this);
+                return this.Json(false, JsonRequestBehavior.DenyGet);
+            }
+
+            // get the value
+            var value = this.Request.Form[key];
+
+            // get the attached data from the provider
+            // todo: implement data provider
+            var list = new List<string> { "lala", "lalalalala", "blupp", "lappland" };
+
+            // filter the list
+            var result = list.Where(entry => entry.StartsWith(value));
+
+            // return the list with proposed values
+            return this.Json(result, JsonRequestBehavior.DenyGet);
         }
 
         /// <summary>
