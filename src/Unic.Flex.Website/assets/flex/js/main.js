@@ -19114,6 +19114,7 @@ return datepicker.regional['it-CH'];
 		defaults = {
 			cssprefix: 'flex',
 			dovalidation: true,
+			haserrorClass: 'flex_has_error',
 			dataattribute: pluginName // configurable because of legacy implementations in Post
 		};
 	pluginName = pluginName.toLowerCase();
@@ -19157,6 +19158,12 @@ return datepicker.regional['it-CH'];
 
 		this.$element.on('change.' + pluginName, '[data-' + this.options.dataattribute + '=showpasswordtrigger]', _.bind(this._handleShowPassword, this));
 		this.$element.on('submit.' + pluginName, _.bind(this._handleSubmit, this));
+
+		// Accessibility
+		var $invalidFields = $('[aria-invalid=true]:visible'); // Serverside failed validation fields
+		$invalidFields.first().focus();
+		$invalidFields.closest('li').addClass(this.options.haserrorClass);
+		this.$element.on('change.' + pluginName, 'input[type=checkbox], input[type=radio]', _.bind(this._syncCheckedStatus, this));
 	};
 
 	/**
@@ -19200,6 +19207,15 @@ return datepicker.regional['it-CH'];
 			return $container.find(':checked').length ? true : false;
 		});
 
+		// Add / remove additional classes
+		$.validator.defaults.highlight = _.bind(function(element) {
+			$(element).closest('li').addClass(this.options.haserrorClass);
+		}, this);
+		$.validator.defaults.unhighlight = _.bind(function(element) {
+			$(element).closest('li').removeClass(this.options.haserrorClass);
+		}, this);
+
+		// Init the form with the new settings.
 		var form = this.$element
 			.removeData('validator') /* added by the raw jquery.validate plugin */
 			.removeData('unobtrusiveValidation');  /* added by the jquery unobtrusive plugin */
@@ -19345,6 +19361,23 @@ return datepicker.regional['it-CH'];
 		}
 	};
 
+	/**
+	 * Sets to appropriate value in aria-checked property
+	 * @private
+	 */
+	Plugin.prototype._syncCheckedStatus = function(event) {
+		var $inputElement = $(event.target);
+
+		// console.log($inputElement.attr('type'));
+		// console.log($inputElement.prop('checked'));
+
+		if( $inputElement.is(':radio') ) {
+			$(':radio[name="' + $inputElement.attr('name') + '"]').attr('aria-checked','false');
+		}
+
+		$inputElement.attr('aria-checked', $inputElement.prop('checked'));
+	};
+
 	// Make the plugin available through jQuery (and the global project namespace)
 	Unic.modules.PluginHelper.register(Plugin, pluginName, ['ready', 'ajax_loaded']);
 
@@ -19440,16 +19473,16 @@ return datepicker.regional['it-CH'];
 (function(window, document, $, Unic, undefined) {
 	'use strict';
 
-//	var $document = $(document);
+	var $document = $(document);
 
 	var pluginName = 'flexdatepicker',
-		events = {/* eventname: pluginName +'_eventname' */},
-		defaults = {
-			locale: 'en',
-			showOtherMonths: true,
-			selectOtherMonths: true,
-			firstDay: 1
-		};
+			events = {/* eventname: pluginName +'_eventname' */},
+			defaults = {
+				locale: 'en',
+				showOtherMonths: true,
+				selectOtherMonths: true,
+				firstDay: 1
+			};
 
 	// Globally accessible data like event names
 	Unic.modules[pluginName] = {
@@ -19478,7 +19511,7 @@ return datepicker.regional['it-CH'];
 		this.$datefield = this.$element.find('input');
 
 		if (this.options.dateFormat) {
-			this.options.dateFormat = window.convertDateFormatToUI(this.options.dateFormat);
+			this.options.dateFormat = this._convertDateFormatToUI(this.options.dateFormat);
 
 			// Correct Validator
 			$.validator.methods.date = _.bind(function (value) {
@@ -19494,6 +19527,13 @@ return datepicker.regional['it-CH'];
 
 		$.datepicker.setDefaults( $.datepicker.regional[this.options.locale] );
 
+		this.options.beforeShow = _.bind(function(input, instance){
+			this._styleDatePicker(instance);
+		}, this);
+		this.options.onChangeMonthYear = _.bind(function(year, month, instance){
+			this._styleDatePicker(instance);
+		}, this);
+
 		this.$datefield.datepicker(this.options);
 
 	};
@@ -19506,6 +19546,44 @@ return datepicker.regional['it-CH'];
 		event.preventDefault();
 		this.$datefield.datepicker('show');
 	};
+
+	/**
+	 * Handles Styling of Datepicker.
+	 * @param instance {object} The UI-Instance of the datepicker.
+	 * @method
+	 * @private
+	 */
+	Plugin.prototype._styleDatePicker = function(instance){
+		// Make Timeout here, because actually, in beforeShow, DatePicker-DOM is not ready yet.
+		setTimeout(function(){
+			instance.dpDiv.removeData('plugin_flexstyles');
+			instance.dpDiv.attr('data-init', 'flexstyles');
+			$document.trigger('additional_forminit');
+		}, 0);
+	};
+
+	/**
+	 * Convert .NET-DateFormat to jQuery UI.
+	 * .NET: http://msdn.microsoft.com/de-de/library/vstudio/8kb3ddd4.aspx
+	 * ui: http://api.jqueryui.com/datepicker/#utility-formatDate
+	 * @param formatstring {string} The given .NET DateFormat-String.
+	 * @returns {string} The UI-compatible dateFormatString.
+	 * @method
+	 * @private
+	 */
+	Plugin.prototype._convertDateFormatToUI = function(formatstring){
+		var newFormat = formatstring
+				.replace(/(\b)(M{2})(\b)/g, 'mm')
+				.replace(/(\b)(M{1})(\b)/g, 'm')
+				.replace(/ddd/g, 'D') // day name short
+				.replace(/dddd/g, 'DD') // day name long
+				.replace(/MMMM/g, 'MM')
+				.replace(/MMM/g, 'M')
+				.replace(/yy/g, 'y');
+
+		return newFormat;
+	};
+
 
 	// Make the plugin available through jQuery (and the global project namespace)
 	Unic.modules.PluginHelper.register(Plugin, pluginName, ['ready', 'ajax_loaded']);
@@ -19579,9 +19657,11 @@ return datepicker.regional['it-CH'];
 })(window, document, jQuery, Unic);
 
 /**
- * Autocomplete-Plugin
- * @author RMa, Unic AG
- * @license All rights reserved Unic AG
+ * @class       flexautocomplete
+ * @classdesc   An Autocomplete-Plugin for the Flex-Formmodule.
+ * @author      Rosmarie Maurer-Wysseier, Unic AG.
+ * Edited by    Rosmarie Maurer-Wysseier, Unic AG - 04.11.2014
+ * @copyright   Unic AG
  */
 
 ;(function(window, document, $, Unic, undefined) {
@@ -19598,7 +19678,8 @@ return datepicker.regional['it-CH'];
 			openClass: 'flex_is_open',
 			parameterName: 'query',
 			disabledKeys: [40, 39, 13, 38, 37, 27],
-			noResults: 'No Result available'
+			noResults: 'No Result available',
+			sendAll: true
 		};
 
 	// Globally accessible data like event names
@@ -19608,8 +19689,8 @@ return datepicker.regional['it-CH'];
 
 	/**
 	 * Create an instance of the module
-	 * @param {object} element The DOM element to bind the module
-	 * @param {object} options Options overwriting the defaults
+	 * @param {object} element - The DOM element to bind the module
+	 * @param {object} options - Options overwriting the defaults
 	 * @constructor
 	 */
 	var Plugin = function(element, options) {
@@ -19643,6 +19724,11 @@ return datepicker.regional['it-CH'];
 		this.$list.on('click', 'a', _.bind(this._selectValue, this));
 	};
 
+	/**
+	 * Prepares necessary accessibility-Attributes.
+	 * @method
+	 * @private
+	 */
 	Plugin.prototype._initAccessibility = function(){
 		this.id = this.$element.attr('id');
 		this.$element.attr('aria-owns', this.id + '-list').attr('aria-autocomplete', 'list');
@@ -19651,6 +19737,12 @@ return datepicker.regional['it-CH'];
 		$document.trigger('ajax_loaded', this.$parent);
 	};
 
+	/**
+	 * Handles Keydown for Accessibility.
+	 * @param {jQuery.Event} event - The Event-Object from the keyDown-Event.
+	 * @method
+	 * @private
+	 */
 	Plugin.prototype._handleKeydown = function(event) {
 		if(!_.contains(this.options.disabledKeys, event.which)) {
 			if(this.timeout) {
@@ -19661,23 +19753,40 @@ return datepicker.regional['it-CH'];
 		}
 	};
 
+	/**
+	 * Gets the Results from the server.
+	 * @method
+	 * @private
+	 */
 	Plugin.prototype._getResults = function() {
 		if(this.$element.val() !== '') {
 			var data = '',
-				$form = this.$element.closest('form'),
-				separator = this.options.url.indexOf('?') === -1 ? '?' : '&';
+				$form = this.$element.closest('form');
 
 			if ($form.length) {
-				data = $form.serialize();
+				if(this.options.sendAll) {
+					// Serialize form, but without pwd-fields
+					data = $form.find(':input:not([type=password])').filter(_.bind(function(index, element){
+						return !$(element).closest('[data-flexform=showpassword]').length;
+					}, this)).serialize();
+				} else {
+					data = this.$element.attr('name') + '=' + this.$element.val();
+				}
 			} else {
 				data = this.options.parameterName + '=' + this.$element.val();
 			}
-			$.get(this.options.url + separator + data, _.bind(this._updateList, this));
+			$.post(this.options.url, data, _.bind(this._updateList, this));
 		} else {
 			this._hideList();
 		}
 	};
 
+	/**
+	 * Displays the given Data in the list.
+	 * @param {Array} data - The list of data to display.
+	 * @method
+	 * @private
+	 */
 	Plugin.prototype._updateList = function(data) {
 		this.$list.empty();
 		this.$list.attr('role', 'listbox').attr('aria-expanded', 'true');
@@ -19701,6 +19810,12 @@ return datepicker.regional['it-CH'];
 		}
 	};
 
+	/**
+	 * Hides the autosuggestions.
+	 * @param {jQuery.Event} event - The original Event-Object (optional).
+	 * @method
+	 * @private
+	 */
 	Plugin.prototype._hideList = function(event){
 		if(!event) {
 			this.$parent.removeClass(this.options.openClass);
@@ -19717,6 +19832,12 @@ return datepicker.regional['it-CH'];
 		}
 	};
 
+	/**
+	 * Select a Value from the List and write it in the input-field.
+	 * @param {jQuery.Event} event - The original click-event.
+	 * @method
+	 * @private
+	 */
 	Plugin.prototype._selectValue = function(event){
 		event.preventDefault();
 		event.stopImmediatePropagation();
@@ -19795,22 +19916,3 @@ return datepicker.regional['it-CH'];
 
 console.log('main');
 console.log(Modernizr.touchevents);
-
-
-// Convert .NET-DateFormat to jQuery UI.
-// .NET: http://msdn.microsoft.com/de-de/library/vstudio/8kb3ddd4.aspx
-// ui: http://api.jqueryui.com/datepicker/#utility-formatDate
-window.convertDateFormatToUI = function(formatstring){
-	'use strict';
-
-	var newFormat = formatstring
-		.replace(/(\b)(M{2})(\b)/g, 'mm')
-		.replace(/(\b)(M{1})(\b)/g, 'm')
-		.replace(/ddd/g, 'D') // day name short
-		.replace(/dddd/g, 'DD') // day name long
-		.replace(/MMMM/g, 'MM')
-		.replace(/MMM/g, 'M')
-		.replace(/yy/g, 'y');
-
-	return newFormat;
-};
