@@ -18,8 +18,6 @@
     </dependencies>
   </metadata>
   <files>
-	<file src="..\..\tools\**\*.*" target="tools" />
-	<file src="..\..\serialization\**\*.*" target="serialization" />
 	<file src="Assets\**\*.*" target="content\Assets" />
   </files>
 </package>
