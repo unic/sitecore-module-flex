@@ -3,6 +3,8 @@
     using System;
     using System.Web;
     using System.Web.Mvc;
+    using Unic.Flex.DependencyInjection;
+    using Unic.Flex.Globalization;
     using Unic.Flex.Model.ViewModel.Fields.InputFields;
 
     /// <summary>
@@ -37,12 +39,14 @@
         /// </summary>
         public override void BindProperties()
         {
+            var translationService = Container.Resolve<IDictionaryRepository>();
+            
             base.BindProperties();
 
             this.Attributes.Add("aria-multiline", false);
             this.Attributes.Add("role", "textbox");
             this.Attributes.Add("data-init", "flexautocomplete");
-            this.Attributes.Add("data-flexautocomplete-options", "{\"sendAll\": false, \"url\": \"" + this.GetProviderUrl() + "\"}");
+            this.Attributes.Add("data-flexautocomplete-options", "{\"noResults\": \"" + translationService.GetText("No Results") + "\", \"sendAll\": false, \"url\": \"" + this.GetProviderUrl() + "\"}");
 
             this.AddCssClass("flex_singletextfield");
         }
