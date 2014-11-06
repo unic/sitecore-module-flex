@@ -14,11 +14,9 @@
 
     var formUrl = Sitecore.Web.WebUtil.GetFullUrl(form.GetFirstStepUrl());
 }
-
 @ViewBag.TextMailIntroduction
 
 @form.Title
-
 @foreach (var step in form.Steps.Where(s => !(s is Summary)))
 {
     @Html.FlexComponent(m => step, "Mailers/SavePlug/Step.text", (string)ViewBag.Theme)
