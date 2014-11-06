@@ -1,17 +1,80 @@
-﻿<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <style type="text/css">
-            body {
-                font-family: Tahoma, Arial, sans-serif;
-            }
+﻿<!DOCTYPE html>
+<html lang="@Sitecore.Context.Language.Name.ToLower()">
+<head>
+    <title>@ViewBag.Subject</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0, user-scalable=yes" />
+    <style type="text/css">
+        html {
+            margin: 0;
+            padding: 0;
+            -webkit-text-size-adjust: none;
+        }
 
-            th, td {
-                padding: 6px;
-            }
-        </style>
-    </head>
-    <body>
-        @RenderBody()
-    </body>
+        body {
+            font-family: Arial;
+            font-size: 10pt;
+            font-weight: normal;
+            color: #000;
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 13pt;
+            margin-bottom: 5px;
+        }
+
+        h2 {
+            font-size: 12pt;
+            margin-bottom: 5px;
+        }
+
+        h3 {
+            font-size: 11pt;
+            margin-bottom: 5px;
+        }
+
+        a {
+            color: #584125;
+        }
+
+        a:hover {
+            color: #000;
+        }
+
+        p {
+            margin: 0 0 15px 0;
+            padding: 0;
+        }
+
+        p.formdetail {
+            margin: 15px 0 15px 0;
+            padding: 5px 0 0 0;
+            border-top: 1px solid black;
+        }
+
+        table {
+            margin: 0 0 15px 0;
+        }
+
+        th, td {
+            margin: 0;
+            padding: 2px 10px 2px 0;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        tbody th {
+            font-weight: normal;
+        }
+
+        div.content {
+            margin-left: 2px;
+        }
+    </style>
+</head>
+<body>
+    @RenderBody()
+</body>
 </html>

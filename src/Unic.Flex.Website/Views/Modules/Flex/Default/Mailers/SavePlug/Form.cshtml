@@ -16,19 +16,22 @@
     var formUrl = Sitecore.Web.WebUtil.GetFullUrl(form.GetFirstStepUrl());
 }
 
-@Html.Raw(ViewBag.HtmlMailIntroduction)
+<div class="content">
 
-<h1>@form.Title</h1>
-<p>@form.Introduction</p>
+    @Html.Raw(ViewBag.HtmlMailIntroduction)
 
-@foreach (var step in form.Steps.Where(s => !(s is Summary)))
-{
-    @Html.FlexComponent(m => step, "Mailers/SavePlug/Step", (string)ViewBag.Theme)
-}
+    <h1>@form.Title</h1>
 
-@Html.Raw(ViewBag.HtmlMailFooter)
+    @foreach (var step in form.Steps.Where(s => !(s is Summary)))
+    {
+        @Html.FlexComponent(m => step, "Mailers/SavePlug/Step", (string)ViewBag.Theme)
+    }
 
-<div style="margin-top: 50px; padding-top: 10px; border-top: 1px solid black; font-size: 90%">
-    @TranslationHelper.FlexText("Form Title"): <a href="@formUrl">@formUrl</a><br/>
-    @TranslationHelper.FlexText("Language Name"): @Sitecore.Context.Language.Name
+    @Html.Raw(ViewBag.HtmlMailFooter)
+
+    <p class="formdetail">
+        @TranslationHelper.FlexText("Form Title"): <a href="@formUrl" target="_blank">@formUrl</a><br />
+        @TranslationHelper.FlexText("Language Name"): @Sitecore.Context.Language.Name
+    </p>
+
 </div>

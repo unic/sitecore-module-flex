@@ -84,6 +84,7 @@
 
             // add content
             var fields = form.GetSections().SelectMany(s => s.Fields).Where(f => f.ShowInSummary).ToList();
+            this.ViewBag.Subject = this.mailService.ReplaceTokens(plug.Subject, fields);
             this.ViewBag.HtmlMailIntroduction = this.mailService.ReplaceTokens(plug.HtmlMailIntroduction, fields);
             this.ViewBag.HtmlMailFooter = this.mailService.ReplaceTokens(plug.HtmlMailFooter, fields);
             this.ViewBag.TextMailIntroduction = this.mailService.ReplaceTokens(plug.TextMailIntroduction, fields);
@@ -112,7 +113,7 @@
             return this.Populate(x =>
             {
                 x.ViewName = this.presentationService.ResolveView(this.ControllerContext, "Mailers/SavePlug/Form", this.theme);
-                x.Subject = this.mailService.ReplaceTokens(plug.Subject, fields);
+                x.Subject = this.ViewBag.Subject;
 
                 // add addresses
                 x.From = new MailAddress(from);
