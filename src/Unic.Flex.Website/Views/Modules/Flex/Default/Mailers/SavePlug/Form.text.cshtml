@@ -14,7 +14,7 @@
 
     var formUrl = Sitecore.Web.WebUtil.GetFullUrl(form.GetFirstStepUrl());
 }
-@ViewBag.TextMailIntroduction
+@Html.Raw(ViewBag.TextMailIntroduction)
 
 @form.Title
 @foreach (var step in form.Steps.Where(s => !(s is Summary)))
@@ -22,7 +22,7 @@
     @Html.FlexComponent(m => step, "Mailers/SavePlug/Step.text", (string)ViewBag.Theme)
 }
 
-@ViewBag.TextMailFooter
+@Html.Raw(ViewBag.TextMailFooter)
 
 --
 @TranslationHelper.FlexText("Form Title"): @formUrl
