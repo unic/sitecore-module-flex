@@ -1,6 +1,5 @@
 ﻿namespace Unic.Flex.Model.Configuration.Converters
 {
-    using Glass.Mapper.Sc;
     using Sitecore.Diagnostics;
     using Unic.Configuration;
     using Unic.Configuration.Converter;
@@ -20,10 +19,10 @@
         {
             Assert.ArgumentNotNull(field, "field");
 
-            using (new VersionCountDisabler())
-            {
-                return string.IsNullOrWhiteSpace(field.Value) ? null : (new SitecoreContext("Flex")).GetItem<Specification>(field.Value);
-            }
+            if (string.IsNullOrWhiteSpace(field.Value)) return null;
+
+            var item = field.Item.Database.GetItem(field.Value);
+            return item == null ? null : new Specification { Value = item["Value"] };
         }
     }
 }

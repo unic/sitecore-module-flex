@@ -6,7 +6,7 @@
     /// A specification item
     /// </summary>
     [SitecoreType(TemplateId = "{47D4110F-7D21-4DC8-89F0-41302DB57637}")]
-    public class Specification : ItemBase
+    public class Specification
     {
         /// <summary>
         /// Gets or sets the value.

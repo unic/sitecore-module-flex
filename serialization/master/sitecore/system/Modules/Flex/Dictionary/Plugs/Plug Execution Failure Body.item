@@ -19,15 +19,19 @@ Plug Execution Failure Body
 ----version----
 language: en
 version: 1
-revision: 43918c07-06d4-45ea-a3fb-6d1522913996
+revision: e25c970b-5d37-4f30-878f-cb75a7b60fe3
 
 ----field----
 field: {2BA3454A-9A9C-4CDF-A9F8-107FD484EB6E}
 name: Phrase
 key: phrase
-content-length: 93
+content-length: 118
 
 The plug with id '{1}' exceeded the number of valid retries to execute on form with id '{0}'.
+
+Exception: {2}
+
+{3}
 ----field----
 field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
 name: __Owner
@@ -55,14 +59,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-43918c07-06d4-45ea-a3fb-6d1522913996
+e25c970b-5d37-4f30-878f-cb75a7b60fe3
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20140924T125951:635471603913463553
+20141106T162227:635508877479968674
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

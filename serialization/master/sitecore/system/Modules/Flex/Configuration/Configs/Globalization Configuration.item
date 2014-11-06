@@ -12,7 +12,14 @@ templatekey: Globalization Configuration
 ----version----
 language: en
 version: 1
-revision: 02f8371a-ee36-40bf-b80f-8ff627c32e87
+revision: 802915dc-0c4f-4375-ae38-ee30b3c786c8
+
+----field----
+field: {CF86E7D7-97B4-4B8F-ABA4-DF532053639C}
+name: Date Format
+key: date format
+content-length: 0
+
 
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
@@ -27,14 +34,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-02f8371a-ee36-40bf-b80f-8ff627c32e87
+802915dc-0c4f-4375-ae38-ee30b3c786c8
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20141031T151958:635503655986642309
+20141106T170130:635508900904216809
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

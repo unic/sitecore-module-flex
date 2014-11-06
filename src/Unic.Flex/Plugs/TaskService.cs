@@ -1,6 +1,7 @@
 ﻿namespace Unic.Flex.Plugs
 {
     using Newtonsoft.Json;
+    using Sitecore.Configuration;
     using Sitecore.Diagnostics;
     using Sitecore.Globalization;
     using Sitecore.Sites;
@@ -111,7 +112,7 @@
                 {
                     using (new LanguageSwitcher(language))
                     {
-                        this.ExecuteJob(job, maxRetries, timeBetweenTries);
+                        this.ExecuteJob(site, language, job, maxRetries, timeBetweenTries);
                     }
                 }
             }).ContinueWith(task => this.unitOfWork.Save());
@@ -169,10 +170,12 @@
         /// <summary>
         /// Executes the job.
         /// </summary>
+        /// <param name="site">The site.</param>
+        /// <param name="language">The language.</param>
         /// <param name="job">The job.</param>
         /// <param name="maxRetries">The maximum retries.</param>
         /// <param name="timeBetweenTries">The time between tries.</param>
-        protected virtual void ExecuteJob(Job job, int maxRetries, int timeBetweenTries)
+        protected virtual void ExecuteJob(SiteContext site, Language language, Job job, int maxRetries, int timeBetweenTries)
         {
             try
             {
@@ -194,7 +197,17 @@
                     if (plug == null) continue;
 
                     // execute the plug
-                    tasks.Add(System.Threading.Tasks.Task.Factory.StartNew(() => this.ExecuteTask(job, task, form, plug, maxRetries)));
+                    tasks.Add(System.Threading.Tasks.Task.Factory.StartNew(() =>
+                                {
+                                    using (new SiteContextSwitcher(site))
+                                    {
+                                        using (new LanguageSwitcher(language))
+                                        {
+                                            this.ExecuteTask(job, task, form, plug, maxRetries);
+                                        }
+                                    }
+                                }));
+
                 }
 
                 System.Threading.Tasks.Task.WaitAll(tasks.ToArray());
@@ -232,7 +245,7 @@
 
                 if (task.NumberOfTries > maxRetries)
                 {
-                    this.SendFailureEmail(job, task);
+                    this.SendFailureEmail(job, task, exception);
                 }
             }
         }
@@ -256,14 +269,15 @@
         /// </summary>
         /// <param name="job">The job.</param>
         /// <param name="task">The task.</param>
-        protected virtual void SendFailureEmail(Job job, Task task)
+        /// <param name="exception">The exception.</param>
+        protected virtual void SendFailureEmail(Job job, Task task, Exception exception)
         {
             var from = Sitecore.Configuration.Settings.GetSetting("Flex.EmailAddresses.PlugExecutionFailureFrom");
             var to = Sitecore.Configuration.Settings.GetSetting("Flex.EmailAddresses.PlugExecutionFailureTo");
             var subject = this.dictionaryRepository.GetText("Plug Execution Failure Subject");
             var body = this.dictionaryRepository.GetText("Plug Execution Failure Body");
 
-            var message = new MailMessage(from, to, subject, string.Format(body, job.ItemId, task.ItemId));
+            var message = new MailMessage(from, to, subject, string.Format(body, job.ItemId, task.ItemId, exception.Message, exception.StackTrace));
             Sitecore.MainUtil.SendMail(message);
         }
     }
