@@ -1,6 +1,7 @@
 ﻿namespace Unic.Flex.Model.ViewModel.Sections
 {
     using System.Collections.Generic;
+    using Unic.Flex.Model.DomainModel.Components;
     using Unic.Flex.Model.Presentation;
     using Unic.Flex.Model.ViewModel.Components;
     using Unic.Flex.Model.ViewModel.Fields;
@@ -8,7 +9,7 @@
     /// <summary>
     /// View model for a section
     /// </summary>
-    public interface ISectionViewModel : IPresentationComponent, ITooltipViewModel
+    public interface ISectionViewModel : IPresentationComponent, ITooltipViewModel, IVisibilityDependencyViewModel
     {
         /// <summary>
         /// Gets the fields.
@@ -41,5 +42,10 @@
         ///   <c>true</c> if the fieldset markup should not be outputed; otherwise, <c>false</c>.
         /// </value>
         bool DisableFieldset { get; set; }
+
+        /// <summary>
+        /// Binds the needed attributes and properties after converting from domain model to the view model
+        /// </summary>
+        void BindProperties();
     }
 }

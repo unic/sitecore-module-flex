@@ -4,7 +4,7 @@
 
 @if (string.IsNullOrWhiteSpace(Model.Title))
 {
-    <fieldset class="flex_var_nolegend">
+    <fieldset class="flex_var_nolegend" @Html.Raw(Html.FormatAttributes(Model.ContainerAttributes))>
         <ul>
             @for (int i = 0; i < Model.Fields.Count; i++)
             {
@@ -17,7 +17,7 @@ else
 {
     var describedBy = !Model.DisableFieldset && Model.Tooltip.ShowTooltip ? string.Format("aria-describedby=\"{0}_Tooltip\"", Html.IdForModel()) : string.Empty;
 
-    <fieldset class="@string.Format("{0}", Model.DisableFieldset ? "flex_var_nolegend" : "flex_var_haslegend")" @Html.Raw(describedBy)>
+    <fieldset class="@string.Format("{0}", Model.DisableFieldset ? "flex_var_nolegend" : "flex_var_haslegend")" @Html.Raw(Html.FormatAttributes(Model.ContainerAttributes)) @Html.Raw(describedBy)>
         <legend class="@string.Format("{0}", Model.DisableFieldset ? "visuallyhidden" : string.Empty)">@Model.Title</legend>
 
         @if (!Model.DisableFieldset)

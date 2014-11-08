@@ -1,5 +1,6 @@
 ﻿namespace Unic.Flex.Model.DomainModel.Sections
 {
+    using Glass.Mapper.Sc.Configuration;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using System.Collections.Generic;
     using Unic.Flex.Model.DomainModel.Components;
@@ -11,7 +12,7 @@
     /// The standard section.
     /// </summary>
     [SitecoreType(TemplateId = "{B2B5CAB2-2BD7-4FFE-80B1-7607A310771E}")]
-    public class StandardSection : ItemBase, ITooltip, IReusableComponent<StandardSection>
+    public class StandardSection : ItemBase, ITooltip, IVisibilityDependency, IReusableComponent<StandardSection>
     {
         /// <summary>
         /// Gets or sets the title.
@@ -72,6 +73,24 @@
         /// </value>
         [SitecoreField("Tooltip Text")]
         public virtual string TooltipText { get; set; }
+
+        /// <summary>
+        /// Gets or sets the dependent field.
+        /// </summary>
+        /// <value>
+        /// The dependent field.
+        /// </value>
+        [SitecoreField("Dependent Field", Setting = SitecoreFieldSettings.InferType)]
+        public virtual IField DependentField { get; set; }
+
+        /// <summary>
+        /// Gets or sets the dependent value.
+        /// </summary>
+        /// <value>
+        /// The dependent value.
+        /// </value>
+        [SitecoreField("Dependent Value")]
+        public virtual string DependentValue { get; set; }
 
         /// <summary>
         /// Gets or sets the reusable component.

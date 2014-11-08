@@ -236,6 +236,12 @@
                     sectionViewModel.Fields.Add(fieldViewModel);
                 }
 
+                // handle field dependency
+                sectionViewModel.DependentFrom = this.GetDependentField(step, section);
+
+                // bind the properties
+                sectionViewModel.BindProperties();
+
                 // add the section to the step
                 stepViewModel.Sections.Add(sectionViewModel);
             }
