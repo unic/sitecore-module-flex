@@ -324,7 +324,7 @@
 
             // generate the field
             var honeypot = new HoneypotFieldViewModel();
-            honeypot.Key = "info3";
+            honeypot.Id = "info3";
             honeypot.Label = this.dictionaryRepository.GetText("Leave this blank if you are human");
             honeypot.BindProperties();
 

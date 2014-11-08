@@ -48,7 +48,7 @@
                     if (string.IsNullOrWhiteSpace(value)) continue;
 
                     field.Value = value;
-                    this.userDataRepository.SetValue(form.Id, field.Key, value);
+                    this.userDataRepository.SetValue(form.Id, field.Id, value);
                 }
             }
         }

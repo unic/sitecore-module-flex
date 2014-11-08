@@ -26,6 +26,14 @@
     public interface IFieldViewModel : IPresentationComponent, ITooltipViewModel
     {
         /// <summary>
+        /// Gets or sets the identifier.
+        /// </summary>
+        /// <value>
+        /// The identifier.
+        /// </value>
+        string Id { get; set; }
+        
+        /// <summary>
         /// Gets the type.
         /// </summary>
         /// <value>
@@ -48,15 +56,7 @@
         /// The text value.
         /// </value>
         string TextValue { get; set; }
-
-        /// <summary>
-        /// Gets or sets the key.
-        /// </summary>
-        /// <value>
-        /// The key.
-        /// </value>
-        string Key { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the label.
         /// </summary>

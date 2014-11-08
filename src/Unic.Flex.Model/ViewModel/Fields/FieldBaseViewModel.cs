@@ -64,12 +64,12 @@
         }
 
         /// <summary>
-        /// Gets or sets the key.
+        /// Gets or sets the identifier.
         /// </summary>
         /// <value>
-        /// The key.
+        /// The identifier.
         /// </value>
-        public virtual string Key { get; set; }
+        public virtual string Id { get; set; }
 
         /// <summary>
         /// Gets or sets the label.

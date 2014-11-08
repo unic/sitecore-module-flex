@@ -17,6 +17,16 @@
     public static class FormRepositoryMoqs
     {
         /// <summary>
+        /// The single line text unique identifier
+        /// </summary>
+        public const string SingleLineTextGuid = "eb0668c1-ba61-47f8-8a6b-084f19b8575a";
+
+        /// <summary>
+        /// The multi line text unique identifier
+        /// </summary>
+        public const string MultiLineTextGuid = "6998c09b-44ea-4aff-9c68-29dad6ada959";
+        
+        /// <summary>
         /// Gets the null form repository.
         /// </summary>
         /// <returns>A repository which return null</returns>
@@ -72,8 +82,8 @@
         {
             // generate fields
             var fields = new List<IField>();
-            fields.Add(new SinglelineTextField { Validators = new List<IValidator>(), Key = "singlelinetext" });
-            fields.Add(new MultilineTextField { Validators = new List<IValidator>(), Key = "multilinetext" });
+            fields.Add(new SinglelineTextField { Validators = new List<IValidator>(), ItemId = new Guid(SingleLineTextGuid) });
+            fields.Add(new MultilineTextField { Validators = new List<IValidator>(), ItemId = new Guid(MultiLineTextGuid) });
             
             // generate the sections
             var firstSection = new StandardSection();

@@ -86,8 +86,8 @@
             {
                 foreach (var field in section.Fields)
                 {
-                    field.Value = this.userDataRepository.IsFieldStored(form.Id, field.Key)
-                                      ? this.userDataRepository.GetValue(form.Id, field.Key)
+                    field.Value = this.userDataRepository.IsFieldStored(form.Id, field.Id)
+                                      ? this.userDataRepository.GetValue(form.Id, field.Id)
                                       : field.DefaultValue;
                 }
             }
@@ -110,9 +110,9 @@
             {
                 foreach (var field in section.Fields)
                 {
-                    if (values.ContainsKey(field.Key))
+                    if (values.ContainsKey(field.Id))
                     {
-                        var value = values[field.Key];
+                        var value = values[field.Id];
 
                         // deserialize JObject again, because if this is the type, then it's an uploaded file within it
                         var fileValue = value as JObject;
@@ -142,7 +142,7 @@
 
             foreach (var field in viewModel.Step.Sections.SelectMany(section => section.Fields))
             {
-                this.userDataRepository.SetValue(form.Id, field.Key, field.Value);
+                this.userDataRepository.SetValue(form.Id, field.Id, field.Value);
             }
 
             Profiler.OnEnd(this, "Flex :: Store form values to user data storage");

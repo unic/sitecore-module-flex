@@ -35,6 +35,14 @@
     public interface IField : ITooltip, IReusableComponent<IField>
     {
         /// <summary>
+        /// Gets the identifier.
+        /// </summary>
+        /// <value>
+        /// The identifier.
+        /// </value>
+        string Id { get; }
+        
+        /// <summary>
         /// Gets or sets the item identifier.
         /// </summary>
         /// <value>

@@ -76,7 +76,7 @@
             
             // get the other field
             var context = Container.Resolve<IFlexContext>();
-            var field = context.ViewModel.Step.Sections.SelectMany(section => section.Fields).FirstOrDefault(f => f.Key == this.OtherFieldModel.Key);
+            var field = context.ViewModel.Step.Sections.SelectMany(section => section.Fields).FirstOrDefault(f => f.Id == this.OtherFieldModel.Id);
             if (field == null) return false;
 
             // compare field values
@@ -103,11 +103,11 @@
             var allSections = context.Form.GetSections(context.Form.GetActiveStep().StepNumber);
 
             // get the section index the field is in
-            var section = allSections.Select((n, i) => new { n.Fields, Index = i }).FirstOrDefault(s => s.Fields.Any(f => f.Key == this.OtherFieldModel.Key));
+            var section = allSections.Select((n, i) => new { n.Fields, Index = i }).FirstOrDefault(s => s.Fields.Any(f => f.Id == this.OtherFieldModel.Id));
             if (section == null) return attributes;
 
             // get the field index the field is in
-            var field = section.Fields.Select((n, i) => new { n.Key, Index = i }).FirstOrDefault(f => f.Key == this.OtherFieldModel.Key);
+            var field = section.Fields.Select((n, i) => new { n.Id, Index = i }).FirstOrDefault(f => f.Id == this.OtherFieldModel.Id);
             if (field == null) return attributes;
 
             // add attributes
