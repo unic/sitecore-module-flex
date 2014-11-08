@@ -11,7 +11,7 @@
     }
 }
 
-<li class="flex_listitem @Model.CssClass" data-key="@Model.Id">
+<li class="flex_listitem @Model.CssClass" @Html.Raw(Html.FormatAttributes(Model.ContainerAttributes))>
 
     <fieldset role="listbox" aria-multiselectable="true">
         <legend class="flex_label" id="@Html.IdForModel()">

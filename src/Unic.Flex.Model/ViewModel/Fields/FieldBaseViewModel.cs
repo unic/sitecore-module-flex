@@ -27,6 +27,7 @@
         protected FieldBaseViewModel()
         {
             this.Attributes = new Dictionary<string, object>();
+            this.ContainerAttributes = new Dictionary<string, object>();
             this.validators = new List<IValidator>();
         }
 
@@ -112,6 +113,14 @@
         public virtual IDictionary<string, object> Attributes { get; private set; }
 
         /// <summary>
+        /// Gets the container attributes.
+        /// </summary>
+        /// <value>
+        /// The container attributes.
+        /// </value>
+        public virtual IDictionary<string, object> ContainerAttributes { get; private set; } 
+
+        /// <summary>
         /// Gets the name of the view.
         /// </summary>
         /// <value>
@@ -154,6 +163,8 @@
                 this.Attributes.Add("aria-disabled", true);
                 this.AddCssClass("flex_disabled");
             }
+
+            this.ContainerAttributes.Add("data-key", this.Id);
         }
 
         /// <summary>

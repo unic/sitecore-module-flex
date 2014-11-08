@@ -1,6 +1,7 @@
-﻿@model Unic.Flex.Implementation.Fields.TextOnly.TextOnlyFieldViewModel
+﻿@using Unic.Flex.Presentation
+@model Unic.Flex.Implementation.Fields.TextOnly.TextOnlyFieldViewModel
 
-<li class="flex_listitem @Model.CssClass" data-key="@Model.Id">
+<li class="flex_listitem @Model.CssClass" @Html.Raw(Html.FormatAttributes(Model.ContainerAttributes))>
 
     @Html.Raw(Model.Text)
 

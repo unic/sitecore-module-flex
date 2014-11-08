@@ -3,7 +3,7 @@
 @using Unic.Flex.Presentation
 @model Unic.Flex.Implementation.Fields.ListFields.DropDownListFieldViewModel
 
-<li class="flex_listitem @Model.CssClass" data-key="@Model.Id">
+<li class="flex_listitem @Model.CssClass" @Html.Raw(Html.FormatAttributes(Model.ContainerAttributes))>
     @Html.FlexLabel(m => m.Value, Model.Label, Model.LabelAddition)
     @Html.DropDownListFor(m => m.Value, Model.Items.ToSelectListItems(), Html.GetAttributes(Model))
     @Html.FlexValidator(model => model.Value)
