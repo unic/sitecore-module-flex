@@ -7,6 +7,7 @@
     using Unic.Flex.Context;
     using Unic.Flex.Logging;
     using Unic.Flex.Mapping;
+    using Unic.Flex.Model.Configuration;
     using Unic.Flex.Model.Entities;
 
     /// <summary>
@@ -92,8 +93,7 @@
             if (form == null) return;
 
             // does the form has at least one async plug?
-            //// todo: change the checkbox in the config to be a droplink instead of checkbox and get this value here from global config -> can be done after checkbox upgrade
-            var isAsyncExecutionAllowed = true; // this.configurationManager.Get<GlobalConfiguration>(c => c.IsAsyncExecutionAllowed);
+            var isAsyncExecutionAllowed = this.configurationManager.Get<GlobalConfiguration>(c => c.IsAsyncExecutionAllowed);
             var hasAsyncPlug = isAsyncExecutionAllowed && form.SavePlugs.Any(plug => plug.IsAsync);
 
             try

@@ -3,6 +3,7 @@
     using Sitecore;
     using Sitecore.Configuration;
     using Sitecore.Diagnostics;
+    using Sitecore.Sites;
     using Sitecore.Web;
     using System;
     using System.IO;
@@ -11,6 +12,9 @@
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Routing;
+    using Unic.Configuration;
+    using Unic.Flex.DependencyInjection;
+    using Unic.Flex.Model.Configuration;
     using Unic.Flex.Utilities;
 
     /// <summary>
@@ -68,48 +72,51 @@
         /// </summary>
         public virtual void Run()
         {
-            this.LogInfo("Starting async plug execution");
-            var currentTimestamp = DateTime.Now;
-
-            // get some infos
-            this.LogInfo("--------------------------");
-            this.LogInfo("Information");
-            this.LogInfo("--------------------------");
-            this.LogInfo(string.Format("Timestamp: {0}", currentTimestamp));
-            this.LogInfo("==========================");
-
-            // check if async execution is allowed
-            //// todo: change the checkbox in the config to be a droplink instead of checkbox and get this value here from global config -> can be done after checkbox upgrade
-            var isAsyncExecutionAllowed = true; // this.configurationManager.Get<GlobalConfiguration>(c => c.IsAsyncExecutionAllowed);
-
-            // show config
-            this.LogInfo("--------------------------");
-            this.LogInfo("Configuration");
-            this.LogInfo("--------------------------");
-            this.LogInfo(string.Format("Is Async Execution Allowed: {0}", isAsyncExecutionAllowed));
-            this.LogInfo("==========================");
-
-            // only executing anything if async execution is allowed
-            if (isAsyncExecutionAllowed)
+            try
             {
-                try
+                this.LogInfo("Starting async plug execution");
+                var currentTimestamp = DateTime.Now;
+
+                // get some infos
+                this.LogInfo("--------------------------");
+                this.LogInfo("Information");
+                this.LogInfo("--------------------------");
+                this.LogInfo(string.Format("Timestamp: {0}", currentTimestamp));
+                this.LogInfo(string.Format("Site Name: {0}", this.SiteName));
+                this.LogInfo("==========================");
+
+                var siteContext = Factory.GetSite(this.SiteName);
+                if (siteContext == null) throw new Exception(string.Format("Invalid site name '{0}'", this.SiteName));
+
+                using (new SiteContextSwitcher(siteContext))
                 {
-                    var siteContext = Factory.GetSite(this.SiteName);
-                    if (siteContext == null) throw new Exception(string.Format("Invalid site name '{0}'", this.SiteName));
-                    
-                    // generate web request to execute the plugs. This is needed because we need a HttpContext to execute the plugs
-                    var url = this.GetControllerUrl(siteContext.Name);
-                    this.LogInfo(url);
-                    (new WebClient()).DownloadString(url);
-                }
-                catch (Exception exception)
-                {
-                    this.LogError("Error while executing async plug execution", exception);
+                    // check if async execution is allowed
+                    var isAsyncExecutionAllowed = Container.Resolve<IConfigurationManager>().Get<GlobalConfiguration>(c => c.IsAsyncExecutionAllowed);
+
+                    // show config
+                    this.LogInfo("--------------------------");
+                    this.LogInfo("Configuration");
+                    this.LogInfo("--------------------------");
+                    this.LogInfo(string.Format("Is Async Execution Allowed: {0}", isAsyncExecutionAllowed));
+                    this.LogInfo("==========================");
+
+                    // only executing anything if async execution is allowed
+                    if (isAsyncExecutionAllowed)
+                    {
+                        // generate web request to execute the plugs. This is needed because we need a HttpContext to execute the plugs
+                        var url = this.GetControllerUrl(siteContext.Name);
+                        this.LogInfo("Call controller url to execute plugs: " + url);
+                        (new WebClient()).DownloadString(url);
+                    }
+                    else
+                    {
+                        this.LogInfo("Async execution of plugs is disabled, therefor do nothing...");
+                    }
                 }
             }
-            else
+            catch (Exception exception)
             {
-                this.LogInfo("Async execution of plugs is disabled, therefor do nothing...");
+                this.LogError("Error while executing async plug execution", exception);
             }
         }
 

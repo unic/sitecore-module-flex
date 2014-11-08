@@ -9,7 +9,7 @@
     using System.Web.Mvc;
     using Glass.Mapper.Sc;
     using Sitecore;
-    using Sitecore.Configuration;
+    using Unic.Configuration;
     using Unic.Flex.Attributes;
     using Unic.Flex.Context;
     using Unic.Flex.Globalization;
@@ -17,6 +17,7 @@
     using Unic.Flex.Implementation.Fields.InputFields;
     using Unic.Flex.Logging;
     using Unic.Flex.Mapping;
+    using Unic.Flex.Model.Configuration;
     using Unic.Flex.Model.Validation;
     using Unic.Flex.Model.ViewModel.Components;
     using Unic.Flex.Model.ViewModel.Forms;
@@ -25,6 +26,7 @@
     using Unic.Flex.Utilities;
     using Constants = Unic.Flex.Definitions.Constants;
     using Profiler = Unic.Profiling.Profiler;
+    using Settings = Sitecore.Configuration.Settings;
 
     /// <summary>
     /// The one and only controller for Flex
@@ -108,6 +110,11 @@
         /// </summary>
         private readonly IDictionaryRepository dictionaryRepository;
 
+        /// <summary>
+        /// The configuration manager
+        /// </summary>
+        private readonly IConfigurationManager configurationManager;
+
         #endregion
 
         /// <summary>
@@ -125,7 +132,8 @@
         /// <param name="taskService">The task service.</param>
         /// <param name="saveToDatabaseService">The save to database service.</param>
         /// <param name="dictionaryRepository">The dictionary repository.</param>
-        public FlexController(IPresentationService presentationService, IModelConverterService modelConverter, IContextService contextService, IUserDataRepository userDataRepository, IPlugsService plugsService, IFlexContext flexContext, IUrlService urlService, IFormRepository formRepository, ILogger logger, ITaskService taskService, ISaveToDatabaseService saveToDatabaseService, IDictionaryRepository dictionaryRepository)
+        /// <param name="configurationManager">The configuration manager.</param>
+        public FlexController(IPresentationService presentationService, IModelConverterService modelConverter, IContextService contextService, IUserDataRepository userDataRepository, IPlugsService plugsService, IFlexContext flexContext, IUrlService urlService, IFormRepository formRepository, ILogger logger, ITaskService taskService, ISaveToDatabaseService saveToDatabaseService, IDictionaryRepository dictionaryRepository, IConfigurationManager configurationManager)
         {
             //// todo: check if all service/repository classes have virtual methods
             
@@ -141,6 +149,7 @@
             this.taskService = taskService;
             this.saveToDatabaseService = saveToDatabaseService;
             this.dictionaryRepository = dictionaryRepository;
+            this.configurationManager = configurationManager;
         }
 
         /// <summary>
@@ -391,8 +400,7 @@
             }
 
             // check if async execution is allowed
-            //// todo: change the checkbox in the config to be a droplink instead of checkbox and get this value here from global config -> can be done after checkbox upgrade
-            var isAsyncExecutionAllowed = true; // this.configurationManager.Get<GlobalConfiguration>(c => c.IsAsyncExecutionAllowed);
+            var isAsyncExecutionAllowed = this.configurationManager.Get<GlobalConfiguration>(c => c.IsAsyncExecutionAllowed);
             if (!isAsyncExecutionAllowed)
             {
                 this.logger.Warn("Invalid request due to disabled async plugs execution", this);

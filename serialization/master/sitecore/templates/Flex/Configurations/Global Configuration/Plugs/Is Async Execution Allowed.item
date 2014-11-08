@@ -15,7 +15,14 @@ name: Type
 key: type
 content-length: 8
 
-Checkbox
+Droplink
+----field----
+field: {1EB8AE32-E190-44A6-968D-ED904C794EBF}
+name: Source
+key: source
+content-length: 50
+
+/sitecore/system/Modules/Flex/Specifications/YesNo
 ----field----
 field: {BE351A73-FCB0-4213-93FA-C302D8AB4F51}
 name: Shared
@@ -33,7 +40,7 @@ content-length: 3
 ----version----
 language: en
 version: 1
-revision: 23813a71-67df-4125-9f0d-a7522a2dcb73
+revision: c6f64155-1baa-4a6c-ae91-5b861a573046
 
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
@@ -48,14 +55,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-23813a71-67df-4125-9f0d-a7522a2dcb73
+c6f64155-1baa-4a6c-ae91-5b861a573046
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20140924T111435:635471540756220187
+20141108T205620:635510769800269958
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
