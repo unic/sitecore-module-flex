@@ -8,6 +8,7 @@
     using Unic.Flex.Logging;
     using Unic.Flex.Model.GlassExtensions.Attributes;
     using Unic.Flex.Model.Validation;
+    using Unic.Profiling;
 
     /// <summary>
     /// Regular expression validator
@@ -15,6 +16,11 @@
     [SitecoreType(TemplateId = "{0E0AAF18-7D98-4A59-AF1F-45A0652DF4C9}")]
     public class RegularExpressionValidator : IValidator
     {
+        /// <summary>
+        /// The profile event name
+        /// </summary>
+        private const string ProfileEventName = "Flex :: RegularExpressionValidator validation for '{0}'";
+        
         /// <summary>
         /// Gets the default validation message dictionary key.
         /// </summary>
@@ -56,19 +62,25 @@
         /// </returns>
         public bool IsValid(object value)
         {
+            var eventName = string.Format(ProfileEventName, this.RegularExpression);
+            Profiler.OnStart(this, eventName);
+            
             var stringValue = value as string;
             if (string.IsNullOrWhiteSpace(stringValue)) return true;
 
             try
             {
-                var regex = new Regex(this.RegularExpression, RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.ExplicitCapture);
+                var regex = new Regex(this.RegularExpression);
                 var match = regex.Match(stringValue);
-                return match.Success && match.Index == 0 && match.Length == stringValue.Length;
+                var result = match.Success && match.Index == 0 && match.Length == stringValue.Length;
+                Profiler.OnEnd(this, eventName);
+                return result;
             }
             catch (ArgumentException exception)
             {
                 var logger = Container.Resolve<ILogger>();
                 logger.Error(string.Format("Regular expression '{0}' is not valid", this.RegularExpression), this, exception);
+                Profiler.OnEnd(this, eventName);
                 return false;
             }
         }
