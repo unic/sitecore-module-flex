@@ -5,6 +5,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
     using System.Text.RegularExpressions;
+    using System.Web;
     using Castle.DynamicProxy;
     using Unic.Flex.Model.Validation;
     using Unic.Flex.Model.ViewModel.Components;
@@ -89,6 +90,22 @@
         public virtual string LabelAddition { get; set; }
 
         /// <summary>
+        /// Gets or sets the dependent field.
+        /// </summary>
+        /// <value>
+        /// The dependent field.
+        /// </value>
+        public virtual string DependentFrom { get; set; }
+
+        /// <summary>
+        /// Gets or sets the dependent value.
+        /// </summary>
+        /// <value>
+        /// The dependent value.
+        /// </value>
+        public virtual string DependentValue { get; set; }
+
+        /// <summary>
         /// Gets or sets the value.
         /// </summary>
         /// <value>
@@ -157,6 +174,7 @@
         /// </summary>
         public virtual void BindProperties()
         {
+            // handle disabled input fields
             if (this.IsDisabled)
             {
                 this.Attributes.Add("disabled", "disabled");
@@ -164,7 +182,12 @@
                 this.AddCssClass("flex_disabled");
             }
 
+            // handle field dependency
             this.ContainerAttributes.Add("data-key", this.Id);
+            if (!string.IsNullOrWhiteSpace(this.DependentFrom))
+            {
+                this.ContainerAttributes.Add("data-flexform-dependent", "{" + HttpUtility.HtmlEncode(string.Format("\"from\": \"{0}\", \"value\": \"{1}\"", this.DependentFrom, this.DependentValue)) + "}");   
+            }
         }
 
         /// <summary>

@@ -11,6 +11,7 @@
     using Unic.Flex.Definitions;
     using Unic.Flex.Globalization;
     using Unic.Flex.Model.Configuration;
+    using Unic.Flex.Model.DomainModel.Components;
     using Unic.Flex.Model.DomainModel.Fields.ListFields;
     using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.DomainModel.Steps;
@@ -183,9 +184,6 @@
                     var validatableObject = fieldViewModel as IValidatableObject;
                     if (validatableObject == null) continue;
 
-                    // bind properties
-                    fieldViewModel.BindProperties();
-
                     // add required validator
                     if (field.IsRequired)
                     {
@@ -227,6 +225,12 @@
 
                     // add tooltip
                     fieldViewModel.Tooltip = new TooltipViewModel { TooltipTitle = field.TooltipTitle, TooltipText = field.TooltipText };
+
+                    // handle field dependency
+                    fieldViewModel.DependentFrom = this.GetDependentField(step, field);
+
+                    // bind properties
+                    fieldViewModel.BindProperties();
 
                     // add the field to the section
                     sectionViewModel.Fields.Add(fieldViewModel);
@@ -335,6 +339,22 @@
             
             // add field
             section.Fields.Add(honeypot);
+        }
+
+        /// <summary>
+        /// Handles the field dependency.
+        /// </summary>
+        /// <param name="step">The step.</param>
+        /// <param name="dependency">The dependency.</param>
+        /// <returns>
+        /// Id of the dependent field if the dependency must be available in the frontend
+        /// </returns>
+        protected virtual string GetDependentField(StepBase step, IVisibilityDependency dependency)
+        {
+            if (dependency == null || dependency.DependentField == null) return string.Empty;
+            
+            var dependentField = step.Sections.SelectMany(s => s.Fields).FirstOrDefault(field => field.Id == dependency.DependentField.Id);
+            return dependentField != null ? dependentField.Id : string.Empty;
         }
     }
 }

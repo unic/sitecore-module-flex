@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using Unic.Flex.Model.DomainModel.Components;
     using Unic.Flex.Model.Presentation;
     using Unic.Flex.Model.ViewModel.Components;
 
@@ -23,7 +24,7 @@
     /// <summary>
     /// Field view model.
     /// </summary>
-    public interface IFieldViewModel : IPresentationComponent, ITooltipViewModel
+    public interface IFieldViewModel : IPresentationComponent, ITooltipViewModel, IVisibilityDependencyViewModel
     {
         /// <summary>
         /// Gets or sets the identifier.

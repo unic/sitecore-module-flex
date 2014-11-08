@@ -240,6 +240,24 @@
         public virtual string Placeholder { get; set; }
 
         /// <summary>
+        /// Gets or sets the dependent field.
+        /// </summary>
+        /// <value>
+        /// The dependent field.
+        /// </value>
+        [SitecoreField("Dependent Field", Setting = SitecoreFieldSettings.InferType)]
+        public virtual IField DependentField { get; set; }
+
+        /// <summary>
+        /// Gets or sets the dependent value.
+        /// </summary>
+        /// <value>
+        /// The dependent value.
+        /// </value>
+        [SitecoreField("Dependent Value")]
+        public virtual string DependentValue { get; set; }
+
+        /// <summary>
         /// Gets or sets the reusable component.
         /// </summary>
         /// <value>
