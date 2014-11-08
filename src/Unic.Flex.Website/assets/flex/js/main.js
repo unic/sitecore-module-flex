@@ -19147,7 +19147,7 @@ return datepicker.regional['it-CH'];
 		}
 		$document.trigger('additional_forminit', this.options);
 
-		this._initBelongsto();
+		this._initDependentFields();
 		this._initValidation();
 		this._initMultistep();
 		this._initAllCheckbox();
@@ -19184,6 +19184,17 @@ return datepicker.regional['it-CH'];
 			return;
 		}
 
+		// Add new defaults
+		var data = this.$element.data('validator');
+
+			// Add / remove additional classes
+		data.settings.highlight = _.bind(function(element) {
+			$(element).closest('li').addClass(this.options.haserrorClass);
+		}, this);
+		data.settings.unhighlight = _.bind(function(element) {
+			$(element).closest('li').removeClass(this.options.haserrorClass);
+		}, this);
+
 		this.$element.on('invalid-form.validate.' + pluginName, _.bind(function () {
 			$document.trigger(events.EVENT_VALIDATION_INVALID, this.$element);
 		}, this));
@@ -19207,13 +19218,20 @@ return datepicker.regional['it-CH'];
 			return $container.find(':checked').length ? true : false;
 		});
 
-		// Add / remove additional classes
-		$.validator.defaults.highlight = _.bind(function(element) {
-			$(element).closest('li').addClass(this.options.haserrorClass);
-		}, this);
-		$.validator.defaults.unhighlight = _.bind(function(element) {
-			$(element).closest('li').removeClass(this.options.haserrorClass);
-		}, this);
+		// Correct Validation for showPwd-Fields: Also textfield has to be validated, if original field is disabled.
+		var $showPwd = this.$element.find('[data-' + this.options.dataattribute + '=showpassword]');
+		$showPwd.each(function(index, element){
+			var $showPwdNode = $(element),
+					$password = $showPwdNode.find('[type=password]'),
+					$text = $showPwdNode.find('[type=text]');
+
+			$.each($password.prop('attributes'), function() {
+				// Copy data-attributes only
+				if(this.name.indexOf('data-') > -1) {
+					$text.attr(this.name, this.value);
+				}
+			});
+		});
 
 		// Init the form with the new settings.
 		var form = this.$element
@@ -19223,48 +19241,10 @@ return datepicker.regional['it-CH'];
 		$.validator.unobtrusive.parse(form);
 	};
 
-	/**
-	 * Inits functionality for dependent fields.
-	 * @private
-	 */
-	Plugin.prototype._initBelongsto = function(){
-		var $elements = this.$element.find('[data-' + this.options.dataattribute + '-belongsto]');
-		$elements.hide().closest('li').hide();
-		$elements.each(_.bind(this._handleBelongsto, this));
-
-		this.$element.on('change.' + pluginName, _.bind(this._changeBelongsto, this));
-	};
-
-	/**
-	 * Event-Handler for the change-event of the form to handle belongsto-functionality.
-	 * @param event {jQuery.Event} The Event-Object.
-	 * @private
-	 */
-	Plugin.prototype._changeBelongsto = function(){
-		var $elements = this.$element.find('[data-' + this.options.dataattribute + '-belongsto]');
-		$elements.each(_.bind(this._handleBelongsto, this));
-	};
-
 	Plugin.prototype._initMultistep = function(){
 		var $multistepnavigation = this.$element.find('[data-' + this.options.dataattribute + '=multistepnavigation]'),
 			$items = $multistepnavigation.find('[data-' + this.options.dataattribute + '=multistepnavigationitem]');
 		$items.css('width', (1/$items.length)*100 + '%');
-	};
-
-	/**
-	 * Handles the show/hide of dependent elements.
-	 * @param index {int} The index-Parameter in .each.
-	 * @param element {object} The element-Parameter in .each.
-	 * @private
-	 */
-	Plugin.prototype._handleBelongsto = function(index, element){
-		var $field = $(element);
-		var value = $field.data(this.options.dataattribute + '-belongsto');
-		if(this.$element.find(':checked[id=' + value + '], :selected[value=' + value + ']').length) {
-			$field.show().closest('li').show();
-		} else {
-			$field.hide().closest('li').hide();
-		}
 	};
 
 	/**
@@ -19345,6 +19325,52 @@ return datepicker.regional['it-CH'];
 		// Handle Disabling Fields - Do not send invisible field, therefore disable it.
 		$container.find(':password:visible, :text:visible').removeAttr('disabled').removeAttr('aria-disabled');
 		$container.find(':password:hidden, :text:hidden').attr('disabled', 'disabled').attr('aria-disabled', 'true');
+
+		if (this.options.dovalidation) {
+			// Connect errorMessage to the non-disabled field
+			$container.find('[data-valmsg-replace=true]').attr('data-valmsg-for', $container.find(':password:visible, :text:visible').attr('id'));
+		}
+	};
+
+	/**
+	 * Inits functionality for dependent fields.
+	 * @method
+	 * @private
+	 */
+	Plugin.prototype._initDependentFields = function(){
+		var $elements = this.$element.find('[data-' + this.options.dataattribute + '-dependent]');
+		$elements.hide();
+		$elements.each(_.bind(this._handleDependents, this));
+
+		this.$element.on('change.' + pluginName, _.bind(this._changeDependents, this));
+	};
+
+	/**
+	 * Event-Handler for the change-event of the form to handle functionality from dependent fields.
+	 * @method
+	 * @private
+	 */
+	Plugin.prototype._changeDependents = function(){
+		var $elements = this.$element.find('[data-' + this.options.dataattribute + '-dependent]');
+		$elements.each(_.bind(this._handleDependents, this));
+	};
+
+	/**
+	 * Handles the show/hide of dependent elements.
+	 * @param index {int} The index-Parameter in .each.
+	 * @param element {object} The element-Parameter in .each.
+	 * @private
+	 */
+	Plugin.prototype._handleDependents = function(index, element){
+		var $field = $(element);
+		var data = $field.data(this.options.dataattribute + '-dependent'),
+			$from = this.$element.find('[data-key=' + data.from + ']');
+		if ($from.find(':checked[value=' + data.value + ']').length ||
+			$from.find(':selected[value=' + data.value + ']').length) {
+			$field.show();
+		} else {
+			$field.hide();
+		}
 	};
 
 	/**

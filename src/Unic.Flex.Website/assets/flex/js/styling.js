@@ -1105,7 +1105,7 @@ Enjoy!
 				radioClass: 'flex_radio',
 				resetDefaultHtml: 'Reset',
 				resetSelector: '[type=reset]',  // We'll use our own function when you don't specify one
-				selectAutoWidth: true,
+				selectAutoWidth: false,
 				selectClass: 'flex_selector',
 				selectMultiClass: 'flex_uniform-multiselect',
 				submitDefaultHtml: 'Submit',  // Only text allowed
@@ -1184,6 +1184,8 @@ Enjoy!
 			} else {
 				$parentWrapper.removeClass(this.options.checkboxState.checkedClass);
 			}
+
+			$.uniform.update($node);
 		}, this));
 	};
 
