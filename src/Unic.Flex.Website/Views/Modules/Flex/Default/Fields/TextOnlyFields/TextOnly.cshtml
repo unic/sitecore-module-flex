@@ -1,7 +1,7 @@
 ﻿@model Unic.Flex.Implementation.Fields.TextOnly.TextOnlyFieldViewModel
 
-<li class="flex_listitem @Model.CssClass">
-    
+<li class="flex_listitem @Model.CssClass" data-key="@Model.Id">
+
     @Html.Raw(Model.Text)
 
 </li>

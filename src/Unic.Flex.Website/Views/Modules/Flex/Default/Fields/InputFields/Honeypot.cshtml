@@ -2,7 +2,7 @@
 @using Unic.Flex.Presentation
 @model Unic.Flex.Model.ViewModel.Fields.InputFields.HoneypotFieldViewModel
 
-<li class="flex_listitem @Model.CssClass">
+<li class="flex_listitem @Model.CssClass" data-key="@Model.Id">
     @Html.FlexLabel(m => m.Value, Model.Label, Model.LabelAddition)
     @Html.TextBoxFor(m => m.Value, Html.GetAttributes(Model))
     @Html.FlexValidator(model => model.Value)

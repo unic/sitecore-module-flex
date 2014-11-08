@@ -11,20 +11,20 @@
     }
 }
 
-<li class="flex_listitem @Model.CssClass">
-    
+<li class="flex_listitem @Model.CssClass" data-key="@Model.Id">
+
     <fieldset role="radiogroup">
         <legend class="flex_label" id="@Html.IdForModel()">
             @label
         </legend>
 
         <div class="flex_radiogroupoptions">
-            
+
             @{
                 var attributes = Html.FormatAttributes(Html.GetAttributes(Model));
                 var propertyName = string.Format("{0}.Value", ViewData.TemplateInfo.HtmlFieldPrefix);
             }
-            
+
             @for (var i = 0; i < Model.Items.Count(); i++)
             {
                 var item = Model.Items[i];
@@ -32,7 +32,7 @@
                 var propertyLabel = string.Format("{0}_{1}", propertyId, Constants.LabelIdSuffix);
                 var selected = Model.Value != null && Model.Value.Contains(item.Value);
                 var selectedText = selected ? "checked=\"checked\"" : string.Empty;
-                
+
                 <div class="flex_radiogroupoption">
 
                     <input type="radio" name="@propertyName" id="@propertyId" value="@item.Value" role="radio"

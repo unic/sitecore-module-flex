@@ -11,13 +11,13 @@
     }
 }
 
-<li class="flex_listitem @Model.CssClass">
-    
+<li class="flex_listitem @Model.CssClass" data-key="@Model.Id">
+
     <fieldset role="listbox" aria-multiselectable="true">
         <legend class="flex_label" id="@Html.IdForModel()">
             @label
         </legend>
-        
+
         <div class="flex_checkboxgroupoptions">
 
             @{
