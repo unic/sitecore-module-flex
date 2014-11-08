@@ -149,6 +149,8 @@
                 this.userDataRepository.SetValue(form.Id, field.Id, field.Value);
             }
 
+            // todo: values which are not valid to be posted (due to field dependency) must be deleted from the session store (e.g. when field is visible, value entered, field is invisible again and then be posted, or when a value has been posted manually)
+
             Profiler.OnEnd(this, "Flex :: Store form values to user data storage");
         }
 
