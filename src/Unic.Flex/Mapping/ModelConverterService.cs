@@ -56,17 +56,24 @@
         private readonly IUrlService urlService;
 
         /// <summary>
+        /// The user data repository
+        /// </summary>
+        private readonly IUserDataRepository userDataRepository;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ModelConverterService" /> class.
         /// </summary>
         /// <param name="dictionaryRepository">The dictionary repository.</param>
         /// <param name="urlService">The URL service.</param>
         /// <param name="configurationManager">The configuration manager.</param>
-        public ModelConverterService(IDictionaryRepository dictionaryRepository, IUrlService urlService, IConfigurationManager configurationManager)
+        /// <param name="userDataRepository">The user data repository.</param>
+        public ModelConverterService(IDictionaryRepository dictionaryRepository, IUrlService urlService, IConfigurationManager configurationManager, IUserDataRepository userDataRepository)
         {
             this.viewModelTypeCache = new Dictionary<string, Type>();
             this.dictionaryRepository = dictionaryRepository;
             this.urlService = urlService;
             this.configurationManager = configurationManager;
+            this.userDataRepository = userDataRepository;
         }
 
         /// <summary>
@@ -169,6 +176,18 @@
                 var sectionViewModel = this.GetViewModel<ISectionViewModel>(section);
                 Mapper.Map(section, sectionViewModel, section.GetType(), sectionViewModel.GetType());
 
+                // handle field dependency
+                if (section.DependentField != null)
+                {
+                    sectionViewModel.DependentFrom = this.GetDependentField(step, section);
+                    if (string.IsNullOrWhiteSpace(sectionViewModel.DependentFrom) || summary != null)
+                    {
+                        // skip fields where the dependent field is on another step and the value does not meet the condition
+                        var storedValue = this.userDataRepository.GetValue(form.Id, section.DependentField.Id);
+                        if (storedValue == null || !section.DependentValue.Equals(storedValue.ToString(), StringComparison.InvariantCultureIgnoreCase)) continue;
+                    }
+                }
+
                 // add tooltip
                 sectionViewModel.Tooltip = new TooltipViewModel { TooltipTitle = section.TooltipTitle, TooltipText = section.TooltipText };
 
@@ -183,6 +202,18 @@
                     Mapper.DynamicMap(field, fieldViewModel, field.GetType(), fieldViewModel.GetType());
                     var validatableObject = fieldViewModel as IValidatableObject;
                     if (validatableObject == null) continue;
+
+                    // handle field dependency
+                    if (field.DependentField != null)
+                    {
+                        fieldViewModel.DependentFrom = this.GetDependentField(step, field);
+                        if (string.IsNullOrWhiteSpace(fieldViewModel.DependentFrom) || summary != null)
+                        {
+                            // skip fields where the dependent field is on another step and the value does not meet the condition
+                            var storedValue = this.userDataRepository.GetValue(form.Id, field.DependentField.Id);
+                            if (storedValue == null || !field.DependentValue.Equals(storedValue.ToString(), StringComparison.InvariantCultureIgnoreCase)) continue;
+                        }
+                    }
 
                     // add required validator
                     if (field.IsRequired)
@@ -226,9 +257,6 @@
                     // add tooltip
                     fieldViewModel.Tooltip = new TooltipViewModel { TooltipTitle = field.TooltipTitle, TooltipText = field.TooltipText };
 
-                    // handle field dependency
-                    fieldViewModel.DependentFrom = this.GetDependentField(step, field);
-
                     // bind properties
                     fieldViewModel.BindProperties();
 
@@ -236,8 +264,8 @@
                     sectionViewModel.Fields.Add(fieldViewModel);
                 }
 
-                // handle field dependency
-                sectionViewModel.DependentFrom = this.GetDependentField(step, section);
+                // check if we have any fields
+                if (!sectionViewModel.Fields.Any()) continue;
 
                 // bind the properties
                 sectionViewModel.BindProperties();

@@ -52,6 +52,8 @@
         /// </returns>
         public virtual Form LoadForm(string dataSource)
         {
+            Profiler.OnStart(this, "Flex :: Load form from datasource");
+            
             var form = this.formRepository.LoadForm(dataSource);
             
             // set the step number for each step
@@ -68,6 +70,8 @@
                 lastStep.IsSkippable = false;
                 lastStep.IsLastStep = true;
             }
+
+            Profiler.OnEnd(this, "Flex :: Load form from datasource");
 
             return form;
         }
