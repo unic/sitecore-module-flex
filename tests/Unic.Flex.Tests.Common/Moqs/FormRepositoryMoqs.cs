@@ -92,7 +92,7 @@
             
             var secondSection = new StandardSection();
             secondSection.Title = "This is the second section";
-            secondSection.Fields = new List<IField>();
+            secondSection.Fields = fields;
 
             // generate the step
             var step = new SingleStep();

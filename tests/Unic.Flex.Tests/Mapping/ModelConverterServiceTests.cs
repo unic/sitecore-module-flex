@@ -70,7 +70,7 @@
                 Assert.NotNull(viewModel.Step);
                 Assert.IsTrue(viewModel.Step.Sections.Count == form.GetSections().Count());
                 Assert.IsTrue(viewModel.Step.Sections.First().Fields.Last().GetType() == typeof(HoneypotFieldViewModel));
-                Assert.IsTrue(viewModel.Step.Sections.First().Fields.Count == form.GetSections().SelectMany(s => s.Fields).Count() + 1);
+                Assert.IsTrue(viewModel.Step.Sections.First().Fields.Count == form.GetSections().First().Fields.Count() + 1);
                 Assert.IsTrue(viewModel.Step.Sections.First().Fields.First().Id == FormRepositoryMoqs.SingleLineTextGuid);
                 Assert.IsTrue(viewModel.Step.Sections.First().Fields.First().ViewName == "Fields/InputFields/SinglelineText");
                 Assert.IsTrue(viewModel.Step.Sections.First().Fields.First().CssClass.Trim() == "flex_singletextfield");
@@ -197,7 +197,7 @@
             public void ShouldReturnCorrectViewModelInstanceFromCache()
             {
                 // arrange
-                var serviceMock = new Mock<ModelConverterService>(SimpleMoqs.GetDictionaryRepository(), null, null) { CallBase = true };
+                var serviceMock = new Mock<ModelConverterService>(SimpleMoqs.GetDictionaryRepository(), null, null, null) { CallBase = true };
                 var converter = serviceMock.Object;
                 var domainModel = new Form();
 
