@@ -10,7 +10,7 @@
 }
 @fieldTitle:  @valueTitle
 ---------------------------------------
-@foreach (var field in Model.Fields.Where(field => field.ShowInSummary))
+@foreach (var field in Model.Fields.Where(field => field.ShowInSummary).Where(field => !field.IsHidden))
 {
     @Html.FlexComponent(m => field, "Mailers/SavePlug/Field.text", (string)ViewBag.Theme)
 }

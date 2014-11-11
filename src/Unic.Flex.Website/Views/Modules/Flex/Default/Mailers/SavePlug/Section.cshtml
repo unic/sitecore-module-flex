@@ -16,7 +16,7 @@
 
     <tbody>
 
-        @foreach (var field in Model.Fields.Where(field => field.ShowInSummary))
+        @foreach (var field in Model.Fields.Where(field => field.ShowInSummary).Where(field => !field.IsHidden))
         {
             @Html.FlexComponent(m => field, "Mailers/SavePlug/Field", (string)ViewBag.Theme)
         }

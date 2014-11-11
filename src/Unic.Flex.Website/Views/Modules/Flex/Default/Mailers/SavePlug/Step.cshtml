@@ -3,7 +3,7 @@
 
 <h2>@Model.Title</h2>
 
-@foreach (var standardSection in @Model.Sections)
+@foreach (var standardSection in @Model.Sections.Where(s => !s.IsHidden))
 {
     @Html.FlexComponent(m => standardSection, "Mailers/SavePlug/Section", (string)ViewBag.Theme)
 }

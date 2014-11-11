@@ -22,5 +22,13 @@
         /// The dependent value.
         /// </value>
         string DependentValue { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is hidden.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is hidden; otherwise, <c>false</c>.
+        /// </value>
+        bool IsHidden { get; set; }
     }
 }

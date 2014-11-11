@@ -52,6 +52,14 @@
         public virtual string DependentValue { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether this instance is hidden.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is hidden; otherwise, <c>false</c>.
+        /// </value>
+        public virtual bool IsHidden { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether to disable the fieldset markup.
         /// </summary>
         /// <value>

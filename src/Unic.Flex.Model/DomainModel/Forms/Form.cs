@@ -163,7 +163,9 @@
         {
             if (field == null) return string.Empty;
             var formField = this.GetSections().SelectMany(s => s.Fields).FirstOrDefault(f => f.ItemId == field.ItemId);
-            return formField != null ? formField.Value as string : string.Empty;
+
+            if (formField == null || formField.Value == null) return string.Empty;
+            return formField.Value.ToString();
         }
     }
 }

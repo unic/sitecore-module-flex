@@ -81,6 +81,7 @@
         /// The dependent field.
         /// </value>
         [SitecoreField("Dependent Field", Setting = SitecoreFieldSettings.InferType)]
+        // todo: invisible fields due to field dependency must not be visible within the summary or the mail plug
         public virtual IField DependentField { get; set; }
 
         /// <summary>
@@ -92,6 +93,14 @@
         [SitecoreField("Dependent Value")]
         // todo: this must not be a simple single-line text field
         public virtual string DependentValue { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is hidden.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is hidden; otherwise, <c>false</c>.
+        /// </value>
+        public virtual bool IsHidden { get; set; }
 
         /// <summary>
         /// Gets or sets the reusable component.
