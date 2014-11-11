@@ -81,7 +81,6 @@
         /// The dependent field.
         /// </value>
         [SitecoreField("Dependent Field", Setting = SitecoreFieldSettings.InferType)]
-        // todo: invisible fields due to field dependency must not be visible within the summary or the mail plug
         public virtual IField DependentField { get; set; }
 
         /// <summary>
