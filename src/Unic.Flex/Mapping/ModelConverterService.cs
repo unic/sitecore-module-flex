@@ -56,24 +56,17 @@
         private readonly IUrlService urlService;
 
         /// <summary>
-        /// The user data repository
-        /// </summary>
-        private readonly IUserDataRepository userDataRepository;
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="ModelConverterService" /> class.
         /// </summary>
         /// <param name="dictionaryRepository">The dictionary repository.</param>
         /// <param name="urlService">The URL service.</param>
         /// <param name="configurationManager">The configuration manager.</param>
-        /// <param name="userDataRepository">The user data repository.</param>
-        public ModelConverterService(IDictionaryRepository dictionaryRepository, IUrlService urlService, IConfigurationManager configurationManager, IUserDataRepository userDataRepository)
+        public ModelConverterService(IDictionaryRepository dictionaryRepository, IUrlService urlService, IConfigurationManager configurationManager)
         {
             this.viewModelTypeCache = new Dictionary<string, Type>();
             this.dictionaryRepository = dictionaryRepository;
             this.urlService = urlService;
             this.configurationManager = configurationManager;
-            this.userDataRepository = userDataRepository;
         }
 
         /// <summary>
@@ -179,13 +172,7 @@
                 // handle field dependency
                 if (section.DependentField != null)
                 {
-                    sectionViewModel.DependentFrom = this.GetDependentField(step, section);
-                    if (string.IsNullOrWhiteSpace(sectionViewModel.DependentFrom) || summary != null)
-                    {
-                        // skip fields where the dependent field is on another step and the value does not meet the condition
-                        var storedValue = this.userDataRepository.GetValue(form.Id, section.DependentField.Id);
-                        if (storedValue == null || !section.DependentValue.Equals(storedValue.ToString(), StringComparison.InvariantCultureIgnoreCase)) continue;
-                    }
+                    sectionViewModel.DependentFrom = section.DependentField.Id;
                 }
 
                 // add tooltip
@@ -206,13 +193,7 @@
                     // handle field dependency
                     if (field.DependentField != null)
                     {
-                        fieldViewModel.DependentFrom = this.GetDependentField(step, field);
-                        if (string.IsNullOrWhiteSpace(fieldViewModel.DependentFrom) || summary != null)
-                        {
-                            // skip fields where the dependent field is on another step and the value does not meet the condition
-                            var storedValue = this.userDataRepository.GetValue(form.Id, field.DependentField.Id);
-                            if (storedValue == null || !field.DependentValue.Equals(storedValue.ToString(), StringComparison.InvariantCultureIgnoreCase)) continue;
-                        }
+                        fieldViewModel.DependentFrom = field.DependentField.Id;
                     }
 
                     // add required validator
@@ -373,22 +354,6 @@
             
             // add field
             section.Fields.Add(honeypot);
-        }
-
-        /// <summary>
-        /// Handles the field dependency.
-        /// </summary>
-        /// <param name="step">The step.</param>
-        /// <param name="dependency">The dependency.</param>
-        /// <returns>
-        /// Id of the dependent field if the dependency must be available in the frontend
-        /// </returns>
-        protected virtual string GetDependentField(StepBase step, IVisibilityDependency dependency)
-        {
-            if (dependency == null || dependency.DependentField == null) return string.Empty;
-            
-            var dependentField = step.Sections.SelectMany(s => s.Fields).FirstOrDefault(field => field.Id == dependency.DependentField.Id);
-            return dependentField != null ? dependentField.Id : string.Empty;
         }
     }
 }
