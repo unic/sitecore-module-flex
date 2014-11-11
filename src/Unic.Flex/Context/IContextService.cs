@@ -37,9 +37,8 @@
         /// <summary>
         /// Stores the form values into the session.
         /// </summary>
-        /// <param name="form">The form domain model.</param>
         /// <param name="viewModel">The form view model containing the current values.</param>
-        void StoreFormValues(Form form, IFormViewModel viewModel);
+        void StoreFormValues(IFormViewModel viewModel);
 
         /// <summary>
         /// Determines whether the given step can be actually accessed. This is only valid if all previous steps has been processed.

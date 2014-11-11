@@ -78,6 +78,20 @@
         }
 
         /// <summary>
+        /// Removes a field value from the storage provider.
+        /// </summary>
+        /// <param name="formId">The form identifier.</param>
+        /// <param name="fieldId">The field identifier.</param>
+        public virtual void RemoveValue(string formId, string fieldId)
+        {
+            var session = this.FormSession;
+            if (!session.ContainsKey(formId) || !session[formId].ContainsKey(fieldId)) return;
+
+            session[formId].Remove(fieldId);
+            this.FormSession = session;
+        }
+
+        /// <summary>
         /// Determines whether a form is stored in the storage provider.
         /// </summary>
         /// <param name="formId">The form identifier.</param>

@@ -1,19 +1,19 @@
 ﻿namespace Unic.Flex.Context
 {
-    using System.Collections.Generic;
-    using Glass.Mapper.Sc;
-    using Newtonsoft.Json;
+    using Castle.Core.Internal;
     using Newtonsoft.Json.Linq;
     using Sitecore.Configuration;
     using Sitecore.Data;
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
+    using System;
+    using System.Collections.Generic;
     using System.Linq;
     using Unic.Flex.Mapping;
     using Unic.Flex.Model.DomainModel.Forms;
-    using Unic.Flex.Model.DomainModel.Sections;
     using Unic.Flex.Model.DomainModel.Steps;
     using Unic.Flex.Model.Types;
+    using Unic.Flex.Model.ViewModel.Fields;
     using Unic.Flex.Model.ViewModel.Forms;
     using Profiler = Unic.Profiling.Profiler;
 
@@ -135,21 +135,35 @@
         /// <summary>
         /// Stores the form values into the session.
         /// </summary>
-        /// <param name="form">The form domain model.</param>
         /// <param name="viewModel">The form view model containing the current values.</param>
-        public virtual void StoreFormValues(Form form, IFormViewModel viewModel)
+        public virtual void StoreFormValues(IFormViewModel viewModel)
         {
-            Assert.ArgumentNotNull(form, "form");
             Assert.ArgumentNotNull(viewModel, "viewModel");
 
             Profiler.OnStart(this, "Flex :: Store form values to user data storage");
 
-            foreach (var field in viewModel.Step.Sections.SelectMany(section => section.Fields))
+            var allFields = viewModel.Step.Sections.SelectMany(section => section.Fields).ToList();
+            foreach (var section in viewModel.Step.Sections)
             {
-                this.userDataRepository.SetValue(form.Id, field.Id, field.Value);
-            }
+                // check if the complete section is invisible -> remove all fields and go to next sections
+                if (!string.IsNullOrWhiteSpace(section.DependentFrom) && !this.IsDependencyVisible(allFields, section.DependentFrom, section.DependentValue))
+                {
+                    section.Fields.ForEach(f => this.userDataRepository.RemoveValue(viewModel.Id, f.Id));
+                    continue;
+                }
 
-            // todo: values which are not valid to be posted (due to field dependency) must be deleted from the session store (e.g. when field is visible, value entered, field is invisible again and then be posted, or when a value has been posted manually)
+                foreach (var field in section.Fields)
+                {
+                    // check if field is invisible -> remove from storage and go to next field
+                    if (!string.IsNullOrWhiteSpace(field.DependentFrom) && !this.IsDependencyVisible(allFields, field.DependentFrom, field.DependentValue))
+                    {
+                        this.userDataRepository.RemoveValue(viewModel.Id, field.Id);
+                        continue;
+                    }
+
+                    this.userDataRepository.SetValue(viewModel.Id, field.Id, field.Value);
+                }
+            }
 
             Profiler.OnEnd(this, "Flex :: Store form values to user data storage");
         }
@@ -197,6 +211,19 @@
             var renderingReferences = item.Visualization.GetRenderings(device, false);
             var rendering = renderingReferences.FirstOrDefault(reference => reference.RenderingID == renderingId);
             return rendering == null ? string.Empty : rendering.Settings.DataSource;
+        }
+
+        /// <summary>
+        /// Determines whether the dependency for a specific component is valid and the component is visible due to the condition.
+        /// </summary>
+        /// <param name="allFields">All fields.</param>
+        /// <param name="dependentFrom">The dependent from.</param>
+        /// <param name="dependentValue">The dependent value.</param>
+        /// <returns>Boolean value if the condition is valid and the field is visible</returns>
+        protected virtual bool IsDependencyVisible(IEnumerable<IFieldViewModel> allFields, string dependentFrom, string dependentValue)
+        {
+            var dependentField = allFields.FirstOrDefault(f => f.Id == dependentFrom);
+            return dependentField != null && dependentField.Value != null && dependentField.Value.ToString().Equals(dependentValue, StringComparison.InvariantCultureIgnoreCase);
         }
     }
 }

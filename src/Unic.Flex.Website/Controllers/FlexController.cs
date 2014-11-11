@@ -266,7 +266,7 @@
             }
 
             // store the values in the session redirect to next step if we have a next step
-            this.contextService.StoreFormValues(form, model);
+            this.contextService.StoreFormValues(model);
             var nextStepUrl = currentStep.GetNextStepUrl();
             if (!string.IsNullOrWhiteSpace(nextStepUrl))
             {
