@@ -230,6 +230,7 @@
         protected virtual bool IsDependencyVisible(IEnumerable<IFieldViewModel> allFields, string dependentFrom, string dependentValue)
         {
             var dependentField = allFields.FirstOrDefault(f => f.Id == dependentFrom);
+            // todo: this does not work for list fields, as the .Value property is an array (same in modelbinder validation checks)
             return dependentField != null && dependentField.Value != null && dependentField.Value.ToString().Equals(dependentValue, StringComparison.InvariantCultureIgnoreCase);
         }
 
