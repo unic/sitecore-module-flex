@@ -88,8 +88,6 @@
             var model = bindingContext.Model as IValidatableObject;
             if (model == null) return;
 
-            // todo: fields which are invisible due to field dependency must not be validated
-
             var modelName = bindingContext.ModelName;
             var modelState = bindingContext.ModelState;
             var errors = model.Validate(new ValidationContext(model, null, null));

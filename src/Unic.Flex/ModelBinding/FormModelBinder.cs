@@ -1,11 +1,14 @@
 ﻿namespace Unic.Flex.ModelBinding
 {
     using System;
+    using System.Linq;
     using System.Web.Mvc;
     using Unic.Flex.Context;
     using Unic.Flex.DependencyInjection;
     using Unic.Flex.Mapping;
     using Unic.Flex.Model.ViewModel.Forms;
+    using Unic.Flex.Utilities;
+    using Unic.Profiling;
 
     /// <summary>
     /// Bind the form model.
@@ -24,6 +27,46 @@
         public FormModelBinder(IModelConverterService modelConverter)
         {
             this.modelConverter = modelConverter;
+        }
+
+        /// <summary>
+        /// Binds the model by using the specified controller context and binding context.
+        /// </summary>
+        /// <param name="controllerContext">The context within which the controller operates. The context information includes the controller, HTTP content, request context, and route data.</param>
+        /// <param name="bindingContext">The context within which the model is bound. The context includes information such as the model object, model name, model type, property filter, and value provider.</param>
+        /// <returns>
+        /// The bound object.
+        /// </returns>
+        public override object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
+        {
+            var model = base.BindModel(controllerContext, bindingContext);
+            var form = model as IFormViewModel;
+            if (form != null)
+            {
+                Profiler.OnStart(this, "Flex :: Removing validation errors for hidden fields (due to field dependency)");
+                
+                for (var sectionIndex = 0; sectionIndex < form.Step.Sections.Count; sectionIndex++)
+                {
+                    var section = form.Step.Sections[sectionIndex];
+                    for (var fieldIndex = 0; fieldIndex < section.Fields.Count; fieldIndex++)
+                    {
+                        var field = section.Fields[fieldIndex];
+                        if (string.IsNullOrWhiteSpace(field.DependentFrom)) continue;
+
+                        var dependentField = form.Step.Sections.SelectMany(s => s.Fields).FirstOrDefault(f => f.Id == field.DependentFrom);
+                        if (dependentField != null
+                            && dependentField.Value != null
+                            && !dependentField.Value.ToString().Equals(field.DependentValue, StringComparison.InvariantCultureIgnoreCase))
+                        {
+                            bindingContext.ModelState.Remove(MappingHelper.GetFormFieldId(sectionIndex, fieldIndex));
+                        }
+                    }
+                }
+
+                Profiler.OnEnd(this, "Flex :: Removing validation errors for hidden fields (due to field dependency)");
+            }
+
+            return form;
         }
 
         /// <summary>

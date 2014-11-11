@@ -9,6 +9,7 @@
     using Unic.Flex.Model.DomainModel.Fields;
     using Unic.Flex.Model.GlassExtensions.Attributes;
     using Unic.Flex.Model.Validation;
+    using Unic.Flex.Utilities;
 
     /// <summary>
     /// Validator which checks if two fields are equal
@@ -112,7 +113,7 @@
 
             // add attributes
             attributes.Add("data-val-equalto", this.ValidationMessage);
-            attributes.Add("data-val-equalto-other", string.Format("Step.Sections[{0}].Fields[{1}].Value", section.Index, field.Index));
+            attributes.Add("data-val-equalto-other", MappingHelper.GetFormFieldId(section.Index, field.Index));
             return attributes;
         }
     }
