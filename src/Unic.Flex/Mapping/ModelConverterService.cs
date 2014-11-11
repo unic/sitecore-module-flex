@@ -172,7 +172,9 @@
                 // handle field dependency
                 if (section.DependentField != null)
                 {
-                    sectionViewModel.DependentFrom = section.DependentField.Id;
+                    sectionViewModel.DependentFrom = section.DependentField.ReusableComponent != null
+                                                           ? section.DependentField.ReusableComponent.Id
+                                                           : section.DependentField.Id;
                 }
 
                 // add tooltip
@@ -193,7 +195,9 @@
                     // handle field dependency
                     if (field.DependentField != null)
                     {
-                        fieldViewModel.DependentFrom = field.DependentField.Id;
+                        fieldViewModel.DependentFrom = field.DependentField.ReusableComponent != null
+                                                           ? field.DependentField.ReusableComponent.Id
+                                                           : field.DependentField.Id;
                     }
 
                     // add required validator
