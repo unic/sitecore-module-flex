@@ -54,7 +54,7 @@
                 if (typeof(TValue) == typeof(string)) value = this.GetTextValue(this.Value as string);
                 
                 // return
-                return !string.IsNullOrWhiteSpace(value) ? value : base.TextValue;
+                return !string.IsNullOrWhiteSpace(value) ? value : "-";
             }
         }
 
