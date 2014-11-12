@@ -8,6 +8,7 @@
     using Sitecore.Diagnostics;
     using System.Collections.Generic;
     using System.Linq;
+    using Unic.Flex.Logging;
     using Unic.Flex.Mapping;
     using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.DomainModel.Steps;
@@ -36,16 +37,23 @@
         private readonly IFieldDependencyService fieldDependencyService;
 
         /// <summary>
+        /// The logger
+        /// </summary>
+        private readonly ILogger logger;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ContextService" /> class.
         /// </summary>
         /// <param name="formRepository">The form repository.</param>
         /// <param name="userDataRepository">The user data repository.</param>
         /// <param name="fieldDependencyService">The field dependency service.</param>
-        public ContextService(IFormRepository formRepository, IUserDataRepository userDataRepository, IFieldDependencyService fieldDependencyService)
+        /// <param name="logger">The logger.</param>
+        public ContextService(IFormRepository formRepository, IUserDataRepository userDataRepository, IFieldDependencyService fieldDependencyService, ILogger logger)
         {
             this.formRepository = formRepository;
             this.userDataRepository = userDataRepository;
             this.fieldDependencyService = fieldDependencyService;
+            this.logger = logger;
         }
 
         /// <summary>
@@ -60,6 +68,12 @@
             Profiler.OnStart(this, "Flex :: Load form from datasource");
             
             var form = this.formRepository.LoadForm(dataSource);
+            if (form == null)
+            {
+                this.logger.Warn(string.Format("Could not load form with datasource '{0}'", dataSource), this);
+                Profiler.OnEnd(this, "Flex :: Load form from datasource");
+                return null;
+            }
             
             // set the step number for each step
             var counter = 0;

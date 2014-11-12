@@ -74,7 +74,7 @@
 
             // load the form
             var form = this.contextService.LoadForm(formDatasource);
-            if (form == null) return;
+            if (form == null || !form.Steps.Any()) return;
 
             // save the form to the current items collection
             this.flexContext.Form = form;
