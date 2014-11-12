@@ -33,6 +33,7 @@
             
             // business logic
             Bind<IContextService>().To<ContextService>();
+            Bind<IFieldDependencyService>().To<FieldDependencyService>();
             Bind<IPresentationService>().To<PresentationService>();
             Bind<IPlugsService>().To<PlugsService>();
             Bind<ITaskService>().To<TaskService>();

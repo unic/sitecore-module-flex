@@ -21,12 +21,19 @@
         private readonly IModelConverterService modelConverter;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="FormModelBinder"/> class.
+        /// The field dependency service
+        /// </summary>
+        private readonly IFieldDependencyService fieldDependencyService;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FormModelBinder" /> class.
         /// </summary>
         /// <param name="modelConverter">The model converter.</param>
-        public FormModelBinder(IModelConverterService modelConverter)
+        /// <param name="fieldDependencyService">The field dependency service.</param>
+        public FormModelBinder(IModelConverterService modelConverter, IFieldDependencyService fieldDependencyService)
         {
             this.modelConverter = modelConverter;
+            this.fieldDependencyService = fieldDependencyService;
         }
 
         /// <summary>
@@ -44,7 +51,8 @@
             if (form != null)
             {
                 Profiler.OnStart(this, "Flex :: Removing validation errors for hidden fields (due to field dependency)");
-                
+
+                var allFields = form.Step.Sections.SelectMany(s => s.Fields).ToList();
                 for (var sectionIndex = 0; sectionIndex < form.Step.Sections.Count; sectionIndex++)
                 {
                     var section = form.Step.Sections[sectionIndex];
@@ -53,10 +61,7 @@
                         var field = section.Fields[fieldIndex];
                         if (string.IsNullOrWhiteSpace(field.DependentFrom)) continue;
 
-                        var dependentField = form.Step.Sections.SelectMany(s => s.Fields).FirstOrDefault(f => f.Id == field.DependentFrom);
-                        if (dependentField != null
-                            && dependentField.Value != null
-                            && !dependentField.Value.ToString().Equals(field.DependentValue, StringComparison.InvariantCultureIgnoreCase))
+                        if (!this.fieldDependencyService.IsDependentFieldVisible(allFields, field))
                         {
                             bindingContext.ModelState.Remove(MappingHelper.GetFormFieldId(sectionIndex, fieldIndex));
                         }

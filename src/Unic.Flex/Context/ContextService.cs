@@ -6,15 +6,12 @@
     using Sitecore.Data;
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Unic.Flex.Mapping;
-    using Unic.Flex.Model.DomainModel.Components;
     using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.DomainModel.Steps;
     using Unic.Flex.Model.Types;
-    using Unic.Flex.Model.ViewModel.Fields;
     using Unic.Flex.Model.ViewModel.Forms;
     using Profiler = Unic.Profiling.Profiler;
 
@@ -34,14 +31,21 @@
         private readonly IUserDataRepository userDataRepository;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ContextService"/> class.
+        /// The field dependency service
+        /// </summary>
+        private readonly IFieldDependencyService fieldDependencyService;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ContextService" /> class.
         /// </summary>
         /// <param name="formRepository">The form repository.</param>
         /// <param name="userDataRepository">The user data repository.</param>
-        public ContextService(IFormRepository formRepository, IUserDataRepository userDataRepository)
+        /// <param name="fieldDependencyService">The field dependency service.</param>
+        public ContextService(IFormRepository formRepository, IUserDataRepository userDataRepository, IFieldDependencyService fieldDependencyService)
         {
             this.formRepository = formRepository;
             this.userDataRepository = userDataRepository;
+            this.fieldDependencyService = fieldDependencyService;
         }
 
         /// <summary>
@@ -98,7 +102,7 @@
             }
 
             // set properties for hidden fields
-            this.HandleVisibilityDependency(form);
+            this.fieldDependencyService.HandleVisibilityDependency(form);
 
             Profiler.OnEnd(this, "Flex :: Populating values from user data storage");
         }
@@ -134,7 +138,7 @@
             }
 
             // set properties for hidden fields
-            this.HandleVisibilityDependency(form);
+            this.fieldDependencyService.HandleVisibilityDependency(form);
 
             Profiler.OnEnd(this, "Flex :: Populating values from dictionary");
         }
@@ -153,7 +157,7 @@
             foreach (var section in viewModel.Step.Sections)
             {
                 // check if the complete section is invisible -> remove all fields and go to next sections
-                if (!string.IsNullOrWhiteSpace(section.DependentFrom) && !this.IsDependencyVisible(allFields, section.DependentFrom, section.DependentValue))
+                if (!string.IsNullOrWhiteSpace(section.DependentFrom) && !this.fieldDependencyService.IsDependentFieldVisible(allFields, section))
                 {
                     section.Fields.ForEach(f => this.userDataRepository.RemoveValue(viewModel.Id, f.Id));
                     continue;
@@ -162,7 +166,7 @@
                 foreach (var field in section.Fields)
                 {
                     // check if field is invisible -> remove from storage and go to next field
-                    if (!string.IsNullOrWhiteSpace(field.DependentFrom) && !this.IsDependencyVisible(allFields, field.DependentFrom, field.DependentValue))
+                    if (!string.IsNullOrWhiteSpace(field.DependentFrom) && !this.fieldDependencyService.IsDependentFieldVisible(allFields, field))
                     {
                         this.userDataRepository.RemoveValue(viewModel.Id, field.Id);
                         continue;
@@ -218,57 +222,6 @@
             var renderingReferences = item.Visualization.GetRenderings(device, false);
             var rendering = renderingReferences.FirstOrDefault(reference => reference.RenderingID == renderingId);
             return rendering == null ? string.Empty : rendering.Settings.DataSource;
-        }
-
-        /// <summary>
-        /// Determines whether the dependency for a specific component is valid and the component is visible due to the condition.
-        /// </summary>
-        /// <param name="allFields">All fields.</param>
-        /// <param name="dependentFrom">The dependent from.</param>
-        /// <param name="dependentValue">The dependent value.</param>
-        /// <returns>Boolean value if the condition is valid and the field is visible</returns>
-        protected virtual bool IsDependencyVisible(IEnumerable<IFieldViewModel> allFields, string dependentFrom, string dependentValue)
-        {
-            var dependentField = allFields.FirstOrDefault(f => f.Id == dependentFrom);
-            // todo: this does not work for list fields, as the .Value property is an array (same in modelbinder validation checks)
-            return dependentField != null && dependentField.Value != null && dependentField.Value.ToString().Equals(dependentValue, StringComparison.InvariantCultureIgnoreCase);
-        }
-
-        /// <summary>
-        /// Handles the visibility dependency for fields with a field dependency.
-        /// </summary>
-        /// <param name="form">The form.</param>
-        protected virtual void HandleVisibilityDependency(Form form)
-        {
-            Assert.ArgumentNotNull(form, "form");
-            
-            Profiler.OnEnd(this, "Flex :: Handle visibility dependency and mark invisible fields");
-
-            // handle section and fields
-            this.HandleHiddenFlag(form, form.GetSections().SelectMany(s => s.Fields).Where(f => f.DependentField != null));
-            this.HandleHiddenFlag(form, form.GetSections().Where(s => s.DependentField != null));
-
-            // mark sections with only hidden fields also as hidden
-            foreach (var section in form.GetSections().Where(s => s.Fields.All(f => f.IsHidden)))
-            {
-                section.IsHidden = true;
-            }
-
-            Profiler.OnEnd(this, "Flex :: Handle visibility dependency and mark invisible fields");
-        }
-
-        /// <summary>
-        /// Handles the hidden flag for components with a field dependency.
-        /// </summary>
-        /// <param name="form">The form.</param>
-        /// <param name="components">The components.</param>
-        private void HandleHiddenFlag(Form form, IEnumerable<IVisibilityDependency> components)
-        {
-            foreach (var component in components)
-            {
-                var dependentValue = form.GetFieldValue(component.DependentField);
-                component.IsHidden = !dependentValue.Equals(component.DependentValue, StringComparison.InvariantCultureIgnoreCase);
-            }
         }
     }
 }
