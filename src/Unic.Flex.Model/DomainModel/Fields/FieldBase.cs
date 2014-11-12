@@ -255,7 +255,6 @@
         /// The dependent value.
         /// </value>
         [SitecoreField("Dependent Value")]
-        // todo: this must not be a simple single-line text field (what about conditions, e.g. "age > 18"?)
         public virtual string DependentValue { get; set; }
 
         /// <summary>

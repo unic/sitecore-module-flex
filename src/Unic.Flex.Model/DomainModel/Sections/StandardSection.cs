@@ -90,7 +90,6 @@
         /// The dependent value.
         /// </value>
         [SitecoreField("Dependent Value")]
-        // todo: this must not be a simple single-line text field
         public virtual string DependentValue { get; set; }
 
         /// <summary>
