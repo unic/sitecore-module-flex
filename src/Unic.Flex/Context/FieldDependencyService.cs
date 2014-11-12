@@ -25,8 +25,11 @@
         public virtual bool IsDependentFieldVisible(IEnumerable<IFieldViewModel> allFields, IVisibilityDependencyViewModel dependency)
         {
             var dependentField = allFields.FirstOrDefault(f => f.Id == dependency.DependentFrom);
-            // todo: this does not work for list fields, as the .Value property is an array (same in modelbinder validation checks)
-            return dependentField != null && dependentField.Value != null && dependentField.Value.ToString().Equals(dependency.DependentValue, StringComparison.InvariantCultureIgnoreCase);
+            if (dependentField == null || dependentField.Value == null) return false;
+
+            var referencedListValue = dependentField.Value as IEnumerable<string>;
+            var referencedValue = referencedListValue != null ? string.Join(",", referencedListValue) : dependentField.Value.ToString();
+            return referencedValue.Equals(dependency.DependentValue, StringComparison.InvariantCultureIgnoreCase);
         }
 
         /// <summary>
