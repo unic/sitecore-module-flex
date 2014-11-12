@@ -120,7 +120,7 @@
             }
             catch (Exception exception)
             {
-                this.logger.Error(string.Format("Error while exporting form: {0}", exception.Message), exception);
+                this.logger.Error(string.Format("Error while exporting form: {0}", exception.Message), this, exception);
             }
         }
 
