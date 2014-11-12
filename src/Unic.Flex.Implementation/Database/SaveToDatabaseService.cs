@@ -167,7 +167,10 @@
                     column = 3;
                     foreach (var item in fields)
                     {
-                        worksheet.Cells[row, column++].Value = this.GetExportValue(item, session.Fields.FirstOrDefault(f => f.ItemId == item.Id));
+                        var field = session.Fields.FirstOrDefault(f => f.ItemId == item.Id);
+                        if (field == null) continue;
+
+                        worksheet.Cells[row, column++].Value = this.GetExportValue(item, field);
                     }
 
                     row++;
