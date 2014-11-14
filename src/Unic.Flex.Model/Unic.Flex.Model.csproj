@@ -131,6 +131,7 @@
     <Compile Include="DataProviders\ListItemExtensions.cs" />
     <Compile Include="Types\UploadedFile.cs" />
     <Compile Include="Validation\AjaxValidator.cs" />
+    <Compile Include="Validation\FileRequiredValidator.cs" />
     <Compile Include="Validation\HoneypotValidator.cs" />
     <Compile Include="Validation\MulticheckRequired.cs" />
     <Compile Include="Validation\RequiredValidator.cs" />

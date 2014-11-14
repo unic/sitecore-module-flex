@@ -49,6 +49,14 @@
         /// The item identifier.
         /// </value>
         Guid ItemId { get; set; }
+
+        /// <summary>
+        /// Gets the type.
+        /// </summary>
+        /// <value>
+        /// The type.
+        /// </value>
+        Type Type { get; }
         
         /// <summary>
         /// Gets or sets the value.

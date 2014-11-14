@@ -15,6 +15,7 @@
     using Unic.Flex.Model.DomainModel.Fields.ListFields;
     using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.DomainModel.Steps;
+    using Unic.Flex.Model.Types;
     using Unic.Flex.Model.Validation;
     using Unic.Flex.Model.ViewModel.Components;
     using Unic.Flex.Model.ViewModel.Fields;
@@ -207,9 +208,13 @@
                         {
                             validatableObject.AddValidator(new MulticheckRequired { ValidationMessage = field.ValidationMessage });
                         }
+                        else if (field.Type == typeof(UploadedFile))
+                        {
+                            validatableObject.AddValidator(new FileRequiredValidator { ValidationMessage = field.ValidationMessage });
+                        }
                         else
                         {
-                            validatableObject.AddValidator(new RequiredValidator { ValidationMessage = field.ValidationMessage });    
+                            validatableObject.AddValidator(new RequiredValidator { ValidationMessage = field.ValidationMessage });
                         }       
                     }
                     else if (!string.IsNullOrWhiteSpace(optionalLabelText))

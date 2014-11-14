@@ -71,6 +71,20 @@
         public virtual TValue DefaultValue { get; set; }
 
         /// <summary>
+        /// Gets the type.
+        /// </summary>
+        /// <value>
+        /// The type.
+        /// </value>
+        public virtual Type Type
+        {
+            get
+            {
+                return typeof(TValue);
+            }
+        }
+
+        /// <summary>
         /// Gets the text value.
         /// </summary>
         /// <value>

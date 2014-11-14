@@ -1,13 +1,12 @@
 ﻿namespace Unic.Flex.Model.Validation
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
+    using Unic.Flex.Model.Types;
 
     /// <summary>
-    /// Validator to validate if field has a value
+    /// Required validator for file uploads.
     /// </summary>
-    public class RequiredValidator : IValidator
+    public class FileRequiredValidator : IValidator
     {
         /// <summary>
         /// Gets the default validation message dictionary key.
@@ -42,20 +41,8 @@
         {
             if (value == null) return false;
 
-            var stringValue = value as string;
-            if (stringValue != null) return !string.IsNullOrWhiteSpace(stringValue);
-
-            var intValue = value as int?;
-            if (intValue != null) return true;
-
-            var booleanValue = value as bool?;
-            if (booleanValue != null) return (bool)value;
-
-            var dateTimeValue = value as DateTime?;
-            if (dateTimeValue != null) return true;
-
-            var stringArrayValue = value as string[];
-            if (stringArrayValue != null) return stringArrayValue.Any(v => !string.IsNullOrWhiteSpace(v));
+            var fileValue = value as UploadedFile;
+            if (fileValue != null) return true;
 
             return false;
         }
@@ -69,8 +56,7 @@
         public IDictionary<string, object> GetAttributes()
         {
             var attributes = new Dictionary<string, object>();
-            attributes.Add("data-val-required", this.ValidationMessage);
-            attributes.Add("required", "required");
+            attributes.Add("data-val-filerequired", this.ValidationMessage);
             attributes.Add("aria-required", true);
             return attributes;
         }
