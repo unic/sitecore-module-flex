@@ -19108,15 +19108,17 @@ return datepicker.regional['it-CH'];
 	var $document = $(document);
 
 	var pluginName = 'flexform',
-		events = {
-			EVENT_VALIDATION_INVALID: pluginName +'_validation_invalid'
-		},
-		defaults = {
-			cssprefix: 'flex',
-			dovalidation: true,
-			haserrorClass: 'flex_has_error',
-			dataattribute: pluginName // configurable because of legacy implementations in Post
-		};
+			events = {
+				EVENT_VALIDATION_INVALID: pluginName +'_validation_invalid'
+			},
+			defaults = {
+				cssprefix: 'flex',
+				dovalidation: true,
+				dataattribute: pluginName // configurable because of legacy implementations in Post
+			},
+			constants = {
+				haserrorClass: 'flex_has_error'
+			};
 	pluginName = pluginName.toLowerCase();
 
 	// Globally accessible data like event names
@@ -19162,7 +19164,7 @@ return datepicker.regional['it-CH'];
 		// Accessibility
 		var $invalidFields = $('[aria-invalid=true]:visible'); // Serverside failed validation fields
 		$invalidFields.first().focus();
-		$invalidFields.closest('li').addClass(this.options.haserrorClass);
+		$invalidFields.closest('li').addClass(constants.haserrorClass);
 		this.$element.on('change.' + pluginName, 'input[type=checkbox], input[type=radio]', _.bind(this._syncCheckedStatus, this));
 	};
 
@@ -19184,39 +19186,9 @@ return datepicker.regional['it-CH'];
 			return;
 		}
 
-		// Add new defaults
-		var data = this.$element.data('validator');
-
-			// Add / remove additional classes
-		data.settings.highlight = _.bind(function(element) {
-			$(element).closest('li').addClass(this.options.haserrorClass);
-		}, this);
-		data.settings.unhighlight = _.bind(function(element) {
-			$(element).closest('li').removeClass(this.options.haserrorClass);
-		}, this);
-
 		this.$element.on('invalid-form.validate.' + pluginName, _.bind(function () {
 			$document.trigger(events.EVENT_VALIDATION_INVALID, this.$element);
 		}, this));
-
-		// http://weblogs.asp.net/imranbaloch/overriding-unobtrusive-client-side-validation-settings-in-asp-net-mvc-3
-		// var validator = this.$element.data('validator');
-
-		// deactivate email => it's done by regex (because default email-regex isn't good)
-		$.validator.methods.email = function(){
-				return true;
-		};
-
-		// Multicheckrequired
-		$.validator.unobtrusive.adapters.add('multicheckrequired', [], function (options) {
-			options.rules.multicheckrequired = true;
-			options.messages.multicheckrequired = options.message;
-		});
-
-		$.validator.addMethod('multicheckrequired', function (value, element) {
-			var $container = $(element).closest('fieldset');
-			return $container.find(':checked').length ? true : false;
-		});
 
 		// Correct Validation for showPwd-Fields: Also textfield has to be validated, if original field is disabled.
 		var $showPwd = this.$element.find('[data-' + this.options.dataattribute + '=showpassword]');
@@ -19235,15 +19207,15 @@ return datepicker.regional['it-CH'];
 
 		// Init the form with the new settings.
 		var form = this.$element
-			.removeData('validator') /* added by the raw jquery.validate plugin */
-			.removeData('unobtrusiveValidation');  /* added by the jquery unobtrusive plugin */
+				.removeData('validator') /* added by the raw jquery.validate plugin */
+				.removeData('unobtrusiveValidation');  /* added by the jquery unobtrusive plugin */
 
 		$.validator.unobtrusive.parse(form);
 	};
 
 	Plugin.prototype._initMultistep = function(){
 		var $multistepnavigation = this.$element.find('[data-' + this.options.dataattribute + '=multistepnavigation]'),
-			$items = $multistepnavigation.find('[data-' + this.options.dataattribute + '=multistepnavigationitem]');
+				$items = $multistepnavigation.find('[data-' + this.options.dataattribute + '=multistepnavigationitem]');
 		$items.css('width', (1/$items.length)*100 + '%');
 	};
 
@@ -19253,7 +19225,7 @@ return datepicker.regional['it-CH'];
 	Plugin.prototype._initAllCheckbox = function() {
 		this.$element.find('[data-' + pluginName + '=all]').each(_.bind(function(index, element){
 			var $checkbox = $(element),
-				$group = $checkbox.closest('[data-' + pluginName + '=allgroup]');
+					$group = $checkbox.closest('[data-' + pluginName + '=allgroup]');
 			this._setAllCheckbox($group);
 		}, this));
 		this.$element.on('change.' + pluginName, '[data-' + pluginName + '=allgroup]', _.bind(function(event){
@@ -19268,8 +19240,8 @@ return datepicker.regional['it-CH'];
 	 */
 	Plugin.prototype._handleAllCheckbox = function(checkbox){
 		var $checkbox = $(checkbox),
-			$group = $checkbox.closest('[data-' + pluginName + '=allgroup]'),
-			value = $checkbox.is(':checked');
+				$group = $checkbox.closest('[data-' + pluginName + '=allgroup]'),
+				value = $checkbox.is(':checked');
 
 		if ($checkbox.is('[data-' + pluginName + '=all]')) {
 			// User clicked on 'all'
@@ -19295,7 +19267,7 @@ return datepicker.regional['it-CH'];
 	 */
 	Plugin.prototype._setAllCheckbox = function($group){
 		var totalBoxes = $group.find(':checkbox'),
-			checkedBoxes = $group.find(':checked[data-' + pluginName + '!=all]');
+				checkedBoxes = $group.find(':checked[data-' + pluginName + '!=all]');
 
 		if (checkedBoxes.length === totalBoxes.length - 1) {
 			$group.find('[data-' + pluginName + '=all]').attr('aria-checked', true).prop('checked', true).attr('checked', 'checked');
@@ -19311,11 +19283,11 @@ return datepicker.regional['it-CH'];
 	 */
 	Plugin.prototype._handleShowPassword = function(event){
 		var $checkbox = $(event.currentTarget),
-			$container = $checkbox.closest('[data-' + this.options.dataattribute + '=showpassword]');
+				$container = $checkbox.closest('[data-' + this.options.dataattribute + '=showpassword]');
 
 		$container.find(':password:visible, :text:visible').each(function(){
 			var $current = $(this),
-				currentVal = $current.val();
+					currentVal = $current.val();
 
 			$current.siblings(':text, :password').val(currentVal);
 		});
@@ -19339,10 +19311,15 @@ return datepicker.regional['it-CH'];
 	 */
 	Plugin.prototype._initDependentFields = function(){
 		var $elements = this.$element.find('[data-' + this.options.dataattribute + '-dependent]');
-		$elements.hide();
-		$elements.each(_.bind(this._handleDependents, this));
 
-		this.$element.on('change.' + pluginName, _.bind(this._changeDependents, this));
+		if($elements.length) {
+			$elements.hide();
+
+			// Param undefined, because additional key-parameter is added as FIRST param for change-event...
+			$elements.each(_.bind(this._handleDependents, this, undefined));
+
+			this.$element.on('change.' + pluginName, _.bind(this._changeDependents, this));
+		}
 	};
 
 	/**
@@ -19350,27 +19327,97 @@ return datepicker.regional['it-CH'];
 	 * @method
 	 * @private
 	 */
-	Plugin.prototype._changeDependents = function(){
-		var $elements = this.$element.find('[data-' + this.options.dataattribute + '-dependent]');
-		$elements.each(_.bind(this._handleDependents, this));
+	Plugin.prototype._changeDependents = function(event){
+		var $changed = $(event.target).closest('[data-key]');
+		var $elements = this.$element.find('[data-' + this.options.dataattribute + '-dependent]').filter(_.bind(function(i, el){
+			return _.contains($(el).data(this.options.dataattribute + '-dependent').from, $changed.data().key);
+		}, this));
+		$elements.each(_.bind(this._handleDependents, this, $changed.data().key));
 	};
 
 	/**
 	 * Handles the show/hide of dependent elements.
-	 * @param index {int} The index-Parameter in .each.
-	 * @param element {object} The element-Parameter in .each.
+	 * @param key {string} - The key of the changed element (optional).
+	 * @param index {int} - The index-Parameter in .each.
+	 * @param element {object} - The element-Parameter in .each.
 	 * @private
 	 */
-	Plugin.prototype._handleDependents = function(index, element){
-		var $field = $(element);
-		var data = $field.data(this.options.dataattribute + '-dependent'),
-			$from = this.$element.find('[data-key=' + data.from + ']');
-		if ($from.find(':checked[value=' + data.value + ']').length ||
-			$from.find(':selected[value=' + data.value + ']').length) {
+	Plugin.prototype._handleDependents = function(key, index, element){
+
+		var $field = $(element),
+				data = $field.data(this.options.dataattribute + '-dependent'),
+				$from = this.$element.find('[data-key="' + data.from + '"]'),
+				dependentsMatch = true;
+
+		_.each(data.value.split(','), _.bind(function(fromKey){
+			// only evaluate, if there is a match until now
+			if (dependentsMatch) {
+				dependentsMatch = $from.find(':checked').filter(_.bind(this._filterCaseInsensitiv, this, fromKey)).length ||
+				$from.find(':selected').filter(_.bind(this._filterCaseInsensitiv, this, fromKey)).length ||
+				$from.find(':text').filter(_.bind(this._filterCaseInsensitiv, this, fromKey)).length;
+			}
+		}, this));
+
+		if (dependentsMatch) {
 			$field.show();
+		} else if (data.url) {
+			// Field is managed by ajax
+			if (typeof key !== 'undefined') {
+				this._updateField($field, data.url, key);
+			} else {
+				$field.show();
+			}
 		} else {
 			$field.hide();
 		}
+	};
+
+	/**
+	 * Filters the elements from value to a given key, but caseINsensitiv.
+	 * @param key {string} - The Key to match against.
+	 * @param index {number} - index inside the iterator.
+	 * @param element {object} - The element to compare the value.
+	 * @returns {boolean} - true if value matches key (caseinsensitiv).
+	 * @private
+	 */
+	Plugin.prototype._filterCaseInsensitiv = function(key, index, element) {
+		return element.value.toLowerCase() === key.toLowerCase();
+	};
+
+	/**
+	 * Updates dependentFields per Ajax, if there is an url given.
+	 * @param $field {jQuery} - The field to be replaced.
+	 * @param url {string} - The url to get the new field per ajax.
+	 * @param key {string} - The key of the changed field.
+	 * @method
+	 * @private
+	 */
+	Plugin.prototype._updateField = function($field, url, key) {
+
+		var from = $field.data(this.options.dataattribute + '-dependent').from.split(','),
+				data = {};
+
+		if(!_.contains(from, key)) {
+			return;
+		}
+
+		_.each(from, _.bind(function(fromKey){
+			var $input = this.$element.find('[data-key=' + fromKey + ']').find(':input'),
+					name = $input.attr('name');
+			data[name] = $input.val();
+		}, this));
+
+		$.ajax({
+			method: 'post',
+			url: url,
+			data: data,
+			success: _.bind(function(response){
+				var $newField = $(response);
+				$field.replaceWith($newField);
+				$newField.show();
+				$document.trigger('ajax_loaded', $newField);
+			}, this)
+		});
 	};
 
 	/**
@@ -19406,6 +19453,47 @@ return datepicker.regional['it-CH'];
 
 	// Make the plugin available through jQuery (and the global project namespace)
 	Unic.modules.PluginHelper.register(Plugin, pluginName, ['ready', 'ajax_loaded']);
+
+	// Only once: Configure Validator
+	if($.validator && $.validator.unobtrusive) {
+
+		// Add / remove additional classes
+		$.validator.defaults.highlight = _.bind(function(element) {
+			$(element).closest('li').addClass(constants.haserrorClass);
+		}, this);
+		$.validator.defaults.unhighlight = _.bind(function(element) {
+			$(element).closest('li').removeClass(constants.haserrorClass);
+		}, this);
+
+		// http://weblogs.asp.net/imranbaloch/overriding-unobtrusive-client-side-validation-settings-in-asp-net-mvc-3
+		// var validator = this.$element.data('validator');
+
+		// deactivate email => it's done by regex (because default email-regex isn't good)
+		$.validator.methods.email = function(){
+			return true;
+		};
+
+		// Multicheckrequired
+		$.validator.unobtrusive.adapters.add('multicheckrequired', [], function (options) {
+			options.rules.multicheckrequired = true;
+			options.messages.multicheckrequired = options.message;
+		});
+
+		$.validator.addMethod('multicheckrequired', function (value, element) {
+			var $container = $(element).closest('fieldset');
+			return $container.find(':checked').length ? true : false;
+		});
+
+		// Custom Filerequired
+		$.validator.unobtrusive.adapters.add('filerequired', [], function (options) {
+			options.rules.filerequired = true;
+			options.messages.filerequired = options.message;
+		});
+		$.validator.addMethod('filerequired', function (value, element) {
+			var hasCurrentFile = $(element).closest('[data-init=flexfileinput]').find('[data-flexfileinput=current]').length;
+			return value !== '' || hasCurrentFile;
+		});
+	}
 
 })(window, document,  jQuery, Unic);
 

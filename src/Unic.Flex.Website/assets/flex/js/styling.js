@@ -1142,8 +1142,15 @@ Enjoy!
 	 * Initialize module, bind events
 	 */
 	Plugin.prototype.init = function() {
-		this._initFormStyles();
-		this._updateCheckboxState();
+		this._initFormStyles(this.$element);
+		this._updateCheckboxState(this.$element);
+
+		$document.on('ajax_loaded', _.bind(function(event, node){
+			var $node = $(node);
+
+			this._initFormStyles($node);
+			this._updateCheckboxState($node);
+		}, this));
 	};
 
 	/**
@@ -1157,24 +1164,26 @@ Enjoy!
 
 	/**
 	 * Inits Uniform-Styles.
+	 * @param {jQuery} $container - The container in which styles should be init.
 	 * @private
 	 */
-	Plugin.prototype._initFormStyles = function(){
-		this.$element.find('select, :checkbox, :radio, [type=file]').uniform(this.options.uniformOptions);
+	Plugin.prototype._initFormStyles = function($container){
+		$container.find('select, :checkbox, :radio, [type=file]').uniform(this.options.uniformOptions);
 
-		this.$element.find('.' + this.options.cssprefix + '_selector > span').attr('aria-hidden', 'true');
+		$container.find('.' + this.options.cssprefix + '_selector > span').attr('aria-hidden', 'true');
 	};
 
 	/**
 	 * Handler to style labels and container of checkboxes differently according the state.
+	 * @param {jQuery} $container - The container in which checkboxes should be init.
 	 * @private
 	 */
-	Plugin.prototype._updateCheckboxState = function(){
+	Plugin.prototype._updateCheckboxState = function($container){
 		// Update initially selected.
-		this.$element.find(':checkbox:checked, :radio:checked').closest('.' + this.options.uniformOptions.checkboxClass).addClass(this.options.checkboxState.checkedClass);
+		$container.find(':checkbox:checked, :radio:checked').closest('.' + this.options.uniformOptions.checkboxClass).addClass(this.options.checkboxState.checkedClass);
 
 		// Change event to handle label color.
-		this.$element.on('change.' + pluginName, ':checkbox, :radio', _.bind(function(event) {
+		$container.on('change.' + pluginName, ':checkbox, :radio', _.bind(function(event) {
 			var $node = $(event.currentTarget),
 				$parentWrapper = $node.closest('.' + this.options.uniformOptions.checkboxClass);
 

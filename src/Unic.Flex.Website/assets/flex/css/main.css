@@ -677,6 +677,9 @@ nav ol, .flex_formcontainer fieldset ul, .flex_formcontainer fieldset ol,
 .flex_formcontainer .flex_fielderror {
   color: #A6643A;
 }
+.flex_formcontainer .flex_globalerror {
+  color: #A6643A;
+}
 .flex_formcontainer .flex_showpassword input[type=text] {
   display: none;
 }
