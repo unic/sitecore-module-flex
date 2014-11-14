@@ -3,9 +3,9 @@
 @if (!string.IsNullOrWhiteSpace(Model.Message))
 {
     <div class="flex_formcontainer">
-        <div class="validation-summary-errors">
+        <p class="flex_globalerror">
             @Html.Raw(Model.Message)
-        </div>
+        </p>
     </div>
 }
     
