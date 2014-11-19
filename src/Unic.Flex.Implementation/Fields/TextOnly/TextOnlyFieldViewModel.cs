@@ -36,7 +36,12 @@
         {
             base.BindProperties();
 
-            this.AddCssClass("flex_rtecontent");
+            this.AddCssClass("flex_rtefield");
+
+            if (!string.IsNullOrWhiteSpace(this.Label))
+            {
+                this.AddCssClass("flex_var_label");
+            }
         }
     }
 }

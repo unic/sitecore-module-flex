@@ -1,8 +1,15 @@
 ﻿@using Unic.Flex.Presentation
 @model Unic.Flex.Implementation.Fields.TextOnly.TextOnlyFieldViewModel
 
-<li class="flex_listitem @Model.CssClass" @Html.Raw(Html.FormatAttributes(Model.ContainerAttributes))>
+<li class="@Model.CssClass" @Html.Raw(Html.FormatAttributes(Model.ContainerAttributes))>
+    
+    @if (!string.IsNullOrWhiteSpace(Model.Label))
+    {
+        <strong class="flex_label">@Model.Label</strong>
+    }
 
-    @Html.Raw(Model.Text)
+    <div class="flex_rtecontent">
+        @Html.Raw(Model.Text)
+    </div>
 
 </li>
