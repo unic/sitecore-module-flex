@@ -16,6 +16,13 @@
         string ReplaceEmailAddressesFromConfig(string addresses);
 
         /// <summary>
+        /// Gets the email address from configuration.
+        /// </summary>
+        /// <param name="configKey">The configuration key.</param>
+        /// <returns>The configuration key</returns>
+        string GetEmailAddressFromSettings(string configKey);
+
+        /// <summary>
         /// Replaces the tokens in the input content with the content of the field.
         /// </summary>
         /// <param name="content">The content.</param>

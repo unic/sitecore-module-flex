@@ -23,7 +23,19 @@
             return Regex.Replace(
                 addresses,
                 @"({)(.*?)(})",
-                match => Sitecore.Configuration.Settings.GetSetting(string.Format("Flex.EmailAddresses.{0}", match.Groups[2].Value)));
+                match => this.GetEmailAddressFromSettings(match.Groups[2].Value));
+        }
+
+        /// <summary>
+        /// Gets the email address from configuration.
+        /// </summary>
+        /// <param name="configKey">The configuration key.</param>
+        /// <returns>
+        /// The configuration key
+        /// </returns>
+        public virtual string GetEmailAddressFromSettings(string configKey)
+        {
+            return Sitecore.Configuration.Settings.GetSetting(string.Format("Flex.EmailAddresses.{0}", configKey));
         }
 
         /// <summary>

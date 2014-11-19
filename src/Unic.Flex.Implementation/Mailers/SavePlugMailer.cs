@@ -91,22 +91,23 @@
             this.ViewBag.TextMailFooter = this.mailService.ReplaceTokens(plug.TextMailFooter, fields);
 
             // get email addresses
-            var from = this.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.From), plug.From);
-            var cc = this.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.Cc), plug.Cc);
-            var bcc = this.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.Bcc), plug.Bcc);
+            var useGlobalConfig = this.IsGlobalConfigEnabled();
+            var from = this.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.From), plug.From, useGlobalConfig);
+            var cc = this.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.Cc), plug.Cc, useGlobalConfig);
+            var bcc = this.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.Bcc), plug.Bcc, useGlobalConfig);
             
             // get the receiver email address
-            var to = this.GetMappedEmailFromField(plug.ReceiverField, form, plug);
+            var to = useGlobalConfig ? string.Empty : this.GetMappedEmailFromField(plug.ReceiverField, form, plug);
             if (string.IsNullOrWhiteSpace(to))
             {
-                to = this.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.To), plug.To);
+                to = this.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.To), plug.To, useGlobalConfig);
             }
 
             // get reply to
-            var replyTo = this.GetEmailFromField(plug.ReplyToField, form);
+            var replyTo = useGlobalConfig ? string.Empty : this.GetEmailFromField(plug.ReplyToField, form);
             if (string.IsNullOrWhiteSpace(replyTo))
             {
-                replyTo = this.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.ReplyTo), plug.ReplyTo);
+                replyTo = this.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.ReplyTo), plug.ReplyTo, useGlobalConfig);
             }
             
             // populate the mail
@@ -140,6 +141,15 @@
         public override string TextViewName(string viewName)
         {
             return this.presentationService.ResolveView(this.ControllerContext, "Mailers/SavePlug/Form.text", this.theme);
+        }
+
+        /// <summary>
+        /// Determines whether the settings in the plugs are overriden by the global configuration.
+        /// </summary>
+        /// <returns>Boolean value wheather the global config overrides the plug config</returns>
+        protected virtual bool IsGlobalConfigEnabled()
+        {
+            return Sitecore.Configuration.Settings.GetBoolSetting("Flex.EmailAddresses.AlwaysUseGlobalConfig", false);
         }
 
         /// <summary>
@@ -181,10 +191,13 @@
         /// </summary>
         /// <param name="globalConfig">The email address from the global configuration.</param>
         /// <param name="plugConfig">The email address from the plug configuration.</param>
-        /// <returns>The final email addresses</returns>
-        private string GetEmailAddresses(string globalConfig, string plugConfig)
+        /// <param name="useGlobalConfig">if set to <c>true</c>the global config us always used.</param>
+        /// <returns>
+        /// The final email addresses
+        /// </returns>
+        private string GetEmailAddresses(string globalConfig, string plugConfig, bool useGlobalConfig)
         {
-            return this.mailService.ReplaceEmailAddressesFromConfig(!string.IsNullOrWhiteSpace(plugConfig) ? plugConfig : globalConfig);
+            return this.mailService.ReplaceEmailAddressesFromConfig(useGlobalConfig || string.IsNullOrWhiteSpace(plugConfig) ? globalConfig : plugConfig);
         }
     }
 }
