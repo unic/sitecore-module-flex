@@ -91,7 +91,7 @@
             /// <returns>List of components and/or reusable components</returns>
             private IEnumerable<T> ProcessItems(IEnumerable<T> items)
             {
-                return items.OfType<IReusableComponent>().Select(child => (child.ReusableComponent ?? child) as T);
+                return items.OfType<IReusableComponent>().Select(child => (child.ReusableComponent ?? child) as T).Where(child => !(child is IInvalidComponent));
             }
         }
     }

@@ -98,6 +98,7 @@
     <Compile Include="Configuration\GlobalizationConfiguration.cs" />
     <Compile Include="Configuration\PresentationConfiguration.cs" />
     <Compile Include="DomainModel\Analytics\Goal.cs" />
+    <Compile Include="DomainModel\Components\IInvalidComponent.cs" />
     <Compile Include="DomainModel\Components\IReusableComponent.cs" />
     <Compile Include="DomainModel\Components\ITooltip.cs" />
     <Compile Include="DomainModel\Components\IVisibilityDependency.cs" />
