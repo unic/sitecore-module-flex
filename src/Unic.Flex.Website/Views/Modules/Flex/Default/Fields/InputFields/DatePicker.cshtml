@@ -7,7 +7,7 @@
     @Html.FlexLabel(m => m.Value, Model.Label, Model.LabelAddition)
     @Html.TextBoxFor(m => m.Value, Html.GetAttributes(Model))
 
-    <a href="#" data-flexdatepicker="trigger" class="flex_datepicker_trigger">@TranslationHelper.FlexText("Show Datepicker")</a>
+    <a href="#" data-flexdatepicker="trigger" class="flex_datepicker_trigger"><span>@TranslationHelper.FlexText("Show Datepicker")</span></a>
 
     @Html.FlexValidator(model => model.Value)
     @Html.FlexComponent(model => model.Tooltip)
