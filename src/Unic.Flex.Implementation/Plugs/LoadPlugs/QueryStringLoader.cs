@@ -5,10 +5,10 @@
     using System.Linq;
     using System.Web;
     using Unic.Flex.DependencyInjection;
+    using Unic.Flex.Implementation.Fields.TextOnly;
     using Unic.Flex.Mapping;
     using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.DomainModel.Plugs.LoadPlugs;
-    using Unic.Flex.Model.DomainModel.Sections;
 
     /// <summary>
     /// Load plug to load values from querystring into the form fields
@@ -40,7 +40,8 @@
             var queryString = HttpContext.Current.Request.QueryString;
             foreach (var section in form.Steps.SelectMany(step => step.Sections))
             {
-                foreach (var field in section.Fields)
+                // ignore text only fields due to posible cross-site scripting
+                foreach (var field in section.Fields.Where(f => f.GetType() != typeof(TextOnlyField)))
                 {
                     if (string.IsNullOrWhiteSpace(field.Key)) continue;
                     

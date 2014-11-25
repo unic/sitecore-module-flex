@@ -10,12 +10,12 @@
     public class TextOnlyField : FieldBase<string>
     {
         /// <summary>
-        /// Gets or sets the text.
+        /// Gets or sets the default value.
         /// </summary>
         /// <value>
-        /// The text.
+        /// The default value.
         /// </value>
         [SitecoreField("Text")]
-        public virtual string Text { get; set; }
+        public override string DefaultValue { get; set; }
     }
 }

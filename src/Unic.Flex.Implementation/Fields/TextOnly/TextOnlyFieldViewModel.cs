@@ -22,14 +22,6 @@
         }
 
         /// <summary>
-        /// Gets or sets the text.
-        /// </summary>
-        /// <value>
-        /// The text.
-        /// </value>
-        public virtual string Text { get; set; }
-
-        /// <summary>
         /// Binds the needed attributes and properties after converting from domain model to the view model
         /// </summary>
         public override void BindProperties()
