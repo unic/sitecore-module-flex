@@ -149,6 +149,7 @@
     <Compile Include="ViewModel\Fields\FieldBaseViewModel.cs" />
     <Compile Include="DomainModel\Fields\InputFields\InputField.cs" />
     <Compile Include="ViewModel\Fields\IFieldViewModel.cs" />
+    <Compile Include="ViewModel\Fields\IFieldWithoutPost.cs" />
     <Compile Include="ViewModel\Fields\InputFields\HoneypotFieldViewModel.cs" />
     <Compile Include="ViewModel\Fields\InputFields\InputFieldViewModel.cs" />
     <Compile Include="ViewModel\Fields\ListFields\ListFieldViewModel.cs" />

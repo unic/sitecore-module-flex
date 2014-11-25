@@ -27,6 +27,9 @@
         /// </returns>
         public override object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
+            // if we do have a field without post values, directly return without binding
+            if (bindingContext.Model is IFieldWithoutPost) return bindingContext.Model;
+            
             // get initial values
             var initialModel = (IFieldViewModel)bindingContext.Model;
             this.initialValue = initialModel.Value;

@@ -5,7 +5,7 @@
     /// <summary>
     /// View model for text only fields
     /// </summary>
-    public class TextOnlyFieldViewModel : FieldBaseViewModel<string>
+    public class TextOnlyFieldViewModel : FieldBaseViewModel<string>, IFieldWithoutPost
     {
         /// <summary>
         /// Gets the name of the view.
