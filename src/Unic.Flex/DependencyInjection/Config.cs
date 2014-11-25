@@ -1,6 +1,7 @@
 ﻿namespace Unic.Flex.DependencyInjection
 {
     using System;
+    using System.Collections.Generic;
     using System.Web.Mvc;
     using Glass.Mapper.Sc;
     using Ninject.Modules;
@@ -14,6 +15,10 @@
     using Unic.Flex.Logging;
     using Unic.Flex.Mailing;
     using Unic.Flex.Mapping;
+    using Unic.Flex.Model.Types;
+    using Unic.Flex.Model.ViewModel.Fields;
+    using Unic.Flex.Model.ViewModel.Forms;
+    using Unic.Flex.Model.ViewModel.Sections;
     using Unic.Flex.ModelBinding;
     using Unic.Flex.Plugs;
     using Unic.Flex.Presentation;
@@ -47,8 +52,13 @@
             Bind<IUnitOfWork>().To<UnitOfWork>();
 
             // model binding and converting
-            Bind<IModelBinder>().To<FormModelBinder>().Named(typeof(FormModelBinder).FullName);
-            Bind<IModelBinder>().To<DateTimeModelBinder>().Named(typeof(DateTimeModelBinder).FullName);
+            Bind<IModelBinder>().To<FormModelBinder>().Named(typeof(IFormViewModel).FullName);
+            Bind<IModelBinder>().To<ListModelBinder>().Named(typeof(IList<ISectionViewModel>).FullName);
+            Bind<IModelBinder>().To<ListModelBinder>().Named(typeof(IList<IFieldViewModel>).FullName);
+            Bind<IModelBinder>().To<ListModelBinder>().Named(typeof(IList<SelectListItem>).FullName);
+            Bind<IModelBinder>().To<FieldModelBinder>().Named(typeof(IFieldViewModel).FullName);
+            Bind<IModelBinder>().To<UploadedFileModelBinder>().Named(typeof(UploadedFile).FullName);
+            Bind<IModelBinder>().To<DateTimeModelBinder>().Named(typeof(DateTime?).FullName);
             Bind<IModelConverterService>().To<ModelConverterService>().InSingletonScope();
 
             // context

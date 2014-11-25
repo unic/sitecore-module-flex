@@ -33,13 +33,13 @@ namespace Unic.Flex.Website.App_Start
         /// </summary>
         private static void RegisterModelBinders()
         {
-            ModelBinders.Binders.Add(typeof(IFormViewModel), Container.Resolve<IModelBinder>(typeof(FormModelBinder).FullName));
-            ModelBinders.Binders.Add(typeof(IList<ISectionViewModel>), new ListModelBinder());
-            ModelBinders.Binders.Add(typeof(IList<IFieldViewModel>), new ListModelBinder());
-            ModelBinders.Binders.Add(typeof(IList<SelectListItem>), new ListModelBinder());
-            ModelBinders.Binders.Add(typeof(IFieldViewModel), new FieldModelBinder());
-            ModelBinders.Binders.Add(typeof(UploadedFile), new UploadedFileModelBinder());
-            ModelBinders.Binders.Add(typeof(DateTime?), Container.Resolve<IModelBinder>(typeof(DateTimeModelBinder).FullName));
+            ModelBinders.Binders.Add(typeof(IFormViewModel), Container.Resolve<IModelBinder>(typeof(IFormViewModel).FullName));
+            ModelBinders.Binders.Add(typeof(IList<ISectionViewModel>), Container.Resolve<IModelBinder>(typeof(IList<ISectionViewModel>).FullName));
+            ModelBinders.Binders.Add(typeof(IList<IFieldViewModel>), Container.Resolve<IModelBinder>(typeof(IList<IFieldViewModel>).FullName));
+            ModelBinders.Binders.Add(typeof(IList<SelectListItem>), Container.Resolve<IModelBinder>(typeof(IList<SelectListItem>).FullName));
+            ModelBinders.Binders.Add(typeof(IFieldViewModel), Container.Resolve<IModelBinder>(typeof(IFieldViewModel).FullName));
+            ModelBinders.Binders.Add(typeof(UploadedFile), Container.Resolve<IModelBinder>(typeof(UploadedFile).FullName));
+            ModelBinders.Binders.Add(typeof(DateTime?), Container.Resolve<IModelBinder>(typeof(DateTime?).FullName));
         }
 
         /// <summary>
