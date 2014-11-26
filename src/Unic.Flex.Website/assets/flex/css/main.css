@@ -478,7 +478,8 @@ nav ol, .flex_formcontainer fieldset ul, .flex_formcontainer fieldset ol,
 .flex_formcontainer .flex_textarea .flex_label,
 .flex_formcontainer .flex_fileinputfield .flex_label,
 .flex_formcontainer .flex_multipleselectfield .flex_label,
-.flex_formcontainer .flex_datefield .flex_label {
+.flex_formcontainer .flex_datefield .flex_label,
+.flex_formcontainer .flex_rtefield .flex_label {
   width: 50%;
   float: left;
   padding-top: 1em;
@@ -542,7 +543,17 @@ nav ol, .flex_formcontainer fieldset ul, .flex_formcontainer fieldset ol,
 .flex_formcontainer .flex_datefield textarea,
 .flex_formcontainer .flex_datefield .flex_uploader,
 .flex_formcontainer .flex_datefield .flex_selector,
-.flex_formcontainer .flex_datefield select[multiple=multiple] {
+.flex_formcontainer .flex_datefield select[multiple=multiple],
+.flex_formcontainer .flex_rtefield input[type=text],
+.flex_formcontainer .flex_rtefield input[type=email],
+.flex_formcontainer .flex_rtefield input[type=tel],
+.flex_formcontainer .flex_rtefield input[type=number],
+.flex_formcontainer .flex_rtefield input[type=search],
+.flex_formcontainer .flex_rtefield input[type=password],
+.flex_formcontainer .flex_rtefield textarea,
+.flex_formcontainer .flex_rtefield .flex_uploader,
+.flex_formcontainer .flex_rtefield .flex_selector,
+.flex_formcontainer .flex_rtefield select[multiple=multiple] {
   display: inline-block;
   width: 50%;
   -moz-box-sizing: border-box;
@@ -576,6 +587,12 @@ nav ol, .flex_formcontainer fieldset ul, .flex_formcontainer fieldset ol,
 .flex_formcontainer input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+.flex_formcontainer .flex_rtefield .flex_label {
+  font-weight: normal;
+}
+.flex_formcontainer .flex_rtefield .flex_rtecontent {
+  overflow: hidden;
 }
 .flex_formcontainer input[type=submit].u_var_small, .flex_formcontainer button[type=submit].u_var_small,
 .flex_formcontainer a.flex_button.u_var_small {

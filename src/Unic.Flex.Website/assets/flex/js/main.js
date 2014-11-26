@@ -19330,7 +19330,7 @@ return datepicker.regional['it-CH'];
 	Plugin.prototype._changeDependents = function(event){
 		var $changed = $(event.target).closest('[data-key]');
 		var $elements = this.$element.find('[data-' + this.options.dataattribute + '-dependent]').filter(_.bind(function(i, el){
-			return _.contains($(el).data(this.options.dataattribute + '-dependent').from, $changed.data().key);
+			return _.contains($(el).data(this.options.dataattribute + '-dependent').from.split(','), $changed.data().key);
 		}, this));
 		$elements.each(_.bind(this._handleDependents, this, $changed.data().key));
 	};
@@ -19349,17 +19349,21 @@ return datepicker.regional['it-CH'];
 				$from = this.$element.find('[data-key="' + data.from + '"]'),
 				dependentsMatch = true;
 
-		_.each(data.value.split(','), _.bind(function(fromKey){
-			// only evaluate, if there is a match until now
-			if (dependentsMatch) {
-				dependentsMatch = $from.find(':checked').filter(_.bind(this._filterCaseInsensitiv, this, fromKey)).length ||
-				$from.find(':selected').filter(_.bind(this._filterCaseInsensitiv, this, fromKey)).length ||
-				$from.find(':text').filter(_.bind(this._filterCaseInsensitiv, this, fromKey)).length;
-			}
-		}, this));
+		if(data.value) {
+			_.each(data.value.split(','), _.bind(function(fromKey){
+				// only evaluate, if there is a match until now
+				if (dependentsMatch) {
+					dependentsMatch = $from.find(':checked').filter(_.bind(this._filterCaseInsensitiv, this, fromKey)).length ||
+						$from.find(':selected').filter(_.bind(this._filterCaseInsensitiv, this, fromKey)).length ||
+						$from.find(':text').filter(_.bind(this._filterCaseInsensitiv, this, fromKey)).length;
+				}
+			}, this));
 
-		if (dependentsMatch) {
-			$field.show();
+			if (dependentsMatch) {
+				$field.show();
+			} else {
+				$field.hide();
+			}
 		} else if (data.url) {
 			// Field is managed by ajax
 			if (typeof key !== 'undefined') {
@@ -19367,8 +19371,6 @@ return datepicker.regional['it-CH'];
 			} else {
 				$field.show();
 			}
-		} else {
-			$field.hide();
 		}
 	};
 
@@ -19395,7 +19397,8 @@ return datepicker.regional['it-CH'];
 	Plugin.prototype._updateField = function($field, url, key) {
 
 		var from = $field.data(this.options.dataattribute + '-dependent').from.split(','),
-				data = {};
+				data = {},
+				$fieldInput = $field.find(':input');
 
 		if(!_.contains(from, key)) {
 			return;
@@ -19406,18 +19409,25 @@ return datepicker.regional['it-CH'];
 					name = $input.attr('name');
 			data[name] = $input.val();
 		}, this));
+		data[$fieldInput.attr('name')] = $fieldInput.val();
 
-		$.ajax({
+		if ($fieldInput.data('runningrequest')) {
+			$fieldInput.data('runningrequest').abort();
+		}
+
+		var xhr = $.ajax({
 			method: 'post',
 			url: url,
 			data: data,
 			success: _.bind(function(response){
 				var $newField = $(response);
 				$field.replaceWith($newField);
-				$newField.show();
+				$newField.show().trigger('change');
 				$document.trigger('ajax_loaded', $newField);
 			}, this)
 		});
+		$fieldInput.data('runningrequest', xhr);
+
 	};
 
 	/**
@@ -19673,6 +19683,8 @@ return datepicker.regional['it-CH'];
 			instance.dpDiv.removeData('plugin_flexstyles');
 			instance.dpDiv.attr('data-init', 'flexstyles');
 			$document.trigger('additional_forminit');
+			instance.dpDiv.find('.ui-datepicker-title .fixedWidth').width('auto')
+				.find('span').width('auto');
 		}, 0);
 	};
 
