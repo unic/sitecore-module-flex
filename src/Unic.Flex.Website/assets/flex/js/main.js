@@ -19503,6 +19503,8 @@ return datepicker.regional['it-CH'];
 			var hasCurrentFile = $(element).closest('[data-init=flexfileinput]').find('[data-flexfileinput=current]').length;
 			return value !== '' || hasCurrentFile;
 		});
+
+		console.log('add Validators');
 	}
 
 })(window, document,  jQuery, Unic);
@@ -19636,17 +19638,12 @@ return datepicker.regional['it-CH'];
 
 		if (this.options.dateFormat) {
 			this.options.dateFormat = this._convertDateFormatToUI(this.options.dateFormat);
-
-			// Correct Validator
-			$.validator.methods.date = _.bind(function (value) {
-				var validDate = true;
-				try {
-					$.datepicker.parseDate(this.options.dateFormat, value);
-				} catch(ex) {
-					validDate = false;
-				}
-				return validDate;
-			}, this);
+		}
+		if (this.$datefield.data('val-daterange-min')) {
+			this.options.minDate = $.datepicker.parseDate(this.options.dateFormat, this.$datefield.data('val-daterange-min'));
+		}
+		if (this.$datefield.data('val-daterange-max')) {
+			this.options.maxDate = $.datepicker.parseDate(this.options.dateFormat, this.$datefield.data('val-daterange-max'));
 		}
 
 		$.datepicker.setDefaults( $.datepicker.regional[this.options.locale] );
@@ -19713,6 +19710,52 @@ return datepicker.regional['it-CH'];
 
 	// Make the plugin available through jQuery (and the global project namespace)
 	Unic.modules.PluginHelper.register(Plugin, pluginName, ['ready', 'ajax_loaded']);
+
+	// Correct Validator to current Format
+	$.validator.methods.date = _.bind(function (value, element) {
+		var validDate = true,
+			dateFormat = Plugin.prototype._convertDateFormatToUI($(element).closest('[data-init~=' + pluginName + ']').data(pluginName + '-options').dateFormat);
+		try {
+			$.datepicker.parseDate(dateFormat, value);
+		} catch(ex) {
+			validDate = false;
+		}
+		return validDate;
+	}, this);
+
+	// Add mindate and maxdate Validators
+	$.validator.unobtrusive.adapters.add('daterange', ['min', 'max'], function (options) {
+		options.rules.daterange = {
+			min : options.params.min,
+			max : options.params.max
+		};
+		options.messages.daterange = options.message;
+	});
+
+	$.validator.addMethod('daterange', function (value, element, params) {
+
+		var validDate = true,
+			dateFormat = Plugin.prototype._convertDateFormatToUI($(element).closest('[data-init~=' + pluginName + ']').data(pluginName + '-options').dateFormat);
+		try {
+			var currentDate = $.datepicker.parseDate(dateFormat, value);
+
+			if (params.min) {
+				var minDate = $.datepicker.parseDate(dateFormat, params.min);
+				if (currentDate < minDate) {
+					validDate = false;
+				}
+			}
+			if (params.max) {
+				var maxDate = $.datepicker.parseDate(dateFormat, params.max);
+				if (currentDate > maxDate) {
+					validDate = false;
+				}
+			}
+		} catch(ex) {
+			validDate = false;
+		}
+		return validDate;
+	});
 
 })(window, document, jQuery, Unic);
 
