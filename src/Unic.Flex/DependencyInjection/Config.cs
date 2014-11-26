@@ -72,9 +72,8 @@
             Bind<IUrlService>().To<UrlService>().InSingletonScope();
 
             // third party classes
-            Bind<IConfigurationManager>().To<ConfigurationManager>().When(request => request.Target != null
-                    && request.Target.Member.DeclaringType != null
-                    && request.Target.Member.DeclaringType.FullName.StartsWith(Constants.RootNamespace));
+            // todo: all third party classes should have a constraint that they are only resolved when the calling assembly in Flex. The bottom constraint for ISitecoreContext only works when we don't use the service locator pattern (no manually resolving a class)
+            Bind<IConfigurationManager>().To<ConfigurationManager>();
 
             Bind<ISitecoreContext>()
                 .To<SitecoreContext>()
