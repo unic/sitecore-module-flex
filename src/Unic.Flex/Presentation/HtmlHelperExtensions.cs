@@ -115,15 +115,15 @@
             {
                 labelText += string.Format(" {0}", labelAdditionText);
             }
-            
-            return htmlHelper.LabelFor(
+
+            return MvcHtmlString.Create(HttpUtility.HtmlDecode(htmlHelper.LabelFor(
                 expression,
                 labelText,
                 new
                     {
                         @class = Constants.LabelCssClass,
                         id = htmlHelper.GetId(Constants.LabelIdSuffix)
-                    });
+                    }).ToString()));
         }
 
         /// <summary>
