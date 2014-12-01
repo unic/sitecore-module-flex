@@ -55,7 +55,7 @@
             }
 
             // load the parent item based on current path
-            if (item == null)
+            if (item == null && !string.IsNullOrWhiteSpace(path))
             {
                 // resolve the parent item of the current path
                 var parentPath = path.Remove(path.LastIndexOf('/'));
