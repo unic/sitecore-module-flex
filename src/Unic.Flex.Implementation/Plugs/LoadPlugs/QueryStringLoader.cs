@@ -4,9 +4,7 @@
     using Sitecore.Diagnostics;
     using System.Linq;
     using System.Web;
-    using Unic.Flex.DependencyInjection;
     using Unic.Flex.Implementation.Fields.TextOnly;
-    using Unic.Flex.Mapping;
     using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.DomainModel.Plugs.LoadPlugs;
 
@@ -16,19 +14,6 @@
     [SitecoreType(TemplateId = "{4906DF7C-B200-4825-B1AC-488D7D928452}")]
     public class QueryStringLoader : LoadPlugBase
     {
-        /// <summary>
-        /// The user data repository
-        /// </summary>
-        private readonly IUserDataRepository userDataRepository;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="QueryStringLoader"/> class.
-        /// </summary>
-        public QueryStringLoader()
-        {
-            this.userDataRepository = Container.Resolve<IUserDataRepository>();
-        }
-
         /// <summary>
         /// Executes the load plug.
         /// </summary>
@@ -49,7 +34,6 @@
                     if (string.IsNullOrWhiteSpace(value)) continue;
 
                     field.Value = value;
-                    this.userDataRepository.SetValue(form.Id, field.Id, value);
                 }
             }
         }
