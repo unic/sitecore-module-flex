@@ -37,7 +37,7 @@
                     @foreach (var field in stepSection.Fields.Where(f => !f.IsHidden))
                     {
                         <li class="flex_summary_item">
-                            <strong>@field.Label</strong>
+                            <strong>@Html.Raw(field.Label)</strong>
                             <div>
                                 @foreach (var item in field.TextValue.Split(new[] { Environment.NewLine }, StringSplitOptions.None))
                                 {
