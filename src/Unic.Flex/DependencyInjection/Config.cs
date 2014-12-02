@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Web.Mvc;
     using Glass.Mapper.Sc;
+    using Ninject.Activation;
     using Ninject.Modules;
     using Ninject.Web.Common;
     using Unic.Configuration;
@@ -72,15 +73,20 @@
             Bind<IUrlService>().To<UrlService>().InSingletonScope();
 
             // third party classes
-            // todo: all third party classes should have a constraint that they are only resolved when the calling assembly in Flex. The bottom constraint for ISitecoreContext only works when we don't use the service locator pattern (no manually resolving a class)
-            Bind<IConfigurationManager>().To<ConfigurationManager>();
+            Bind<IConfigurationManager>().To<ConfigurationManager>().When(this.GetFlexCondition());
+            Bind<ISitecoreContext>().To<SitecoreContext>().When(this.GetFlexCondition()).WithConstructorArgument("contextName", Constants.GlassMapperContextName);
+        }
 
-            Bind<ISitecoreContext>()
-                .To<SitecoreContext>()
-                .When(request => request.Target != null
-                    && request.Target.Member.DeclaringType != null
-                    && request.Target.Member.DeclaringType.FullName.StartsWith(Constants.RootNamespace))
-                .WithConstructorArgument("contextName", Constants.GlassMapperContextName);
+        /// <summary>
+        /// Gets the flex condition to only inject classes requested from a Flex class.
+        /// </summary>
+        /// <returns>Lamda expression with the condition</returns>
+        protected virtual Func<IRequest, bool> GetFlexCondition()
+        {
+            return request =>
+                request.Parameters.Contains(Container.FlexParameter)
+                || (request.Target != null && request.Target.Member.DeclaringType != null
+                    && request.Target.Member.DeclaringType.FullName.StartsWith(Constants.RootNamespace));
         }
     }
 }

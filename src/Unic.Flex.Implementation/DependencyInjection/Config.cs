@@ -1,13 +1,12 @@
 ﻿namespace Unic.Flex.Implementation.DependencyInjection
 {
-    using Ninject.Modules;
     using Unic.Flex.Implementation.Database;
     using Unic.Flex.Implementation.Mailers;
 
     /// <summary>
     /// Ninject configuration module.
     /// </summary>
-    public class Config : NinjectModule
+    public class Config : Flex.DependencyInjection.Config
     {
         /// <summary>
         /// Loads the module into the kernel.

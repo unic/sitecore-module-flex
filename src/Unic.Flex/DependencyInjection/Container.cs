@@ -3,6 +3,7 @@
     using Ninject;
     using Ninject.Modules;
     using System;
+    using Ninject.Parameters;
 
     /// <summary>
     /// Dependency injection container.
@@ -10,9 +11,33 @@
     public static class Container
     {
         /// <summary>
+        /// The flex parameter
+        /// </summary>
+        private static readonly IParameter IsFlexParameter = new Parameter("is_flex", true, true);
+
+        /// <summary>
+        /// The parameters
+        /// </summary>
+        private static readonly IParameter[] Parameters = { FlexParameter };
+        
+        /// <summary>
         /// The kernel
         /// </summary>
         private static IKernel kernel;
+
+        /// <summary>
+        /// Gets the flex parameter.
+        /// </summary>
+        /// <value>
+        /// The flex parameter.
+        /// </value>
+        public static IParameter FlexParameter
+        {
+            get
+            {
+                return IsFlexParameter;
+            }
+        }
 
         /// <summary>
         /// Creates the kernel.
@@ -44,7 +69,7 @@
         /// </returns>
         public static T Resolve<T>(string name = null)
         {
-            return kernel.Get<T>(name);
+            return kernel.Get<T>(name, Parameters);
         }
 
         /// <summary>
@@ -57,7 +82,7 @@
         /// </returns>
         public static object Resolve(Type type, string name = null)
         {
-            return kernel.Get(type, name);
+            return kernel.Get(type, name, Parameters);
         }
     }
 }
