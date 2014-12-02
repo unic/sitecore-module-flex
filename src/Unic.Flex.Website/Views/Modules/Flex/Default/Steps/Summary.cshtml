@@ -18,7 +18,11 @@
         <section class="flex_summary">
 
             <h1 class="visuallyhidden">@Model.Title</h1>
-            <p>@Model.Introduction</p>
+            
+            @if (!string.IsNullOrWhiteSpace(Model.Introduction))
+            {
+                <p>@Model.Introduction</p>
+            }
 
             @foreach (var stepSection in Model.Sections.Where(s => !s.IsHidden))
             {

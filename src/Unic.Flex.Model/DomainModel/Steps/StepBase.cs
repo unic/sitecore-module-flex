@@ -36,6 +36,15 @@
         public virtual string Title { get; set; }
 
         /// <summary>
+        /// Gets or sets the introduction.
+        /// </summary>
+        /// <value>
+        /// The introduction.
+        /// </value>
+        [SitecoreField("Introduction")]
+        public virtual string Introduction { get; set; }
+
+        /// <summary>
         /// Gets or sets the sections.
         /// </summary>
         /// <value>

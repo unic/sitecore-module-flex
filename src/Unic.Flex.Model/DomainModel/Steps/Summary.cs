@@ -2,7 +2,6 @@
 {
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Unic.Flex.Model.DomainModel.Components;
-    using Unic.Flex.Model.GlassExtensions.Attributes;
 
     /// <summary>
     /// The summary step.
@@ -18,14 +17,5 @@
         /// </value>
         [SitecoreField("Show Navigation Pane")]
         public virtual bool ShowNavigationPane { get; set; }
-
-        /// <summary>
-        /// Gets or sets the introduction.
-        /// </summary>
-        /// <value>
-        /// The introduction.
-        /// </value>
-        [SitecoreDictionaryFallbackField("Introduction", "Summary Introduction")]
-        public virtual string Introduction { get; set; }
     }
 }
