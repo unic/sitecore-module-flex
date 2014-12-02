@@ -21,7 +21,7 @@
             
             @if (!string.IsNullOrWhiteSpace(Model.Introduction))
             {
-                <p>@Model.Introduction</p>
+                <p>@Html.Raw(Model.Introduction.Replace(Environment.NewLine, "<br />"))</p>
             }
 
             @foreach (var stepSection in Model.Sections.Where(s => !s.IsHidden))

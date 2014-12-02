@@ -16,7 +16,7 @@
         
         @if (!string.IsNullOrWhiteSpace(Model.Introduction))
         {
-            <p>@Model.Introduction</p>
+            <p>@Html.Raw(Model.Introduction.Replace(Environment.NewLine, "<br />"))</p>
         }
 
         @for (int i = 0; i < Model.Sections.Count; i++)
