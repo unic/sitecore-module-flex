@@ -15,6 +15,6 @@
         /// The theme.
         /// </value>
         [Configuration(FieldName = "Theme")]
-        public Specification Theme { get; set; }
+        public virtual Specification Theme { get; set; }
     }
 }

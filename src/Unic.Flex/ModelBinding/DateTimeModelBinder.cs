@@ -32,7 +32,7 @@
         /// <returns>
         /// The bound value.
         /// </returns>
-        public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
+        public virtual object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
             // get the value
             var value = bindingContext.ValueProvider.GetValue(bindingContext.ModelName);

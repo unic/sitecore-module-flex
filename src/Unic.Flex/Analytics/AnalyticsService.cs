@@ -30,7 +30,7 @@
         /// </summary>
         /// <param name="goal">The goal.</param>
         /// <param name="itemId">The item identifier.</param>
-        public void RegisterGoal(Goal goal, Guid itemId)
+        public virtual void RegisterGoal(Goal goal, Guid itemId)
         {
             // check if analytics is enabled
             if (!Sitecore.Analytics.Tracker.IsActive)

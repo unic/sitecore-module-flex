@@ -42,7 +42,7 @@
         /// <value>
         /// The form repository.
         /// </value>
-        public IDatabaseRepository<Form> FormRepository
+        public virtual IDatabaseRepository<Form> FormRepository
         {
             get
             {
@@ -56,7 +56,7 @@
         /// <value>
         /// The jobs repository.
         /// </value>
-        public IDatabaseRepository<Job> JobRepository
+        public virtual IDatabaseRepository<Job> JobRepository
         {
             get
             {

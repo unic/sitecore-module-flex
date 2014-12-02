@@ -14,6 +14,6 @@
         /// The date format.
         /// </value>
         [Configuration(FieldName = "Date Format")]
-        public string DateFormat { get; set; }
+        public virtual string DateFormat { get; set; }
     }
 }

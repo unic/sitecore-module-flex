@@ -29,7 +29,7 @@
         /// <returns>
         /// Date format
         /// </returns>
-        public string GetDateFormat()
+        public virtual string GetDateFormat()
         {
             var format = this.configurationManager.Get<GlobalizationConfiguration>(c => c.DateFormat);
             if (string.IsNullOrWhiteSpace(format))

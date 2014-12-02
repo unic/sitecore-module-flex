@@ -14,7 +14,7 @@
         /// The optional fields label text.
         /// </value>
         [Configuration(FieldName = "Optional Fields Label Text")]
-        public string OptionalFieldsLabelText { get; set; }
+        public virtual string OptionalFieldsLabelText { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether async plug execution is allowed.
@@ -23,7 +23,7 @@
         /// <c>true</c> if async plug execution is allowed; otherwise, <c>false</c>.
         /// </value>
         [Configuration(FieldName = "Is Async Execution Allowed")]
-        public bool IsAsyncExecutionAllowed { get; set; }
+        public virtual bool IsAsyncExecutionAllowed { get; set; }
 
         /// <summary>
         /// Gets or sets the maximum retries.
@@ -32,7 +32,7 @@
         /// The maximum retries.
         /// </value>
         [Configuration(FieldName = "Max Retries")]
-        public int MaxRetries { get; set; }
+        public virtual int MaxRetries { get; set; }
 
         /// <summary>
         /// Gets or sets the time between tries.
@@ -41,6 +41,6 @@
         /// The time between tries.
         /// </value>
         [Configuration(FieldName = "Time Between Tries")]
-        public int TimeBetweenTries { get; set; }
+        public virtual int TimeBetweenTries { get; set; }
     }
 }

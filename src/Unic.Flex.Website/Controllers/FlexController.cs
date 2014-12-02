@@ -135,8 +135,6 @@
         /// <param name="configurationManager">The configuration manager.</param>
         public FlexController(IPresentationService presentationService, IModelConverterService modelConverter, IContextService contextService, IUserDataRepository userDataRepository, IPlugsService plugsService, IFlexContext flexContext, IUrlService urlService, IFormRepository formRepository, ILogger logger, ITaskService taskService, ISaveToDatabaseService saveToDatabaseService, IDictionaryRepository dictionaryRepository, IConfigurationManager configurationManager)
         {
-            //// todo: check if all service/repository classes have virtual methods
-            
             this.presentationService = presentationService;
             this.modelConverter = modelConverter;
             this.contextService = contextService;
@@ -156,7 +154,7 @@
         /// Controller action for GET requests
         /// </summary>
         /// <returns>Result of this action.</returns>
-        public ActionResult Form()
+        public virtual ActionResult Form()
         {
             // form is not available in page editor
             if (GlassHtml.IsInEditingMode)
@@ -231,7 +229,7 @@
         [HttpPost]
         [ValidateFormHandler]
         [ValidateAntiForgeryToken]
-        public ActionResult Form(IFormViewModel model)
+        public virtual ActionResult Form(IFormViewModel model)
         {
             // form is not available in page editor
             if (GlassHtml.IsInEditingMode)
@@ -311,7 +309,7 @@
         /// </summary>
         /// <param name="validator">The validator.</param>
         /// <returns>Boolean value as json result</returns>
-        public ActionResult AjaxValidator(Guid validator)
+        public virtual ActionResult AjaxValidator(Guid validator)
         {
             // get the validator
             var validatorItem = this.formRepository.LoadItem<IValidator>(validator) as AjaxValidator;
@@ -340,7 +338,7 @@
         /// <param name="field">The field.</param>
         /// <returns>Json array with data to display</returns>
         [HttpPost]
-        public ActionResult AutoCompleteField(Guid field)
+        public virtual ActionResult AutoCompleteField(Guid field)
         {
             // get the field
             var fieldItem = this.formRepository.LoadItem<AutoCompleteField>(field);
@@ -374,7 +372,7 @@
         /// <param name="form">The form.</param>
         /// <param name="field">The field.</param>
         /// <returns>Result for handling within the frontend</returns>
-        public ActionResult RemoveUploadedFile(string form, string field)
+        public virtual ActionResult RemoveUploadedFile(string form, string field)
         {
             if (this.userDataRepository.IsFieldStored(form, field))
             {
@@ -390,7 +388,7 @@
         /// <param name="timestamp">The timestamp.</param>
         /// <param name="hash">The hash.</param>
         /// <returns>true/false wheater the result was ok or there was an error</returns>
-        public ActionResult ExecutePlugs(string timestamp, string hash)
+        public virtual ActionResult ExecutePlugs(string timestamp, string hash)
         {
             // check the hash
             if (!SecurityUtil.VerifyMd5Hash(MD5.Create(), timestamp, hash))
@@ -430,7 +428,7 @@
         /// <returns>
         /// The file from the temp folder.
         /// </returns>
-        public ActionResult DatabasePlugExport(Guid formId, string fileName, string hash)
+        public virtual ActionResult DatabasePlugExport(Guid formId, string fileName, string hash)
         {
             // check permission
             if (!this.saveToDatabaseService.HasExportPermissions(formId))

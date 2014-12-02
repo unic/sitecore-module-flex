@@ -4,7 +4,6 @@
     using Sitecore.Diagnostics;
     using System;
     using Unic.Flex.Model.DomainModel.Forms;
-    using Unic.Flex.Model.Validation;
 
     /// <summary>
     /// Repository containg data access for the forms.
@@ -32,7 +31,7 @@
         /// <returns>
         /// The loaded form domain model
         /// </returns>
-        public Form LoadForm(string dataSource)
+        public virtual Form LoadForm(string dataSource)
         {
             Assert.ArgumentCondition(Sitecore.Data.ID.IsID(dataSource), dataSource, "Datasource is not valid");
             return this.sitecoreContext.GetItem<Form>(dataSource, inferType: true);
@@ -46,7 +45,7 @@
         /// <returns>
         /// Item if found
         /// </returns>
-        public T LoadItem<T>(Guid id) where T : class
+        public virtual T LoadItem<T>(Guid id) where T : class
         {
             return this.sitecoreContext.GetItem<T>(id, inferType: true);
         }

@@ -47,7 +47,7 @@
         /// <returns>
         /// Key-Value based dictionary with additional html attributes
         /// </returns>
-        public IDictionary<string, object> GetAttributes()
+        public virtual IDictionary<string, object> GetAttributes()
         {
             return new Dictionary<string, object>();
         }

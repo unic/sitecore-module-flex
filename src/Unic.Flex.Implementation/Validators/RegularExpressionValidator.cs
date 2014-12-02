@@ -60,7 +60,7 @@
         /// <returns>
         ///   <c>true</c> if the value entered is valid, <c>false</c> otherwise
         /// </returns>
-        public bool IsValid(object value)
+        public virtual bool IsValid(object value)
         {
             var eventName = string.Format(ProfileEventName, this.RegularExpression);
             Profiler.OnStart(this, eventName);

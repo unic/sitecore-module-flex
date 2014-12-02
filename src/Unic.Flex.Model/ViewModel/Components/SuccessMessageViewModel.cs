@@ -13,7 +13,7 @@
         /// <value>
         /// The message.
         /// </value>
-        public string Message { get; set; }
+        public virtual string Message { get; set; }
 
         /// <summary>
         /// Gets the name of the view.
@@ -21,7 +21,7 @@
         /// <value>
         /// The name of the view.
         /// </value>
-        public string ViewName
+        public virtual string ViewName
         {
             get
             {

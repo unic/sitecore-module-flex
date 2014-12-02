@@ -28,7 +28,7 @@
         /// <value>
         /// The context.
         /// </value>
-        protected FlexDbContext Context { get; set; }
+        protected virtual FlexDbContext Context { get; set; }
 
         /// <summary>
         /// Gets or sets the database set.
@@ -36,7 +36,7 @@
         /// <value>
         /// The database set.
         /// </value>
-        protected DbSet<TEntity> DatabaseSet { get; set; }
+        protected virtual DbSet<TEntity> DatabaseSet { get; set; }
         
         /// <summary>
         /// Inserts the specified entity.

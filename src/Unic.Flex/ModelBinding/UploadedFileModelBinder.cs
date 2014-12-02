@@ -17,7 +17,7 @@
         /// <returns>
         /// The bound value.
         /// </returns>
-        public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
+        public virtual object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
             var postedFile = controllerContext.HttpContext.Request.Files[bindingContext.ModelName];
             if (postedFile == null) return null;

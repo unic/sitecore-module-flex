@@ -13,7 +13,7 @@
         /// <returns>
         /// The concatinated URL
         /// </returns>
-        public string AddQueryStringToCurrentUrl(string key, string value)
+        public virtual string AddQueryStringToCurrentUrl(string key, string value)
         {
             var rawUrl = this.GetCurrentUrl();
             return string.Format("{0}{1}{2}={3}", rawUrl, rawUrl.Contains("?") ? "&" : "?", key, value);
@@ -25,7 +25,7 @@
         /// <returns>
         /// Current URL
         /// </returns>
-        public string GetCurrentUrl()
+        public virtual string GetCurrentUrl()
         {
             return Sitecore.Web.WebUtil.GetRawUrl();
         }

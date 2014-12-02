@@ -49,7 +49,7 @@
         /// Saves the specified form to the database.
         /// </summary>
         /// <param name="form">The form.</param>
-        public void Save(Form form)
+        public virtual void Save(Form form)
         {
             Assert.ArgumentNotNull(form,  "form");
 

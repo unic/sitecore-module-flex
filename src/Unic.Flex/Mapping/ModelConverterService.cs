@@ -78,7 +78,7 @@
         /// The view model
         /// </returns>
         /// <exception cref="System.Exception">No step is currently active or no step was found</exception>
-        public IFormViewModel ConvertToViewModel(Form form)
+        public virtual IFormViewModel ConvertToViewModel(Form form)
         {
             Assert.ArgumentNotNull(form, "form");
 

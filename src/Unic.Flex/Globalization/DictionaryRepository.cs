@@ -29,7 +29,7 @@
         /// <returns>
         /// Dictionary entry value
         /// </returns>
-        public string GetText(string key)
+        public virtual string GetText(string key)
         {
             Assert.ArgumentNotNullOrEmpty(key, "key");
             return Translate.TextByDomain(this.dictionaryDomain, key);

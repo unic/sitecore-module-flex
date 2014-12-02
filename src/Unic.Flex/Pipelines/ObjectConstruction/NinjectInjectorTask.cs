@@ -13,7 +13,7 @@
         /// Executes the specified arguments.
         /// </summary>
         /// <param name="args">The arguments.</param>
-        public void Execute(ObjectConstructionArgs args)
+        public virtual void Execute(ObjectConstructionArgs args)
         {
             // check that no other task has created an object and that this is a dynamic object
             if (args.Result != null || args.Configuration.Type.IsAssignableFrom(typeof(IDynamicMetaObjectProvider))) return;

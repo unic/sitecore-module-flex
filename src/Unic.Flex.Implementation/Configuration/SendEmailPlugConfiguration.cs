@@ -14,7 +14,7 @@
         /// The from address.
         /// </value>
         [Configuration(FieldName = "From")]
-        public string From { get; set; }
+        public virtual string From { get; set; }
 
         /// <summary>
         /// Gets or sets the reply to.
@@ -23,7 +23,7 @@
         /// The reply to.
         /// </value>
         [Configuration(FieldName = "Reply To")]
-        public string ReplyTo { get; set; }
+        public virtual string ReplyTo { get; set; }
 
         /// <summary>
         /// Gets or sets the to address.
@@ -32,7 +32,7 @@
         /// The to address.
         /// </value>
         [Configuration(FieldName = "To")]
-        public string To { get; set; }
+        public virtual string To { get; set; }
 
         /// <summary>
         /// Gets or sets the CC address.
@@ -41,7 +41,7 @@
         /// The CC address.
         /// </value>
         [Configuration(FieldName = "Cc")]
-        public string Cc { get; set; }
+        public virtual string Cc { get; set; }
 
         /// <summary>
         /// Gets or sets the BCC accress.
@@ -50,6 +50,6 @@
         /// The BCC accress.
         /// </value>
         [Configuration(FieldName = "Bcc")]
-        public string Bcc { get; set; }
+        public virtual string Bcc { get; set; }
     }
 }

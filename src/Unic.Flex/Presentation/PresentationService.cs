@@ -45,7 +45,7 @@
         /// <returns>
         /// Complete path of the view
         /// </returns>
-        public string ResolveView(ControllerContext controllerContext, IPresentationComponent presentationComponent, string theme = "")
+        public virtual string ResolveView(ControllerContext controllerContext, IPresentationComponent presentationComponent, string theme = "")
         {
             Assert.ArgumentNotNull(presentationComponent, "presentationComponent");
             return this.ResolveView(controllerContext, presentationComponent.ViewName);
@@ -60,7 +60,7 @@
         /// <returns>
         /// Complete path of the view
         /// </returns>
-        public string ResolveView(ControllerContext controllerContext, string viewName, string theme = "")
+        public virtual string ResolveView(ControllerContext controllerContext, string viewName, string theme = "")
         {
             Assert.ArgumentNotNullOrEmpty(viewName, "viewName");
 

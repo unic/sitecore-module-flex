@@ -1,32 +1,16 @@
 ﻿namespace Unic.Flex.Mailing
 {
-    using System;
-    using System.Net;
-    using System.Net.Mail;
     using Mvc.Mailer;
     using Sitecore.Configuration;
     using Sitecore.Diagnostics;
-    using Unic.Flex.Logging;
+    using System.Net;
+    using System.Net.Mail;
 
     /// <summary>
     /// Implementation of repository for sending emails.
     /// </summary>
     public class MailRepository : IMailRepository
     {
-        /// <summary>
-        /// The logger
-        /// </summary>
-        private readonly ILogger logger;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MailRepository"/> class.
-        /// </summary>
-        /// <param name="logger">The logger.</param>
-        public MailRepository(ILogger logger)
-        {
-            this.logger = logger;
-        }
-
         /// <summary>
         /// Sends the mail message.
         /// </summary>

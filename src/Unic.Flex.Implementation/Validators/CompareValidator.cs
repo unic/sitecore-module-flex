@@ -70,7 +70,7 @@
         /// <returns>
         ///   <c>true</c> if the value entered is valid, <c>false</c> otherwise
         /// </returns>
-        public bool IsValid(object value)
+        public virtual bool IsValid(object value)
         {
             // other field not configured or not found
             if (this.OtherFieldModel == null) return false;

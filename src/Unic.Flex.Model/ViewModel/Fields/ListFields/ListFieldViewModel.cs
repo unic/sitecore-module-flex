@@ -15,6 +15,6 @@
         /// <value>
         /// The items.
         /// </value>
-        public IList<ListItem> Items { get; set; }
+        public virtual IList<ListItem> Items { get; set; }
     }
 }

@@ -62,7 +62,7 @@
         /// <value>
         /// The item.
         /// </value>
-        public ItemBase Item { get; set; }
+        public virtual ItemBase Item { get; set; }
 
         /// <summary>
         /// Gets or sets the form.
@@ -70,7 +70,7 @@
         /// <value>
         /// The form.
         /// </value>
-        public Form Form
+        public virtual Form Form
         {
             get
             {
@@ -96,7 +96,7 @@
         /// <value>
         /// The view model.
         /// </value>
-        public IFormViewModel ViewModel { get; set; }
+        public virtual IFormViewModel ViewModel { get; set; }
 
         /// <summary>
         /// Gets or sets the error message.
@@ -104,7 +104,7 @@
         /// <value>
         /// The error message.
         /// </value>
-        public string ErrorMessage { get; set; }
+        public virtual string ErrorMessage { get; set; }
 
         /// <summary>
         /// Gets or sets the site context.
@@ -112,13 +112,13 @@
         /// <value>
         /// The site context.
         /// </value>
-        public SiteContext SiteContext { get; set; }
+        public virtual SiteContext SiteContext { get; set; }
 
         /// <summary>
         /// Sets the context item.
         /// </summary>
         /// <param name="contextItem">The context item.</param>
-        public void SetContextItem(Item contextItem)
+        public virtual void SetContextItem(Item contextItem)
         {
             Sitecore.Context.Item = contextItem;
             this.Item = contextItem != null ? this.sitecoreContext.GetItem<ItemBase>(contextItem.ID.ToGuid(), inferType: true) : null;
