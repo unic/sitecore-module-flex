@@ -4,6 +4,7 @@
     using Sitecore.Configuration;
     using Sitecore.Data;
     using Sitecore.Diagnostics;
+    using Sitecore.Globalization;
     using Sitecore.Shell.Applications.Dialogs.ProgressBoxes;
     using Sitecore.Shell.Framework.Commands;
     using Sitecore.Web.UI.Sheer;
@@ -62,17 +63,26 @@
             // initialize
             this.Initialize();
 
-            // generate the excel
-            var form = this.contextService.LoadForm(item.ID.ToString());
-            var filePath = this.GetTempFileName();
-            ProgressBox.Execute(this.dictionaryRepository.GetText("Exporting form"), this.dictionaryRepository.GetText("Flex Form Export"), this.Export, form, filePath);
+            using (new LanguageSwitcher(item.Language))
+            {
+                // generate the excel
+                var form = this.contextService.LoadForm(item.ID.ToString());
+                if (form == null)
+                {
+                    Context.ClientPage.ClientResponse.Alert(string.Format("Could not load form in language '{0}'", Context.Language.Name));
+                    return;
+                }
+
+                var filePath = this.GetTempFileName();
+                ProgressBox.Execute(this.dictionaryRepository.GetText("Exporting form"), this.dictionaryRepository.GetText("Flex Form Export"), this.Export, form, filePath);
             
-            // dowload the document
-            var fileName = filePath.Substring(filePath.LastIndexOf('\\') + 1);
-            var hash = SecurityUtil.GetMd5Hash(MD5.Create(), string.Join("_", form.ItemId, fileName));
-            var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
-            var downloadUrl = urlHelper.Action("DatabasePlugExport", "Flex", new { formId = form.ItemId, fileName = fileName, hash = hash });
-            SheerResponse.SetLocation(downloadUrl);
+                // dowload the document
+                var fileName = filePath.Substring(filePath.LastIndexOf('\\') + 1);
+                var hash = SecurityUtil.GetMd5Hash(MD5.Create(), string.Join("_", form.ItemId, fileName));
+                var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
+                var downloadUrl = urlHelper.Action("DatabasePlugExport", "Flex", new { formId = form.ItemId, fileName = fileName, hash = hash });
+                SheerResponse.SetLocation(downloadUrl);
+            }
         }
 
         /// <summary>
