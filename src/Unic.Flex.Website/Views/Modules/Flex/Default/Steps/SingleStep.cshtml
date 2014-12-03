@@ -3,7 +3,7 @@
 @using Unic.Flex.Presentation
 @model Unic.Flex.Model.ViewModel.Steps.SingleStepViewModel
 
-@Html.ValidationSummary(true)
+@Html.ValidationSummary(true, TranslationHelper.FlexText("An error occured please check your data"))
 
 @if (!string.IsNullOrWhiteSpace(Model.Introduction))
 {
