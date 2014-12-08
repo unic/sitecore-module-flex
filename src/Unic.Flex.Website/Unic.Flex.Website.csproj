@@ -159,7 +159,7 @@
     <Compile Include="App_Start\AutoMapperConfig.cs" />
     <Compile Include="App_Start\FlexBootstrapper.cs" />
     <Compile Include="App_Start\GlassConfig.cs" />
-    <Content Include="App_Start\FlexNinjectConfig.cs.pp" />
+    <Compile Include="App_Start\NinjectConfig.cs" />
     <Compile Include="Controllers\FlexController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

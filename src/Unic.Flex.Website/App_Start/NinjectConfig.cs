@@ -1,7 +1,7 @@
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof($rootnamespace$.App_Start.FlexNinjectConfig), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof($rootnamespace$.App_Start.FlexNinjectConfig), "Stop")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Unic.Flex.Website.App_Start.NinjectConfig), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(Unic.Flex.Website.App_Start.NinjectConfig), "Stop")]
 
-namespace $rootnamespace$.App_Start
+namespace Unic.Flex.Website.App_Start
 {
     using System;
     using System.Collections.Generic;
@@ -16,7 +16,7 @@ namespace $rootnamespace$.App_Start
     /// <summary>
     /// Ninject configuration initializer
     /// </summary>
-    public static class FlexNinjectConfig 
+    public static class NinjectConfig 
     {
         /// <summary>
         /// The bootstrapper
@@ -26,8 +26,10 @@ namespace $rootnamespace$.App_Start
         /// <summary>
         /// Starts the application
         /// </summary>
-        public static void Start() 
+        public static void Start()
         {
+            if (UseCustomContainer()) return;
+            
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
             Bootstrapper.Initialize(CreateKernel);
@@ -38,6 +40,8 @@ namespace $rootnamespace$.App_Start
         /// </summary>
         public static void Stop()
         {
+            if (UseCustomContainer()) return;
+            
             Bootstrapper.ShutDown();
         }
         
@@ -61,6 +65,15 @@ namespace $rootnamespace$.App_Start
         {
             yield return new Unic.Flex.DependencyInjection.Config();
             yield return new Unic.Flex.Implementation.DependencyInjection.Config();
-        }     
+        }
+
+        /// <summary>
+        /// Check if a custom container is used.
+        /// </summary>
+        /// <returns>Boolean value if a custom container is used</returns>
+        private static bool UseCustomContainer()
+        {
+            return Sitecore.Configuration.Settings.GetBoolSetting("Flex.IoC.UseCustomContainer", false);
+        }
     }
 }
