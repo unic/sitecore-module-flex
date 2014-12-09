@@ -123,13 +123,16 @@
     <Compile Include="Entities\Task.cs" />
     <Compile Include="GlassExtensions\Attributes\SitecoreReusableChildrenAttribute.cs" />
     <Compile Include="GlassExtensions\Attributes\SitecoreReusableFieldAttribute.cs" />
+    <Compile Include="GlassExtensions\Attributes\SitecoreSharedQueryAttribute.cs" />
     <Compile Include="GlassExtensions\Configurations\SitecoreReusableChildrenConfiguration.cs" />
     <Compile Include="GlassExtensions\Configurations\SitecoreReusableFieldConfiguration.cs" />
+    <Compile Include="GlassExtensions\Configurations\SitecoreSharedQueryConfiguration.cs" />
     <Compile Include="GlassExtensions\Handlers\SitecoreReusableChildrenTypeMapper.cs" />
     <Compile Include="GlassExtensions\Handlers\SitecoreReusableFieldTypeMapper.cs" />
     <Compile Include="DataProviders\IDataProvider.cs" />
     <Compile Include="DataProviders\ListItem.cs" />
     <Compile Include="DataProviders\ListItemExtensions.cs" />
+    <Compile Include="GlassExtensions\Handlers\SitecoreSharedQueryTypeMapper.cs" />
     <Compile Include="Types\UploadedFile.cs" />
     <Compile Include="Validation\AjaxValidator.cs" />
     <Compile Include="Validation\FileRequiredValidator.cs" />

@@ -26,14 +26,5 @@
         /// </value>
         [SitecoreInfo(SitecoreInfoType.Url)]
         public virtual string Url { get; set; }
-
-        /// <summary>
-        /// Gets or sets the parent.
-        /// </summary>
-        /// <value>
-        /// The parent.
-        /// </value>
-        [SitecoreParent(IsLazy = true, InferType = true)]
-        public virtual ItemBase Parent { get; set; }
     }
 }

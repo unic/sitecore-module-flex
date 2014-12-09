@@ -24,6 +24,15 @@
         public virtual string Title { get; set; }
 
         /// <summary>
+        /// Gets or sets the parent.
+        /// </summary>
+        /// <value>
+        /// The parent.
+        /// </value>
+        [SitecoreParent(IsLazy = true, InferType = true)]
+        public virtual ItemBase Step { get; set; }
+
+        /// <summary>
         /// Gets the step title.
         /// </summary>
         /// <value>
@@ -33,7 +42,7 @@
         {
             get
             {
-                var step = this.Parent as StepBase;
+                var step = this.Step as StepBase;
                 return step != null ? step.Title : string.Empty;
             }
         }

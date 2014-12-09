@@ -1,5 +1,6 @@
 namespace Unic.Flex.Website.App_Start
 {
+    using System.Collections.Generic;
     using System.Web.Hosting;
     using Castle.MicroKernel.Registration;
     using Castle.Windsor;
@@ -8,8 +9,10 @@ namespace Unic.Flex.Website.App_Start
     using Glass.Mapper.Configuration.Attributes;
     using Glass.Mapper.Pipelines.ObjectConstruction;
     using Glass.Mapper.Sc.CastleWindsor;
+    using Glass.Mapper.Sc.DataMappers.SitecoreQueryParameters;
     using Sitecore.Pipelines;
     using Unic.Flex.Definitions;
+    using Unic.Flex.Model.GlassExtensions.Handlers;
 
     /// <summary>
     /// Configuration initializer for Sitecore Glass Mapper. This is called within the "initialize" pipeline of Sitecore.
@@ -53,11 +56,18 @@ namespace Unic.Flex.Website.App_Start
             // get new config
             var config = new Config();
 
+            // register parameterscontainer.Register(Component.For<IEnumerable<ISitecoreQueryParameter>>().ImplementedBy<List<ItemPathParameter>>().LifeStyle.Transient);
+            container.Register(Component.For<IEnumerable<ISitecoreQueryParameter>>().ImplementedBy<List<ItemIdParameter>>().LifeStyle.Transient);
+            container.Register(Component.For<IEnumerable<ISitecoreQueryParameter>>().ImplementedBy<List<ItemIdNoBracketsParameter>>().LifeStyle.Transient);
+            container.Register(Component.For<IEnumerable<ISitecoreQueryParameter>>().ImplementedBy<List<ItemEscapedPathParameter>>().LifeStyle.Transient);
+            container.Register(Component.For<IEnumerable<ISitecoreQueryParameter>>().ImplementedBy<List<ItemDateNowParameter>>().LifeStyle.Transient);
+
             // register custom type mapper
-            container.Register(Component.For<AbstractDataMapper>().ImplementedBy<Model.GlassExtensions.Handlers.SitecoreDictionaryFallbackFieldTypeMapper>().LifeStyle.Transient);
-            container.Register(Component.For<AbstractDataMapper>().ImplementedBy<Model.GlassExtensions.Handlers.SitecoreSharedFieldTypeMapper>().LifeStyle.Transient);
-            container.Register(Component.For<AbstractDataMapper>().ImplementedBy<Model.GlassExtensions.Handlers.SitecoreReusableFieldTypeMapper>().LifeStyle.Transient);
-            container.Register(Component.For<AbstractDataMapper>().ImplementedBy<Model.GlassExtensions.Handlers.SitecoreReusableChildrenTypeMapper>().LifeStyle.Transient);
+            container.Register(Component.For<AbstractDataMapper>().ImplementedBy<SitecoreDictionaryFallbackFieldTypeMapper>().LifeStyle.Transient);
+            container.Register(Component.For<AbstractDataMapper>().ImplementedBy<SitecoreSharedFieldTypeMapper>().LifeStyle.Transient);
+            container.Register(Component.For<AbstractDataMapper>().ImplementedBy<SitecoreSharedQueryTypeMapper>().LifeStyle.Transient);
+            container.Register(Component.For<AbstractDataMapper>().ImplementedBy<SitecoreReusableFieldTypeMapper>().LifeStyle.Transient);
+            container.Register(Component.For<AbstractDataMapper>().ImplementedBy<SitecoreReusableChildrenTypeMapper>().LifeStyle.Transient);
 
             // register ninject object creation
             container.Register(Component.For<IObjectConstructionTask>().ImplementedBy<Pipelines.ObjectConstruction.NinjectInjectorTask>().LifestylePerWebRequest());

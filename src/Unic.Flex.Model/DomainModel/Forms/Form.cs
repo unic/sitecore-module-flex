@@ -88,7 +88,7 @@
         /// <value>
         /// The steps.
         /// </value>
-        [SitecoreQuery("./Steps/*", IsLazy = true, IsRelative = true, InferType = true)]
+        [SitecoreSharedQuery("./Steps/*", IsLazy = true, IsRelative = true, InferType = true)]
         public virtual IEnumerable<StepBase> Steps { get; set; }
 
         /// <summary>
@@ -97,8 +97,7 @@
         /// <value>
         /// The load plugs.
         /// </value>
-        //// todo: plugs should be loaded also if no language version is available
-        [SitecoreQuery("./Load Plugs/*", IsLazy = true, IsRelative = true, InferType = true)]
+        [SitecoreSharedQuery("./Load Plugs/*", IsLazy = false, IsRelative = true, InferType = true)]
         public virtual IEnumerable<ILoadPlug> LoadPlugs { get; set; }
 
         /// <summary>
@@ -107,8 +106,7 @@
         /// <value>
         /// The save plugs.
         /// </value>
-        //// todo: plugs should be loaded also if no language version is available
-        [SitecoreQuery("./Save Plugs/*", IsLazy = true, IsRelative = true, InferType = true)]
+        [SitecoreQuery("./Save Plugs/*", IsLazy = false, IsRelative = true, InferType = true)]
         public virtual IEnumerable<ISavePlug> SavePlugs { get; set; }
 
         /// <summary>
