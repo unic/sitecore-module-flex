@@ -83,7 +83,7 @@
             this.ViewBag.Theme = this.theme;
 
             // add content
-            var fields = form.GetSections().SelectMany(s => s.Fields).Where(f => f.ShowInSummary).ToList();
+            var fields = form.GetSections().SelectMany(s => s.Fields).ToList();
             this.ViewBag.Subject = this.mailService.ReplaceTokens(plug.Subject, fields);
             this.ViewBag.HtmlMailIntroduction = this.mailService.ReplaceTokens(plug.HtmlMailIntroduction, fields);
             this.ViewBag.HtmlMailFooter = this.mailService.ReplaceTokens(plug.HtmlMailFooter, fields);
