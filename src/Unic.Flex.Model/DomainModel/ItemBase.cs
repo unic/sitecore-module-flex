@@ -19,6 +19,21 @@
         public virtual Guid ItemId { get; set; }
 
         /// <summary>
+        /// Gets the identifier.
+        /// </summary>
+        /// <value>
+        /// The identifier.
+        /// </value>
+        [SitecoreIgnore]
+        public virtual string Id
+        {
+            get
+            {
+                return this.ItemId.ToString();
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the URL.
         /// </summary>
         /// <value>

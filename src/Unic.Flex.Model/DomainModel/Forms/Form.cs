@@ -110,20 +110,6 @@
         public virtual IEnumerable<ISavePlug> SavePlugs { get; set; }
 
         /// <summary>
-        /// Gets the identifier.
-        /// </summary>
-        /// <value>
-        /// The identifier.
-        /// </value>
-        public virtual string Id
-        {
-            get
-            {
-                return this.ItemId.ToString();
-            }
-        }
-
-        /// <summary>
         /// Gets the active step.
         /// </summary>
         /// <returns>The first step set as active or the first step if no active step is found</returns>

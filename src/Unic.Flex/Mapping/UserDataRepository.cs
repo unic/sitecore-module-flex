@@ -68,12 +68,13 @@
         public virtual void SetValue(string formId, string fieldId, object value)
         {
             var session = this.FormSession;
-            if (!session.ContainsKey(formId))
+            var formKey = this.GetFormSessionKey(formId);
+            if (!session.ContainsKey(formKey))
             {
-                session[formId] = new Dictionary<string, object>();
+                session[formKey] = new Dictionary<string, object>();
             }
 
-            session[formId][fieldId] = value;
+            session[formKey][fieldId] = value;
             this.FormSession = session;
         }
 
@@ -85,9 +86,10 @@
         public virtual void RemoveValue(string formId, string fieldId)
         {
             var session = this.FormSession;
-            if (!session.ContainsKey(formId) || !session[formId].ContainsKey(fieldId)) return;
+            var formKey = this.GetFormSessionKey(formId);
+            if (!session.ContainsKey(formKey) || !session[formKey].ContainsKey(fieldId)) return;
 
-            session[formId].Remove(fieldId);
+            session[formKey].Remove(fieldId);
             this.FormSession = session;
         }
 
@@ -100,7 +102,7 @@
         /// </returns>
         public virtual bool IsFormStored(string formId)
         {
-            return this.FormSession.ContainsKey(formId);
+            return this.FormSession.ContainsKey(this.GetFormSessionKey(formId));
         }
 
         /// <summary>
@@ -124,9 +126,10 @@
         public virtual void ClearForm(string formId)
         {
             var session = this.FormSession;
-            if (!session.ContainsKey(formId)) return;
+            var formKey = this.GetFormSessionKey(formId);
+            if (!session.ContainsKey(formKey)) return;
 
-            session.Remove(formId);
+            session.Remove(formKey);
             this.FormSession = session;
         }
 
@@ -178,7 +181,18 @@
         public virtual IDictionary<string, object> GetFormValues(string formId)
         {
             var session = this.FormSession;
-            return session.ContainsKey(formId) ? session[formId] : null;
+            var formKey = this.GetFormSessionKey(formId);
+            return session.ContainsKey(formKey) ? session[formKey] : null;
+        }
+
+        /// <summary>
+        /// Gets the form session key.
+        /// </summary>
+        /// <param name="formId">The form identifier.</param>
+        /// <returns>Concatinated form session key from form and page id</returns>
+        protected virtual string GetFormSessionKey(string formId)
+        {
+            return string.Join("_", Sitecore.Context.Item.ID, formId);
         }
     }
 }

@@ -124,20 +124,6 @@
         }
 
         /// <summary>
-        /// Gets the identifier.
-        /// </summary>
-        /// <value>
-        /// The identifier.
-        /// </value>
-        public virtual string Id
-        {
-            get
-            {
-                return this.ItemId.ToString();
-            }
-        }
-
-        /// <summary>
         /// Gets or sets the key.
         /// </summary>
         /// <value>
