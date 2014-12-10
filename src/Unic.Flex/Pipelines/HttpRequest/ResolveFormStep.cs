@@ -58,7 +58,7 @@
             if (item == null && !string.IsNullOrWhiteSpace(path))
             {
                 // resolve the parent item of the current path
-                var parentPath = path.Remove(path.LastIndexOf('/'));
+                var parentPath = path.Contains("/") ? path.Remove(path.LastIndexOf('/')) : path;
                 item = this.ResolveItem(parentPath);
 
                 // we need to rewrite the context item at the end
