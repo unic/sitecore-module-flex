@@ -1,6 +1,6 @@
 ----item----
 version: 1
-id: {0AB071EF-1DBE-42F5-8A22-002B9110E90F}
+id: {1FBDE2AF-BC03-4DA8-AB95-D92CB7A0C602}
 database: master
 path: /sitecore/templates/Flex/Fields/Field
 parent: {51D99D47-C151-46B1-B169-1880169C7733}
@@ -13,20 +13,27 @@ templatekey: Template
 field: {12C33F3F-86C5-43A5-AEB4-5598CEC45116}
 name: __Base template
 key: __base template
-content-length: 38
+content-length: 116
 
-{1930BBEB-7805-471A-A3BE-4858AC7CF696}
+{1930BBEB-7805-471A-A3BE-4858AC7CF696}|{B9C58A58-1250-4BD3-B4A1-ADE7A0C744C1}|{C61D9C44-2C39-44B2-BA17-1393B53A2B96}
 ----field----
 field: {F7D48A55-2158-4F02-9356-756654404F73}
 name: __Standard values
 key: __standard values
 content-length: 38
 
-{3AD02CC1-8452-47B6-93CE-00D7FAD18AEE}
+{767008B9-4809-4570-94CA-814838270A43}
+----field----
+field: {BA3F86A2-4A1C-4D78-B63D-91C2779C1B5E}
+name: __Sortorder
+key: __sortorder
+content-length: 3
+
+100
 ----version----
 language: en
 version: 1
-revision: 38446386-0a61-43b3-a045-06333603a924
+revision: 4dddff11-52a2-4f38-9704-1b86a0fb4e0d
 
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
@@ -34,7 +41,7 @@ name: __Created
 key: __created
 content-length: 15
 
-20141211T113903
+20140428T140921
 ----field----
 field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
 name: __Created by
@@ -48,14 +55,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-38446386-0a61-43b3-a045-06333603a924
+4dddff11-52a2-4f38-9704-1b86a0fb4e0d
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20141211T113911:635538947510171667
+20141211T115703:635538958231440246
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
