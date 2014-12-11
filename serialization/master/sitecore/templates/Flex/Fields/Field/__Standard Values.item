@@ -1,26 +1,19 @@
 ----item----
 version: 1
-id: {767008B9-4809-4570-94CA-814838270A43}
+id: {3AD02CC1-8452-47B6-93CE-00D7FAD18AEE}
 database: master
 path: /sitecore/templates/Flex/Fields/Field/__Standard Values
-parent: {1FBDE2AF-BC03-4DA8-AB95-D92CB7A0C602}
+parent: {0AB071EF-1DBE-42F5-8A22-002B9110E90F}
 name: __Standard Values
 master: {00000000-0000-0000-0000-000000000000}
-template: {1FBDE2AF-BC03-4DA8-AB95-D92CB7A0C602}
+template: {0AB071EF-1DBE-42F5-8A22-002B9110E90F}
 templatekey: Field
 
 ----version----
 language: en
 version: 1
-revision: 0f9b4eab-4084-4721-a719-d5c629b6ebe7
+revision: 79765f3b-4ef0-4da7-aa50-458134539834
 
-----field----
-field: {BB556E4E-CC68-459D-B316-7FF0070BA2D8}
-name: Label
-key: label
-content-length: 5
-
-$name
 ----field----
 field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
 name: __Owner
@@ -34,7 +27,7 @@ name: __Created
 key: __created
 content-length: 15
 
-20140428T141127
+20141211T113911
 ----field----
 field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
 name: __Created by
@@ -48,14 +41,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-0f9b4eab-4084-4721-a719-d5c629b6ebe7
+79765f3b-4ef0-4da7-aa50-458134539834
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20140829T140843:635449181233797736
+20141211T113911:635538947510021573
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

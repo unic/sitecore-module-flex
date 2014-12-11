@@ -181,8 +181,10 @@
     <Compile Include="Presentation\PresentationService.cs" />
     <Compile Include="Rules\Conditions\FormCondition.cs" />
     <Compile Include="Rules\Conditions\InstanceCondition.cs" />
+    <Compile Include="Utilities\ItemHelpers.cs" />
     <Compile Include="Utilities\MappingHelper.cs" />
     <Compile Include="Utilities\SecurityUtil.cs" />
+    <Compile Include="Validators\FieldValidators\FormFieldValidator.cs" />
     <Compile Include="Validators\FieldValidators\RegularExpressionValidator.cs" />
     <Compile Include="Utilities\TypeHelper.cs" />
   </ItemGroup>
