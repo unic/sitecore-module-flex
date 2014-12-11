@@ -46,8 +46,8 @@
         /// <value>
         /// The other field model.
         /// </value>
-        [SitecoreField("Other Field", Setting = SitecoreFieldSettings.InferType)]
-        public virtual FieldBase OtherFieldModel { get; set; }
+        [SitecoreReusableField("Other Field", Setting = SitecoreFieldSettings.InferType)]
+        public virtual IField OtherFieldModel { get; set; }
 
         /// <summary>
         /// Gets the other field display name.

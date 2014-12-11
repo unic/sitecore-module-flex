@@ -89,7 +89,7 @@
         /// <value>
         /// The dependent field.
         /// </value>
-        [SitecoreField("Dependent Field", Setting = SitecoreFieldSettings.InferType)]
+        [SitecoreReusableField("Dependent Field", Setting = SitecoreFieldSettings.InferType)]
         public virtual IField DependentField { get; set; }
 
         /// <summary>
