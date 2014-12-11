@@ -6,16 +6,6 @@
     public static class Constants
     {
         /// <summary>
-        /// The success query string key
-        /// </summary>
-        public const string SuccessQueryStringKey = "success";
-
-        /// <summary>
-        /// The success query string value
-        /// </summary>
-        public const string SuccessQueryStringValue = "true";
-
-        /// <summary>
         /// The cancel query string key
         /// </summary>
         public const string CancelQueryStringKey = "cancel";

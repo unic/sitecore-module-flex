@@ -19,6 +19,11 @@
         private const string CompetedStepsKey = "COMPLETED_STEPS";
 
         /// <summary>
+        /// The form succeeded key
+        /// </summary>
+        private const string FormSucceededKey = "FORM_SUCCEEDED";
+
+        /// <summary>
         /// Gets or sets the form session.
         /// </summary>
         /// <value>
@@ -186,6 +191,29 @@
         }
 
         /// <summary>
+        /// Sets the form succeeded.
+        /// </summary>
+        /// <param name="formId">The form identifier.</param>
+        /// <param name="succeeded">if set to <c>true</c> the form is in succeeded state.</param>
+        public virtual void SetFormSucceeded(string formId, bool succeeded)
+        {
+            HttpContext.Current.Session[this.GetFormSucceededSessionKey(formId)] = succeeded;
+        }
+
+        /// <summary>
+        /// Determines whether the form is currently in succeeded state.
+        /// </summary>
+        /// <param name="formId">The form identifier.</param>
+        /// <returns>
+        /// Boolean value if the form is currently in succeeded state.
+        /// </returns>
+        public virtual bool IsFormSucceeded(string formId)
+        {
+            var value = HttpContext.Current.Session[this.GetFormSucceededSessionKey(formId)] as bool?;
+            return value != null && value.Value;
+        }
+
+        /// <summary>
         /// Gets the form session key.
         /// </summary>
         /// <param name="formId">The form identifier.</param>
@@ -193,6 +221,16 @@
         protected virtual string GetFormSessionKey(string formId)
         {
             return string.Join("_", Sitecore.Context.Item.ID, formId);
+        }
+
+        /// <summary>
+        /// Gets the session key for form succeeded session.
+        /// </summary>
+        /// <param name="formId">The form identifier.</param>
+        /// <returns>Concatinated session key.</returns>
+        protected virtual string GetFormSucceededSessionKey(string formId)
+        {
+            return string.Join("_", FormSucceededKey, this.GetFormSessionKey(formId));
         }
     }
 }

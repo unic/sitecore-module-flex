@@ -1,14 +1,13 @@
 ﻿namespace Unic.Flex.Website.Controllers
 {
+    using Glass.Mapper.Sc;
+    using Sitecore;
     using System;
-    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Net;
     using System.Security.Cryptography;
     using System.Web.Mvc;
-    using Glass.Mapper.Sc;
-    using Sitecore;
     using Unic.Configuration;
     using Unic.Flex.Attributes;
     using Unic.Flex.Context;
@@ -168,6 +167,9 @@
             var form = this.flexContext.Form;
             if (form == null) return new EmptyResult();
 
+            // reset the form to not be in succeeded state anymore
+            this.userDataRepository.SetFormSucceeded(form.Id, false);
+
             // get the current step
             var currentStep = form.GetActiveStep();
             if (currentStep == null) return new EmptyResult();
@@ -176,16 +178,6 @@
             if (!string.IsNullOrWhiteSpace(this.flexContext.ErrorMessage))
             {
                 var result = this.ShowError();
-                Profiler.OnEnd(this, ProfileGetEventName);
-                return result;
-            }
-
-            // check if we need to show the success message
-            if (Request.QueryString[Constants.SuccessQueryStringKey] == Constants.SuccessQueryStringValue
-                && currentStep.StepNumber == form.Steps.Count()
-                && !this.userDataRepository.IsFormStored(form.Id))
-            {
-                var result = this.ShowSuccessMessage(form.SuccessMessage);
                 Profiler.OnEnd(this, ProfileGetEventName);
                 return result;
             }
@@ -243,6 +235,13 @@
             var form = this.flexContext.Form;
             if (form == null) return new EmptyResult();
 
+            // show the successed message if form is is successed state
+            if (this.userDataRepository.IsFormSucceeded(form.Id))
+            {
+                Profiler.OnEnd(this, ProfilePostEventName);
+                return this.ShowSuccessMessage(form.SuccessMessage);
+            }
+
             // get the current step
             var currentStep = form.GetActiveStep();
             if (currentStep == null) return new EmptyResult();
@@ -299,9 +298,10 @@
                 return this.Redirect(form.SuccessRedirect.Url);
             }
 
-            // redirect to the current page and show the success message
+            // show the success message
+            this.userDataRepository.SetFormSucceeded(form.Id, true);
             Profiler.OnEnd(this, ProfilePostEventName);
-            return this.Redirect(this.urlService.AddQueryStringToCurrentUrl(Constants.SuccessQueryStringKey, Constants.SuccessQueryStringValue));
+            return this.ShowSuccessMessage(form.SuccessMessage);
         }
 
         /// <summary>

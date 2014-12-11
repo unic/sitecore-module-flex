@@ -79,5 +79,19 @@
         /// <param name="formId">The form identifier.</param>
         /// <returns>Key-Value based dictionary with values</returns>
         IDictionary<string, object> GetFormValues(string formId);
+
+        /// <summary>
+        /// Sets the form succeeded.
+        /// </summary>
+        /// <param name="formId">The form identifier.</param>
+        /// <param name="succeeded">if set to <c>true</c> the form is in succeeded state.</param>
+        void SetFormSucceeded(string formId, bool succeeded);
+
+        /// <summary>
+        /// Determines whether the form is currently in succeeded state.
+        /// </summary>
+        /// <param name="formId">The form identifier.</param>
+        /// <returns>Boolean value if the form is currently in succeeded state.</returns>
+        bool IsFormSucceeded(string formId);
     }
 }
