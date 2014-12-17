@@ -111,7 +111,9 @@
         {
             if (Sitecore.Context.User.IsAdministrator) return true;
 
-            var item = Sitecore.Context.Database.GetItem(formId.ToString());
+            var item = Sitecore.Configuration.Factory.GetDatabase("master").GetItem(formId.ToString());
+            if (item == null) return false;
+
             return Sitecore.Context.User.IsAuthenticated && item.Security.CanWrite(Sitecore.Context.User);
         }
 
