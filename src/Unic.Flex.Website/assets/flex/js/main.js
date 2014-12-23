@@ -19108,17 +19108,21 @@ return datepicker.regional['it-CH'];
 	var $document = $(document);
 
 	var pluginName = 'flexform',
-			events = {
-				EVENT_VALIDATION_INVALID: pluginName +'_validation_invalid'
+		events = {
+			EVENT_VALIDATION_INVALID: pluginName +'_validation_invalid'
+		},
+		defaults = {
+			validationOptions: {
+				focusInvalid: true
 			},
-			defaults = {
-				cssprefix: 'flex',
-				dovalidation: true,
-				dataattribute: pluginName // configurable because of legacy implementations in Post
-			},
-			constants = {
-				haserrorClass: 'flex_has_error'
-			};
+			cssprefix: 'flex',
+			dovalidation: true,
+			initplaceholder: false,
+			dataattribute: pluginName // configurable because of legacy implementations in Post
+		},
+		constants = {
+			haserrorClass: 'flex_has_error'
+		};
 	pluginName = pluginName.toLowerCase();
 
 	// Globally accessible data like event names
@@ -19154,7 +19158,7 @@ return datepicker.regional['it-CH'];
 		this._initMultistep();
 		this._initAllCheckbox();
 
-		if (!Modernizr.placeholder && typeof($.fn.placeholder) === 'function') {
+		if (!Modernizr.placeholder && typeof($.fn.placeholder) === 'function' && this.options.initplaceholder) {
 			this.$element.find('input, textarea').placeholder();
 		}
 
@@ -19163,7 +19167,9 @@ return datepicker.regional['it-CH'];
 
 		// Accessibility
 		var $invalidFields = $('[aria-invalid=true]:visible'); // Serverside failed validation fields
-		$invalidFields.first().focus();
+		if (this.options.validationOptions.focusInvalid) {
+			$invalidFields.first().focus();
+		}
 		$invalidFields.closest('li').addClass(constants.haserrorClass);
 		this.$element.on('change.' + pluginName, 'input[type=checkbox], input[type=radio]', _.bind(this._syncCheckedStatus, this));
 	};
@@ -19194,8 +19200,8 @@ return datepicker.regional['it-CH'];
 		var $showPwd = this.$element.find('[data-' + this.options.dataattribute + '=showpassword]');
 		$showPwd.each(function(index, element){
 			var $showPwdNode = $(element),
-					$password = $showPwdNode.find('[type=password]'),
-					$text = $showPwdNode.find('[type=text]');
+				$password = $showPwdNode.find('[type=password]'),
+				$text = $showPwdNode.find('[type=text]');
 
 			$.each($password.prop('attributes'), function() {
 				// Copy data-attributes only
@@ -19205,17 +19211,20 @@ return datepicker.regional['it-CH'];
 			});
 		});
 
+		// Extend validationOptions
+		$.validator.setDefaults($.extend({}, $.validator.defaults, this.options.validationOptions));
+
 		// Init the form with the new settings.
 		var form = this.$element
-				.removeData('validator') /* added by the raw jquery.validate plugin */
-				.removeData('unobtrusiveValidation');  /* added by the jquery unobtrusive plugin */
+			.removeData('validator') /* added by the raw jquery.validate plugin */
+			.removeData('unobtrusiveValidation');  /* added by the jquery unobtrusive plugin */
 
 		$.validator.unobtrusive.parse(form);
 	};
 
 	Plugin.prototype._initMultistep = function(){
 		var $multistepnavigation = this.$element.find('[data-' + this.options.dataattribute + '=multistepnavigation]'),
-				$items = $multistepnavigation.find('[data-' + this.options.dataattribute + '=multistepnavigationitem]');
+			$items = $multistepnavigation.find('[data-' + this.options.dataattribute + '=multistepnavigationitem]');
 		$items.css('width', (1/$items.length)*100 + '%');
 	};
 
@@ -19225,7 +19234,7 @@ return datepicker.regional['it-CH'];
 	Plugin.prototype._initAllCheckbox = function() {
 		this.$element.find('[data-' + pluginName + '=all]').each(_.bind(function(index, element){
 			var $checkbox = $(element),
-					$group = $checkbox.closest('[data-' + pluginName + '=allgroup]');
+				$group = $checkbox.closest('[data-' + pluginName + '=allgroup]');
 			this._setAllCheckbox($group);
 		}, this));
 		this.$element.on('change.' + pluginName, '[data-' + pluginName + '=allgroup]', _.bind(function(event){
@@ -19240,8 +19249,8 @@ return datepicker.regional['it-CH'];
 	 */
 	Plugin.prototype._handleAllCheckbox = function(checkbox){
 		var $checkbox = $(checkbox),
-				$group = $checkbox.closest('[data-' + pluginName + '=allgroup]'),
-				value = $checkbox.is(':checked');
+			$group = $checkbox.closest('[data-' + pluginName + '=allgroup]'),
+			value = $checkbox.is(':checked');
 
 		if ($checkbox.is('[data-' + pluginName + '=all]')) {
 			// User clicked on 'all'
@@ -19267,7 +19276,7 @@ return datepicker.regional['it-CH'];
 	 */
 	Plugin.prototype._setAllCheckbox = function($group){
 		var totalBoxes = $group.find(':checkbox'),
-				checkedBoxes = $group.find(':checked[data-' + pluginName + '!=all]');
+			checkedBoxes = $group.find(':checked[data-' + pluginName + '!=all]');
 
 		if (checkedBoxes.length === totalBoxes.length - 1) {
 			$group.find('[data-' + pluginName + '=all]').attr('aria-checked', true).prop('checked', true).attr('checked', 'checked');
@@ -19283,11 +19292,11 @@ return datepicker.regional['it-CH'];
 	 */
 	Plugin.prototype._handleShowPassword = function(event){
 		var $checkbox = $(event.currentTarget),
-				$container = $checkbox.closest('[data-' + this.options.dataattribute + '=showpassword]');
+			$container = $checkbox.closest('[data-' + this.options.dataattribute + '=showpassword]');
 
 		$container.find(':password:visible, :text:visible').each(function(){
 			var $current = $(this),
-					currentVal = $current.val();
+				currentVal = $current.val();
 
 			$current.siblings(':text, :password').val(currentVal);
 		});
@@ -19345,9 +19354,9 @@ return datepicker.regional['it-CH'];
 	Plugin.prototype._handleDependents = function(key, index, element){
 
 		var $field = $(element),
-				data = $field.data(this.options.dataattribute + '-dependent'),
-				$from = this.$element.find('[data-key="' + data.from + '"]'),
-				dependentsMatch = true;
+			data = $field.data(this.options.dataattribute + '-dependent'),
+			$from = this.$element.find('[data-key="' + data.from + '"]'),
+			dependentsMatch = true;
 
 		if(data.value) {
 			_.each(data.value.split(','), _.bind(function(fromKey){
@@ -19397,8 +19406,8 @@ return datepicker.regional['it-CH'];
 	Plugin.prototype._updateField = function($field, url, key) {
 
 		var from = $field.data(this.options.dataattribute + '-dependent').from.split(','),
-				data = {},
-				$fieldInput = $field.find(':input');
+			data = {},
+			$fieldInput = $field.find(':input');
 
 		if(!_.contains(from, key)) {
 			return;
@@ -19406,7 +19415,7 @@ return datepicker.regional['it-CH'];
 
 		_.each(from, _.bind(function(fromKey){
 			var $input = this.$element.find('[data-key=' + fromKey + ']').find(':input'),
-					name = $input.attr('name');
+				name = $input.attr('name');
 			data[name] = $input.val();
 		}, this));
 		data[$fieldInput.attr('name')] = $fieldInput.val();
@@ -19503,8 +19512,6 @@ return datepicker.regional['it-CH'];
 			var hasCurrentFile = $(element).closest('[data-init=flexfileinput]').find('[data-flexfileinput=current]').length;
 			return value !== '' || hasCurrentFile;
 		});
-
-		console.log('add Validators');
 	}
 
 })(window, document,  jQuery, Unic);
