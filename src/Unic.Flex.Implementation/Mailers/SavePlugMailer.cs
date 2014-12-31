@@ -124,11 +124,12 @@
                 if (!string.IsNullOrWhiteSpace(replyTo)) x.ReplyToList.Add(replyTo);
 
                 // add attachments
-                foreach (var fileField in fields
-                    .OfType<FileUploadField>()
-                    .Where(field => field.Value != null))
+                if (plug.SendAttachments)
                 {
-                    x.Attachments.Add(new Attachment(new MemoryStream(fileField.Value.Data), fileField.Value.FileName));
+                    foreach (var fileField in fields.OfType<FileUploadField>().Where(field => field.Value != null))
+                    {
+                        x.Attachments.Add(new Attachment(new MemoryStream(fileField.Value.Data), fileField.Value.FileName));
+                    }
                 }
             });
         }

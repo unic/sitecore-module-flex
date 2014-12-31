@@ -154,6 +154,15 @@
         public virtual string TextMailFooter { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to send attachments in the mail or not.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if attachments should be send; otherwise, <c>false</c>.
+        /// </value>
+        [SitecoreField("Send Attachments")]
+        public virtual bool SendAttachments { get; set; }
+
+        /// <summary>
         /// Gets or sets the receiver field.
         /// </summary>
         /// <value>

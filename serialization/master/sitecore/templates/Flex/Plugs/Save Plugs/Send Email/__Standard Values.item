@@ -9,10 +9,17 @@ master: {00000000-0000-0000-0000-000000000000}
 template: {DF5C2C2F-4A48-4206-9DFB-0DCDE27E2233}
 templatekey: Send Email
 
+----field----
+field: {B96D8C6B-20BC-40C0-89C2-09B6468A8A78}
+name: Send Attachments
+key: send attachments
+content-length: 1
+
+1
 ----version----
 language: en
 version: 1
-revision: 653aeddb-0ac9-496e-8ac2-e53f0a648d03
+revision: 06c154d8-c0b6-4448-ac12-94f6d0698f17
 
 ----field----
 field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
@@ -41,14 +48,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-653aeddb-0ac9-496e-8ac2-e53f0a648d03
+06c154d8-c0b6-4448-ac12-94f6d0698f17
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20140903T103915:635453375558869100
+20141231T105658:635556202182550151
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
