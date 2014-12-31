@@ -19529,6 +19529,7 @@ return datepicker.regional['it-CH'];
 		events = {
 		},
 		defaults = {
+			closeToolTipKeys: ['27'],
 			tooltipSpeed: 0,
 			prefix: 'flex',
 			dataattribute: pluginName // configurable because of legacy implementations in Post
@@ -19560,6 +19561,7 @@ return datepicker.regional['it-CH'];
 	Plugin.prototype.init = function() {
 		this.$element.on('click.' + pluginName, '[data-' + this.options.dataattribute + '=link]', _.bind(this.toggleTooltip, this));
 		this.$element.on('click.' + pluginName, '[data-' + this.options.dataattribute + '=close]', _.bind(this.toggleTooltip, this));
+		this.$element.on('keyup.' + pluginName, _.bind(this.toggleTooltip, this));
 	};
 
 	/**
@@ -19581,6 +19583,13 @@ return datepicker.regional['it-CH'];
 		var $link = $(event.currentTarget),
 			$tooltip = $(event.delegateTarget).find('[data-' + this.options.dataattribute + '=tooltip]'),
 			expanded = $link.next().is(':visible');
+
+		// toggle close on ESC
+		if (event === 'keyup' && _.contains(this.options.closeToolTipKeys, event.keyCode)) {
+			if (!expanded) {
+				return;
+			}
+		}
 
 		// Toggle tooltip
 		$tooltip.attr('aria-expanded', !expanded)
