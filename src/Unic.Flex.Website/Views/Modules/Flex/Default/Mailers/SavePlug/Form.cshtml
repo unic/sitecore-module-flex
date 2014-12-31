@@ -13,7 +13,7 @@
         return;
     }
 
-    var formUrl = Sitecore.Web.WebUtil.GetFullUrl(form.GetFirstStepUrl());
+    var formUrl = Sitecore.Web.WebUtil.GetFullUrl(form.GetFirstStepUrl()).Replace(":443", string.Empty);
 }
 
 @Html.Raw(ViewBag.HtmlMailIntroduction)
