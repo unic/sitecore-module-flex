@@ -3,8 +3,8 @@
     using System;
     using System.Web;
     using System.Web.Mvc;
-    using Unic.Flex.DependencyInjection;
-    using Unic.Flex.Globalization;
+    using Unic.Flex.Core.DependencyInjection;
+    using Unic.Flex.Core.Globalization;
     using Unic.Flex.Model.ViewModel.Fields.InputFields;
 
     /// <summary>

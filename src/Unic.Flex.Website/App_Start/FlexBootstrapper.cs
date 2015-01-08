@@ -6,13 +6,12 @@ namespace Unic.Flex.Website.App_Start
     using System.Collections.Generic;
     using System.Web.Mvc;
     using Unic.Configuration.Converter;
-    using Unic.Flex.DependencyInjection;
+    using Unic.Flex.Core.DependencyInjection;
     using Unic.Flex.Model.Configuration.Converters;
     using Unic.Flex.Model.Types;
     using Unic.Flex.Model.ViewModel.Fields;
     using Unic.Flex.Model.ViewModel.Forms;
     using Unic.Flex.Model.ViewModel.Sections;
-    using Unic.Flex.ModelBinding;
 
     /// <summary>
     /// Bootstrapper for the Flex form module.

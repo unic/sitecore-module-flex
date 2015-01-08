@@ -4,7 +4,7 @@
     using System;
     using System.Collections.Generic;
     using System.Globalization;
-    using Unic.Flex.Globalization;
+    using Unic.Flex.Core.Globalization;
     using Unic.Flex.Model.GlassExtensions.Attributes;
     using Unic.Flex.Model.Validation;
 

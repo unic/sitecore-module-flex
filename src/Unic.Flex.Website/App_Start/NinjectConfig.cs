@@ -11,7 +11,7 @@ namespace Unic.Flex.Website.App_Start
     using Ninject;
     using Ninject.Modules;
     using Ninject.Web.Common;
-    using Unic.Flex.DependencyInjection;
+    using Unic.Flex.Core.DependencyInjection;
 
     /// <summary>
     /// Ninject configuration initializer
@@ -63,7 +63,7 @@ namespace Unic.Flex.Website.App_Start
         /// <returns>List of ninject modules</returns>
         private static IEnumerable<INinjectModule> GetModules()
         {
-            yield return new Unic.Flex.DependencyInjection.Config();
+            yield return new Config();
             yield return new Unic.Flex.Implementation.DependencyInjection.Config();
         }
 

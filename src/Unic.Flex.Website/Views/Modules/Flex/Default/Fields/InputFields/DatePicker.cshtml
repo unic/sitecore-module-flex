@@ -1,6 +1,6 @@
 ﻿@using System.Web.Mvc.Html
-@using Unic.Flex.Globalization
-@using Unic.Flex.Presentation
+@using Unic.Flex.Core.Globalization
+@using Unic.Flex.Core.Presentation
 @model Unic.Flex.Implementation.Fields.InputFields.DatePickerFieldViewModel
 
 <li class="flex_listitem @Model.CssClass" @Html.Raw(Html.FormatAttributes(Model.ContainerAttributes)) data-init="flexdatepicker" data-flexdatepicker-options='{"locale": "@Model.Locale", "dateFormat": "@Model.DateFormat", "changeYear": @Model.ShowYearAndMonthChanger.ToString().ToLower(), "changeMonth": @Model.ShowYearAndMonthChanger.ToString().ToLower() }'>

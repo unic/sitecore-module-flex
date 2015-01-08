@@ -1,8 +1,8 @@
 ﻿namespace Unic.Flex.Implementation.Fields.InputFields
 {
     using Glass.Mapper.Sc.Configuration.Attributes;
-    using Unic.Flex.DependencyInjection;
-    using Unic.Flex.Globalization;
+    using Unic.Flex.Core.DependencyInjection;
+    using Unic.Flex.Core.Globalization;
     using Unic.Flex.Model.DomainModel.Fields.InputFields;
 
     /// <summary>

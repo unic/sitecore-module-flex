@@ -2,7 +2,7 @@
 {
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Sitecore.Diagnostics;
-    using Unic.Flex.Analytics;
+    using Unic.Flex.Core.Analytics;
     using Unic.Flex.Model.DomainModel.Analytics;
     using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.DomainModel.Plugs.SavePlugs;
