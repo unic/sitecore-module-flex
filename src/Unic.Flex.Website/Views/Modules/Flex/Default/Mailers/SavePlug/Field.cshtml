@@ -1,6 +1,16 @@
-﻿@model Unic.Flex.Model.DomainModel.Fields.IField
+﻿@using Unic.Flex.Implementation.Fields.TextOnly
+@model Unic.Flex.Model.DomainModel.Fields.IField
 
 <tr>
-    <th>@Model.Label</th>
-    <td>@Model.TextValue</td>
+    <th>@Html.Raw(Model.Label)</th>
+    <td>
+        @if (Model is TextOnlyField)
+        {
+            @Html.Raw(Model.TextValue)
+        }
+        else
+        {
+            @Model.TextValue
+        }
+    </td>
 </tr>

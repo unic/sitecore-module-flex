@@ -1,4 +1,5 @@
 ﻿@using Unic.Flex.Globalization
+@using Unic.Flex.Implementation.Fields.TextOnly
 @using Unic.Flex.Presentation
 @model Unic.Flex.Model.ViewModel.Steps.SummaryViewModel
 
@@ -43,9 +44,16 @@
                         <li class="flex_summary_item">
                             <strong>@Html.Raw(field.Label)</strong>
                             <div>
-                                @foreach (var item in field.TextValue.Split(new[] { Environment.NewLine }, StringSplitOptions.None))
+                                @if (field is TextOnlyFieldViewModel)
                                 {
-                                    @item<br />
+                                    @Html.Raw(field.TextValue)
+                                }
+                                else
+                                {
+                                    foreach (var item in field.TextValue.Split(new[] { Environment.NewLine }, StringSplitOptions.None))
+                                    {
+                                         @item<br />
+                                    }
                                 }
                             </div>
                         </li>
