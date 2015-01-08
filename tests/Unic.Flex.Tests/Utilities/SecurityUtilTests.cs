@@ -2,7 +2,7 @@
 {
     using System.Security.Cryptography;
     using NUnit.Framework;
-    using Unic.Flex.Utilities;
+    using Unic.Flex.Core.Utilities;
 
     /// <summary>
     /// Tests for the security util.

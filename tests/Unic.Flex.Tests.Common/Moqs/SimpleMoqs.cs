@@ -4,8 +4,8 @@
     using System;
     using System.Linq.Expressions;
     using Unic.Configuration;
-    using Unic.Flex.Globalization;
-    using Unic.Flex.Logging;
+    using Unic.Flex.Core.Globalization;
+    using Unic.Flex.Core.Logging;
     using Unic.Flex.Model.Configuration;
 
     /// <summary>

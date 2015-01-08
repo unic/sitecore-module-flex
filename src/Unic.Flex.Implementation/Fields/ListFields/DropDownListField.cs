@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using Glass.Mapper.Sc.Configuration.Attributes;
-    using Unic.Flex.Globalization;
+    using Unic.Flex.Core.Globalization;
     using Unic.Flex.Model.DataProviders;
     using Unic.Flex.Model.DomainModel.Fields.ListFields;
 

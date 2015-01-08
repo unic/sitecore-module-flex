@@ -183,9 +183,9 @@
       <Project>{c47272b9-c13f-4f53-b9f3-d3066bb45810}</Project>
       <Name>Unic.Flex.Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Unic.Flex\Unic.Flex.csproj">
+    <ProjectReference Include="..\Unic.Flex.Core\Unic.Flex.Core.csproj">
       <Project>{18b25ae3-f6aa-4a59-a49b-051ceb4487d8}</Project>
-      <Name>Unic.Flex</Name>
+      <Name>Unic.Flex.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -193,7 +193,9 @@
     <None Include="web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Config\Include\Unic.Flex.config" />
+    <Content Include="App_Config\Include\Unic.Flex.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Modules\Flex\Default\Steps\MultiStep.cshtml" />

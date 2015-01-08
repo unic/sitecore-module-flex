@@ -15,13 +15,13 @@
     using System.Security.Cryptography;
     using System.Web;
     using System.Web.Mvc;
-    using Unic.Flex.Context;
-    using Unic.Flex.DependencyInjection;
-    using Unic.Flex.Globalization;
+    using Unic.Flex.Core.Context;
+    using Unic.Flex.Core.DependencyInjection;
+    using Unic.Flex.Core.Globalization;
+    using Unic.Flex.Core.Logging;
+    using Unic.Flex.Core.Utilities;
     using Unic.Flex.Implementation.Database;
-    using Unic.Flex.Logging;
     using Unic.Flex.Model.DomainModel.Forms;
-    using Unic.Flex.Utilities;
 
     /// <summary>
     /// Command to export form data from databae to excel

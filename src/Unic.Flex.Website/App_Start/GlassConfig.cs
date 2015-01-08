@@ -11,7 +11,8 @@ namespace Unic.Flex.Website.App_Start
     using Glass.Mapper.Sc.CastleWindsor;
     using Glass.Mapper.Sc.DataMappers.SitecoreQueryParameters;
     using Sitecore.Pipelines;
-    using Unic.Flex.Definitions;
+    using Unic.Flex.Core.Definitions;
+    using Unic.Flex.Core.Pipelines.ObjectConstruction;
     using Unic.Flex.Model.GlassExtensions.Handlers;
 
     /// <summary>
@@ -70,7 +71,7 @@ namespace Unic.Flex.Website.App_Start
             container.Register(Component.For<AbstractDataMapper>().ImplementedBy<SitecoreReusableChildrenTypeMapper>().LifeStyle.Transient);
 
             // register ninject object creation
-            container.Register(Component.For<IObjectConstructionTask>().ImplementedBy<Pipelines.ObjectConstruction.NinjectInjectorTask>().LifestylePerWebRequest());
+            container.Register(Component.For<IObjectConstructionTask>().ImplementedBy<NinjectInjectorTask>().LifestylePerWebRequest());
 
             // install the config
             container.Install(new SitecoreInstaller(config));

@@ -3,7 +3,7 @@
 namespace Unic.Flex.Website.App_Start
 {
     using AutoMapper;
-    using Unic.Flex.Context;
+    using Unic.Flex.Core.Context;
     using Unic.Flex.Model.DomainModel.Sections;
     using Unic.Flex.Model.DomainModel.Steps;
     using Unic.Flex.Model.Entities;

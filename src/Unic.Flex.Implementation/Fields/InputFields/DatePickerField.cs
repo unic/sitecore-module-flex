@@ -3,7 +3,7 @@
     using Glass.Mapper.Sc.Configuration.Attributes;
     using System;
     using System.Globalization;
-    using Unic.Flex.Globalization;
+    using Unic.Flex.Core.Globalization;
     using Unic.Flex.Implementation.Validators;
     using Unic.Flex.Model.DomainModel.Fields.InputFields;
 

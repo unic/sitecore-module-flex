@@ -4,12 +4,12 @@
     using Glass.Mapper.Sc.Configuration.Attributes;
     using System.Collections.Generic;
     using System.Linq;
-    using Unic.Flex.Context;
-    using Unic.Flex.DependencyInjection;
+    using Unic.Flex.Core.Context;
+    using Unic.Flex.Core.DependencyInjection;
+    using Unic.Flex.Core.Utilities;
     using Unic.Flex.Model.DomainModel.Fields;
     using Unic.Flex.Model.GlassExtensions.Attributes;
     using Unic.Flex.Model.Validation;
-    using Unic.Flex.Utilities;
 
     /// <summary>
     /// Validator which checks if two fields are equal

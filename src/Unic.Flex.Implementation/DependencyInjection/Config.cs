@@ -6,7 +6,7 @@
     /// <summary>
     /// Ninject configuration module.
     /// </summary>
-    public class Config : Flex.DependencyInjection.Config
+    public class Config : Core.DependencyInjection.Config
     {
         /// <summary>
         /// Loads the module into the kernel.

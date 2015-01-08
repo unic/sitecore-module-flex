@@ -4,8 +4,8 @@
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
     using Glass.Mapper.Sc.Configuration.Attributes;
-    using Unic.Flex.DependencyInjection;
-    using Unic.Flex.Logging;
+    using Unic.Flex.Core.DependencyInjection;
+    using Unic.Flex.Core.Logging;
     using Unic.Flex.Model.GlassExtensions.Attributes;
     using Unic.Flex.Model.Validation;
     using Unic.Profiling;

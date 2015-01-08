@@ -8,14 +8,14 @@
     using System.Net.Mail;
     using System.Web;
     using Unic.Configuration;
+    using Unic.Flex.Core.Mailing;
+    using Unic.Flex.Core.Presentation;
     using Unic.Flex.Implementation.Configuration;
     using Unic.Flex.Implementation.Fields.InputFields;
     using Unic.Flex.Implementation.Plugs.SavePlugs;
     using Unic.Flex.Implementation.Validators;
-    using Unic.Flex.Mailing;
     using Unic.Flex.Model.DomainModel.Fields;
     using Unic.Flex.Model.DomainModel.Forms;
-    using Unic.Flex.Presentation;
 
     /// <summary>
     /// Mailer implementation for the send email plug

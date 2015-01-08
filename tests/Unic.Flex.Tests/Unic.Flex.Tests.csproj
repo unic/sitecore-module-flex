@@ -87,9 +87,9 @@
       <Project>{577b0929-df4e-437a-8601-def9d3974332}</Project>
       <Name>Unic.Flex.Website</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Unic.Flex\Unic.Flex.csproj">
+    <ProjectReference Include="..\..\src\Unic.Flex.Core\Unic.Flex.Core.csproj">
       <Project>{18b25ae3-f6aa-4a59-a49b-051ceb4487d8}</Project>
-      <Name>Unic.Flex</Name>
+      <Name>Unic.Flex.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Unic.Flex.Tests.Common\Unic.Flex.Tests.Common.csproj">
       <Project>{ae341d4c-2ca6-4194-b476-7284fa3ef429}</Project>

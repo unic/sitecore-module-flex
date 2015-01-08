@@ -3,8 +3,8 @@
     using Moq;
     using System;
     using System.Collections.Generic;
+    using Unic.Flex.Core.Mapping;
     using Unic.Flex.Implementation.Fields.InputFields;
-    using Unic.Flex.Mapping;
     using Unic.Flex.Model.DomainModel.Fields;
     using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.DomainModel.Sections;

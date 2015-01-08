@@ -2,11 +2,11 @@
 {
     using NUnit.Framework;
     using System;
+    using Unic.Flex.Core.Utilities;
     using Unic.Flex.Implementation.Fields.InputFields;
     using Unic.Flex.Implementation.Fields.ListFields;
     using Unic.Flex.Model.DomainModel;
     using Unic.Flex.Model.DomainModel.Fields.ListFields;
-    using Unic.Flex.Utilities;
 
     /// <summary>
     /// Tests for type helper.

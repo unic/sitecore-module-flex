@@ -4,8 +4,8 @@
     using Glass.Mapper.Sc.Configuration;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Sitecore.Diagnostics;
+    using Unic.Flex.Core.Mailing;
     using Unic.Flex.Implementation.Mailers;
-    using Unic.Flex.Mailing;
     using Unic.Flex.Model.DomainModel.Fields;
     using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.DomainModel.Global;

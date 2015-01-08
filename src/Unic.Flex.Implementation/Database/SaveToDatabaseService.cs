@@ -10,12 +10,12 @@
     using System.Drawing;
     using System.IO;
     using System.Linq;
-    using Unic.Flex.Database;
-    using Unic.Flex.Globalization;
+    using Unic.Flex.Core.Database;
+    using Unic.Flex.Core.Globalization;
+    using Unic.Flex.Core.Utilities;
     using Unic.Flex.Implementation.Fields.InputFields;
     using Unic.Flex.Model.DomainModel.Fields.ListFields;
     using Unic.Flex.Model.Entities;
-    using Unic.Flex.Utilities;
     using File = Unic.Flex.Model.Entities.File;
     using Form = Unic.Flex.Model.DomainModel.Forms.Form;
 

@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unic.Flex.Model", "src\Unic.Flex.Model\Unic.Flex.Model.csproj", "{C47272B9-C13F-4F53-B9F3-D3066BB45810}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unic.Flex.Website", "src\Unic.Flex.Website\Unic.Flex.Website.csproj", "{577B0929-DF4E-437A-8601-DEF9D3974332}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unic.Flex", "src\Unic.Flex\Unic.Flex.csproj", "{18B25AE3-F6AA-4A59-A49B-051CEB4487D8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unic.Flex.Core", "src\Unic.Flex.Core\Unic.Flex.Core.csproj", "{18B25AE3-F6AA-4A59-A49B-051CEB4487D8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{7F01601C-CD63-42C7-8B65-A14851B19DFD}"
 	ProjectSection(SolutionItems) = preProject

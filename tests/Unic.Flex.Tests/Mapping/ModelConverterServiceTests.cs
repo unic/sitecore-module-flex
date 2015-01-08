@@ -5,7 +5,7 @@
     using NUnit.Framework;
     using System;
     using System.Linq;
-    using Unic.Flex.Mapping;
+    using Unic.Flex.Core.Mapping;
     using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.DomainModel.Steps;
     using Unic.Flex.Model.ViewModel.Fields.InputFields;
