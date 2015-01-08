@@ -13,9 +13,9 @@ templatekey: Validation Rule
 field: {43A829D1-43DA-465C-B772-EBAA0D515E3E}
 name: Type
 key: type
-content-length: 66
+content-length: 76
 
-Unic.Flex.Validators.FieldValidators.FormFieldValidator, Unic.Flex
+Unic.Flex.Core.Validators.FieldValidators.FormFieldValidator, Unic.Flex.Core
 ----version----
 language: da
 version: 1
@@ -141,7 +141,7 @@ sitecore\admin
 ----version----
 language: en
 version: 1
-revision: d53db528-f0f0-4022-9a87-c1aa8ce8b443
+revision: a07512e5-f5aa-4b39-8824-aa55b58556b6
 
 ----field----
 field: {DA43C533-CBAE-43D0-9019-65B1E346F984}
@@ -184,14 +184,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-d53db528-f0f0-4022-9a87-c1aa8ce8b443
+a07512e5-f5aa-4b39-8824-aa55b58556b6
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20141211T114142:635538949025088734
+20150108T102410:635563094507079378
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
