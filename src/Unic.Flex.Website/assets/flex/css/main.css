@@ -1,1035 +1,441 @@
-/* ==========================================================================
-   Normalize.scss settings
-   ========================================================================== */
-/**
- * Includes legacy browser support IE6/7
- *
- * Set to false if you want to drop support for IE6 and IE7
- */
-/* ==========================================================================
-   HTML5 display definitions
-   ========================================================================== */
-/*
- * Corrects `block` display not defined in IE 8/9.
- */
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-main,
-nav,
-section,
-summary {
-  display: block;
-}
+/*# sourceMappingURL=main.css.map */
+/** Default variables */
+/** Custom colors */
+/** Colors imported from ColorSchemer export */
+/** Helper functions */
+/** Hide visually  See http://snook.ca/archives/html_and_css/hiding-content-for-accessibility for discussion of different solutions */
+/** Contain floats with clearfix  http://nicolasgallagher.com/micro-clearfix-hack/ */
+/** Lists with layout purpose */
+/** Replace text */
+/** Better font rendering (on OS X) http://maximilianhoffmann.com/posts/better-font-rendering-on-osx  Usage:  .var_dark_on_light { 	@include fontSmoothing; } .var_light_on_dark { 	@include fontSmoothingReset; } */
+/** Placeholder in input fields */
+/** Custom */
+/** Inspired from https://github.com/guardian/sass-mq.git */
+/**  // To enable support for browsers that do not support @media queries, (IE <= 8, Firefox <= 3, Opera <= 9) set $mqResponsive to false Create a separate stylesheet served exclusively to these browsers, meaning @media queries will be rasterized, relying on the cascade itself */
+/** Name your breakpoints in a way that creates a ubiquitous language across team members. It will improve communication between stakeholders, designers, developers, and testers. */
+/** Define the breakpoint from the $mqBreakpoints list that should be used as the target width when outputting a static stylesheet (i.e. when $mqResponsive is set to 'false'). */
+/** If you want to display the currently active breakpoint in the top right corner of your site during development, add the breakpoints to this list, ordered by width, e.g. (mobile, tablet, desktop). */
+/** Media Query mixin Usage: .element { @include mq($from: mobile) { color: red; } @include mq($to: tablet) { color: blue; } @include mq(mobile, tablet) { color: green; } @include mq($from: tablet, $and: '(orientation: landscape)') { color: teal; } @include mq(950px) { color: hotpink; } } */
+/** Add a breakpoint Usage: $mqBreakpoints: mqAddBreakpoint(tvscreen, 1920px); */
+/** Create a JSON string of map of breakpoints */
+/* ========================================================================== Normalize.scss settings ========================================================================== */
+/** Includes legacy browser support IE6/7  Set to false if you want to drop support for IE6 and IE7 */
+/* ========================================================================== HTML5 display definitions ========================================================================== */
+/* Corrects `block` display not defined in IE 8/9. */
+/* line 20, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/normalize-scss/_normalize.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary { display: block; }
 
-/**
- * Correct `inline-block` display not defined in IE 6/7/8/9 and Firefox 3.
- */
-audio,
-canvas,
-video {
-  display: inline-block;
-}
+/** Correct `inline-block` display not defined in IE 6/7/8/9 and Firefox 3. */
+/* line 39, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/normalize-scss/_normalize.scss */
+audio, canvas, video { display: inline-block; }
 
-/**
- * Prevents modern browsers from displaying `audio` without controls.
- * Remove excess height in iOS 5 devices.
- */
-audio:not([controls]) {
-  display: none;
-  height: 0;
-}
+/** Prevents modern browsers from displaying `audio` without controls. Remove excess height in iOS 5 devices. */
+/* line 54, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/normalize-scss/_normalize.scss */
+audio:not([controls]) { display: none; height: 0; }
 
-/**
- * Address `[hidden]` styling not present in IE 8/9.
- * Hide the `template` element in IE, Safari, and Firefox < 22.
- */
-[hidden], template {
-  display: none;
-}
+/** Address `[hidden]` styling not present in IE 8/9. Hide the `template` element in IE, Safari, and Firefox < 22. */
+/* line 64, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/normalize-scss/_normalize.scss */
+[hidden], template { display: none; }
 
-/* ==========================================================================
-   Base
-   ========================================================================== */
-/**
- * 1. Set default font family to sans-serif.
- * 2. Prevent iOS text size adjust after orientation change, without disabling
- * 3.Corrects text resizing oddly in IE 6/7 when body `font-size` is set using
- *    `em` units.
- */
-html {
-  font-family: sans-serif;
-  /* 1 */
-  -ms-text-size-adjust: 100%;
-  /* 2 */
-  -webkit-text-size-adjust: 100%;
-  /* 2 */
-}
+/* ========================================================================== Base ========================================================================== */
+/** 1. Set default font family to sans-serif. 2. Prevent iOS text size adjust after orientation change, without disabling 3.Corrects text resizing oddly in IE 6/7 when body `font-size` is set using `em` units. */
+/* line 79, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/normalize-scss/_normalize.scss */
+html { font-family: sans-serif; /* 1 */ -ms-text-size-adjust: 100%; /* 2 */ -webkit-text-size-adjust: 100%; /* 2 */ }
 
-/**
- * Remove default margin.
- */
-body {
-  margin: 0;
-}
+/** Remove default margin. */
+/* line 92, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/normalize-scss/_normalize.scss */
+body { margin: 0; }
 
-/* ==========================================================================
-   Links
-   ========================================================================== */
-/**
- * Remove the gray background color from active links in IE 10.
- */
-a {
-  background: transparent;
-}
+/* ========================================================================== Links ========================================================================== */
+/** Remove the gray background color from active links in IE 10. */
+/* line 104, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/normalize-scss/_normalize.scss */
+a { background: transparent; }
 
-/**
- * Address `outline` inconsistency between Chrome and other browsers.
- */
-/**
- * Improves readability when focused and also mouse hovered in all browsers.
- */
-a:focus {
-  outline: thin dotted;
-}
-a:active, a:hover {
-  outline: 0;
-}
+/** Address `outline` inconsistency between Chrome and other browsers. */
+/** Improves readability when focused and also mouse hovered in all browsers. */
+/* line 118, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/normalize-scss/_normalize.scss */
+a:focus { outline: thin dotted; }
+/* line 121, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/normalize-scss/_normalize.scss */
+a:active, a:hover { outline: 0; }
 
-/* ==========================================================================
-   Typography
-   ========================================================================== */
-/**
- * Addresses font sizes and margins set differently in IE 6/7.
- * Address variable `h1` font-size and margin within `section` and `article`
- * contexts in Firefox 4+, Safari 5, and Chrome.
- */
-h1 {
-  font-size: 2em;
-  margin: 0.67em 0;
-}
+/* ========================================================================== Typography ========================================================================== */
+/** Addresses font sizes and margins set differently in IE 6/7. Address variable `h1` font-size and margin within `section` and `article` contexts in Firefox 4+, Safari 5, and Chrome. */
+/* line 137, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/normalize-scss/_normalize.scss */
+h1 { font-size: 2em; margin: 0.67em 0; }
 
-/**
- * Address styling not present in IE 8/9, Safari 5, and Chrome.
- */
-abbr[title] {
-  border-bottom: 1px dotted;
-}
+/** Address styling not present in IE 8/9, Safari 5, and Chrome. */
+/* line 176, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/normalize-scss/_normalize.scss */
+abbr[title] { border-bottom: 1px dotted; }
 
-/**
- * Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome.
- */
-b,
-strong {
-  font-weight: bold;
-}
+/** Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome. */
+/* line 184, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/normalize-scss/_normalize.scss */
+b, strong { font-weight: bold; }
 
-/**
- * Address styling not present in Safari 5 and Chrome.
- */
-dfn {
-  font-style: italic;
-}
+/** Address styling not present in Safari 5 and Chrome. */
+/* line 199, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/normalize-scss/_normalize.scss */
+dfn { font-style: italic; }
 
-/**
- * Address differences between Firefox and other browsers.
- */
-hr {
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
-  height: 0;
-}
+/** Address differences between Firefox and other browsers. */
+/* line 207, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/normalize-scss/_normalize.scss */
+hr { box-sizing: content-box; height: 0; }
 
-/**
- * Addresses styling not present in IE 8/9.
- */
-mark {
-  background: #ff0;
-  color: #000;
-}
+/** Addresses styling not present in IE 8/9. */
+/* line 217, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/normalize-scss/_normalize.scss */
+mark { background: #ff0; color: #000; }
 
-/**
- * Addresses margins set differently in IE 6/7.
- */
-/**
- * Correct font family set oddly in Safari 5 and Chrome.
- */
-code,
-kbd,
-pre,
-samp {
-  font-family: monospace, serif;
-  font-size: 1em;
-}
+/** Addresses margins set differently in IE 6/7. */
+/** Correct font family set oddly in Safari 5 and Chrome. */
+/* line 237, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/normalize-scss/_normalize.scss */
+code, kbd, pre, samp { font-family: monospace, serif; font-size: 1em; }
 
-/**
- * Improve readability of pre-formatted text in all browsers.
- */
-pre {
-  white-space: pre-wrap;
-}
+/** Improve readability of pre-formatted text in all browsers. */
+/* line 252, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/normalize-scss/_normalize.scss */
+pre { white-space: pre-wrap; }
 
-/**
- *  Set consistent quote types.
- */
-q {
-  quotes: "\201C" "\201D" "\2018" "\2019";
-}
+/** Set consistent quote types. */
+/* line 260, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/normalize-scss/_normalize.scss */
+q { quotes: "\201C" "\201D" "\2018" "\2019"; }
 
-/**
- * Address inconsistent and variable font size in all browsers.
- */
-small {
-  font-size: 80%;
-}
+/** Address inconsistent and variable font size in all browsers. */
+/* line 288, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/normalize-scss/_normalize.scss */
+small { font-size: 80%; }
 
-/**
- * Prevent `sub` and `sup` affecting `line-height` in all browsers.
- */
-sub,
-sup {
-  font-size: 75%;
-  line-height: 0;
-  position: relative;
-  vertical-align: baseline;
-}
+/** Prevent `sub` and `sup` affecting `line-height` in all browsers. */
+/* line 296, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/normalize-scss/_normalize.scss */
+sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
 
-sup {
-  top: -0.5em;
-}
+/* line 304, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/normalize-scss/_normalize.scss */
+sup { top: -0.5em; }
 
-sub {
-  bottom: -0.25em;
-}
+/* line 308, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/normalize-scss/_normalize.scss */
+sub { bottom: -0.25em; }
 
-/* ==========================================================================
-   Embedded content
-   ========================================================================== */
-/**
- * 1. Remove border when inside `a` element in IE 8/9.
- * 2. Improves image quality when scaled in IE 7.
- */
-img {
-  border: 0;
-}
+/* ========================================================================== Embedded content ========================================================================== */
+/** 1. Remove border when inside `a` element in IE 8/9. 2. Improves image quality when scaled in IE 7. */
+/* line 364, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/normalize-scss/_normalize.scss */
+img { border: 0; }
 
-/**
- * Correct overflow displayed oddly in IE 9.
- */
-svg:not(:root) {
-  overflow: hidden;
-}
+/** Correct overflow displayed oddly in IE 9. */
+/* line 375, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/normalize-scss/_normalize.scss */
+svg:not(:root) { overflow: hidden; }
 
-/* ==========================================================================
-   Figures
-   ========================================================================== */
-/**
- * Address margin not present in IE 8/9 and Safari 5.
- */
-figure {
-  margin: 0;
-}
+/* ========================================================================== Figures ========================================================================== */
+/** Address margin not present in IE 8/9 and Safari 5. */
+/* line 387, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/normalize-scss/_normalize.scss */
+figure { margin: 0; }
 
-/* ==========================================================================
-   Forms
-   ========================================================================== */
-/**
- * Define consistent border, margin, and padding.
- */
-fieldset {
-  border: 1px solid #c0c0c0;
-  margin: 0 2px;
-  padding: 0.35em 0.625em 0.75em;
-}
+/* ========================================================================== Forms ========================================================================== */
+/** Define consistent border, margin, and padding. */
+/* line 399, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/normalize-scss/_normalize.scss */
+fieldset { border: 1px solid #c0c0c0; margin: 0 2px; padding: 0.35em 0.625em 0.75em; }
 
-/**
- * 1. Correct `color` not being inherited in IE 8/9.
- * 2. Remove padding so people aren't caught out if they zero out fieldsets.
- * 3. Corrects text not wrapping in Firefox 3.
- * 4. Corrects alignment displayed oddly in IE 6/7.
- */
-legend {
-  border: 0;
-  /* 1 */
-  padding: 0;
-  /* 2 */
-}
+/** 1. Correct `color` not being inherited in IE 8/9. 2. Remove padding so people aren't caught out if they zero out fieldsets. 3. Corrects text not wrapping in Firefox 3. 4. Corrects alignment displayed oddly in IE 6/7. */
+/* line 412, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/normalize-scss/_normalize.scss */
+legend { border: 0; /* 1 */ padding: 0; /* 2 */ }
 
-/**
- * 1. Correct font family not being inherited in all browsers.
- * 2. Correct font size not being inherited in all browsers.
- * 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome.
- * 4. Improves appearance and consistency in all browsers.
- */
-button,
-input,
-select,
-textarea {
-  font-family: inherit;
-  /* 1 */
-  font-size: 100%;
-  /* 2 */
-  margin: 0;
-  /* 3 */
-}
+/** 1. Correct font family not being inherited in all browsers. 2. Correct font size not being inherited in all browsers. 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome. 4. Improves appearance and consistency in all browsers. */
+/* line 428, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/normalize-scss/_normalize.scss */
+button, input, select, textarea { font-family: inherit; /* 1 */ font-size: 100%; /* 2 */ margin: 0; /* 3 */ }
 
-/**
- * Address Firefox 4+ setting `line-height` on `input` using `!important` in
- * the UA stylesheet.
- */
-button,
-input {
-  line-height: normal;
-}
+/** Address Firefox 4+ setting `line-height` on `input` using `!important` in the UA stylesheet. */
+/* line 446, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/normalize-scss/_normalize.scss */
+button, input { line-height: normal; }
 
-/**
- * Address inconsistent `text-transform` inheritance for `button` and `select`.
- * All other form control elements do not inherit `text-transform` values.
- * Correct `button` style inheritance in Chrome, Safari 5+, and IE 8+.
- * Correct `select` style inheritance in Firefox 4+ and Opera.
- */
-button,
-select {
-  text-transform: none;
-}
+/** Address inconsistent `text-transform` inheritance for `button` and `select`. All other form control elements do not inherit `text-transform` values. Correct `button` style inheritance in Chrome, Safari 5+, and IE 8+. Correct `select` style inheritance in Firefox 4+ and Opera. */
+/* line 458, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/normalize-scss/_normalize.scss */
+button, select { text-transform: none; }
 
-/**
- * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
- *    and `video` controls.
- * 2. Correct inability to style clickable `input` types in iOS.
- * 3. Improve usability and consistency of cursor style between image-type
- *    `input` and others.
- * 4. Removes inner spacing in IE 7 without affecting normal text inputs.
- *    Known issue: inner spacing remains in IE 6.
- */
-button,
-html input[type="button"],
-input[type="reset"],
-input[type="submit"] {
-  -webkit-appearance: button;
-  /* 2 */
-  cursor: pointer;
-  /* 3 */
-}
+/** 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio` and `video` controls. 2. Correct inability to style clickable `input` types in iOS. 3. Improve usability and consistency of cursor style between image-type `input` and others. 4. Removes inner spacing in IE 7 without affecting normal text inputs. Known issue: inner spacing remains in IE 6. */
+/* line 473, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/normalize-scss/_normalize.scss */
+button, html input[type="button"], input[type="reset"], input[type="submit"] { -webkit-appearance: button; /* 2 */ cursor: pointer; /* 3 */ }
 
-/**
- * Re-set default cursor for disabled elements.
- */
-button[disabled],
-html input[disabled] {
-  cursor: default;
-}
+/** Re-set default cursor for disabled elements. */
+/* line 488, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/normalize-scss/_normalize.scss */
+button[disabled], html input[disabled] { cursor: default; }
 
-/**
- * 1. Address box sizing set to `content-box` in IE 8/9/10.
- * 2. Remove excess padding in IE 7/8/9/10.
- *    Known issue: excess padding remains in IE 6.
- */
-input[type="checkbox"],
-input[type="radio"] {
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  /* 1 */
-  padding: 0;
-  /* 2 */
-}
+/** 1. Address box sizing set to `content-box` in IE 8/9/10. 2. Remove excess padding in IE 7/8/9/10. Known issue: excess padding remains in IE 6. */
+/* line 499, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/normalize-scss/_normalize.scss */
+input[type="checkbox"], input[type="radio"] { box-sizing: border-box; /* 1 */ padding: 0; /* 2 */ }
 
-/**
- * 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome.
- * 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome
- *    (include `-moz` to future-proof).
- */
-input[type="search"] {
-  -webkit-appearance: textfield;
-  /* 1 */
-  -moz-box-sizing: content-box;
-  /* 2 */
-  box-sizing: content-box;
-}
+/** 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome. 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome (include `-moz` to future-proof). */
+/* line 515, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/normalize-scss/_normalize.scss */
+input[type="search"] { -webkit-appearance: textfield; /* 1 */ /* 2 */ box-sizing: content-box; }
 
-/**
- * Remove inner padding and search cancel button in Safari 5 and Chrome
- * on OS X.
- */
-input[type="search"]::-webkit-search-cancel-button,
-input[type="search"]::-webkit-search-decoration {
-  -webkit-appearance: none;
-}
+/** Remove inner padding and search cancel button in Safari 5 and Chrome on OS X. */
+/* line 527, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/normalize-scss/_normalize.scss */
+input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration { -webkit-appearance: none; }
 
-/**
- * Remove inner padding and border in Firefox 4+.
- */
-button::-moz-focus-inner,
-input::-moz-focus-inner {
-  border: 0;
-  padding: 0;
-}
+/** Remove inner padding and border in Firefox 4+. */
+/* line 536, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/normalize-scss/_normalize.scss */
+button::-moz-focus-inner, input::-moz-focus-inner { border: 0; padding: 0; }
 
-/**
- * 1. Remove default vertical scrollbar in IE 8/9.
- * 2. Improve readability and alignment in all browsers.
- */
-textarea {
-  overflow: auto;
-  /* 1 */
-  vertical-align: top;
-  /* 2 */
-}
+/** 1. Remove default vertical scrollbar in IE 8/9. 2. Improve readability and alignment in all browsers. */
+/* line 547, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/normalize-scss/_normalize.scss */
+textarea { overflow: auto; /* 1 */ vertical-align: top; /* 2 */ }
 
-/* ==========================================================================
-   Tables
-   ========================================================================== */
-/**
- * Remove most spacing between table cells.
- */
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
+/* ========================================================================== Tables ========================================================================== */
+/** Remove most spacing between table cells. */
+/* line 560, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/normalize-scss/_normalize.scss */
+table { border-collapse: collapse; border-spacing: 0; }
 
-/**
- * Default variables
- */
-/**
- * Helper functions
- */
-/**
- * Hide visually
- *
- * See http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
- * for discussion of different solutions
- */
-.visuallyhidden {
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-}
+/** Custom web fonts */
+/** Sync breakpoints with JavaScript  "content" property of head element contains the current breakpoint "font-family" property of head element contains all breakpoints */
+@media all { /* line 9, ../../../assets/css/_mediaqueries_sync.scss */
+  title { font-family: '{"name":"tiny","value":"0px"}'; } }
+@media all and (min-width: 41.3125em) { /* line 19, ../../../assets/css/_mediaqueries_sync.scss */
+  title { font-family: '{"name":"small","value":"661px"}'; } }
+@media all and (min-width: 64.0625em) { /* line 19, ../../../assets/css/_mediaqueries_sync.scss */
+  title { font-family: '{"name":"medium","value":"1025px"}'; } }
+@media all and (min-width: 80.0625em) { /* line 19, ../../../assets/css/_mediaqueries_sync.scss */
+  title { font-family: '{"name":"large","value":"1281px"}'; } }
+/* line 25, ../../../assets/css/_mediaqueries_sync.scss */
+head { font-family: '{"small":"661px","medium":"1025px","large":"1281px"}'; display: none; }
 
-/**
- * Clearfix
- *
- * http://nicolasgallagher.com/micro-clearfix-hack/
- */
-.clearfix, .flex_mod_multistepnavigation, .flex_summary .flex_summary_item {
-  *zoom: 1;
-}
-.clearfix:before, .flex_mod_multistepnavigation:before, .flex_summary .flex_summary_item:before, .clearfix:after, .flex_mod_multistepnavigation:after, .flex_summary .flex_summary_item:after {
-  content: " ";
-  display: table;
-}
-.clearfix:after, .flex_mod_multistepnavigation:after, .flex_summary .flex_summary_item:after {
-  clear: both;
-}
+/** Generic classes */
+/* line 5, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/css/globals/_classes.scss */
+.visuallyhidden { border: 0; clip: rect(0 0 0 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; }
 
-/**
- * Lists with layout purpose
- */
-nav ul,
-nav ol, .flex_formcontainer fieldset ul, .flex_formcontainer fieldset ol,
-.flex_formcontainer section ul, .flex_formcontainer section ol, .flex_mod_multistepnavigation ul, .flex_autocomplete_wrapper ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
+/* line 9, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/css/globals/_classes.scss */
+.clearfix { *zoom: 1; }
+/* line 47, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/css/globals/_mixins.scss */
+.clearfix:before, .clearfix:after { content: " "; display: table; }
+/* line 53, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/css/globals/_mixins.scss */
+.clearfix:after { clear: both; }
 
-/**
- * Hide text - show icon
- */
-/**
- * Hide text that is wrapped in a span inside a div
- */
-.flex_tooltipcontainer > a span, .flex_tooltip .flex_tooltipclose span {
-  display: none;
-}
+/* line 1, ../../../assets/css/_layout.scss */
+body { background: #ffffff; color: #000000; font-family: Arial, sans-serif; font-size: 100%; line-height: 1.5; }
 
-/**
- * Hide visually
- *
- * See http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
- * for discussion of different solutions
- */
-/**
- * Clearfix
- *
- * http://nicolasgallagher.com/micro-clearfix-hack/
- */
-/**
- * Lists with layout purpose
- */
+/* line 11, ../../../assets/css/_layout.scss */
+nav ul, nav ol { list-style: none; margin: 0; padding: 0; }
+
+/* line 17, ../../../assets/css/_layout.scss */
+.layout_wrapper { margin: 0 auto; width: 60em; }
+
+/* line 22, ../../../assets/css/_layout.scss */
+.layout_columns { display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex; }
+/* line 25, ../../../assets/css/_layout.scss */
+.no-flexbox.no-flexboxlegacy.no-flexboxtweener .layout_columns { *zoom: 1; }
+/* line 47, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/css/globals/_mixins.scss */
+.no-flexbox.no-flexboxlegacy.no-flexboxtweener .layout_columns:before, .no-flexbox.no-flexboxlegacy.no-flexboxtweener .layout_columns:after { content: " "; display: table; }
+/* line 53, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/css/globals/_mixins.scss */
+.no-flexbox.no-flexboxlegacy.no-flexboxtweener .layout_columns:after { clear: both; }
+
+/* line 30, ../../../assets/css/_layout.scss */
+.layout_main { width: 75%; }
+/* line 33, ../../../assets/css/_layout.scss */
+.no-flexbox.no-flexboxlegacy.no-flexboxtweener .layout_main { float: left; }
+
+/* line 38, ../../../assets/css/_layout.scss */
+.layout_sidebar { -webkit-box-flex: 1; -webkit-flex: 1; -ms-flex: 1; flex: 1; }
+/* line 41, ../../../assets/css/_layout.scss */
+.no-flexbox.no-flexboxlegacy.no-flexboxtweener .layout_sidebar { float: right; width: 25%; }
+
 /* Inputfields and Buttons */
-.flex_formcontainer {
-  margin-bottom: 0.5em;
-}
-.flex_formcontainer .flex_label {
-  color: #000000;
-}
-.flex_formcontainer .flex_singletextfield .flex_label,
-.flex_formcontainer .flex_singleselectfield .flex_label,
-.flex_formcontainer .flex_textarea .flex_label,
-.flex_formcontainer .flex_fileinputfield .flex_label,
-.flex_formcontainer .flex_multipleselectfield .flex_label,
-.flex_formcontainer .flex_datefield .flex_label,
-.flex_formcontainer .flex_rtefield .flex_label {
-  width: 50%;
-  float: left;
-  padding-top: 1em;
-}
-.flex_formcontainer .flex_singletextfield input[type=text],
-.flex_formcontainer .flex_singletextfield input[type=email],
-.flex_formcontainer .flex_singletextfield input[type=tel],
-.flex_formcontainer .flex_singletextfield input[type=number],
-.flex_formcontainer .flex_singletextfield input[type=search],
-.flex_formcontainer .flex_singletextfield input[type=password],
-.flex_formcontainer .flex_singletextfield textarea,
-.flex_formcontainer .flex_singletextfield .flex_uploader,
-.flex_formcontainer .flex_singletextfield .flex_selector,
-.flex_formcontainer .flex_singletextfield select,
-.flex_formcontainer .flex_singletextfield select[multiple=multiple],
-.flex_formcontainer .flex_singleselectfield input[type=text],
-.flex_formcontainer .flex_singleselectfield input[type=email],
-.flex_formcontainer .flex_singleselectfield input[type=tel],
-.flex_formcontainer .flex_singleselectfield input[type=number],
-.flex_formcontainer .flex_singleselectfield input[type=search],
-.flex_formcontainer .flex_singleselectfield input[type=password],
-.flex_formcontainer .flex_singleselectfield textarea,
-.flex_formcontainer .flex_singleselectfield .flex_uploader,
-.flex_formcontainer .flex_singleselectfield .flex_selector,
-.flex_formcontainer .flex_singleselectfield select,
-.flex_formcontainer .flex_singleselectfield select[multiple=multiple],
-.flex_formcontainer .flex_textarea input[type=text],
-.flex_formcontainer .flex_textarea input[type=email],
-.flex_formcontainer .flex_textarea input[type=tel],
-.flex_formcontainer .flex_textarea input[type=number],
-.flex_formcontainer .flex_textarea input[type=search],
-.flex_formcontainer .flex_textarea input[type=password],
-.flex_formcontainer .flex_textarea textarea,
-.flex_formcontainer .flex_textarea .flex_uploader,
-.flex_formcontainer .flex_textarea .flex_selector,
-.flex_formcontainer .flex_textarea select,
-.flex_formcontainer .flex_textarea select[multiple=multiple],
-.flex_formcontainer .flex_fileinputfield input[type=text],
-.flex_formcontainer .flex_fileinputfield input[type=email],
-.flex_formcontainer .flex_fileinputfield input[type=tel],
-.flex_formcontainer .flex_fileinputfield input[type=number],
-.flex_formcontainer .flex_fileinputfield input[type=search],
-.flex_formcontainer .flex_fileinputfield input[type=password],
-.flex_formcontainer .flex_fileinputfield textarea,
-.flex_formcontainer .flex_fileinputfield .flex_uploader,
-.flex_formcontainer .flex_fileinputfield .flex_selector,
-.flex_formcontainer .flex_fileinputfield select,
-.flex_formcontainer .flex_fileinputfield select[multiple=multiple],
-.flex_formcontainer .flex_multipleselectfield input[type=text],
-.flex_formcontainer .flex_multipleselectfield input[type=email],
-.flex_formcontainer .flex_multipleselectfield input[type=tel],
-.flex_formcontainer .flex_multipleselectfield input[type=number],
-.flex_formcontainer .flex_multipleselectfield input[type=search],
-.flex_formcontainer .flex_multipleselectfield input[type=password],
-.flex_formcontainer .flex_multipleselectfield textarea,
-.flex_formcontainer .flex_multipleselectfield .flex_uploader,
-.flex_formcontainer .flex_multipleselectfield .flex_selector,
-.flex_formcontainer .flex_multipleselectfield select,
-.flex_formcontainer .flex_multipleselectfield select[multiple=multiple],
-.flex_formcontainer .flex_datefield input[type=text],
-.flex_formcontainer .flex_datefield input[type=email],
-.flex_formcontainer .flex_datefield input[type=tel],
-.flex_formcontainer .flex_datefield input[type=number],
-.flex_formcontainer .flex_datefield input[type=search],
-.flex_formcontainer .flex_datefield input[type=password],
-.flex_formcontainer .flex_datefield textarea,
-.flex_formcontainer .flex_datefield .flex_uploader,
-.flex_formcontainer .flex_datefield .flex_selector,
-.flex_formcontainer .flex_datefield select,
-.flex_formcontainer .flex_datefield select[multiple=multiple],
-.flex_formcontainer .flex_rtefield input[type=text],
-.flex_formcontainer .flex_rtefield input[type=email],
-.flex_formcontainer .flex_rtefield input[type=tel],
-.flex_formcontainer .flex_rtefield input[type=number],
-.flex_formcontainer .flex_rtefield input[type=search],
-.flex_formcontainer .flex_rtefield input[type=password],
-.flex_formcontainer .flex_rtefield textarea,
-.flex_formcontainer .flex_rtefield .flex_uploader,
-.flex_formcontainer .flex_rtefield .flex_selector,
-.flex_formcontainer .flex_rtefield select,
-.flex_formcontainer .flex_rtefield select[multiple=multiple] {
-  display: inline-block;
-  width: 50%;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-.flex_formcontainer .flex_smallfield .flex_label {
-  width: 50%;
-  float: left;
-}
-.flex_formcontainer .flex_smallfield input[type=text],
-.flex_formcontainer .flex_smallfield input[type=email],
-.flex_formcontainer .flex_smallfield input[type=tel],
-.flex_formcontainer .flex_smallfield input[type=number],
-.flex_formcontainer .flex_smallfield input[type=search],
-.flex_formcontainer .flex_smallfield input[type=password],
-.flex_formcontainer .flex_smallfield textarea,
-.flex_formcontainer .flex_smallfield .flex_uploader,
-.flex_formcontainer .flex_smallfield .flex_selector,
-.flex_formcontainer .flex_smallfield select,
-.flex_formcontainer .flex_smallfield select[multiple=multiple] {
-  width: 30%;
-}
-.flex_formcontainer .flex_radiogroup legend.flex_label,
-.flex_formcontainer .flex_checkboxgroup legend.flex_label {
-  width: 50%;
-  float: left;
-}
-.flex_formcontainer input[type=number] {
-  -moz-appearance: textfield;
-}
-.flex_formcontainer input[type=number]::-webkit-inner-spin-button,
-.flex_formcontainer input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-.flex_formcontainer .flex_rtefield .flex_label {
-  font-weight: normal;
-}
-.flex_formcontainer .flex_rtefield .flex_rtecontent {
-  overflow: hidden;
-}
-.flex_formcontainer input[type=submit].u_var_small, .flex_formcontainer button[type=submit].u_var_small,
-.flex_formcontainer a.flex_button.u_var_small {
-  line-height: 1;
-}
-.flex_formcontainer input[type=reset].u_var_small, .flex_formcontainer button[type=reset].u_var_small, .flex_formcontainer button[type=button].u_var_small,
-.flex_formcontainer [type=submit].flex_button_secondary.u_var_small,
-.flex_formcontainer a.flex_button_secondary.u_var_small {
-  line-height: 1;
-}
-.flex_formcontainer .flex_listitem {
-  position: relative;
-}
-.flex_formcontainer fieldset {
-  border: none;
-  margin: 0;
-  padding: 3.2em 0 0;
-  position: relative;
-}
-.flex_formcontainer fieldset.flex_var_nolegend {
-  padding-top: 0;
-}
-.flex_formcontainer fieldset legend {
-  position: relative;
-}
-.flex_formcontainer fieldset legend.flex_label {
-  display: inline-block;
-}
-.flex_formcontainer fieldset legend:not(.flex_label) {
-  font-family: Georgia, serif;
-  font-size: 1.4em;
-  margin: 0;
-  padding: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-.flex_formcontainer fieldset li, .flex_formcontainer fieldset .flex_listitem {
-  margin-bottom: 1em;
-}
-.flex_formcontainer .info3-block {
-  display: none;
-}
-.flex_formcontainer [data-flexform-dependent] {
-  display: none;
-}
-.flex_formcontainer .flex_radiogroup {
-  position: relative;
-}
-.flex_formcontainer .flex_radiogroup fieldset {
-  padding: 0;
-}
-.flex_formcontainer .flex_radiogroup .flex_radio {
-  display: inline-block;
-  padding-right: 0.3125em;
-}
-.flex_formcontainer .flex_radiogroup .flex_label {
-  line-height: 1.375em;
-}
-.flex_formcontainer .flex_singlecheckbox .flex_checker,
-.flex_formcontainer .flex_checkboxgroup .flex_checker {
-  display: inline-block;
-  padding-right: 0.3125em;
-}
-.flex_formcontainer .flex_singlecheckbox .flex_label,
-.flex_formcontainer .flex_checkboxgroup .flex_label {
-  line-height: 1.375em;
-}
-.flex_formcontainer .flex_radiogroup .flex_label,
-.flex_formcontainer .flex_checkboxgroup .flex_label {
-  line-height: 1.375em;
-  margin-bottom: 0.5em;
-}
-.flex_formcontainer .flex_radiogroup .flex_checkboxgroupoptions,
-.flex_formcontainer .flex_radiogroup .flex_radiogroupoptions,
-.flex_formcontainer .flex_checkboxgroup .flex_checkboxgroupoptions,
-.flex_formcontainer .flex_checkboxgroup .flex_radiogroupoptions {
-  display: inline-block;
-}
-.flex_formcontainer .flex_singlecheckbox label,
-.flex_formcontainer .flex_checkboxgroupoptions label,
-.flex_formcontainer .flex_radiogroupoptions label {
-  display: inline-block;
-}
-.flex_formcontainer .flex_has_error input[type=text],
-.flex_formcontainer .flex_has_error input[type=email],
-.flex_formcontainer .flex_has_error input[type=tel],
-.flex_formcontainer .flex_has_error input[type=number],
-.flex_formcontainer .flex_has_error input[type=search],
-.flex_formcontainer .flex_has_error input[type=password] {
-  border-color: #A6643A;
-}
-.flex_formcontainer .flex_has_error > textarea {
-  border-color: #A6643A;
-}
-.flex_formcontainer .flex_has_error > .flex_checker span, .flex_formcontainer .flex_has_error > fieldset .flex_radio span, .flex_formcontainer .flex_has_error > .flex_selector span {
-  border-color: #A6643A;
-}
-.flex_formcontainer .flex_fielderror {
-  color: #A6643A;
-}
-.flex_formcontainer .flex_globalerror {
-  color: #A6643A;
-}
-.flex_formcontainer .flex_showpassword input[type=text] {
-  display: none;
-}
-.flex_formcontainer .flex_showpassword.flex_show_active input[type=password] {
-  display: none;
-}
-.flex_formcontainer .flex_showpassword.flex_show_active input[type=text] {
-  display: block;
-}
-.flex_formcontainer .flex_showpassword .flex_singlecheckbox {
-  margin-top: 0.5em;
-  padding-left: 50%;
-}
+/* line 2, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form.scss */
+.flex_formcontainer { margin-bottom: 0.5em; }
+/* line 5, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form.scss */
+.flex_formcontainer .flex_label { color: #000000; }
+/* line 12, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form.scss */
+.flex_formcontainer .flex_singletextfield .flex_label, .flex_formcontainer .flex_singleselectfield .flex_label, .flex_formcontainer .flex_textarea .flex_label, .flex_formcontainer .flex_fileinputfield .flex_label, .flex_formcontainer .flex_multipleselectfield .flex_label, .flex_formcontainer .flex_datefield .flex_label, .flex_formcontainer .flex_rtefield .flex_label { width: 50%; float: left; padding-top: 1em; }
+/* line 91, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form-globals.scss */
+.flex_formcontainer .flex_singletextfield input[type=text], .flex_formcontainer .flex_singletextfield input[type=email], .flex_formcontainer .flex_singletextfield input[type=tel], .flex_formcontainer .flex_singletextfield input[type=number], .flex_formcontainer .flex_singletextfield input[type=search], .flex_formcontainer .flex_singletextfield input[type=password], .flex_formcontainer .flex_singletextfield textarea, .flex_formcontainer .flex_singletextfield .flex_uploader, .flex_formcontainer .flex_singletextfield .flex_selector, .flex_formcontainer .flex_singletextfield select, .flex_formcontainer .flex_singletextfield select[multiple=multiple], .flex_formcontainer .flex_singleselectfield input[type=text], .flex_formcontainer .flex_singleselectfield input[type=email], .flex_formcontainer .flex_singleselectfield input[type=tel], .flex_formcontainer .flex_singleselectfield input[type=number], .flex_formcontainer .flex_singleselectfield input[type=search], .flex_formcontainer .flex_singleselectfield input[type=password], .flex_formcontainer .flex_singleselectfield textarea, .flex_formcontainer .flex_singleselectfield .flex_uploader, .flex_formcontainer .flex_singleselectfield .flex_selector, .flex_formcontainer .flex_singleselectfield select, .flex_formcontainer .flex_singleselectfield select[multiple=multiple], .flex_formcontainer .flex_textarea input[type=text], .flex_formcontainer .flex_textarea input[type=email], .flex_formcontainer .flex_textarea input[type=tel], .flex_formcontainer .flex_textarea input[type=number], .flex_formcontainer .flex_textarea input[type=search], .flex_formcontainer .flex_textarea input[type=password], .flex_formcontainer .flex_textarea textarea, .flex_formcontainer .flex_textarea .flex_uploader, .flex_formcontainer .flex_textarea .flex_selector, .flex_formcontainer .flex_textarea select, .flex_formcontainer .flex_textarea select[multiple=multiple], .flex_formcontainer .flex_fileinputfield input[type=text], .flex_formcontainer .flex_fileinputfield input[type=email], .flex_formcontainer .flex_fileinputfield input[type=tel], .flex_formcontainer .flex_fileinputfield input[type=number], .flex_formcontainer .flex_fileinputfield input[type=search], .flex_formcontainer .flex_fileinputfield input[type=password], .flex_formcontainer .flex_fileinputfield textarea, .flex_formcontainer .flex_fileinputfield .flex_uploader, .flex_formcontainer .flex_fileinputfield .flex_selector, .flex_formcontainer .flex_fileinputfield select, .flex_formcontainer .flex_fileinputfield select[multiple=multiple], .flex_formcontainer .flex_multipleselectfield input[type=text], .flex_formcontainer .flex_multipleselectfield input[type=email], .flex_formcontainer .flex_multipleselectfield input[type=tel], .flex_formcontainer .flex_multipleselectfield input[type=number], .flex_formcontainer .flex_multipleselectfield input[type=search], .flex_formcontainer .flex_multipleselectfield input[type=password], .flex_formcontainer .flex_multipleselectfield textarea, .flex_formcontainer .flex_multipleselectfield .flex_uploader, .flex_formcontainer .flex_multipleselectfield .flex_selector, .flex_formcontainer .flex_multipleselectfield select, .flex_formcontainer .flex_multipleselectfield select[multiple=multiple], .flex_formcontainer .flex_datefield input[type=text], .flex_formcontainer .flex_datefield input[type=email], .flex_formcontainer .flex_datefield input[type=tel], .flex_formcontainer .flex_datefield input[type=number], .flex_formcontainer .flex_datefield input[type=search], .flex_formcontainer .flex_datefield input[type=password], .flex_formcontainer .flex_datefield textarea, .flex_formcontainer .flex_datefield .flex_uploader, .flex_formcontainer .flex_datefield .flex_selector, .flex_formcontainer .flex_datefield select, .flex_formcontainer .flex_datefield select[multiple=multiple], .flex_formcontainer .flex_rtefield input[type=text], .flex_formcontainer .flex_rtefield input[type=email], .flex_formcontainer .flex_rtefield input[type=tel], .flex_formcontainer .flex_rtefield input[type=number], .flex_formcontainer .flex_rtefield input[type=search], .flex_formcontainer .flex_rtefield input[type=password], .flex_formcontainer .flex_rtefield textarea, .flex_formcontainer .flex_rtefield .flex_uploader, .flex_formcontainer .flex_rtefield .flex_selector, .flex_formcontainer .flex_rtefield select, .flex_formcontainer .flex_rtefield select[multiple=multiple] { display: inline-block; width: 50%; box-sizing: border-box; }
+/* line 24, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form.scss */
+.flex_formcontainer .flex_smallfield .flex_label { width: 50%; float: left; }
+/* line 91, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form-globals.scss */
+.flex_formcontainer .flex_smallfield input[type=text], .flex_formcontainer .flex_smallfield input[type=email], .flex_formcontainer .flex_smallfield input[type=tel], .flex_formcontainer .flex_smallfield input[type=number], .flex_formcontainer .flex_smallfield input[type=search], .flex_formcontainer .flex_smallfield input[type=password], .flex_formcontainer .flex_smallfield textarea, .flex_formcontainer .flex_smallfield .flex_uploader, .flex_formcontainer .flex_smallfield .flex_selector, .flex_formcontainer .flex_smallfield select, .flex_formcontainer .flex_smallfield select[multiple=multiple] { width: 30%; }
+/* line 34, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form.scss */
+.flex_formcontainer .flex_radiogroup legend.flex_label, .flex_formcontainer .flex_checkboxgroup legend.flex_label { width: 50%; float: left; }
+/* line 63, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form.scss */
+.flex_formcontainer input[type=number] { -moz-appearance: textfield; }
+/* line 66, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form.scss */
+.flex_formcontainer input[type=number]::-webkit-inner-spin-button, .flex_formcontainer input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+/* line 74, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form.scss */
+.flex_formcontainer .flex_rtefield .flex_label { font-weight: normal; }
+/* line 77, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form.scss */
+.flex_formcontainer .flex_rtefield .flex_rtecontent { overflow: hidden; }
+/* line 87, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form.scss */
+.flex_formcontainer input[type=submit].u_var_small, .flex_formcontainer button[type=submit].u_var_small, .flex_formcontainer a.flex_button.u_var_small { line-height: 1; }
+/* line 96, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form.scss */
+.flex_formcontainer input[type=reset].u_var_small, .flex_formcontainer button[type=reset].u_var_small, .flex_formcontainer button[type=button].u_var_small, .flex_formcontainer [type=submit].flex_button_secondary.u_var_small, .flex_formcontainer a.flex_button_secondary.u_var_small { line-height: 1; }
+/* line 102, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form.scss */
+.flex_formcontainer .flex_listitem { position: relative; }
+/* line 106, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form.scss */
+.flex_formcontainer fieldset { border: none; margin: 0; padding: 3.2em 0 0; position: relative; }
+/* line 112, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form.scss */
+.flex_formcontainer fieldset.flex_var_nolegend { padding-top: 0; }
+/* line 116, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form.scss */
+.flex_formcontainer fieldset legend { position: relative; }
+/* line 119, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form.scss */
+.flex_formcontainer fieldset legend.flex_label { display: inline-block; }
+/* line 123, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form.scss */
+.flex_formcontainer fieldset legend:not(.flex_label) { font-family: Georgia, serif; font-size: 1.4em; margin: 0; padding: 0; position: absolute; top: 0; left: 0; }
+/* line 134, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form.scss */
+.flex_formcontainer fieldset li, .flex_formcontainer fieldset .flex_listitem { margin-bottom: 1em; }
+/* line 139, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form.scss */
+.flex_formcontainer fieldset ul, .flex_formcontainer fieldset ol, .flex_formcontainer section ul, .flex_formcontainer section ol { list-style: none; margin: 0; padding: 0; }
+/* line 145, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form.scss */
+.flex_formcontainer .info3-block { display: none; }
+/* line 148, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form.scss */
+.flex_formcontainer [data-flexform-dependent] { display: none; }
+/* line 151, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form.scss */
+.flex_formcontainer .flex_radiogroup { position: relative; }
+/* line 154, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form.scss */
+.flex_formcontainer .flex_radiogroup fieldset { padding: 0; }
+/* line 158, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form.scss */
+.flex_formcontainer .flex_radiogroup .flex_radio { display: inline-block; padding-right: 0.3125em; }
+/* line 162, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form.scss */
+.flex_formcontainer .flex_radiogroup .flex_label { line-height: 1.375em; }
+/* line 168, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form.scss */
+.flex_formcontainer .flex_singlecheckbox .flex_checker, .flex_formcontainer .flex_checkboxgroup .flex_checker { display: inline-block; padding-right: 0.3125em; }
+/* line 172, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form.scss */
+.flex_formcontainer .flex_singlecheckbox .flex_label, .flex_formcontainer .flex_checkboxgroup .flex_label { line-height: 1.375em; }
+/* line 178, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form.scss */
+.flex_formcontainer .flex_radiogroup .flex_label, .flex_formcontainer .flex_checkboxgroup .flex_label { line-height: 1.375em; margin-bottom: 0.5em; }
+/* line 183, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form.scss */
+.flex_formcontainer .flex_radiogroup .flex_checkboxgroupoptions, .flex_formcontainer .flex_radiogroup .flex_radiogroupoptions, .flex_formcontainer .flex_checkboxgroup .flex_checkboxgroupoptions, .flex_formcontainer .flex_checkboxgroup .flex_radiogroupoptions { display: inline-block; }
+/* line 192, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form.scss */
+.flex_formcontainer .flex_singlecheckbox label, .flex_formcontainer .flex_checkboxgroupoptions label, .flex_formcontainer .flex_radiogroupoptions label { display: inline-block; }
+/* line 80, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form-globals.scss */
+.flex_formcontainer .flex_has_error input[type=text], .flex_formcontainer .flex_has_error input[type=email], .flex_formcontainer .flex_has_error input[type=tel], .flex_formcontainer .flex_has_error input[type=number], .flex_formcontainer .flex_has_error input[type=search], .flex_formcontainer .flex_has_error input[type=password] { border-color: #A6643A; }
+/* line 203, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form.scss */
+.flex_formcontainer .flex_has_error > textarea { border-color: #A6643A; }
+/* line 206, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form.scss */
+.flex_formcontainer .flex_has_error > .flex_checker span, .flex_formcontainer .flex_has_error > fieldset .flex_radio span, .flex_formcontainer .flex_has_error > .flex_selector span { border-color: #A6643A; }
+/* line 212, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form.scss */
+.flex_formcontainer .flex_fielderror { color: #A6643A; }
+/* line 217, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form.scss */
+.flex_formcontainer .flex_globalerror { color: #A6643A; }
+/* line 223, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form.scss */
+.flex_formcontainer .flex_showpassword input[type=text] { display: none; }
+/* line 227, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form.scss */
+.flex_formcontainer .flex_showpassword.flex_show_active input[type=password] { display: none; }
+/* line 230, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form.scss */
+.flex_formcontainer .flex_showpassword.flex_show_active input[type=text] { display: block; }
+/* line 234, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form.scss */
+.flex_formcontainer .flex_showpassword .flex_singlecheckbox { margin-top: 0.5em; padding-left: 50%; }
 
-.flex_formcontainer .validation-summary-valid {
-  display: none;
-}
-.flex_formcontainer .validation-summary-errors {
-  color: #A6643A;
-}
-.flex_formcontainer .field-validation-valid {
-  display: none;
-}
-.flex_formcontainer .field-validation-error {
-  color: #A6643A;
-  margin-top: 0.5em;
-  padding-left: 50%;
-}
+/* line 3, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/validation/validation.scss */
+.flex_formcontainer .validation-summary-valid { display: none; }
+/* line 6, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/validation/validation.scss */
+.flex_formcontainer .validation-summary-errors { color: #A6643A; }
+/* line 10, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/validation/validation.scss */
+.flex_formcontainer .field-validation-valid { display: none; }
+/* line 13, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/validation/validation.scss */
+.flex_formcontainer .field-validation-error { color: #A6643A; margin-top: 0.5em; padding-left: 50%; }
 
 /* Placeholders */
-.flex_formcontainer input[type=submit], .flex_formcontainer button[type=submit],
-.flex_formcontainer a.flex_button, .flex_formcontainer input[type=reset], .flex_formcontainer button[type=reset], .flex_formcontainer button[type=button],
-.flex_formcontainer [type=submit].flex_button_secondary,
-.flex_formcontainer a.flex_button_secondary {
-  padding: 0.25em 0.5em;
-  text-decoration: none;
-  display: inline-block;
-}
+/* line 2, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/inputfields/inputfields.scss */
+.flex_formcontainer input[type=submit], .flex_formcontainer button[type=submit], .flex_formcontainer a.flex_button, .flex_formcontainer input[type=reset], .flex_formcontainer button[type=reset], .flex_formcontainer button[type=button], .flex_formcontainer [type=submit].flex_button_secondary, .flex_formcontainer a.flex_button_secondary { padding: 0.25em 0.5em; text-decoration: none; display: inline-block; }
 
-.flex_formcontainer input[type=submit], .flex_formcontainer button[type=submit],
-.flex_formcontainer a.flex_button {
-  background: #000000;
-  border: 1px solid #000000;
-  color: #ffffff;
-}
-.flex_formcontainer input[type=submit]:hover, .flex_formcontainer button[type=submit]:hover,
-.flex_formcontainer a.flex_button:hover, .flex_formcontainer input[type=submit]:focus, .flex_formcontainer button[type=submit]:focus,
-.flex_formcontainer a.flex_button:focus {
-  background-color: #A4C400;
-  border-color: #A4C400;
-  color: #ffffff;
-}
+/* line 7, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/inputfields/inputfields.scss */
+.flex_formcontainer input[type=submit], .flex_formcontainer button[type=submit], .flex_formcontainer a.flex_button { background: #000000; border: 1px solid #000000; color: #ffffff; }
+/* line 13, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/inputfields/inputfields.scss */
+.flex_formcontainer input[type=submit]:hover, .flex_formcontainer button[type=submit]:hover, .flex_formcontainer a.flex_button:hover, .flex_formcontainer input[type=submit]:focus, .flex_formcontainer button[type=submit]:focus, .flex_formcontainer a.flex_button:focus { background-color: #A4C400; border-color: #A4C400; color: #ffffff; }
 
-.flex_formcontainer input[type=reset], .flex_formcontainer button[type=reset], .flex_formcontainer button[type=button],
-.flex_formcontainer [type=submit].flex_button_secondary,
-.flex_formcontainer a.flex_button_secondary {
-  background: #626262;
-  border: 1px solid #626262;
-  color: #ffffff;
-}
-.flex_formcontainer input[type=reset]:hover, .flex_formcontainer button[type=reset]:hover, .flex_formcontainer button[type=button]:hover,
-.flex_formcontainer [type=submit].flex_button_secondary:hover,
-.flex_formcontainer a.flex_button_secondary:hover, .flex_formcontainer input[type=reset]:focus, .flex_formcontainer button[type=reset]:focus, .flex_formcontainer button[type=button]:focus,
-.flex_formcontainer [type=submit].flex_button_secondary:focus,
-.flex_formcontainer a.flex_button_secondary:focus {
-  background-color: #A4C400;
-  border-color: #A4C400;
-  color: #ffffff;
-}
+/* line 20, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/inputfields/inputfields.scss */
+.flex_formcontainer input[type=reset], .flex_formcontainer button[type=reset], .flex_formcontainer button[type=button], .flex_formcontainer [type=submit].flex_button_secondary, .flex_formcontainer a.flex_button_secondary { background: #626262; border: 1px solid #626262; color: #ffffff; }
+/* line 26, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/inputfields/inputfields.scss */
+.flex_formcontainer input[type=reset]:hover, .flex_formcontainer button[type=reset]:hover, .flex_formcontainer button[type=button]:hover, .flex_formcontainer [type=submit].flex_button_secondary:hover, .flex_formcontainer a.flex_button_secondary:hover, .flex_formcontainer input[type=reset]:focus, .flex_formcontainer button[type=reset]:focus, .flex_formcontainer button[type=button]:focus, .flex_formcontainer [type=submit].flex_button_secondary:focus, .flex_formcontainer a.flex_button_secondary:focus { background-color: #A4C400; border-color: #A4C400; color: #ffffff; }
 
-.flex_formcontainer input[type=text],
-.flex_formcontainer input[type=email],
-.flex_formcontainer input[type=tel],
-.flex_formcontainer input[type=number],
-.flex_formcontainer input[type=search],
-.flex_formcontainer input[type=password] {
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  height: 3.2em;
-  line-height: 3.2em;
-  padding: 0 0.8em;
-  background: #ffffff;
-  border: 2px solid #B0B0B1;
-  -webkit-appearance: none;
-  border-radius: 0;
-  font-family: Arial, sans-serif;
-  font-size: 0.9375em;
-  color: #000000;
-}
-.flex_formcontainer input[type=text]:-webkit-autofill,
-.flex_formcontainer input[type=email]:-webkit-autofill,
-.flex_formcontainer input[type=tel]:-webkit-autofill,
-.flex_formcontainer input[type=number]:-webkit-autofill,
-.flex_formcontainer input[type=search]:-webkit-autofill,
-.flex_formcontainer input[type=password]:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important;
-}
-.flex_formcontainer input.placeholder[type=text],
-.flex_formcontainer input.placeholder[type=email],
-.flex_formcontainer input.placeholder[type=tel],
-.flex_formcontainer input.placeholder[type=number],
-.flex_formcontainer input.placeholder[type=search],
-.flex_formcontainer input.placeholder[type=password] {
-  color: #8A8A8A;
-  font-family: Arial, sans-serif;
-  opacity: 1;
-}
-.flex_formcontainer input[type=text]:-moz-placeholder,
-.flex_formcontainer input[type=email]:-moz-placeholder,
-.flex_formcontainer input[type=tel]:-moz-placeholder,
-.flex_formcontainer input[type=number]:-moz-placeholder,
-.flex_formcontainer input[type=search]:-moz-placeholder,
-.flex_formcontainer input[type=password]:-moz-placeholder {
-  color: #8A8A8A;
-  font-family: Arial, sans-serif;
-  opacity: 1;
-}
-.flex_formcontainer input[type=text]::-moz-placeholder,
-.flex_formcontainer input[type=email]::-moz-placeholder,
-.flex_formcontainer input[type=tel]::-moz-placeholder,
-.flex_formcontainer input[type=number]::-moz-placeholder,
-.flex_formcontainer input[type=search]::-moz-placeholder,
-.flex_formcontainer input[type=password]::-moz-placeholder {
-  color: #8A8A8A;
-  font-family: Arial, sans-serif;
-  opacity: 1;
-}
-.flex_formcontainer input[type=text]:-ms-input-placeholder,
-.flex_formcontainer input[type=email]:-ms-input-placeholder,
-.flex_formcontainer input[type=tel]:-ms-input-placeholder,
-.flex_formcontainer input[type=number]:-ms-input-placeholder,
-.flex_formcontainer input[type=search]:-ms-input-placeholder,
-.flex_formcontainer input[type=password]:-ms-input-placeholder {
-  color: #8A8A8A;
-  font-family: Arial, sans-serif;
-  opacity: 1;
-}
-.flex_formcontainer input[type=text]::-webkit-input-placeholder,
-.flex_formcontainer input[type=email]::-webkit-input-placeholder,
-.flex_formcontainer input[type=tel]::-webkit-input-placeholder,
-.flex_formcontainer input[type=number]::-webkit-input-placeholder,
-.flex_formcontainer input[type=search]::-webkit-input-placeholder,
-.flex_formcontainer input[type=password]::-webkit-input-placeholder {
-  color: #8A8A8A;
-  font-family: Arial, sans-serif;
-  opacity: 1;
-}
-.flex_formcontainer input[type=text]:focus,
-.flex_formcontainer input[type=email]:focus,
-.flex_formcontainer input[type=tel]:focus,
-.flex_formcontainer input[type=number]:focus,
-.flex_formcontainer input[type=search]:focus,
-.flex_formcontainer input[type=password]:focus {
-  outline: none;
-  border-color: #626262;
-}
+/* line 33, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/inputfields/inputfields.scss */
+.flex_formcontainer input[type=text], .flex_formcontainer input[type=email], .flex_formcontainer input[type=tel], .flex_formcontainer input[type=number], .flex_formcontainer input[type=search], .flex_formcontainer input[type=password] { box-sizing: border-box; height: 3.2em; line-height: 3.2em; padding: 0 0.8em; background: #ffffff; border: 2px solid #B0B0B1; -webkit-appearance: none; border-radius: 0; font-family: Arial, sans-serif; font-size: 0.9375em; color: #000000; }
+/* line 48, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/inputfields/inputfields.scss */
+.flex_formcontainer input[type=text]:-webkit-autofill, .flex_formcontainer input[type=email]:-webkit-autofill, .flex_formcontainer input[type=tel]:-webkit-autofill, .flex_formcontainer input[type=number]:-webkit-autofill, .flex_formcontainer input[type=search]:-webkit-autofill, .flex_formcontainer input[type=password]:-webkit-autofill { -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important; }
+/* line 72, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form-globals.scss */
+.flex_formcontainer input.placeholder[type=text], .flex_formcontainer input.placeholder[type=email], .flex_formcontainer input.placeholder[type=tel], .flex_formcontainer input.placeholder[type=number], .flex_formcontainer input.placeholder[type=search], .flex_formcontainer input.placeholder[type=password] { color: #8A8A8A; font-family: Arial, sans-serif; opacity: 1; }
+/* line 73, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form-globals.scss */
+.flex_formcontainer input[type=text]:-moz-placeholder, .flex_formcontainer input[type=email]:-moz-placeholder, .flex_formcontainer input[type=tel]:-moz-placeholder, .flex_formcontainer input[type=number]:-moz-placeholder, .flex_formcontainer input[type=search]:-moz-placeholder, .flex_formcontainer input[type=password]:-moz-placeholder { color: #8A8A8A; font-family: Arial, sans-serif; opacity: 1; }
+/* line 74, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form-globals.scss */
+.flex_formcontainer input[type=text]::-moz-placeholder, .flex_formcontainer input[type=email]::-moz-placeholder, .flex_formcontainer input[type=tel]::-moz-placeholder, .flex_formcontainer input[type=number]::-moz-placeholder, .flex_formcontainer input[type=search]::-moz-placeholder, .flex_formcontainer input[type=password]::-moz-placeholder { color: #8A8A8A; font-family: Arial, sans-serif; opacity: 1; }
+/* line 75, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form-globals.scss */
+.flex_formcontainer input[type=text]:-ms-input-placeholder, .flex_formcontainer input[type=email]:-ms-input-placeholder, .flex_formcontainer input[type=tel]:-ms-input-placeholder, .flex_formcontainer input[type=number]:-ms-input-placeholder, .flex_formcontainer input[type=search]:-ms-input-placeholder, .flex_formcontainer input[type=password]:-ms-input-placeholder { color: #8A8A8A; font-family: Arial, sans-serif; opacity: 1; }
+/* line 76, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form-globals.scss */
+.flex_formcontainer input[type=text]::-webkit-input-placeholder, .flex_formcontainer input[type=email]::-webkit-input-placeholder, .flex_formcontainer input[type=tel]::-webkit-input-placeholder, .flex_formcontainer input[type=number]::-webkit-input-placeholder, .flex_formcontainer input[type=search]::-webkit-input-placeholder, .flex_formcontainer input[type=password]::-webkit-input-placeholder { color: #8A8A8A; font-family: Arial, sans-serif; opacity: 1; }
+/* line 62, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/inputfields/inputfields.scss */
+.flex_formcontainer input[type=text]:focus, .flex_formcontainer input[type=email]:focus, .flex_formcontainer input[type=tel]:focus, .flex_formcontainer input[type=number]:focus, .flex_formcontainer input[type=search]:focus, .flex_formcontainer input[type=password]:focus { outline: none; border-color: #626262; }
 
-.flex_formcontainer textarea {
-  background: #ffffff;
-  border: 2px solid #B0B0B1;
-  color: #000000;
-  font-family: Arial, sans-serif;
-  font-size: 0.9375em;
-  padding: 1em 0.8em;
-  height: 9.6em;
-  resize: vertical;
-}
-.flex_formcontainer textarea.placeholder {
-  color: #8A8A8A;
-  font-family: Arial, sans-serif;
-}
-.flex_formcontainer textarea:-moz-placeholder {
-  color: #8A8A8A;
-  font-family: Arial, sans-serif;
-}
-.flex_formcontainer textarea::-moz-placeholder {
-  color: #8A8A8A;
-  font-family: Arial, sans-serif;
-}
-.flex_formcontainer textarea:-ms-input-placeholder {
-  color: #8A8A8A;
-  font-family: Arial, sans-serif;
-}
-.flex_formcontainer textarea::-webkit-input-placeholder {
-  color: #8A8A8A;
-  font-family: Arial, sans-serif;
-}
-.flex_formcontainer textarea:focus {
-  outline: none;
-  border-color: #626262;
-}
+/* line 81, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/inputfields/inputfields.scss */
+.flex_formcontainer textarea { background: #ffffff; border: 2px solid #B0B0B1; color: #000000; font-family: Arial, sans-serif; font-size: 0.9375em; padding: 1em 0.8em; height: 9.6em; resize: vertical; }
+/* line 72, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form-globals.scss */
+.flex_formcontainer textarea.placeholder { color: #8A8A8A; font-family: Arial, sans-serif; }
+/* line 73, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form-globals.scss */
+.flex_formcontainer textarea:-moz-placeholder { color: #8A8A8A; font-family: Arial, sans-serif; }
+/* line 74, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form-globals.scss */
+.flex_formcontainer textarea::-moz-placeholder { color: #8A8A8A; font-family: Arial, sans-serif; }
+/* line 75, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form-globals.scss */
+.flex_formcontainer textarea:-ms-input-placeholder { color: #8A8A8A; font-family: Arial, sans-serif; }
+/* line 76, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form-globals.scss */
+.flex_formcontainer textarea::-webkit-input-placeholder { color: #8A8A8A; font-family: Arial, sans-serif; }
+/* line 97, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/inputfields/inputfields.scss */
+.flex_formcontainer textarea:focus { outline: none; border-color: #626262; }
 
-.flex_tooltipcontainer {
-  display: inline-block;
-  position: absolute;
-  right: 0;
-  top: 0;
-  z-index: 5;
-}
-.flex_tooltipcontainer > a {
-  display: block;
-  position: relative;
-  height: 1.5em;
-  width: 1.5em;
-  border: 2px solid #B0B0B1;
-  border-radius: 50%;
-}
-.flex_tooltipcontainer > a:hover, .flex_tooltipcontainer > a:focus {
-  border-color: #626262;
-  color: #626262;
-  outline: none;
-}
-.flex_tooltipcontainer > a:before {
-  content: 'i';
-  font-family: Georgia, serif;
-  font-size: 1.3125em;
-  position: absolute;
-  line-height: 1.125em;
-  height: 1.125em;
-  width: 1.125em;
-  left: 40%;
-  top: 0;
-}
+/* line 3, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/tooltips/tooltips.scss */
+.flex_tooltipcontainer { display: inline-block; position: absolute; right: 0; top: 0; z-index: 5; }
+/* line 10, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/tooltips/tooltips.scss */
+.flex_tooltipcontainer > a { display: block; position: relative; height: 1.5em; width: 1.5em; border: 2px solid #B0B0B1; border-radius: 50%; }
+/* line 134, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/css/globals/_mixins.scss */
+.flex_tooltipcontainer > a span { display: none; }
+/* line 19, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/tooltips/tooltips.scss */
+.flex_tooltipcontainer > a:hover, .flex_tooltipcontainer > a:focus { border-color: #626262; color: #626262; outline: none; }
+/* line 25, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/tooltips/tooltips.scss */
+.flex_tooltipcontainer > a:before { content: 'i'; font-family: Georgia, serif; font-size: 1.3125em; position: absolute; line-height: 1.125em; height: 1.125em; width: 1.125em; left: 40%; top: 0; }
 
-.flex_tooltip {
-  position: absolute;
-  left: 1.25em;
-  top: -1.25em;
-  display: none;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  margin-left: 1.25em;
-  padding: 1.25em;
-  width: 12.5em;
-}
-.flex_tooltip:before {
-  content: '<';
-  position: absolute;
-  left: 0;
-  top: 1.25em;
-}
-.flex_tooltip .flex_tooltipheader {
-  display: block;
-  padding-right: 1.25em;
-  font-family: Georgia, serif;
-  font-size: 1.3125em;
-  word-wrap: break-word;
-}
-.flex_tooltip .flex_tooltipcontent {
-  word-wrap: break-word;
-}
-.flex_tooltip .flex_tooltipclose {
-  position: absolute;
-  right: 1.25em;
-  top: 1.25em;
-}
-.flex_tooltip .flex_tooltipclose:before {
-  content: 'x';
-  font-family: Georgia, serif;
-  font-size: 1.3125em;
-  position: absolute;
-  line-height: 1;
-  right: 0;
-  top: 0;
-}
+/* line 39, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/tooltips/tooltips.scss */
+.flex_tooltip { position: absolute; left: 1.25em; top: -1.25em; display: none; box-sizing: border-box; margin-left: 1.25em; padding: 1.25em; width: 12.5em; }
+/* line 50, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/tooltips/tooltips.scss */
+.flex_tooltip:before { content: '<'; position: absolute; left: 0; top: 1.25em; }
+/* line 56, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/tooltips/tooltips.scss */
+.flex_tooltip .flex_tooltipheader { display: block; padding-right: 1.25em; font-family: Georgia, serif; font-size: 1.3125em; word-wrap: break-word; }
+/* line 63, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/tooltips/tooltips.scss */
+.flex_tooltip .flex_tooltipcontent { word-wrap: break-word; }
+/* line 66, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/tooltips/tooltips.scss */
+.flex_tooltip .flex_tooltipclose { position: absolute; right: 1.25em; top: 1.25em; }
+/* line 134, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/css/globals/_mixins.scss */
+.flex_tooltip .flex_tooltipclose span { display: none; }
+/* line 72, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/tooltips/tooltips.scss */
+.flex_tooltip .flex_tooltipclose:before { content: 'x'; font-family: Georgia, serif; font-size: 1.3125em; position: absolute; line-height: 1; right: 0; top: 0; }
 
-.flex_mod_multistepnavigation li {
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  float: left;
-  text-align: center;
-}
-.flex_mod_multistepnavigation li a, .flex_mod_multistepnavigation li span {
-  display: block;
-  padding: 0.5em 0;
-  border: 1px solid #626262;
-  background-color: #626262;
-  color: #ffffff;
-}
-.flex_mod_multistepnavigation li a:hover, .flex_mod_multistepnavigation li a:focus {
-  background-color: #A4C400;
-}
-.flex_mod_multistepnavigation li.flex_var_active span {
-  background-color: #A4C400;
-}
-.flex_mod_multistepnavigation li.flex_var_inactive span {
-  opacity: 0.5;
-}
+/* line 1, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/multistep/multistep.scss */
+.flex_mod_multistepnavigation { *zoom: 1; }
+/* line 47, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/css/globals/_mixins.scss */
+.flex_mod_multistepnavigation:before, .flex_mod_multistepnavigation:after { content: " "; display: table; }
+/* line 53, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/css/globals/_mixins.scss */
+.flex_mod_multistepnavigation:after { clear: both; }
+/* line 3, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/multistep/multistep.scss */
+.flex_mod_multistepnavigation ul { list-style: none; margin: 0; padding: 0; }
+/* line 6, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/multistep/multistep.scss */
+.flex_mod_multistepnavigation li { box-sizing: border-box; float: left; text-align: center; }
+/* line 11, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/multistep/multistep.scss */
+.flex_mod_multistepnavigation li a, .flex_mod_multistepnavigation li span { display: block; padding: 0.5em 0; border: 1px solid #626262; background-color: #626262; color: #ffffff; }
+/* line 19, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/multistep/multistep.scss */
+.flex_mod_multistepnavigation li a:hover, .flex_mod_multistepnavigation li a:focus { background-color: #A4C400; }
+/* line 23, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/multistep/multistep.scss */
+.flex_mod_multistepnavigation li.flex_var_active span { background-color: #A4C400; }
+/* line 26, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/multistep/multistep.scss */
+.flex_mod_multistepnavigation li.flex_var_inactive span { opacity: 0.5; }
 
-.flex_summary {
-  margin-bottom: 1em;
-}
-.flex_summary .flex_summary_item strong {
-  float: left;
-  width: 50%;
-  margin: 0;
-}
-.flex_summary .flex_summary_item div {
-  float: left;
-}
+/* line 1, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/multistep/summary.scss */
+.flex_summary { margin-bottom: 1em; }
+/* line 3, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/multistep/summary.scss */
+.flex_summary .flex_summary_item { *zoom: 1; }
+/* line 47, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/css/globals/_mixins.scss */
+.flex_summary .flex_summary_item:before, .flex_summary .flex_summary_item:after { content: " "; display: table; }
+/* line 53, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/css/globals/_mixins.scss */
+.flex_summary .flex_summary_item:after { clear: both; }
+/* line 5, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/multistep/summary.scss */
+.flex_summary .flex_summary_item strong { float: left; width: 50%; margin: 0; }
+/* line 10, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/multistep/summary.scss */
+.flex_summary .flex_summary_item div { float: left; }
 
-.flex_autocomplete_wrapper {
-  position: absolute;
-  left: 0;
-  background: #ffffff;
-  z-index: 10;
-  width: 100%;
-  max-height: 12em;
-  overflow-x: hidden;
-  overflow-y: auto;
-  display: none;
-  margin-left: 50%;
-  width: 50%;
-}
-.flex_is_open .flex_autocomplete_wrapper {
-  display: block;
-}
-.flex_autocomplete_wrapper li {
-  margin-bottom: 0 !important;
-}
-.flex_autocomplete_wrapper li.u_var_noresult {
-  color: #A6643A;
-}
-.flex_autocomplete_wrapper strong {
-  display: block;
-  color: #000000;
-  padding: 0.8em 0.8em;
-}
+/* line 1, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/autocomplete/_autocomplete.scss */
+.flex_autocomplete_wrapper { position: absolute; left: 0; background: #ffffff; z-index: 10; width: 100%; max-height: 12em; overflow-x: hidden; overflow-y: auto; display: none; margin-left: 50%; width: 50%; }
+/* line 19, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/autocomplete/_autocomplete.scss */
+.flex_is_open .flex_autocomplete_wrapper { display: block; }
+/* line 23, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/autocomplete/_autocomplete.scss */
+.flex_autocomplete_wrapper ul { list-style: none; margin: 0; padding: 0; }
+/* line 27, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/autocomplete/_autocomplete.scss */
+.flex_autocomplete_wrapper li { margin-bottom: 0 !important; }
+/* line 30, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/autocomplete/_autocomplete.scss */
+.flex_autocomplete_wrapper li.u_var_noresult { color: #A6643A; }
+/* line 35, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/autocomplete/_autocomplete.scss */
+.flex_autocomplete_wrapper strong { display: block; color: #000000; padding: 0.8em 0.8em; }
