@@ -1,7 +1,7 @@
-﻿namespace Unic.Flex.Tests.Utilities
+﻿namespace Unic.Flex.Core.Tests.Utilities
 {
-    using NUnit.Framework;
     using System;
+    using NUnit.Framework;
     using Unic.Flex.Core.Utilities;
     using Unic.Flex.Implementation.Fields.InputFields;
     using Unic.Flex.Implementation.Fields.ListFields;

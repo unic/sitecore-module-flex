@@ -1,18 +1,18 @@
-﻿namespace Unic.Flex.Tests.Mapping
+﻿namespace Unic.Flex.Core.Tests.Mapping
 {
+    using System;
+    using System.Linq;
     using Moq;
     using Moq.Protected;
     using NUnit.Framework;
-    using System;
-    using System.Linq;
     using Unic.Flex.Core.Mapping;
     using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.DomainModel.Steps;
     using Unic.Flex.Model.ViewModel.Fields.InputFields;
     using Unic.Flex.Model.ViewModel.Forms;
     using Unic.Flex.Model.ViewModel.Steps;
-    using Unic.Flex.Tests.Common;
-    using Unic.Flex.Tests.Common.Moqs;
+    using Unic.Flex.Tests;
+    using Unic.Flex.Tests.Moqs;
 
     /// <summary>
     /// Tests for model converting

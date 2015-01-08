@@ -1,8 +1,8 @@
-﻿namespace Unic.Flex.Tests.Common.Moqs
+﻿namespace Unic.Flex.Tests.Moqs
 {
-    using Moq;
     using System;
     using System.Linq.Expressions;
+    using Moq;
     using Unic.Configuration;
     using Unic.Flex.Core.Globalization;
     using Unic.Flex.Core.Logging;

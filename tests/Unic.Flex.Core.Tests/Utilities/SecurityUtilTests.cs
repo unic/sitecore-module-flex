@@ -1,4 +1,4 @@
-﻿namespace Unic.Flex.Tests.Utilities
+﻿namespace Unic.Flex.Core.Tests.Utilities
 {
     using System.Security.Cryptography;
     using NUnit.Framework;

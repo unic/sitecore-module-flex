@@ -1,8 +1,8 @@
-﻿namespace Unic.Flex.Tests.Common.Moqs
+﻿namespace Unic.Flex.Tests.Moqs
 {
-    using Moq;
     using System;
     using System.Collections.Generic;
+    using Moq;
     using Unic.Flex.Core.Mapping;
     using Unic.Flex.Implementation.Fields.InputFields;
     using Unic.Flex.Model.DomainModel.Fields;

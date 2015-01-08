@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Unic.Flex.Tests.Common")]
+[assembly: AssemblyTitle("Unic.Flex.Core.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Unic AG")]
-[assembly: AssemblyProduct("Unic.Flex.Tests.Common")]
+[assembly: AssemblyProduct("Unic.Flex.Core.Tests")]
 [assembly: AssemblyCopyright("Copyright © Unic AG 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("cbdca947-1881-44d5-be8c-a860b6de2008")]
+[assembly: Guid("c8667ab7-ae08-4d1b-befd-087eefe103e5")]
 
 // Version information for an assembly consists of the following four values:
 //

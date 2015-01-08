@@ -1,4 +1,4 @@
-﻿namespace Unic.Flex.Tests.Common
+﻿namespace Unic.Flex.Tests
 {
     using Unic.Flex.Model.DomainModel.Steps;
     using Unic.Flex.Website.App_Start;

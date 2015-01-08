@@ -14,9 +14,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{7F01601C
 		tests\DefaultSettings.runsettings = tests\DefaultSettings.runsettings
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unic.Flex.Tests.Common", "tests\Unic.Flex.Tests.Common\Unic.Flex.Tests.Common.csproj", "{AE341D4C-2CA6-4194-B476-7284FA3EF429}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unic.Flex.Tests", "tests\Unic.Flex.Tests\Unic.Flex.Tests.csproj", "{AE341D4C-2CA6-4194-B476-7284FA3EF429}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unic.Flex.Tests", "tests\Unic.Flex.Tests\Unic.Flex.Tests.csproj", "{55A9B413-3DFD-432E-83F0-9A4B07E0BC64}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unic.Flex.Core.Tests", "tests\Unic.Flex.Core.Tests\Unic.Flex.Core.Tests.csproj", "{55A9B413-3DFD-432E-83F0-9A4B07E0BC64}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unic.Flex.Implementation", "src\Unic.Flex.Implementation\Unic.Flex.Implementation.csproj", "{5A1F1575-4FEF-4801-9C6C-A96CF0860885}"
 EndProject
