@@ -60,14 +60,15 @@
         /// Loads the form based on a datasource.
         /// </summary>
         /// <param name="dataSource">The data source.</param>
+        /// <param name="useVersionCountDisabler">if set to <c>true</c> the version count disabler is used to load the form.</param>
         /// <returns>
         /// The loaded form domain model object.
         /// </returns>
-        public virtual Form LoadForm(string dataSource)
+        public virtual Form LoadForm(string dataSource, bool useVersionCountDisabler = false)
         {
             Profiler.OnStart(this, "Flex :: Load form from datasource");
-            
-            var form = this.formRepository.LoadForm(dataSource);
+
+            var form = this.formRepository.LoadForm(dataSource, useVersionCountDisabler);
             if (form == null)
             {
                 this.logger.Warn(string.Format("Could not load form with datasource '{0}'", dataSource), this);

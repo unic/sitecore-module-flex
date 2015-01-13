@@ -28,12 +28,21 @@
         /// Loads a form based on the data source from Sitecore.
         /// </summary>
         /// <param name="dataSource">The data source.</param>
+        /// <param name="useVersionCountDisabler">if set to <c>true</c> the version count disabler is used to load the form.</param>
         /// <returns>
         /// The loaded form domain model
         /// </returns>
-        public virtual Form LoadForm(string dataSource)
+        public virtual Form LoadForm(string dataSource, bool useVersionCountDisabler = false)
         {
             Assert.ArgumentCondition(Sitecore.Data.ID.IsID(dataSource), dataSource, "Datasource is not valid");
+            if (useVersionCountDisabler)
+            {
+                using (new VersionCountDisabler())
+                {
+                    return this.sitecoreContext.GetItem<Form>(dataSource, inferType: true);
+                }
+            }
+
             return this.sitecoreContext.GetItem<Form>(dataSource, inferType: true);
         }
 

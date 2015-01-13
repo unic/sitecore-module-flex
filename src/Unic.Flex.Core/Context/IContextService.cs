@@ -14,11 +14,12 @@
         /// <summary>
         /// Loads the form based on a datasource.
         /// </summary>
-        /// <param name="dataSource">The data source.</param>
+        /// <param name="dataSourcebool">The data sourcebool.</param>
+        /// <param name="useVersionCountDisabler">if set to <c>true</c> version count disabler is used to load the form.</param>
         /// <returns>
         /// The loaded form domain model object.
         /// </returns>
-        Form LoadForm(string dataSource);
+        Form LoadForm(string dataSourcebool, bool useVersionCountDisabler = false);
 
         /// <summary>
         /// Populates the form values from the session into the form.

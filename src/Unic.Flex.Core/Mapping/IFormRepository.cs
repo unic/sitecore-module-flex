@@ -12,10 +12,11 @@
         /// Loads a form based on the data source from Sitecore.
         /// </summary>
         /// <param name="dataSource">The data source.</param>
+        /// <param name="useVersionCountDisabler">if set to <c>true</c> the version count disabler is used to load the form.</param>
         /// <returns>
         /// The loaded form domain model
         /// </returns>
-        Form LoadForm(string dataSource);
+        Form LoadForm(string dataSource, bool useVersionCountDisabler = false);
 
         /// <summary>
         /// Loads an item from the data source.

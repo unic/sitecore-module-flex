@@ -61,7 +61,7 @@
         private static IFormRepository GetMoq(Func<Form> formLoader)
         {
             var mock = new Mock<IFormRepository>();
-            mock.Setup(method => method.LoadForm(It.IsAny<string>())).Returns(formLoader);
+            mock.Setup(method => method.LoadForm(It.IsAny<string>(), It.IsAny<bool>())).Returns(formLoader);
             return mock.Object;
         }
 

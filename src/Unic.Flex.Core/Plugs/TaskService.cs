@@ -179,7 +179,7 @@
             try
             {
                 var tasks = new List<System.Threading.Tasks.Task>();
-                var form = this.contextService.LoadForm(job.ItemId.ToString());
+                var form = this.contextService.LoadForm(job.ItemId.ToString(), true);
                 var formValues = JsonConvert.DeserializeObject<IDictionary<string, object>>(job.Data);
                 this.contextService.PopulateFormValues(form, formValues);
 
