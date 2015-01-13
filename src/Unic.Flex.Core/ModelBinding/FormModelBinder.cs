@@ -7,8 +7,8 @@
     using Unic.Flex.Core.DependencyInjection;
     using Unic.Flex.Core.Mapping;
     using Unic.Flex.Core.Utilities;
+    using Unic.Flex.Model.Types;
     using Unic.Flex.Model.ViewModel.Forms;
-    using Unic.Profiling;
 
     /// <summary>
     /// Bind the form model.
@@ -26,12 +26,19 @@
         private readonly IFieldDependencyService fieldDependencyService;
 
         /// <summary>
+        /// The user data repository
+        /// </summary>
+        private readonly IUserDataRepository userDataRepository;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="FormModelBinder" /> class.
         /// </summary>
         /// <param name="modelConverter">The model converter.</param>
         /// <param name="fieldDependencyService">The field dependency service.</param>
-        public FormModelBinder(IModelConverterService modelConverter, IFieldDependencyService fieldDependencyService)
+        /// <param name="userDataRepository">The user data repository.</param>
+        public FormModelBinder(IModelConverterService modelConverter, IFieldDependencyService fieldDependencyService, IUserDataRepository userDataRepository)
         {
+            this.userDataRepository = userDataRepository;
             this.modelConverter = modelConverter;
             this.fieldDependencyService = fieldDependencyService;
         }
@@ -50,9 +57,9 @@
             var form = model as IFormViewModel;
             if (form != null)
             {
-                Profiler.OnStart(this, "Flex :: Removing validation errors for hidden fields (due to field dependency)");
-
                 var allFields = form.Step.Sections.SelectMany(s => s.Fields).ToList();
+
+                // remove validation errors for not visible fields (due to field dependecy)
                 for (var sectionIndex = 0; sectionIndex < form.Step.Sections.Count; sectionIndex++)
                 {
                     var section = form.Step.Sections[sectionIndex];
@@ -68,7 +75,18 @@
                     }
                 }
 
-                Profiler.OnEnd(this, "Flex :: Removing validation errors for hidden fields (due to field dependency)");
+                // remove posted files if there are validation errors
+                if (!bindingContext.ModelState.IsValid)
+                {
+                    foreach (var field in allFields.Where(field => field.Value != null && field.Type == typeof(UploadedFile)))
+                    {
+                        var sessionValue = this.userDataRepository.GetValue(form.Id, field.Id);
+                        if (sessionValue != null && sessionValue.Equals(field.Value)) continue;
+
+                        field.Value = null;
+                        this.userDataRepository.RemoveValue(form.Id, field.Id);
+                    }
+                }
             }
 
             return form;
