@@ -166,6 +166,7 @@
                 new
                     {
                         role = "alert",
+                        @class = "flex_fielderror",
                         aria_labelledby = htmlHelper.GetId(Constants.LabelIdSuffix)
                     });
         }
