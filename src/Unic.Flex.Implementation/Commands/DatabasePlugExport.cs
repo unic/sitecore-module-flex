@@ -80,7 +80,7 @@
                 var fileName = filePath.Substring(filePath.LastIndexOf('\\') + 1);
                 var hash = SecurityUtil.GetMd5Hash(MD5.Create(), string.Join("_", form.ItemId, fileName));
                 var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
-                var downloadUrl = urlHelper.Action("DatabasePlugExport", "Flex", new { formId = form.ItemId, fileName = fileName, hash = hash });
+                var downloadUrl = urlHelper.Action("DatabasePlugExport", "Flex", new { formId = form.ItemId, fileName = fileName, hash = hash, sc_lang = item.Language });
                 SheerResponse.SetLocation(downloadUrl);
             }
         }

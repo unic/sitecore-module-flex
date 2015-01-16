@@ -135,7 +135,13 @@
             using (var package = new ExcelPackage(file))
             {
                 // get worksheet
-                var worksheet = package.Workbook.Worksheets.Add(form.Title);
+                var title = form.Title;
+                if (string.IsNullOrWhiteSpace(form.Title))
+                {
+                    title = this.dictionaryRepository.GetText("Export Worksheet Fallback Title");
+                }
+
+                var worksheet = package.Workbook.Worksheets.Add(title);
 
                 // get list of field id's added
                 var fields = new List<FieldItem>();
