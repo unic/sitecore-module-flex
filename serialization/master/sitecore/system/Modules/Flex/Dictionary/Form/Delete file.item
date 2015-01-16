@@ -17,9 +17,63 @@ content-length: 11
 
 Delete file
 ----version----
+language: de
+version: 1
+revision: 7ec72c71-1835-4775-a606-0b76ebd0a15c
+
+----field----
+field: {2BA3454A-9A9C-4CDF-A9F8-107FD484EB6E}
+name: Phrase
+key: phrase
+content-length: 13
+
+Datei löschen
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 34
+
+20150116T141939:635570147797328960
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+7ec72c71-1835-4775-a606-0b76ebd0a15c
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20150116T141939:635570147797328960
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin
+----version----
 language: en
 version: 1
-revision: f70bc5f5-f69e-4187-9f04-302144f333b5
+revision: 248d97ab-2298-4812-b481-c3205ed063fa
 
 ----field----
 field: {2BA3454A-9A9C-4CDF-A9F8-107FD484EB6E}
@@ -55,14 +109,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-f70bc5f5-f69e-4187-9f04-302144f333b5
+248d97ab-2298-4812-b481-c3205ed063fa
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20141024T172551:635497683517280737
+20150116T141939:635570147796928642
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
