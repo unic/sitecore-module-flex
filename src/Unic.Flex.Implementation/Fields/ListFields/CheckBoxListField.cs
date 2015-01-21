@@ -3,13 +3,14 @@
     using Glass.Mapper.Sc.Configuration.Attributes;
     using System.Linq;
     using Newtonsoft.Json.Linq;
+    using Unic.Flex.Model.DataProviders;
     using Unic.Flex.Model.DomainModel.Fields.ListFields;
 
     /// <summary>
     /// Checkbox list field
     /// </summary>
     [SitecoreType(TemplateId = "{7532F52A-8BA7-4903-9B27-9E18FA1C4B92}")]
-    public class CheckBoxListField : MulticheckListField<string[]>
+    public class CheckBoxListField : MulticheckListField<string[], ListItem>
     {
         /// <summary>
         /// Gets the default value.

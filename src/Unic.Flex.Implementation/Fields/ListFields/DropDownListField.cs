@@ -11,7 +11,7 @@
     /// Dropdown list field
     /// </summary>
     [SitecoreType(TemplateId = "{18C0BDC1-5162-4CE4-A92A-0C9A8CAFCF11}")]
-    public class DropDownListField : ListField<string>
+    public class DropDownListField : ListField<string, ListItem>
     {
         /// <summary>
         /// Gets or sets a value indicating whether to add an empty option to the list.

@@ -44,6 +44,6 @@
         /// The items provider.
         /// </value>
         [SitecoreSharedField("Data Provider", Setting = SitecoreFieldSettings.InferType)]
-        public virtual IDataProvider DataProvider { get; set; }
+        public virtual IDataProvider<ListItem> DataProvider { get; set; }
     }
 }

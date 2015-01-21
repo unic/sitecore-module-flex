@@ -11,8 +11,11 @@
         /// <summary>
         /// Sorts the specified items.
         /// </summary>
+        /// <typeparam name="T">Type of the data items.</typeparam>
         /// <param name="items">The items.</param>
-        /// <returns>Sorted list of items.</returns>
-        IEnumerable<ListItem> Sort(IEnumerable<ListItem> items);
+        /// <returns>
+        /// Sorted list of items.
+        /// </returns>
+        IEnumerable<T> Sort<T>(IEnumerable<T> items) where T : IDataItem;
     }
 }

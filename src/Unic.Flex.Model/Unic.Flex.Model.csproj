@@ -97,6 +97,7 @@
     <Compile Include="Configuration\GlobalConfiguration.cs" />
     <Compile Include="Configuration\GlobalizationConfiguration.cs" />
     <Compile Include="Configuration\PresentationConfiguration.cs" />
+    <Compile Include="DataProviders\IDataItem.cs" />
     <Compile Include="DomainModel\Analytics\Goal.cs" />
     <Compile Include="DomainModel\Components\IInvalidComponent.cs" />
     <Compile Include="DomainModel\Components\IReusableComponent.cs" />

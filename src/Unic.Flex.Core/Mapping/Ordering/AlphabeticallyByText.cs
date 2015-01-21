@@ -13,13 +13,15 @@
         /// <summary>
         /// Sorts the specified items.
         /// </summary>
+        /// <typeparam name="T">Type of the data item</typeparam>
         /// <param name="items">The items.</param>
         /// <returns>
         /// Sorted list of items.
         /// </returns>
-        public IEnumerable<ListItem> Sort(IEnumerable<ListItem> items)
+        public IEnumerable<T> Sort<T>(IEnumerable<T> items) where T : IDataItem
         {
-            return items.OrderBy(item => item.Text);
+            if (typeof(T) != typeof(ListItem)) return items;
+            return items.Select(item => item as ListItem).OrderBy(item => item.Text) as IEnumerable<T>;
         }
     }
 }

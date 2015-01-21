@@ -203,7 +203,7 @@
                     // add required validator
                     if (field.IsRequired)
                     {
-                        if (TypeHelper.IsSubclassOfRawGeneric(typeof(MulticheckListField<>), field.GetType()))
+                        if (TypeHelper.IsSubclassOfRawGeneric(typeof(MulticheckListField<,>), field.GetType()))
                         {
                             validatableObject.AddValidator(new MulticheckRequired { ValidationMessage = field.ValidationMessage });
                         }

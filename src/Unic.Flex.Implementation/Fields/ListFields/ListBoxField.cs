@@ -3,13 +3,14 @@
     using System.Linq;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Newtonsoft.Json.Linq;
+    using Unic.Flex.Model.DataProviders;
     using Unic.Flex.Model.DomainModel.Fields.ListFields;
 
     /// <summary>
     /// Listbox list field
     /// </summary>
     [SitecoreType(TemplateId = "{9A0208D4-4A39-436F-90E2-84765CC7A63A}")]
-    public class ListBoxField : ListField<string[]>
+    public class ListBoxField : ListField<string[], ListItem>
     {
         /// <summary>
         /// Gets the default value.

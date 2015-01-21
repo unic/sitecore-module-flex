@@ -24,8 +24,8 @@
             /// <param name="generic">The generic.</param>
             /// <param name="toCheck">To check.</param>
             /// <returns>Value of the check.</returns>
-            [TestCase(typeof(ListField<>), typeof(CheckBoxListField), Result = true)]
-            [TestCase(typeof(ListField<>), typeof(SinglelineTextField), Result = false)]
+            [TestCase(typeof(ListField<,>), typeof(CheckBoxListField), Result = true)]
+            [TestCase(typeof(ListField<,>), typeof(SinglelineTextField), Result = false)]
             [TestCase(typeof(ItemBase), typeof(SinglelineTextField), Result = true)]
             [TestCase(typeof(object), typeof(SinglelineTextField), Result = false)]
             [TestCase(null, null, Result = false)]

@@ -7,7 +7,8 @@
     /// Base for all list field view models.
     /// </summary>
     /// <typeparam name="TValue">The type of the value.</typeparam>
-    public abstract class ListFieldViewModel<TValue> : FieldBaseViewModel<TValue>
+    /// <typeparam name="TType">The type of the data item.</typeparam>
+    public abstract class ListFieldViewModel<TValue, TType> : FieldBaseViewModel<TValue> where TType : IDataItem
     {
         /// <summary>
         /// Gets or sets the items.
@@ -15,6 +16,6 @@
         /// <value>
         /// The items.
         /// </value>
-        public virtual IList<ListItem> Items { get; set; }
+        public virtual IList<TType> Items { get; set; }
     }
 }

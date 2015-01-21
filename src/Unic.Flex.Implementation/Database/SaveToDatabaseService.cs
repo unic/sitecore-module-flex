@@ -202,7 +202,7 @@
         private string GetExportValue(FieldItem fieldItem, Field field)
         {
             if (fieldItem == null) return "-";
-            if (TypeHelper.IsSubclassOfRawGeneric(typeof(ListField<>), fieldItem.Type)) return field.Value.Replace(Environment.NewLine, ", ");
+            if (TypeHelper.IsSubclassOfRawGeneric(typeof(ListField<,>), fieldItem.Type)) return field.Value.Replace(Environment.NewLine, ", ");
             return field.Value;
         }
 

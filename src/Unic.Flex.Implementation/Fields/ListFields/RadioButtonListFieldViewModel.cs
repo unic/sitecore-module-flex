@@ -1,11 +1,12 @@
 ﻿namespace Unic.Flex.Implementation.Fields.ListFields
 {
+    using Unic.Flex.Model.DataProviders;
     using Unic.Flex.Model.ViewModel.Fields.ListFields;
 
     /// <summary>
     /// Radio button list view model
     /// </summary>
-    public class RadioButtonListFieldViewModel : ListFieldViewModel<string>
+    public class RadioButtonListFieldViewModel : ListFieldViewModel<string, ListItem>
     {
         /// <summary>
         /// Gets the name of the view.

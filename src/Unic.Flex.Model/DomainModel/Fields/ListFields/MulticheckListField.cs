@@ -1,10 +1,13 @@
 ﻿namespace Unic.Flex.Model.DomainModel.Fields.ListFields
 {
+    using Unic.Flex.Model.DataProviders;
+
     /// <summary>
     /// Class for field with multiple values to check
     /// </summary>
     /// <typeparam name="TValue">The type of the value.</typeparam>
-    public abstract class MulticheckListField<TValue> : ListField<TValue>
+    /// <typeparam name="TType">The type of the data item.</typeparam>
+    public abstract class MulticheckListField<TValue, TType> : ListField<TValue, TType> where TType : IDataItem
     {
     }
 }

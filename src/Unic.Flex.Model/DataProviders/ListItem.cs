@@ -6,7 +6,7 @@
     /// Represents an item in the list
     /// </summary>
     [SitecoreType(TemplateId = "{E4DE7509-97B6-4284-A9B9-BBC3452757F5}")]
-    public class ListItem
+    public class ListItem : IDataItem
     {
         /// <summary>
         /// Gets or sets the text.
