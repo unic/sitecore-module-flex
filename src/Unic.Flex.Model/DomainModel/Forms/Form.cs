@@ -1,6 +1,5 @@
 ﻿namespace Unic.Flex.Model.DomainModel.Forms
 {
-    using System;
     using Glass.Mapper.Sc.Configuration;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Glass.Mapper.Sc.Fields;
@@ -144,11 +143,21 @@
         public virtual string GetFieldValue(IField field)
         {
             if (field == null) return string.Empty;
-            var formField = this.GetSections().SelectMany(s => s.Fields).FirstOrDefault(f => f.ItemId == field.ItemId);
+            var formField = this.GetField(field);
             if (formField == null || formField.Value == null) return string.Empty;
 
             var listValue = formField.Value as IEnumerable<string>;
             return listValue != null ? string.Join(",", listValue) : formField.Value.ToString();
+        }
+
+        /// <summary>
+        /// Gets the field from the current form. This is used because a referenced field not always have mapped values.
+        /// </summary>
+        /// <param name="field">The field.</param>
+        /// <returns>The field mapped by the form</returns>
+        public virtual IField GetField(IField field)
+        {
+            return field == null ? null : this.GetSections().SelectMany(s => s.Fields).FirstOrDefault(f => f.ItemId == field.ItemId);
         }
     }
 }
