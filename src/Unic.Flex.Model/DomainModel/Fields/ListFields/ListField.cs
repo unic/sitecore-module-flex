@@ -5,7 +5,9 @@
     using System.Linq;
     using Glass.Mapper.Sc.Configuration;
     using Unic.Flex.Model.DataProviders;
+    using Unic.Flex.Model.DomainModel.Global;
     using Unic.Flex.Model.GlassExtensions.Attributes;
+    using Unic.Flex.Model.SortOrder;
 
     /// <summary>
     /// Base class for all list fields.
@@ -23,7 +25,21 @@
         {
             get
             {
-                return this.DataProvider != null ? this.DataProvider.GetItems().ToList() : new List<ListItem>();
+                // check for valid provider
+                if (this.DataProvider == null) return new List<ListItem>();
+                
+                // get items
+                var items = this.DataProvider.GetItems();
+
+                // sort items
+                if (this.ItemsSortOrder != null && !string.IsNullOrWhiteSpace(this.ItemsSortOrder.Value))
+                {
+                    var strategy = StrategyFactory.CreateInstance(this.ItemsSortOrder.Value);
+                    if (strategy != null) items = strategy.Sort(items);
+                }
+
+                // return
+                return items.ToList();
             }
         }
 
@@ -35,6 +51,15 @@
         /// </value>
         [SitecoreSharedField("Data Provider", Setting = SitecoreFieldSettings.InferType)]
         public virtual IDataProvider DataProvider { get; set; }
+
+        /// <summary>
+        /// Gets or sets the items sort order.
+        /// </summary>
+        /// <value>
+        /// The items sort order.
+        /// </value>
+        [SitecoreSharedField("Items Sort Order", Setting = SitecoreFieldSettings.InferType)]
+        public virtual Specification ItemsSortOrder { get; set; }
 
         /// <summary>
         /// Gets the text value.

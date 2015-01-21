@@ -133,6 +133,8 @@
     <Compile Include="DataProviders\ListItem.cs" />
     <Compile Include="DataProviders\ListItemExtensions.cs" />
     <Compile Include="GlassExtensions\Handlers\SitecoreSharedQueryTypeMapper.cs" />
+    <Compile Include="SortOrder\ISortOrderStrategy.cs" />
+    <Compile Include="SortOrder\StrategyFactory.cs" />
     <Compile Include="Types\UploadedFile.cs" />
     <Compile Include="Validation\AjaxValidator.cs" />
     <Compile Include="Validation\FileRequiredValidator.cs" />
