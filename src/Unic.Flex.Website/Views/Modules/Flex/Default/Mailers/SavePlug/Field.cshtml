@@ -10,7 +10,10 @@
         }
         else
         {
-            @Model.TextValue
+            foreach (var item in Model.TextValue.Split(new[] { Environment.NewLine }, StringSplitOptions.None))
+            {
+                @item<br />
+            }
         }
     </td>
 </tr>
