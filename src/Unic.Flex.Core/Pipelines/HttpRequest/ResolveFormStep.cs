@@ -75,7 +75,7 @@
             // do nothing if we have no item context
             if (item == null)
             {
-                this.logger.Debug("No context item found, return form step resolving", this);
+                this.logger.Debug(string.Format("No context item found for path '{0}', exit form step resolving", args.LocalPath), this);
                 return;
             }
 
@@ -83,7 +83,7 @@
             var formDatasource = this.contextService.GetRenderingDatasource(item, Sitecore.Context.Device);
             if (string.IsNullOrWhiteSpace(formDatasource))
             {
-                this.logger.Debug("No valid datasource for a Flex rendering found, return form step resolving", this);
+                this.logger.Debug("No valid datasource for a Flex rendering found, exit form step resolving", this);
                 return;
             }
 
@@ -91,7 +91,7 @@
             var form = this.contextService.LoadForm(formDatasource);
             if (form == null || !form.Steps.Any())
             {
-                this.logger.Debug("Form is null or has no valid steps, return form step resolving", this);
+                this.logger.Debug("Form is null or has no valid steps, exit form step resolving", this);
                 return;
             }
 
@@ -110,7 +110,7 @@
             var activeStep = form.Steps.Skip(1).FirstOrDefault(step => this.IsStepEqual(step.Url, currentUrlPart));
             if (activeStep == null)
             {
-                this.logger.Debug("Something went wrong, current step could not be loaded by url, return form step resolving", this);
+                this.logger.Debug("Something went wrong, current step could not be loaded by url, exit form step resolving", this);
                 return;
             }
 
