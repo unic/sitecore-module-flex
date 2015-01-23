@@ -80,6 +80,7 @@
         /// <param name="site">The site.</param>
         public virtual void ExecuteAll(SiteContext site)
         {
+            this.logger.Debug("Execute all jobs from database", this);
             var jobs = this.unitOfWork.JobRepository.Get();
             foreach (var job in jobs)
             {
@@ -96,6 +97,9 @@
         {
             Assert.ArgumentNotNull(job, "job");
             Assert.ArgumentNotNull(site, "site");
+
+            // log
+            this.logger.Debug(string.Format("Initialize executing of job '{0}'", job.Id), this);
 
             // get config values
             var maxRetries = this.configurationManager.Get<GlobalConfiguration>(c => c.MaxRetries);
@@ -178,6 +182,8 @@
         {
             try
             {
+                this.logger.Debug(string.Format("Starting executing of job '{0}'", job.Id), this);
+                
                 var tasks = new List<System.Threading.Tasks.Task>();
                 var form = this.contextService.LoadForm(job.ItemId.ToString(), true);
                 var formValues = JsonConvert.DeserializeObject<IDictionary<string, object>>(job.Data);
@@ -185,15 +191,22 @@
 
                 foreach (var task in job.Tasks.Where(t => t.NumberOfTries <= maxRetries))
                 {
+                    this.logger.Debug(string.Format("Start executing task '{0}' of job '{1}'", task.Id, job.Id), this);
+                    
                     // check if we already can execute the plug
                     if (task.NumberOfTries > 0 && !this.ShouldRun(task.LastTry, task.NumberOfTries, timeBetweenTries))
                     {
+                        this.logger.Debug(string.Format("Task '{0}' from job '{1}' won't be executed due to exceeded max retries or time betweet retries", task.Id, job.Id), this);
                         continue;
                     }
 
                     // get the plug
                     var plug = form.SavePlugs.FirstOrDefault(p => p.ItemId == task.ItemId);
-                    if (plug == null) continue;
+                    if (plug == null)
+                    {
+                        this.logger.Debug("Plug could not be loaded from form", this);
+                        continue;
+                    }
 
                     // execute the plug
                     tasks.Add(System.Threading.Tasks.Task.Factory.StartNew(() =>
@@ -211,6 +224,7 @@
                 System.Threading.Tasks.Task.WaitAll(tasks.ToArray());
                 if (!job.Tasks.Any())
                 {
+                    this.logger.Debug(string.Format("No more open tasks, delete job '{0}'", job.Id), this);
                     this.unitOfWork.JobRepository.Delete(job);
                 }
             }
@@ -232,6 +246,7 @@
         {
             try
             {
+                this.logger.Debug(string.Format("Execute async plug '{0}' from task '{1}' in job '{2}' and form '{3}'", plug.ItemId, task.Id, job.Id, form.ItemId), this);
                 plug.Execute(form);
                 job.Tasks.Remove(task);
             }
@@ -243,6 +258,7 @@
 
                 if (task.NumberOfTries > maxRetries)
                 {
+                    this.logger.Debug(string.Format("Maximum number of retries for task '{0}' in job '{1}' exceeded, send failure email", task.Id, job.Id), this);
                     this.SendFailureEmail(job, task, exception);
                 }
             }

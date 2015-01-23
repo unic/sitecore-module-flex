@@ -7,6 +7,7 @@
     using Sitecore.Pipelines.HttpRequest;
     using Unic.Flex.Core.Context;
     using Unic.Flex.Core.DependencyInjection;
+    using Unic.Flex.Core.Logging;
 
     /// <summary>
     /// Pipeline processor for resolving the current form step.
@@ -24,14 +25,22 @@
         private IFlexContext flexContext;
 
         /// <summary>
+        /// The logger
+        /// </summary>
+        private ILogger logger;
+
+        /// <summary>
         /// Processes the current pipeline processor
         /// </summary>
         /// <param name="args">The arguments.</param>
         public override void Process(HttpRequestArgs args)
         {
+            this.logger = Container.Resolve<ILogger>();
+            
             // verify context
             if (Sitecore.Context.Database == null || Sitecore.Context.GetSiteName() == "shell" || Sitecore.Context.GetSiteName() == "login")
             {
+                this.logger.Debug("Skipping form step resolving due to invalid context", this);
                 return;
             }
 
@@ -64,15 +73,27 @@
             }
 
             // do nothing if we have no item context
-            if (item == null) return;
+            if (item == null)
+            {
+                this.logger.Debug("No context item found, return form step resolving", this);
+                return;
+            }
 
             // get the current form included on the item
             var formDatasource = this.contextService.GetRenderingDatasource(item, Sitecore.Context.Device);
-            if (string.IsNullOrWhiteSpace(formDatasource)) return;
+            if (string.IsNullOrWhiteSpace(formDatasource))
+            {
+                this.logger.Debug("No valid datasource for a Flex rendering found, return form step resolving", this);
+                return;
+            }
 
             // load the form
             var form = this.contextService.LoadForm(formDatasource);
-            if (form == null || !form.Steps.Any()) return;
+            if (form == null || !form.Steps.Any())
+            {
+                this.logger.Debug("Form is null or has no valid steps, return form step resolving", this);
+                return;
+            }
 
             // save the form to the current items collection
             this.flexContext.Form = form;
@@ -87,7 +108,11 @@
             // check if we are on a valid step (/ means the first step and is valid)
             var currentUrlPart = path.Split('/').Last();
             var activeStep = form.Steps.Skip(1).FirstOrDefault(step => this.IsStepEqual(step.Url, currentUrlPart));
-            if (activeStep == null) return;
+            if (activeStep == null)
+            {
+                this.logger.Debug("Something went wrong, current step could not be loaded by url, return form step resolving", this);
+                return;
+            }
 
             // rewrite current step and context item if everything is ok
             activeStep.IsActive = true;

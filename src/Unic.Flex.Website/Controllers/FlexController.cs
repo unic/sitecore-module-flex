@@ -165,19 +165,30 @@
             
             // get the form
             var form = this.flexContext.Form;
-            if (form == null) return new EmptyResult();
+            if (form == null)
+            {
+                this.logger.Debug("GET :: Form from FlexContext is null, return empty result", this);
+                Profiler.OnEnd(this, ProfileGetEventName);
+                return new EmptyResult();
+            }
 
             // reset the form to not be in succeeded state anymore
             this.userDataRepository.SetFormSucceeded(form.Id, false);
 
             // get the current step
             var currentStep = form.GetActiveStep();
-            if (currentStep == null) return new EmptyResult();
+            if (currentStep == null)
+            {
+                this.logger.Debug("GET :: Form has no active step, return empty result", this);
+                Profiler.OnEnd(this, ProfileGetEventName);
+                return new EmptyResult();
+            }
 
             // show errors
             if (!string.IsNullOrWhiteSpace(this.flexContext.ErrorMessage))
             {
                 var result = this.ShowError();
+                this.logger.Debug("GET :: Show error messages", this);
                 Profiler.OnEnd(this, ProfileGetEventName);
                 return result;
             }
@@ -190,6 +201,9 @@
                 // clear session values
                 this.userDataRepository.ClearForm(form.Id);
 
+                // log
+                this.logger.Debug("GET :: Clear session of current form due to a cancel request, redirect to cancel url", this);
+
                 // redirect to correct url
                 Profiler.OnEnd(this, ProfileGetEventName);
                 return this.Redirect(form.CancelLink.Url);
@@ -199,6 +213,7 @@
             // if step is not valid, redirect to the first step
             if (!this.contextService.IsStepAccessible(form, currentStep))
             {
+                this.logger.Debug("GET :: Current step is not accessible, redirect to first step", this);
                 Profiler.OnEnd(this, ProfileGetEventName);
                 return this.Redirect(form.GetFirstStepUrl());
             }
@@ -209,6 +224,7 @@
             // return the view for this step
             var formViewModel = this.modelConverter.ConvertToViewModel(form);
             var formView = this.presentationService.ResolveView(this.ControllerContext, formViewModel);
+            this.logger.Debug(string.Format("GET :: Everything ok, returning view '{0}'", formView), this);
             Profiler.OnEnd(this, ProfileGetEventName);
             return this.View(formView, formViewModel);
         }
@@ -233,23 +249,33 @@
             
             // get the current form
             var form = this.flexContext.Form;
-            if (form == null) return new EmptyResult();
+            if (form == null)
+            {
+                this.logger.Debug("POST :: Form from FlexContext is null, return empty result", this);
+                return new EmptyResult();
+            }
 
             // show the successed message if form is is successed state
             if (this.userDataRepository.IsFormSucceeded(form.Id))
             {
+                this.logger.Debug("POST :: Form has been succeeded, show success message", this);
                 Profiler.OnEnd(this, ProfilePostEventName);
                 return this.ShowSuccessMessage(form.SuccessMessage);
             }
 
             // get the current step
             var currentStep = form.GetActiveStep();
-            if (currentStep == null) return new EmptyResult();
+            if (currentStep == null)
+            {
+                this.logger.Debug("POST :: Form has no active step, return empty result", this);
+                return new EmptyResult();
+            }
 
             // check if the current step may be accessed (only valid if all previous steps are done)
             // if step is not valid, redirect to the first step
             if (!this.contextService.IsStepAccessible(form, currentStep))
             {
+                this.logger.Debug("POST :: Current step is not accessible, redirect to first step", this);
                 Profiler.OnEnd(this, ProfilePostEventName);
                 return this.Redirect(form.GetFirstStepUrl());
             }
@@ -258,6 +284,7 @@
             var formView = this.presentationService.ResolveView(this.ControllerContext, model);
             if (!ModelState.IsValid)
             {
+                this.logger.Debug(string.Format("POST :: We have validation errors, returning view '{0}'", formView), this);
                 Profiler.OnEnd(this, ProfilePostEventName);
                 return this.View(formView, model);
             }
@@ -267,6 +294,7 @@
             var nextStepUrl = currentStep.GetNextStepUrl();
             if (!string.IsNullOrWhiteSpace(nextStepUrl))
             {
+                this.logger.Debug("POST :: Step is ok, storing values into session and redirect to next step", this);
                 this.userDataRepository.CompleteStep(form.Id, currentStep.StepNumber);
                 Profiler.OnEnd(this, ProfilePostEventName);
                 return this.Redirect(nextStepUrl);
@@ -277,12 +305,14 @@
 
             // execute save plugs
             Profiler.OnStart(this, ProfileExecuteSavePlugsEventName);
+            this.logger.Debug("POST :: Execute save plugs", this);
             this.plugsService.ExecuteSavePlugs(this.flexContext);
             Profiler.OnEnd(this, ProfileExecuteSavePlugsEventName);
 
             // show errors
             if (!string.IsNullOrWhiteSpace(this.flexContext.ErrorMessage))
             {
+                this.logger.Debug("POST :: Show error messages", this);
                 var result = this.ShowError();
                 Profiler.OnEnd(this, ProfilePostEventName);
                 return result;
@@ -294,11 +324,13 @@
             // redirect to the sucess page
             if (form.SuccessRedirect != null && !string.IsNullOrWhiteSpace(form.SuccessRedirect.Url))
             {
+                this.logger.Debug("POST :: Form has been finished, return to success page", this);
                 Profiler.OnEnd(this, ProfilePostEventName);
                 return this.Redirect(form.SuccessRedirect.Url);
             }
 
             // show the success message
+            this.logger.Debug("POST :: Form has been finished, show success message", this);
             this.userDataRepository.SetFormSucceeded(form.Id, true);
             Profiler.OnEnd(this, ProfilePostEventName);
             return this.ShowSuccessMessage(form.SuccessMessage);
@@ -390,6 +422,8 @@
         /// <returns>true/false wheater the result was ok or there was an error</returns>
         public virtual ActionResult ExecutePlugs(string timestamp, string hash)
         {
+            this.logger.Debug("Received request to execute save plugs", this);
+            
             // check the hash
             if (!SecurityUtil.VerifyMd5Hash(MD5.Create(), timestamp, hash))
             {

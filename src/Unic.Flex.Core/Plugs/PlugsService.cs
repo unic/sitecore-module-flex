@@ -69,6 +69,7 @@
             {
                 try
                 {
+                    this.logger.Debug(string.Format("Execute load plug '{0}' for form '{1}'", plug.ItemId, form.ItemId), this);
                     plug.Execute(form);
                 }
                 catch (Exception exception)
@@ -102,6 +103,7 @@
                 Job job = null;
                 if (hasAsyncPlug)
                 {
+                    this.logger.Debug(string.Format("Form '{0}' has async plugs", form.ItemId), this);
                     job = this.taskService.GetJob(form);
                 }
 
@@ -110,10 +112,12 @@
                 {
                     if (isAsyncExecutionAllowed && plug.IsAsync)
                     {
+                        this.logger.Debug(string.Format("Add async save plug '{0}' as background job for form '{1}'", plug.ItemId, form.ItemId), this);
                         job.Tasks.Add(this.taskService.GetTask(plug));
                     }
                     else
                     {
+                        this.logger.Debug(string.Format("Execute sync save plug '{0}' for form '{1}'", plug.ItemId, form.ItemId), this);
                         plug.Execute(form);
                     }
                 }
@@ -122,6 +126,8 @@
                 if (hasAsyncPlug)
                 {
                     job = this.taskService.Save(job);
+                    this.logger.Debug(string.Format("Saved job '{0}' for form '{1}' to database", job.Id, form.ItemId), this);
+
                     this.taskService.Execute(job, context.SiteContext);
                 }
             }

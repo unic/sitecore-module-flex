@@ -9,6 +9,16 @@
     public class SitecoreLogger : ILogger
     {
         /// <summary>
+        /// Logs a debug message.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <param name="owner">The owner.</param>
+        public virtual void Debug(string message, object owner)
+        {
+            Log.Debug(this.FormatMessage(message), owner);
+        }
+        
+        /// <summary>
         /// Logs an info message.
         /// </summary>
         /// <param name="message">The message.</param>

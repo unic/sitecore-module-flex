@@ -8,6 +8,13 @@
     public interface ILogger
     {
         /// <summary>
+        /// Logs a debug message.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <param name="owner">The owner.</param>
+        void Debug(string message, object owner);
+        
+        /// <summary>
         /// Logs an info message.
         /// </summary>
         /// <param name="message">The message.</param>
