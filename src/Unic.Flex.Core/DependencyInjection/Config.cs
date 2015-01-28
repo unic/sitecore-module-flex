@@ -60,6 +60,7 @@
             this.Bind<IModelBinder>().To<FieldModelBinder>().Named(typeof(IFieldViewModel).FullName);
             this.Bind<IModelBinder>().To<UploadedFileModelBinder>().Named(typeof(UploadedFile).FullName);
             this.Bind<IModelBinder>().To<DateTimeModelBinder>().Named(typeof(DateTime?).FullName);
+            this.Bind<IModelBinder>().To<DecimalModelBinder>().Named(typeof(decimal?).FullName);
             this.Bind<IModelConverterService>().To<ModelConverterService>().InSingletonScope();
 
             // context

@@ -5,7 +5,7 @@
     /// <summary>
     /// View model for a number field
     /// </summary>
-    public class NumberFieldViewModel : InputFieldViewModel<int?>
+    public class NumberFieldViewModel : InputFieldViewModel<decimal?>
     {
         /// <summary>
         /// Gets the name of the view.
@@ -22,6 +22,14 @@
         }
 
         /// <summary>
+        /// Gets or sets the step.
+        /// </summary>
+        /// <value>
+        /// The step.
+        /// </value>
+        public virtual string Step { get; set; }
+
+        /// <summary>
         /// Binds the needed attributes and properties after converting from domain model to the view model
         /// </summary>
         public override void BindProperties()
@@ -33,6 +41,11 @@
             this.Attributes.Add("aria-multiline", false);
             this.Attributes.Add("role", "textbox");
             this.Attributes.Add("type", "number");
+
+            if (!string.IsNullOrWhiteSpace(this.Step))
+            {
+                this.Attributes.Add("step", this.Step);    
+            }
         }
     }
 }

@@ -39,6 +39,7 @@ namespace Unic.Flex.Website.App_Start
             ModelBinders.Binders.Add(typeof(IFieldViewModel), Container.Resolve<IModelBinder>(typeof(IFieldViewModel).FullName));
             ModelBinders.Binders.Add(typeof(UploadedFile), Container.Resolve<IModelBinder>(typeof(UploadedFile).FullName));
             ModelBinders.Binders.Add(typeof(DateTime?), Container.Resolve<IModelBinder>(typeof(DateTime?).FullName));
+            ModelBinders.Binders.Add(typeof(decimal?), Container.Resolve<IModelBinder>(typeof(decimal?).FullName));
         }
 
         /// <summary>

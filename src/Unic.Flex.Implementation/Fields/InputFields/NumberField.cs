@@ -8,7 +8,7 @@
     /// Number field
     /// </summary>
     [SitecoreType(TemplateId = "{C9C6AC45-7763-4851-A684-A075D2176FF7}")]
-    public class NumberField : InputField<int?>
+    public class NumberField : InputField<decimal?>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="NumberField"/> class.
@@ -25,7 +25,16 @@
         /// The default value.
         /// </value>
         [SitecoreField("Default Value")]
-        public override int? DefaultValue { get; set; }
+        public override decimal? DefaultValue { get; set; }
+
+        /// <summary>
+        /// Gets or sets the step.
+        /// </summary>
+        /// <value>
+        /// The step.
+        /// </value>
+        [SitecoreField("Step")]
+        public virtual string Step { get; set; }
 
         /// <summary>
         /// Sets the value.
@@ -35,12 +44,12 @@
         {
             if (value == null)
             {
-                base.SetValue(default(int?));
+                base.SetValue(default(decimal?));
                 return;
             }
-            
-            int intValue;
-            base.SetValue(int.TryParse(value.ToString(), out intValue) ? intValue : default(int?));
+
+            decimal numberValue;
+            base.SetValue(decimal.TryParse(value.ToString(), out numberValue) ? numberValue : default(decimal?));
         }
     }
 }

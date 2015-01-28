@@ -162,6 +162,7 @@
     <Compile Include="Mapping\Ordering\SitecoreSortOrder.cs" />
     <Compile Include="Mapping\UserDataRepository.cs" />
     <Compile Include="ModelBinding\DateTimeModelBinder.cs" />
+    <Compile Include="ModelBinding\DecimalModelBinder.cs" />
     <Compile Include="ModelBinding\FieldModelBinder.cs" />
     <Compile Include="ModelBinding\FormModelBinder.cs" />
     <Compile Include="Mapping\IModelConverterService.cs" />

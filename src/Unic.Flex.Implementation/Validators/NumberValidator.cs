@@ -42,7 +42,7 @@
         /// The start of the range.
         /// </value>
         [SitecoreField("Number Range Start")]
-        public virtual int NumberRangeStart { get; set; }
+        public virtual decimal NumberRangeStart { get; set; }
 
         /// <summary>
         /// Gets or sets the end of the range to validate.
@@ -51,7 +51,7 @@
         /// The end of the range.
         /// </value>
         [SitecoreField("Number Range End")]
-        public virtual int NumberRangeEnd { get; set; }
+        public virtual decimal NumberRangeEnd { get; set; }
 
         /// <summary>
         /// Determines whether the specified value is valid.
@@ -63,13 +63,11 @@
         public virtual bool IsValid(object value)
         {
             if (value == null) return true;
-
-            var stringValue = value as string;
-            if (stringValue == null || string.IsNullOrWhiteSpace(stringValue)) return true;
+            if (string.IsNullOrWhiteSpace(value.ToString())) return true;
 
             try
             {
-                var numberValue = Convert.ToInt32(value);
+                var numberValue = Convert.ToDecimal(value);
                 if (this.NumberRangeStart > 0 && numberValue < this.NumberRangeStart) return false;
                 if (this.NumberRangeEnd > 0 && numberValue > this.NumberRangeEnd) return false;
                 return true;
@@ -95,8 +93,17 @@
             if (this.NumberRangeStart > 0 || this.NumberRangeEnd > 0)
             {
                 attributes.Add("data-val-range", this.ValidationMessage);
-                if (this.NumberRangeStart > 0) attributes.Add("data-val-range-min", this.NumberRangeStart);
-                if (this.NumberRangeEnd > 0) attributes.Add("data-val-range-max", this.NumberRangeEnd);
+                if (this.NumberRangeStart > 0)
+                {
+                    attributes.Add("data-val-range-min", this.NumberRangeStart);
+                    attributes.Add("min", this.NumberRangeStart);
+                }
+
+                if (this.NumberRangeEnd > 0)
+                {
+                    attributes.Add("data-val-range-max", this.NumberRangeEnd);
+                    attributes.Add("max", this.NumberRangeEnd);
+                }
             }
 
             return attributes;

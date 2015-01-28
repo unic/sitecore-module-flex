@@ -48,6 +48,9 @@
             var intValue = value as int?;
             if (intValue != null) return true;
 
+            var decimalValue = value as decimal?;
+            if (decimalValue != null) return true;
+
             var booleanValue = value as bool?;
             if (booleanValue != null) return (bool)value;
 

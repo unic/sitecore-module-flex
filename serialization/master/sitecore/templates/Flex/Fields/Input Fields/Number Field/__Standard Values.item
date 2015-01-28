@@ -10,6 +10,13 @@ template: {C9C6AC45-7763-4851-A684-A075D2176FF7}
 templatekey: Number Field
 
 ----field----
+field: {BEA11E4D-E0BB-47A4-80F1-72A0B95FAA3C}
+name: Step
+key: step
+content-length: 1
+
+1
+----field----
 field: {1172F251-DAD4-4EFB-A329-0C63500E4F1E}
 name: __Masters
 key: __masters
@@ -19,7 +26,7 @@ content-length: 116
 ----version----
 language: en
 version: 1
-revision: f411e75d-5df5-4206-86d9-da2b64cb4675
+revision: cc161b99-305e-4055-900d-82ff72f7431e
 
 ----field----
 field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
@@ -48,14 +55,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-f411e75d-5df5-4206-86d9-da2b64cb4675
+cc161b99-305e-4055-900d-82ff72f7431e
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20141023T091145:635496523050380848
+20150128T124344:635580458243031300
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
