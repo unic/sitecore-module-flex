@@ -60,8 +60,8 @@
             var fileValue = value as UploadedFile;
             if (fileValue == null) return true;
 
-            var extension = fileValue.FileName.Substring(fileValue.FileName.LastIndexOf('.'));
-            return this.ValidFileExtensions.Split(',').Select(p => p.Trim()).Contains(extension);
+            var extension = fileValue.FileName.Substring(fileValue.FileName.LastIndexOf('.')).ToLowerInvariant();
+            return this.ValidFileExtensions.ToLowerInvariant().Split(',').Select(p => p.Trim()).Contains(extension);
         }
 
         /// <summary>
