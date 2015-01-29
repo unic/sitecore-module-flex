@@ -36,6 +36,11 @@
         private Form form;
 
         /// <summary>
+        /// The item
+        /// </summary>
+        private ItemBase item;
+
+        /// <summary>
         /// Field to store if the form values has already be populated from the user session.
         /// </summary>
         private bool hasValuesPopulated;
@@ -52,7 +57,6 @@
             this.plugService = plugService;
             this.sitecoreContext = sitecoreContext;
 
-            this.SetContextItem(Sitecore.Context.Item);
             this.SiteContext = Sitecore.Context.Site;
         }
 
@@ -62,7 +66,23 @@
         /// <value>
         /// The item.
         /// </value>
-        public virtual ItemBase Item { get; set; }
+        public virtual ItemBase Item
+        {
+            get
+            {
+                if (this.item == null)
+                {
+                    this.SetContextItem(Sitecore.Context.Item);
+                }
+
+                return this.item;
+            }
+
+            set
+            {
+                this.item = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the form.
