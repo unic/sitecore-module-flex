@@ -16968,11 +16968,13 @@ return datepicker.regional['it-CH'];
 ;(function(window, document, $, Unic, undefined) {
 	'use strict';
 
+	var $document = $(document);
+
 	var pluginName = 'flextooltip',
 		events = {
 		},
 		defaults = {
-			closeToolTipKeys: ['27'],
+			closeToolTipKeys: [27],
 			tooltipSpeed: 0,
 			prefix: 'flex',
 			dataattribute: pluginName // configurable because of legacy implementations in Post
@@ -17002,9 +17004,11 @@ return datepicker.regional['it-CH'];
 	 * Initialize module, bind events
 	 */
 	Plugin.prototype.init = function() {
-		this.$element.on('click.' + pluginName, '[data-' + this.options.dataattribute + '=link]', _.bind(this.toggleTooltip, this));
-		this.$element.on('click.' + pluginName, '[data-' + this.options.dataattribute + '=close]', _.bind(this.toggleTooltip, this));
-		this.$element.on('keyup.' + pluginName, _.bind(this.toggleTooltip, this));
+		this.$element.on('click.' + pluginName, '[data-' + this.options.dataattribute + '=link]', _.bind(this.handleToggleTooltip, this));
+		this.$element.on('click.' + pluginName, '[data-' + this.options.dataattribute + '=close]', _.bind(this.handleToggleTooltip, this));
+		this.$element.on('keyup.' + pluginName, _.bind(this._handleKeydown, this));
+
+		$document.off('click.' + pluginName).on('click.' + pluginName, _.bind(this._handleCloseAll, this));
 	};
 
 	/**
@@ -17017,22 +17021,68 @@ return datepicker.regional['it-CH'];
 	};
 
 	/**
-	 * Toggles Tooltip-Display.
-	 * @param event {jQuery.event} The click-event.
+	 * Handles keydown-Events on Tooltips.
+	 * @param event {jQuery.event} The keydown-Event.
+	 * @method
+	 * @private
 	 */
-	Plugin.prototype.toggleTooltip = function(event){
-		event.preventDefault();
+	Plugin.prototype._handleKeydown = function(event) {
 
-		var $link = $(event.currentTarget),
-			$tooltip = $(event.delegateTarget).find('[data-' + this.options.dataattribute + '=tooltip]'),
+		var $link = $(event.currentTarget).find('[data-' + this.options.dataattribute + '=link]'),
 			expanded = $link.next().is(':visible');
 
 		// toggle close on ESC
-		if (event === 'keyup' && _.contains(this.options.closeToolTipKeys, event.keyCode)) {
-			if (!expanded) {
-				return;
+		if (_.contains(this.options.closeToolTipKeys, event.keyCode)) {
+			if (expanded) {
+				this.handleToggleTooltip(event);
 			}
 		}
+	};
+
+	/**
+	 * Toggles Tooltip-Display.
+	 * @param event {jQuery.event} The click-event.
+	 */
+	Plugin.prototype.handleToggleTooltip = function(event){
+		event.preventDefault();
+
+		var $tooltip = $(event.delegateTarget).find('[data-' + this.options.dataattribute + '=tooltip]'),
+			$link = $tooltip.parent().find('[data-' + this.options.dataattribute + '=link]');
+
+		// Close other tooltips
+		this._closeAllTooltips($tooltip);
+
+		// Open current Tooltip
+		this._toggleTooltip($link, $tooltip);
+	};
+
+	/**
+	 * Closes all tooltips, except the given one.
+	 * @param $tooltip {jQuery} - The Tooltip not to close (optional)
+	 * @method
+	 * @private
+	 */
+	Plugin.prototype._closeAllTooltips = function($tooltip){
+		// Close other tooltips
+		var $openedTooltips = $document.find('[data-' + this.options.dataattribute + '=tooltip][aria-expanded=true]');
+		$openedTooltips.each(_.bind(function(index, element){
+			var $currentTooltip = $(element),
+				$tooltipContainer = $currentTooltip.closest('[data-init~=' + pluginName + ']');
+
+			if(!$tooltip || $currentTooltip.get(0) !== $tooltip.get(0)) {
+				this._toggleTooltip($tooltipContainer.find('[data-' + this.options.dataattribute + '=link]'), $currentTooltip);
+			}
+		}, this));
+	};
+
+	/**
+	 * Toggles Tooltip-Display.
+	 * @param $link {jQuery} The tooltip-link
+	 * @param $tooltip {jQuery} The tooltip-content
+	 */
+	Plugin.prototype._toggleTooltip = function($link, $tooltip){
+
+		var expanded = $link.next().is(':visible');
 
 		// Toggle tooltip
 		$tooltip.attr('aria-expanded', !expanded)
@@ -17042,6 +17092,18 @@ return datepicker.regional['it-CH'];
 		$link.closest('[data-' + this.options.dataattribute + '=init]')
 			.find('[data-' + this.options.dataattribute + '=link]')
 			.toggleClass(this.options.prefix + '_tooltip_visible');
+	};
+
+	/**
+	 * Closes all tooltips, when clicking beside any tooltip.
+	 * @param event {jQuery.Event} - The Original Click-Event.
+	 * @private
+	 */
+	Plugin.prototype._handleCloseAll = function(event){
+
+		if(!$(event.target).closest('[data-init~=' + pluginName + ']').length) {
+			this._closeAllTooltips();
+		}
 	};
 
 	// Make the plugin available through jQuery (and the global project namespace)
@@ -17113,6 +17175,13 @@ return datepicker.regional['it-CH'];
 		this.options.onChangeMonthYear = _.bind(function(year, month, instance){
 			this._styleDatePicker(instance);
 		}, this);
+
+		this.options.onClose = function(){
+			var $element = $(this);
+			if(typeof $element.valid === 'function') {
+				$element.valid();
+			}
+		};
 
 		this.$datefield.datepicker(this.options);
 
@@ -17213,6 +17282,40 @@ return datepicker.regional['it-CH'];
 		} catch(ex) {
 			validDate = false;
 		}
+		return validDate;
+	});
+
+	// Add enddate Validator
+	$.validator.unobtrusive.adapters.add('dateperiod', ['start'], function (options) {
+		options.rules.dateperiod = {
+			start : options.params.start
+		};
+		options.messages.dateperiod = options.message;
+	});
+
+	$.validator.addMethod('dateperiod', function (value, element, params) {
+
+		var validDate = true,
+			dateFormat = Plugin.prototype._convertDateFormatToUI($(element).closest('[data-init~=' + pluginName + ']').data(pluginName + '-options').dateFormat);
+		try {
+			var currentDate = $.datepicker.parseDate(dateFormat, value);
+
+			if (params.start) {
+				var startDateValue = $('#' + params.start).val();
+
+				// Don't validate, if not both values are given.
+				if(startDateValue === '' || value === '')
+				{
+					validDate = true;
+				} else {
+					var startDate = $.datepicker.parseDate(dateFormat, startDateValue);
+					validDate = currentDate > startDate;
+				}
+			}
+		} catch(ex) {
+			validDate = false;
+		}
+
 		return validDate;
 	});
 
@@ -17542,8 +17645,8 @@ return datepicker.regional['it-CH'];
  *
  * @requires ../../modules/form/form.js
  * @requires ../../modules/tooltips/tooltips.js
- * @requires ../../modules/inputfields/_datepicker.js
- * @requires ../../modules/inputfields/_fileinput.js
+ * @requires ../../modules/inputfields/datepicker.js
+ * @requires ../../modules/inputfields/fileinput.js
  * @requires ../../modules/autocomplete/_autocomplete.js
  * //*autoinsertmodule*
  *
