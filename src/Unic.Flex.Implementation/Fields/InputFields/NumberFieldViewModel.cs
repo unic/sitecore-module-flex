@@ -1,5 +1,6 @@
 ﻿namespace Unic.Flex.Implementation.Fields.InputFields
 {
+    using System.Globalization;
     using Unic.Flex.Model.ViewModel.Fields.InputFields;
 
     /// <summary>
@@ -45,6 +46,11 @@
             if (!string.IsNullOrWhiteSpace(this.Step))
             {
                 this.Attributes.Add("step", this.Step);    
+            }
+
+            if (this.Value.HasValue)
+            {
+                this.Attributes.Add("Value", this.Value.Value.ToString(CultureInfo.InvariantCulture));   
             }
         }
     }
