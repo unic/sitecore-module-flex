@@ -48,6 +48,22 @@
         public virtual bool IsLastStep { get; set; }
 
         /// <summary>
+        /// Gets or sets the previous button text.
+        /// </summary>
+        /// <value>
+        /// The previous button text.
+        /// </value>
+        public virtual string PreviousButtonText { get; set; }
+
+        /// <summary>
+        /// Gets or sets the skip button text.
+        /// </summary>
+        /// <value>
+        /// The skip button text.
+        /// </value>
+        public virtual string SkipButtonText { get; set; }
+
+        /// <summary>
         /// Gets or sets the navigation pane.
         /// </summary>
         /// <value>

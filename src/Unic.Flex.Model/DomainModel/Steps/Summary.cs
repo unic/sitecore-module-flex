@@ -2,6 +2,7 @@
 {
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Unic.Flex.Model.DomainModel.Components;
+    using Unic.Flex.Model.GlassExtensions.Attributes;
 
     /// <summary>
     /// The summary step.
@@ -17,5 +18,14 @@
         /// </value>
         [SitecoreField("Show Navigation Pane")]
         public virtual bool ShowNavigationPane { get; set; }
+
+        /// <summary>
+        /// Gets or sets the previous button text.
+        /// </summary>
+        /// <value>
+        /// The previous button text.
+        /// </value>
+        [SitecoreDictionaryFallbackField("Previous Button Text", "Previous Step")]
+        public virtual string PreviousButtonText { get; set; }
     }
 }

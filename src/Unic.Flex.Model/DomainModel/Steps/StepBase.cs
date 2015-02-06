@@ -45,6 +45,15 @@
         public virtual string Introduction { get; set; }
 
         /// <summary>
+        /// Gets or sets the button text.
+        /// </summary>
+        /// <value>
+        /// The button text.
+        /// </value>
+        [SitecoreField("Button Text")]
+        public virtual string ButtonText { get; set; }
+
+        /// <summary>
         /// Gets or sets the sections.
         /// </summary>
         /// <value>

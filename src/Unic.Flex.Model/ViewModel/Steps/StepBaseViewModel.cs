@@ -50,6 +50,14 @@
         public virtual string Introduction { get; set; }
 
         /// <summary>
+        /// Gets or sets the button text.
+        /// </summary>
+        /// <value>
+        /// The button text.
+        /// </value>
+        public virtual string ButtonText { get; set; }
+
+        /// <summary>
         /// Gets or sets the cancel URL.
         /// </summary>
         /// <value>

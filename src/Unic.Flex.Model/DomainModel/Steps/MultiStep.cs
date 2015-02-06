@@ -2,6 +2,7 @@
 {
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Unic.Flex.Model.DomainModel.Components;
+    using Unic.Flex.Model.GlassExtensions.Attributes;
 
     /// <summary>
     /// A step in a multi step form.
@@ -26,6 +27,24 @@
         /// </value>
         [SitecoreField("Is Skippable")]
         public virtual bool IsSkippable { get; set; }
+
+        /// <summary>
+        /// Gets or sets the previous button text.
+        /// </summary>
+        /// <value>
+        /// The previous button text.
+        /// </value>
+        [SitecoreDictionaryFallbackField("Previous Button Text", "Previous Step")]
+        public virtual string PreviousButtonText { get; set; }
+
+        /// <summary>
+        /// Gets or sets the skip button text.
+        /// </summary>
+        /// <value>
+        /// The skip button text.
+        /// </value>
+        [SitecoreDictionaryFallbackField("Skip Button Text", "Skip Step")]
+        public virtual string SkipButtonText { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether this step is the last step.

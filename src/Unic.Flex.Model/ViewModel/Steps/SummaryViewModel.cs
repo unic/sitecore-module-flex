@@ -24,6 +24,14 @@
         public virtual bool ShowNavigationPane { get; set; }
 
         /// <summary>
+        /// Gets or sets the previous button text.
+        /// </summary>
+        /// <value>
+        /// The previous button text.
+        /// </value>
+        public virtual string PreviousButtonText { get; set; }
+
+        /// <summary>
         /// Gets or sets the navigation pane.
         /// </summary>
         /// <value>

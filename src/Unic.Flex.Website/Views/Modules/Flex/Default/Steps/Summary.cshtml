@@ -71,12 +71,12 @@
 
                 @if (!string.IsNullOrWhiteSpace(Model.PreviousStepUrl))
                 {
-                    <a class="flex_button_secondary" href="@Model.PreviousStepUrl">@TranslationHelper.FlexText("Previous Step")</a>
+                    <a class="flex_button_secondary" href="@Model.PreviousStepUrl">@Model.PreviousButtonText</a>
                 }
 
                 <button type="submit" role="button">
                     <span>
-                        @TranslationHelper.FlexText("Finish Form")
+                        @string.Format("{0}", !string.IsNullOrWhiteSpace(Model.ButtonText) ? Model.ButtonText : TranslationHelper.FlexText("Finish Form"))
                     </span>
                 </button>
             </div>
