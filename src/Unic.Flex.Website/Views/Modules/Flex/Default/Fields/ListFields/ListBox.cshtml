@@ -1,0 +1,11 @@
+﻿@using System.Web.Mvc.Html
+@using Unic.Flex.Core.Presentation
+@using Unic.Flex.Model.DataProviders
+@model Unic.Flex.Implementation.Fields.ListFields.ListBoxFieldViewModel
+
+<li class="flex_listitem @Model.CssClass" @Html.Raw(Html.FormatAttributes(Model.ContainerAttributes))>
+    @Html.FlexLabel(m => m.Value, Model.Label, Model.LabelAddition)
+    @Html.ListBoxFor(m => m.Value, Model.Items.ToSelectListItems(), Html.GetAttributes(Model))
+    @Html.FlexValidator(model => model.Value)
+    @Html.FlexComponent(model => model.Tooltip)
+</li>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Unic.Flex</id>
+    <version>0.0.0</version>
+    <authors>Kevin Brechbühl</authors>
+    <owners>Unic AG</owners>
+    <projectUrl>https://git.unic.com/projects/BUECS/repos/sitecore-module-flex</projectUrl>
+    <iconUrl>https://www.unic.com/img/unic-logo.jpg</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Form module to create dynamic forms with Sitecore MVC</description>
+    <copyright>$copyright$</copyright>
+    <tags>Sitecore Unic MVC Forms</tags>
+    <dependencies>
+        <dependency id="Unic.Flex.Core" version="$NuGetVersion$" />
+        <dependency id="Unic.Flex.Implementation" version="$NuGetVersion$" />
+        <dependency id="Unic.Flex.Model" version="$NuGetVersion$" />
+    </dependencies>
+  </metadata>
+  <files>
+	<file src="Assets\**\*.*" target="content\Assets" />
+	<file src="readme.txt" target="" />
+  </files>
+</package>

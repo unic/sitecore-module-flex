@@ -1,0 +1,65 @@
+----item----
+version: 1
+id: {5914012F-CA1B-4A68-91E0-B3CB40F0CB0E}
+database: master
+path: /sitecore/templates/Flex/Plugs/Load Plugs Folder/__Standard Values
+parent: {1B356427-D163-45AB-8C72-C8F28F41F520}
+name: __Standard Values
+master: {00000000-0000-0000-0000-000000000000}
+template: {1B356427-D163-45AB-8C72-C8F28F41F520}
+templatekey: Load Plugs Folder
+
+----field----
+field: {1172F251-DAD4-4EFB-A329-0C63500E4F1E}
+name: __Masters
+key: __masters
+content-length: 38
+
+{4906DF7C-B200-4825-B1AC-488D7D928452}
+----version----
+language: en
+version: 1
+revision: 2054e15b-58e2-4bf7-8b17-223773624a20
+
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20140424T172120
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+2054e15b-58e2-4bf7-8b17-223773624a20
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20140604T143121:635374890815790407
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

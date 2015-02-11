@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C47272B9-C13F-4F53-B9F3-D3066BB45810}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Unic.Flex.Model</RootNamespace>
+    <AssemblyName>Unic.Flex.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Glass.Mapper, Version=3.0.14.26, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Glass.Mapper.3.0.14.26\lib\net45\Glass.Mapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Glass.Mapper.Sc, Version=3.2.3.46, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Glass.Mapper.Sc.3.2.3.46\lib\net45\Glass.Mapper.Sc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Kernel, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Sitecore.Kernel.7.2.140526.49\lib\Sitecore.Kernel.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.Mvc.5.1.2\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.Razor.3.1.2\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Unic.Configuration, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Unic.Configuration.Sitecore7.2.0.0\lib\net45\Unic.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Unic.Profiling, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Unic.Profiling.1.1.0\lib\net40\Unic.Profiling.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configuration\Converters\SpecificationConverter.cs" />
+    <Compile Include="Configuration\Extensions\ConfigurationManagerExtensions.cs" />
+    <Compile Include="Configuration\GlobalConfiguration.cs" />
+    <Compile Include="Configuration\GlobalizationConfiguration.cs" />
+    <Compile Include="Configuration\PresentationConfiguration.cs" />
+    <Compile Include="DataProviders\IDataItem.cs" />
+    <Compile Include="DomainModel\Analytics\Goal.cs" />
+    <Compile Include="DomainModel\Components\IInvalidComponent.cs" />
+    <Compile Include="DomainModel\Components\IReusableComponent.cs" />
+    <Compile Include="DomainModel\Components\ITooltip.cs" />
+    <Compile Include="DomainModel\Components\IVisibilityDependency.cs" />
+    <Compile Include="DomainModel\Components\IVisibilityDependencyViewModel.cs" />
+    <Compile Include="DomainModel\Fields\FieldBase.cs" />
+    <Compile Include="DomainModel\Fields\IField.cs" />
+    <Compile Include="DomainModel\Fields\ListFields\ListField.cs" />
+    <Compile Include="DomainModel\Fields\ListFields\MulticheckListField.cs" />
+    <Compile Include="DomainModel\Fields\ReusableField.cs" />
+    <Compile Include="DomainModel\Global\Specification.cs" />
+    <Compile Include="DomainModel\Plugs\LoadPlugs\ILoadPlug.cs" />
+    <Compile Include="DomainModel\Plugs\LoadPlugs\LoadPlugBase.cs" />
+    <Compile Include="DomainModel\Plugs\PlugBase.cs" />
+    <Compile Include="DomainModel\Plugs\SavePlugs\ISavePlug.cs" />
+    <Compile Include="DomainModel\Plugs\SavePlugs\SavePlugBase.cs" />
+    <Compile Include="DomainModel\Components\INavigationPane.cs" />
+    <Compile Include="Entities\File.cs" />
+    <Compile Include="Entities\Form.cs" />
+    <Compile Include="Entities\Session.cs" />
+    <Compile Include="Entities\Field.cs" />
+    <Compile Include="Entities\Job.cs" />
+    <Compile Include="Entities\Task.cs" />
+    <Compile Include="GlassExtensions\Attributes\SitecoreReusableChildrenAttribute.cs" />
+    <Compile Include="GlassExtensions\Attributes\SitecoreReusableFieldAttribute.cs" />
+    <Compile Include="GlassExtensions\Attributes\SitecoreSharedQueryAttribute.cs" />
+    <Compile Include="GlassExtensions\Configurations\SitecoreReusableChildrenConfiguration.cs" />
+    <Compile Include="GlassExtensions\Configurations\SitecoreReusableFieldConfiguration.cs" />
+    <Compile Include="GlassExtensions\Configurations\SitecoreSharedQueryConfiguration.cs" />
+    <Compile Include="GlassExtensions\Handlers\SitecoreReusableChildrenTypeMapper.cs" />
+    <Compile Include="GlassExtensions\Handlers\SitecoreReusableFieldTypeMapper.cs" />
+    <Compile Include="DataProviders\IDataProvider.cs" />
+    <Compile Include="DataProviders\ListItem.cs" />
+    <Compile Include="DataProviders\ListItemExtensions.cs" />
+    <Compile Include="GlassExtensions\Handlers\SitecoreSharedQueryTypeMapper.cs" />
+    <Compile Include="SortOrder\ISortOrderStrategy.cs" />
+    <Compile Include="SortOrder\StrategyFactory.cs" />
+    <Compile Include="Types\UploadedFile.cs" />
+    <Compile Include="Validation\AjaxValidator.cs" />
+    <Compile Include="Validation\FileRequiredValidator.cs" />
+    <Compile Include="Validation\HoneypotValidator.cs" />
+    <Compile Include="Validation\MulticheckRequired.cs" />
+    <Compile Include="Validation\RequiredValidator.cs" />
+    <Compile Include="GlassExtensions\Attributes\SitecoreSharedFieldAttribute.cs" />
+    <Compile Include="GlassExtensions\Configurations\SitecoreSharedFieldConfiguration.cs" />
+    <Compile Include="GlassExtensions\Handlers\SitecoreSharedFieldTypeMapper.cs" />
+    <Compile Include="Validation\IValidatableObject.cs" />
+    <Compile Include="ViewModel\Components\ErrorViewModel.cs" />
+    <Compile Include="ViewModel\Components\ITooltipViewModel.cs" />
+    <Compile Include="ViewModel\Components\SuccessMessageViewModel.cs" />
+    <Compile Include="ViewModel\Components\TooltipViewModel.cs" />
+    <Compile Include="ViewModel\Components\NavigationItem.cs" />
+    <Compile Include="ViewModel\Components\NavigationPaneViewModel.cs" />
+    <Compile Include="ViewModel\Fields\FieldBaseViewModel.cs" />
+    <Compile Include="DomainModel\Fields\InputFields\InputField.cs" />
+    <Compile Include="ViewModel\Fields\IFieldViewModel.cs" />
+    <Compile Include="ViewModel\Fields\IFieldWithoutPost.cs" />
+    <Compile Include="ViewModel\Fields\InputFields\HoneypotFieldViewModel.cs" />
+    <Compile Include="ViewModel\Fields\InputFields\InputFieldViewModel.cs" />
+    <Compile Include="ViewModel\Fields\ListFields\ListFieldViewModel.cs" />
+    <Compile Include="ViewModel\Fields\ListFields\MulticheckListFieldViewModel.cs" />
+    <Compile Include="ViewModel\Forms\FormViewModel.cs" />
+    <Compile Include="GlassExtensions\Attributes\SitecoreDictionaryFallbackFieldAttribute.cs" />
+    <Compile Include="GlassExtensions\Configurations\SitecoreDictionaryFallbackFieldConfiguration.cs" />
+    <Compile Include="GlassExtensions\Handlers\SitecoreDictionaryFallbackFieldTypeMapper.cs" />
+    <Compile Include="DomainModel\ItemBase.cs" />
+    <Compile Include="DomainModel\Forms\Form.cs" />
+    <Compile Include="Presentation\IPresentationComponent.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DomainModel\Sections\ReusableSection.cs" />
+    <Compile Include="ViewModel\Forms\IFormViewModel.cs" />
+    <Compile Include="ViewModel\Sections\ISectionViewModel.cs" />
+    <Compile Include="ViewModel\Sections\StandardSectionViewModel.cs" />
+    <Compile Include="DomainModel\Sections\StandardSection.cs" />
+    <Compile Include="DomainModel\Steps\StepBase.cs" />
+    <Compile Include="DomainModel\Steps\MultiStep.cs" />
+    <Compile Include="DomainModel\Steps\SingleStep.cs" />
+    <Compile Include="ViewModel\Components\INavigationPaneViewModel.cs" />
+    <Compile Include="ViewModel\Steps\IStepViewModel.cs" />
+    <Compile Include="ViewModel\Steps\MultiStepViewModel.cs" />
+    <Compile Include="ViewModel\Steps\SingleStepViewModel.cs" />
+    <Compile Include="DomainModel\Steps\Summary.cs" />
+    <Compile Include="Validation\IValidator.cs" />
+    <Compile Include="ViewModel\Steps\StepBaseViewModel.cs" />
+    <Compile Include="ViewModel\Steps\SummaryViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

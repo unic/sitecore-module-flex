@@ -1,0 +1,26 @@
+﻿@using System.Linq
+@using Unic.Flex.Core.Globalization
+@using Unic.Flex.Core.Presentation
+@model Unic.Flex.Model.DomainModel.Sections.StandardSection
+
+<h3>@Model.Title</h3>
+
+<table>
+
+    <thead>
+        <tr>
+            <th>@TranslationHelper.FlexText("Field Title")</th>
+            <th>@TranslationHelper.FlexText("Value Title")</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var field in Model.Fields.Where(field => field.ShowInSummary).Where(field => !field.IsHidden))
+        {
+            @Html.FlexComponent(m => field, "Mailers/SavePlug/Field", (string)ViewBag.Theme)
+        }
+
+    </tbody>
+
+</table>

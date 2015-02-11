@@ -1,0 +1,11 @@
+﻿@model Unic.Flex.Model.ViewModel.Components.ErrorViewModel
+
+@if (!string.IsNullOrWhiteSpace(Model.Message))
+{
+    <div class="flex_formcontainer">
+        <p class="flex_globalerror">
+            @Html.Raw(Model.Message)
+        </p>
+    </div>
+}
+    

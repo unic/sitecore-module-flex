@@ -1,0 +1,226 @@
+/** Colors imported from ColorSchemer export */
+/** Default variables */
+/** Custom web fonts */
+/** Helper functions */
+/** Inspired from https://github.com/guardian/sass-mq.git */
+/**  // To enable support for browsers that do not support @media queries, (IE <= 8, Firefox <= 3, Opera <= 9) set $mqResponsive to false Create a separate stylesheet served exclusively to these browsers, meaning @media queries will be rasterized, relying on the cascade itself */
+/** Name your breakpoints in a way that creates a ubiquitous language across team members. It will improve communication between stakeholders, designers, developers, and testers. */
+/** Define the breakpoint from the $mqBreakpoints list that should be used as the target width when outputting a static stylesheet (i.e. when $mqResponsive is set to 'false'). */
+/** If you want to display the currently active breakpoint in the top right corner of your site during development, add the breakpoints to this list, ordered by width, e.g. (mobile, tablet, desktop). */
+/** Media Query mixin Usage: .element { @include mq($from: mobile) { color: red; } @include mq($to: tablet) { color: blue; } @include mq(mobile, tablet) { color: green; } @include mq($from: tablet, $and: '(orientation: landscape)') { color: teal; } @include mq(950px) { color: hotpink; } } */
+/** Add a breakpoint Usage: $mqBreakpoints: mqAddBreakpoint(tvscreen, 1920px); */
+/** Create a JSON string of map of breakpoints */
+/** Hide visually  See http://snook.ca/archives/html_and_css/hiding-content-for-accessibility for discussion of different solutions */
+/** Contain floats with clearfix  http://nicolasgallagher.com/micro-clearfix-hack/ */
+/** Lists with layout purpose */
+/** Replace text */
+/** Better font rendering (on OS X) http://maximilianhoffmann.com/posts/better-font-rendering-on-osx  Usage:  .var_dark_on_light { 	@include fontSmoothing; } .var_light_on_dark { 	@include fontSmoothingReset; } */
+/** Placeholder in input fields */
+/** Custom */
+/* Placeholders */
+/* line 33, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/inputfields/inputfields.scss */
+.flex_formcontainer .flex_uniform-multiselect { box-sizing: border-box; height: 2.46154em; line-height: 2.46154em; padding: 0 0.92308em; background: #ffffff; border: 2px solid #B0B0B1; -webkit-appearance: none; border-radius: 0; font-family: Arial, sans-serif; font-size: 0.8125em; color: #000000; }
+/* line 48, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/inputfields/inputfields.scss */
+.flex_formcontainer .flex_uniform-multiselect:-webkit-autofill { -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important; }
+/* line 86, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form-globals.scss */
+.flex_formcontainer .placeholder.flex_uniform-multiselect { color: #8A8A8A; font-family: Arial, sans-serif; opacity: 1; }
+/* line 87, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form-globals.scss */
+.flex_formcontainer .flex_uniform-multiselect:-moz-placeholder { color: #8A8A8A; font-family: Arial, sans-serif; opacity: 1; }
+/* line 88, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form-globals.scss */
+.flex_formcontainer .flex_uniform-multiselect::-moz-placeholder { color: #8A8A8A; font-family: Arial, sans-serif; opacity: 1; }
+/* line 89, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form-globals.scss */
+.flex_formcontainer .flex_uniform-multiselect:-ms-input-placeholder { color: #8A8A8A; font-family: Arial, sans-serif; opacity: 1; }
+/* line 90, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/form/form-globals.scss */
+.flex_formcontainer .flex_uniform-multiselect::-webkit-input-placeholder { color: #8A8A8A; font-family: Arial, sans-serif; opacity: 1; }
+/* line 62, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/inputfields/inputfields.scss */
+.flex_formcontainer .flex_uniform-multiselect:focus { outline: none; border-color: #626262; }
+
+/* General settings */
+/* line 167, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_selector, div.flex_selector span, div.flex_checker span, div.flex_radio span, div.flex_uploader, div.flex_uploader span.flex_action, div.flex_button, div.flex_button span { background-image: url("../images/sprite.png"); background-repeat: no-repeat; -webkit-font-smoothing: antialiased; }
+/* line 180, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_selector, div.flex_checker, div.flex_button, div.flex_radio, div.flex_uploader { display: inline-block; *display: inline; zoom: 1; vertical-align: middle; /* Keeping this as :focus to remove browser styles */ }
+/* line 189, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_selector:focus, div.flex_checker:focus, div.flex_button:focus, div.flex_radio:focus, div.flex_uploader:focus { outline: 0; }
+/* line 199, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_selector, div.flex_selector *, div.flex_radio, div.flex_radio *, div.flex_checker, div.flex_checker *, div.flex_uploader, div.flex_uploader *, div.flex_button, div.flex_button * { margin: 0; padding: 0; }
+
+/* line 206, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+.highContrastDetect { background: url("../images/bg-input.png") repeat-x 0 0; width: 0px; height: 0px; }
+
+/* Input & Textarea */
+/* line 214, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+input.flex_uniform-input, select.flex_uniform-multiselect, textarea.flex_uniform-textarea { padding: 3px; background: url("../images/bg-input.png") repeat-x 0 0; outline: 0; }
+/* line 81, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+input.flex_uniform-input.flex_active, select.flex_uniform-multiselect.flex_active, textarea.flex_uniform-textarea.flex_active { background: url("../images/bg-input-focus.png") repeat-x 0 0; }
+
+/* Remove default webkit and possible mozilla .search styles. Keeping this as :active to remove browser styles */
+/* line 228, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_checker input, input[type="search"], input[type="search"]:active { -moz-appearance: none; -webkit-appearance: none; }
+
+/* Select */
+/* line 237, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_selector { background-position: 0 -130px; line-height: 26px; height: 26px; padding: 0 0 0 10px; position: relative; overflow: hidden; }
+/* line 245, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_selector span { text-overflow: ellipsis; display: block; overflow: hidden; white-space: nowrap; background-position: right 0; height: 26px; line-height: 26px; padding-right: 25px; cursor: pointer; width: 100%; display: block; }
+/* line 256, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_selector.fixedWidth { width: 190px; }
+/* line 259, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_selector.fixedWidth span { width: 155px; }
+/* line 264, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_selector select { opacity: 0; filter: alpha(opacity=0); -moz-opacity: 0; border: none; background: none; position: absolute; height: 22px; top: 2px; left: 0px; width: 100%; }
+/* line 81, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_selector.flex_active { background-position: 0 -156px; }
+/* line 276, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_selector.flex_active span { background-position: right -26px; }
+/* line 87, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_selector.flex_hover, div.flex_selector.flex_focus { background-position: 0 -182px; }
+/* line 284, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_selector.flex_hover span, div.flex_selector.flex_focus span { background-position: right -52px; }
+/* line 81, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_selector.flex_hover.flex_active, div.flex_selector.flex_focus.flex_active { background-position: 0 -208px; }
+/* line 291, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_selector.flex_hover.flex_active span, div.flex_selector.flex_focus.flex_active span { background-position: right -78px; }
+/* line 93, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_selector.flex_disabled, div.flex_selector.flex_disabled.flex_active { background-position: 0 -234px; }
+/* line 300, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_selector.flex_disabled span, div.flex_selector.flex_disabled.flex_active span { background-position: right -104px; }
+
+/* Checkbox */
+/* line 309, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_checker { position: relative; }
+/* line 312, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_checker, div.flex_checker span, div.flex_checker input { width: 19px; height: 19px; }
+/* line 317, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_checker span { display: inline-block; *display: inline; zoom: 1; text-align: center; background-position: 0 -260px; }
+/* line 99, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_checker span.flex_checked { background-position: -76px -260px; }
+/* line 327, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_checker input { opacity: 0; filter: alpha(opacity=0); -moz-opacity: 0; border: none; background: none; display: inline-block; *display: inline; zoom: 1; }
+/* line 333, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_checker.flex_active span { background-position: -19px -260px; }
+/* line 99, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_checker.flex_active span.flex_checked { background-position: -95px -260px; }
+/* line 343, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_checker.flex_hover span, div.flex_checker.flex_focus span { background-position: -38px -260px; }
+/* line 99, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_checker.flex_hover span.flex_checked, div.flex_checker.flex_focus span.flex_checked { background-position: -114px -260px; }
+/* line 352, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_checker.flex_hover.flex_active span, div.flex_checker.flex_focus.flex_active span { background-position: -57px -260px; }
+/* line 99, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_checker.flex_hover.flex_active span.flex_checked, div.flex_checker.flex_focus.flex_active span.flex_checked { background-position: -133px -260px; }
+/* line 93, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_checker.flex_disabled, div.flex_checker.flex_disabled.flex_active { background-position: -152px -260px; }
+/* line 99, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_checker.flex_disabled span.flex_checked, div.flex_checker.flex_disabled.flex_active span.flex_checked { background-position: -171px -260px; }
+
+/* Radio */
+/* line 375, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_radio { position: relative; }
+/* line 378, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_radio, div.flex_radio span, div.flex_radio input { width: 18px; height: 18px; }
+/* line 383, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_radio span { display: inline-block; *display: inline; zoom: 1; text-align: center; background-position: 0 -279px; }
+/* line 99, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_radio span.flex_checked { background-position: -72px -279px; }
+/* line 393, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_radio input { opacity: 0; filter: alpha(opacity=0); -moz-opacity: 0; border: none; background: none; display: inline-block; *display: inline; zoom: 1; text-align: center; }
+/* line 400, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_radio.flex_active span { background-position: -18px -279px; }
+/* line 99, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_radio.flex_active span.flex_checked { background-position: -90px -279px; }
+/* line 410, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_radio.flex_hover span, div.flex_radio.flex_focus span { background-position: -36px -279px; }
+/* line 99, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_radio.flex_hover span.flex_checked, div.flex_radio.flex_focus span.flex_checked { background-position: -108px -279px; }
+/* line 419, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_radio.flex_hover.flex_active span, div.flex_radio.flex_focus.flex_active span { background-position: -54px -279px; }
+/* line 99, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_radio.flex_hover.flex_active span.flex_checked, div.flex_radio.flex_focus.flex_active span.flex_checked { background-position: -126px -279px; }
+/* line 430, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_radio.flex_disabled span, div.flex_radio.flex_disabled.flex_active span { background-position: -144px -279px; }
+/* line 99, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_radio.flex_disabled span.flex_checked, div.flex_radio.flex_disabled.flex_active span.flex_checked { background-position: -162px -279px; }
+
+/* Uploader */
+/* line 442, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_uploader { background-position: 0 -297px; height: 28px; width: 190px; cursor: pointer; position: relative; overflow: hidden; }
+/* line 450, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_uploader span.flex_action { background-position: right -409px; height: 28px; line-height: 28px; width: 85px; text-align: center; float: left; display: inline; overflow: hidden; cursor: pointer; }
+/* line 462, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_uploader span.flex_filename { text-overflow: ellipsis; display: block; overflow: hidden; white-space: nowrap; float: left; cursor: default; height: 24px; margin: 2px 0 2px 2px; line-height: 24px; width: 82px; padding: 0 10px; }
+/* line 473, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_uploader input { opacity: 0; filter: alpha(opacity=0); -moz-opacity: 0; border: none; background: none; position: absolute; top: 0; right: 0; float: right; cursor: default; width: 100%; height: 100%; }
+/* line 485, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_uploader.flex_active span.flex_action { background-position: right -465px; }
+/* line 87, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_uploader.flex_hover, div.flex_uploader.flex_focus { background-position: 0 -353px; }
+/* line 493, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_uploader.flex_hover span.flex_action, div.flex_uploader.flex_focus span.flex_action { background-position: right -437px; }
+/* line 498, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_uploader.flex_hover.flex_active span.flex_action, div.flex_uploader.flex_focus.flex_active span.flex_action { background-position: right -493px; }
+/* line 93, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_uploader.flex_disabled, div.flex_uploader.flex_disabled.flex_active { background-position: 0 -325px; }
+/* line 507, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_uploader.flex_disabled span.flex_action, div.flex_uploader.flex_disabled.flex_active span.flex_action { background-position: right -381px; }
+
+/* Buttons */
+/* line 515, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_button { background-position: 0 -641px; height: 30px; cursor: pointer; position: relative; /* Keep buttons barely visible so they can get focus */ }
+/* line 522, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_button a, div.flex_button button, div.flex_button input { opacity: 0.01; filter: alpha(opacity=1); -moz-opacity: 0.01; display: block; top: 0; left: 0; right: 0; bottom: 0; position: absolute; }
+/* line 532, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_button span { display: inline-block; *display: inline; zoom: 1; line-height: 30px; text-align: center; background-position: right -521px; height: 30px; margin-left: 13px; padding: 0; }
+/* line 81, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_button.flex_active { background-position: 0 -671px; }
+/* line 545, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_button.flex_active span { background-position: right -551px; cursor: default; }
+/* line 87, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_button.flex_hover, div.flex_button.flex_focus { background-position: 0 -701px; }
+/* line 554, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_button.flex_hover span, div.flex_button.flex_focus span { background-position: right -581px; }
+/* line 93, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_button.flex_disabled, div.flex_button.flex_disabled.flex_active { background-position: 0 -731px; }
+/* line 562, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/assets/vendor/jquery.uniform/themes/_base/css/uniform._base.scss */
+div.flex_button.flex_disabled span, div.flex_button.flex_disabled.flex_active span { background-position: right -611px; cursor: default; }
+
+/* line 4, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/formstyling/formstyling.scss */
+.flex_formcontainer .flex_checker .flex_checked { position: relative; }
+/* line 6, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/formstyling/formstyling.scss */
+.flex_formcontainer .flex_checker .flex_checked:before { content: '\2713'; position: absolute; line-height: 1em; height: 1em; width: 1em; left: 0; top: 0; }
+/* line 18, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/formstyling/formstyling.scss */
+.flex_formcontainer .flex_radio span { border-radius: 50%; }
+/* line 21, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/formstyling/formstyling.scss */
+.flex_formcontainer .flex_radio .flex_checked { position: relative; }
+/* line 23, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/formstyling/formstyling.scss */
+.flex_formcontainer .flex_radio .flex_checked:before { content: ''; position: absolute; line-height: 0.625em; height: 0.625em; width: 0.625em; background-color: #000000; border-radius: 50%; left: 0.2em; top: 0.2em; }
+/* line 36, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/formstyling/formstyling.scss */
+.flex_formcontainer .flex_checker, .flex_formcontainer .flex_radio { z-index: 0; }
+/* line 40, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/formstyling/formstyling.scss */
+.flex_formcontainer .flex_checker span, .flex_formcontainer .flex_radio span { display: inline-block; background: #ffffff; border: 2px solid #B0B0B1; height: 1em; width: 1em; }
+/* line 47, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/formstyling/formstyling.scss */
+.flex_formcontainer .flex_checker input, .flex_formcontainer .flex_radio input { position: relative; z-index: 1; opacity: 0; width: 100%; height: 100%; }
+/* line 55, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/formstyling/formstyling.scss */
+.flex_formcontainer .flex_checker.flex_focus span, .flex_formcontainer .flex_checker:focus span, .flex_formcontainer .flex_radio.flex_focus span, .flex_formcontainer .flex_radio:focus span { outline: none; border-color: #626262; }
+/* line 65, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/formstyling/formstyling.scss */
+.flex_formcontainer .flex_checker.flex_disabled span:before, .flex_formcontainer .flex_radio.flex_disabled span:before { color: #E7E8E8; }
+/* line 70, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/formstyling/formstyling.scss */
+.flex_formcontainer .flex_selector { box-sizing: border-box; height: 2em; padding: 0; position: relative; }
+/* line 76, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/formstyling/formstyling.scss */
+.flex_formcontainer .flex_selector span { display: inline-block; box-sizing: border-box; border: 2px solid #B0B0B1; padding: 0.15385em 0.76923em; background: #ffffff; font-family: Arial, sans-serif; font-size: 0.8125em; color: #000000; width: 100% !important; position: relative; height: 2.46154em; }
+/* line 89, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/formstyling/formstyling.scss */
+.flex_formcontainer .flex_selector span:after { content: '\25bc'; position: absolute; right: 0.61538em; }
+/* line 97, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/formstyling/formstyling.scss */
+.flex_formcontainer .flex_selector select { position: absolute; left: 0; top: 0.125em; opacity: 0; height: 1.75em; width: 100%; }
+/* line 108, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/formstyling/formstyling.scss */
+.flex_formcontainer .flex_selector:focus span, .flex_formcontainer .flex_selector.flex_focus span { border-color: #626262; }
+/* line 119, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/formstyling/formstyling.scss */
+.flex_formcontainer .flex_uploader { height: auto; width: 100%; padding-right: 0.5em; box-sizing: border-box; position: relative; overflow: hidden; }
+/* line 127, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/formstyling/formstyling.scss */
+.flex_formcontainer .flex_uploader [type=file] { font-size: 500px; position: absolute; left: 0; top: 0; opacity: 0; width: 100%; }
+/* line 137, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/formstyling/formstyling.scss */
+.flex_formcontainer .flex_uploader .flex_filename { display: inline-block; width: 70%; margin: 0; }
+/* line 145, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/formstyling/formstyling.scss */
+.flex_formcontainer .flex_uploader .flex_action { width: 30%; margin: 0.25em -0.5em 0 0.5em; }
+/* line 155, ../../../../../var/lib/jenkins/workspace/Flex-Frontend (develop)/source/modules/formstyling/formstyling.scss */
+.flex_formcontainer .flex_uniform-multiselect { height: 4.92308em; line-height: 4.92308em; padding: 0; }

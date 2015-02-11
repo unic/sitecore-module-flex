@@ -1,0 +1,22 @@
+﻿@using Unic.Flex.Core.Presentation
+@model Unic.Flex.Implementation.Fields.TextOnly.TextOnlyFieldViewModel
+
+<li class="@Model.CssClass" @Html.Raw(Html.FormatAttributes(Model.ContainerAttributes))>
+
+    @if (!string.IsNullOrWhiteSpace(Model.Label))
+    {
+        <strong class="flex_label">@Model.Label</strong>
+    }
+
+    <div class="flex_rtecontent">
+        @if (Model.Value.StartsWith("<p>"))
+        {
+            @Html.Raw(Model.Value)
+        }
+        else
+        {
+            <p>@Html.Raw(Model.Value)</p>
+        }
+    </div>
+
+</li>

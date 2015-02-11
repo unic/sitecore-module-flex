@@ -1,0 +1,51 @@
+----item----
+version: 1
+id: {726DC695-EC8D-4606-B5FA-4D6EEC1E43E2}
+database: master
+path: /sitecore/system/Modules/Flex/Configuration/Configs/Globalization Configuration
+parent: {5DEBC58D-A20F-461B-A57F-39D4BC50E755}
+name: Globalization Configuration
+master: {00000000-0000-0000-0000-000000000000}
+template: {6881FFF3-CB76-43DB-A8B9-625D1790244D}
+templatekey: Globalization Configuration
+
+----version----
+language: en
+version: 1
+revision: 802915dc-0c4f-4375-ae38-ee30b3c786c8
+
+----field----
+field: {CF86E7D7-97B4-4B8F-ABA4-DF532053639C}
+name: Date Format
+key: date format
+content-length: 0
+
+
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20141031T151958
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+802915dc-0c4f-4375-ae38-ee30b3c786c8
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20141106T170130:635508900904216809
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

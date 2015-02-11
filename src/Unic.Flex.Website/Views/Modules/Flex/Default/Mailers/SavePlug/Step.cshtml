@@ -1,0 +1,9 @@
+﻿@using Unic.Flex.Core.Presentation
+@model Unic.Flex.Model.DomainModel.Steps.StepBase
+
+<h2>@Model.Title</h2>
+
+@foreach (var standardSection in @Model.Sections.Where(s => !s.IsHidden).Where(s => s.Fields.Any(f => f.ShowInSummary && !f.IsHidden && !string.IsNullOrWhiteSpace(f.TextValue))))
+{
+    @Html.FlexComponent(m => standardSection, "Mailers/SavePlug/Section", (string)ViewBag.Theme)
+}

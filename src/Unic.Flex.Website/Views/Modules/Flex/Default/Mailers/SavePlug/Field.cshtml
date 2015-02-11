@@ -1,0 +1,19 @@
+﻿@using Unic.Flex.Implementation.Fields.TextOnly
+@model Unic.Flex.Model.DomainModel.Fields.IField
+
+<tr>
+    <th>@Html.Raw(Model.Label)</th>
+    <td>
+        @if (Model is TextOnlyField)
+        {
+            @Html.Raw(Model.TextValue)
+        }
+        else
+        {
+            foreach (var item in Model.TextValue.Split(new[] { Environment.NewLine }, StringSplitOptions.None))
+            {
+                @item<br />
+            }
+        }
+    </td>
+</tr>
