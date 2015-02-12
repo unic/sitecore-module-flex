@@ -19,15 +19,15 @@ Default error
 ----version----
 language: de
 version: 1
-revision: 178d4f83-eb77-4413-a93c-719aa0d35c7c
+revision: cfe46673-ea0d-47c4-a0f1-073db512ed5e
 
 ----field----
 field: {2BA3454A-9A9C-4CDF-A9F8-107FD484EB6E}
 name: Phrase
 key: phrase
-content-length: 22
+content-length: 68
 
-Standard-Fehlermeldung
+Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.
 ----field----
 field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
 name: __Owner
@@ -55,14 +55,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-178d4f83-eb77-4413-a93c-719aa0d35c7c
+cfe46673-ea0d-47c4-a0f1-073db512ed5e
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20150116T141940:635570147806035696
+20150212T084709:635593276295903651
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

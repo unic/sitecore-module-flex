@@ -19,15 +19,15 @@ Skip Step
 ----version----
 language: de
 version: 1
-revision: 6dbc0459-d16f-405d-b9ad-e5b55856d36e
+revision: 05d545fa-0b73-426e-95e2-d15b65c380bd
 
 ----field----
 field: {2BA3454A-9A9C-4CDF-A9F8-107FD484EB6E}
 name: Phrase
 key: phrase
-content-length: 20
+content-length: 12
 
-Schritt überspringen
+Überspringen
 ----field----
 field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
 name: __Owner
@@ -55,14 +55,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-6dbc0459-d16f-405d-b9ad-e5b55856d36e
+05d545fa-0b73-426e-95e2-d15b65c380bd
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20150116T141940:635570147802783186
+20150212T084820:635593277001823153
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
@@ -73,15 +73,15 @@ sitecore\admin
 ----version----
 language: en
 version: 1
-revision: 6409d10f-c5f0-46a7-bb62-c4351c97a69f
+revision: 868e641c-969c-44fe-88d0-54ddb30f3ffe
 
 ----field----
 field: {2BA3454A-9A9C-4CDF-A9F8-107FD484EB6E}
 name: Phrase
 key: phrase
-content-length: 9
+content-length: 4
 
-Skip Step
+Skip
 ----field----
 field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
 name: __Owner
@@ -109,14 +109,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-6409d10f-c5f0-46a7-bb62-c4351c97a69f
+868e641c-969c-44fe-88d0-54ddb30f3ffe
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20150116T141940:635570147802412890
+20150212T085207:635593279276809997
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

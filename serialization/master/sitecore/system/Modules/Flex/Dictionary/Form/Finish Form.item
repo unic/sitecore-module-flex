@@ -19,15 +19,15 @@ Finish Form
 ----version----
 language: de
 version: 1
-revision: 3f308df6-6e3f-4889-b27b-77078f2fa7e9
+revision: b950c9bd-e496-4819-8828-a96f85a57bce
 
 ----field----
 field: {2BA3454A-9A9C-4CDF-A9F8-107FD484EB6E}
 name: Phrase
 key: phrase
-content-length: 20
+content-length: 6
 
-Eingabemaske beenden
+Senden
 ----field----
 field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
 name: __Owner
@@ -55,14 +55,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-3f308df6-6e3f-4889-b27b-77078f2fa7e9
+b950c9bd-e496-4819-8828-a96f85a57bce
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20150116T141939:635570147797919415
+20150212T084806:635593276865265505
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
@@ -73,15 +73,15 @@ sitecore\admin
 ----version----
 language: en
 version: 1
-revision: cfe1cd0e-10e9-448e-b667-55138b0ae251
+revision: e8563794-6e41-4dbc-96e4-40b91cdd7982
 
 ----field----
 field: {2BA3454A-9A9C-4CDF-A9F8-107FD484EB6E}
 name: Phrase
 key: phrase
-content-length: 11
+content-length: 4
 
-Finish Form
+Send
 ----field----
 field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
 name: __Owner
@@ -109,14 +109,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-cfe1cd0e-10e9-448e-b667-55138b0ae251
+e8563794-6e41-4dbc-96e4-40b91cdd7982
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20150116T141939:635570147797529107
+20150212T085153:635593279131607022
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

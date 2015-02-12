@@ -19,15 +19,15 @@ Flex Form Export
 ----version----
 language: de
 version: 1
-revision: 26113410-5c04-4a3c-b515-4cbd8f421f7b
+revision: 1e8e7c7f-e184-491e-85b0-8d407025c156
 
 ----field----
 field: {2BA3454A-9A9C-4CDF-A9F8-107FD484EB6E}
 name: Phrase
 key: phrase
-content-length: 20
+content-length: 15
 
-Flex-Formular-Export
+Formular Export
 ----field----
 field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
 name: __Owner
@@ -55,14 +55,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-26113410-5c04-4a3c-b515-4cbd8f421f7b
+1e8e7c7f-e184-491e-85b0-8d407025c156
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20150116T141941:635570147814812503
+20150212T084914:635593277541108537
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
@@ -73,15 +73,15 @@ sitecore\admin
 ----version----
 language: en
 version: 1
-revision: a3893025-a920-4112-8c3e-da026fe95eb1
+revision: 7c45a5e9-2731-477d-9265-327364324198
 
 ----field----
 field: {2BA3454A-9A9C-4CDF-A9F8-107FD484EB6E}
 name: Phrase
 key: phrase
-content-length: 16
+content-length: 11
 
-Flex Form Export
+Form Export
 ----field----
 field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
 name: __Owner
@@ -109,14 +109,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-a3893025-a920-4112-8c3e-da026fe95eb1
+7c45a5e9-2731-477d-9265-327364324198
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20150116T141941:635570147814322114
+20150212T085249:635593279696379081
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

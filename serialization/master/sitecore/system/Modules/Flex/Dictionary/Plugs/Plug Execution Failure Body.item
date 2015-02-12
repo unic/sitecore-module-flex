@@ -19,15 +19,15 @@ Plug Execution Failure Body
 ----version----
 language: de
 version: 1
-revision: d7546c30-771c-4868-b7b0-a55e51283927
+revision: 5e6bd875-82eb-433f-a542-4f0d4e2cdce3
 
 ----field----
 field: {2BA3454A-9A9C-4CDF-A9F8-107FD484EB6E}
 name: Phrase
 key: phrase
-content-length: 148
+content-length: 144
 
-Die Funktion mit ID '{1}' hat die zulässige Anzahl wiederholter Ausführungsversuche  im Formular mit ID '{0}' überschritten.
+Der Plug mit ID '{1}' hat die zulässige Anzahl wiederholter Ausführungsversuche  im Formular mit ID '{0}' überschritten.
 
 Ausnahme: {2}
 
@@ -59,14 +59,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-d7546c30-771c-4868-b7b0-a55e51283927
+5e6bd875-82eb-433f-a542-4f0d4e2cdce3
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20150116T141941:635570147810108860
+20150212T085234:635593279542099900
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

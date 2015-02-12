@@ -73,15 +73,15 @@ sitecore\admin
 ----version----
 language: en
 version: 1
-revision: 5e4dc1e3-3a10-4bcc-9f7f-2301b1c4ac73
+revision: 8b496d25-b9be-4336-a252-c938b788f239
 
 ----field----
 field: {2BA3454A-9A9C-4CDF-A9F8-107FD484EB6E}
 name: Phrase
 key: phrase
-content-length: 23
+content-length: 24
 
-Phone number is invalid
+Phone number is invalid.
 ----field----
 field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
 name: __Owner
@@ -109,14 +109,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-5e4dc1e3-3a10-4bcc-9f7f-2301b1c4ac73
+8b496d25-b9be-4336-a252-c938b788f239
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20150116T141942:635570147829123580
+20150212T085336:635593280169839159
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

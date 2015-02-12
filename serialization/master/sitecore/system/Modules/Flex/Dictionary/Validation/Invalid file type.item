@@ -19,15 +19,15 @@ Invalid file type
 ----version----
 language: de
 version: 1
-revision: 32b4e77e-4c83-4ee3-afea-95c617797b0f
+revision: 1a98c833-93d2-429e-a068-4277e3d5fde5
 
 ----field----
 field: {2BA3454A-9A9C-4CDF-A9F8-107FD484EB6E}
 name: Phrase
 key: phrase
-content-length: 19
+content-length: 20
 
-Ungültiger Dateityp
+Ungültiger Dateityp.
 ----field----
 field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
 name: __Owner
@@ -55,14 +55,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-32b4e77e-4c83-4ee3-afea-95c617797b0f
+1a98c833-93d2-429e-a068-4277e3d5fde5
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20150116T141942:635570147825380677
+20150212T085039:635593278399088223
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
@@ -73,15 +73,15 @@ sitecore\admin
 ----version----
 language: en
 version: 1
-revision: 94eccf96-9779-4448-957e-0103e9227d91
+revision: 721a7b63-aefd-46eb-b424-c02fa615695d
 
 ----field----
 field: {2BA3454A-9A9C-4CDF-A9F8-107FD484EB6E}
 name: Phrase
 key: phrase
-content-length: 17
+content-length: 18
 
-Invalid file type
+Invalid file type.
 ----field----
 field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
 name: __Owner
@@ -109,14 +109,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-94eccf96-9779-4448-957e-0103e9227d91
+721a7b63-aefd-46eb-b424-c02fa615695d
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20150116T141942:635570147824910315
+20150212T085318:635593279987684684
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

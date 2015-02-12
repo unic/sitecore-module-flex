@@ -73,15 +73,15 @@ sitecore\admin
 ----version----
 language: en
 version: 1
-revision: fcea5844-92d5-4c43-b454-575b774397c8
+revision: 1f37c68d-9376-4491-8504-19466c16bd5b
 
 ----field----
 field: {2BA3454A-9A9C-4CDF-A9F8-107FD484EB6E}
 name: Phrase
 key: phrase
-content-length: 14
+content-length: 15
 
-Url is invalid
+Url is invalid.
 ----field----
 field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
 name: __Owner
@@ -109,14 +109,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-fcea5844-92d5-4c43-b454-575b774397c8
+1f37c68d-9376-4491-8504-19466c16bd5b
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20150116T141943:635570147830574699
+20150212T085343:635593280230310578
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

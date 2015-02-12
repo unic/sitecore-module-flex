@@ -19,15 +19,15 @@ Max file size exceeded
 ----version----
 language: de
 version: 1
-revision: f4433476-1dfe-45b2-a902-8a67b3201d64
+revision: 49433357-b9a1-4138-9e71-6698870a7cb3
 
 ----field----
 field: {2BA3454A-9A9C-4CDF-A9F8-107FD484EB6E}
 name: Phrase
 key: phrase
-content-length: 58
+content-length: 59
 
-Maximale Dateigrösse von {MaxFileSize} Bytes überschritten
+Maximale Dateigrösse von {MaxFileSize} Bytes überschritten.
 ----field----
 field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
 name: __Owner
@@ -55,14 +55,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-f4433476-1dfe-45b2-a902-8a67b3201d64
+49433357-b9a1-4138-9e71-6698870a7cb3
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20150116T141942:635570147827732501
+20150212T085020:635593278208705920
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
@@ -73,15 +73,15 @@ sitecore\admin
 ----version----
 language: en
 version: 1
-revision: 17ba04aa-9f72-486e-9a5f-8c564c928e23
+revision: ae4bc7a7-4893-4ffe-89ce-748b9b72a8b5
 
 ----field----
 field: {2BA3454A-9A9C-4CDF-A9F8-107FD484EB6E}
 name: Phrase
 key: phrase
-content-length: 45
+content-length: 46
 
-Max file size of {MaxFileSize} bytes exceeded
+Max file size of {MaxFileSize} bytes exceeded.
 ----field----
 field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
 name: __Owner
@@ -109,14 +109,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-17ba04aa-9f72-486e-9a5f-8c564c928e23
+ae4bc7a7-4893-4ffe-89ce-748b9b72a8b5
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20150116T141942:635570147827232113
+20150212T085328:635593280080998259
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

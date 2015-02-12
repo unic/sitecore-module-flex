@@ -19,15 +19,15 @@ Invalid date format
 ----version----
 language: de
 version: 1
-revision: 6850f40c-8eb0-4441-8fd9-d8384662fe99
+revision: ef3aaf24-6858-493e-96a7-6412d260a3cf
 
 ----field----
 field: {2BA3454A-9A9C-4CDF-A9F8-107FD484EB6E}
 name: Phrase
 key: phrase
-content-length: 23
+content-length: 24
 
-Ungültiges Datumsformat
+Ungültiges Datumsformat.
 ----field----
 field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
 name: __Owner
@@ -55,14 +55,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-6850f40c-8eb0-4441-8fd9-d8384662fe99
+ef3aaf24-6858-493e-96a7-6412d260a3cf
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20150116T141942:635570147824680139
+20150212T085042:635593278426375706
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
@@ -73,15 +73,15 @@ sitecore\admin
 ----version----
 language: en
 version: 1
-revision: 08a06b2d-41ab-43e4-82cc-4c3adda0d6de
+revision: 544ae317-a1d1-45dc-b427-7b274b28b884
 
 ----field----
 field: {2BA3454A-9A9C-4CDF-A9F8-107FD484EB6E}
 name: Phrase
 key: phrase
-content-length: 19
+content-length: 20
 
-Invalid date format
+Invalid date format.
 ----field----
 field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
 name: __Owner
@@ -109,14 +109,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-08a06b2d-41ab-43e4-82cc-4c3adda0d6de
+544ae317-a1d1-45dc-b427-7b274b28b884
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20150116T141942:635570147824249803
+20150212T085315:635593279958844916
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
