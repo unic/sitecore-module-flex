@@ -1,4 +1,4 @@
-﻿namespace Unic.Flex.Core.DependencyInjection
+﻿namespace Unic.Flex.NinjectIoC
 {
     using System;
     using System.Collections.Generic;
@@ -19,6 +19,8 @@
     using Unic.Flex.Core.ModelBinding;
     using Unic.Flex.Core.Plugs;
     using Unic.Flex.Core.Presentation;
+    using Unic.Flex.Implementation.Database;
+    using Unic.Flex.Implementation.Mailers;
     using Unic.Flex.Model.Types;
     using Unic.Flex.Model.ViewModel.Fields;
     using Unic.Flex.Model.ViewModel.Forms;
@@ -36,7 +38,7 @@
         {
             // logging
             this.Bind<ILogger>().To<SitecoreLogger>().InSingletonScope();
-            
+
             // business logic
             this.Bind<IContextService>().To<ContextService>();
             this.Bind<IFieldDependencyService>().To<FieldDependencyService>();
@@ -45,7 +47,7 @@
             this.Bind<ITaskService>().To<TaskService>();
             this.Bind<IAnalyticsService>().To<AnalyticsService>();
             this.Bind<ICultureService>().To<CultureService>();
-            
+
             // data access
             this.Bind<IDictionaryRepository>().To<DictionaryRepository>();
             this.Bind<IFormRepository>().To<FormRepository>();
@@ -73,21 +75,13 @@
             // helpers
             this.Bind<IUrlService>().To<UrlService>().InSingletonScope();
 
-            // third party classes
-            this.Bind<IConfigurationManager>().To<ConfigurationManager>().When(this.GetFlexCondition());
-            this.Bind<ISitecoreContext>().To<SitecoreContext>().When(this.GetFlexCondition()).WithConstructorArgument("contextName", Constants.GlassMapperContextName);
-        }
+            // implementation classes
+            this.Bind<ISavePlugMailer>().To<SavePlugMailer>();
+            this.Bind<ISaveToDatabaseService>().To<SaveToDatabaseService>();
 
-        /// <summary>
-        /// Gets the flex condition to only inject classes requested from a Flex class.
-        /// </summary>
-        /// <returns>Lamda expression with the condition</returns>
-        protected virtual Func<IRequest, bool> GetFlexCondition()
-        {
-            return request =>
-                request.Parameters.Contains(Container.FlexParameter)
-                || (request.Target != null && request.Target.Member.DeclaringType != null
-                    && request.Target.Member.DeclaringType.FullName.StartsWith(Constants.RootNamespace));
+            // third party classes
+            this.Bind<IConfigurationManager>().To<ConfigurationManager>();
+            this.Bind<ISitecoreContext>().To<SitecoreContext>().WithConstructorArgument("contextName", Constants.GlassMapperContextName);
         }
     }
 }

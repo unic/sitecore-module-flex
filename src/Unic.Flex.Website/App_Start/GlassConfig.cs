@@ -70,8 +70,8 @@ namespace Unic.Flex.Website.App_Start
             container.Register(Component.For<AbstractDataMapper>().ImplementedBy<SitecoreReusableFieldTypeMapper>().LifeStyle.Transient);
             container.Register(Component.For<AbstractDataMapper>().ImplementedBy<SitecoreReusableChildrenTypeMapper>().LifeStyle.Transient);
 
-            // register ninject object creation
-            container.Register(Component.For<IObjectConstructionTask>().ImplementedBy<NinjectInjectorTask>().LifestylePerWebRequest());
+            // register IoC object creation
+            container.Register(Component.For<IObjectConstructionTask>().ImplementedBy<DependencyInjectorTask>().LifestylePerWebRequest());
 
             // install the config
             container.Install(new SitecoreInstaller(config));

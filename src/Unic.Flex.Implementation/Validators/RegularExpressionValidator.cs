@@ -78,7 +78,7 @@
             }
             catch (ArgumentException exception)
             {
-                var logger = Container.Resolve<ILogger>();
+                var logger = DependencyResolver.Resolve<ILogger>();
                 logger.Error(string.Format("Regular expression '{0}' is not valid", this.RegularExpression), this, exception);
                 Profiler.OnEnd(this, eventName);
                 return false;

@@ -9,6 +9,7 @@
     using Unic.Flex.Core.Utilities;
     using Unic.Flex.Model.Types;
     using Unic.Flex.Model.ViewModel.Forms;
+    using DependencyResolver = Unic.Flex.Core.DependencyInjection.DependencyResolver;
 
     /// <summary>
     /// Bind the form model.
@@ -108,7 +109,7 @@
                 return base.CreateModel(controllerContext, bindingContext, modelType);
             }
 
-            var context = Container.Resolve<IFlexContext>();
+            var context = DependencyResolver.Resolve<IFlexContext>();
             context.ViewModel = this.modelConverter.ConvertToViewModel(context.Form);
             return context.ViewModel;
         }

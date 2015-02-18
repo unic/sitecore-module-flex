@@ -35,7 +35,7 @@
         /// <param name="args">The arguments.</param>
         public override void Process(HttpRequestArgs args)
         {
-            this.logger = Container.Resolve<ILogger>();
+            this.logger = DependencyResolver.Resolve<ILogger>();
             
             // verify context
             if (Sitecore.Context.Database == null || Sitecore.Context.GetSiteName() == "shell" || Sitecore.Context.GetSiteName() == "login")
@@ -47,8 +47,8 @@
             // inject classes
             // NOTE: this has to be done with the service locator anti-pattern because the
             // pipeline process is cached and not instantiated on each request.
-            this.contextService = Container.Resolve<IContextService>();
-            this.flexContext = Container.Resolve<IFlexContext>();
+            this.contextService = DependencyResolver.Resolve<IContextService>();
+            this.flexContext = DependencyResolver.Resolve<IFlexContext>();
             
             // resolve item
             var item = this.flexContext.Item != null ? Sitecore.Context.Database.GetItem(this.flexContext.Item.ItemId.ToString()) : null;

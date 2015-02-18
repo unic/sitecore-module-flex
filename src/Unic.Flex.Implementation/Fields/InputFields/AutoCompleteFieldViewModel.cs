@@ -6,6 +6,7 @@
     using Unic.Flex.Core.DependencyInjection;
     using Unic.Flex.Core.Globalization;
     using Unic.Flex.Model.ViewModel.Fields.InputFields;
+    using DependencyResolver = Unic.Flex.Core.DependencyInjection.DependencyResolver;
 
     /// <summary>
     /// View model for the field with autocompletion.
@@ -39,7 +40,7 @@
         /// </summary>
         public override void BindProperties()
         {
-            var translationService = Container.Resolve<IDictionaryRepository>();
+            var translationService = DependencyResolver.Resolve<IDictionaryRepository>();
             
             base.BindProperties();
 

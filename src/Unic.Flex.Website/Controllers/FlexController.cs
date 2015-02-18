@@ -11,6 +11,7 @@
     using Unic.Configuration;
     using Unic.Flex.Core.Attributes;
     using Unic.Flex.Core.Context;
+    using Unic.Flex.Core.DependencyInjection;
     using Unic.Flex.Core.Globalization;
     using Unic.Flex.Core.Logging;
     using Unic.Flex.Core.Mapping;
@@ -24,6 +25,7 @@
     using Unic.Flex.Model.ViewModel.Components;
     using Unic.Flex.Model.ViewModel.Forms;
     using Constants = Unic.Flex.Core.Definitions.Constants;
+    using DependencyResolver = Unic.Flex.Core.DependencyInjection.DependencyResolver;
     using Profiler = Unic.Profiling.Profiler;
     using Settings = Sitecore.Configuration.Settings;
 
@@ -80,11 +82,6 @@
         private readonly IFlexContext flexContext;
 
         /// <summary>
-        /// The URL service
-        /// </summary>
-        private readonly IUrlService urlService;
-
-        /// <summary>
         /// The form repository
         /// </summary>
         private readonly IFormRepository formRepository;
@@ -119,34 +116,20 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="FlexController" /> class.
         /// </summary>
-        /// <param name="presentationService">The presentation service.</param>
-        /// <param name="modelConverter">The model converter.</param>
-        /// <param name="contextService">The context service.</param>
-        /// <param name="userDataRepository">The user data repository.</param>
-        /// <param name="plugsService">The plugs service.</param>
-        /// <param name="flexContext">The flex context.</param>
-        /// <param name="urlService">The URL service.</param>
-        /// <param name="formRepository">The form repository.</param>
-        /// <param name="logger">The logger.</param>
-        /// <param name="taskService">The task service.</param>
-        /// <param name="saveToDatabaseService">The save to database service.</param>
-        /// <param name="dictionaryRepository">The dictionary repository.</param>
-        /// <param name="configurationManager">The configuration manager.</param>
-        public FlexController(IPresentationService presentationService, IModelConverterService modelConverter, IContextService contextService, IUserDataRepository userDataRepository, IPlugsService plugsService, IFlexContext flexContext, IUrlService urlService, IFormRepository formRepository, ILogger logger, ITaskService taskService, ISaveToDatabaseService saveToDatabaseService, IDictionaryRepository dictionaryRepository, IConfigurationManager configurationManager)
+        public FlexController()
         {
-            this.presentationService = presentationService;
-            this.modelConverter = modelConverter;
-            this.contextService = contextService;
-            this.userDataRepository = userDataRepository;
-            this.plugsService = plugsService;
-            this.flexContext = flexContext;
-            this.urlService = urlService;
-            this.formRepository = formRepository;
-            this.logger = logger;
-            this.taskService = taskService;
-            this.saveToDatabaseService = saveToDatabaseService;
-            this.dictionaryRepository = dictionaryRepository;
-            this.configurationManager = configurationManager;
+            this.presentationService = DependencyResolver.Resolve<IPresentationService>();
+            this.modelConverter = DependencyResolver.Resolve<IModelConverterService>();
+            this.contextService = DependencyResolver.Resolve<IContextService>();
+            this.userDataRepository = DependencyResolver.Resolve<IUserDataRepository>();
+            this.plugsService = DependencyResolver.Resolve<IPlugsService>();
+            this.flexContext = DependencyResolver.Resolve<IFlexContext>();
+            this.formRepository = DependencyResolver.Resolve<IFormRepository>();
+            this.logger = DependencyResolver.Resolve<ILogger>();
+            this.taskService = DependencyResolver.Resolve<ITaskService>();
+            this.saveToDatabaseService = DependencyResolver.Resolve<ISaveToDatabaseService>();
+            this.dictionaryRepository = DependencyResolver.Resolve<IDictionaryRepository>();
+            this.configurationManager = DependencyResolver.Resolve<IConfigurationManager>();
         }
 
         /// <summary>

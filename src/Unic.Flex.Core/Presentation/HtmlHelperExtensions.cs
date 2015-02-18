@@ -13,6 +13,7 @@
     using Unic.Flex.Core.DependencyInjection;
     using Unic.Flex.Model.Presentation;
     using Unic.Flex.Model.ViewModel.Fields;
+    using DependencyResolver = Unic.Flex.Core.DependencyInjection.DependencyResolver;
 
     /// <summary>
     /// Extension methods for the Mvc Html Helper
@@ -29,7 +30,7 @@
         /// </summary>
         static HtmlHelperExtensions()
         {
-            PresentationService = new Lazy<IPresentationService>(() => Container.Resolve<IPresentationService>());
+            PresentationService = new Lazy<IPresentationService>(() => DependencyResolver.Resolve<IPresentationService>());
         }
 
         /// <summary>

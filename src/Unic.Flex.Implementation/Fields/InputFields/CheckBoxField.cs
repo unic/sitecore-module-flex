@@ -21,7 +21,7 @@
         /// </summary>
         public CheckBoxField()
         {
-            this.dictionaryRepository = Container.Resolve<IDictionaryRepository>();
+            this.dictionaryRepository = DependencyResolver.Resolve<IDictionaryRepository>();
         }
 
         /// <summary>
