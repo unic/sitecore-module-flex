@@ -57,7 +57,8 @@ namespace Unic.Flex.Website.App_Start
             // get new config
             var config = new Config();
 
-            // register parameterscontainer.Register(Component.For<IEnumerable<ISitecoreQueryParameter>>().ImplementedBy<List<ItemPathParameter>>().LifeStyle.Transient);
+            // register parameters
+            container.Register(Component.For<IEnumerable<ISitecoreQueryParameter>>().ImplementedBy<List<ItemPathParameter>>().LifeStyle.Transient);
             container.Register(Component.For<IEnumerable<ISitecoreQueryParameter>>().ImplementedBy<List<ItemIdParameter>>().LifeStyle.Transient);
             container.Register(Component.For<IEnumerable<ISitecoreQueryParameter>>().ImplementedBy<List<ItemIdNoBracketsParameter>>().LifeStyle.Transient);
             container.Register(Component.For<IEnumerable<ISitecoreQueryParameter>>().ImplementedBy<List<ItemEscapedPathParameter>>().LifeStyle.Transient);
