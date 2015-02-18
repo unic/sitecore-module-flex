@@ -76,7 +76,7 @@
             if (this.OtherFieldModel == null) return false;
             
             // get the other field
-            var context = Container.Resolve<IFlexContext>();
+            var context = DependencyResolver.Resolve<IFlexContext>();
             var field = context.ViewModel.Step.Sections.SelectMany(section => section.Fields).FirstOrDefault(f => f.Id == this.OtherFieldModel.Id);
             if (field == null) return false;
 
@@ -98,7 +98,7 @@
             if (this.OtherFieldModel == null) return attributes;
 
             // get the context
-            var context = Container.Resolve<IFlexContext>();
+            var context = DependencyResolver.Resolve<IFlexContext>();
             
             // get all sections
             var allSections = context.Form.GetSections(context.Form.GetActiveStep().StepNumber);

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{18B25AE3-F6AA-4A59-A49B-051CEB4487D8}</ProjectGuid>
+    <ProjectGuid>{8CE54113-79E7-4E3A-9421-010CA570A09B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Unic.Flex.Core</RootNamespace>
-    <AssemblyName>Unic.Flex.Core</AssemblyName>
+    <RootNamespace>Unic.Flex.NinjectIoC</RootNamespace>
+    <AssemblyName>Unic.Flex.NinjectIoC</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,24 +30,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper">
-      <HintPath>..\..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.dll</HintPath>
-    </Reference>
-    <Reference Include="AutoMapper.Net4">
-      <HintPath>..\..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.Net4.dll</HintPath>
-    </Reference>
     <Reference Include="Castle.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
+      <HintPath>..\..\packages\Castle.Core.3.3.1\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework">
-      <HintPath>..\..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
-    <Reference Include="Glass.Mapper, Version=3.0.14.26, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Glass.Mapper">
       <HintPath>..\..\packages\Glass.Mapper.3.0.14.26\lib\net45\Glass.Mapper.dll</HintPath>
     </Reference>
     <Reference Include="Glass.Mapper.Sc, Version=3.2.3.46, Culture=neutral, processorArchitecture=MSIL">
@@ -58,28 +45,19 @@
       <Private>True</Private>
       <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="Mvc.Mailer">
+    <Reference Include="Mvc.Mailer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\MvcMailer.4.5\lib\45\Mvc.Mailer.dll</HintPath>
-      <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Sitecore.Analytics, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Sitecore.Analytics.7.2.140526.49\lib\Sitecore.Analytics.dll</HintPath>
+      <HintPath>..\..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Kernel, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Ninject.Web.Common, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Sitecore.Kernel.7.2.140526.49\lib\Sitecore.Kernel.dll</HintPath>
-    </Reference>
-    <Reference Include="Sitecore.Mvc, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Sitecore.Mvc.7.2.140526.49\lib\Sitecore.Mvc.dll</HintPath>
+      <HintPath>..\..\packages\Ninject.Web.Common.3.2.2.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -119,75 +97,25 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Unic.Profiling.1.1.0\lib\net40\Unic.Profiling.dll</HintPath>
     </Reference>
+    <Reference Include="WebActivatorEx">
+      <HintPath>..\..\packages\WebActivatorEx.2.0.5\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Agents\PlugExecution.cs" />
-    <Compile Include="Analytics\AnalyticsService.cs" />
-    <Compile Include="Analytics\IAnalyticsService.cs" />
-    <Compile Include="Attributes\ValidateFormHandlerAttribute.cs" />
-    <Compile Include="Context\ContextService.cs" />
-    <Compile Include="Context\FieldDependencyService.cs" />
-    <Compile Include="Context\FlexContext.cs" />
-    <Compile Include="Context\IContextService.cs" />
-    <Compile Include="Context\IFieldDependencyService.cs" />
-    <Compile Include="Context\IFlexContext.cs" />
-    <Compile Include="Context\IUrlService.cs" />
-    <Compile Include="Context\UrlExtensions.cs" />
-    <Compile Include="Context\UrlService.cs" />
-    <Compile Include="Database\DatabaseRepository.cs" />
-    <Compile Include="Database\FlexDbContext.cs" />
-    <Compile Include="Database\IDatabaseRepository.cs" />
-    <Compile Include="Database\IUnitOfWork.cs" />
-    <Compile Include="Database\UnitOfWork.cs" />
-    <Compile Include="Definitions\Constants.cs" />
-    <Compile Include="DependencyInjection\DependencyResolver.cs" />
-    <Compile Include="DependencyInjection\IContainer.cs" />
-    <Compile Include="Globalization\CultureService.cs" />
-    <Compile Include="Globalization\DictionaryRepository.cs" />
-    <Compile Include="Globalization\ICultureService.cs" />
-    <Compile Include="Globalization\IDictionaryRepository.cs" />
-    <Compile Include="Globalization\TranslationHelper.cs" />
-    <Compile Include="Logging\ILogger.cs" />
-    <Compile Include="Logging\SitecoreLogger.cs" />
-    <Compile Include="Mailing\IMailRepository.cs" />
-    <Compile Include="Mailing\IMailService.cs" />
-    <Compile Include="Mailing\MailRepository.cs" />
-    <Compile Include="Mailing\MailService.cs" />
-    <Compile Include="Mapping\IUserDataRepository.cs" />
-    <Compile Include="Mapping\Ordering\AlphabeticallyByText.cs" />
-    <Compile Include="Mapping\Ordering\SitecoreSortOrder.cs" />
-    <Compile Include="Mapping\UserDataRepository.cs" />
-    <Compile Include="ModelBinding\DateTimeModelBinder.cs" />
-    <Compile Include="ModelBinding\DecimalModelBinder.cs" />
-    <Compile Include="ModelBinding\FieldModelBinder.cs" />
-    <Compile Include="ModelBinding\FormModelBinder.cs" />
-    <Compile Include="Mapping\IModelConverterService.cs" />
-    <Compile Include="ModelBinding\ListModelBinder.cs" />
-    <Compile Include="Mapping\ModelConverterService.cs" />
-    <Compile Include="ModelBinding\UploadedFileModelBinder.cs" />
-    <Compile Include="Pipelines\ObjectConstruction\DependencyInjectorTask.cs" />
-    <Compile Include="Plugs\IPlugsService.cs" />
-    <Compile Include="Plugs\ITaskService.cs" />
-    <Compile Include="Plugs\PlugsService.cs" />
-    <Compile Include="Plugs\TaskService.cs" />
-    <Compile Include="Presentation\HtmlHelperExtensions.cs" />
-    <Compile Include="Mapping\FormRepository.cs" />
-    <Compile Include="Mapping\IFormRepository.cs" />
-    <Compile Include="Pipelines\HttpRequest\ResolveFormStep.cs" />
-    <Compile Include="Presentation\UrlHelperExtensions.cs" />
+    <Compile Include="Config.cs" />
+    <Compile Include="Container.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Presentation\IPresentationService.cs" />
-    <Compile Include="Presentation\PresentationService.cs" />
-    <Compile Include="Rules\Conditions\FormCondition.cs" />
-    <Compile Include="Rules\Conditions\InstanceCondition.cs" />
-    <Compile Include="Utilities\ItemHelpers.cs" />
-    <Compile Include="Utilities\MappingHelper.cs" />
-    <Compile Include="Utilities\SecurityUtil.cs" />
-    <Compile Include="Validators\FieldValidators\FormFieldValidator.cs" />
-    <Compile Include="Validators\FieldValidators\RegularExpressionValidator.cs" />
-    <Compile Include="Utilities\TypeHelper.cs" />
+    <Compile Include="Registration.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Unic.Flex.Core\Unic.Flex.Core.csproj">
+      <Project>{18b25ae3-f6aa-4a59-a49b-051ceb4487d8}</Project>
+      <Name>Unic.Flex.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Unic.Flex.Implementation\Unic.Flex.Implementation.csproj">
+      <Project>{5a1f1575-4fef-4801-9c6c-a96cf0860885}</Project>
+      <Name>Unic.Flex.Implementation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Unic.Flex.Model\Unic.Flex.Model.csproj">
       <Project>{c47272b9-c13f-4f53-b9f3-d3066bb45810}</Project>
       <Name>Unic.Flex.Model</Name>
@@ -198,7 +126,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets" Condition="Exists('..\..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

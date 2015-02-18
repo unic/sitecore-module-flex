@@ -5,9 +5,9 @@
     using Unic.Flex.Core.DependencyInjection;
 
     /// <summary>
-    /// Glass Mapper task to create an object and inject classes using Ninject
+    /// Glass Mapper task to create an object and inject classes using registered IoC container
     /// </summary>
-    public class NinjectInjectorTask : IObjectConstructionTask
+    public class DependencyInjectorTask : IObjectConstructionTask
     {
         /// <summary>
         /// Executes the specified arguments.
@@ -18,8 +18,8 @@
             // check that no other task has created an object and that this is a dynamic object
             if (args.Result != null || args.Configuration.Type.IsAssignableFrom(typeof(IDynamicMetaObjectProvider))) return;
             
-            // create instance using Ninject
-            var obj = Container.Resolve(args.Configuration.Type);
+            // create instance using IoC container
+            var obj = DependencyResolver.Resolve(args.Configuration.Type);
 
             // map properties from item to model
             args.Configuration.MapPropertiesToObject(obj, args.Service, args.AbstractTypeCreationContext);

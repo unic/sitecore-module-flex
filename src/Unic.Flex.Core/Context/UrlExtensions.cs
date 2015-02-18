@@ -19,7 +19,7 @@
         /// <returns>Url of the current item appended to the current form context</returns>
         public static string GetUrl(this StepBase item)
         {
-            var context = Container.Resolve<IFlexContext>();
+            var context = DependencyResolver.Resolve<IFlexContext>();
 
             if (context.Item == null) return item.Url;
             if (context.Form == null) return item.Url;
@@ -35,7 +35,7 @@
         /// <returns>Url of the next step if available</returns>
         public static string GetNextStepUrl(this StepBase step)
         {
-            var linkedSteps = new LinkedList<StepBase>(Container.Resolve<IFlexContext>().Form.Steps);
+            var linkedSteps = new LinkedList<StepBase>(DependencyResolver.Resolve<IFlexContext>().Form.Steps);
             var stepNode = linkedSteps.Find(step);
             if (stepNode == null) throw new Exception("Could not convert steps to linked list");
             var nextStep = stepNode.Next;
@@ -49,7 +49,7 @@
         /// <returns>Url of the previous step if available</returns>
         public static string GetPreviousStepUrl(this StepBase step)
         {
-            var context = Container.Resolve<IFlexContext>();
+            var context = DependencyResolver.Resolve<IFlexContext>();
             var linkedSteps = new LinkedList<StepBase>(context.Form.Steps);
             var stepNode = linkedSteps.Find(step);
             if (stepNode == null) throw new Exception("Could not convert steps to linked list");
@@ -66,7 +66,7 @@
         /// <returns>The url of the first step in the form</returns>
         public static string GetFirstStepUrl(this Form form)
         {
-            var context = Container.Resolve<IFlexContext>();
+            var context = DependencyResolver.Resolve<IFlexContext>();
             return context.Item == null ? string.Empty : context.Item.Url;
         }
     }
