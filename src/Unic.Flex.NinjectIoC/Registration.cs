@@ -1,4 +1,4 @@
-﻿[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Unic.Flex.NinjectIoC.Registration), "Start")]
+﻿[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Unic.Flex.NinjectIoC.Registration), "Start", Order = 1)]
 
 namespace Unic.Flex.NinjectIoC
 {

@@ -1,4 +1,4 @@
-﻿[assembly: WebActivatorEx.PostApplicationStartMethod(typeof(Unic.Flex.Website.App_Start.FlexBootstrapper), "PostStart")]
+﻿[assembly: WebActivatorEx.PostApplicationStartMethod(typeof(Unic.Flex.Website.App_Start.FlexBootstrapper), "PostStart", Order = 1)]
 
 namespace Unic.Flex.Website.App_Start
 {

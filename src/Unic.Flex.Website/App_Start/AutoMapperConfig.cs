@@ -1,4 +1,4 @@
-﻿[assembly: WebActivatorEx.PostApplicationStartMethod(typeof(Unic.Flex.Website.App_Start.AutoMapperConfig), "PostStart")]
+﻿[assembly: WebActivatorEx.PostApplicationStartMethod(typeof(Unic.Flex.Website.App_Start.AutoMapperConfig), "PostStart", Order = 1)]
 
 namespace Unic.Flex.Website.App_Start
 {
