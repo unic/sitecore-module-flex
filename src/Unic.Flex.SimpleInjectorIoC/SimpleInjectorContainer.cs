@@ -28,6 +28,18 @@
         }
 
         /// <summary>
+        /// Verifies the container.
+        /// </summary>
+        /// <returns>
+        /// Boolean result from verifying the container
+        /// </returns>
+        public bool VerifyContainer()
+        {
+            this.container.Verify();
+            return true;
+        }
+
+        /// <summary>
         /// Binds this instance.
         /// </summary>
         /// <typeparam name="TService">The type of the service.</typeparam>

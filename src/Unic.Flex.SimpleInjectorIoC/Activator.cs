@@ -1,4 +1,5 @@
 ﻿[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Unic.Flex.SimpleInjectorIoC.Activator), "PreStart", Order = 1)]
+[assembly: WebActivatorEx.PostApplicationStartMethod(typeof(Unic.Flex.SimpleInjectorIoC.Activator), "PostStart", Order = int.MaxValue)]
 
 namespace Unic.Flex.SimpleInjectorIoC
 {
@@ -15,6 +16,14 @@ namespace Unic.Flex.SimpleInjectorIoC
         public static void PreStart()
         {
             DependencyResolver.SetContainer(new SimpleInjectorContainer());
+        }
+
+        /// <summary>
+        /// Called after application has been started.
+        /// </summary>
+        public static void PostStart()
+        {
+            DependencyResolver.VerifyContainer();
         }
     }
 }

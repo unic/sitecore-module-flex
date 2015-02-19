@@ -23,6 +23,18 @@
         }
 
         /// <summary>
+        /// Verifies the container.
+        /// </summary>
+        /// <returns>
+        /// Boolean result from verifying the container
+        /// </returns>
+        /// <exception cref="System.NotImplementedException">Currently not available with Ninject</exception>
+        public bool VerifyContainer()
+        {
+            throw new NotImplementedException("Currently not available with Ninject");
+        }
+
+        /// <summary>
         /// Adds a new binding to the container.
         /// </summary>
         /// <typeparam name="TService">The type of the service.</typeparam>

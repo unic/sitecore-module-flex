@@ -8,6 +8,12 @@
     public interface IContainer
     {
         /// <summary>
+        /// Verifies the container.
+        /// </summary>
+        /// <returns>Boolean result from verifying the container</returns>
+        bool VerifyContainer();
+        
+        /// <summary>
         /// Adds a new binding to the container.
         /// </summary>
         /// <typeparam name="TService">The type of the service.</typeparam>
