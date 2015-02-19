@@ -15,16 +15,6 @@
     public class ResolveFormStep : HttpRequestProcessor
     {
         /// <summary>
-        /// The context service
-        /// </summary>
-        private IContextService contextService;
-
-        /// <summary>
-        /// The flex context
-        /// </summary>
-        private IFlexContext flexContext;
-
-        /// <summary>
         /// The logger
         /// </summary>
         private ILogger logger;
@@ -36,7 +26,7 @@
         public override void Process(HttpRequestArgs args)
         {
             this.logger = DependencyResolver.Resolve<ILogger>();
-            
+
             // verify context
             if (Sitecore.Context.Database == null || Sitecore.Context.GetSiteName() == "shell" || Sitecore.Context.GetSiteName() == "login")
             {
@@ -45,13 +35,11 @@
             }
 
             // inject classes
-            // NOTE: this has to be done with the service locator anti-pattern because the
-            // pipeline process is cached and not instantiated on each request.
-            this.contextService = DependencyResolver.Resolve<IContextService>();
-            this.flexContext = DependencyResolver.Resolve<IFlexContext>();
-            
+            var contextService = DependencyResolver.Resolve<IContextService>();
+            var flexContext = DependencyResolver.Resolve<IFlexContext>();
+
             // resolve item
-            var item = this.flexContext.Item != null ? Sitecore.Context.Database.GetItem(this.flexContext.Item.ItemId.ToString()) : null;
+            var item = flexContext.Item != null ? Sitecore.Context.Database.GetItem(flexContext.Item.ItemId.ToString()) : null;
             var rewriteContextItem = false;
 
             // get the current path
@@ -80,7 +68,7 @@
             }
 
             // get the current form included on the item
-            var formDatasource = this.contextService.GetRenderingDatasource(item, Sitecore.Context.Device);
+            var formDatasource = contextService.GetRenderingDatasource(item, Sitecore.Context.Device);
             if (string.IsNullOrWhiteSpace(formDatasource))
             {
                 this.logger.Debug("No valid datasource for a Flex rendering found, exit form step resolving", this);
@@ -88,7 +76,7 @@
             }
 
             // load the form
-            var form = this.contextService.LoadForm(formDatasource);
+            var form = contextService.LoadForm(formDatasource);
             if (form == null || !form.Steps.Any())
             {
                 this.logger.Debug("Form is null or has no valid steps, exit form step resolving", this);
@@ -96,12 +84,12 @@
             }
 
             // save the form to the current items collection
-            this.flexContext.Form = form;
+            flexContext.Form = form;
 
             // if we are on the main step, everything is fine now
             if (!rewriteContextItem)
             {
-                this.flexContext.Form.Steps.First().IsActive = true;
+                flexContext.Form.Steps.First().IsActive = true;
                 return;
             }
 
@@ -116,7 +104,7 @@
 
             // rewrite current step and context item if everything is ok
             activeStep.IsActive = true;
-            this.flexContext.SetContextItem(item);
+            flexContext.SetContextItem(item);
         }
 
         /// <summary>
