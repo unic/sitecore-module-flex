@@ -24,23 +24,25 @@
         /// <summary>
         /// Adds a new binding to the container.
         /// </summary>
-        /// <typeparam name="TFrom">The type of bind.</typeparam>
-        /// <typeparam name="TTo">The type of resolve.</typeparam>
-        public static void Bind<TFrom, TTo>() where TTo : TFrom
+        /// <typeparam name="TService">The type of the service.</typeparam>
+        /// <typeparam name="TImplementation">The type of the implementation.</typeparam>
+        public static void Bind<TService, TImplementation>()
+            where TService : class
+            where TImplementation : class, TService
         {
-            container.Bind<TFrom, TTo>();
+            container.Bind<TService, TImplementation>();
         }
 
         /// <summary>
         /// Resolves an instance of given type from the container.
         /// </summary>
-        /// <typeparam name="T">Type of the class to resolve</typeparam>
+        /// <typeparam name="TService">The type of the service.</typeparam>
         /// <returns>
         /// Instance of the type
         /// </returns>
-        public static T Resolve<T>()
+        public static TService Resolve<TService>() where TService : class
         {
-            return container.Resolve<T>();
+            return container.Resolve<TService>();
         }
 
         /// <summary>

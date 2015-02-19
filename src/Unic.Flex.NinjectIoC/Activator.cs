@@ -1,18 +1,18 @@
-﻿[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Unic.Flex.NinjectIoC.Registration), "Start", Order = 1)]
+﻿[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Unic.Flex.NinjectIoC.Activator), "PreStart", Order = 1)]
 
 namespace Unic.Flex.NinjectIoC
 {
     using Unic.Flex.Core.DependencyInjection;
 
     /// <summary>
-    /// Ninject configuration initializer
+    /// Ninject configuration activator
     /// </summary>
-    public static class Registration
+    public static class Activator
     {
         /// <summary>
         /// Starts the application
         /// </summary>
-        public static void Start()
+        public static void PreStart()
         {
             DependencyResolver.SetContainer(new Container());
         }

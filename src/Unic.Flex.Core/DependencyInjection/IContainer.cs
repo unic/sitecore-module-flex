@@ -10,18 +10,20 @@
         /// <summary>
         /// Adds a new binding to the container.
         /// </summary>
-        /// <typeparam name="TFrom">The type of bind.</typeparam>
-        /// <typeparam name="TTo">The type of resolve.</typeparam>
-        void Bind<TFrom, TTo>() where TTo : TFrom;
+        /// <typeparam name="TService">The type of the service.</typeparam>
+        /// <typeparam name="TImplementation">The type of the implementation.</typeparam>
+        void Bind<TService, TImplementation>()
+            where TService : class
+            where TImplementation : class, TService;
 
         /// <summary>
         /// Resolves an instance of given type from the container.
         /// </summary>
-        /// <typeparam name="T">Type of the class to resolve</typeparam>
+        /// <typeparam name="TService">The type of the service.</typeparam>
         /// <returns>
         /// Instance of the type
         /// </returns>
-        T Resolve<T>();
+        TService Resolve<TService>() where TService : class;
 
         /// <summary>
         /// Resolves the specified type from the container.

@@ -1,29 +1,33 @@
-﻿namespace Unic.Flex.NinjectIoC
+﻿namespace Unic.Flex.SimpleInjectorIoC
 {
     using System;
-    using Ninject;
     using Unic.Flex.Core.DependencyInjection;
 
     /// <summary>
-    /// Ninject IoC container
+    /// Simple Injector IoC container
     /// </summary>
     public class Container : IContainer
     {
         /// <summary>
-        /// The kernel
+        /// The container
         /// </summary>
-        private readonly IKernel kernel;
+        private readonly SimpleInjector.Container container;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Container"/> class.
         /// </summary>
         public Container()
         {
-            this.kernel = new StandardKernel(new Config());
+            // create the container
+            this.container = new SimpleInjector.Container();
+            this.container.Options.AllowOverridingRegistrations = true;
+            
+            // initialize bindings
+            Bootstrapper.Initialize(this.container);
         }
 
         /// <summary>
-        /// Adds a new binding to the container.
+        /// Binds this instance.
         /// </summary>
         /// <typeparam name="TService">The type of the service.</typeparam>
         /// <typeparam name="TImplementation">The type of the implementation.</typeparam>
@@ -31,27 +35,17 @@
             where TService : class
             where TImplementation : class, TService
         {
-            var instance = this.kernel.TryGet<TService>();
-            if (instance == null)
-            {
-                this.kernel.Bind<TService>().To<TImplementation>();
-            }
-            else
-            {
-                this.kernel.Rebind<TService>().To<TImplementation>();
-            }
+            this.container.Register<TService, TImplementation>();
         }
 
         /// <summary>
-        /// Resolves an instance of given type from the container.
+        /// Resolves this instance.
         /// </summary>
         /// <typeparam name="TService">The type of the service.</typeparam>
-        /// <returns>
-        /// Instance of the type
-        /// </returns>
+        /// <returns>Instance of the type</returns>
         public TService Resolve<TService>() where TService : class
         {
-            return this.kernel.Get<TService>();
+            return this.container.GetInstance<TService>();
         }
 
         /// <summary>
@@ -63,7 +57,7 @@
         /// </returns>
         public object Resolve(Type type)
         {
-            return this.kernel.Get(type);
+            return this.container.GetInstance(type);
         }
     }
 }

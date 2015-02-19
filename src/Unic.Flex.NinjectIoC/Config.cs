@@ -1,8 +1,5 @@
 ﻿namespace Unic.Flex.NinjectIoC
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Web.Mvc;
     using Glass.Mapper.Sc;
     using Ninject.Modules;
     using Ninject.Web.Common;
@@ -20,10 +17,6 @@
     using Unic.Flex.Core.Presentation;
     using Unic.Flex.Implementation.Database;
     using Unic.Flex.Implementation.Mailers;
-    using Unic.Flex.Model.Types;
-    using Unic.Flex.Model.ViewModel.Fields;
-    using Unic.Flex.Model.ViewModel.Forms;
-    using Unic.Flex.Model.ViewModel.Sections;
 
     /// <summary>
     /// Ninject configuration module.
