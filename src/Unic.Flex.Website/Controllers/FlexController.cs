@@ -11,7 +11,6 @@
     using Unic.Configuration;
     using Unic.Flex.Core.Attributes;
     using Unic.Flex.Core.Context;
-    using Unic.Flex.Core.DependencyInjection;
     using Unic.Flex.Core.Globalization;
     using Unic.Flex.Core.Logging;
     using Unic.Flex.Core.Mapping;
@@ -48,9 +47,7 @@
         /// Profiling event name for executing save plugs
         /// </summary>
         private const string ProfileExecuteSavePlugsEventName = "Flex :: Execute Save Plugs";
-
-        #region Fields
-
+        
         /// <summary>
         /// The presentation service
         /// </summary>
@@ -110,9 +107,7 @@
         /// The configuration manager
         /// </summary>
         private readonly IConfigurationManager configurationManager;
-
-        #endregion
-
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="FlexController" /> class.
         /// </summary>
@@ -150,7 +145,7 @@
             var form = this.flexContext.Form;
             if (form == null)
             {
-                this.logger.Debug("GET :: Form from FlexContext is null, return empty result", this);
+                this.logger.Warn("GET :: Form from FlexContext is null, return empty result", this);
                 Profiler.OnEnd(this, ProfileGetEventName);
                 return new EmptyResult();
             }
