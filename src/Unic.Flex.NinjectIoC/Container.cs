@@ -23,29 +23,45 @@
         }
 
         /// <summary>
+        /// Adds a new binding to the container.
+        /// </summary>
+        /// <typeparam name="TFrom">The type of bind.</typeparam>
+        /// <typeparam name="TTo">The type of resolve.</typeparam>
+        public void Bind<TFrom, TTo>() where TTo : TFrom
+        {
+            var instance = this.kernel.TryGet<TFrom>();
+            if (instance == null)
+            {
+                this.kernel.Bind<TFrom>().To<TTo>();
+            }
+            else
+            {
+                this.kernel.Rebind<TFrom>().To<TTo>();
+            }
+        }
+
+        /// <summary>
         /// Resolves an instance of given type from the container.
         /// </summary>
         /// <typeparam name="T">Type of the class to resolve</typeparam>
-        /// <param name="name">The name.</param>
         /// <returns>
         /// Instance of the type
         /// </returns>
-        public T Resolve<T>(string name = null)
+        public T Resolve<T>()
         {
-            return this.kernel.Get<T>(name);
+            return this.kernel.Get<T>();
         }
 
         /// <summary>
         /// Resolves the specified type from the container.
         /// </summary>
         /// <param name="type">The type to resolve.</param>
-        /// <param name="name">The name.</param>
         /// <returns>
         /// Instance of the type
         /// </returns>
-        public object Resolve(Type type, string name = null)
+        public object Resolve(Type type)
         {
-            return this.kernel.Get(type, name);
+            return this.kernel.Get(type);
         }
     }
 }

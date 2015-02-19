@@ -22,29 +22,37 @@
         }
 
         /// <summary>
+        /// Adds a new binding to the container.
+        /// </summary>
+        /// <typeparam name="TFrom">The type of bind.</typeparam>
+        /// <typeparam name="TTo">The type of resolve.</typeparam>
+        public static void Bind<TFrom, TTo>() where TTo : TFrom
+        {
+            container.Bind<TFrom, TTo>();
+        }
+
+        /// <summary>
         /// Resolves an instance of given type from the container.
         /// </summary>
         /// <typeparam name="T">Type of the class to resolve</typeparam>
-        /// <param name="name">The name.</param>
         /// <returns>
         /// Instance of the type
         /// </returns>
-        public static T Resolve<T>(string name = null)
+        public static T Resolve<T>()
         {
-            return container.Resolve<T>(name);
+            return container.Resolve<T>();
         }
 
         /// <summary>
         /// Resolves the specified type from the container.
         /// </summary>
         /// <param name="type">The type to resolve.</param>
-        /// <param name="name">The name.</param>
         /// <returns>
         /// Instance of the type
         /// </returns>
-        public static object Resolve(Type type, string name = null)
+        public static object Resolve(Type type)
         {
-            return container.Resolve(type, name);
+            return container.Resolve(type);
         }
     }
 }

@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.Web.Mvc;
     using Glass.Mapper.Sc;
-    using Ninject.Activation;
     using Ninject.Modules;
     using Ninject.Web.Common;
     using Unic.Configuration;
@@ -55,15 +54,13 @@
             this.Bind<IUnitOfWork>().To<UnitOfWork>();
 
             // model binding and converting
-            this.Bind<IModelBinder>().To<FormModelBinder>().Named(typeof(IFormViewModel).FullName);
-            this.Bind<IModelBinder>().To<ListModelBinder>().Named(typeof(IList<ISectionViewModel>).FullName);
-            this.Bind<IModelBinder>().To<ListModelBinder>().Named(typeof(IList<IFieldViewModel>).FullName);
-            this.Bind<IModelBinder>().To<ListModelBinder>().Named(typeof(IList<SelectListItem>).FullName);
-            this.Bind<IModelBinder>().To<FieldModelBinder>().Named(typeof(IFieldViewModel).FullName);
-            this.Bind<IModelBinder>().To<UploadedFileModelBinder>().Named(typeof(UploadedFile).FullName);
-            this.Bind<IModelBinder>().To<DateTimeModelBinder>().Named(typeof(DateTime?).FullName);
-            this.Bind<IModelBinder>().To<DecimalModelBinder>().Named(typeof(decimal?).FullName);
             this.Bind<IModelConverterService>().To<ModelConverterService>().InSingletonScope();
+            this.Bind<FormModelBinder>().ToSelf();
+            this.Bind<ListModelBinder>().ToSelf();
+            this.Bind<FieldModelBinder>().ToSelf();
+            this.Bind<UploadedFileModelBinder>().ToSelf();
+            this.Bind<DateTimeModelBinder>().ToSelf();
+            this.Bind<DecimalModelBinder>().ToSelf();
 
             // context
             this.Bind<IFlexContext>().To<FlexContext>().InRequestScope();

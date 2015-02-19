@@ -8,23 +8,28 @@
     public interface IContainer
     {
         /// <summary>
+        /// Adds a new binding to the container.
+        /// </summary>
+        /// <typeparam name="TFrom">The type of bind.</typeparam>
+        /// <typeparam name="TTo">The type of resolve.</typeparam>
+        void Bind<TFrom, TTo>() where TTo : TFrom;
+
+        /// <summary>
         /// Resolves an instance of given type from the container.
         /// </summary>
         /// <typeparam name="T">Type of the class to resolve</typeparam>
-        /// <param name="name">The name.</param>
         /// <returns>
         /// Instance of the type
         /// </returns>
-        T Resolve<T>(string name = null);
+        T Resolve<T>();
 
         /// <summary>
         /// Resolves the specified type from the container.
         /// </summary>
         /// <param name="type">The type to resolve.</param>
-        /// <param name="name">The name.</param>
         /// <returns>
         /// Instance of the type
         /// </returns>
-        object Resolve(Type type, string name = null);
+        object Resolve(Type type);
     }
 }
