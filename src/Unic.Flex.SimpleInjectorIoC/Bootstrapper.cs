@@ -26,7 +26,7 @@
         /// Initializes the specified container.
         /// </summary>
         /// <param name="container">The container.</param>
-        public static void Initialize(SimpleInjector.Container container)
+        public static void Initialize(Container container)
         {
             // logging
             container.RegisterSingle<ILogger, SitecoreLogger>();
