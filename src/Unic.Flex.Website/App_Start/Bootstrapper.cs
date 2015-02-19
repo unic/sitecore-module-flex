@@ -1,4 +1,4 @@
-﻿[assembly: WebActivatorEx.PostApplicationStartMethod(typeof(Unic.Flex.Website.App_Start.FlexBootstrapper), "PostStart", Order = 1)]
+﻿[assembly: WebActivatorEx.PostApplicationStartMethod(typeof(Unic.Flex.Website.App_Start.Bootstrapper), "PostStart", Order = 1)]
 
 namespace Unic.Flex.Website.App_Start
 {
@@ -17,7 +17,7 @@ namespace Unic.Flex.Website.App_Start
     /// <summary>
     /// Bootstrapper for the Flex form module.
     /// </summary>
-    public class FlexBootstrapper
+    public class Bootstrapper
     {
         /// <summary>
         /// The method called after starting the application.
