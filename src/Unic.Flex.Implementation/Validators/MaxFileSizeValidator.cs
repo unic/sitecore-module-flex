@@ -1,7 +1,6 @@
 ﻿namespace Unic.Flex.Implementation.Validators
 {
     using System.Collections.Generic;
-    using System.Web;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Unic.Flex.Model.GlassExtensions.Attributes;
     using Unic.Flex.Model.Types;
@@ -43,7 +42,7 @@
         /// The maximum size of the file.
         /// </value>
         [SitecoreField("Max File Size")]
-        public virtual int MaxFileSize { get; set; }
+        public virtual double MaxFileSize { get; set; }
 
         /// <summary>
         /// Determines whether the specified value is valid.
@@ -54,12 +53,11 @@
         /// </returns>
         public virtual bool IsValid(object value)
         {
-            if (value == null) return true;
-
             var fileValue = value as UploadedFile;
             if (fileValue == null) return true;
 
-            return fileValue.ContentLength <= this.MaxFileSize;
+            var sizeInBytes = this.MaxFileSize * 1024 * 1024;
+            return fileValue.ContentLength <= sizeInBytes;
         }
 
         /// <summary>
