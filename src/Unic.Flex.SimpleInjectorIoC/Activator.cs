@@ -14,7 +14,7 @@ namespace Unic.Flex.SimpleInjectorIoC
         /// </summary>
         public static void PreStart()
         {
-            DependencyResolver.SetContainer(new Container());
+            DependencyResolver.SetContainer(new SimpleInjectorContainer());
         }
     }
 }

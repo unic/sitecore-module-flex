@@ -1,25 +1,26 @@
 ﻿namespace Unic.Flex.SimpleInjectorIoC
 {
+    using SimpleInjector;
     using System;
     using Unic.Flex.Core.DependencyInjection;
 
     /// <summary>
     /// Simple Injector IoC container
     /// </summary>
-    public class Container : IContainer
+    public class SimpleInjectorContainer : IContainer
     {
         /// <summary>
         /// The container
         /// </summary>
-        private readonly SimpleInjector.Container container;
+        private readonly Container container;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Container"/> class.
+        /// Initializes a new instance of the <see cref="SimpleInjectorContainer"/> class.
         /// </summary>
-        public Container()
+        public SimpleInjectorContainer()
         {
             // create the container
-            this.container = new SimpleInjector.Container();
+            this.container = new Container();
             this.container.Options.AllowOverridingRegistrations = true;
             
             // initialize bindings

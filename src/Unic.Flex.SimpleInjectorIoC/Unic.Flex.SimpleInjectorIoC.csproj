@@ -102,7 +102,7 @@
   <ItemGroup>
     <Compile Include="Activator.cs" />
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="Container.cs" />
+    <Compile Include="SimpleInjectorContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

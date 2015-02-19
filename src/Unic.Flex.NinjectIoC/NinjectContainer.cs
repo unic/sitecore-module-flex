@@ -7,7 +7,7 @@
     /// <summary>
     /// Ninject IoC container
     /// </summary>
-    public class Container : IContainer
+    public class NinjectContainer : IContainer
     {
         /// <summary>
         /// The kernel
@@ -15,9 +15,9 @@
         private readonly IKernel kernel;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Container"/> class.
+        /// Initializes a new instance of the <see cref="NinjectContainer"/> class.
         /// </summary>
-        public Container()
+        public NinjectContainer()
         {
             this.kernel = new StandardKernel(new Config());
         }
