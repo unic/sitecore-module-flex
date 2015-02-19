@@ -19,7 +19,7 @@ Skip Step
 ----version----
 language: de
 version: 1
-revision: 05d545fa-0b73-426e-95e2-d15b65c380bd
+revision: 26b7532b-343f-4e0e-bd11-3ea68559233b
 
 ----field----
 field: {2BA3454A-9A9C-4CDF-A9F8-107FD484EB6E}
@@ -55,14 +55,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-05d545fa-0b73-426e-95e2-d15b65c380bd
+26b7532b-343f-4e0e-bd11-3ea68559233b
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20150212T084820:635593277001823153
+20150219T101440:635599376800877506
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
@@ -73,7 +73,7 @@ sitecore\admin
 ----version----
 language: en
 version: 1
-revision: 868e641c-969c-44fe-88d0-54ddb30f3ffe
+revision: 18e9b41d-1065-467f-adf4-3ebc4b8346c1
 
 ----field----
 field: {2BA3454A-9A9C-4CDF-A9F8-107FD484EB6E}
@@ -109,14 +109,122 @@ name: __Revision
 key: __revision
 content-length: 36
 
-868e641c-969c-44fe-88d0-54ddb30f3ffe
+18e9b41d-1065-467f-adf4-3ebc4b8346c1
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20150212T085207:635593279276809997
+20150219T101440:635599376800707386
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin
+----version----
+language: fr
+version: 1
+revision: ef90b2e7-20db-4021-942c-5f1a9f3f982a
+
+----field----
+field: {2BA3454A-9A9C-4CDF-A9F8-107FD484EB6E}
+name: Phrase
+key: phrase
+content-length: 7
+
+Ignorer
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 34
+
+20150219T101440:635599376801567999
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+ef90b2e7-20db-4021-942c-5f1a9f3f982a
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20150219T101440:635599376801567999
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin
+----version----
+language: it
+version: 1
+revision: 90588476-a4fc-4253-8a31-7bbaaf8c8669
+
+----field----
+field: {2BA3454A-9A9C-4CDF-A9F8-107FD484EB6E}
+name: Phrase
+key: phrase
+content-length: 5
+
+Salta
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 34
+
+20150219T101440:635599376802238482
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+90588476-a4fc-4253-8a31-7bbaaf8c8669
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20150219T101440:635599376802238482
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

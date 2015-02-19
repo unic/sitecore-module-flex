@@ -19,15 +19,15 @@ Plug Execution Failure Subject
 ----version----
 language: de
 version: 1
-revision: a8d22b6c-fbfe-4beb-8f56-b5f546e959cb
+revision: d59a7a52-09f5-46d5-b143-d98ebb504786
 
 ----field----
 field: {2BA3454A-9A9C-4CDF-A9F8-107FD484EB6E}
 name: Phrase
 key: phrase
-content-length: 92
+content-length: 79
 
-Die maximale Anzahl wiederholter Ausführungsversuche für diese Funktion wurde überschritten.
+Die maximale Anzahl Ausführungsversuche für diese Funktion wurde überschritten.
 ----field----
 field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
 name: __Owner
@@ -55,14 +55,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-a8d22b6c-fbfe-4beb-8f56-b5f546e959cb
+d59a7a52-09f5-46d5-b143-d98ebb504786
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20150212T084841:635593277218091661
+20150219T101442:635599376820411527
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
@@ -73,15 +73,15 @@ sitecore\admin
 ----version----
 language: en
 version: 1
-revision: 4b6e4a3d-ef63-4e5d-93bb-454ef8ccf043
+revision: 8eb0a8d9-ab8e-408d-9dfc-41e058ddfa44
 
 ----field----
 field: {2BA3454A-9A9C-4CDF-A9F8-107FD484EB6E}
 name: Phrase
 key: phrase
-content-length: 54
+content-length: 77
 
-Number of plug execution retries exceeded the maximum.
+The maximum number of execution attempts for this function has been exceeded.
 ----field----
 field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
 name: __Owner
@@ -109,14 +109,122 @@ name: __Revision
 key: __revision
 content-length: 36
 
-4b6e4a3d-ef63-4e5d-93bb-454ef8ccf043
+8eb0a8d9-ab8e-408d-9dfc-41e058ddfa44
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20150116T141941:635570147810339033
+20150219T101442:635599376820171354
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin
+----version----
+language: fr
+version: 1
+revision: 152d753d-7361-4898-8733-8801fafe5961
+
+----field----
+field: {2BA3454A-9A9C-4CDF-A9F8-107FD484EB6E}
+name: Phrase
+key: phrase
+content-length: 78
+
+Le nombre maximal de tentatives d’exécution pour cette fonction a été dépassé.
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 34
+
+20150219T101442:635599376821622397
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+152d753d-7361-4898-8733-8801fafe5961
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20150219T101442:635599376821622397
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin
+----version----
+language: it
+version: 1
+revision: 646fc621-c1ca-4831-a169-f1ebf8344bf3
+
+----field----
+field: {2BA3454A-9A9C-4CDF-A9F8-107FD484EB6E}
+name: Phrase
+key: phrase
+content-length: 68
+
+Il numero massimo di tentativi per questa funzione è stato superato.
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 34
+
+20150219T101442:635599376822362925
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+646fc621-c1ca-4831-a169-f1ebf8344bf3
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20150219T101442:635599376822362925
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
