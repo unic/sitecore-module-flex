@@ -42,7 +42,7 @@
                     @foreach (var field in stepSection.Fields.Where(f => !f.IsHidden))
                     {
                         <li class="flex_summary_item">
-                            <strong>@Html.Raw(@Html.GetLabelWithReplacedLink(field.Label, field.LabelLink))</strong>
+                            <strong>@Html.Raw(Html.GetLabelWithReplacedLink(field.Label, field.LabelLink))</strong>
                             <div>
                                 @if (field is TextOnlyFieldViewModel)
                                 {
