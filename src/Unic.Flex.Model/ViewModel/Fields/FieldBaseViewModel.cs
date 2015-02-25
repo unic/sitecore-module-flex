@@ -7,6 +7,7 @@
     using System.Text.RegularExpressions;
     using System.Web;
     using Castle.DynamicProxy;
+    using Glass.Mapper.Sc.Fields;
     using Unic.Flex.Model.Validation;
     using Unic.Flex.Model.ViewModel.Components;
     using IValidatableObject = Unic.Flex.Model.Validation.IValidatableObject;
@@ -80,6 +81,14 @@
         /// The label.
         /// </value>
         public virtual string Label { get; set; }
+
+        /// <summary>
+        /// Gets or sets the label link.
+        /// </summary>
+        /// <value>
+        /// The label link.
+        /// </value>
+        public virtual Link LabelLink { get; set; } 
 
         /// <summary>
         /// Gets or sets the label addition.

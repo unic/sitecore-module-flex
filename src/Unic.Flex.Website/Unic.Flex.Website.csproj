@@ -186,6 +186,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Modules\Flex\Default\Fields\InputFields\AutoComplete.cshtml" />
+    <Content Include="Views\Modules\Flex\Default\Components\LabelLink.cshtml" />
     <None Include="web.config" />
   </ItemGroup>
   <ItemGroup>

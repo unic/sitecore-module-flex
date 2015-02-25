@@ -8,9 +8,9 @@
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Mvc.Html;
+    using Glass.Mapper.Sc.Fields;
     using Sitecore.Mvc.Presentation;
     using Unic.Flex.Core.Definitions;
-    using Unic.Flex.Core.DependencyInjection;
     using Unic.Flex.Model.Presentation;
     using Unic.Flex.Model.ViewModel.Fields;
     using DependencyResolver = Unic.Flex.Core.DependencyInjection.DependencyResolver;
@@ -101,6 +101,7 @@
         /// <param name="htmlHelper">The HTML helper.</param>
         /// <param name="expression">The expression.</param>
         /// <param name="labelText">The label text.</param>
+        /// <param name="labelLink">The label link.</param>
         /// <param name="labelAdditionText">The label addition text.</param>
         /// <returns>
         /// Html string with the markup for a label
@@ -109,8 +110,12 @@
             this HtmlHelper<TModel> htmlHelper,
             Expression<Func<TModel, TValue>> expression,
             string labelText,
+            Link labelLink = null,
             string labelAdditionText = "")
         {
+            // add the label link
+            labelText = htmlHelper.GetLabelWithReplacedLink(labelText, labelLink);
+            
             // add the label addition text
             if (!string.IsNullOrWhiteSpace(labelAdditionText))
             {
@@ -125,6 +130,21 @@
                         @class = Constants.LabelCssClass,
                         id = htmlHelper.GetId(Constants.LabelIdSuffix)
                     }).ToString()));
+        }
+
+        /// <summary>
+        /// Gets the label with replaced link.
+        /// </summary>
+        /// <param name="htmlHelper">The HTML helper.</param>
+        /// <param name="labelText">The label text.</param>
+        /// <param name="link">The link.</param>
+        /// <returns>Labeltext with replaced link markup</returns>
+        public static string GetLabelWithReplacedLink(this HtmlHelper htmlHelper, string labelText, Link link)
+        {
+            if (link == null || !labelText.Contains(Constants.LabelLinkPlaceholder)) return labelText;
+
+            var linkMarkup = htmlHelper.Partial(PresentationService.Value.ResolveView(htmlHelper.ViewContext, "Components/LabelLink"), link);
+            return labelText.Replace(Constants.LabelLinkPlaceholder, linkMarkup.ToString());
         }
 
         /// <summary>

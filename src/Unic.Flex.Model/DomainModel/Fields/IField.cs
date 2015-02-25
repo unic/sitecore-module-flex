@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using Glass.Mapper.Sc.Fields;
     using Unic.Flex.Model.DomainModel.Components;
     using Unic.Flex.Model.DomainModel.Global;
     using Unic.Flex.Model.Validation;
@@ -97,6 +98,22 @@
         /// The label.
         /// </value>
         string Label { get; }
+
+        /// <summary>
+        /// Gets the text label.
+        /// </summary>
+        /// <value>
+        /// The text label.
+        /// </value>
+        string TextLabel { get; }
+
+        /// <summary>
+        /// Gets the label link.
+        /// </summary>
+        /// <value>
+        /// The label link.
+        /// </value>
+        Link LabelLink { get; }
 
         /// <summary>
         /// Gets or sets the custom CSS class.

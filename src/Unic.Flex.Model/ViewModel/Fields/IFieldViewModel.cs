@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using Glass.Mapper.Sc.Fields;
     using Unic.Flex.Model.DomainModel.Components;
     using Unic.Flex.Model.Presentation;
     using Unic.Flex.Model.ViewModel.Components;
@@ -65,6 +66,14 @@
         /// The label.
         /// </value>
         string Label { get; set; }
+
+        /// <summary>
+        /// Gets or sets the label link.
+        /// </summary>
+        /// <value>
+        /// The label link.
+        /// </value>
+        Link LabelLink { get; set; }
 
         /// <summary>
         /// Gets or sets the label addition.

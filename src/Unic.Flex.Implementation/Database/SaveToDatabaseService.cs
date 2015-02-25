@@ -153,7 +153,7 @@
                 var column = 3;
                 foreach (var field in form.GetSections().SelectMany(s => s.Fields).Where(f => !string.IsNullOrWhiteSpace(f.Label)))
                 {
-                    worksheet.Cells[1, column].Value = field.Label;
+                    worksheet.Cells[1, column].Value = field.TextLabel;
                     fields.Add(new FieldItem { Id = field.ItemId, Type = field.GetType() });
                     column++;
                 }

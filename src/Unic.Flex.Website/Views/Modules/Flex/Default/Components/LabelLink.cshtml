@@ -1,0 +1,8 @@
+﻿@using Glass.Mapper.Sc
+@using Sitecore.Collections
+@model Glass.Mapper.Sc.Fields.Link
+
+@{
+    var result = GlassHtml.BeginRenderLink(Model, new SafeDictionary<string>(), null, GetOutputWriter());  
+    result.Dispose();
+} 

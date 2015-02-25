@@ -9,6 +9,7 @@
     using Unic.Flex.Model.DomainModel.Global;
     using Unic.Flex.Model.GlassExtensions.Attributes;
     using Unic.Flex.Model.Validation;
+    using Glass.Mapper.Sc.Fields;
 
     /// <summary>
     /// Generic base class for all available fields
@@ -140,6 +141,34 @@
         /// </value>
         [SitecoreField("Label")]
         public virtual string Label { get; set; }
+
+        /// <summary>
+        /// Gets or sets the label link.
+        /// </summary>
+        /// <value>
+        /// The label link.
+        /// </value>
+        [SitecoreField("Label Link", UrlOptions = SitecoreInfoUrlOptions.AlwaysIncludeServerUrl)]
+        public virtual Link LabelLink { get; set; }
+
+        /// <summary>
+        /// Gets the text label.
+        /// </summary>
+        /// <value>
+        /// The text label.
+        /// </value>
+        public virtual string TextLabel
+        {
+            get
+            {
+                if (this.LabelLink != null && !string.IsNullOrWhiteSpace(this.LabelLink.Text))
+                {
+                    return this.Label.Replace("#link#", this.LabelLink.Text);
+                }
+
+                return this.Label;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the CSS class.
