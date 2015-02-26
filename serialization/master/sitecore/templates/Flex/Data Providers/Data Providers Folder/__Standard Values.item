@@ -7,7 +7,7 @@ parent: {AA34D784-5307-4DA2-B6A1-47D0469C93FD}
 name: __Standard Values
 master: {00000000-0000-0000-0000-000000000000}
 template: {AA34D784-5307-4DA2-B6A1-47D0469C93FD}
-templatekey: List Field Sources Folder
+templatekey: Data Providers Folder
 
 ----field----
 field: {1172F251-DAD4-4EFB-A329-0C63500E4F1E}

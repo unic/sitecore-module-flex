@@ -7,7 +7,7 @@ parent: {319A93DF-4C9B-4370-A54C-F5277C3B84DF}
 name: __Standard Values
 master: {00000000-0000-0000-0000-000000000000}
 template: {319A93DF-4C9B-4370-A54C-F5277C3B84DF}
-templatekey: Minimal Field Configuration
+templatekey: Minimal Field
 
 ----field----
 field: {7C06BDB6-0F34-4771-B1A6-9EAAE3C10871}
