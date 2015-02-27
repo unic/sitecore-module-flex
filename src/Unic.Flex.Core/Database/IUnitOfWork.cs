@@ -25,6 +25,14 @@
         IDatabaseRepository<Job> JobRepository { get; }
 
         /// <summary>
+        /// Gets the task repository.
+        /// </summary>
+        /// <value>
+        /// The task repository.
+        /// </value>
+        IDatabaseRepository<Task> TaskRepository { get; }
+
+        /// <summary>
         /// Saves changes to the data provider.
         /// </summary>
         void Save();

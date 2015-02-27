@@ -182,6 +182,23 @@
         }
 
         /// <summary>
+        /// Resets the task retry count for a task.
+        /// </summary>
+        /// <param name="taskId">The task identifier.</param>
+        /// <returns>
+        /// Boolean value if everything was ok.
+        /// </returns>
+        public virtual bool ResetTaskById(int taskId)
+        {
+            var task = this.unitOfWork.TaskRepository.Get(includeProperties: "Job").FirstOrDefault(t => t.Id == taskId);
+            if (task == null) return false;
+
+            task.NumberOfTries = 0;
+            this.unitOfWork.Save();
+            return true;
+        }
+
+        /// <summary>
         /// Executes the job.
         /// </summary>
         /// <param name="site">The site.</param>

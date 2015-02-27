@@ -15,7 +15,7 @@
         /// <value>
         /// The task identifier.
         /// </value>
-        [DataMember(Name = "task_id", EmitDefaultValue = false)]
+        [DataMember(Name = "task_id")]
         public long TaskId { get; set; }
         
         /// <summary>
@@ -24,7 +24,7 @@
         /// <value>
         /// The form.
         /// </value>
-        [DataMember(Name = "form", EmitDefaultValue = false)]
+        [DataMember(Name = "form")]
         public string Form { get; set; }
 
         /// <summary>
@@ -33,7 +33,7 @@
         /// <value>
         /// The plug.
         /// </value>
-        [DataMember(Name = "plug", EmitDefaultValue = false)]
+        [DataMember(Name = "plug")]
         public string Plug { get; set; }
 
         /// <summary>
@@ -42,7 +42,7 @@
         /// <value>
         /// The attemps.
         /// </value>
-        [DataMember(Name = "attemps", EmitDefaultValue = false)]
+        [DataMember(Name = "attemps")]
         public int Attemps { get; set; }
 
         /// <summary>
@@ -51,7 +51,7 @@
         /// <value>
         /// The last try formatted.
         /// </value>
-        [DataMember(Name = "last_try", EmitDefaultValue = false)]
+        [DataMember(Name = "last_try")]
         public string LastTryFormatted
         {
             get

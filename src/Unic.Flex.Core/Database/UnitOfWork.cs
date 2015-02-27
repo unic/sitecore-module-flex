@@ -29,6 +29,11 @@
         private IDatabaseRepository<Job> jobRepository;
 
         /// <summary>
+        /// The task repository
+        /// </summary>
+        private IDatabaseRepository<Task> taskRepository; 
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="UnitOfWork"/> class.
         /// </summary>
         public UnitOfWork()
@@ -61,6 +66,20 @@
             get
             {
                 return this.jobRepository ?? (this.jobRepository = new DatabaseRepository<Job>(this.context));
+            }
+        }
+
+        /// <summary>
+        /// Gets the task repository.
+        /// </summary>
+        /// <value>
+        /// The task repository.
+        /// </value>
+        public virtual IDatabaseRepository<Task> TaskRepository
+        {
+            get
+            {
+                return this.taskRepository ?? (this.taskRepository = new DatabaseRepository<Task>(this.context));
             }
         }
 

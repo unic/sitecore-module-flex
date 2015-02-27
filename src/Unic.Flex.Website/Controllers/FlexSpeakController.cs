@@ -1,5 +1,6 @@
 ﻿namespace Unic.Flex.Website.Controllers
 {
+    using System.Threading;
     using System.Web.Mvc;
     using Glass.Mapper.Sc;
     using Newtonsoft.Json;
@@ -62,6 +63,16 @@
 
             this.Response.ContentType = "application/json";
             return this.Content(JsonConvert.SerializeObject(tasks));
+        }
+
+        /// <summary>
+        /// Resets the asynchronous task retry counter.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>JSON with boolean value</returns>
+        public ActionResult ResetAsyncTask(int id)
+        {
+            return this.Json(this.taskService.ResetTaskById(id), JsonRequestBehavior.AllowGet);
         }
     }
 }

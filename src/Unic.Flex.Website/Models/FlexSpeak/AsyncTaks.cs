@@ -23,7 +23,7 @@
         /// <value>
         /// The data.
         /// </value>
-        [DataMember(Name = "data", EmitDefaultValue = false)]
+        [DataMember(Name = "data")]
         public IList<AsyncTask> Data { get; private set; }
     }
 }

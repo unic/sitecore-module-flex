@@ -49,5 +49,14 @@
         /// <param name="job">The job.</param>
         /// <returns>The job with new attributes (e.g. Id)</returns>
         Job Save(Job job);
+
+        /// <summary>
+        /// Resets the task retry count for a task.
+        /// </summary>
+        /// <param name="taskId">The task identifier.</param>
+        /// <returns>
+        /// Boolean value if everything was ok.
+        /// </returns>
+        bool ResetTaskById(int taskId);
     }
 }
