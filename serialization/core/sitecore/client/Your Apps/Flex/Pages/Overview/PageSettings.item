@@ -2,7 +2,7 @@
 version: 1
 id: {0B2D337B-8117-4297-8208-F9E25E4FDBB7}
 database: core
-path: /sitecore/client/Your Apps/Flex/Flex Dashboard/PageSettings
+path: /sitecore/client/Your Apps/Flex/Pages/Overview/PageSettings
 parent: {5DDFC563-8129-419B-ADB8-35EF56AE9982}
 name: PageSettings
 master: {BE42F637-4596-4FA6-AC95-5FF431320454}
