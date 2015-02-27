@@ -75,15 +75,15 @@ content-length: 0
 ----version----
 language: en
 version: 1
-revision: 3e37237e-0cb3-44a9-bcae-ec7e0785bfbd
+revision: b2106287-d408-4524-ad21-71b3f120ccfc
 
 ----field----
 field: {67B6378B-C9F1-47C7-9CAC-BFA79B0727D9}
 name: Display name
 key: display name
-content-length: 4
+content-length: 14
 
-Flex
+Flex Dashboard
 ----field----
 field: {14DCA483-AAC7-4D87-AE27-3163D21798B7}
 name: Tool tip
@@ -118,14 +118,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-3e37237e-0cb3-44a9-bcae-ec7e0785bfbd
+b2106287-d408-4524-ad21-71b3f120ccfc
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20150227T084032:635606232323715148
+20150227T125734:635606386540909599
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
