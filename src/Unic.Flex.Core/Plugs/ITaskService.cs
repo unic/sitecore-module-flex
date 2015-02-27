@@ -1,5 +1,6 @@
 ﻿namespace Unic.Flex.Core.Plugs
 {
+    using System.Collections.Generic;
     using Sitecore.Sites;
     using Unic.Flex.Model.DomainModel.Plugs.SavePlugs;
     using Unic.Flex.Model.Entities;
@@ -21,6 +22,12 @@
         /// <param name="job">The job.</param>
         /// <param name="site">The site.</param>
         void Execute(Job job, SiteContext site);
+
+        /// <summary>
+        /// Gets all jobs.
+        /// </summary>
+        /// <returns>List of jobs</returns>
+        IEnumerable<Job> GetAllJobs();
 
         /// <summary>
         /// Gets the job for a given form domain model.

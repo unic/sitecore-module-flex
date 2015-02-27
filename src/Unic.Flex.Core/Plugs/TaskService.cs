@@ -81,7 +81,7 @@
         public virtual void ExecuteAll(SiteContext site)
         {
             this.logger.Debug("Execute all jobs from database", this);
-            var jobs = this.unitOfWork.JobRepository.Get();
+            var jobs = this.GetAllJobs();
             foreach (var job in jobs)
             {
                 this.Execute(job, site);
@@ -119,6 +119,17 @@
                     }
                 }
             }).ContinueWith(task => this.unitOfWork.Save());
+        }
+
+        /// <summary>
+        /// Gets all jobs.
+        /// </summary>
+        /// <returns>
+        /// List of jobs
+        /// </returns>
+        public virtual IEnumerable<Job> GetAllJobs()
+        {
+            return this.unitOfWork.JobRepository.Get();
         }
 
         /// <summary>

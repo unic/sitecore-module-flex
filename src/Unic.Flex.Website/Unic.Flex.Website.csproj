@@ -162,6 +162,8 @@
     <Compile Include="App_Start\GlassConfig.cs" />
     <Compile Include="Controllers\FlexController.cs" />
     <Compile Include="Controllers\FlexSpeakController.cs" />
+    <Compile Include="Models\FlexSpeak\AsyncTaks.cs" />
+    <Compile Include="Models\FlexSpeak\AsyncTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -219,9 +221,7 @@
   <ItemGroup>
     <Content Include="Views\Modules\Flex\Default\Fields\InputFields\SinglelineText.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Views\Modules\Flex\BodyIncludes.cshtml" />
   </ItemGroup>

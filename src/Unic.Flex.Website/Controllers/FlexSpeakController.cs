@@ -1,50 +1,67 @@
 ﻿namespace Unic.Flex.Website.Controllers
 {
-    using System.Collections.Generic;
-    using System.Runtime.Serialization;
     using System.Web.Mvc;
+    using Glass.Mapper.Sc;
     using Newtonsoft.Json;
-    using System;
+    using Unic.Flex.Core.Plugs;
+    using Unic.Flex.Model.DomainModel;
+    using Unic.Flex.Website.Models.FlexSpeak;
 
+    /// <summary>
+    /// Mvc controller for SPEAK application.
+    /// </summary>
     public class FlexSpeakController : Controller
     {
+        /// <summary>
+        /// The task service
+        /// </summary>
+        private readonly ITaskService taskService;
+
+        /// <summary>
+        /// The sitecore context
+        /// </summary>
+        private readonly ISitecoreContext sitecoreContext;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FlexSpeakController"/> class.
+        /// </summary>
+        public FlexSpeakController()
+        {
+            this.taskService = Core.DependencyInjection.DependencyResolver.Resolve<ITaskService>();
+            this.sitecoreContext = Core.DependencyInjection.DependencyResolver.Resolve<ISitecoreContext>();
+        }
+
+        /// <summary>
+        /// Gets the asynchronous tasks.
+        /// </summary>
+        /// <returns>Json with all asynchronous tasks saved in the database.</returns>
         public ActionResult GetAsyncTasks()
         {
             var tasks = new AsyncTaks();
-            tasks.Data.Add(new AsyncTask { Form = "my Form", Plug = "plug", Attemps = 4, LastTry = DateTime.Now.ToString("G") });
-            tasks.Data.Add(new AsyncTask { Form = "second", Plug = "plug", Attemps = 2, LastTry = DateTime.Now.ToString("G") });
 
-            this.Response.ContentType = "application/json";
-            
-            return this.Content(JsonConvert.SerializeObject(tasks));
-        }
-
-        [DataContract]
-        private class AsyncTaks
-        {
-            public AsyncTaks()
+            foreach (var job in this.taskService.GetAllJobs())
             {
-                this.Data = new List<AsyncTask>();
+                var form = this.sitecoreContext.GetItem<ItemBase>(job.ItemId);
+                var formName = form != null ? form.ItemName : "-";
+
+                foreach (var task in job.Tasks)
+                {
+                    var plug = this.sitecoreContext.GetItem<ItemBase>(task.ItemId);
+                    var plugName = plug != null ? plug.ItemName : "-";
+                    
+                    tasks.Data.Add(new AsyncTask
+                                       {
+                                           TaskId = task.Id,
+                                           Form = formName,
+                                           Plug = plugName,
+                                           Attemps = task.NumberOfTries,
+                                           LastTry = task.LastTry
+                                       });
+                }
             }
 
-            [DataMember(Name = "data", EmitDefaultValue = false)]
-            public IList<AsyncTask> Data { get; private set; } 
-        }
-
-        [DataContract]
-        private class AsyncTask
-        {
-            [DataMember(Name = "form", EmitDefaultValue = false)]
-            public string Form { get; set; }
-
-            [DataMember(Name = "plug", EmitDefaultValue = false)]
-            public string Plug { get; set; }
-
-            [DataMember(Name = "attemps", EmitDefaultValue = false)]
-            public int Attemps { get; set; }
-
-            [DataMember(Name = "last_try", EmitDefaultValue = false)]
-            public string LastTry { get; set; }
+            this.Response.ContentType = "application/json";
+            return this.Content(JsonConvert.SerializeObject(tasks));
         }
     }
 }
