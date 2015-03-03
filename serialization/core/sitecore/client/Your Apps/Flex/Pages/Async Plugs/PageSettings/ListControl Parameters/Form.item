@@ -16,10 +16,17 @@ key: datafield
 content-length: 4
 
 form
+----field----
+field: {B2A46AE4-38F9-4538-A2B3-8021083E0E40}
+name: Sortable
+key: sortable
+content-length: 1
+
+1
 ----version----
 language: en
 version: 1
-revision: d1c30b6b-115f-4348-a248-8cba01cf4de3
+revision: 138907dd-b72c-4d53-9a39-9ae1d000af91
 
 ----field----
 field: {2E9FD749-0F47-4397-8BA2-C56C65366BF0}
@@ -55,14 +62,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-d1c30b6b-115f-4348-a248-8cba01cf4de3
+138907dd-b72c-4d53-9a39-9ae1d000af91
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20150227T101921:635606291619208360
+20150303T101308:635609743889148098
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

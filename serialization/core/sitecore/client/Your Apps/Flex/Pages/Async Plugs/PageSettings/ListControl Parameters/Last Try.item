@@ -17,6 +17,13 @@ content-length: 8
 
 last_try
 ----field----
+field: {B2A46AE4-38F9-4538-A2B3-8021083E0E40}
+name: Sortable
+key: sortable
+content-length: 1
+
+1
+----field----
 field: {AB947466-C30D-4ED4-AB9E-11E35E34BFBD}
 name: Formatter
 key: formatter
@@ -33,7 +40,7 @@ content-length: 3
 ----version----
 language: en
 version: 1
-revision: 159bf0f7-c940-4d49-b540-473602efdcd4
+revision: 11c8e536-c4ff-461d-8f61-79458764b015
 
 ----field----
 field: {2E9FD749-0F47-4397-8BA2-C56C65366BF0}
@@ -69,14 +76,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-159bf0f7-c940-4d49-b540-473602efdcd4
+11c8e536-c4ff-461d-8f61-79458764b015
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20150227T104842:635606309227450934
+20150303T101317:635609743973539177
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

@@ -10,20 +10,12 @@
     public class AsyncTaks
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AsyncTaks"/> class.
-        /// </summary>
-        public AsyncTaks()
-        {
-            this.Data = new List<AsyncTask>();
-        }
-
-        /// <summary>
         /// Gets the data.
         /// </summary>
         /// <value>
         /// The data.
         /// </value>
         [DataMember(Name = "data")]
-        public IList<AsyncTask> Data { get; private set; }
+        public IEnumerable<AsyncTask> Data { get; set; }
     }
 }
