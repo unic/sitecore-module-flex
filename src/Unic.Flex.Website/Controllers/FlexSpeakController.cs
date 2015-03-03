@@ -10,6 +10,7 @@
     using Unic.Flex.Core.Plugs;
     using Unic.Flex.Model.DomainModel;
     using Unic.Flex.Website.Models.FlexSpeak;
+    using Unic.Flex.Website.Models.FlexSpeak.GetAsyncTasks;
 
     /// <summary>
     /// Mvc controller for SPEAK application.

@@ -1,4 +1,4 @@
-﻿namespace Unic.Flex.Website.Models.FlexSpeak
+﻿namespace Unic.Flex.Website.Models.FlexSpeak.GetAsyncTasks
 {
     using System;
     using System.Runtime.Serialization;

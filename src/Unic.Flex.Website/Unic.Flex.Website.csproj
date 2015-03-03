@@ -162,8 +162,8 @@
     <Compile Include="App_Start\GlassConfig.cs" />
     <Compile Include="Controllers\FlexController.cs" />
     <Compile Include="Controllers\FlexSpeakController.cs" />
-    <Compile Include="Models\FlexSpeak\AsyncTaks.cs" />
-    <Compile Include="Models\FlexSpeak\AsyncTask.cs" />
+    <Compile Include="Models\FlexSpeak\GetAsyncTasks\AsyncTaks.cs" />
+    <Compile Include="Models\FlexSpeak\GetAsyncTasks\AsyncTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
