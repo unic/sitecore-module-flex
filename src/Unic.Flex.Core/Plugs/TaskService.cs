@@ -81,7 +81,7 @@
         public virtual void ExecuteAll(SiteContext site)
         {
             this.logger.Debug("Execute all jobs from database", this);
-            var jobs = this.unitOfWork.JobRepository.Get();
+            var jobs = this.GetAllJobs();
             foreach (var job in jobs)
             {
                 this.Execute(job, site);
@@ -119,6 +119,17 @@
                     }
                 }
             }).ContinueWith(task => this.unitOfWork.Save());
+        }
+
+        /// <summary>
+        /// Gets all jobs.
+        /// </summary>
+        /// <returns>
+        /// List of jobs
+        /// </returns>
+        public virtual IEnumerable<Job> GetAllJobs()
+        {
+            return this.unitOfWork.JobRepository.Get();
         }
 
         /// <summary>
@@ -168,6 +179,23 @@
             this.unitOfWork.JobRepository.Insert(job);
             this.unitOfWork.Save();
             return job;
+        }
+
+        /// <summary>
+        /// Resets the task retry count for a task.
+        /// </summary>
+        /// <param name="taskId">The task identifier.</param>
+        /// <returns>
+        /// Boolean value if everything was ok.
+        /// </returns>
+        public virtual bool ResetTaskById(int taskId)
+        {
+            var task = this.unitOfWork.TaskRepository.Get(includeProperties: "Job").FirstOrDefault(t => t.Id == taskId);
+            if (task == null) return false;
+
+            task.NumberOfTries = 0;
+            this.unitOfWork.Save();
+            return true;
         }
 
         /// <summary>

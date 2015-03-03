@@ -19,6 +19,15 @@
         public virtual Guid ItemId { get; set; }
 
         /// <summary>
+        /// Gets or sets the name of the item.
+        /// </summary>
+        /// <value>
+        /// The name of the item.
+        /// </value>
+        [SitecoreInfo(SitecoreInfoType.Name)]
+        public virtual string ItemName { get; set; }
+
+        /// <summary>
         /// Gets the identifier.
         /// </summary>
         /// <value>

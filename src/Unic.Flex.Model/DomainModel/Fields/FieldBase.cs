@@ -3,13 +3,13 @@
     using System;
     using Glass.Mapper.Sc.Configuration;
     using Glass.Mapper.Sc.Configuration.Attributes;
+    using Glass.Mapper.Sc.Fields;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using Unic.Flex.Model.DomainModel.Components;
     using Unic.Flex.Model.DomainModel.Global;
     using Unic.Flex.Model.GlassExtensions.Attributes;
     using Unic.Flex.Model.Validation;
-    using Glass.Mapper.Sc.Fields;
 
     /// <summary>
     /// Generic base class for all available fields

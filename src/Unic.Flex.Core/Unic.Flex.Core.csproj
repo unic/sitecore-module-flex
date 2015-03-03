@@ -125,6 +125,7 @@
     <Compile Include="Analytics\AnalyticsService.cs" />
     <Compile Include="Analytics\IAnalyticsService.cs" />
     <Compile Include="Attributes\ValidateFormHandlerAttribute.cs" />
+    <Compile Include="Authorization\AdministratorOnly.cs" />
     <Compile Include="Context\ContextService.cs" />
     <Compile Include="Context\FieldDependencyService.cs" />
     <Compile Include="Context\FlexContext.cs" />
