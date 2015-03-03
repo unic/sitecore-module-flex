@@ -6,11 +6,14 @@
     using System.Web.Mvc;
     using Glass.Mapper.Sc;
     using Newtonsoft.Json;
+    using Sitecore.Data.Managers;
+    using Sitecore.Globalization;
     using Unic.Flex.Core.Authorization;
     using Unic.Flex.Core.Plugs;
     using Unic.Flex.Model.DomainModel;
-    using Unic.Flex.Website.Models.FlexSpeak;
+    using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Website.Models.FlexSpeak.GetAsyncTasks;
+    using Unic.Flex.Website.Models.FlexSpeak.GetAvailableForms;
 
     /// <summary>
     /// Mvc controller for SPEAK application.
@@ -128,22 +131,26 @@
         [AdministratorOnly]
         public ActionResult GetAvailableForms()
         {
-            return Json(new
+            var rows = new List<DataRow>();
+
+            foreach (var language in LanguageManager.GetLanguages(this.sitecoreContext.Database))
             {
-                data = new
+                using (new LanguageSwitcher(language))
                 {
-                    dataset = new object[] {
-                        new {
-                            data = new object[] {
-                                new { repository = "/sitecore/content/Forms Repository/Forms/Multi Step Form/Steps/Step 1", forms = 10, lang = "en" },
-                                new { repository = "/sitecore/content/Forms Repository/Forms/Multi Step Form/Steps/Step 1", forms = 8, lang = "de" },
-                                new { repository = "/sitecore/content/Forms Repository/Forms/Multi Step Form/Steps/Step 2", forms = 8, lang = "en" },
-                                new { repository = "/sitecore/content/Forms Repository/Forms/Multi Step Form/Steps/Step 5", forms = 4, lang = "en" },
-                            }
-                        },
-                    },
-                },
-            }, JsonRequestBehavior.AllowGet);
+                    var allForms = this.sitecoreContext.Query<StatisticForm>("fast://*[@@templateid='{3AFE4256-1C3E-4441-98AF-B3D0037A8B1F}']");
+                    foreach (var row in allForms.Where(f => f.Repository != null).GroupBy(f => f.Repository.FullPath))
+                    {
+                        rows.Add(new DataRow { Repository = row.Key, Forms = row.Count(), Language = language.Name });
+                    }
+                }
+            }
+
+            // generate object
+            var data = new MainWrapper { Data = new DataWrapper { DataSet = new[] { new DataSet { Rows = rows } } } };
+
+            // create the response
+            this.Response.ContentType = "application/json";
+            return this.Content(JsonConvert.SerializeObject(data));
         }
     }
 }

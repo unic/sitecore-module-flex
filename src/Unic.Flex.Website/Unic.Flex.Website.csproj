@@ -164,6 +164,10 @@
     <Compile Include="Controllers\FlexSpeakController.cs" />
     <Compile Include="Models\FlexSpeak\GetAsyncTasks\AsyncTaks.cs" />
     <Compile Include="Models\FlexSpeak\GetAsyncTasks\AsyncTask.cs" />
+    <Compile Include="Models\FlexSpeak\GetAvailableForms\DataRow.cs" />
+    <Compile Include="Models\FlexSpeak\GetAvailableForms\DataSet.cs" />
+    <Compile Include="Models\FlexSpeak\GetAvailableForms\DataWrapper.cs" />
+    <Compile Include="Models\FlexSpeak\GetAvailableForms\MainWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
