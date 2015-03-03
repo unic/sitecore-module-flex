@@ -133,16 +133,19 @@
         {
             var rows = new List<DataRow>();
 
+            // add forms for each language
             foreach (var language in LanguageManager.GetLanguages(this.sitecoreContext.Database))
             {
                 using (new LanguageSwitcher(language))
                 {
-                    var allForms = this.sitecoreContext.Query<StatisticForm>("fast://*[@@templateid='{3AFE4256-1C3E-4441-98AF-B3D0037A8B1F}']");
-                    foreach (var row in allForms.Where(f => f.Repository != null).GroupBy(f => f.Repository.FullPath))
-                    {
-                        rows.Add(new DataRow { Repository = row.Key, Forms = row.Count(), Language = language.Name });
-                    }
+                    this.AddForms(rows, language.Name);
                 }
+            }
+
+            // add total forms
+            using (new VersionCountDisabler())
+            {
+                this.AddForms(rows, "total");
             }
 
             // generate object
@@ -151,6 +154,20 @@
             // create the response
             this.Response.ContentType = "application/json";
             return this.Content(JsonConvert.SerializeObject(data));
+        }
+
+        /// <summary>
+        /// Adds the forms to the rows collection.
+        /// </summary>
+        /// <param name="rows">The rows.</param>
+        /// <param name="languageName">Name of the language.</param>
+        private void AddForms(List<DataRow> rows, string languageName)
+        {
+            var allForms = this.sitecoreContext.Query<StatisticForm>("fast://*[@@templateid='{3AFE4256-1C3E-4441-98AF-B3D0037A8B1F}']");
+            foreach (var row in allForms.Where(f => f.Repository != null).GroupBy(f => f.Repository.FullPath))
+            {
+                rows.Add(new DataRow { Repository = row.Key, Forms = row.Count(), Language = languageName.ToLowerInvariant() });
+            }
         }
     }
 }
