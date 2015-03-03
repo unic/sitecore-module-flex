@@ -134,11 +134,24 @@
             var rows = new List<DataRow>();
 
             // add forms for each language
-            foreach (var language in LanguageManager.GetLanguages(this.sitecoreContext.Database))
+            var allLanguages = LanguageManager.GetLanguages(this.sitecoreContext.Database);
+            foreach (var language in allLanguages)
             {
                 using (new LanguageSwitcher(language))
                 {
                     this.AddForms(rows, language.Name);
+                }
+            }
+
+            // add empty rows for repository without form
+            foreach (var repository in rows.GroupBy(r => r.Repository))
+            {
+                foreach (var language in allLanguages)
+                {
+                    if (!repository.Any(r => r.Language.Equals(language.Name, StringComparison.InvariantCultureIgnoreCase)))
+                    {
+                        rows.Add(new DataRow { Repository = repository.Key, Forms = 0, Language = language.Name.ToLowerInvariant() });
+                    }
                 }
             }
 
@@ -149,7 +162,8 @@
             }
 
             // generate object
-            var data = new MainWrapper { Data = new DataWrapper { DataSet = new[] { new DataSet { Rows = rows } } } };
+            var sortedRows = rows.OrderBy(r => r.Repository).ThenBy(r => r.Language);
+            var data = new MainWrapper { Data = new DataWrapper { DataSet = new[] { new DataSet { Rows = sortedRows } } } };
 
             // create the response
             this.Response.ContentType = "application/json";
