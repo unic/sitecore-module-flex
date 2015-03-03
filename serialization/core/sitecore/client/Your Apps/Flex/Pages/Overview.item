@@ -34,27 +34,29 @@ content-length: 0
 field: {F1A1FE9E-A60C-4DDB-A3A0-BB5B29FE732E}
 name: __Renderings
 key: __renderings
-content-length: 1880
+content-length: 2375
 
 <r>
   <d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}" l="{4F72A793-BDBC-4262-9523-6AADD8FEA487}">
-    <r id="{DAFAFFB8-74AF-4141-A96A-70B16834CEC6}" ph="Page.Code" uid="{237256AA-9D30-463E-9ED1-90CFF092FCF6}" />
+    <r id="{DAFAFFB8-74AF-4141-A96A-70B16834CEC6}" par="PageCodeScriptFileName=%2fsitecore%2fshell%2fclient%2fYourApps%2fFlex%2fOverview.js" ph="Page.Code" uid="{237256AA-9D30-463E-9ED1-90CFF092FCF6}" />
     <r id="{BE007891-2D9C-4E67-943C-752DBA0C041F}" ph="Page.Body" uid="{F373AD1A-6282-4295-96D7-3E29D6EE88B3}" />
     <r id="{5AE97C0C-EE88-4564-A363-4FA11C01C90A}" ph="GlobalHeader" uid="{532C7DCD-29E7-4C34-9910-FC283D61A026}" />
-    <r id="{7A69C522-7E99-4630-A25A-5D571505862A}" par="ImageUrl=%2525252fsitecore%2525252fshell%2525252fclient%2525252fSpeak%2525252fAssets%2525252fimg%2525252fspeak-logo.png&amp;Id=GlobalLogo" ph="GlobalHeader.StartButton" uid="{A340B9F2-9FD0-4767-9B0B-62D7C8B0E5C7}" />
+    <r id="{7A69C522-7E99-4630-A25A-5D571505862A}" par="ImageUrl=%25252525252fsitecore%25252525252fshell%25252525252fclient%25252525252fSpeak%25252525252fAssets%25252525252fimg%25252525252fspeak-logo.png&amp;Id=GlobalLogo" ph="GlobalHeader.StartButton" uid="{A340B9F2-9FD0-4767-9B0B-62D7C8B0E5C7}" />
     <r id="{EC86834B-890C-405C-BB36-CA25044909E1}" ph="GlobalFooter" uid="{C01DD5BD-DFC2-425B-A301-43AE8363B443}" />
     <r id="{93CEEFCD-2DE1-40AF-AE9A-EBBFBCCC522F}" ph="ApplicationHeader" uid="{1E240370-226C-40E4-9C54-7FE8630DF74A}" />
     <r id="{7717EB6C-9F90-4C58-826D-5E87722A0318}" par="Id=HeaderTitle&amp;Text=Flex+-+Overview" ph="ApplicationHeader.Title" uid="{1DC97590-77EC-4F75-A687-D86F7D22CAAA}" />
     <r id="{EB6214BE-5687-4706-ABA6-B25C0958C85B}" ph="ApplicationContent" uid="{5C96B069-71B7-4B1D-BE44-B673DE81D9DE}" />
     <r ds="{A194C136-ED78-49FD-A04C-A3336E868773}" id="{DDF19992-89DB-4F29-82EC-F16A8C8D15B9}" par="Id=NavigationGroup" ph="ApplicationContent.Navigation" uid="{8A2FB633-0B66-4E95-BE9B-8CC05B29B818}" />
     <r id="{F6C9F461-FCAF-47DC-AA01-C8C64C2EFFB8}" par="Id=Main&amp;UsePadding=1" ph="ApplicationContent.Main" uid="{8EC02FDB-51E9-4983-9AD3-FAD2210E5BAC}" />
-    <r id="{7717EB6C-9F90-4C58-826D-5E87722A0318}" par="Id=Text1&amp;Text=This+is+the+Flex+Dashboard.+Please+choose+an+action+from+the+navigation+on+the+left+side." ph="ApplicationContent.Main" uid="{14BA955E-9FDE-4CEF-BF6F-FC5C95C4330D}" />
+    <r id="{7717EB6C-9F90-4C58-826D-5E87722A0318}" par="Id=AvailableFormsTitle&amp;TextType=Divider&amp;Text=Available+Forms" ph="ApplicationContent.Main" uid="{14BA955E-9FDE-4CEF-BF6F-FC5C95C4330D}" />
+    <r id="{5E3B31F7-FE96-40FB-BE38-94418E4B789A}" par="Id=AvailableFormsChartData" ph="ApplicationContent.Main" uid="{D37E396E-2D20-4A06-86EE-BE5A8356A01E}" />
+    <r ds="{F2BB7497-1D26-41D5-AB67-D72F2B7D298B}" id="{01571226-416B-4E07-863E-B00EA2B3245D}" par="Id=AvailableFormsChart&amp;Data=%7bBinding+AvailableFormsChartData.Data%7d" ph="ApplicationContent.Main" uid="{8A9E3805-B041-48EF-A923-B818CF3F354B}" />
   </d>
 </r>
 ----version----
 language: en
 version: 1
-revision: fff6a6bd-9922-465e-8187-fed1187308b1
+revision: f847aab6-3dbb-420b-b8b1-5652a796ce1d
 
 ----field----
 field: {7205A57F-93B4-413A-AA9A-6B16BBC59565}
@@ -76,14 +78,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-fff6a6bd-9922-465e-8187-fed1187308b1
+f847aab6-3dbb-420b-b8b1-5652a796ce1d
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20150227T085814:635606242947045042
+20150303T134905:635609873459648208
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

@@ -177,6 +177,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="sitecore\shell\client\YourApps\Flex\AsyncPlugs.js" />
+    <Content Include="sitecore\shell\client\YourApps\Flex\Overview.js" />
     <Content Include="Views\Modules\Flex\Default\Form.cshtml" />
   </ItemGroup>
   <ItemGroup>

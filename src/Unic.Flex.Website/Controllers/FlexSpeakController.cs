@@ -119,5 +119,30 @@
         {
             return this.Json(this.taskService.ResetTaskById(id), JsonRequestBehavior.AllowGet);
         }
+
+        /// <summary>
+        /// Gets all available forms in the different repositories.
+        /// </summary>
+        /// <returns>Json result</returns>
+        [AdministratorOnly]
+        public ActionResult GetAvailableForms()
+        {
+            return Json(new
+            {
+                data = new
+                {
+                    dataset = new object[] {
+                        new {
+                            data = new object[] {
+                                new { repository = "/sitecore/content/Forms Repository/Forms/Multi Step Form/Steps/Step 1", forms = 10, lang = "en" },
+                                new { repository = "/sitecore/content/Forms Repository/Forms/Multi Step Form/Steps/Step 1", forms = 8, lang = "de" },
+                                new { repository = "/sitecore/content/Forms Repository/Forms/Multi Step Form/Steps/Step 2", forms = 8, lang = "en" },
+                                new { repository = "/sitecore/content/Forms Repository/Forms/Multi Step Form/Steps/Step 5", forms = 4, lang = "en" },
+                            }
+                        },
+                    },
+                },
+            }, JsonRequestBehavior.AllowGet);
+        }
     }
 }
