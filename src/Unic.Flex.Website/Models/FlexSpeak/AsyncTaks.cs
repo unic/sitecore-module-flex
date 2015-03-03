@@ -10,7 +10,7 @@
     public class AsyncTaks
     {
         /// <summary>
-        /// Gets the data.
+        /// Gets or sets the data.
         /// </summary>
         /// <value>
         /// The data.

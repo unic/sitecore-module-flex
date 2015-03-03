@@ -3,10 +3,10 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading;
     using System.Web.Mvc;
     using Glass.Mapper.Sc;
     using Newtonsoft.Json;
+    using Unic.Flex.Core.Authorization;
     using Unic.Flex.Core.Plugs;
     using Unic.Flex.Model.DomainModel;
     using Unic.Flex.Website.Models.FlexSpeak;
@@ -43,6 +43,7 @@
         /// <returns>
         /// Json with all asynchronous tasks saved in the database.
         /// </returns>
+        [AdministratorOnly]
         public ActionResult GetAsyncTasks(string sort, string direction)
         {
             // initialize
@@ -113,6 +114,7 @@
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns>JSON with boolean value</returns>
+        [AdministratorOnly]
         public ActionResult ResetAsyncTask(int id)
         {
             return this.Json(this.taskService.ResetTaskById(id), JsonRequestBehavior.AllowGet);
