@@ -104,7 +104,7 @@
         /// <value>
         /// The dependent field.
         /// </value>
-        public virtual string DependentFrom { get; set; }
+        public virtual string DependentFieldId { get; set; }
 
         /// <summary>
         /// Gets or sets the dependent value.
@@ -201,9 +201,9 @@
 
             // handle field dependency
             this.ContainerAttributes.Add("data-key", this.Id);
-            if (!string.IsNullOrWhiteSpace(this.DependentFrom))
+            if (!string.IsNullOrWhiteSpace(this.DependentFieldId))
             {
-                this.ContainerAttributes.Add("data-flexform-dependent", "{" + HttpUtility.HtmlEncode(string.Format("\"from\": \"{0}\", \"value\": \"{1}\"", this.DependentFrom, this.DependentValue)) + "}");   
+                this.ContainerAttributes.Add("data-flexform-dependent", "{" + HttpUtility.HtmlEncode(string.Format("\"from\": \"{0}\", \"value\": \"{1}\"", this.DependentFieldId, this.DependentValue)) + "}");   
             }
         }
 

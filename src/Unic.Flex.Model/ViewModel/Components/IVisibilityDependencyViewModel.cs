@@ -6,12 +6,12 @@
     public interface IVisibilityDependencyViewModel
     {
         /// <summary>
-        /// Gets or sets the dependent field.
+        /// Gets or sets the dependent field identifier.
         /// </summary>
         /// <value>
-        /// The dependent field.
+        /// The dependent field identifier.
         /// </value>
-        string DependentFrom { get; set; }
+        string DependentFieldId { get; set; }
 
         /// <summary>
         /// Gets or sets the dependent value.

@@ -172,7 +172,7 @@
                 // handle field dependency
                 if (section.DependentField != null)
                 {
-                    sectionViewModel.DependentFrom = section.DependentField.ReusableComponent != null
+                    sectionViewModel.DependentFieldId = section.DependentField.ReusableComponent != null
                                                            ? section.DependentField.ReusableComponent.Id
                                                            : section.DependentField.Id;
                 }
@@ -195,7 +195,7 @@
                     // handle field dependency
                     if (field.DependentField != null)
                     {
-                        fieldViewModel.DependentFrom = field.DependentField.ReusableComponent != null
+                        fieldViewModel.DependentFieldId = field.DependentField.ReusableComponent != null
                                                            ? field.DependentField.ReusableComponent.Id
                                                            : field.DependentField.Id;
                     }

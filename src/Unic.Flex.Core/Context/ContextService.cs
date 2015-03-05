@@ -92,6 +92,11 @@
             }
 
             // reference the dependent fields
+            foreach (var section in form.GetSections().Where(f => f.DependentField != null))
+            {
+                section.DependentField = form.GetField(section.DependentField);
+            }
+
             foreach (var field in form.GetFields().Where(f => f.DependentField != null))
             {
                 field.DependentField = form.GetField(field.DependentField);
@@ -121,9 +126,6 @@
                                       : field.DefaultValue;
                 }
             }
-
-            // set properties for hidden fields
-            this.fieldDependencyService.HandleVisibilityDependency(form);
 
             Profiler.OnEnd(this, "Flex :: Populating values from user data storage");
         }
@@ -158,9 +160,6 @@
                 }
             }
 
-            // set properties for hidden fields
-            this.fieldDependencyService.HandleVisibilityDependency(form);
-
             Profiler.OnEnd(this, "Flex :: Populating values from dictionary");
         }
 
@@ -178,7 +177,7 @@
             foreach (var section in viewModel.Step.Sections)
             {
                 // check if the complete section is invisible -> remove all fields and go to next sections
-                if (!string.IsNullOrWhiteSpace(section.DependentFrom) && !this.fieldDependencyService.IsDependentFieldVisible(allFields, section))
+                if (!string.IsNullOrWhiteSpace(section.DependentFieldId) && !this.fieldDependencyService.IsDependentFieldVisible(allFields, section))
                 {
                     section.Fields.ForEach(f => this.userDataRepository.RemoveValue(viewModel.Id, f.Id));
                     continue;
@@ -187,7 +186,7 @@
                 foreach (var field in section.Fields)
                 {
                     // check if field is invisible -> remove from storage and go to next field
-                    if (!string.IsNullOrWhiteSpace(field.DependentFrom) && !this.fieldDependencyService.IsDependentFieldVisible(allFields, field))
+                    if (!string.IsNullOrWhiteSpace(field.DependentFieldId) && !this.fieldDependencyService.IsDependentFieldVisible(allFields, field))
                     {
                         this.userDataRepository.RemoveValue(viewModel.Id, field.Id);
                         continue;

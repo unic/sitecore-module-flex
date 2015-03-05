@@ -67,7 +67,7 @@
                     for (var fieldIndex = 0; fieldIndex < section.Fields.Count; fieldIndex++)
                     {
                         var field = section.Fields[fieldIndex];
-                        if (string.IsNullOrWhiteSpace(field.DependentFrom)) continue;
+                        if (string.IsNullOrWhiteSpace(field.DependentFieldId)) continue;
 
                         if (!this.fieldDependencyService.IsDependentFieldVisible(allFields, field))
                         {

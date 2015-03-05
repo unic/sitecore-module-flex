@@ -1,8 +1,10 @@
 ﻿namespace Unic.Flex.Model.DomainModel.Sections
 {
+    using System;
     using Glass.Mapper.Sc.Configuration;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using System.Collections.Generic;
+    using System.Linq;
     using Unic.Flex.Model.DomainModel.Components;
     using Unic.Flex.Model.DomainModel.Fields;
     using Unic.Flex.Model.DomainModel.Steps;
@@ -14,6 +16,11 @@
     [SitecoreType(TemplateId = "{B2B5CAB2-2BD7-4FFE-80B1-7607A310771E}")]
     public class StandardSection : ItemBase, ITooltip, IVisibilityDependency, IReusableComponent<StandardSection>
     {
+        /// <summary>
+        /// Private field for storing the is hidden property.
+        /// </summary>
+        private bool? isHidden;
+        
         /// <summary>
         /// Gets or sets the title.
         /// </summary>
@@ -102,12 +109,42 @@
         public virtual string DependentValue { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether this instance is hidden.
+        /// Gets a value indicating whether this instance is hidden.
         /// </summary>
         /// <value>
         ///   <c>true</c> if this instance is hidden; otherwise, <c>false</c>.
         /// </value>
-        public virtual bool IsHidden { get; set; }
+        public virtual bool IsHidden
+        {
+            get
+            {
+                // lazy loading
+                if (this.isHidden.HasValue) return this.isHidden.Value;
+
+                // no dependent field -> always visible
+                if (this.DependentField == null)
+                {
+                    this.isHidden = false;
+                    return this.isHidden.Value;
+                }
+
+                // get the value of the dependent field
+                var dependentValue = this.DependentField.Value != null ? this.DependentField.Value.ToString() : string.Empty;
+                var listValue = this.DependentField.Value as IEnumerable<string>;
+                if (listValue != null) dependentValue = string.Join(",", listValue);
+
+                // compare the values
+                this.isHidden = !dependentValue.Equals(this.DependentValue, StringComparison.InvariantCultureIgnoreCase);
+
+                // mark sections with only hidden fields also as hidden
+                if (!this.isHidden.Value && this.Fields.All(f => f.IsHidden))
+                {
+                    this.isHidden = true;
+                }
+
+                return this.isHidden.Value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the reusable component.

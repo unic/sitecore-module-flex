@@ -117,6 +117,11 @@
     public abstract class FieldBase : ItemBase, IReusableComponent<IField>
     {
         /// <summary>
+        /// Private field for storing the is hidden property.
+        /// </summary>
+        private bool? isHidden;
+        
+        /// <summary>
         /// Initializes a new instance of the <see cref="FieldBase"/> class.
         /// </summary>
         protected FieldBase()
@@ -287,12 +292,35 @@
         public virtual string DependentValue { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether this instance is hidden.
+        /// Gets a value indicating whether this instance is hidden.
         /// </summary>
         /// <value>
         ///   <c>true</c> if this instance is hidden; otherwise, <c>false</c>.
         /// </value>
-        public virtual bool IsHidden { get; set; }
+        public virtual bool IsHidden
+        {
+            get
+            {
+                // lazy loading
+                if (this.isHidden.HasValue) return this.isHidden.Value;
+                
+                // no dependent field -> always visible
+                if (this.DependentField == null)
+                {
+                    this.isHidden = false;
+                    return this.isHidden.Value;
+                }
+
+                // get the value of the dependent field
+                var dependentValue = this.DependentField.Value != null ? this.DependentField.Value.ToString() : string.Empty;
+                var listValue = this.DependentField.Value as IEnumerable<string>;
+                if (listValue != null) dependentValue = string.Join(",", listValue);
+
+                // compare the values
+                this.isHidden = !dependentValue.Equals(this.DependentValue, StringComparison.InvariantCultureIgnoreCase);
+                return this.isHidden.Value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the reusable component.
