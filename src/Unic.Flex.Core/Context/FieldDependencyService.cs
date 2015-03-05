@@ -21,6 +21,7 @@
         /// </returns>
         public virtual bool IsDependentFieldVisible(IEnumerable<IFieldViewModel> allFields, IVisibilityDependencyViewModel dependency)
         {
+            // todo: can we move this somehow to the view model directly?
             var dependentField = allFields.FirstOrDefault(f => f.Id == dependency.DependentFieldId);
             if (dependentField == null || dependentField.Value == null) return false;
 
