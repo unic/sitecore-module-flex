@@ -1,4 +1,4 @@
-﻿namespace Unic.Flex.Model.DomainModel.Components
+﻿namespace Unic.Flex.Model.ViewModel.Components
 {
     /// <summary>
     /// View model properties for field dependency

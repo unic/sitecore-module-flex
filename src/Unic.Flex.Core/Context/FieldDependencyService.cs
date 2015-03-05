@@ -6,6 +6,7 @@
     using Sitecore.Diagnostics;
     using Unic.Flex.Model.DomainModel.Components;
     using Unic.Flex.Model.DomainModel.Forms;
+    using Unic.Flex.Model.ViewModel.Components;
     using Unic.Flex.Model.ViewModel.Fields;
     using Profiler = Unic.Profiling.Profiler;
 

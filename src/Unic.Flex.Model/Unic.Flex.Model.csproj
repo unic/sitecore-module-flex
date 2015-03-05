@@ -104,7 +104,7 @@
     <Compile Include="DomainModel\Components\IReusableComponent.cs" />
     <Compile Include="DomainModel\Components\ITooltip.cs" />
     <Compile Include="DomainModel\Components\IVisibilityDependency.cs" />
-    <Compile Include="DomainModel\Components\IVisibilityDependencyViewModel.cs" />
+    <Compile Include="ViewModel\Components\IVisibilityDependencyViewModel.cs" />
     <Compile Include="DomainModel\Fields\FieldBase.cs" />
     <Compile Include="DomainModel\Fields\IField.cs" />
     <Compile Include="DomainModel\Fields\ListFields\ListField.cs" />
