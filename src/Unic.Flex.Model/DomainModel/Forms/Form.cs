@@ -134,6 +134,16 @@
         }
 
         /// <summary>
+        /// Gets all the fields from a form.
+        /// </summary>
+        /// <param name="stepNumber">The step number.</param>
+        /// <returns>List of fields</returns>
+        public virtual IEnumerable<IField> GetFields(int stepNumber = 0)
+        {
+            return this.GetSections(stepNumber).SelectMany(s => s.Fields);
+        }
+
+        /// <summary>
         /// Gets the field value.
         /// </summary>
         /// <param name="field">The field.</param>
@@ -157,7 +167,7 @@
         /// <returns>The field mapped by the form</returns>
         public virtual IField GetField(IField field)
         {
-            return field == null ? null : this.GetSections().SelectMany(s => s.Fields).FirstOrDefault(f => f.ItemId == field.ItemId);
+            return field == null ? null : this.GetFields().FirstOrDefault(f => f.ItemId == field.ItemId);
         }
     }
 }

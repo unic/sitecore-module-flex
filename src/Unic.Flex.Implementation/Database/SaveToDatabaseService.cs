@@ -66,7 +66,7 @@
             formEntity.Sessions.Add(sessionEntity);
 
             // add fields
-            foreach (var field in form.GetSections().SelectMany(section => section.Fields))
+            foreach (var field in form.GetFields())
             {
                 // create field entity
                 var fieldEntity = new Field { ItemId = field.ItemId, Value = field.TextValue };
@@ -151,7 +151,7 @@
                 worksheet.Cells[1, 2].Value = this.dictionaryRepository.GetText("Column Language");
 
                 var column = 3;
-                foreach (var field in form.GetSections().SelectMany(s => s.Fields).Where(f => !string.IsNullOrWhiteSpace(f.Label)))
+                foreach (var field in form.GetFields().Where(f => !string.IsNullOrWhiteSpace(f.Label)))
                 {
                     worksheet.Cells[1, column].Value = field.TextLabel;
                     fields.Add(new FieldItem { Id = field.ItemId, Type = field.GetType() });

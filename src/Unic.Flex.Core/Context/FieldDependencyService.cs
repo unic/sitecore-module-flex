@@ -44,7 +44,7 @@
             Profiler.OnEnd(this, "Flex :: Handle visibility dependency and mark invisible fields");
 
             // handle section and fields
-            this.HandleHiddenFlag(form, form.GetSections().SelectMany(s => s.Fields).Where(f => f.DependentField != null));
+            this.HandleHiddenFlag(form, form.GetFields().Where(f => f.DependentField != null));
             this.HandleHiddenFlag(form, form.GetSections().Where(s => s.DependentField != null));
 
             // mark sections with only hidden fields also as hidden

@@ -91,6 +91,12 @@
                 lastStep.IsLastStep = true;
             }
 
+            // reference the dependent fields
+            foreach (var field in form.GetFields().Where(f => f.DependentField != null))
+            {
+                field.DependentField = form.GetField(field.DependentField);
+            }
+
             Profiler.OnEnd(this, "Flex :: Load form from datasource");
 
             return form;
