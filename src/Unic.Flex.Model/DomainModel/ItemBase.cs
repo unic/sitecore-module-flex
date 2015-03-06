@@ -28,6 +28,15 @@
         public virtual string ItemName { get; set; }
 
         /// <summary>
+        /// Gets or sets the URL.
+        /// </summary>
+        /// <value>
+        /// The URL.
+        /// </value>
+        [SitecoreInfo(SitecoreInfoType.Url)]
+        public virtual string Url { get; set; }
+
+        /// <summary>
         /// Gets the identifier.
         /// </summary>
         /// <value>
@@ -41,14 +50,5 @@
                 return this.ItemId.ToString();
             }
         }
-
-        /// <summary>
-        /// Gets or sets the URL.
-        /// </summary>
-        /// <value>
-        /// The URL.
-        /// </value>
-        [SitecoreInfo(SitecoreInfoType.Url)]
-        public virtual string Url { get; set; }
     }
 }

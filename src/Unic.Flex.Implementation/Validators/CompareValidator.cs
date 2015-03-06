@@ -8,6 +8,7 @@
     using Unic.Flex.Core.DependencyInjection;
     using Unic.Flex.Core.Utilities;
     using Unic.Flex.Model.DomainModel.Fields;
+    using Unic.Flex.Model.Forms;
     using Unic.Flex.Model.GlassExtensions.Attributes;
     using Unic.Flex.Model.Validation;
 
@@ -101,7 +102,7 @@
             var context = DependencyResolver.Resolve<IFlexContext>();
             
             // get all sections
-            var allSections = context.Form.GetSections(context.Form.GetActiveStep().StepNumber);
+            var allSections = context.Form.GetSections(context.Form.ActiveStep.StepNumber);
 
             // get the section index the field is in
             var section = allSections.Select((n, i) => new { n.Fields, Index = i }).FirstOrDefault(s => s.Fields.Any(f => f.Id == this.OtherFieldModel.Id));

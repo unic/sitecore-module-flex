@@ -2,7 +2,7 @@
 {
     using Mvc.Mailer;
     using Unic.Flex.Implementation.Plugs.SavePlugs;
-    using Unic.Flex.Model.DomainModel.Forms;
+    using Unic.Flex.Model.Forms;
 
     /// <summary>
     /// Interface for the save plug mvc mailer

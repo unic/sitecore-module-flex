@@ -1,7 +1,7 @@
 ﻿namespace Unic.Flex.Core.Mapping
 {
     using System;
-    using Unic.Flex.Model.DomainModel.Forms;
+    using Unic.Flex.Model.Forms;
 
     /// <summary>
     /// Repository containg data access for the forms.

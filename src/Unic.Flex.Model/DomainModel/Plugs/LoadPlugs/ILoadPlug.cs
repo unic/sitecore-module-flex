@@ -1,7 +1,7 @@
 ﻿namespace Unic.Flex.Model.DomainModel.Plugs.LoadPlugs
 {
     using System;
-    using Unic.Flex.Model.DomainModel.Forms;
+    using Unic.Flex.Model.Forms;
 
     /// <summary>
     /// Interface for defining a load plug

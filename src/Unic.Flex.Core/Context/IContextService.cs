@@ -2,8 +2,8 @@
 {
     using System.Collections.Generic;
     using Sitecore.Data.Items;
-    using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.DomainModel.Steps;
+    using Unic.Flex.Model.Forms;
     using Unic.Flex.Model.ViewModel.Forms;
 
     /// <summary>

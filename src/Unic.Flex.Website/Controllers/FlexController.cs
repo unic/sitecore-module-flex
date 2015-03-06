@@ -154,7 +154,7 @@
             this.userDataRepository.SetFormSucceeded(form.Id, false);
 
             // get the current step
-            var currentStep = form.GetActiveStep();
+            var currentStep = form.ActiveStep;
             if (currentStep == null)
             {
                 this.logger.Debug("GET :: Form has no active step, return empty result", this);
@@ -200,11 +200,10 @@
             this.userDataRepository.RevertToStep(form.Id, currentStep.StepNumber);
 
             // return the view for this step
-            var formViewModel = this.modelConverter.ConvertToViewModel(form);
-            var formView = this.presentationService.ResolveView(this.ControllerContext, formViewModel);
+            var formView = this.presentationService.ResolveView(this.ControllerContext, form);
             this.logger.Debug(string.Format("GET :: Everything ok, returning view '{0}'", formView), this);
             Profiler.OnEnd(this, ProfileGetEventName);
-            return this.View(formView, formViewModel);
+            return this.View(formView, form);
         }
 
         /// <summary>
@@ -242,7 +241,7 @@
             }
 
             // get the current step
-            var currentStep = form.GetActiveStep();
+            var currentStep = form.ActiveStep;
             if (currentStep == null)
             {
                 this.logger.Debug("POST :: Form has no active step, return empty result", this);

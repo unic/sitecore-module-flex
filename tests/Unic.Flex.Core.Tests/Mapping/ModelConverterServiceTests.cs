@@ -6,8 +6,8 @@
     using Moq.Protected;
     using NUnit.Framework;
     using Unic.Flex.Core.Mapping;
-    using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.DomainModel.Steps;
+    using Unic.Flex.Model.Forms;
     using Unic.Flex.Model.ViewModel.Fields.InputFields;
     using Unic.Flex.Model.ViewModel.Forms;
     using Unic.Flex.Model.ViewModel.Steps;
@@ -92,9 +92,9 @@
                 // assert
                 Assert.NotNull(viewModel);
                 Assert.NotNull(viewModel.Step);
-                Assert.IsTrue(viewModel.Step.Sections.Count == form.GetActiveStep().Sections.Count());
+                Assert.IsTrue(viewModel.Step.Sections.Count == form.ActiveStep.Sections.Count());
                 Assert.IsTrue(viewModel.Step.Sections.First().Fields.Last().GetType() == typeof(HoneypotFieldViewModel));
-                Assert.IsTrue(viewModel.Step.Sections.First().Fields.Count == form.GetActiveStep().Sections.SelectMany(s => s.Fields).Count() + 1);
+                Assert.IsTrue(viewModel.Step.Sections.First().Fields.Count == form.ActiveStep.Sections.SelectMany(s => s.Fields).Count() + 1);
             }
 
             /// <summary>

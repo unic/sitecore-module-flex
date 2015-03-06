@@ -4,8 +4,8 @@
     using System.Collections.Generic;
     using System.Linq;
     using Unic.Flex.Core.DependencyInjection;
-    using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.DomainModel.Steps;
+    using Unic.Flex.Model.Forms;
 
     /// <summary>
     /// Extensions for url related objects.

@@ -6,7 +6,7 @@
     using Sitecore.Sites;
     using Unic.Flex.Core.Plugs;
     using Unic.Flex.Model.DomainModel;
-    using Unic.Flex.Model.DomainModel.Forms;
+    using Unic.Flex.Model.Forms;
     using Unic.Flex.Model.ViewModel.Forms;
 
     /// <summary>

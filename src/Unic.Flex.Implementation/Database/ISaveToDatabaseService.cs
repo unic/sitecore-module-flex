@@ -1,7 +1,7 @@
 ﻿namespace Unic.Flex.Implementation.Database
 {
     using System;
-    using Unic.Flex.Model.DomainModel.Forms;
+    using Unic.Flex.Model.Forms;
 
     /// <summary>
     /// Service for saving form to database.

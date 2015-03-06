@@ -3,7 +3,7 @@
     using System;
     using Glass.Mapper.Sc;
     using Sitecore.Diagnostics;
-    using Unic.Flex.Model.DomainModel.Forms;
+    using Unic.Flex.Model.Forms;
 
     /// <summary>
     /// Repository containg data access for the forms.

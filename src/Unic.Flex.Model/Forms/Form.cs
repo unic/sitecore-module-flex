@@ -1,23 +1,28 @@
-﻿namespace Unic.Flex.Model.DomainModel.Forms
+﻿namespace Unic.Flex.Model.Forms
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using Glass.Mapper.Sc.Configuration;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Glass.Mapper.Sc.Fields;
-    using System.Collections.Generic;
-    using System.Linq;
-    using Unic.Flex.Model.DomainModel.Fields;
+    using Unic.Flex.Model.DomainModel;
     using Unic.Flex.Model.DomainModel.Plugs.LoadPlugs;
     using Unic.Flex.Model.DomainModel.Plugs.SavePlugs;
-    using Unic.Flex.Model.DomainModel.Sections;
     using Unic.Flex.Model.DomainModel.Steps;
     using Unic.Flex.Model.GlassExtensions.Attributes;
+    using Unic.Flex.Model.Presentation;
 
     /// <summary>
     /// The complete form domain model object
     /// </summary>
     [SitecoreType(TemplateId = "{3AFE4256-1C3E-4441-98AF-B3D0037A8B1F}")]
-    public class Form : ItemBase
+    public class Form : ItemBase, IPresentationComponent
     {
+        /// <summary>
+        /// The active step
+        /// </summary>
+        private StepBase activeStep;
+        
         /// <summary>
         /// Gets or sets the language.
         /// </summary>
@@ -111,63 +116,31 @@
         /// <summary>
         /// Gets the active step.
         /// </summary>
-        /// <returns>The first step set as active or the first step if no active step is found</returns>
-        public virtual StepBase GetActiveStep()
+        /// <value>
+        /// The active step.
+        /// </value>
+        [SitecoreIgnore]
+        public virtual StepBase ActiveStep
         {
-            return this.Steps.FirstOrDefault(step => step.IsActive) ?? this.Steps.FirstOrDefault();
-        }
-
-        /// <summary>
-        /// Gets all the real sections.
-        /// </summary>
-        /// <param name="stepNumber">The step number.</param>
-        /// <returns>All real sections, for all steps or only for one</returns>
-        public virtual IEnumerable<StandardSection> GetSections(int stepNumber = 0)
-        {
-            var steps = this.Steps;
-            if (stepNumber > 0)
+            get
             {
-                steps = steps.Where(step => step.StepNumber == stepNumber);
+                return this.activeStep ?? (this.activeStep = this.Steps.FirstOrDefault(step => step.IsActive) ?? this.Steps.FirstOrDefault());
             }
-
-            return steps.Where(step => !(step is Summary)).SelectMany(s => s.Sections);
         }
 
         /// <summary>
-        /// Gets all the fields from a form.
+        /// Gets the name of the view.
         /// </summary>
-        /// <param name="stepNumber">The step number.</param>
-        /// <returns>List of fields</returns>
-        public virtual IEnumerable<IField> GetFields(int stepNumber = 0)
+        /// <value>
+        /// The name of the view.
+        /// </value>
+        [SitecoreIgnore]
+        public string ViewName
         {
-            return this.GetSections(stepNumber).SelectMany(s => s.Fields);
-        }
-
-        /// <summary>
-        /// Gets the field value.
-        /// </summary>
-        /// <param name="field">The field.</param>
-        /// <returns>
-        /// Value of the field in the form
-        /// </returns>
-        public virtual string GetFieldValue(IField field)
-        {
-            if (field == null) return string.Empty;
-            var formField = this.GetField(field);
-            if (formField == null || formField.Value == null) return string.Empty;
-
-            var listValue = formField.Value as IEnumerable<string>;
-            return listValue != null ? string.Join(",", listValue) : formField.Value.ToString();
-        }
-
-        /// <summary>
-        /// Gets the field from the current form. This is used because a referenced field not always have mapped values.
-        /// </summary>
-        /// <param name="field">The field.</param>
-        /// <returns>The field mapped by the form</returns>
-        public virtual IField GetField(IField field)
-        {
-            return field == null ? null : this.GetFields().FirstOrDefault(f => f.ItemId == field.ItemId);
+            get
+            {
+                return "Form";
+            }
         }
     }
 }

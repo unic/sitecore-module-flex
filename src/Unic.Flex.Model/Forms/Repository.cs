@@ -1,4 +1,4 @@
-﻿namespace Unic.Flex.Model.DomainModel.Forms
+﻿namespace Unic.Flex.Model.Forms
 {
     using Glass.Mapper.Sc.Configuration;
     using Glass.Mapper.Sc.Configuration.Attributes;

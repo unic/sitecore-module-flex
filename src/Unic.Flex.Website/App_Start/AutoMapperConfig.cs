@@ -11,7 +11,7 @@ namespace Unic.Flex.Website.App_Start
     using Unic.Flex.Model.ViewModel.Forms;
     using Unic.Flex.Model.ViewModel.Sections;
     using Unic.Flex.Model.ViewModel.Steps;
-    using Form = Unic.Flex.Model.DomainModel.Forms.Form;
+    using Form = Unic.Flex.Model.Forms.Form;
 
     /// <summary>
     /// Configuration for AutoMapper module.

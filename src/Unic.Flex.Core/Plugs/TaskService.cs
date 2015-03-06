@@ -18,7 +18,7 @@
     using Unic.Flex.Model.Configuration;
     using Unic.Flex.Model.DomainModel.Plugs.SavePlugs;
     using Unic.Flex.Model.Entities;
-    using Form = Unic.Flex.Model.DomainModel.Forms.Form;
+    using Form = Unic.Flex.Model.Forms.Form;
 
     /// <summary>
     /// Task service for executing plugs asynchronous.

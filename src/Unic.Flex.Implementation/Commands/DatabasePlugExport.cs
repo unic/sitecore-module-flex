@@ -21,7 +21,7 @@
     using Unic.Flex.Core.Logging;
     using Unic.Flex.Core.Utilities;
     using Unic.Flex.Implementation.Database;
-    using Unic.Flex.Model.DomainModel.Forms;
+    using Unic.Flex.Model.Forms;
     using DependencyResolver = Unic.Flex.Core.DependencyInjection.DependencyResolver;
 
     /// <summary>

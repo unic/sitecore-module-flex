@@ -15,7 +15,7 @@
     using Unic.Flex.Implementation.Plugs.SavePlugs;
     using Unic.Flex.Implementation.Validators;
     using Unic.Flex.Model.DomainModel.Fields;
-    using Unic.Flex.Model.DomainModel.Forms;
+    using Unic.Flex.Model.Forms;
 
     /// <summary>
     /// Mailer implementation for the send email plug

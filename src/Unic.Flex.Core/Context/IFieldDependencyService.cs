@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using Unic.Flex.Model.DomainModel.Components;
-    using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.ViewModel.Components;
     using Unic.Flex.Model.ViewModel.Fields;
 

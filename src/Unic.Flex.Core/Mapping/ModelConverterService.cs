@@ -13,8 +13,8 @@
     using Unic.Flex.Core.Utilities;
     using Unic.Flex.Model.Configuration;
     using Unic.Flex.Model.DomainModel.Fields.ListFields;
-    using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.DomainModel.Steps;
+    using Unic.Flex.Model.Forms;
     using Unic.Flex.Model.Types;
     using Unic.Flex.Model.Validation;
     using Unic.Flex.Model.ViewModel.Components;
@@ -82,7 +82,7 @@
             Assert.ArgumentNotNull(form, "form");
 
             // get the current active step
-            var activeStep = form.GetActiveStep();
+            var activeStep = form.ActiveStep;
             if (activeStep == null) throw new Exception("No step is currently active or no step was found");
 
             // convert the step

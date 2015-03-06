@@ -104,14 +104,15 @@
     <Compile Include="DomainModel\Components\IReusableComponent.cs" />
     <Compile Include="DomainModel\Components\ITooltip.cs" />
     <Compile Include="DomainModel\Components\IVisibilityDependency.cs" />
+    <Compile Include="Forms\FormExtensions.cs" />
     <Compile Include="ViewModel\Components\IVisibilityDependencyViewModel.cs" />
     <Compile Include="DomainModel\Fields\FieldBase.cs" />
     <Compile Include="DomainModel\Fields\IField.cs" />
     <Compile Include="DomainModel\Fields\ListFields\ListField.cs" />
     <Compile Include="DomainModel\Fields\ListFields\MulticheckListField.cs" />
     <Compile Include="DomainModel\Fields\ReusableField.cs" />
-    <Compile Include="DomainModel\Forms\Repository.cs" />
-    <Compile Include="DomainModel\Forms\StatisticForm.cs" />
+    <Compile Include="Forms\Repository.cs" />
+    <Compile Include="Forms\StatisticForm.cs" />
     <Compile Include="Specifications\Specification.cs" />
     <Compile Include="DomainModel\Plugs\LoadPlugs\ILoadPlug.cs" />
     <Compile Include="DomainModel\Plugs\LoadPlugs\LoadPlugBase.cs" />
@@ -168,7 +169,7 @@
     <Compile Include="GlassExtensions\Configurations\SitecoreDictionaryFallbackFieldConfiguration.cs" />
     <Compile Include="GlassExtensions\Handlers\SitecoreDictionaryFallbackFieldTypeMapper.cs" />
     <Compile Include="DomainModel\ItemBase.cs" />
-    <Compile Include="DomainModel\Forms\Form.cs" />
+    <Compile Include="Forms\Form.cs" />
     <Compile Include="Presentation\IPresentationComponent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DomainModel\Sections\ReusableSection.cs" />

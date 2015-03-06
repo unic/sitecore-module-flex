@@ -1,6 +1,6 @@
 ﻿namespace Unic.Flex.Model.DomainModel.Plugs.SavePlugs
 {
-    using Unic.Flex.Model.DomainModel.Forms;
+    using Unic.Flex.Model.Forms;
 
     /// <summary>
     /// Base class for all load plugs

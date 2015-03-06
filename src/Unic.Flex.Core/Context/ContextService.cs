@@ -10,8 +10,8 @@
     using Sitecore.Diagnostics;
     using Unic.Flex.Core.Logging;
     using Unic.Flex.Core.Mapping;
-    using Unic.Flex.Model.DomainModel.Forms;
     using Unic.Flex.Model.DomainModel.Steps;
+    using Unic.Flex.Model.Forms;
     using Unic.Flex.Model.Types;
     using Unic.Flex.Model.ViewModel.Forms;
     using Profiler = Unic.Profiling.Profiler;
