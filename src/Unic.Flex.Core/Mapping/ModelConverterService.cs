@@ -9,12 +9,13 @@
     using Unic.Configuration;
     using Unic.Flex.Core.Context;
     using Unic.Flex.Core.Definitions;
+    using Unic.Flex.Core.DependencyInjection;
     using Unic.Flex.Core.Globalization;
     using Unic.Flex.Core.Utilities;
     using Unic.Flex.Model.Configuration;
     using Unic.Flex.Model.DomainModel.Fields.ListFields;
-    using Unic.Flex.Model.DomainModel.Steps;
     using Unic.Flex.Model.Forms;
+    using Unic.Flex.Model.Steps;
     using Unic.Flex.Model.Types;
     using Unic.Flex.Model.Validation;
     using Unic.Flex.Model.ViewModel.Components;
@@ -330,7 +331,7 @@
                                              IsActive = step.StepNumber == currentStep,
                                              IsLinked = step.StepNumber < currentStep,
                                              Title = step.Title,
-                                             Url = step.GetUrl()
+                                             Url = step.GetUrl(DependencyResolver.Resolve<IFlexContext>())
                                          });
             }
 

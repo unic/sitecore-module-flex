@@ -7,8 +7,8 @@
     using System.Linq;
     using Unic.Flex.Model.DomainModel.Components;
     using Unic.Flex.Model.DomainModel.Fields;
-    using Unic.Flex.Model.DomainModel.Steps;
     using Unic.Flex.Model.GlassExtensions.Attributes;
+    using Unic.Flex.Model.Steps;
 
     /// <summary>
     /// The standard section.

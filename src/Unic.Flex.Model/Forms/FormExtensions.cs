@@ -4,7 +4,7 @@
     using System.Linq;
     using Unic.Flex.Model.DomainModel.Fields;
     using Unic.Flex.Model.DomainModel.Sections;
-    using Unic.Flex.Model.DomainModel.Steps;
+    using Unic.Flex.Model.Steps;
 
     /// <summary>
     /// Extension methods for a form.

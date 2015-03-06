@@ -8,9 +8,9 @@
     using Unic.Flex.Model.DomainModel;
     using Unic.Flex.Model.DomainModel.Plugs.LoadPlugs;
     using Unic.Flex.Model.DomainModel.Plugs.SavePlugs;
-    using Unic.Flex.Model.DomainModel.Steps;
     using Unic.Flex.Model.GlassExtensions.Attributes;
     using Unic.Flex.Model.Presentation;
+    using Unic.Flex.Model.Steps;
 
     /// <summary>
     /// The complete form domain model object
@@ -135,10 +135,12 @@
         /// The name of the view.
         /// </value>
         [SitecoreIgnore]
-        public string ViewName
+        public virtual string ViewName
         {
             get
             {
+                // todo: check if all interfaces for the models are still needed
+                
                 return "Form";
             }
         }

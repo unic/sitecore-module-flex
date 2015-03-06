@@ -48,6 +48,7 @@
 
             // model binding and converting
             container.RegisterSingle<IModelConverterService, ModelConverterService>();
+            container.RegisterSingle<IViewMapper, ViewMapper>();
 
             container.Register<FormModelBinder>();
             container.Register<ListModelBinder>();

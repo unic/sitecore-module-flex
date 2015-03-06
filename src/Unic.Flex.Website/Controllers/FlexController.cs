@@ -107,6 +107,11 @@
         /// The configuration manager
         /// </summary>
         private readonly IConfigurationManager configurationManager;
+
+        /// <summary>
+        /// The view mapper
+        /// </summary>
+        private readonly IViewMapper viewMapper;
         
         /// <summary>
         /// Initializes a new instance of the <see cref="FlexController" /> class.
@@ -125,6 +130,7 @@
             this.saveToDatabaseService = DependencyResolver.Resolve<ISaveToDatabaseService>();
             this.dictionaryRepository = DependencyResolver.Resolve<IDictionaryRepository>();
             this.configurationManager = DependencyResolver.Resolve<IConfigurationManager>();
+            this.viewMapper = DependencyResolver.Resolve<IViewMapper>();
         }
 
         /// <summary>
@@ -199,6 +205,9 @@
             // revert step completion to the current step
             this.userDataRepository.RevertToStep(form.Id, currentStep.StepNumber);
 
+            // map the active step
+            this.viewMapper.MapActiveStep(this.flexContext);
+
             // return the view for this step
             var formView = this.presentationService.ResolveView(this.ControllerContext, form);
             this.logger.Debug(string.Format("GET :: Everything ok, returning view '{0}'", formView), this);
@@ -268,7 +277,7 @@
 
             // store the values in the session redirect to next step if we have a next step
             this.contextService.StoreFormValues(model);
-            var nextStepUrl = currentStep.GetNextStepUrl();
+            var nextStepUrl = ""; // todo: currentStep.GetNextStepUrl();
             if (!string.IsNullOrWhiteSpace(nextStepUrl))
             {
                 this.logger.Debug("POST :: Step is ok, storing values into session and redirect to next step", this);

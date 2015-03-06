@@ -1,14 +1,14 @@
-﻿namespace Unic.Flex.Model.DomainModel.Steps
+﻿namespace Unic.Flex.Model.Steps
 {
     using Glass.Mapper.Sc.Configuration.Attributes;
-    using Unic.Flex.Model.DomainModel.Components;
+    using Unic.Flex.Model.Components;
     using Unic.Flex.Model.GlassExtensions.Attributes;
 
     /// <summary>
     /// A step in a multi step form.
     /// </summary>
     [SitecoreType(TemplateId = "{93EC9DA3-81FC-4A1E-82F8-DD988A2D355B}")]
-    public class MultiStep : StepBase, INavigationPane
+    public class MultiStep : StepBase
     {
         /// <summary>
         /// Gets or sets a value indicating whether to show the navigation pane.
@@ -52,6 +52,49 @@
         /// <value>
         /// <c>true</c> if this step is the last step; otherwise, <c>false</c>.
         /// </value>
+        [SitecoreIgnore]
         public virtual bool IsLastStep { get; set; }
+
+        /// <summary>
+        /// Gets or sets the previous step URL.
+        /// </summary>
+        /// <value>
+        /// The previous step URL.
+        /// </value>
+        [SitecoreIgnore]
+        public virtual string PreviousStepUrl { get; set; }
+
+        /// <summary>
+        /// Gets or sets the next step URL.
+        /// </summary>
+        /// <value>
+        /// The next step URL.
+        /// </value>
+        [SitecoreIgnore]
+        public virtual string NextStepUrl { get; set; }
+
+        /// <summary>
+        /// Gets or sets the navigation pane.
+        /// </summary>
+        /// <value>
+        /// The navigation pane.
+        /// </value>
+        [SitecoreIgnore]
+        public virtual NavigationPane NavigationPane { get; set; }
+
+        /// <summary>
+        /// Gets the name of the view.
+        /// </summary>
+        /// <value>
+        /// The name of the view.
+        /// </value>
+        [SitecoreIgnore]
+        public override string ViewName
+        {
+            get
+            {
+                return "Steps/MultiStep";
+            }
+        }
     }
 }

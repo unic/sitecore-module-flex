@@ -93,6 +93,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\NavigationItem.cs" />
+    <Compile Include="Components\NavigationPane.cs" />
     <Compile Include="Configuration\Converters\SpecificationConverter.cs" />
     <Compile Include="Configuration\Extensions\ConfigurationManagerExtensions.cs" />
     <Compile Include="Configuration\GlobalConfiguration.cs" />
@@ -119,7 +121,6 @@
     <Compile Include="DomainModel\Plugs\PlugBase.cs" />
     <Compile Include="DomainModel\Plugs\SavePlugs\ISavePlug.cs" />
     <Compile Include="DomainModel\Plugs\SavePlugs\SavePlugBase.cs" />
-    <Compile Include="DomainModel\Components\INavigationPane.cs" />
     <Compile Include="Entities\File.cs" />
     <Compile Include="Entities\Form.cs" />
     <Compile Include="Entities\Session.cs" />
@@ -177,14 +178,14 @@
     <Compile Include="ViewModel\Sections\ISectionViewModel.cs" />
     <Compile Include="ViewModel\Sections\StandardSectionViewModel.cs" />
     <Compile Include="DomainModel\Sections\StandardSection.cs" />
-    <Compile Include="DomainModel\Steps\StepBase.cs" />
-    <Compile Include="DomainModel\Steps\MultiStep.cs" />
-    <Compile Include="DomainModel\Steps\SingleStep.cs" />
+    <Compile Include="Steps\StepBase.cs" />
+    <Compile Include="Steps\MultiStep.cs" />
+    <Compile Include="Steps\SingleStep.cs" />
     <Compile Include="ViewModel\Components\INavigationPaneViewModel.cs" />
     <Compile Include="ViewModel\Steps\IStepViewModel.cs" />
     <Compile Include="ViewModel\Steps\MultiStepViewModel.cs" />
     <Compile Include="ViewModel\Steps\SingleStepViewModel.cs" />
-    <Compile Include="DomainModel\Steps\Summary.cs" />
+    <Compile Include="Steps\Summary.cs" />
     <Compile Include="Validation\IValidator.cs" />
     <Compile Include="ViewModel\Steps\StepBaseViewModel.cs" />
     <Compile Include="ViewModel\Steps\SummaryViewModel.cs" />

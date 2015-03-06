@@ -6,8 +6,8 @@
     using Moq.Protected;
     using NUnit.Framework;
     using Unic.Flex.Core.Mapping;
-    using Unic.Flex.Model.DomainModel.Steps;
     using Unic.Flex.Model.Forms;
+    using Unic.Flex.Model.Steps;
     using Unic.Flex.Model.ViewModel.Fields.InputFields;
     using Unic.Flex.Model.ViewModel.Forms;
     using Unic.Flex.Model.ViewModel.Steps;
