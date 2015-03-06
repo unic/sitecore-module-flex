@@ -3,7 +3,7 @@
     using System;
     using System.Linq.Expressions;
     using Unic.Configuration;
-    using Unic.Flex.Model.DomainModel.Global;
+    using Unic.Flex.Model.Specifications;
 
     /// <summary>
     /// The configuration manager extensions.

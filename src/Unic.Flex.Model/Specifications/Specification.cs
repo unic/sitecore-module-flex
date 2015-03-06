@@ -1,4 +1,4 @@
-﻿namespace Unic.Flex.Model.DomainModel.Global
+﻿namespace Unic.Flex.Model.Specifications
 {
     using Glass.Mapper.Sc.Configuration.Attributes;
 

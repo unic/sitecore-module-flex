@@ -8,9 +8,9 @@
     using Unic.Flex.Implementation.Mailers;
     using Unic.Flex.Model.DomainModel.Fields;
     using Unic.Flex.Model.DomainModel.Forms;
-    using Unic.Flex.Model.DomainModel.Global;
     using Unic.Flex.Model.DomainModel.Plugs.SavePlugs;
     using Unic.Flex.Model.GlassExtensions.Attributes;
+    using Unic.Flex.Model.Specifications;
 
     /// <summary>
     /// Send email save plug model

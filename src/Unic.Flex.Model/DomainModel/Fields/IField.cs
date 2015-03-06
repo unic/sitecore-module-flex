@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using Glass.Mapper.Sc.Fields;
     using Unic.Flex.Model.DomainModel.Components;
-    using Unic.Flex.Model.DomainModel.Global;
+    using Unic.Flex.Model.Specifications;
     using Unic.Flex.Model.Validation;
 
     /// <summary>

@@ -7,8 +7,8 @@
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using Unic.Flex.Model.DomainModel.Components;
-    using Unic.Flex.Model.DomainModel.Global;
     using Unic.Flex.Model.GlassExtensions.Attributes;
+    using Unic.Flex.Model.Specifications;
     using Unic.Flex.Model.Validation;
 
     /// <summary>

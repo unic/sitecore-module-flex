@@ -1,7 +1,7 @@
 ﻿namespace Unic.Flex.Model.Configuration
 {
     using Unic.Configuration;
-    using Unic.Flex.Model.DomainModel.Global;
+    using Unic.Flex.Model.Specifications;
 
     /// <summary>
     /// Configuration model für presentation config.

@@ -4,9 +4,9 @@
     using System.Linq;
     using Glass.Mapper.Sc.Configuration;
     using Unic.Flex.Model.DataProviders;
-    using Unic.Flex.Model.DomainModel.Global;
     using Unic.Flex.Model.GlassExtensions.Attributes;
     using Unic.Flex.Model.SortOrder;
+    using Unic.Flex.Model.Specifications;
 
     /// <summary>
     /// Base class for all list fields.
