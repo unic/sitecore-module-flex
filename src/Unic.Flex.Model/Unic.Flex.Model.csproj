@@ -169,7 +169,7 @@
     <Compile Include="GlassExtensions\Attributes\SitecoreDictionaryFallbackFieldAttribute.cs" />
     <Compile Include="GlassExtensions\Configurations\SitecoreDictionaryFallbackFieldConfiguration.cs" />
     <Compile Include="GlassExtensions\Handlers\SitecoreDictionaryFallbackFieldTypeMapper.cs" />
-    <Compile Include="DomainModel\ItemBase.cs" />
+    <Compile Include="ItemBase.cs" />
     <Compile Include="Forms\Form.cs" />
     <Compile Include="Presentation\IPresentationComponent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

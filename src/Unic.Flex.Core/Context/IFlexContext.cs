@@ -2,6 +2,7 @@
 {
     using Sitecore.Data.Items;
     using Sitecore.Sites;
+    using Unic.Flex.Model;
     using Unic.Flex.Model.DomainModel;
     using Unic.Flex.Model.Forms;
     using Unic.Flex.Model.ViewModel.Forms;

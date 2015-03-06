@@ -1,8 +1,8 @@
-﻿namespace Unic.Flex.Model.DomainModel
+﻿namespace Unic.Flex.Model
 {
+    using System;
     using Glass.Mapper.Sc.Configuration;
     using Glass.Mapper.Sc.Configuration.Attributes;
-    using System;
 
     /// <summary>
     /// Base class for all items.
