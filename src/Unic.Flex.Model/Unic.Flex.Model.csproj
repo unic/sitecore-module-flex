@@ -95,6 +95,7 @@
   <ItemGroup>
     <Compile Include="Components\NavigationItem.cs" />
     <Compile Include="Components\NavigationPane.cs" />
+    <Compile Include="Components\Tooltip.cs" />
     <Compile Include="Configuration\Converters\SpecificationConverter.cs" />
     <Compile Include="Configuration\Extensions\ConfigurationManagerExtensions.cs" />
     <Compile Include="Configuration\GlobalConfiguration.cs" />
@@ -173,11 +174,11 @@
     <Compile Include="Forms\Form.cs" />
     <Compile Include="Presentation\IPresentationComponent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DomainModel\Sections\ReusableSection.cs" />
+    <Compile Include="Sections\ReusableSection.cs" />
     <Compile Include="ViewModel\Forms\IFormViewModel.cs" />
     <Compile Include="ViewModel\Sections\ISectionViewModel.cs" />
     <Compile Include="ViewModel\Sections\StandardSectionViewModel.cs" />
-    <Compile Include="DomainModel\Sections\StandardSection.cs" />
+    <Compile Include="Sections\StandardSection.cs" />
     <Compile Include="Steps\StepBase.cs" />
     <Compile Include="Steps\MultiStep.cs" />
     <Compile Include="Steps\SingleStep.cs" />

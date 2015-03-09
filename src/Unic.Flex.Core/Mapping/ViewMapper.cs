@@ -3,12 +3,14 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Web;
     using Sitecore.Diagnostics;
     using Unic.Flex.Core.Context;
     using Unic.Flex.Core.Definitions;
     using Unic.Flex.Core.Globalization;
     using Unic.Flex.Model.Components;
     using Unic.Flex.Model.Forms;
+    using Unic.Flex.Model.Sections;
     using Unic.Flex.Model.Steps;
     using Unic.Flex.Model.ViewModel.Components;
     using NavigationItem = Unic.Flex.Model.Components.NavigationItem;
@@ -29,7 +31,14 @@
         {
             if (context == null || context.Form == null || context.Form.ActiveStep == null) return;
             
+            // map the step
             this.MapStep(context);
+
+            // map the sections
+            foreach (var section in context.Form.ActiveStep.Sections)
+            {
+                this.MapSection(section);
+            }
         }
 
         protected virtual void MapStep(IFlexContext context)
@@ -58,7 +67,7 @@
             var summary = form.ActiveStep as Summary;
             if (summary != null)
             {
-                summary.Sections = form.Steps.SelectMany(s => s.Sections);
+                summary.MappedSections = form.Steps.SelectMany(s => s.Sections);
                 summary.PreviousStepUrl = currentStep.Previous != null ? currentStep.Previous.Value.GetUrl(context) : string.Empty;
                 if (summary.ShowNavigationPane) summary.NavigationPane = this.GetNavigationPane(context);
             }
@@ -79,6 +88,21 @@
                 form.ActiveStep.CancelText = !string.IsNullOrWhiteSpace(form.CancelLink.Text)
                                  ? form.CancelLink.Text
                                  : this.dictionaryRepository.GetText("Cancel Form");
+            }
+        }
+
+        protected virtual void MapSection(StandardSection section)
+        {
+            // map the tooltip
+            if (!string.IsNullOrWhiteSpace(section.TooltipTitle) && !string.IsNullOrWhiteSpace(section.TooltipText))
+            {
+                section.Tooltip = this.GetTooltip(section.TooltipTitle, section.TooltipText);
+            }
+
+            // handle field dependency
+            if (section.DependentField != null)
+            {
+                section.ContainerAttributes.Add("data-flexform-dependent", "{" + HttpUtility.HtmlEncode(string.Format("\"from\": \"{0}\", \"value\": \"{1}\"", section.DependentField.Id, section.DependentValue)) + "}");
             }
         }
 
@@ -111,6 +135,20 @@
             }
 
             return navigationPane;
+        }
+
+        /// <summary>
+        /// Gets the tooltip based on title and text.
+        /// </summary>
+        /// <param name="title">The title.</param>
+        /// <param name="text">The text.</param>
+        /// <returns>Tooltip instance</returns>
+        protected virtual Tooltip GetTooltip(string title, string text)
+        {
+            Assert.ArgumentNotNullOrEmpty(title, "title");
+            Assert.ArgumentNotNullOrEmpty(text, "text");
+
+            return new Tooltip { Title = title, Text = text };
         }
     }
 }

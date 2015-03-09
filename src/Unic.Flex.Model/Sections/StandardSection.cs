@@ -1,25 +1,35 @@
-﻿namespace Unic.Flex.Model.DomainModel.Sections
+﻿namespace Unic.Flex.Model.Sections
 {
     using System;
-    using Glass.Mapper.Sc.Configuration;
-    using Glass.Mapper.Sc.Configuration.Attributes;
     using System.Collections.Generic;
     using System.Linq;
+    using Glass.Mapper.Sc.Configuration;
+    using Glass.Mapper.Sc.Configuration.Attributes;
+    using Unic.Flex.Model.Components;
     using Unic.Flex.Model.DomainModel.Components;
     using Unic.Flex.Model.DomainModel.Fields;
     using Unic.Flex.Model.GlassExtensions.Attributes;
+    using Unic.Flex.Model.Presentation;
     using Unic.Flex.Model.Steps;
 
     /// <summary>
     /// The standard section.
     /// </summary>
     [SitecoreType(TemplateId = "{B2B5CAB2-2BD7-4FFE-80B1-7607A310771E}")]
-    public class StandardSection : ItemBase, ITooltip, IVisibilityDependency, IReusableComponent<StandardSection>
+    public class StandardSection : ItemBase, IPresentationComponent, IReusableComponent<StandardSection>
     {
         /// <summary>
         /// Private field for storing the is hidden property.
         /// </summary>
         private bool? isHidden;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StandardSection"/> class.
+        /// </summary>
+        public StandardSection()
+        {
+            this.ContainerAttributes = new Dictionary<string, object>();
+        }
         
         /// <summary>
         /// Gets or sets the title.
@@ -37,22 +47,7 @@
         /// The parent.
         /// </value>
         [SitecoreParent(IsLazy = true, InferType = true)]
-        public virtual ItemBase Step { get; set; }
-
-        /// <summary>
-        /// Gets the step title.
-        /// </summary>
-        /// <value>
-        /// The step title.
-        /// </value>
-        public virtual string StepTitle
-        {
-            get
-            {
-                var step = this.Step as StepBase;
-                return step != null ? step.Title : string.Empty;
-            }
-        }
+        public virtual ItemBase Step { private get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to disable the fieldset markup.
@@ -109,11 +104,37 @@
         public virtual string DependentValue { get; set; }
 
         /// <summary>
+        /// Gets or sets the reusable component.
+        /// </summary>
+        /// <value>
+        /// The reusable component.
+        /// </value>
+        [SitecoreField("Section")]
+        public virtual StandardSection ReusableComponent { get; set; }
+
+        /// <summary>
+        /// Gets the step title.
+        /// </summary>
+        /// <value>
+        /// The step title.
+        /// </value>
+        [SitecoreIgnore]
+        public virtual string StepTitle
+        {
+            get
+            {
+                var step = this.Step as StepBase;
+                return step != null ? step.Title : string.Empty;
+            }
+        }
+
+        /// <summary>
         /// Gets a value indicating whether this instance is hidden.
         /// </summary>
         /// <value>
         ///   <c>true</c> if this instance is hidden; otherwise, <c>false</c>.
         /// </value>
+        [SitecoreIgnore]
         public virtual bool IsHidden
         {
             get
@@ -147,13 +168,37 @@
         }
 
         /// <summary>
-        /// Gets or sets the reusable component.
+        /// Gets the name of the view.
         /// </summary>
         /// <value>
-        /// The reusable component.
+        /// The name of the view.
         /// </value>
-        [SitecoreField("Section")]
-        public virtual StandardSection ReusableComponent { get; set; }
+        [SitecoreIgnore]
+        public virtual string ViewName
+        {
+            get
+            {
+                return "Sections/StandardSection";
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the tooltip.
+        /// </summary>
+        /// <value>
+        /// The tooltip.
+        /// </value>
+        [SitecoreIgnore]
+        public virtual Tooltip Tooltip { get; set; }
+
+        /// <summary>
+        /// Gets the container attributes.
+        /// </summary>
+        /// <value>
+        /// The container attributes.
+        /// </value>
+        [SitecoreIgnore]
+        public virtual IDictionary<string, object> ContainerAttributes { get; private set; }
 
         /// <summary>
         /// Gets or sets the reusable component.
@@ -161,6 +206,7 @@
         /// <value>
         /// The reusable component.
         /// </value>
+        [SitecoreIgnore]
         object IReusableComponent.ReusableComponent
         {
             get

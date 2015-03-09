@@ -4,8 +4,8 @@ namespace Unic.Flex.Website.App_Start
 {
     using AutoMapper;
     using Unic.Flex.Core.Context;
-    using Unic.Flex.Model.DomainModel.Sections;
     using Unic.Flex.Model.Entities;
+    using Unic.Flex.Model.Sections;
     using Unic.Flex.Model.Steps;
     using Unic.Flex.Model.Types;
     using Unic.Flex.Model.ViewModel.Forms;

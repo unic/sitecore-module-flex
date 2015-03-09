@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using Unic.Flex.Model.DomainModel.Fields;
-    using Unic.Flex.Model.DomainModel.Sections;
+    using Unic.Flex.Model.Sections;
     using Unic.Flex.Model.Steps;
 
     /// <summary>

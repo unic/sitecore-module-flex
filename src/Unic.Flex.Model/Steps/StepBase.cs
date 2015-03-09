@@ -1,17 +1,22 @@
 ﻿namespace Unic.Flex.Model.Steps
 {
     using System.Collections.Generic;
+    using System.Linq;
     using Glass.Mapper.Sc.Configuration.Attributes;
-    using Unic.Flex.Model.DomainModel;
-    using Unic.Flex.Model.DomainModel.Sections;
     using Unic.Flex.Model.GlassExtensions.Attributes;
     using Unic.Flex.Model.Presentation;
+    using Unic.Flex.Model.Sections;
 
     /// <summary>
     /// Base class for all steps.
     /// </summary>
     public abstract class StepBase : ItemBase, IPresentationComponent
     {
+        /// <summary>
+        /// The sections
+        /// </summary>
+        private IList<StandardSection> sections;
+        
         /// <summary>
         /// Gets or sets the title.
         /// </summary>
@@ -46,8 +51,8 @@
         /// The sections.
         /// </value>
         [SitecoreReusableChildren(IsLazy = true, InferType = true)]
-        public virtual IEnumerable<StandardSection> Sections { get; set; }
-
+        public virtual IEnumerable<StandardSection> MappedSections { private get; set; }
+        
         /// <summary>
         /// Gets or sets a value indicating whether this step is active.
         /// </summary>
@@ -83,6 +88,22 @@
         /// </value>
         [SitecoreIgnore]
         public virtual string CancelText { get; set; }
+
+        /// <summary>
+        /// Gets the sections.
+        /// </summary>
+        /// <value>
+        /// The sections.
+        /// </value>
+        [SitecoreIgnore]
+        public virtual IList<StandardSection> Sections
+        {
+            get
+            {
+                // todo: is there maybe another way of having properties "MappedSections" and "Sections"? -> we need to have the sections as a list, but "ReusableChildrenTypeMapper" is an IEnumerable
+                return this.sections ?? (this.sections = this.MappedSections.ToList());
+            }
+        }
 
         /// <summary>
         /// Gets the name of the view.
