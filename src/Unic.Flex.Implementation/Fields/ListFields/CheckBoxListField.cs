@@ -4,7 +4,7 @@
     using System.Linq;
     using Newtonsoft.Json.Linq;
     using Unic.Flex.Model.DataProviders;
-    using Unic.Flex.Model.DomainModel.Fields.ListFields;
+    using Unic.Flex.Model.Fields.ListFields;
 
     /// <summary>
     /// Checkbox list field
@@ -23,6 +23,20 @@
             get
             {
                 return this.Items.Where(item => item.Selected).Select(item => item.Value).ToArray();
+            }
+        }
+
+        /// <summary>
+        /// Gets the name of the view.
+        /// </summary>
+        /// <value>
+        /// The name of the view.
+        /// </value>
+        public override string ViewName
+        {
+            get
+            {
+                return "Fields/ListFields/CheckBoxList";
             }
         }
 

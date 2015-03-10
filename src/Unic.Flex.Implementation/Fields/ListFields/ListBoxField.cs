@@ -4,7 +4,7 @@
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Newtonsoft.Json.Linq;
     using Unic.Flex.Model.DataProviders;
-    using Unic.Flex.Model.DomainModel.Fields.ListFields;
+    using Unic.Flex.Model.Fields.ListFields;
 
     /// <summary>
     /// Listbox list field
@@ -46,6 +46,20 @@
             }
 
             base.SetValue(value);
+        }
+
+        /// <summary>
+        /// Gets the name of the view.
+        /// </summary>
+        /// <value>
+        /// The name of the view.
+        /// </value>
+        public override string ViewName
+        {
+            get
+            {
+                return "Fields/ListFields/ListBox";
+            }
         }
     }
 }

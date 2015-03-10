@@ -1,4 +1,4 @@
-﻿namespace Unic.Flex.Model.DomainModel.Fields.ListFields
+﻿namespace Unic.Flex.Model.Fields.ListFields
 {
     using System.Collections.Generic;
     using System.Linq;

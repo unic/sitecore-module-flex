@@ -4,7 +4,7 @@
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Sitecore.Configuration;
     using Unic.Flex.Implementation.Validators;
-    using Unic.Flex.Model.DomainModel.Fields.InputFields;
+    using Unic.Flex.Model.Fields.InputFields;
 
     /// <summary>
     /// Password field
@@ -32,6 +32,20 @@
             get
             {
                 return "********";
+            }
+        }
+
+        /// <summary>
+        /// Gets the name of the view.
+        /// </summary>
+        /// <value>
+        /// The name of the view.
+        /// </value>
+        public override string ViewName
+        {
+            get
+            {
+                return "Fields/InputFields/Password";
             }
         }
     }

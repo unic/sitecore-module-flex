@@ -2,7 +2,7 @@
 {
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Unic.Flex.Implementation.Validators;
-    using Unic.Flex.Model.DomainModel.Fields.InputFields;
+    using Unic.Flex.Model.Fields.InputFields;
 
     /// <summary>
     /// Number field
@@ -35,6 +35,20 @@
         /// </value>
         [SitecoreField("Step")]
         public virtual string Step { get; set; }
+
+        /// <summary>
+        /// Gets the name of the view.
+        /// </summary>
+        /// <value>
+        /// The name of the view.
+        /// </value>
+        public override string ViewName
+        {
+            get
+            {
+                return "Fields/InputFields/Number";
+            }
+        }
 
         /// <summary>
         /// Sets the value.

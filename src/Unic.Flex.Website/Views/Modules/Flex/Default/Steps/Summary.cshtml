@@ -39,7 +39,7 @@
                 }
 
                 <ul class="flex_summary_list">
-                    @foreach (var field in stepSection.Fields.Where(f => !f.IsHidden))
+                    @foreach (var field in stepSection.Fields.Where(f => f.ShowInSummary).Where(f => !f.IsHidden))
                     {
                         <li class="flex_summary_item">
                             <strong>@Html.Raw(Html.GetLabelWithReplacedLink(field.Label, field.LabelLink))</strong>

@@ -1,5 +1,8 @@
 ﻿namespace Unic.Flex.Model.DomainModel.Components
 {
+    using Glass.Mapper.Sc.Configuration.Attributes;
+    using Unic.Flex.Model.Components;
+
     /// <summary>
     /// Interface for a tooltip information.
     /// </summary>
@@ -20,5 +23,13 @@
         /// The tooltip text.
         /// </value>
         string TooltipText { get; set; }
+
+        /// <summary>
+        /// Gets or sets the tooltip.
+        /// </summary>
+        /// <value>
+        /// The tooltip.
+        /// </value>
+        Tooltip Tooltip { get; set; }
     }
 }

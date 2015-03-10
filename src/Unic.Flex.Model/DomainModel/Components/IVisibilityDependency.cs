@@ -1,6 +1,6 @@
 ﻿namespace Unic.Flex.Model.DomainModel.Components
 {
-    using Unic.Flex.Model.DomainModel.Fields;
+    using Unic.Flex.Model.Fields;
 
     /// <summary>
     /// Interface for components which possible have some field dependendies.

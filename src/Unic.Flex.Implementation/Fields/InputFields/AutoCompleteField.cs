@@ -5,7 +5,7 @@
     using Glass.Mapper.Sc.Configuration;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Unic.Flex.Model.DataProviders;
-    using Unic.Flex.Model.DomainModel.Fields.InputFields;
+    using Unic.Flex.Model.Fields.InputFields;
     using Unic.Flex.Model.GlassExtensions.Attributes;
 
     /// <summary>
@@ -34,6 +34,20 @@
             get
             {
                 return this.DataProvider != null ? this.DataProvider.GetItems().Select(item => item.Text).ToList() : new List<string>();
+            }
+        }
+
+        /// <summary>
+        /// Gets the name of the view.
+        /// </summary>
+        /// <value>
+        /// The name of the view.
+        /// </value>
+        public override string ViewName
+        {
+            get
+            {
+                return "Fields/InputFields/AutoComplete";
             }
         }
 

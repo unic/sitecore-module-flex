@@ -1,4 +1,4 @@
-﻿namespace Unic.Flex.Model.DomainModel.Fields.InputFields
+﻿namespace Unic.Flex.Model.Fields.InputFields
 {
     /// <summary>
     /// Base class for simple input fields

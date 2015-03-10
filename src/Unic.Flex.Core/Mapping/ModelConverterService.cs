@@ -13,7 +13,7 @@
     using Unic.Flex.Core.Globalization;
     using Unic.Flex.Core.Utilities;
     using Unic.Flex.Model.Configuration;
-    using Unic.Flex.Model.DomainModel.Fields.ListFields;
+    using Unic.Flex.Model.Fields.ListFields;
     using Unic.Flex.Model.Forms;
     using Unic.Flex.Model.Steps;
     using Unic.Flex.Model.Types;

@@ -5,7 +5,7 @@
     using Moq;
     using Unic.Flex.Core.Mapping;
     using Unic.Flex.Implementation.Fields.InputFields;
-    using Unic.Flex.Model.DomainModel.Fields;
+    using Unic.Flex.Model.Fields;
     using Unic.Flex.Model.Forms;
     using Unic.Flex.Model.Sections;
     using Unic.Flex.Model.Steps;
@@ -88,11 +88,11 @@
             // generate the sections
             var firstSection = new StandardSection();
             firstSection.Title = "This is the first section";
-            firstSection.Fields = fields;
+            firstSection.LazyFields = fields;
             
             var secondSection = new StandardSection();
             secondSection.Title = "This is the second section";
-            secondSection.Fields = fields;
+            secondSection.LazyFields = fields;
 
             // generate the step
             var step = new SingleStep();
@@ -124,7 +124,7 @@
             // generate section
             var section = new StandardSection();
             section.Title = "This is the section";
-            section.Fields = fields;
+            section.LazyFields = fields;
 
             // generate the steps
             var steps = new List<StepBase>();

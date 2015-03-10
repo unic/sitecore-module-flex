@@ -14,8 +14,8 @@
     using Unic.Flex.Core.Globalization;
     using Unic.Flex.Core.Utilities;
     using Unic.Flex.Implementation.Fields.InputFields;
-    using Unic.Flex.Model.DomainModel.Fields.ListFields;
     using Unic.Flex.Model.Entities;
+    using Unic.Flex.Model.Fields.ListFields;
     using Unic.Flex.Model.Forms;
     using File = Unic.Flex.Model.Entities.File;
     using Form = Unic.Flex.Model.Forms.Form;

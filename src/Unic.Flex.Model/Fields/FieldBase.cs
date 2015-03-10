@@ -1,11 +1,17 @@
-﻿namespace Unic.Flex.Model.DomainModel.Fields
+﻿namespace Unic.Flex.Model.Fields
 {
     using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
+    using System.Text.RegularExpressions;
+    using System.Web;
+    using Castle.DynamicProxy;
     using Glass.Mapper.Sc.Configuration;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Glass.Mapper.Sc.Fields;
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
+    using Unic.Flex.Model.Components;
     using Unic.Flex.Model.DomainModel.Components;
     using Unic.Flex.Model.GlassExtensions.Attributes;
     using Unic.Flex.Model.Specifications;
@@ -17,6 +23,19 @@
     /// <typeparam name="TValue">The type of the value.</typeparam>
     public abstract class FieldBase<TValue> : FieldBase, IField<TValue>
     {
+        /// <summary>
+        /// The validators
+        /// </summary>
+        private readonly IList<IValidator> validators;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FieldBase{TValue}"/> class.
+        /// </summary>
+        protected FieldBase()
+        {
+            this.validators = new List<IValidator>();
+        }
+        
         /// <summary>
         /// Gets or sets the value.
         /// </summary>
@@ -101,12 +120,84 @@
         }
 
         /// <summary>
+        /// Determines whether the specified object is valid.
+        /// </summary>
+        /// <param name="validationContext">The validation context.</param>
+        /// <returns>
+        /// A collection that holds failed-validation information.
+        /// </returns>
+        public virtual IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            foreach (var validator in this.validators)
+            {
+                if (!validator.IsValid(this.Value))
+                {
+                    yield return new ValidationResult(validator.ValidationMessage, new[] { "Value" });
+                }
+            }
+        }
+
+        /// <summary>
+        /// Adds a validator to the current field.
+        /// </summary>
+        /// <param name="validator">The validator.</param>
+        public virtual void AddValidator(IValidator validator)
+        {
+            // do nothing if validators of this type has already been added
+            var validatorType = ProxyUtil.GetUnproxiedType(validator);
+            if (this.validators.Any(v => ProxyUtil.GetUnproxiedType(v) == validatorType)) return;
+
+            // replace the placeholders of the validator with values
+            validator.ValidationMessage = this.ReplaceValidatorMessagePlaceholders(validator);
+
+            // add the validator to the list
+            this.validators.Add(validator);
+
+            // add the specific attributes for this validator (i.e. "data-val-requried")
+            // these are used for client side validation
+            foreach (var attribute in validator.GetAttributes())
+            {
+                this.Attributes.Add(attribute.Key, attribute.Value);
+            }
+
+            // add the "data-val" attribute to specify that this field needs to be validated
+            if (this.Attributes.Any() && !this.Attributes.ContainsKey("data-val"))
+            {
+                this.Attributes.Add("data-val", "true");
+            }
+        }
+
+        /// <summary>
         /// Sets the value.
         /// </summary>
         /// <param name="value">The value.</param>
         protected virtual void SetValue(object value)
         {
             this.Value = value != null ? (TValue)value : default(TValue);
+        }
+
+        /// <summary>
+        /// Replaces the validator message placeholders with the value of the validators.
+        /// </summary>
+        /// <param name="validator">The validator.</param>
+        /// <returns>The replaced validator message</returns>
+        private string ReplaceValidatorMessagePlaceholders(IValidator validator)
+        {
+            // get the type of the validator
+            var type = validator.GetType();
+
+            // replace all placeholders
+            var message = Regex.Replace(
+                validator.ValidationMessage,
+                @"({)(.*?)(})",
+                match => type.GetProperty(match.Groups[2].Value) != null
+                    ? type.GetProperty(match.Groups[2].Value).GetValue(validator).ToString()
+                    : match.Value);
+
+            // replace the field name
+            message = message.Replace("{Field}", this.Label);
+
+            return message;
         }
     }
 
@@ -127,6 +218,8 @@
         protected FieldBase()
         {
             this.DefaultValidators = new List<IValidator>();
+            this.Attributes = new Dictionary<string, object>();
+            this.ContainerAttributes = new Dictionary<string, object>();
         }
 
         /// <summary>
@@ -155,25 +248,6 @@
         /// </value>
         [SitecoreField("Label Link", UrlOptions = SitecoreInfoUrlOptions.AlwaysIncludeServerUrl)]
         public virtual Link LabelLink { get; set; }
-
-        /// <summary>
-        /// Gets the text label.
-        /// </summary>
-        /// <value>
-        /// The text label.
-        /// </value>
-        public virtual string TextLabel
-        {
-            get
-            {
-                if (this.LabelLink != null && !string.IsNullOrWhiteSpace(this.LabelLink.Text))
-                {
-                    return this.Label.Replace("#link#", this.LabelLink.Text);
-                }
-
-                return this.Label;
-            }
-        }
 
         /// <summary>
         /// Gets or sets the CSS class.
@@ -292,18 +366,68 @@
         public virtual string DependentValue { get; set; }
 
         /// <summary>
+        /// Gets or sets the reusable component.
+        /// </summary>
+        /// <value>
+        /// The reusable component.
+        /// </value>
+        [SitecoreField("Field", Setting = SitecoreFieldSettings.InferType)]
+        public virtual IField ReusableComponent { get; set; }
+
+        /// <summary>
+        /// Gets or sets the tooltip.
+        /// </summary>
+        /// <value>
+        /// The tooltip.
+        /// </value>
+        [SitecoreIgnore]
+        public virtual Tooltip Tooltip { get; set; }
+
+        /// <summary>
+        /// Gets the text label.
+        /// </summary>
+        /// <value>
+        /// The text label.
+        /// </value>
+        [SitecoreIgnore]
+        public virtual string TextLabel
+        {
+            get
+            {
+                if (this.LabelLink != null && !string.IsNullOrWhiteSpace(this.LabelLink.Text))
+                {
+                    return this.Label.Replace("#link#", this.LabelLink.Text);
+                }
+
+                return this.Label;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the label addition.
+        /// </summary>
+        /// <value>
+        /// The label addition.
+        /// </value>
+        [SitecoreIgnore]
+        public virtual string LabelAddition { get; set; }
+
+        /// <summary>
         /// Gets a value indicating whether this instance is hidden.
         /// </summary>
         /// <value>
         ///   <c>true</c> if this instance is hidden; otherwise, <c>false</c>.
         /// </value>
+        [SitecoreIgnore]
         public virtual bool IsHidden
         {
             get
             {
+                //todo: create interfaces for all types (form, step, section and field)
+
                 // lazy loading
                 if (this.isHidden.HasValue) return this.isHidden.Value;
-                
+
                 // no dependent field -> always visible
                 if (this.DependentField == null)
                 {
@@ -328,15 +452,7 @@
         /// <value>
         /// The reusable component.
         /// </value>
-        [SitecoreField("Field", Setting = SitecoreFieldSettings.InferType)]
-        public virtual IField ReusableComponent { get; set; }
-        
-        /// <summary>
-        /// Gets or sets the reusable component.
-        /// </summary>
-        /// <value>
-        /// The reusable component.
-        /// </value>
+        [SitecoreIgnore]
         object IReusableComponent.ReusableComponent
         {
             get
@@ -348,6 +464,71 @@
             {
                 this.ReusableComponent = value as IField;
             }
+        }
+
+        /// <summary>
+        /// Gets or sets the CSS class.
+        /// </summary>
+        /// <value>
+        /// The CSS class.
+        /// </value>
+        [SitecoreIgnore]
+        public virtual string CssClass { get; set; }
+
+        /// <summary>
+        /// Gets the additional html attributes on the field.
+        /// </summary>
+        /// <value>
+        /// The additional html attributes on the field.
+        /// </value>
+        [SitecoreIgnore]
+        public virtual IDictionary<string, object> Attributes { get; private set; }
+
+        /// <summary>
+        /// Gets the container attributes.
+        /// </summary>
+        /// <value>
+        /// The container attributes.
+        /// </value>
+        [SitecoreIgnore]
+        public virtual IDictionary<string, object> ContainerAttributes { get; private set; }
+
+        /// <summary>
+        /// Gets the name of the view.
+        /// </summary>
+        /// <value>
+        /// The name of the view.
+        /// </value>
+        [SitecoreIgnore]
+        public abstract string ViewName { get; }
+
+        public virtual void BindProperties()
+        {
+            // handle disabled input fields
+            if (this.IsDisabled)
+            {
+                this.Attributes.Add("disabled", "disabled");
+                this.Attributes.Add("aria-disabled", true);
+                this.AddCssClass("flex_disabled");
+            }
+
+            // handle field dependency
+            this.ContainerAttributes.Add("data-key", this.Id);
+            if (this.DependentField != null)
+            {
+                this.ContainerAttributes.Add("data-flexform-dependent", "{" + HttpUtility.HtmlEncode(string.Format("\"from\": \"{0}\", \"value\": \"{1}\"", this.DependentField.Id, this.DependentValue)) + "}");
+            }
+        }
+
+        /// <summary>
+        /// Adds a CSS class.
+        /// </summary>
+        /// <param name="cssClass">The CSS class.</param>
+        public virtual void AddCssClass(string cssClass)
+        {
+            if (string.IsNullOrWhiteSpace(cssClass)) return;
+
+            this.CssClass = string.Join(" ", this.CssClass, cssClass);
         }
     }
 }

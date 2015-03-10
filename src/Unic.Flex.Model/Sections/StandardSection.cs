@@ -3,11 +3,12 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Web;
     using Glass.Mapper.Sc.Configuration;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Unic.Flex.Model.Components;
     using Unic.Flex.Model.DomainModel.Components;
-    using Unic.Flex.Model.DomainModel.Fields;
+    using Unic.Flex.Model.Fields;
     using Unic.Flex.Model.GlassExtensions.Attributes;
     using Unic.Flex.Model.Presentation;
     using Unic.Flex.Model.Steps;
@@ -22,6 +23,11 @@
         /// Private field for storing the is hidden property.
         /// </summary>
         private bool? isHidden;
+
+        /// <summary>
+        /// The fields
+        /// </summary>
+        private IList<IField> fields;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StandardSection"/> class.
@@ -65,7 +71,7 @@
         /// The fields.
         /// </value>
         [SitecoreReusableChildren(IsLazy = true, InferType = true)]
-        public virtual IEnumerable<IField> Fields { get; set; }
+        public virtual IEnumerable<IField> LazyFields { private get; set; }
 
         /// <summary>
         /// Gets or sets the tooltip title.
@@ -168,6 +174,21 @@
         }
 
         /// <summary>
+        /// Gets the sections.
+        /// </summary>
+        /// <value>
+        /// The sections.
+        /// </value>
+        [SitecoreIgnore]
+        public virtual IList<IField> Fields
+        {
+            get
+            {
+                return this.fields ?? (this.fields = this.LazyFields.ToList());
+            }
+        }
+
+        /// <summary>
         /// Gets the name of the view.
         /// </summary>
         /// <value>
@@ -217,6 +238,15 @@
             set
             {
                 this.ReusableComponent = value as StandardSection;
+            }
+        }
+
+        public virtual void BindProperties()
+        {
+            // handle field dependency
+            if (this.DependentField != null)
+            {
+                this.ContainerAttributes.Add("data-flexform-dependent", "{" + HttpUtility.HtmlEncode(string.Format("\"from\": \"{0}\", \"value\": \"{1}\"", this.DependentField.Id, this.DependentValue)) + "}");
             }
         }
     }

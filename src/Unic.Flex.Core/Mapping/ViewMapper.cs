@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Web;
     using Sitecore.Diagnostics;
+    using Unic.Configuration;
     using Unic.Flex.Core.Context;
     using Unic.Flex.Core.Definitions;
     using Unic.Flex.Core.Globalization;
@@ -14,6 +15,12 @@
     using Unic.Flex.Model.Steps;
     using Unic.Flex.Model.ViewModel.Components;
     using NavigationItem = Unic.Flex.Model.Components.NavigationItem;
+    using Unic.Flex.Model.Fields;
+    using Unic.Flex.Model.Fields.ListFields;
+    using Unic.Flex.Model.Types;
+    using Unic.Flex.Model.Validation;
+    using Unic.Flex.Core.Utilities;
+    using Unic.Flex.Model.Configuration;
 
     public class ViewMapper : IViewMapper
     {
@@ -21,8 +28,13 @@
 
         private readonly IDictionaryRepository dictionaryRepository;
 
-        public ViewMapper(IUrlService urlService, IDictionaryRepository dictionaryRepository)
+        private readonly IConfigurationManager configurationManager;
+
+        private string optionalLabelText;
+
+        public ViewMapper(IUrlService urlService, IDictionaryRepository dictionaryRepository, IConfigurationManager configurationManager)
         {
+            this.configurationManager = configurationManager;
             this.dictionaryRepository = dictionaryRepository;
             this.urlService = urlService;
         }
@@ -30,6 +42,9 @@
         public virtual void MapActiveStep(IFlexContext context)
         {
             if (context == null || context.Form == null || context.Form.ActiveStep == null) return;
+
+            // get config
+            this.optionalLabelText = this.configurationManager.Get<GlobalConfiguration>(c => c.OptionalFieldsLabelText);
             
             // map the step
             this.MapStep(context);
@@ -38,6 +53,11 @@
             foreach (var section in context.Form.ActiveStep.Sections)
             {
                 this.MapSection(section);
+
+                foreach (var field in section.Fields)
+                {
+                    this.MapField(field);
+                }
             }
         }
 
@@ -99,11 +119,63 @@
                 section.Tooltip = this.GetTooltip(section.TooltipTitle, section.TooltipText);
             }
 
-            // handle field dependency
-            if (section.DependentField != null)
+            // map properties
+            section.BindProperties();
+        }
+
+        protected virtual void MapField(IField field)
+        {
+            // add required validator
+            if (field.IsRequired)
             {
-                section.ContainerAttributes.Add("data-flexform-dependent", "{" + HttpUtility.HtmlEncode(string.Format("\"from\": \"{0}\", \"value\": \"{1}\"", section.DependentField.Id, section.DependentValue)) + "}");
+                if (TypeHelper.IsSubclassOfRawGeneric(typeof(MulticheckListField<,>), field.GetType()))
+                {
+                    field.AddValidator(new MulticheckRequired { ValidationMessage = field.ValidationMessage });
+                }
+                else if (field.Type == typeof(UploadedFile))
+                {
+                    field.AddValidator(new FileRequiredValidator { ValidationMessage = field.ValidationMessage });
+                }
+                else
+                {
+                    field.AddValidator(new RequiredValidator { ValidationMessage = field.ValidationMessage });
+                }
             }
+            else if (!string.IsNullOrWhiteSpace(this.optionalLabelText))
+            {
+                field.LabelAddition = this.optionalLabelText;
+            }
+
+            // add all other validators
+            foreach (var validator in field.Validators.Concat(field.DefaultValidators))
+            {
+                if (string.IsNullOrWhiteSpace(validator.ValidationMessage))
+                {
+                    validator.ValidationMessage = this.dictionaryRepository.GetText(validator.DefaultValidationMessageDictionaryKey);
+                }
+
+                field.AddValidator(validator);
+            }
+
+            // add css classes
+            if (field.CustomCssClass != null && !string.IsNullOrWhiteSpace(field.CustomCssClass.Value))
+            {
+                field.AddCssClass(field.CustomCssClass.Value);
+            }
+
+            if (!string.IsNullOrWhiteSpace(field.AdditionalCssClass))
+            {
+                field.AddCssClass(field.AdditionalCssClass);
+            }
+
+            // map the tooltip
+            if (!string.IsNullOrWhiteSpace(field.TooltipTitle) && !string.IsNullOrWhiteSpace(field.TooltipText))
+            {
+                field.Tooltip = this.GetTooltip(field.TooltipTitle, field.TooltipText);
+            }
+
+            // bind properties
+            field.BindProperties();
         }
 
         /// <summary>

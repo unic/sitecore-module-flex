@@ -1,9 +1,10 @@
-﻿namespace Unic.Flex.Model.DomainModel.Fields
+﻿namespace Unic.Flex.Model.Fields
 {
     using System;
     using System.Collections.Generic;
     using Glass.Mapper.Sc.Fields;
     using Unic.Flex.Model.DomainModel.Components;
+    using Unic.Flex.Model.Presentation;
     using Unic.Flex.Model.Specifications;
     using Unic.Flex.Model.Validation;
 
@@ -33,7 +34,7 @@
     /// <summary>
     /// Non-generic interface for a field.
     /// </summary>
-    public interface IField : ITooltip, IVisibilityDependency, IReusableComponent<IField>
+    public interface IField : ITooltip, IVisibilityDependency, IValidatableObject, IPresentationComponent, IReusableComponent<IField>
     {
         /// <summary>
         /// Gets the identifier.
@@ -100,6 +101,14 @@
         string Label { get; }
 
         /// <summary>
+        /// Gets or sets the label addition.
+        /// </summary>
+        /// <value>
+        /// The label addition.
+        /// </value>
+        string LabelAddition { get; set; }
+
+        /// <summary>
         /// Gets the text label.
         /// </summary>
         /// <value>
@@ -153,7 +162,15 @@
         /// <value>
         /// The validators.
         /// </value>
-        IEnumerable<IValidator> Validators { get; set; }
+        IEnumerable<IValidator> Validators { get; }
+
+        /// <summary>
+        /// Gets the attributes.
+        /// </summary>
+        /// <value>
+        /// The attributes.
+        /// </value>
+        IDictionary<string, object> Attributes { get; }
 
         /// <summary>
         /// Gets the default validators.
@@ -170,5 +187,16 @@
         ///   <c>true</c> if this field should be shown in the summary; otherwise, <c>false</c>.
         /// </value>
         bool ShowInSummary { get; set; }
+
+        /// <summary>
+        /// Adds the CSS class.
+        /// </summary>
+        /// <param name="cssClass">The CSS class.</param>
+        void AddCssClass(string cssClass);
+
+        /// <summary>
+        /// Binds the properties.
+        /// </summary>
+        void BindProperties();
     }
 }

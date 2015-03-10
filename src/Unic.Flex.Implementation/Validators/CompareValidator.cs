@@ -7,7 +7,7 @@
     using Unic.Flex.Core.Context;
     using Unic.Flex.Core.DependencyInjection;
     using Unic.Flex.Core.Utilities;
-    using Unic.Flex.Model.DomainModel.Fields;
+    using Unic.Flex.Model.Fields;
     using Unic.Flex.Model.Forms;
     using Unic.Flex.Model.GlassExtensions.Attributes;
     using Unic.Flex.Model.Validation;

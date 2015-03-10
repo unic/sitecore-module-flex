@@ -1,7 +1,7 @@
 ﻿namespace Unic.Flex.Implementation.Fields.InputFields
 {
     using Glass.Mapper.Sc.Configuration.Attributes;
-    using Unic.Flex.Model.DomainModel.Fields.InputFields;
+    using Unic.Flex.Model.Fields.InputFields;
     using Unic.Flex.Model.Types;
 
     /// <summary>
@@ -22,6 +22,20 @@
             {
                 if (this.Value == null) return base.TextValue;
                 return !string.IsNullOrWhiteSpace(this.Value.FileName) ? this.Value.FileName : "-";
+            }
+        }
+
+        /// <summary>
+        /// Gets the name of the view.
+        /// </summary>
+        /// <value>
+        /// The name of the view.
+        /// </value>
+        public override string ViewName
+        {
+            get
+            {
+                return "Fields/InputFields/FileUpload";
             }
         }
     }

@@ -4,6 +4,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
     using Unic.Flex.Core.Definitions;
+    using Unic.Flex.Model.Fields;
     using Unic.Flex.Model.Types;
     using Unic.Flex.Model.ViewModel.Fields;
 

@@ -1,5 +1,6 @@
 ﻿namespace Unic.Flex.Implementation.Fields.TextOnly
 {
+    using Unic.Flex.Model.Fields;
     using Unic.Flex.Model.ViewModel.Fields;
 
     /// <summary>

@@ -5,7 +5,7 @@
     using Glass.Mapper.Sc;
     using Glass.Mapper.Sc.Configuration;
     using Glass.Mapper.Sc.DataMappers;
-    using Unic.Flex.Model.DomainModel.Fields;
+    using Unic.Flex.Model.Fields;
     using Unic.Flex.Model.GlassExtensions.Configurations;
 
     /// <summary>

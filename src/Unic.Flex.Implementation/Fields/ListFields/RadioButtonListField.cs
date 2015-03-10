@@ -3,7 +3,7 @@
     using System.Linq;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Unic.Flex.Model.DataProviders;
-    using Unic.Flex.Model.DomainModel.Fields.ListFields;
+    using Unic.Flex.Model.Fields.ListFields;
 
     /// <summary>
     /// Radio button list field
@@ -23,6 +23,20 @@
             {
                 var selectedItem = this.Items.FirstOrDefault(item => item.Selected);
                 return selectedItem != null ? selectedItem.Value : string.Empty;
+            }
+        }
+
+        /// <summary>
+        /// Gets the name of the view.
+        /// </summary>
+        /// <value>
+        /// The name of the view.
+        /// </value>
+        public override string ViewName
+        {
+            get
+            {
+                return "Fields/ListFields/RadioButtonList";
             }
         }
     }
