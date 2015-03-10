@@ -51,7 +51,7 @@
         /// The sections.
         /// </value>
         [SitecoreReusableChildren(IsLazy = true, InferType = true)]
-        public virtual IEnumerable<StandardSection> MappedSections { private get; set; }
+        public virtual IEnumerable<StandardSection> LazySections { private get; set; }
         
         /// <summary>
         /// Gets or sets a value indicating whether this step is active.
@@ -100,8 +100,7 @@
         {
             get
             {
-                // todo: is there maybe another way of having properties "MappedSections" and "Sections"? -> we need to have the sections as a list, but "ReusableChildrenTypeMapper" is an IEnumerable
-                return this.sections ?? (this.sections = this.MappedSections.ToList());
+                return this.sections ?? (this.sections = this.LazySections.ToList());
             }
         }
 

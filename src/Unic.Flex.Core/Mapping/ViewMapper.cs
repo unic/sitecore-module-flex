@@ -67,7 +67,7 @@
             var summary = form.ActiveStep as Summary;
             if (summary != null)
             {
-                summary.MappedSections = form.Steps.SelectMany(s => s.Sections);
+                summary.LazySections = form.Steps.SelectMany(s => s.Sections);
                 summary.PreviousStepUrl = currentStep.Previous != null ? currentStep.Previous.Value.GetUrl(context) : string.Empty;
                 if (summary.ShowNavigationPane) summary.NavigationPane = this.GetNavigationPane(context);
             }

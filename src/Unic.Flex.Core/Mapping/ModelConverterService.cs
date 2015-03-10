@@ -133,7 +133,7 @@
             var summary = step as Summary;
             if (summary != null)
             {
-                step.MappedSections = form.Steps.SelectMany(s => s.Sections).ToList();
+                step.LazySections = form.Steps.SelectMany(s => s.Sections).ToList();
             }
 
             // map the form to it's view model

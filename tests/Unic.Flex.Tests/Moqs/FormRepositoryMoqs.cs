@@ -98,7 +98,7 @@
             var step = new SingleStep();
             step.StepNumber = 1;
             step.Url = "step";
-            step.MappedSections = new List<StandardSection> { firstSection, secondSection };
+            step.LazySections = new List<StandardSection> { firstSection, secondSection };
 
             // generate the form
             var form = new Form();
@@ -128,9 +128,9 @@
 
             // generate the steps
             var steps = new List<StepBase>();
-            steps.Add(new MultiStep { StepNumber = 1, Url = "first", MappedSections = new List<StandardSection> { section } });
-            steps.Add(new MultiStep { StepNumber = 2, Url = "second", MappedSections = new List<StandardSection> { section } });
-            steps.Add(new Summary { StepNumber = 3, Url = "summary", MappedSections = new List<StandardSection>() });
+            steps.Add(new MultiStep { StepNumber = 1, Url = "first", LazySections = new List<StandardSection> { section } });
+            steps.Add(new MultiStep { StepNumber = 2, Url = "second", LazySections = new List<StandardSection> { section } });
+            steps.Add(new Summary { StepNumber = 3, Url = "summary", LazySections = new List<StandardSection>() });
 
             // generate the form
             var form = new Form();
