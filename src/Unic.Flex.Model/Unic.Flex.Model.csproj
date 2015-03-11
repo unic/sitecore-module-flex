@@ -109,7 +109,6 @@
     <Compile Include="Components\IVisibilityDependency.cs" />
     <Compile Include="Fields\InputFields\HoneypotField.cs" />
     <Compile Include="Forms\FormExtensions.cs" />
-    <Compile Include="ViewModels\Components\IVisibilityDependencyViewModel.cs" />
     <Compile Include="Fields\FieldBase.cs" />
     <Compile Include="Fields\IField.cs" />
     <Compile Include="Fields\ListFields\ListField.cs" />
@@ -155,13 +154,8 @@
     <Compile Include="Validators\IValidatableObject.cs" />
     <Compile Include="ViewModels\ErrorViewModel.cs" />
     <Compile Include="ViewModels\SuccessMessageViewModel.cs" />
-    <Compile Include="ViewModels\Fields\FieldBaseViewModel.cs" />
     <Compile Include="Fields\InputFields\InputField.cs" />
-    <Compile Include="ViewModels\Fields\IFieldViewModel.cs" />
     <Compile Include="Fields\IFieldWithoutPost.cs" />
-    <Compile Include="ViewModels\Fields\InputFields\InputFieldViewModel.cs" />
-    <Compile Include="ViewModels\Fields\ListFields\ListFieldViewModel.cs" />
-    <Compile Include="ViewModels\Fields\ListFields\MulticheckListFieldViewModel.cs" />
     <Compile Include="GlassExtensions\Attributes\SitecoreDictionaryFallbackFieldAttribute.cs" />
     <Compile Include="GlassExtensions\Configurations\SitecoreDictionaryFallbackFieldConfiguration.cs" />
     <Compile Include="GlassExtensions\Handlers\SitecoreDictionaryFallbackFieldTypeMapper.cs" />

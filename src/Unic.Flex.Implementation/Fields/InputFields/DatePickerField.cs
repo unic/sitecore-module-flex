@@ -87,5 +87,37 @@
                 return "Fields/InputFields/DatePicker";
             }
         }
+
+        /// <summary>
+        /// Gets the locale.
+        /// </summary>
+        /// <value>
+        /// The locale.
+        /// </value>
+        public virtual string Locale
+        {
+            get
+            {
+                return Sitecore.Context.Language.CultureInfo.TwoLetterISOLanguageName.ToLowerInvariant();
+            }
+        }
+
+        /// <summary>
+        /// Binds the properties.
+        /// </summary>
+        public override void BindProperties()
+        {
+            base.BindProperties();
+
+            this.AddCssClass("flex_datefield");
+
+            this.Attributes.Add("aria-multiline", false);
+            this.Attributes.Add("role", "textbox");
+
+            if (this.Value != null)
+            {
+                this.Attributes.Add("Value", this.Value.Value.ToString(this.DateFormat, CultureInfo.InvariantCulture));
+            }
+        }
     }
 }

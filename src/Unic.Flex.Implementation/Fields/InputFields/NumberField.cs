@@ -1,5 +1,6 @@
 ﻿namespace Unic.Flex.Implementation.Fields.InputFields
 {
+    using System.Globalization;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Unic.Flex.Implementation.Validators;
     using Unic.Flex.Model.Fields.InputFields;
@@ -47,6 +48,30 @@
             get
             {
                 return "Fields/InputFields/Number";
+            }
+        }
+
+        /// <summary>
+        /// Binds the properties.
+        /// </summary>
+        public override void BindProperties()
+        {
+            base.BindProperties();
+
+            this.AddCssClass("flex_singletextfield");
+
+            this.Attributes.Add("aria-multiline", false);
+            this.Attributes.Add("role", "textbox");
+            this.Attributes.Add("type", "number");
+
+            if (!string.IsNullOrWhiteSpace(this.Step))
+            {
+                this.Attributes.Add("step", this.Step);
+            }
+
+            if (this.Value.HasValue)
+            {
+                this.Attributes.Add("Value", this.Value.Value.ToString(CultureInfo.InvariantCulture));
             }
         }
 

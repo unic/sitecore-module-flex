@@ -493,6 +493,9 @@
         [SitecoreIgnore]
         public abstract string ViewName { get; }
 
+        /// <summary>
+        /// Binds the properties.
+        /// </summary>
         public virtual void BindProperties()
         {
             // handle disabled input fields

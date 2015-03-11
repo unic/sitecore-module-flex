@@ -61,5 +61,15 @@
                 return "Fields/ListFields/ListBox";
             }
         }
+
+        /// <summary>
+        /// Binds the properties.
+        /// </summary>
+        public override void BindProperties()
+        {
+            base.BindProperties();
+
+            this.AddCssClass("flex_multipleselectfield");
+        }
     }
 }

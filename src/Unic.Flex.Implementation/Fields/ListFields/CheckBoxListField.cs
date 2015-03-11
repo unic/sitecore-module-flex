@@ -41,6 +41,16 @@
         }
 
         /// <summary>
+        /// Binds the properties.
+        /// </summary>
+        public override void BindProperties()
+        {
+            base.BindProperties();
+
+            this.AddCssClass("flex_checkboxgroup");
+        }
+
+        /// <summary>
         /// Sets the value.
         /// </summary>
         /// <param name="value">The value.</param>

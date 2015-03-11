@@ -44,7 +44,7 @@
                         <li class="flex_summary_item">
                             <strong>@Html.Raw(Html.GetLabelWithReplacedLink(field.Label, field.LabelLink))</strong>
                             <div>
-                                @if (field is TextOnlyFieldViewModel)
+                                @if (field is TextOnlyField)
                                 {
                                     @Html.Raw(field.TextValue)
                                 }

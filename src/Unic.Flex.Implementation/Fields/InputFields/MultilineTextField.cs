@@ -40,5 +40,19 @@
                 return "Fields/InputFields/MultilineText";
             }
         }
+
+        /// <summary>
+        /// Binds the properties.
+        /// </summary>
+        public override void BindProperties()
+        {
+            base.BindProperties();
+
+            this.AddCssClass("flex_textarea");
+
+            this.Attributes.Add("aria-multiline", true);
+            this.Attributes.Add("role", "textbox");
+            this.Attributes.Add("Rows", this.Rows);
+        }
     }
 }

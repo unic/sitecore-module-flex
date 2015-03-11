@@ -33,7 +33,6 @@
             
             // business logic
             container.Register<IContextService, ContextService>();
-            container.Register<IFieldDependencyService, FieldDependencyService>();
             container.Register<IPresentationService, PresentationService>();
             container.Register<IPlugsService, PlugsService>();
             container.Register<ITaskService, TaskService>();

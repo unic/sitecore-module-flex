@@ -38,5 +38,15 @@
                 return "Fields/InputFields/FileUpload";
             }
         }
+
+        /// <summary>
+        /// Binds the properties.
+        /// </summary>
+        public override void BindProperties()
+        {
+            base.BindProperties();
+
+            this.AddCssClass("flex_fileinputfield");
+        }
     }
 }

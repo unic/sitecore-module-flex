@@ -2,7 +2,7 @@
 @using Unic.Flex.Core.Definitions
 @using Unic.Flex.Core.Globalization
 @using Unic.Flex.Core.Presentation
-@model Unic.Flex.Implementation.Fields.InputFields.FileUploadFieldViewModel
+@model Unic.Flex.Implementation.Fields.InputFields.FileUploadField
 
 <li class="flex_listitem @Model.CssClass" @Html.Raw(Html.FormatAttributes(Model.ContainerAttributes)) data-init="flexfileinput" data-flexfileinput-options='{"clearUrl": "@Url.Action("RemoveUploadedFile", "Flex", new { sc_itemid = Sitecore.Context.Item.ID, form = Unic.Flex.Core.DependencyInjection.DependencyResolver.Resolve<IFlexContext>().Form.Id, field = Model.Id })"}'>
 

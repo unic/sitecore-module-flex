@@ -2,8 +2,11 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Web;
+    using System.Web.Mvc;
     using Glass.Mapper.Sc.Configuration;
     using Glass.Mapper.Sc.Configuration.Attributes;
+    using Unic.Flex.Core.Globalization;
     using Unic.Flex.Model.DataProviders;
     using Unic.Flex.Model.Fields.InputFields;
     using Unic.Flex.Model.GlassExtensions.Attributes;
@@ -59,5 +62,32 @@
         /// </value>
         [SitecoreSharedField("Data Provider", Setting = SitecoreFieldSettings.InferType)]
         public virtual IDataProvider<ListItem> DataProvider { get; set; }
+
+        /// <summary>
+        /// Binds the properties.
+        /// </summary>
+        public override void BindProperties()
+        {
+            var translationService = Core.DependencyInjection.DependencyResolver.Resolve<IDictionaryRepository>();
+
+            base.BindProperties();
+
+            this.Attributes.Add("aria-multiline", false);
+            this.Attributes.Add("role", "textbox");
+            this.Attributes.Add("data-init", "flexautocomplete");
+            this.Attributes.Add("data-flexautocomplete-options", "{\"noResults\": \"" + translationService.GetText("No Results") + "\", \"sendAll\": false, \"url\": \"" + this.GetProviderUrl() + "\"}");
+
+            this.AddCssClass("flex_singletextfield");
+        }
+
+        /// <summary>
+        /// Gets the provider URL.
+        /// </summary>
+        /// <returns>Url for Ajax request to retrieve data.</returns>
+        private string GetProviderUrl()
+        {
+            var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
+            return urlHelper.Action("AutoCompleteField", "Flex", new { field = this.ItemId, sc_lang = Sitecore.Context.Language });
+        }
     }
 }

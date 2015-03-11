@@ -121,10 +121,8 @@
     <Compile Include="Attributes\ValidateFormHandlerAttribute.cs" />
     <Compile Include="Authorization\AdministratorOnly.cs" />
     <Compile Include="Context\ContextService.cs" />
-    <Compile Include="Context\FieldDependencyService.cs" />
     <Compile Include="Context\FlexContext.cs" />
     <Compile Include="Context\IContextService.cs" />
-    <Compile Include="Context\IFieldDependencyService.cs" />
     <Compile Include="Context\IFlexContext.cs" />
     <Compile Include="Context\IUrlService.cs" />
     <Compile Include="Context\UrlExtensions.cs" />

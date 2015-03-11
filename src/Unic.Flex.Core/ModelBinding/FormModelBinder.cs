@@ -15,11 +15,6 @@
     public class FormModelBinder : DefaultModelBinder
     {
         /// <summary>
-        /// The field dependency service
-        /// </summary>
-        private readonly IFieldDependencyService fieldDependencyService;
-
-        /// <summary>
         /// The user data repository
         /// </summary>
         private readonly IUserDataRepository userDataRepository;
@@ -32,14 +27,12 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="FormModelBinder" /> class.
         /// </summary>
-        /// <param name="fieldDependencyService">The field dependency service.</param>
         /// <param name="userDataRepository">The user data repository.</param>
         /// <param name="viewMapper">The view mapper.</param>
-        public FormModelBinder(IFieldDependencyService fieldDependencyService, IUserDataRepository userDataRepository, IViewMapper viewMapper)
+        public FormModelBinder(IUserDataRepository userDataRepository, IViewMapper viewMapper)
         {
             this.viewMapper = viewMapper;
             this.userDataRepository = userDataRepository;
-            this.fieldDependencyService = fieldDependencyService;
         }
 
         /// <summary>

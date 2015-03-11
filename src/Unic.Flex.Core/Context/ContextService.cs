@@ -31,11 +31,6 @@
         private readonly IUserDataRepository userDataRepository;
 
         /// <summary>
-        /// The field dependency service
-        /// </summary>
-        private readonly IFieldDependencyService fieldDependencyService;
-
-        /// <summary>
         /// The logger
         /// </summary>
         private readonly ILogger logger;
@@ -45,13 +40,11 @@
         /// </summary>
         /// <param name="formRepository">The form repository.</param>
         /// <param name="userDataRepository">The user data repository.</param>
-        /// <param name="fieldDependencyService">The field dependency service.</param>
         /// <param name="logger">The logger.</param>
-        public ContextService(IFormRepository formRepository, IUserDataRepository userDataRepository, IFieldDependencyService fieldDependencyService, ILogger logger)
+        public ContextService(IFormRepository formRepository, IUserDataRepository userDataRepository, ILogger logger)
         {
             this.formRepository = formRepository;
             this.userDataRepository = userDataRepository;
-            this.fieldDependencyService = fieldDependencyService;
             this.logger = logger;
         }
 

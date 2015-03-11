@@ -62,6 +62,20 @@
         }
 
         /// <summary>
+        /// Binds the properties.
+        /// </summary>
+        public override void BindProperties()
+        {
+            base.BindProperties();
+
+            this.AddCssClass("flex_singlecheckbox");
+
+            this.Attributes.Add("aria-multiline", false);
+            this.Attributes.Add("aria-checked", this.Value);
+            this.Attributes.Add("role", "checkbox");
+        }
+
+        /// <summary>
         /// Sets the value.
         /// </summary>
         /// <param name="value">The value.</param>

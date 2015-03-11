@@ -31,5 +31,20 @@
                 return "Fields/TextOnlyFields/TextOnly";
             }
         }
+
+        /// <summary>
+        /// Binds the properties.
+        /// </summary>
+        public override void BindProperties()
+        {
+            base.BindProperties();
+
+            this.AddCssClass("flex_rtefield");
+
+            if (!string.IsNullOrWhiteSpace(this.Label))
+            {
+                this.AddCssClass("flex_var_label");
+            }
+        }
     }
 }

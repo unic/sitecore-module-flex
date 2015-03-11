@@ -33,7 +33,6 @@
 
             // business logic
             this.Bind<IContextService>().To<ContextService>();
-            this.Bind<IFieldDependencyService>().To<FieldDependencyService>();
             this.Bind<IPresentationService>().To<PresentationService>();
             this.Bind<IPlugsService>().To<PlugsService>();
             this.Bind<ITaskService>().To<TaskService>();
