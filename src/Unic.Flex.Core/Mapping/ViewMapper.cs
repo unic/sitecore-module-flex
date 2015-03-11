@@ -43,6 +43,8 @@
         {
             if (context == null || context.Form == null || context.Form.ActiveStep == null) return;
 
+            Profiling.Profiler.OnStart(this, "Flex :: Map active step for view");
+
             // get config
             this.optionalLabelText = this.configurationManager.Get<GlobalConfiguration>(c => c.OptionalFieldsLabelText);
             
@@ -59,6 +61,8 @@
                     this.MapField(field);
                 }
             }
+
+            Profiling.Profiler.OnEnd(this, "Flex :: Map active step for view");
         }
 
         protected virtual void MapStep(IFlexContext context)

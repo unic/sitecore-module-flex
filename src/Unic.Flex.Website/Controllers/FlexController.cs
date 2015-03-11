@@ -20,6 +20,7 @@
     using Unic.Flex.Implementation.Database;
     using Unic.Flex.Implementation.Fields.InputFields;
     using Unic.Flex.Model.Configuration;
+    using Unic.Flex.Model.Forms;
     using Unic.Flex.Model.Steps;
     using Unic.Flex.Model.Validation;
     using Unic.Flex.Model.ViewModel.Components;
@@ -224,7 +225,7 @@
         [HttpPost]
         [ValidateFormHandler]
         [ValidateAntiForgeryToken]
-        public virtual ActionResult Form(IFormViewModel model)
+        public virtual ActionResult Form(Form model)
         {
             // form is not available in page editor
             if (GlassHtml.IsInEditingMode)

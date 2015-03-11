@@ -166,33 +166,35 @@
         /// <summary>
         /// Stores the form values into the session.
         /// </summary>
-        /// <param name="viewModel">The form view model containing the current values.</param>
-        public virtual void StoreFormValues(IFormViewModel viewModel)
+        /// <param name="form">The form.</param>
+        public virtual void StoreFormValues(Form form)
         {
-            Assert.ArgumentNotNull(viewModel, "viewModel");
+            Assert.ArgumentNotNull(form, "form");
 
             Profiler.OnStart(this, "Flex :: Store form values to user data storage");
 
-            var allFields = viewModel.Step.Sections.SelectMany(section => section.Fields).ToList();
-            foreach (var section in viewModel.Step.Sections)
+            var allFields = form.ActiveStep.Sections.SelectMany(section => section.Fields).ToList();
+            foreach (var section in form.ActiveStep.Sections)
             {
                 // check if the complete section is invisible -> remove all fields and go to next sections
-                if (!string.IsNullOrWhiteSpace(section.DependentFieldId) && !this.fieldDependencyService.IsDependentFieldVisible(allFields, section))
-                {
-                    section.Fields.ForEach(f => this.userDataRepository.RemoveValue(viewModel.Id, f.Id));
-                    continue;
-                }
+                // todo: make this work again
+                //if (!string.IsNullOrWhiteSpace(section.DependentFieldId) && !this.fieldDependencyService.IsDependentFieldVisible(allFields, section))
+                //{
+                //    section.Fields.ForEach(f => this.userDataRepository.RemoveValue(form.Id, f.Id));
+                //    continue;
+                //}
 
                 foreach (var field in section.Fields)
                 {
                     // check if field is invisible -> remove from storage and go to next field
-                    if (!string.IsNullOrWhiteSpace(field.DependentFieldId) && !this.fieldDependencyService.IsDependentFieldVisible(allFields, field))
-                    {
-                        this.userDataRepository.RemoveValue(viewModel.Id, field.Id);
-                        continue;
-                    }
+                    // todo: make this work again
+                    //if (!string.IsNullOrWhiteSpace(field.DependentFieldId) && !this.fieldDependencyService.IsDependentFieldVisible(allFields, field))
+                    //{
+                    //    this.userDataRepository.RemoveValue(form.Id, field.Id);
+                    //    continue;
+                    //}
 
-                    this.userDataRepository.SetValue(viewModel.Id, field.Id, field.Value);
+                    this.userDataRepository.SetValue(form.Id, field.Id, field.Value);
                 }
             }
 

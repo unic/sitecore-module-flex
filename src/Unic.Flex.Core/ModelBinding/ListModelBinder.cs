@@ -4,6 +4,7 @@
     using System.Collections;
     using System.Collections.Generic;
     using System.Web.Mvc;
+    using Unic.Flex.Core.Utilities;
 
     /// <summary>
     /// Bind lists to the model.
@@ -66,7 +67,9 @@
                 modelList.Add(elementBinder.BindModel(controllerContext, innerContext));
             }
 
-            return modelList;
+            var model = bindingContext.Model;
+            MappingHelper.ReplaceCollection(elementType, model, modelList);
+            return model;
         }
     }
 }

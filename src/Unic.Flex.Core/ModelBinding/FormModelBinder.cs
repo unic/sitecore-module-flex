@@ -7,6 +7,7 @@
     using Unic.Flex.Core.DependencyInjection;
     using Unic.Flex.Core.Mapping;
     using Unic.Flex.Core.Utilities;
+    using Unic.Flex.Model.Forms;
     using Unic.Flex.Model.Types;
     using Unic.Flex.Model.ViewModel.Forms;
     using DependencyResolver = Unic.Flex.Core.DependencyInjection.DependencyResolver;
@@ -62,24 +63,25 @@
         public override object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
             var model = base.BindModel(controllerContext, bindingContext);
-            var form = model as IFormViewModel;
+            var form = model as Form;
             if (form != null)
             {
-                var allFields = form.Step.Sections.SelectMany(s => s.Fields).ToList();
+                var allFields = form.ActiveStep.Sections.SelectMany(s => s.Fields).ToList();
 
                 // remove validation errors for not visible fields (due to field dependecy)
-                for (var sectionIndex = 0; sectionIndex < form.Step.Sections.Count; sectionIndex++)
+                for (var sectionIndex = 0; sectionIndex < form.ActiveStep.Sections.Count; sectionIndex++)
                 {
-                    var section = form.Step.Sections[sectionIndex];
+                    var section = form.ActiveStep.Sections[sectionIndex];
                     for (var fieldIndex = 0; fieldIndex < section.Fields.Count; fieldIndex++)
                     {
                         var field = section.Fields[fieldIndex];
-                        if (string.IsNullOrWhiteSpace(field.DependentFieldId)) continue;
+                        if (field.DependentField == null) continue;
 
-                        if (!this.fieldDependencyService.IsDependentFieldVisible(allFields, field))
-                        {
-                            bindingContext.ModelState.Remove(MappingHelper.GetFormFieldId(sectionIndex, fieldIndex));
-                        }
+                        // todo: remove validation errors here
+                        //if (!this.fieldDependencyService.IsDependentFieldVisible(allFields, field))
+                        //{
+                        //    bindingContext.ModelState.Remove(MappingHelper.GetFormFieldId(sectionIndex, fieldIndex));
+                        //}
                     }
                 }
 
@@ -111,15 +113,14 @@
         /// </returns>
         protected override object CreateModel(ControllerContext controllerContext, ModelBindingContext bindingContext, Type modelType)
         {
-            if (modelType != typeof(IFormViewModel))
+            if (modelType != typeof(Form))
             {
                 return base.CreateModel(controllerContext, bindingContext, modelType);
             }
 
             var context = DependencyResolver.Resolve<IFlexContext>();
             this.viewMapper.MapActiveStep(context); // todo: do we really need to map the complete step or maybe only some properties and create an "lightweight" mapping?
-            context.ViewModel = this.modelConverter.ConvertToViewModel(context.Form);
-            return context.ViewModel;
+            return context.Form;
         }
     }
 }

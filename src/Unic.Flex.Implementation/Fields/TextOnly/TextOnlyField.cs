@@ -7,7 +7,7 @@
     /// Field with text only content
     /// </summary>
     [SitecoreType(TemplateId = "{C2B3372D-F1BA-4A98-9FDE-7A2A0C0EE76B}")]
-    public class TextOnlyField : FieldBase<string>
+    public class TextOnlyField : FieldBase<string>, IFieldWithoutPost
     {
         /// <summary>
         /// Gets or sets the default value.
