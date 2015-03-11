@@ -198,7 +198,7 @@
         /// Gets the attributes for a model and add context specific attributes.
         /// </summary>
         /// <param name="htmlHelper">The HTML helper.</param>
-        /// <param name="model">The view model.</param>
+        /// <param name="model">The field model.</param>
         /// <returns>Additional attributes for the html markup</returns>
         public static IDictionary<string, object> GetAttributes(this HtmlHelper htmlHelper, IField model)
         {
