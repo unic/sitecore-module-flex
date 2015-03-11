@@ -34,7 +34,7 @@
     /// <summary>
     /// Non-generic interface for a field.
     /// </summary>
-    public interface IField : ITooltip, IVisibilityDependency, IValidatableObject, IPresentationComponent, IReusableComponent<IField>
+    public interface IField : ITooltip, IFieldDependency, IValidatableObject, IPresentationComponent, IReusableComponent<IField>
     {
         /// <summary>
         /// Gets the identifier.

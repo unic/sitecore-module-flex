@@ -16,7 +16,7 @@
     /// The standard section.
     /// </summary>
     [SitecoreType(TemplateId = "{B2B5CAB2-2BD7-4FFE-80B1-7607A310771E}")]
-    public class StandardSection : ItemBase, IPresentationComponent, IVisibilityDependency, IReusableComponent<StandardSection>
+    public class StandardSection : ItemBase, IPresentationComponent, IFieldDependency, IReusableComponent<StandardSection>
     {
         /// <summary>
         /// Private field for storing the is hidden property.

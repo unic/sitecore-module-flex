@@ -5,7 +5,7 @@
     /// <summary>
     /// Interface for components which possible have some field dependendies.
     /// </summary>
-    public interface IVisibilityDependency
+    public interface IFieldDependency
     {
         /// <summary>
         /// Gets or sets the dependent field.
