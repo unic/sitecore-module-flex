@@ -300,6 +300,7 @@
         /// <value>
         /// The default validators.
         /// </value>
+        // todo: add [SitecoreIgnore] to all not mapped properties in the complete model
         public virtual IList<IValidator> DefaultValidators { get; private set; }
 
         /// <summary>
@@ -337,15 +338,6 @@
         /// </value>
         [SitecoreField("Tooltip Text")]
         public virtual string TooltipText { get; set; }
-
-        /// <summary>
-        /// Gets or sets the placeholder.
-        /// </summary>
-        /// <value>
-        /// The placeholder.
-        /// </value>
-        [SitecoreDictionaryFallbackField("Placeholder", "Placeholder Text")]
-        public virtual string Placeholder { get; set; }
 
         /// <summary>
         /// Gets or sets the dependent field.
