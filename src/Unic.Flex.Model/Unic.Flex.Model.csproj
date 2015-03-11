@@ -107,6 +107,7 @@
     <Compile Include="DomainModel\Components\IReusableComponent.cs" />
     <Compile Include="DomainModel\Components\ITooltip.cs" />
     <Compile Include="DomainModel\Components\IVisibilityDependency.cs" />
+    <Compile Include="Fields\InputFields\HoneypotField.cs" />
     <Compile Include="Forms\FormExtensions.cs" />
     <Compile Include="ViewModel\Components\IVisibilityDependencyViewModel.cs" />
     <Compile Include="Fields\FieldBase.cs" />

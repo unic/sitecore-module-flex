@@ -21,6 +21,7 @@
     using Unic.Flex.Model.Validation;
     using Unic.Flex.Core.Utilities;
     using Unic.Flex.Model.Configuration;
+    using Unic.Flex.Model.Fields.InputFields;
 
     public class ViewMapper : IViewMapper
     {
@@ -101,7 +102,7 @@
             // add honeypot field
             if (summary == null)
             {
-                // todo: add honeypot field
+                this.AddHoneypotField(form.ActiveStep);
             }
 
             // handle cancel link
@@ -153,7 +154,9 @@
             }
 
             // add all other validators
-            foreach (var validator in field.Validators.Concat(field.DefaultValidators))
+            var validators = field.Validators ?? Enumerable.Empty<IValidator>();
+            if (field.DefaultValidators != null) validators = validators.Concat(field.DefaultValidators);
+            foreach (var validator in validators)
             {
                 if (string.IsNullOrWhiteSpace(validator.ValidationMessage))
                 {
@@ -227,6 +230,27 @@
             Assert.ArgumentNotNullOrEmpty(text, "text");
 
             return new Tooltip { Title = title, Text = text };
+        }
+
+        /// <summary>
+        /// Adds the honeypot field for spam protection to the current step.
+        /// </summary>
+        /// <param name="step">The step.</param>
+        protected virtual void AddHoneypotField(StepBase step)
+        {
+            Assert.ArgumentNotNull(step, "step");
+
+            // get the first section
+            var section = step.Sections.FirstOrDefault();
+            if (section == null) return;
+
+            // generate the field
+            var honeypot = new HoneypotField();
+            honeypot.ItemId = Guid.NewGuid();
+            honeypot.Label = this.dictionaryRepository.GetText("Leave this blank if you are human");
+
+            // add field
+            section.Fields.Add(honeypot);
         }
     }
 }
