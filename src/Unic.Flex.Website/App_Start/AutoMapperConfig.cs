@@ -36,11 +36,11 @@ namespace Unic.Flex.Website.App_Start
 
             // Steps
             Mapper.CreateMap<SingleStep, SingleStepViewModel>().ForMember(m => m.Sections, o => o.Ignore());
-            Mapper.CreateMap<MultiStep, MultiStepViewModel>().ForMember(m => m.Sections, o => o.Ignore());
-            Mapper.CreateMap<Summary, SummaryViewModel>().ForMember(m => m.Sections, o => o.Ignore());
+            Mapper.CreateMap<MultiStep, MultiStepViewModel>().ForMember(m => m.Sections, o => o.Ignore()).ForMember(m => m.NavigationPane, o => o.Ignore());
+            Mapper.CreateMap<Summary, SummaryViewModel>().ForMember(m => m.Sections, o => o.Ignore()).ForMember(m => m.NavigationPane, o => o.Ignore());
 
             // Sections
-            Mapper.CreateMap<StandardSection, StandardSectionViewModel>().ForMember(m => m.Fields, o => o.Ignore());
+            Mapper.CreateMap<StandardSection, StandardSectionViewModel>().ForMember(m => m.Fields, o => o.Ignore()).ForMember(m => m.Tooltip, o => o.Ignore());
 
             // Files
             Mapper.CreateMap<UploadedFile, File>();

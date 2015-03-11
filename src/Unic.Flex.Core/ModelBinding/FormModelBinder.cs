@@ -32,13 +32,20 @@
         private readonly IUserDataRepository userDataRepository;
 
         /// <summary>
+        /// The view mapper
+        /// </summary>
+        private readonly IViewMapper viewMapper;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="FormModelBinder" /> class.
         /// </summary>
         /// <param name="modelConverter">The model converter.</param>
         /// <param name="fieldDependencyService">The field dependency service.</param>
         /// <param name="userDataRepository">The user data repository.</param>
-        public FormModelBinder(IModelConverterService modelConverter, IFieldDependencyService fieldDependencyService, IUserDataRepository userDataRepository)
+        /// <param name="viewMapper">The view mapper.</param>
+        public FormModelBinder(IModelConverterService modelConverter, IFieldDependencyService fieldDependencyService, IUserDataRepository userDataRepository, IViewMapper viewMapper)
         {
+            this.viewMapper = viewMapper;
             this.userDataRepository = userDataRepository;
             this.modelConverter = modelConverter;
             this.fieldDependencyService = fieldDependencyService;
@@ -110,6 +117,7 @@
             }
 
             var context = DependencyResolver.Resolve<IFlexContext>();
+            this.viewMapper.MapActiveStep(context); // todo: do we really need to map the complete step or maybe only some properties and create an "lightweight" mapping?
             context.ViewModel = this.modelConverter.ConvertToViewModel(context.Form);
             return context.ViewModel;
         }

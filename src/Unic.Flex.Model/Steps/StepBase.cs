@@ -102,6 +102,11 @@
             {
                 return this.sections ?? (this.sections = this.LazySections.ToList());
             }
+
+            set
+            {
+                this.sections = value;
+            }
         }
 
         /// <summary>

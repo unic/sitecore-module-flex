@@ -194,16 +194,16 @@
             // handle disabled input fields
             if (this.IsDisabled)
             {
-                this.Attributes.Add("disabled", "disabled");
-                this.Attributes.Add("aria-disabled", true);
-                this.AddCssClass("flex_disabled");
+                //this.Attributes.Add("disabled", "disabled");
+                //this.Attributes.Add("aria-disabled", true);
+                //this.AddCssClass("flex_disabled");
             }
 
             // handle field dependency
-            this.ContainerAttributes.Add("data-key", this.Id);
+            //this.ContainerAttributes.Add("data-key", this.Id);
             if (!string.IsNullOrWhiteSpace(this.DependentFieldId))
             {
-                this.ContainerAttributes.Add("data-flexform-dependent", "{" + HttpUtility.HtmlEncode(string.Format("\"from\": \"{0}\", \"value\": \"{1}\"", this.DependentFieldId, this.DependentValue)) + "}");   
+                //this.ContainerAttributes.Add("data-flexform-dependent", "{" + HttpUtility.HtmlEncode(string.Format("\"from\": \"{0}\", \"value\": \"{1}\"", this.DependentFieldId, this.DependentValue)) + "}");   
             }
         }
 
@@ -245,13 +245,13 @@
             // these are used for client side validation
             foreach (var attribute in validator.GetAttributes())
             {
-                this.Attributes.Add(attribute.Key, attribute.Value);
+                //this.Attributes.Add(attribute.Key, attribute.Value);
             }
 
             // add the "data-val" attribute to specify that this field needs to be validated
             if (this.Attributes.Any() && !this.Attributes.ContainsKey("data-val"))
             {
-                this.Attributes.Add("data-val", "true");
+                //this.Attributes.Add("data-val", "true");
             }
         }
 

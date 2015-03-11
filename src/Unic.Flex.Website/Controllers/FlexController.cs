@@ -20,6 +20,7 @@
     using Unic.Flex.Implementation.Database;
     using Unic.Flex.Implementation.Fields.InputFields;
     using Unic.Flex.Model.Configuration;
+    using Unic.Flex.Model.Steps;
     using Unic.Flex.Model.Validation;
     using Unic.Flex.Model.ViewModel.Components;
     using Unic.Flex.Model.ViewModel.Forms;
@@ -268,7 +269,7 @@
 
             // return view if we have any validation errors
             var formView = this.presentationService.ResolveView(this.ControllerContext, model);
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
                 this.logger.Debug(string.Format("POST :: We have validation errors, returning view '{0}'", formView), this);
                 Profiler.OnEnd(this, ProfilePostEventName);
@@ -277,13 +278,13 @@
 
             // store the values in the session redirect to next step if we have a next step
             this.contextService.StoreFormValues(model);
-            var nextStepUrl = ""; // todo: currentStep.GetNextStepUrl();
-            if (!string.IsNullOrWhiteSpace(nextStepUrl))
+            var multistep = currentStep as MultiStep;
+            if (multistep != null && !string.IsNullOrWhiteSpace(multistep.NextStepUrl))
             {
                 this.logger.Debug("POST :: Step is ok, storing values into session and redirect to next step", this);
                 this.userDataRepository.CompleteStep(form.Id, currentStep.StepNumber);
                 Profiler.OnEnd(this, ProfilePostEventName);
-                return this.Redirect(nextStepUrl);
+                return this.Redirect(multistep.NextStepUrl);
             }
 
             // repopulate the values so we also have the actual values within the current form object

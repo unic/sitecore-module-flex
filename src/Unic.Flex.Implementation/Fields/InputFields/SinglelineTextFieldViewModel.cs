@@ -28,9 +28,9 @@
         {
             base.BindProperties();
 
-            this.Attributes.Add("aria-multiline", false);
-            this.Attributes.Add("role", "textbox");
-            this.AddCssClass("flex_singletextfield");
+            //this.Attributes.Add("aria-multiline", false);
+            //this.Attributes.Add("role", "textbox");
+            //this.AddCssClass("flex_singletextfield");
         }
     }
 }
