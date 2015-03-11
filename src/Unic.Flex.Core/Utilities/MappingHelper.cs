@@ -24,7 +24,7 @@
         /// <returns>Id string</returns>
         public static string GetFormFieldId(int sectionIndex, int fieldIndex)
         {
-            return string.Format("Step.Sections[{0}].Fields[{1}].Value", sectionIndex, fieldIndex);
+            return string.Format("ActiveStep.Sections[{0}].Fields[{1}].Value", sectionIndex, fieldIndex);
         }
 
         /// <summary>
