@@ -12,7 +12,6 @@
     using Sitecore.Mvc.Presentation;
     using Unic.Flex.Core.Definitions;
     using Unic.Flex.Model.Presentation;
-    using Unic.Flex.Model.ViewModel.Fields;
     using DependencyResolver = Unic.Flex.Core.DependencyInjection.DependencyResolver;
     using Unic.Flex.Model.Fields;
 

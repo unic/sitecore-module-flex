@@ -47,7 +47,6 @@
             this.Bind<IUnitOfWork>().To<UnitOfWork>();
 
             // model binding and converting
-            this.Bind<IModelConverterService>().To<ModelConverterService>().InSingletonScope();
             this.Bind<IViewMapper>().To<ViewMapper>().InSingletonScope();
 
             this.Bind<FormModelBinder>().ToSelf();

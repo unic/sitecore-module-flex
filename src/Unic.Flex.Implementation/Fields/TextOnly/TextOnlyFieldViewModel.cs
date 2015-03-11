@@ -1,7 +1,7 @@
 ﻿namespace Unic.Flex.Implementation.Fields.TextOnly
 {
     using Unic.Flex.Model.Fields;
-    using Unic.Flex.Model.ViewModel.Fields;
+    using Unic.Flex.Model.ViewModels.Fields;
 
     /// <summary>
     /// View model for text only fields

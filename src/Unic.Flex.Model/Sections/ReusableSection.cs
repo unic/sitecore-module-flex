@@ -1,7 +1,7 @@
 ﻿namespace Unic.Flex.Model.Sections
 {
     using Glass.Mapper.Sc.Configuration.Attributes;
-    using Unic.Flex.Model.DomainModel.Components;
+    using Unic.Flex.Model.Components;
 
     /// <summary>
     /// The reusable section.

@@ -1,7 +1,7 @@
 ﻿namespace Unic.Flex.Implementation.Fields.ListFields
 {
     using Unic.Flex.Model.DataProviders;
-    using Unic.Flex.Model.ViewModel.Fields.ListFields;
+    using Unic.Flex.Model.ViewModels.Fields.ListFields;
 
     /// <summary>
     /// Checkbox list field view model

@@ -22,9 +22,8 @@
     using Unic.Flex.Model.Configuration;
     using Unic.Flex.Model.Forms;
     using Unic.Flex.Model.Steps;
-    using Unic.Flex.Model.Validation;
-    using Unic.Flex.Model.ViewModel.Components;
-    using Unic.Flex.Model.ViewModel.Forms;
+    using Unic.Flex.Model.Validators;
+    using Unic.Flex.Model.ViewModels;
     using Constants = Unic.Flex.Core.Definitions.Constants;
     using DependencyResolver = Unic.Flex.Core.DependencyInjection.DependencyResolver;
     using Profiler = Unic.Profiling.Profiler;
@@ -54,11 +53,6 @@
         /// The presentation service
         /// </summary>
         private readonly IPresentationService presentationService;
-
-        /// <summary>
-        /// The model converter
-        /// </summary>
-        private readonly IModelConverterService modelConverter;
 
         /// <summary>
         /// The context service
@@ -121,7 +115,6 @@
         public FlexController()
         {
             this.presentationService = DependencyResolver.Resolve<IPresentationService>();
-            this.modelConverter = DependencyResolver.Resolve<IModelConverterService>();
             this.contextService = DependencyResolver.Resolve<IContextService>();
             this.userDataRepository = DependencyResolver.Resolve<IUserDataRepository>();
             this.plugsService = DependencyResolver.Resolve<IPlugsService>();

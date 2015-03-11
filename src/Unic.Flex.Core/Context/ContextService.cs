@@ -13,7 +13,6 @@
     using Unic.Flex.Model.Forms;
     using Unic.Flex.Model.Steps;
     using Unic.Flex.Model.Types;
-    using Unic.Flex.Model.ViewModel.Forms;
     using Profiler = Unic.Profiling.Profiler;
 
     /// <summary>

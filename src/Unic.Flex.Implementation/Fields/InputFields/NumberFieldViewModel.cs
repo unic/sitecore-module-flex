@@ -1,7 +1,7 @@
 ﻿namespace Unic.Flex.Implementation.Fields.InputFields
 {
     using System.Globalization;
-    using Unic.Flex.Model.ViewModel.Fields.InputFields;
+    using Unic.Flex.Model.ViewModels.Fields.InputFields;
 
     /// <summary>
     /// View model for a number field

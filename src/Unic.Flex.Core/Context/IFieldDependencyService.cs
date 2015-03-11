@@ -1,9 +1,8 @@
 ﻿namespace Unic.Flex.Core.Context
 {
     using System.Collections.Generic;
-    using Unic.Flex.Model.DomainModel.Components;
-    using Unic.Flex.Model.ViewModel.Components;
-    using Unic.Flex.Model.ViewModel.Fields;
+    using Unic.Flex.Model.ViewModels.Components;
+    using Unic.Flex.Model.ViewModels.Fields;
 
     /// <summary>
     /// Methods for handling field dependency

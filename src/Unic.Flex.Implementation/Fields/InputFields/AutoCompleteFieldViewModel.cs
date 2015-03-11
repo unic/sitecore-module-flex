@@ -5,7 +5,7 @@
     using System.Web.Mvc;
     using Unic.Flex.Core.DependencyInjection;
     using Unic.Flex.Core.Globalization;
-    using Unic.Flex.Model.ViewModel.Fields.InputFields;
+    using Unic.Flex.Model.ViewModels.Fields.InputFields;
     using DependencyResolver = Unic.Flex.Core.DependencyInjection.DependencyResolver;
 
     /// <summary>

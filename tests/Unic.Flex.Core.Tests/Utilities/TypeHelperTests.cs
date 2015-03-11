@@ -6,7 +6,6 @@
     using Unic.Flex.Implementation.Fields.InputFields;
     using Unic.Flex.Implementation.Fields.ListFields;
     using Unic.Flex.Model;
-    using Unic.Flex.Model.DomainModel;
     using Unic.Flex.Model.Fields.ListFields;
 
     /// <summary>

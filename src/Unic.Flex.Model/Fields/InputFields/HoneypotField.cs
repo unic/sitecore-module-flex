@@ -1,6 +1,6 @@
 ﻿namespace Unic.Flex.Model.Fields.InputFields
 {
-    using Unic.Flex.Model.Validation;
+    using Unic.Flex.Model.Validators;
 
     /// <summary>
     /// Honepot spam protection field

@@ -10,7 +10,7 @@
     using Unic.Flex.Model.Fields;
     using Unic.Flex.Model.Forms;
     using Unic.Flex.Model.GlassExtensions.Attributes;
-    using Unic.Flex.Model.Validation;
+    using Unic.Flex.Model.Validators;
 
     /// <summary>
     /// Validator which checks if two fields are equal
@@ -78,7 +78,7 @@
             
             // get the other field
             var context = DependencyResolver.Resolve<IFlexContext>();
-            var field = context.ViewModel.Step.Sections.SelectMany(section => section.Fields).FirstOrDefault(f => f.Id == this.OtherFieldModel.Id);
+            var field = context.Form.ActiveStep.Sections.SelectMany(section => section.Fields).FirstOrDefault(f => f.Id == this.OtherFieldModel.Id);
             if (field == null) return false;
 
             // compare field values

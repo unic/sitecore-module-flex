@@ -13,15 +13,14 @@
     using Unic.Flex.Model.Forms;
     using Unic.Flex.Model.Sections;
     using Unic.Flex.Model.Steps;
-    using Unic.Flex.Model.ViewModel.Components;
     using NavigationItem = Unic.Flex.Model.Components.NavigationItem;
     using Unic.Flex.Model.Fields;
     using Unic.Flex.Model.Fields.ListFields;
     using Unic.Flex.Model.Types;
-    using Unic.Flex.Model.Validation;
     using Unic.Flex.Core.Utilities;
     using Unic.Flex.Model.Configuration;
     using Unic.Flex.Model.Fields.InputFields;
+    using Unic.Flex.Model.Validators;
 
     public class ViewMapper : IViewMapper
     {

@@ -16,8 +16,8 @@
     using Unic.Flex.Core.Logging;
     using Unic.Flex.Core.Mapping;
     using Unic.Flex.Model.Configuration;
-    using Unic.Flex.Model.DomainModel.Plugs.SavePlugs;
     using Unic.Flex.Model.Entities;
+    using Unic.Flex.Model.Plugs.SavePlugs;
     using Form = Unic.Flex.Model.Forms.Form;
 
     /// <summary>

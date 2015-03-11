@@ -3,10 +3,10 @@
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Sitecore.Diagnostics;
     using Unic.Flex.Core.Analytics;
-    using Unic.Flex.Model.DomainModel.Analytics;
-    using Unic.Flex.Model.DomainModel.Plugs.SavePlugs;
+    using Unic.Flex.Model.Analytics;
     using Unic.Flex.Model.Forms;
     using Unic.Flex.Model.GlassExtensions.Attributes;
+    using Unic.Flex.Model.Plugs.SavePlugs;
 
     /// <summary>
     /// Save plug to register a goal in the analytics

@@ -3,8 +3,8 @@
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Sitecore.Diagnostics;
     using Unic.Flex.Implementation.Database;
-    using Unic.Flex.Model.DomainModel.Plugs.SavePlugs;
     using Unic.Flex.Model.Forms;
+    using Unic.Flex.Model.Plugs.SavePlugs;
 
     /// <summary>
     /// Plug for saving data to the database.

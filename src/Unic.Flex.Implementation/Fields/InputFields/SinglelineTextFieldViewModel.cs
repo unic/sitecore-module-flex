@@ -1,6 +1,6 @@
 ﻿namespace Unic.Flex.Implementation.Fields.InputFields
 {
-    using Unic.Flex.Model.ViewModel.Fields.InputFields;
+    using Unic.Flex.Model.ViewModels.Fields.InputFields;
 
     /// <summary>
     /// Singletext field

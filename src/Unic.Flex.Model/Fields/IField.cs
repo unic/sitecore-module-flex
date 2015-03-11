@@ -3,10 +3,10 @@
     using System;
     using System.Collections.Generic;
     using Glass.Mapper.Sc.Fields;
-    using Unic.Flex.Model.DomainModel.Components;
+    using Unic.Flex.Model.Components;
     using Unic.Flex.Model.Presentation;
     using Unic.Flex.Model.Specifications;
-    using Unic.Flex.Model.Validation;
+    using Unic.Flex.Model.Validators;
 
     /// <summary>
     /// Generic interface for a field.

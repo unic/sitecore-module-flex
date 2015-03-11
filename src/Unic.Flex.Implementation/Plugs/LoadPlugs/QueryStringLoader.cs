@@ -5,8 +5,8 @@
     using System.Linq;
     using System.Web;
     using Unic.Flex.Implementation.Fields.TextOnly;
-    using Unic.Flex.Model.DomainModel.Plugs.LoadPlugs;
     using Unic.Flex.Model.Forms;
+    using Unic.Flex.Model.Plugs.LoadPlugs;
 
     /// <summary>
     /// Load plug to load values from querystring into the form fields

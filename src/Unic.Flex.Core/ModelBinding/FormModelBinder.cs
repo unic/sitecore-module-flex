@@ -4,12 +4,9 @@
     using System.Linq;
     using System.Web.Mvc;
     using Unic.Flex.Core.Context;
-    using Unic.Flex.Core.DependencyInjection;
     using Unic.Flex.Core.Mapping;
-    using Unic.Flex.Core.Utilities;
     using Unic.Flex.Model.Forms;
     using Unic.Flex.Model.Types;
-    using Unic.Flex.Model.ViewModel.Forms;
     using DependencyResolver = Unic.Flex.Core.DependencyInjection.DependencyResolver;
 
     /// <summary>
@@ -17,11 +14,6 @@
     /// </summary>
     public class FormModelBinder : DefaultModelBinder
     {
-        /// <summary>
-        /// The model converter
-        /// </summary>
-        private readonly IModelConverterService modelConverter;
-
         /// <summary>
         /// The field dependency service
         /// </summary>
@@ -40,15 +32,13 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="FormModelBinder" /> class.
         /// </summary>
-        /// <param name="modelConverter">The model converter.</param>
         /// <param name="fieldDependencyService">The field dependency service.</param>
         /// <param name="userDataRepository">The user data repository.</param>
         /// <param name="viewMapper">The view mapper.</param>
-        public FormModelBinder(IModelConverterService modelConverter, IFieldDependencyService fieldDependencyService, IUserDataRepository userDataRepository, IViewMapper viewMapper)
+        public FormModelBinder(IFieldDependencyService fieldDependencyService, IUserDataRepository userDataRepository, IViewMapper viewMapper)
         {
             this.viewMapper = viewMapper;
             this.userDataRepository = userDataRepository;
-            this.modelConverter = modelConverter;
             this.fieldDependencyService = fieldDependencyService;
         }
 

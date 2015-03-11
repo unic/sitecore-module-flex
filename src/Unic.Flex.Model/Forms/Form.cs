@@ -5,10 +5,9 @@
     using Glass.Mapper.Sc.Configuration;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Glass.Mapper.Sc.Fields;
-    using Unic.Flex.Model.DomainModel;
-    using Unic.Flex.Model.DomainModel.Plugs.LoadPlugs;
-    using Unic.Flex.Model.DomainModel.Plugs.SavePlugs;
     using Unic.Flex.Model.GlassExtensions.Attributes;
+    using Unic.Flex.Model.Plugs.LoadPlugs;
+    using Unic.Flex.Model.Plugs.SavePlugs;
     using Unic.Flex.Model.Presentation;
     using Unic.Flex.Model.Steps;
 

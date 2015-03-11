@@ -7,7 +7,6 @@
     using Glass.Mapper.Sc.Configuration;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Unic.Flex.Model.Components;
-    using Unic.Flex.Model.DomainModel.Components;
     using Unic.Flex.Model.Fields;
     using Unic.Flex.Model.GlassExtensions.Attributes;
     using Unic.Flex.Model.Presentation;
@@ -17,7 +16,7 @@
     /// The standard section.
     /// </summary>
     [SitecoreType(TemplateId = "{B2B5CAB2-2BD7-4FFE-80B1-7607A310771E}")]
-    public class StandardSection : ItemBase, IPresentationComponent, IReusableComponent<StandardSection>
+    public class StandardSection : ItemBase, IPresentationComponent, IVisibilityDependency, IReusableComponent<StandardSection>
     {
         /// <summary>
         /// Private field for storing the is hidden property.

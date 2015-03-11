@@ -2,7 +2,7 @@
 {
     using System;
     using System.Globalization;
-    using Unic.Flex.Model.ViewModel.Fields.InputFields;
+    using Unic.Flex.Model.ViewModels.Fields.InputFields;
 
     /// <summary>
     /// View model for the date picker field

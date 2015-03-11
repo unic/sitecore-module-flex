@@ -4,7 +4,6 @@
     using Sitecore.Data.Items;
     using Unic.Flex.Model.Forms;
     using Unic.Flex.Model.Steps;
-    using Unic.Flex.Model.ViewModel.Forms;
 
     /// <summary>
     /// Service containing context based business logic.

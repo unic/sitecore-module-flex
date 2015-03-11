@@ -1,7 +1,7 @@
 ﻿namespace Unic.Flex.Model.Fields
 {
     using Glass.Mapper.Sc.Configuration.Attributes;
-    using Unic.Flex.Model.DomainModel.Components;
+    using Unic.Flex.Model.Components;
 
     /// <summary>
     /// Reusable field model.
