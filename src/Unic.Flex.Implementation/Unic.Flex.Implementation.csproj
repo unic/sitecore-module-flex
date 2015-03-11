@@ -148,7 +148,7 @@
     <Compile Include="Plugs\SavePlugs\SaveToDatabase.cs" />
     <Compile Include="Plugs\SavePlugs\SendEmail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Providers\ChildrenProvider.cs" />
+    <Compile Include="DataProviders\ChildrenProvider.cs" />
     <Compile Include="Validators\CompareValidator.cs" />
     <Compile Include="Validators\DateRangeValidator.cs" />
     <Compile Include="Validators\DateValidator.cs" />

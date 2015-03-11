@@ -1,4 +1,4 @@
-﻿namespace Unic.Flex.Implementation.Providers
+﻿namespace Unic.Flex.Implementation.DataProviders
 {
     using System;
     using System.Collections.Generic;
