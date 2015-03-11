@@ -1,6 +1,5 @@
 ﻿namespace Unic.Flex.Implementation.Database
 {
-    using AutoMapper;
     using OfficeOpenXml;
     using OfficeOpenXml.Style;
     using Sitecore.Diagnostics;
@@ -76,7 +75,13 @@
                 var fileUploadField = field as FileUploadField;
                 if (fileUploadField != null && fileUploadField.Value != null)
                 {
-                    fieldEntity.File = Mapper.Map<File>(fileUploadField.Value);
+                    fieldEntity.File = new File
+                                           {
+                                               ContentType = fileUploadField.Value.ContentType,
+                                               ContentLength = fileUploadField.Value.ContentLength,
+                                               FileName = fileUploadField.Value.FileName,
+                                               Data = fileUploadField.Value.Data,
+                                           };
                 }
 
                 sessionEntity.Fields.Add(fieldEntity);
