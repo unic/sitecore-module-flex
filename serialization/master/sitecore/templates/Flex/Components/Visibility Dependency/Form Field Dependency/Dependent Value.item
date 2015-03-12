@@ -2,7 +2,7 @@
 version: 1
 id: {41D7594C-C1E0-4700-9BAF-32D97B6A658E}
 database: master
-path: /sitecore/templates/Flex/Components/Visibility Dependency/Form Visibility Dependency/Dependent Value
+path: /sitecore/templates/Flex/Components/Visibility Dependency/Form Field Dependency/Dependent Value
 parent: {3A2FEBED-EC91-4A3F-8985-AE581CA05899}
 name: Dependent Value
 master: {00000000-0000-0000-0000-000000000000}
@@ -33,7 +33,7 @@ content-length: 3
 ----version----
 language: en
 version: 1
-revision: 63450a60-f2d5-4b94-b6fa-5fe0b64b9a96
+revision: 76cdf408-f7c4-41f5-9fec-8581f49de681
 
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
@@ -48,14 +48,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-63450a60-f2d5-4b94-b6fa-5fe0b64b9a96
+76cdf408-f7c4-41f5-9fec-8581f49de681
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20141211T111854:635538935348835073
+20150304T135058:635610738580595483
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

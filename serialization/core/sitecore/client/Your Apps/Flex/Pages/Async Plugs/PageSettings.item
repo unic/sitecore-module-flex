@@ -2,7 +2,7 @@
 version: 1
 id: {2D509A30-3036-4F6A-8526-BF617D44AFEA}
 database: core
-path: /sitecore/client/Your Apps/Flex/Async Plugs/PageSettings
+path: /sitecore/client/Your Apps/Flex/Pages/Async Plugs/PageSettings
 parent: {5CB920D5-CA20-4311-BC86-007A10519FA8}
 name: PageSettings
 master: {EF643281-0F7F-41F0-9AF3-93E2DA21A9A6}
