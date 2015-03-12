@@ -165,26 +165,23 @@
 
             Profiler.OnStart(this, "Flex :: Store form values to user data storage");
 
-            var allFields = form.ActiveStep.Sections.SelectMany(section => section.Fields).ToList();
             foreach (var section in form.ActiveStep.Sections)
             {
                 // check if the complete section is invisible -> remove all fields and go to next sections
-                // todo: make this work again
-                //if (!string.IsNullOrWhiteSpace(section.DependentFieldId) && !this.fieldDependencyService.IsDependentFieldVisible(allFields, section))
-                //{
-                //    section.Fields.ForEach(f => this.userDataRepository.RemoveValue(form.Id, f.Id));
-                //    continue;
-                //}
+                if (section.IsHidden)
+                {
+                    section.Fields.ForEach(f => this.userDataRepository.RemoveValue(form.Id, f.Id));
+                    continue;
+                }
 
                 foreach (var field in section.Fields)
                 {
                     // check if field is invisible -> remove from storage and go to next field
-                    // todo: make this work again
-                    //if (!string.IsNullOrWhiteSpace(field.DependentFieldId) && !this.fieldDependencyService.IsDependentFieldVisible(allFields, field))
-                    //{
-                    //    this.userDataRepository.RemoveValue(form.Id, field.Id);
-                    //    continue;
-                    //}
+                    if (field.IsHidden)
+                    {
+                        this.userDataRepository.RemoveValue(form.Id, field.Id);
+                        continue;
+                    }
 
                     this.userDataRepository.SetValue(form.Id, field.Id, field.Value);
                 }

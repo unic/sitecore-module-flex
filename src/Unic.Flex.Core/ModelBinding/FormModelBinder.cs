@@ -5,6 +5,7 @@
     using System.Web.Mvc;
     using Unic.Flex.Core.Context;
     using Unic.Flex.Core.Mapping;
+    using Unic.Flex.Core.Utilities;
     using Unic.Flex.Model.Forms;
     using Unic.Flex.Model.Types;
     using DependencyResolver = Unic.Flex.Core.DependencyInjection.DependencyResolver;
@@ -58,13 +59,10 @@
                     for (var fieldIndex = 0; fieldIndex < section.Fields.Count; fieldIndex++)
                     {
                         var field = section.Fields[fieldIndex];
-                        if (field.DependentField == null) continue;
-
-                        // todo: remove validation errors here
-                        //if (!this.fieldDependencyService.IsDependentFieldVisible(allFields, field))
-                        //{
-                        //    bindingContext.ModelState.Remove(MappingHelper.GetFormFieldId(sectionIndex, fieldIndex));
-                        //}
+                        if (field.IsHidden)
+                        {
+                            bindingContext.ModelState.Remove(MappingHelper.GetFormFieldId(sectionIndex, fieldIndex));   
+                        }
                     }
                 }
 
