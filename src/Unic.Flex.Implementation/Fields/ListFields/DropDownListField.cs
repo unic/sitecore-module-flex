@@ -14,6 +14,11 @@
     public class DropDownListField : ListField<string, ListItem>
     {
         /// <summary>
+        /// The items
+        /// </summary>
+        private IList<ListItem> items;
+        
+        /// <summary>
         /// Gets or sets a value indicating whether to add an empty option to the list.
         /// </summary>
         /// <value>
@@ -32,13 +37,16 @@
         {
             get
             {
-                var items = base.Items;
+                // lazy loading
+                if (this.items != null) return this.items;
+
+                this.items = base.Items;
                 if (this.AddEmptyOption)
                 {
-                    items.Insert(0, new ListItem { Text = TranslationHelper.FlexText("Please choose"), Value = string.Empty });
+                    this.items.Insert(0, new ListItem { Text = TranslationHelper.FlexText("Please choose"), Value = string.Empty });
                 }
 
-                return items;
+                return this.items;
             }
         }
 
@@ -68,6 +76,20 @@
             get
             {
                 return "Fields/ListFields/DropDownList";
+            }
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether this instance is hidden.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is hidden; otherwise, <c>false</c>.
+        /// </value>
+        public override bool IsHidden
+        {
+            get
+            {
+                return this.Items.All(item => string.IsNullOrWhiteSpace(item.Value)) || base.IsHidden;
             }
         }
 

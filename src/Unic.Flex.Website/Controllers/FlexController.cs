@@ -380,6 +380,20 @@
         }
 
         /// <summary>
+        /// Get the new data for a cascading field.
+        /// </summary>
+        /// <param name="field">The field we want to retrieve data.</param>
+        /// <returns>
+        /// Json array with data to display
+        /// </returns>
+        [HttpPost]
+        public virtual ActionResult CascadingField(Guid field)
+        {
+            // todo: return correct json
+            return this.Json("[]", JsonRequestBehavior.DenyGet);
+        }
+
+        /// <summary>
         /// Removes the uploaded file from the user data storage.
         /// </summary>
         /// <param name="form">The form.</param>
