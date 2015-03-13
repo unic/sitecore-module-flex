@@ -57,7 +57,6 @@
         {
             get
             {
-                // todo: check if all properties are virtual
                 return "Steps/Summary";
             }
         }

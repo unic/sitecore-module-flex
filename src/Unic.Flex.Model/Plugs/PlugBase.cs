@@ -5,5 +5,6 @@
     /// </summary>
     public abstract class PlugBase : ItemBase
     {
+        // todo: is this class really needed?
     }
 }
