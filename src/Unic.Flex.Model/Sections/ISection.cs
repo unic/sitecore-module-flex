@@ -8,7 +8,7 @@
     /// <summary>
     /// The section interface
     /// </summary>
-    public interface ISection : IPresentationComponent, IFieldDependency, ITooltip
+    public interface ISection : IItemBase, IPresentationComponent, IFieldDependency, ITooltip
     {
         /// <summary>
         /// Gets the title.

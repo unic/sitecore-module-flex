@@ -34,24 +34,8 @@
     /// <summary>
     /// Non-generic interface for a field.
     /// </summary>
-    public interface IField : ITooltip, IFieldDependency, IValidatableObject, IPresentationComponent, IReusableComponent<IField>
+    public interface IField : IItemBase, ITooltip, IFieldDependency, IValidatableObject, IPresentationComponent, IReusableComponent<IField>
     {
-        /// <summary>
-        /// Gets the identifier.
-        /// </summary>
-        /// <value>
-        /// The identifier.
-        /// </value>
-        string Id { get; }
-        
-        /// <summary>
-        /// Gets or sets the item identifier.
-        /// </summary>
-        /// <value>
-        /// The item identifier.
-        /// </value>
-        Guid ItemId { get; set; }
-
         /// <summary>
         /// Gets the type.
         /// </summary>
@@ -59,7 +43,7 @@
         /// The type.
         /// </value>
         Type Type { get; }
-        
+
         /// <summary>
         /// Gets or sets the value.
         /// </summary>
@@ -109,14 +93,6 @@
         string LabelAddition { get; set; }
 
         /// <summary>
-        /// Gets the text label.
-        /// </summary>
-        /// <value>
-        /// The text label.
-        /// </value>
-        string TextLabel { get; }
-
-        /// <summary>
         /// Gets the label link.
         /// </summary>
         /// <value>
@@ -125,44 +101,44 @@
         Link LabelLink { get; }
 
         /// <summary>
-        /// Gets or sets the custom CSS class.
+        /// Gets the text label.
+        /// </summary>
+        /// <value>
+        /// The text label.
+        /// </value>
+        string TextLabel { get; }
+
+        /// <summary>
+        /// Gets the custom CSS class.
         /// </summary>
         /// <value>
         /// The custom CSS class.
         /// </value>
-        Specification CustomCssClass { get; set; }
+        Specification CustomCssClass { get; }
 
         /// <summary>
-        /// Gets or sets the additional CSS class.
+        /// Gets the additional CSS class.
         /// </summary>
         /// <value>
         /// The additional CSS class.
         /// </value>
-        string AdditionalCssClass { get; set; }
+        string AdditionalCssClass { get;  }
 
         /// <summary>
-        /// Gets or sets a value indicating whether this instance is required.
+        /// Gets a value indicating whether this field is required.
         /// </summary>
         /// <value>
-        /// <c>true</c> if this instance is required; otherwise, <c>false</c>.
+        /// <c>true</c> if this field is required; otherwise, <c>false</c>.
         /// </value>
-        bool IsRequired { get; set; }
+        bool IsRequired { get; }
 
         /// <summary>
-        /// Gets or sets the validation message.
+        /// Gets the validation message.
         /// </summary>
         /// <value>
         /// The validation message.
         /// </value>
-        string ValidationMessage { get; set; }
-
-        /// <summary>
-        /// Gets or sets the validators.
-        /// </summary>
-        /// <value>
-        /// The validators.
-        /// </value>
-        IEnumerable<IValidator> Validators { get; }
+        string ValidationMessage { get; }
 
         /// <summary>
         /// Gets the attributes.
@@ -171,6 +147,14 @@
         /// The attributes.
         /// </value>
         IDictionary<string, object> Attributes { get; }
+
+        /// <summary>
+        /// Gets or sets the validators.
+        /// </summary>
+        /// <value>
+        /// The validators.
+        /// </value>
+        IEnumerable<IValidator> Validators { get; }
 
         /// <summary>
         /// Gets the default validators.
