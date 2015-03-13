@@ -46,6 +46,7 @@
       <HintPath>..\..\packages\Moq.4.2.1402.2112\lib\net40\Moq.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -62,7 +63,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\AutoMapperMockConfig.cs" />
     <Compile Include="Moqs\FormRepositoryMoqs.cs" />
     <Compile Include="Moqs\SimpleMoqs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

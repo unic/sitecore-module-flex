@@ -3,7 +3,7 @@
     using System;
     using Sitecore.Analytics.Data.Items;
     using Unic.Flex.Core.Logging;
-    using Unic.Flex.Model.DomainModel.Analytics;
+    using Unic.Flex.Model.Analytics;
 
     /// <summary>
     /// Analytics related actions.

@@ -4,7 +4,7 @@
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Newtonsoft.Json.Linq;
     using Unic.Flex.Model.DataProviders;
-    using Unic.Flex.Model.DomainModel.Fields.ListFields;
+    using Unic.Flex.Model.Fields.ListFields;
 
     /// <summary>
     /// Listbox list field
@@ -18,6 +18,7 @@
         /// <value>
         /// The default value.
         /// </value>
+        [SitecoreIgnore]
         public override string[] DefaultValue
         {
             get
@@ -26,6 +27,31 @@
             }
         }
 
+        /// <summary>
+        /// Gets the name of the view.
+        /// </summary>
+        /// <value>
+        /// The name of the view.
+        /// </value>
+        [SitecoreIgnore]
+        public override string ViewName
+        {
+            get
+            {
+                return "Fields/ListFields/ListBox";
+            }
+        }
+
+        /// <summary>
+        /// Binds the properties.
+        /// </summary>
+        public override void BindProperties()
+        {
+            base.BindProperties();
+
+            this.AddCssClass("flex_multipleselectfield");
+        }
+        
         /// <summary>
         /// Sets the value.
         /// </summary>

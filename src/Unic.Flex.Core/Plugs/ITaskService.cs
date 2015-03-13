@@ -2,8 +2,9 @@
 {
     using System.Collections.Generic;
     using Sitecore.Sites;
-    using Unic.Flex.Model.DomainModel.Plugs.SavePlugs;
     using Unic.Flex.Model.Entities;
+    using Unic.Flex.Model.Forms;
+    using Unic.Flex.Model.Plugs;
 
     /// <summary>
     /// Interface for the plug task system
@@ -34,7 +35,7 @@
         /// </summary>
         /// <param name="form">The form.</param>
         /// <returns>The job entity</returns>
-        Job GetJob(Model.DomainModel.Forms.Form form);
+        Job GetJob(IForm form);
 
         /// <summary>
         /// Gets the task for a specific plug domain model.

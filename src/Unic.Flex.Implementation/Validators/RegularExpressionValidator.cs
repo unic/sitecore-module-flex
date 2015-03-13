@@ -7,7 +7,7 @@
     using Unic.Flex.Core.DependencyInjection;
     using Unic.Flex.Core.Logging;
     using Unic.Flex.Model.GlassExtensions.Attributes;
-    using Unic.Flex.Model.Validation;
+    using Unic.Flex.Model.Validators;
     using Unic.Profiling;
 
     /// <summary>

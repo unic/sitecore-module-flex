@@ -16,9 +16,10 @@
     using Unic.Flex.Core.Logging;
     using Unic.Flex.Core.Mapping;
     using Unic.Flex.Model.Configuration;
-    using Unic.Flex.Model.DomainModel.Plugs.SavePlugs;
     using Unic.Flex.Model.Entities;
-    using Form = Unic.Flex.Model.DomainModel.Forms.Form;
+    using Unic.Flex.Model.Forms;
+    using Unic.Flex.Model.Plugs;
+    using Form = Unic.Flex.Model.Entities.Form;
 
     /// <summary>
     /// Task service for executing plugs asynchronous.
@@ -139,7 +140,7 @@
         /// <returns>
         /// The job entity
         /// </returns>
-        public virtual Job GetJob(Form form)
+        public virtual Job GetJob(IForm form)
         {
             var formValues = this.userDataRepository.GetFormValues(form.Id);
 
@@ -270,7 +271,7 @@
         /// <param name="form">The form.</param>
         /// <param name="plug">The plug.</param>
         /// <param name="maxRetries">The maximum retries.</param>
-        protected virtual void ExecuteTask(Job job, Task task, Form form, ISavePlug plug, int maxRetries)
+        protected virtual void ExecuteTask(Job job, Task task, IForm form, ISavePlug plug, int maxRetries)
         {
             try
             {

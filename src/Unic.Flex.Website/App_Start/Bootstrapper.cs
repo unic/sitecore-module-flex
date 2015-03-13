@@ -8,10 +8,10 @@ namespace Unic.Flex.Website.App_Start
     using Unic.Configuration.Converter;
     using Unic.Flex.Core.ModelBinding;
     using Unic.Flex.Model.Configuration.Converters;
+    using Unic.Flex.Model.Fields;
+    using Unic.Flex.Model.Forms;
+    using Unic.Flex.Model.Sections;
     using Unic.Flex.Model.Types;
-    using Unic.Flex.Model.ViewModel.Fields;
-    using Unic.Flex.Model.ViewModel.Forms;
-    using Unic.Flex.Model.ViewModel.Sections;
     using DependencyResolver = Unic.Flex.Core.DependencyInjection.DependencyResolver;
 
     /// <summary>
@@ -33,11 +33,11 @@ namespace Unic.Flex.Website.App_Start
         /// </summary>
         private static void RegisterModelBinders()
         {
-            ModelBinders.Binders.Add(typeof(IFormViewModel), DependencyResolver.Resolve<FormModelBinder>());
-            ModelBinders.Binders.Add(typeof(IList<ISectionViewModel>), DependencyResolver.Resolve<ListModelBinder>());
-            ModelBinders.Binders.Add(typeof(IList<IFieldViewModel>), DependencyResolver.Resolve<ListModelBinder>());
+            ModelBinders.Binders.Add(typeof(IForm), DependencyResolver.Resolve<FormModelBinder>());
+            ModelBinders.Binders.Add(typeof(IList<ISection>), DependencyResolver.Resolve<ListModelBinder>());
+            ModelBinders.Binders.Add(typeof(IList<IField>), DependencyResolver.Resolve<ListModelBinder>());
             ModelBinders.Binders.Add(typeof(IList<SelectListItem>), DependencyResolver.Resolve<ListModelBinder>());
-            ModelBinders.Binders.Add(typeof(IFieldViewModel), DependencyResolver.Resolve<FieldModelBinder>());
+            ModelBinders.Binders.Add(typeof(IField), DependencyResolver.Resolve<FieldModelBinder>());
             ModelBinders.Binders.Add(typeof(UploadedFile), DependencyResolver.Resolve<UploadedFileModelBinder>());
             ModelBinders.Binders.Add(typeof(DateTime?), DependencyResolver.Resolve<DateTimeModelBinder>());
             ModelBinders.Binders.Add(typeof(decimal?), DependencyResolver.Resolve<DecimalModelBinder>());

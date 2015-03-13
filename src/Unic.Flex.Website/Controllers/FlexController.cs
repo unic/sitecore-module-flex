@@ -20,9 +20,10 @@
     using Unic.Flex.Implementation.Database;
     using Unic.Flex.Implementation.Fields.InputFields;
     using Unic.Flex.Model.Configuration;
-    using Unic.Flex.Model.Validation;
-    using Unic.Flex.Model.ViewModel.Components;
-    using Unic.Flex.Model.ViewModel.Forms;
+    using Unic.Flex.Model.Forms;
+    using Unic.Flex.Model.Steps;
+    using Unic.Flex.Model.Validators;
+    using Unic.Flex.Model.ViewModels;
     using Constants = Unic.Flex.Core.Definitions.Constants;
     using DependencyResolver = Unic.Flex.Core.DependencyInjection.DependencyResolver;
     using Profiler = Unic.Profiling.Profiler;
@@ -52,11 +53,6 @@
         /// The presentation service
         /// </summary>
         private readonly IPresentationService presentationService;
-
-        /// <summary>
-        /// The model converter
-        /// </summary>
-        private readonly IModelConverterService modelConverter;
 
         /// <summary>
         /// The context service
@@ -107,6 +103,11 @@
         /// The configuration manager
         /// </summary>
         private readonly IConfigurationManager configurationManager;
+
+        /// <summary>
+        /// The view mapper
+        /// </summary>
+        private readonly IViewMapper viewMapper;
         
         /// <summary>
         /// Initializes a new instance of the <see cref="FlexController" /> class.
@@ -114,7 +115,6 @@
         public FlexController()
         {
             this.presentationService = DependencyResolver.Resolve<IPresentationService>();
-            this.modelConverter = DependencyResolver.Resolve<IModelConverterService>();
             this.contextService = DependencyResolver.Resolve<IContextService>();
             this.userDataRepository = DependencyResolver.Resolve<IUserDataRepository>();
             this.plugsService = DependencyResolver.Resolve<IPlugsService>();
@@ -125,6 +125,7 @@
             this.saveToDatabaseService = DependencyResolver.Resolve<ISaveToDatabaseService>();
             this.dictionaryRepository = DependencyResolver.Resolve<IDictionaryRepository>();
             this.configurationManager = DependencyResolver.Resolve<IConfigurationManager>();
+            this.viewMapper = DependencyResolver.Resolve<IViewMapper>();
         }
 
         /// <summary>
@@ -154,7 +155,7 @@
             this.userDataRepository.SetFormSucceeded(form.Id, false);
 
             // get the current step
-            var currentStep = form.GetActiveStep();
+            var currentStep = form.ActiveStep;
             if (currentStep == null)
             {
                 this.logger.Debug("GET :: Form has no active step, return empty result", this);
@@ -199,12 +200,14 @@
             // revert step completion to the current step
             this.userDataRepository.RevertToStep(form.Id, currentStep.StepNumber);
 
+            // map the active step
+            this.viewMapper.FullMap(this.flexContext);
+
             // return the view for this step
-            var formViewModel = this.modelConverter.ConvertToViewModel(form);
-            var formView = this.presentationService.ResolveView(this.ControllerContext, formViewModel);
+            var formView = this.presentationService.ResolveView(this.ControllerContext, form);
             this.logger.Debug(string.Format("GET :: Everything ok, returning view '{0}'", formView), this);
             Profiler.OnEnd(this, ProfileGetEventName);
-            return this.View(formView, formViewModel);
+            return this.View(formView, form);
         }
 
         /// <summary>
@@ -215,7 +218,7 @@
         [HttpPost]
         [ValidateFormHandler]
         [ValidateAntiForgeryToken]
-        public virtual ActionResult Form(IFormViewModel model)
+        public virtual ActionResult Form(IForm model)
         {
             // form is not available in page editor
             if (GlassHtml.IsInEditingMode)
@@ -242,7 +245,7 @@
             }
 
             // get the current step
-            var currentStep = form.GetActiveStep();
+            var currentStep = form.ActiveStep;
             if (currentStep == null)
             {
                 this.logger.Debug("POST :: Form has no active step, return empty result", this);
@@ -260,7 +263,7 @@
 
             // return view if we have any validation errors
             var formView = this.presentationService.ResolveView(this.ControllerContext, model);
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
                 this.logger.Debug(string.Format("POST :: We have validation errors, returning view '{0}'", formView), this);
                 Profiler.OnEnd(this, ProfilePostEventName);
@@ -269,13 +272,13 @@
 
             // store the values in the session redirect to next step if we have a next step
             this.contextService.StoreFormValues(model);
-            var nextStepUrl = currentStep.GetNextStepUrl();
-            if (!string.IsNullOrWhiteSpace(nextStepUrl))
+            var multistep = currentStep as MultiStep;
+            if (multistep != null && !string.IsNullOrWhiteSpace(multistep.NextStepUrl))
             {
                 this.logger.Debug("POST :: Step is ok, storing values into session and redirect to next step", this);
                 this.userDataRepository.CompleteStep(form.Id, currentStep.StepNumber);
                 Profiler.OnEnd(this, ProfilePostEventName);
-                return this.Redirect(nextStepUrl);
+                return this.Redirect(multistep.NextStepUrl);
             }
 
             // repopulate the values so we also have the actual values within the current form object
@@ -374,6 +377,20 @@
 
             // return the list with proposed values
             return this.Json(result, JsonRequestBehavior.DenyGet);
+        }
+
+        /// <summary>
+        /// Get the new data for a cascading field.
+        /// </summary>
+        /// <param name="field">The field we want to retrieve data.</param>
+        /// <returns>
+        /// Json array with data to display
+        /// </returns>
+        [HttpPost]
+        public virtual ActionResult CascadingField(Guid field)
+        {
+            // todo: return correct json
+            return this.Json("[]", JsonRequestBehavior.DenyGet);
         }
 
         /// <summary>

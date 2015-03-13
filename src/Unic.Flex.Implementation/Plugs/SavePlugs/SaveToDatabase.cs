@@ -3,8 +3,8 @@
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Sitecore.Diagnostics;
     using Unic.Flex.Implementation.Database;
-    using Unic.Flex.Model.DomainModel.Forms;
-    using Unic.Flex.Model.DomainModel.Plugs.SavePlugs;
+    using Unic.Flex.Model.Forms;
+    using Unic.Flex.Model.Plugs;
 
     /// <summary>
     /// Plug for saving data to the database.
@@ -25,12 +25,26 @@
         {
             this.saveToDatabaseService = saveToDatabaseService;
         }
-        
+
+        /// <summary>
+        /// Gets a value indicating whether this plug should be executed asynchronous.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this plug should be executed asynchronous; otherwise, <c>false</c>.
+        /// </value>
+        public override bool IsAsync
+        {
+            get
+            {
+                return true;
+            }
+        }
+
         /// <summary>
         /// Executes the save plug.
         /// </summary>
         /// <param name="form">The form.</param>
-        public override void Execute(Form form)
+        public override void Execute(IForm form)
         {
             Assert.ArgumentNotNull(form, "form");
             this.saveToDatabaseService.Save(form);

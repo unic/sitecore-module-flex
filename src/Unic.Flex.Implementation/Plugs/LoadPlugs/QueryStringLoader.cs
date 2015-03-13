@@ -5,8 +5,8 @@
     using System.Linq;
     using System.Web;
     using Unic.Flex.Implementation.Fields.TextOnly;
-    using Unic.Flex.Model.DomainModel.Forms;
-    using Unic.Flex.Model.DomainModel.Plugs.LoadPlugs;
+    using Unic.Flex.Model.Forms;
+    using Unic.Flex.Model.Plugs;
 
     /// <summary>
     /// Load plug to load values from querystring into the form fields
@@ -18,7 +18,7 @@
         /// Executes the load plug.
         /// </summary>
         /// <param name="form">The form.</param>
-        public override void Execute(Form form)
+        public override void Execute(IForm form)
         {
             Assert.ArgumentNotNull(form, "form");
 

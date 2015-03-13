@@ -10,8 +10,8 @@
     using Sitecore.Globalization;
     using Unic.Flex.Core.Authorization;
     using Unic.Flex.Core.Plugs;
-    using Unic.Flex.Model.DomainModel;
-    using Unic.Flex.Model.DomainModel.Forms;
+    using Unic.Flex.Model;
+    using Unic.Flex.Model.Forms;
     using Unic.Flex.Website.Models.FlexSpeak.GetAsyncTasks;
     using Unic.Flex.Website.Models.FlexSpeak.GetAvailableForms;
 

@@ -3,7 +3,7 @@
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Unic.Flex.Core.DependencyInjection;
     using Unic.Flex.Core.Globalization;
-    using Unic.Flex.Model.DomainModel.Fields.InputFields;
+    using Unic.Flex.Model.Fields.InputFields;
 
     /// <summary>
     /// CheckBox field
@@ -39,12 +39,42 @@
         /// <value>
         /// The text value.
         /// </value>
+        [SitecoreIgnore]
         public override string TextValue
         {
             get
             {
                 return this.Value ? this.dictionaryRepository.GetText("Yes") : this.dictionaryRepository.GetText("No");
             }
+        }
+
+        /// <summary>
+        /// Gets the name of the view.
+        /// </summary>
+        /// <value>
+        /// The name of the view.
+        /// </value>
+        [SitecoreIgnore]
+        public override string ViewName
+        {
+            get
+            {
+                return "Fields/InputFields/CheckBox";
+            }
+        }
+
+        /// <summary>
+        /// Binds the properties.
+        /// </summary>
+        public override void BindProperties()
+        {
+            base.BindProperties();
+
+            this.AddCssClass("flex_singlecheckbox");
+
+            this.Attributes.Add("aria-multiline", false);
+            this.Attributes.Add("aria-checked", this.Value);
+            this.Attributes.Add("role", "checkbox");
         }
 
         /// <summary>

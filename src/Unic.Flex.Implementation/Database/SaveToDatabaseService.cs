@@ -1,6 +1,5 @@
 ﻿namespace Unic.Flex.Implementation.Database
 {
-    using AutoMapper;
     using OfficeOpenXml;
     using OfficeOpenXml.Style;
     using Sitecore.Diagnostics;
@@ -14,10 +13,10 @@
     using Unic.Flex.Core.Globalization;
     using Unic.Flex.Core.Utilities;
     using Unic.Flex.Implementation.Fields.InputFields;
-    using Unic.Flex.Model.DomainModel.Fields.ListFields;
     using Unic.Flex.Model.Entities;
+    using Unic.Flex.Model.Fields.ListFields;
+    using Unic.Flex.Model.Forms;
     using File = Unic.Flex.Model.Entities.File;
-    using Form = Unic.Flex.Model.DomainModel.Forms.Form;
 
     /// <summary>
     /// Service for saving form to database.
@@ -49,7 +48,7 @@
         /// Saves the specified form to the database.
         /// </summary>
         /// <param name="form">The form.</param>
-        public virtual void Save(Form form)
+        public virtual void Save(IForm form)
         {
             Assert.ArgumentNotNull(form,  "form");
 
@@ -75,7 +74,13 @@
                 var fileUploadField = field as FileUploadField;
                 if (fileUploadField != null && fileUploadField.Value != null)
                 {
-                    fieldEntity.File = Mapper.Map<File>(fileUploadField.Value);
+                    fieldEntity.File = new File
+                                           {
+                                               ContentType = fileUploadField.Value.ContentType,
+                                               ContentLength = fileUploadField.Value.ContentLength,
+                                               FileName = fileUploadField.Value.FileName,
+                                               Data = fileUploadField.Value.Data,
+                                           };
                 }
 
                 sessionEntity.Fields.Add(fieldEntity);
@@ -122,7 +127,7 @@
         /// </summary>
         /// <param name="form">The form.</param>
         /// <param name="fileName">Name of the file.</param>
-        public virtual void ExportForm(Form form, string fileName)
+        public virtual void ExportForm(IForm form, string fileName)
         {
             Assert.ArgumentNotNull(form, "form");
             

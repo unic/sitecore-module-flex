@@ -11,8 +11,8 @@
     using Glass.Mapper.Sc.Fields;
     using Sitecore.Mvc.Presentation;
     using Unic.Flex.Core.Definitions;
+    using Unic.Flex.Model.Fields;
     using Unic.Flex.Model.Presentation;
-    using Unic.Flex.Model.ViewModel.Fields;
     using DependencyResolver = Unic.Flex.Core.DependencyInjection.DependencyResolver;
 
     /// <summary>
@@ -47,6 +47,8 @@
         {
             var modelMetaData = ModelMetadata.FromLambdaExpression(expression, htmlHelper.ViewData);
             var model = modelMetaData.Model as IPresentationComponent;
+            if (model == null) return null;
+
             var propertyName = ExpressionHelper.GetExpressionText(expression);
 
             return htmlHelper.Partial(
@@ -196,14 +198,14 @@
         /// Gets the attributes for a model and add context specific attributes.
         /// </summary>
         /// <param name="htmlHelper">The HTML helper.</param>
-        /// <param name="viewModel">The view model.</param>
+        /// <param name="model">The field model.</param>
         /// <returns>Additional attributes for the html markup</returns>
-        public static IDictionary<string, object> GetAttributes(this HtmlHelper htmlHelper, IFieldViewModel viewModel)
+        public static IDictionary<string, object> GetAttributes(this HtmlHelper htmlHelper, IField model)
         {
-            var attributes = viewModel.Attributes;
+            var attributes = model.Attributes;
             attributes.Add("aria-labelledby", htmlHelper.GetId(Constants.LabelIdSuffix));
 
-            if (viewModel.Tooltip != null && viewModel.Tooltip.ShowTooltip)
+            if (model.Tooltip != null)
             {
                 attributes.Add("aria-describedby", htmlHelper.GetId(Constants.TooltipIdSuffix));
             }

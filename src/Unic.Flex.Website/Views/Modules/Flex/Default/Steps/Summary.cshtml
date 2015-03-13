@@ -1,7 +1,7 @@
 ﻿@using Unic.Flex.Core.Globalization
 @using Unic.Flex.Core.Presentation
 @using Unic.Flex.Implementation.Fields.TextOnly
-@model Unic.Flex.Model.ViewModel.Steps.SummaryViewModel
+@model Unic.Flex.Model.Steps.Summary
 
 @{
     var stepTitle = string.Empty;
@@ -39,12 +39,12 @@
                 }
 
                 <ul class="flex_summary_list">
-                    @foreach (var field in stepSection.Fields.Where(f => !f.IsHidden))
+                    @foreach (var field in stepSection.Fields.Where(f => f.ShowInSummary).Where(f => !f.IsHidden))
                     {
                         <li class="flex_summary_item">
                             <strong>@Html.Raw(Html.GetLabelWithReplacedLink(field.Label, field.LabelLink))</strong>
                             <div>
-                                @if (field is TextOnlyFieldViewModel)
+                                @if (field is TextOnlyField)
                                 {
                                     @Html.Raw(field.TextValue)
                                 }

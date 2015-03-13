@@ -33,7 +33,6 @@
             
             // business logic
             container.Register<IContextService, ContextService>();
-            container.Register<IFieldDependencyService, FieldDependencyService>();
             container.Register<IPresentationService, PresentationService>();
             container.Register<IPlugsService, PlugsService>();
             container.Register<ITaskService, TaskService>();
@@ -47,7 +46,7 @@
             container.Register<IUnitOfWork, UnitOfWork>();
 
             // model binding and converting
-            container.RegisterSingle<IModelConverterService, ModelConverterService>();
+            container.RegisterSingle<IViewMapper, ViewMapper>();
 
             container.Register<FormModelBinder>();
             container.Register<ListModelBinder>();

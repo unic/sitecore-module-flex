@@ -1,6 +1,8 @@
 ﻿namespace Unic.Flex.Model.DataProviders
 {
+    using Glass.Mapper.Sc.Configuration;
     using Glass.Mapper.Sc.Configuration.Attributes;
+    using Unic.Flex.Model.GlassExtensions.Attributes;
 
     /// <summary>
     /// Represents an item in the list
@@ -34,5 +36,14 @@
         /// </value>
         [SitecoreField("Selected")]
         public virtual bool Selected { get; set; }
+
+        /// <summary>
+        /// Gets or sets the cascading data provider.
+        /// </summary>
+        /// <value>
+        /// The cascading data provider.
+        /// </value>
+        [SitecoreSharedField("Cascading Data Provider", Setting = SitecoreFieldSettings.InferType)]
+        public virtual IDataProvider<ListItem> CascadingDataProvider { get; set; }
     }
 }

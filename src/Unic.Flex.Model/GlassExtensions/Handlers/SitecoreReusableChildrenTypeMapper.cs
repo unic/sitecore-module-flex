@@ -6,7 +6,7 @@
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
-    using Unic.Flex.Model.DomainModel.Components;
+    using Unic.Flex.Model.Components;
     using Unic.Flex.Model.GlassExtensions.Configurations;
 
     /// <summary>

@@ -3,7 +3,7 @@
     using Sitecore.Diagnostics;
     using Unic.Configuration;
     using Unic.Configuration.Converter;
-    using Unic.Flex.Model.DomainModel.Global;
+    using Unic.Flex.Model.Specifications;
 
     /// <summary>
     /// Converter for specification items.

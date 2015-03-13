@@ -1,16 +1,17 @@
 ﻿namespace Unic.Flex.Implementation.Plugs.SavePlugs
 {
+    using System;
     using System.Collections.Specialized;
     using Glass.Mapper.Sc.Configuration;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Sitecore.Diagnostics;
     using Unic.Flex.Core.Mailing;
     using Unic.Flex.Implementation.Mailers;
-    using Unic.Flex.Model.DomainModel.Fields;
-    using Unic.Flex.Model.DomainModel.Forms;
-    using Unic.Flex.Model.DomainModel.Global;
-    using Unic.Flex.Model.DomainModel.Plugs.SavePlugs;
+    using Unic.Flex.Model.Fields;
+    using Unic.Flex.Model.Forms;
     using Unic.Flex.Model.GlassExtensions.Attributes;
+    using Unic.Flex.Model.Plugs;
+    using Unic.Flex.Model.Specifications;
 
     /// <summary>
     /// Send email save plug model
@@ -193,7 +194,7 @@
         /// Executes the save plug.
         /// </summary>
         /// <param name="form">The form.</param>
-        public override void Execute(Form form)
+        public override void Execute(IForm form)
         {
             Assert.ArgumentNotNull(form, "form");
 

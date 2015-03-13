@@ -5,9 +5,8 @@
     using Sitecore.Data.Items;
     using Sitecore.Sites;
     using Unic.Flex.Core.Plugs;
-    using Unic.Flex.Model.DomainModel;
-    using Unic.Flex.Model.DomainModel.Forms;
-    using Unic.Flex.Model.ViewModel.Forms;
+    using Unic.Flex.Model;
+    using Unic.Flex.Model.Forms;
 
     /// <summary>
     /// The Flex context stores different type of properties which needs to be available during the requests. This class is
@@ -33,12 +32,12 @@
         /// <summary>
         /// The form
         /// </summary>
-        private Form form;
+        private IForm form;
 
         /// <summary>
         /// The item
         /// </summary>
-        private ItemBase item;
+        private IItemBase item;
 
         /// <summary>
         /// Field to store if the form values has already be populated from the user session.
@@ -66,7 +65,7 @@
         /// <value>
         /// The item.
         /// </value>
-        public virtual ItemBase Item
+        public virtual IItemBase Item
         {
             get
             {
@@ -90,7 +89,7 @@
         /// <value>
         /// The form.
         /// </value>
-        public virtual Form Form
+        public virtual IForm Form
         {
             get
             {
@@ -109,14 +108,6 @@
                 this.form = value;
             }
         }
-
-        /// <summary>
-        /// Gets or sets the view model.
-        /// </summary>
-        /// <value>
-        /// The view model.
-        /// </value>
-        public virtual IFormViewModel ViewModel { get; set; }
 
         /// <summary>
         /// Gets or sets the error message.

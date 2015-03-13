@@ -1,7 +1,7 @@
 ﻿namespace Unic.Flex.Implementation.Database
 {
     using System;
-    using Unic.Flex.Model.DomainModel.Forms;
+    using Unic.Flex.Model.Forms;
 
     /// <summary>
     /// Service for saving form to database.
@@ -12,7 +12,7 @@
         /// Saves the specified form to the database.
         /// </summary>
         /// <param name="form">The form.</param>
-        void Save(Form form);
+        void Save(IForm form);
 
         /// <summary>
         /// Determines whether the specified form identifier has entries.
@@ -35,6 +35,6 @@
         /// </summary>
         /// <param name="form">The form.</param>
         /// <param name="fileName">Name of the file.</param>
-        void ExportForm(Form form, string fileName);
+        void ExportForm(IForm form, string fileName);
     }
 }

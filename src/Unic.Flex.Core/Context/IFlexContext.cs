@@ -2,9 +2,8 @@
 {
     using Sitecore.Data.Items;
     using Sitecore.Sites;
-    using Unic.Flex.Model.DomainModel;
-    using Unic.Flex.Model.DomainModel.Forms;
-    using Unic.Flex.Model.ViewModel.Forms;
+    using Unic.Flex.Model;
+    using Unic.Flex.Model.Forms;
 
     /// <summary>
     /// The Flex context stores different type of properties which needs to be available during the requests.
@@ -17,7 +16,7 @@
         /// <value>
         /// The item.
         /// </value>
-        ItemBase Item { get; set; }
+        IItemBase Item { get; set; }
 
         /// <summary>
         /// Gets or sets the form.
@@ -25,15 +24,7 @@
         /// <value>
         /// The form.
         /// </value>
-        Form Form { get; set; }
-
-        /// <summary>
-        /// Gets or sets the view model.
-        /// </summary>
-        /// <value>
-        /// The view model.
-        /// </value>
-        IFormViewModel ViewModel { get; set; }
+        IForm Form { get; set; }
 
         /// <summary>
         /// Gets or sets the error message.

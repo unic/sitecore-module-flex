@@ -33,7 +33,6 @@
 
             // business logic
             this.Bind<IContextService>().To<ContextService>();
-            this.Bind<IFieldDependencyService>().To<FieldDependencyService>();
             this.Bind<IPresentationService>().To<PresentationService>();
             this.Bind<IPlugsService>().To<PlugsService>();
             this.Bind<ITaskService>().To<TaskService>();
@@ -47,7 +46,8 @@
             this.Bind<IUnitOfWork>().To<UnitOfWork>();
 
             // model binding and converting
-            this.Bind<IModelConverterService>().To<ModelConverterService>().InSingletonScope();
+            this.Bind<IViewMapper>().To<ViewMapper>().InSingletonScope();
+
             this.Bind<FormModelBinder>().ToSelf();
             this.Bind<ListModelBinder>().ToSelf();
             this.Bind<FieldModelBinder>().ToSelf();
