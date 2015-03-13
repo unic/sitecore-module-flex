@@ -239,6 +239,9 @@
             }
         }
 
+        /// <summary>
+        /// Binds the properties.
+        /// </summary>
         public virtual void BindProperties()
         {
             // handle field dependency

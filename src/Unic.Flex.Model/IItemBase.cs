@@ -2,6 +2,9 @@
 {
     using System;
 
+    /// <summary>
+    /// Interface for a base item
+    /// </summary>
     public interface IItemBase
     {
         /// <summary>

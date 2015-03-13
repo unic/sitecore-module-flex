@@ -11,9 +11,9 @@
     using Glass.Mapper.Sc.Fields;
     using Sitecore.Mvc.Presentation;
     using Unic.Flex.Core.Definitions;
+    using Unic.Flex.Model.Fields;
     using Unic.Flex.Model.Presentation;
     using DependencyResolver = Unic.Flex.Core.DependencyInjection.DependencyResolver;
-    using Unic.Flex.Model.Fields;
 
     /// <summary>
     /// Extension methods for the Mvc Html Helper

@@ -89,7 +89,7 @@
         public virtual string CancelText { get; set; }
 
         /// <summary>
-        /// Gets the sections.
+        /// Gets or sets the sections.
         /// </summary>
         /// <value>
         /// The sections.

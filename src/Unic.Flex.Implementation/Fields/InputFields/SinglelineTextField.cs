@@ -32,6 +32,7 @@
                 return "Fields/InputFields/SinglelineText";
             }
         }
+
         /// <summary>
         /// Binds the properties.
         /// </summary>

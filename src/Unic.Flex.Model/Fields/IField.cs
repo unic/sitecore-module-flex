@@ -149,7 +149,7 @@
         IDictionary<string, object> Attributes { get; }
 
         /// <summary>
-        /// Gets or sets the validators.
+        /// Gets the validators.
         /// </summary>
         /// <value>
         /// The validators.
