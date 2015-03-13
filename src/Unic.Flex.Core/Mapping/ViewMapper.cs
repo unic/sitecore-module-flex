@@ -3,14 +3,12 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Web;
     using Sitecore.Diagnostics;
     using Unic.Configuration;
     using Unic.Flex.Core.Context;
     using Unic.Flex.Core.Definitions;
     using Unic.Flex.Core.Globalization;
     using Unic.Flex.Model.Components;
-    using Unic.Flex.Model.Forms;
     using Unic.Flex.Model.Sections;
     using Unic.Flex.Model.Steps;
     using NavigationItem = Unic.Flex.Model.Components.NavigationItem;
@@ -22,16 +20,37 @@
     using Unic.Flex.Model.Fields.InputFields;
     using Unic.Flex.Model.Validators;
 
+    /// <summary>
+    /// The view mapper
+    /// </summary>
     public class ViewMapper : IViewMapper
     {
+        /// <summary>
+        /// The URL service
+        /// </summary>
         private readonly IUrlService urlService;
 
+        /// <summary>
+        /// The dictionary repository
+        /// </summary>
         private readonly IDictionaryRepository dictionaryRepository;
 
+        /// <summary>
+        /// The configuration manager
+        /// </summary>
         private readonly IConfigurationManager configurationManager;
 
+        /// <summary>
+        /// The optional label text
+        /// </summary>
         private string optionalLabelText;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ViewMapper"/> class.
+        /// </summary>
+        /// <param name="urlService">The URL service.</param>
+        /// <param name="dictionaryRepository">The dictionary repository.</param>
+        /// <param name="configurationManager">The configuration manager.</param>
         public ViewMapper(IUrlService urlService, IDictionaryRepository dictionaryRepository, IConfigurationManager configurationManager)
         {
             this.configurationManager = configurationManager;
@@ -39,11 +58,44 @@
             this.urlService = urlService;
         }
 
-        public virtual void MapActiveStep(IFlexContext context)
+        /// <summary>
+        /// Do a simple map with just needed properties. This is called form the model binder.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <exception cref="System.Exception">Could not found current step in linked step list</exception>
+        public virtual void SimpleMap(IFlexContext context)
         {
             if (context == null || context.Form == null || context.Form.ActiveStep == null) return;
 
-            Profiling.Profiler.OnStart(this, "Flex :: Map active step for view");
+            Profiling.Profiler.OnStart(this, "Flex :: Simple map current context for view");
+
+            // get the form
+            var form = context.Form;
+            
+            // get linked steps
+            var linkedSteps = new LinkedList<IStep>(form.Steps);
+            var currentStep = linkedSteps.Find(form.ActiveStep);
+            if (currentStep == null) throw new Exception("Could not found current step in linked step list");
+
+            // handle multistep
+            var multiStep = form.ActiveStep as MultiStep;
+            if (multiStep != null)
+            {
+                multiStep.NextStepUrl = currentStep.Next != null ? currentStep.Next.Value.GetUrl(context) : string.Empty;
+            }
+
+            Profiling.Profiler.OnEnd(this, "Flex :: Simple map current context for view");
+        }
+
+        /// <summary>
+        /// Map all properties needed.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        public virtual void FullMap(IFlexContext context)
+        {
+            if (context == null || context.Form == null || context.Form.ActiveStep == null) return;
+
+            Profiling.Profiler.OnStart(this, "Flex :: Full map current context for view");
 
             // get config
             this.optionalLabelText = this.configurationManager.Get<GlobalConfiguration>(c => c.OptionalFieldsLabelText);
@@ -62,9 +114,14 @@
                 }
             }
 
-            Profiling.Profiler.OnEnd(this, "Flex :: Map active step for view");
+            Profiling.Profiler.OnEnd(this, "Flex :: Full map current context for view");
         }
 
+        /// <summary>
+        /// Maps the step.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <exception cref="System.Exception">Could not found current step in linked step list</exception>
         protected virtual void MapStep(IFlexContext context)
         {
             Assert.ArgumentNotNull(context, "context");
@@ -117,6 +174,10 @@
             }
         }
 
+        /// <summary>
+        /// Maps the section.
+        /// </summary>
+        /// <param name="section">The section.</param>
         protected virtual void MapSection(ISection section)
         {
             // map the tooltip
@@ -129,6 +190,10 @@
             section.BindProperties();
         }
 
+        /// <summary>
+        /// Maps the field.
+        /// </summary>
+        /// <param name="field">The field.</param>
         protected virtual void MapField(IField field)
         {
             // add required validator

@@ -100,7 +100,7 @@
             }
 
             var context = DependencyResolver.Resolve<IFlexContext>();
-            this.viewMapper.MapActiveStep(context); // todo: do we really need to map the complete step or maybe only some properties and create an "lightweight" mapping?
+            this.viewMapper.SimpleMap(context);
             return context.Form;
         }
     }

@@ -201,7 +201,7 @@
             this.userDataRepository.RevertToStep(form.Id, currentStep.StepNumber);
 
             // map the active step
-            this.viewMapper.MapActiveStep(this.flexContext);
+            this.viewMapper.FullMap(this.flexContext);
 
             // return the view for this step
             var formView = this.presentationService.ResolveView(this.ControllerContext, form);
