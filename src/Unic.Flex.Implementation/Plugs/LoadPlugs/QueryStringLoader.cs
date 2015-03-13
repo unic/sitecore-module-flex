@@ -6,7 +6,7 @@
     using System.Web;
     using Unic.Flex.Implementation.Fields.TextOnly;
     using Unic.Flex.Model.Forms;
-    using Unic.Flex.Model.Plugs.LoadPlugs;
+    using Unic.Flex.Model.Plugs;
 
     /// <summary>
     /// Load plug to load values from querystring into the form fields

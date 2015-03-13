@@ -7,7 +7,7 @@
     /// <summary>
     /// Base class for all items.
     /// </summary>
-    public class ItemBase
+    public class ItemBase : IItemBase
     {
         /// <summary>
         /// Gets or sets the item identifier.

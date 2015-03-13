@@ -1,4 +1,4 @@
-﻿namespace Unic.Flex.Model.Plugs.SavePlugs
+﻿namespace Unic.Flex.Model.Plugs
 {
     using System;
     using Unic.Flex.Model.Forms;

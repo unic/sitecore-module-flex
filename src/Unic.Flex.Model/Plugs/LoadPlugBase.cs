@@ -1,12 +1,13 @@
-﻿namespace Unic.Flex.Model.Plugs.LoadPlugs
+﻿namespace Unic.Flex.Model.Plugs
 {
     using System;
+    using Glass.Mapper.Sc.Configuration.Attributes;
     using Unic.Flex.Model.Forms;
 
     /// <summary>
-    /// Interface for defining a load plug
+    /// Base class for all load plugs
     /// </summary>
-    public interface ILoadPlug
+    public abstract class LoadPlugBase : ILoadPlug
     {
         /// <summary>
         /// Gets or sets the item identifier.
@@ -14,12 +15,13 @@
         /// <value>
         /// The item identifier.
         /// </value>
-        Guid ItemId { get; set; }
-        
+        [SitecoreId]
+        public virtual Guid ItemId { get; set; }
+
         /// <summary>
         /// Executes the load plug.
         /// </summary>
         /// <param name="form">The form.</param>
-        void Execute(Form form);
+        public abstract void Execute(Form form);
     }
 }

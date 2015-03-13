@@ -116,12 +116,12 @@
     <Compile Include="Fields\ReusableField.cs" />
     <Compile Include="Forms\Repository.cs" />
     <Compile Include="Forms\StatisticForm.cs" />
+    <Compile Include="IItemBase.cs" />
+    <Compile Include="Plugs\LoadPlugBase.cs" />
+    <Compile Include="Plugs\SavePlugBase.cs" />
     <Compile Include="Specifications\Specification.cs" />
-    <Compile Include="Plugs\LoadPlugs\ILoadPlug.cs" />
-    <Compile Include="Plugs\LoadPlugs\LoadPlugBase.cs" />
-    <Compile Include="Plugs\PlugBase.cs" />
-    <Compile Include="Plugs\SavePlugs\ISavePlug.cs" />
-    <Compile Include="Plugs\SavePlugs\SavePlugBase.cs" />
+    <Compile Include="Plugs\ILoadPlug.cs" />
+    <Compile Include="Plugs\ISavePlug.cs" />
     <Compile Include="Entities\File.cs" />
     <Compile Include="Entities\Form.cs" />
     <Compile Include="Entities\Session.cs" />

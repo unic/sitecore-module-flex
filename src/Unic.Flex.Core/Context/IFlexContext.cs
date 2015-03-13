@@ -16,7 +16,7 @@
         /// <value>
         /// The item.
         /// </value>
-        ItemBase Item { get; set; }
+        IItemBase Item { get; set; }
 
         /// <summary>
         /// Gets or sets the form.

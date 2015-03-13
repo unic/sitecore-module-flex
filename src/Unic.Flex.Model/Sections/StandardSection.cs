@@ -52,6 +52,7 @@
         /// The parent.
         /// </value>
         [SitecoreParent(IsLazy = true, InferType = true)]
+        // todo: this should be an "IStep"
         public virtual ItemBase Step { private get; set; }
 
         /// <summary>

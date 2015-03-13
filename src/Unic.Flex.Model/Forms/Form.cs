@@ -6,8 +6,7 @@
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Glass.Mapper.Sc.Fields;
     using Unic.Flex.Model.GlassExtensions.Attributes;
-    using Unic.Flex.Model.Plugs.LoadPlugs;
-    using Unic.Flex.Model.Plugs.SavePlugs;
+    using Unic.Flex.Model.Plugs;
     using Unic.Flex.Model.Presentation;
     using Unic.Flex.Model.Steps;
 
@@ -74,7 +73,7 @@
         /// The success redirect.
         /// </value>
         [SitecoreField("Redirect")]
-        public virtual ItemBase SuccessRedirect { get; set; }
+        public virtual IItemBase SuccessRedirect { get; set; }
 
         /// <summary>
         /// Gets or sets the error message.

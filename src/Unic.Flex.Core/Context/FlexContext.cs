@@ -37,7 +37,7 @@
         /// <summary>
         /// The item
         /// </summary>
-        private ItemBase item;
+        private IItemBase item;
 
         /// <summary>
         /// Field to store if the form values has already be populated from the user session.
@@ -65,7 +65,7 @@
         /// <value>
         /// The item.
         /// </value>
-        public virtual ItemBase Item
+        public virtual IItemBase Item
         {
             get
             {

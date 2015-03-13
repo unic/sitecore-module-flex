@@ -7,7 +7,7 @@
     /// A analytics goal item
     /// </summary>
     [SitecoreType(TemplateId = "{475E9026-333F-432D-A4DC-52E03B75CB6B}")]
-    public class Goal : ItemBase
+    public class Goal
     {
         /// <summary>
         /// Gets or sets the inner item.
