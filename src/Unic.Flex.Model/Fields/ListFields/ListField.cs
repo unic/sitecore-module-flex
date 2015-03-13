@@ -170,8 +170,7 @@
                         return this.isHidden.Value;
                     }
                 }
-
-
+                
                 this.isHidden = !this.Items.Any() || (!this.IsCascadingField && base.IsHidden);
                 return this.isHidden.Value;
             }
