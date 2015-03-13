@@ -65,7 +65,7 @@
         /// <value>
         /// The steps.
         /// </value>
-        IEnumerable<StepBase> Steps { get; }
+        IEnumerable<IStep> Steps { get; }
 
         /// <summary>
         /// Gets the active step.
@@ -73,7 +73,7 @@
         /// <value>
         /// The active step.
         /// </value>
-        StepBase ActiveStep { get; }
+        IStep ActiveStep { get; }
 
         /// <summary>
         /// Gets the load plugs.

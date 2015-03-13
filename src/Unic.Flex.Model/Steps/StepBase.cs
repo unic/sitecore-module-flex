@@ -4,13 +4,12 @@
     using System.Linq;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Unic.Flex.Model.GlassExtensions.Attributes;
-    using Unic.Flex.Model.Presentation;
     using Unic.Flex.Model.Sections;
 
     /// <summary>
     /// Base class for all steps.
     /// </summary>
-    public abstract class StepBase : ItemBase, IPresentationComponent
+    public abstract class StepBase : ItemBase, IStep
     {
         /// <summary>
         /// The sections

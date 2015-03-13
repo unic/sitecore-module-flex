@@ -74,7 +74,7 @@
             Assert.IsNotNull(form, "form must not be null");
             
             // get linked steps
-            var linkedSteps = new LinkedList<StepBase>(form.Steps);
+            var linkedSteps = new LinkedList<IStep>(form.Steps);
             var currentStep = linkedSteps.Find(form.ActiveStep);
             if (currentStep == null) throw new Exception("Could not found current step in linked step list");
             
@@ -235,7 +235,7 @@
         /// Adds the honeypot field for spam protection to the current step.
         /// </summary>
         /// <param name="step">The step.</param>
-        protected virtual void AddHoneypotField(StepBase step)
+        protected virtual void AddHoneypotField(IStep step)
         {
             Assert.ArgumentNotNull(step, "step");
 

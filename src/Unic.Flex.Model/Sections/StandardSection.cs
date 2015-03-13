@@ -52,7 +52,6 @@
         /// The parent.
         /// </value>
         [SitecoreParent(IsLazy = true, InferType = true)]
-        // todo: this should be an "IStep"
         public virtual ItemBase Step { private get; set; }
 
         /// <summary>
@@ -129,7 +128,7 @@
         {
             get
             {
-                var step = this.Step as StepBase;
+                var step = this.Step as IStep;
                 return step != null ? step.Title : string.Empty;
             }
         }

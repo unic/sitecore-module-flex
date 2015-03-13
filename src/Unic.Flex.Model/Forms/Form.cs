@@ -18,7 +18,7 @@
         /// <summary>
         /// The active step
         /// </summary>
-        private StepBase activeStep;
+        private IStep activeStep;
         
         /// <summary>
         /// Gets or sets the language.
@@ -90,7 +90,7 @@
         /// The steps.
         /// </value>
         [SitecoreQuery("./Steps/*", IsLazy = true, IsRelative = true, InferType = true)]
-        public virtual IEnumerable<StepBase> Steps { get; set; }
+        public virtual IEnumerable<IStep> Steps { get; set; }
 
         /// <summary>
         /// Gets or sets the load plugs.
@@ -117,7 +117,7 @@
         /// The active step.
         /// </value>
         [SitecoreIgnore]
-        public virtual StepBase ActiveStep
+        public virtual IStep ActiveStep
         {
             get
             {

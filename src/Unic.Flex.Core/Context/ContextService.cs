@@ -200,7 +200,7 @@
         /// <returns>
         /// Boolean value if the step may accessed by the user or not
         /// </returns>
-        public virtual bool IsStepAccessible(IForm form, StepBase step)
+        public virtual bool IsStepAccessible(IForm form, IStep step)
         {
             Assert.ArgumentNotNull(form, "form");
             Assert.ArgumentNotNull(step, "step");

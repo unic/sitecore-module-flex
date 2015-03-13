@@ -20,7 +20,7 @@
         /// <returns>
         /// Url of the current item appended to the current form context
         /// </returns>
-        public static string GetUrl(this StepBase item, IFlexContext context)
+        public static string GetUrl(this IStep item, IFlexContext context)
         {
             if (context == null) return string.Empty;
             if (context.Item == null) return item.Url;

@@ -45,7 +45,7 @@
         /// <param name="form">The form.</param>
         /// <param name="step">The step.</param>
         /// <returns>Boolean value if the step may accessed by the user or not</returns>
-        bool IsStepAccessible(IForm form, StepBase step);
+        bool IsStepAccessible(IForm form, IStep step);
 
         /// <summary>
         /// Gets the rendering datasource of a form.

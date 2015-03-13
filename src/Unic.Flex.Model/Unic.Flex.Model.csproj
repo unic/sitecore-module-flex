@@ -143,6 +143,7 @@
     <Compile Include="GlassExtensions\Handlers\SitecoreSharedQueryTypeMapper.cs" />
     <Compile Include="SortOrder\ISortOrderStrategy.cs" />
     <Compile Include="SortOrder\StrategyFactory.cs" />
+    <Compile Include="Steps\IStep.cs" />
     <Compile Include="Types\UploadedFile.cs" />
     <Compile Include="Validators\AjaxValidator.cs" />
     <Compile Include="Validators\FileRequiredValidator.cs" />
