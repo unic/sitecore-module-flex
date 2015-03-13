@@ -1,5 +1,6 @@
 ﻿namespace Unic.Flex.Core.Context
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Castle.Core.Internal;
@@ -180,6 +181,7 @@
                     if (field.IsHidden)
                     {
                         this.userDataRepository.RemoveValue(form.Id, field.Id);
+                        field.Value = field.Type.IsValueType ? Activator.CreateInstance(field.Type) : null;
                         continue;
                     }
 

@@ -37,8 +37,8 @@
         {
             get
             {
-                // lazy loading
-                if (this.items != null) return this.items;
+                // lazy loading, but only for non cascading fields
+                if (!this.IsCascadingField && this.items != null) return this.items;
 
                 this.items = base.Items;
                 if (this.AddEmptyOption)

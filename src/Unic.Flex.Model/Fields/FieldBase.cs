@@ -508,7 +508,7 @@
 
             // handle field dependency
             this.ContainerAttributes.Add("data-key", this.Id);
-            if (this.DependentField != null)
+            if (this.DependentField != null && !this.ContainerAttributes.ContainsKey("data-flexform-dependent"))
             {
                 this.ContainerAttributes.Add("data-flexform-dependent", "{" + HttpUtility.HtmlEncode(string.Format("\"from\": \"{0}\", \"value\": \"{1}\"", this.DependentField.Id, this.DependentValue)) + "}");
             }

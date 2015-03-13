@@ -43,8 +43,8 @@
         {
             get
             {
-                // lazy loading
-                if (this.items != null) return this.items;
+                // lazy loading, but only for non cascading fields
+                if (!this.IsCascadingField && this.items != null) return this.items;
                 
                 // check for valid provider
                 if (this.DataProvider == null)
@@ -80,8 +80,8 @@
         {
             get
             {
-                // lazy loading
-                if (this.dataProvider != null) return this.dataProvider;
+                // lazy loading, but only for non cascading fields
+                if (!this.IsCascadingField && this.dataProvider != null) return this.dataProvider;
 
                 // get data provider from dependent field
                 if (this.IsCascadingField && this.DependentField != null && this.DependentField.Value != null)
@@ -90,11 +90,15 @@
                     var dependentListField = this.DependentField as ListField<TValue, ListItem>;
                     if (dependentListField != null)
                     {
-                        var dependentItems = dependentListField.DataProvider.GetItems();
-                        var dependentValue = dependentItems.FirstOrDefault(item => item.Value != null && item.Value.Equals(this.DependentField.Value.ToString()));
-                        if (dependentValue != null)
+                        var dependentDataProvider = dependentListField.DataProvider;
+                        if (dependentDataProvider != null)
                         {
-                            this.dataProvider = dependentValue.CascadingDataProvider as IDataProvider<TType>;
+                            var dependentItems = dependentDataProvider.GetItems();
+                            var dependentValue = dependentItems.FirstOrDefault(item => item.Value != null && item.Value.Equals(this.DependentField.Value.ToString()));
+                            if (dependentValue != null)
+                            {
+                                this.dataProvider = dependentValue.CascadingDataProvider as IDataProvider<TType>;
+                            }
                         }
                     }
                 }
@@ -136,48 +140,39 @@
         {
             get
             {
-                // lazy loading
-                if (this.isHidden.HasValue) return this.isHidden.Value;
+                // lazy loading, but only for non cascading fields
+                if (!this.IsCascadingField && this.isHidden.HasValue) return this.isHidden.Value;
 
-                // todo: doesn't work actually for cascading fields -> maybe removing lazy loading on items solves the issue? -> this should simply work with this.Items.Any()
+                if (this.IsCascadingField && this.DependentField != null)
+                {
+                    // value of dependent field is empty, so this field is hidden
+                    var dependendValueString = this.DependentField.Value as string;
+                    if (dependendValueString == null)
+                    {
+                        this.isHidden = true;
+                        return this.isHidden.Value;
+                    }
 
-                //// we have a cascading field
-                //if (this.IsCascadingField && this.DependentField != null)
-                //{
-                //    // value of dependent field is empty, so this field is hidden
-                //    var dependendValueString = this.DependentField.Value as string;
-                //    if (dependendValueString == null)
-                //    {
-                //        this.isHidden = true;
-                //        return this.isHidden.Value;
-                //    }
-                    
-                //    // cascading fields are only possible with ListItem's
-                //    var dependentListField = this.DependentField as ListField<TValue, ListItem>;
-                //    if (dependentListField != null)
-                //    {
-                //        var dependentItems = dependentListField.DataProvider.GetItems();
-                //        var dependentValue = dependentItems.FirstOrDefault(item => item.Value != null && item.Value.Equals(dependendValueString));
-                //        if (dependentValue != null && dependentValue.CascadingDataProvider != null)
-                //        {
-                //            // get the items we could have in this field
-                //            var cascadingItems = dependentValue.CascadingDataProvider.GetItems();
-                //            if (this.Value == null)
-                //            {
-                //                this.isHidden = cascadingItems.All(item => string.IsNullOrWhiteSpace(item.Value));
-                //                return this.isHidden.Value;
-                //            }
+                    // cascading fields are only possible with ListItems
+                    var currentItems = this.Items as IList<ListItem>;
+                    if (currentItems != null)
+                    {
+                        // check if current value is empty -> then it's not hidden when we have any not-empty values in the list
+                        var stringValue = this.Value as string;
+                        if (string.IsNullOrWhiteSpace(stringValue))
+                        {
+                            this.isHidden = currentItems.All(item => string.IsNullOrWhiteSpace(item.Value));
+                            return this.isHidden.Value;
+                        }
+                        
+                        // otherwise check if our current selected value is within the current item collection
+                        this.isHidden = currentItems.All(item => item.Value != stringValue);
+                        return this.isHidden.Value;
+                    }
+                }
 
-                //            // check if current value is valid in the list of available values
-                //            var stringValue = this.Value as string;
-                //            var cascadingValue = cascadingItems.FirstOrDefault(item => item.Value != null && item.Value.Equals(stringValue));
-                //            this.isHidden = !string.IsNullOrWhiteSpace(stringValue) && cascadingValue == null;
-                //            return this.isHidden.Value;
-                //        }
-                //    }
-                //}
 
-                this.isHidden = !this.Items.Any() || base.IsHidden;
+                this.isHidden = !this.Items.Any() || (!this.IsCascadingField && base.IsHidden);
                 return this.isHidden.Value;
             }
         }
