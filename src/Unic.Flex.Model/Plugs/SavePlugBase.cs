@@ -30,6 +30,6 @@
         /// Executes the save plug.
         /// </summary>
         /// <param name="form">The form.</param>
-        public abstract void Execute(Form form);
+        public abstract void Execute(IForm form);
     }
 }

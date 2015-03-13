@@ -18,26 +18,26 @@
         /// <returns>
         /// The loaded form domain model object.
         /// </returns>
-        Form LoadForm(string dataSourcebool, bool useVersionCountDisabler = false);
+        IForm LoadForm(string dataSourcebool, bool useVersionCountDisabler = false);
 
         /// <summary>
         /// Populates the form values from the session into the form.
         /// </summary>
         /// <param name="form">The form domain model.</param>
-        void PopulateFormValues(Form form);
+        void PopulateFormValues(IForm form);
 
         /// <summary>
         /// Populates the form values from a dictionary.
         /// </summary>
         /// <param name="form">The form.</param>
         /// <param name="values">The values.</param>
-        void PopulateFormValues(Form form, IDictionary<string, object> values);
+        void PopulateFormValues(IForm form, IDictionary<string, object> values);
 
         /// <summary>
         /// Stores the form values into the session.
         /// </summary>
         /// <param name="form">The form.</param>
-        void StoreFormValues(Form form);
+        void StoreFormValues(IForm form);
 
         /// <summary>
         /// Determines whether the given step can be actually accessed. This is only valid if all previous steps has been processed.
@@ -45,7 +45,7 @@
         /// <param name="form">The form.</param>
         /// <param name="step">The step.</param>
         /// <returns>Boolean value if the step may accessed by the user or not</returns>
-        bool IsStepAccessible(Form form, StepBase step);
+        bool IsStepAccessible(IForm form, StepBase step);
 
         /// <summary>
         /// Gets the rendering datasource of a form.

@@ -32,7 +32,7 @@
         /// <summary>
         /// The form
         /// </summary>
-        private Form form;
+        private IForm form;
 
         /// <summary>
         /// The item
@@ -89,7 +89,7 @@
         /// <value>
         /// The form.
         /// </value>
-        public virtual Form Form
+        public virtual IForm Form
         {
             get
             {

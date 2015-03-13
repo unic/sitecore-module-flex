@@ -47,7 +47,7 @@
         public override object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
             var model = base.BindModel(controllerContext, bindingContext);
-            var form = model as Form;
+            var form = model as IForm;
             if (form != null)
             {
                 var allFields = form.ActiveStep.Sections.SelectMany(s => s.Fields).ToList();
@@ -94,7 +94,7 @@
         /// </returns>
         protected override object CreateModel(ControllerContext controllerContext, ModelBindingContext bindingContext, Type modelType)
         {
-            if (modelType != typeof(Form))
+            if (modelType != typeof(IForm))
             {
                 return base.CreateModel(controllerContext, bindingContext, modelType);
             }

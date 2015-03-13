@@ -57,7 +57,7 @@
         /// <returns>
         /// The loaded form domain model object.
         /// </returns>
-        public virtual Form LoadForm(string dataSource, bool useVersionCountDisabler = false)
+        public virtual IForm LoadForm(string dataSource, bool useVersionCountDisabler = false)
         {
             Profiler.OnStart(this, "Flex :: Load form from datasource");
 
@@ -104,7 +104,7 @@
         /// Populates the form values from the session into the form.
         /// </summary>
         /// <param name="form">The form domain model.</param>
-        public virtual void PopulateFormValues(Form form)
+        public virtual void PopulateFormValues(IForm form)
         {
             Assert.ArgumentNotNull(form, "form");
 
@@ -128,7 +128,7 @@
         /// </summary>
         /// <param name="form">The form.</param>
         /// <param name="values">The values.</param>
-        public virtual void PopulateFormValues(Form form, IDictionary<string, object> values)
+        public virtual void PopulateFormValues(IForm form, IDictionary<string, object> values)
         {
             Assert.ArgumentNotNull(form, "form");
 
@@ -160,7 +160,7 @@
         /// Stores the form values into the session.
         /// </summary>
         /// <param name="form">The form.</param>
-        public virtual void StoreFormValues(Form form)
+        public virtual void StoreFormValues(IForm form)
         {
             Assert.ArgumentNotNull(form, "form");
 
@@ -200,7 +200,7 @@
         /// <returns>
         /// Boolean value if the step may accessed by the user or not
         /// </returns>
-        public virtual bool IsStepAccessible(Form form, StepBase step)
+        public virtual bool IsStepAccessible(IForm form, StepBase step)
         {
             Assert.ArgumentNotNull(form, "form");
             Assert.ArgumentNotNull(step, "step");

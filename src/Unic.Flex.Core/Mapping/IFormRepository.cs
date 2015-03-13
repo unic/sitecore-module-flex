@@ -16,7 +16,7 @@
         /// <returns>
         /// The loaded form domain model
         /// </returns>
-        Form LoadForm(string dataSource, bool useVersionCountDisabler = false);
+        IForm LoadForm(string dataSource, bool useVersionCountDisabler = false);
 
         /// <summary>
         /// Loads an item from the data source.

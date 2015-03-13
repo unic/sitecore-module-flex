@@ -125,7 +125,7 @@
         {
             try
             {
-                var form = (Form)arguments[0];
+                var form = (IForm)arguments[0];
                 var fileName = (string)arguments[1];
                 this.saveToDatabaseService.ExportForm(form, fileName);
             }

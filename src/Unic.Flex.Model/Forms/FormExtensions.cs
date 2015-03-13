@@ -19,7 +19,7 @@
         /// <returns>
         /// All real sections, for all steps or only for one
         /// </returns>
-        public static IEnumerable<StandardSection> GetSections(this Form form, int stepNumber = 0)
+        public static IEnumerable<StandardSection> GetSections(this IForm form, int stepNumber = 0)
         {
             if (form == null) return Enumerable.Empty<StandardSection>();
             
@@ -40,7 +40,7 @@
         /// <returns>
         /// List of fields
         /// </returns>
-        public static IEnumerable<IField> GetFields(this Form form, int stepNumber = 0)
+        public static IEnumerable<IField> GetFields(this IForm form, int stepNumber = 0)
         {
             return form != null ? form.GetSections(stepNumber).SelectMany(s => s.Fields) : Enumerable.Empty<IField>();
         }
@@ -53,7 +53,7 @@
         /// <returns>
         /// The field mapped by the form
         /// </returns>
-        public static IField GetField(this Form form, IField field)
+        public static IField GetField(this IForm form, IField field)
         {
             return form == null || field == null ? null : form.GetFields().FirstOrDefault(f => f.ItemId == field.ItemId);
         }
@@ -66,7 +66,7 @@
         /// <returns>
         /// Value of the field in the form
         /// </returns>
-        public static string GetFieldValue(this Form form, IField field)
+        public static string GetFieldValue(this IForm form, IField field)
         {
             if (form == null || field == null) return string.Empty;
             var formField = form.GetField(field);

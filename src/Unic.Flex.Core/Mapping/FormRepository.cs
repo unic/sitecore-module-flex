@@ -32,18 +32,18 @@
         /// <returns>
         /// The loaded form domain model
         /// </returns>
-        public virtual Form LoadForm(string dataSource, bool useVersionCountDisabler = false)
+        public virtual IForm LoadForm(string dataSource, bool useVersionCountDisabler = false)
         {
             Assert.ArgumentCondition(Sitecore.Data.ID.IsID(dataSource), dataSource, "Datasource is not valid");
             if (useVersionCountDisabler)
             {
                 using (new VersionCountDisabler())
                 {
-                    return this.sitecoreContext.GetItem<Form>(dataSource, inferType: true);
+                    return this.sitecoreContext.GetItem<IForm>(dataSource, inferType: true);
                 }
             }
 
-            return this.sitecoreContext.GetItem<Form>(dataSource, inferType: true);
+            return this.sitecoreContext.GetItem<IForm>(dataSource, inferType: true);
         }
 
         /// <summary>

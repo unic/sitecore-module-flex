@@ -33,7 +33,7 @@ namespace Unic.Flex.Website.App_Start
         /// </summary>
         private static void RegisterModelBinders()
         {
-            ModelBinders.Binders.Add(typeof(Form), DependencyResolver.Resolve<FormModelBinder>());
+            ModelBinders.Binders.Add(typeof(IForm), DependencyResolver.Resolve<FormModelBinder>());
             ModelBinders.Binders.Add(typeof(IList<StandardSection>), DependencyResolver.Resolve<ListModelBinder>());
             ModelBinders.Binders.Add(typeof(IList<IField>), DependencyResolver.Resolve<ListModelBinder>());
             ModelBinders.Binders.Add(typeof(IList<SelectListItem>), DependencyResolver.Resolve<ListModelBinder>());

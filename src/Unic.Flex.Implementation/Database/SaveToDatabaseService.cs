@@ -17,7 +17,6 @@
     using Unic.Flex.Model.Fields.ListFields;
     using Unic.Flex.Model.Forms;
     using File = Unic.Flex.Model.Entities.File;
-    using Form = Unic.Flex.Model.Forms.Form;
 
     /// <summary>
     /// Service for saving form to database.
@@ -49,7 +48,7 @@
         /// Saves the specified form to the database.
         /// </summary>
         /// <param name="form">The form.</param>
-        public virtual void Save(Form form)
+        public virtual void Save(IForm form)
         {
             Assert.ArgumentNotNull(form,  "form");
 
@@ -128,7 +127,7 @@
         /// </summary>
         /// <param name="form">The form.</param>
         /// <param name="fileName">Name of the file.</param>
-        public virtual void ExportForm(Form form, string fileName)
+        public virtual void ExportForm(IForm form, string fileName)
         {
             Assert.ArgumentNotNull(form, "form");
             

@@ -15,6 +15,6 @@
         /// <param name="form">The form.</param>
         /// <param name="plug">The plug.</param>
         /// <returns>Message to be sent over the mvc mailer</returns>
-        MvcMailMessage GetMessage(Form form, SendEmail plug);
+        MvcMailMessage GetMessage(IForm form, SendEmail plug);
     }
 }

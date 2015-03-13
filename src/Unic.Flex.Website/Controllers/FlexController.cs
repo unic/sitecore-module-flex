@@ -218,7 +218,7 @@
         [HttpPost]
         [ValidateFormHandler]
         [ValidateAntiForgeryToken]
-        public virtual ActionResult Form(Form model)
+        public virtual ActionResult Form(IForm model)
         {
             // form is not available in page editor
             if (GlassHtml.IsInEditingMode)

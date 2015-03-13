@@ -24,7 +24,7 @@
         /// <value>
         /// The form.
         /// </value>
-        Form Form { get; set; }
+        IForm Form { get; set; }
 
         /// <summary>
         /// Gets or sets the error message.

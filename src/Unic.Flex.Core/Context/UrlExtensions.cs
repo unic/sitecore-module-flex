@@ -35,7 +35,7 @@
         /// </summary>
         /// <param name="form">The form.</param>
         /// <returns>The url of the first step in the form</returns>
-        public static string GetFirstStepUrl(this Form form)
+        public static string GetFirstStepUrl(this IForm form)
         {
             var context = DependencyResolver.Resolve<IFlexContext>();
             return context.Item == null ? string.Empty : context.Item.Url;

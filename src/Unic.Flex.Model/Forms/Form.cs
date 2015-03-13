@@ -7,14 +7,13 @@
     using Glass.Mapper.Sc.Fields;
     using Unic.Flex.Model.GlassExtensions.Attributes;
     using Unic.Flex.Model.Plugs;
-    using Unic.Flex.Model.Presentation;
     using Unic.Flex.Model.Steps;
 
     /// <summary>
     /// The complete form domain model object
     /// </summary>
     [SitecoreType(TemplateId = "{3AFE4256-1C3E-4441-98AF-B3D0037A8B1F}")]
-    public class Form : ItemBase, IPresentationComponent
+    public class Form : ItemBase, IForm
     {
         /// <summary>
         /// The active step
@@ -73,7 +72,7 @@
         /// The success redirect.
         /// </value>
         [SitecoreField("Redirect")]
-        public virtual IItemBase SuccessRedirect { get; set; }
+        public virtual ItemBase SuccessRedirect { get; set; }
 
         /// <summary>
         /// Gets or sets the error message.

@@ -20,6 +20,6 @@
         /// Executes the load plug.
         /// </summary>
         /// <param name="form">The form.</param>
-        void Execute(Form form);
+        void Execute(IForm form);
     }
 }
