@@ -1,5 +1,6 @@
 ﻿namespace Unic.Flex.Model.Fields.InputFields
 {
+    using Glass.Mapper.Sc.Configuration.Attributes;
     using Unic.Flex.Model.Validators;
 
     /// <summary>
@@ -21,6 +22,7 @@
         /// <value>
         /// The name of the view.
         /// </value>
+        [SitecoreIgnore]
         public override string ViewName
         {
             get

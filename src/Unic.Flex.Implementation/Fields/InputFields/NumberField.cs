@@ -43,6 +43,7 @@
         /// <value>
         /// The name of the view.
         /// </value>
+        [SitecoreIgnore]
         public override string ViewName
         {
             get

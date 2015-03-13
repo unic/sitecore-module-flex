@@ -17,6 +17,7 @@
         /// <value>
         /// The default value.
         /// </value>
+        [SitecoreIgnore]
         public override string DefaultValue
         {
             get
@@ -32,6 +33,7 @@
         /// <value>
         /// The name of the view.
         /// </value>
+        [SitecoreIgnore]
         public override string ViewName
         {
             get

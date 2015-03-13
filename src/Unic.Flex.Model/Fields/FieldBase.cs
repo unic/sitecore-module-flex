@@ -41,6 +41,7 @@
         /// <value>
         /// The value.
         /// </value>
+        [SitecoreIgnore]
         object IField.Value
         {
             get
@@ -60,6 +61,7 @@
         /// <value>
         /// The default value.
         /// </value>
+        [SitecoreIgnore]
         object IField.DefaultValue
         {
             get
@@ -79,6 +81,7 @@
         /// <value>
         /// The value.
         /// </value>
+        [SitecoreIgnore]
         public virtual TValue Value { get; set; }
 
         /// <summary>
@@ -87,6 +90,7 @@
         /// <value>
         /// The default value.
         /// </value>
+        [SitecoreIgnore]
         public virtual TValue DefaultValue { get; set; }
 
         /// <summary>
@@ -95,6 +99,7 @@
         /// <value>
         /// The type.
         /// </value>
+        [SitecoreIgnore]
         public virtual Type Type
         {
             get
@@ -109,6 +114,7 @@
         /// <value>
         /// The text value.
         /// </value>
+        [SitecoreIgnore]
         public virtual string TextValue
         {
             get
@@ -294,15 +300,6 @@
         public virtual IEnumerable<IValidator> Validators { get; set; }
 
         /// <summary>
-        /// Gets the default validators.
-        /// </summary>
-        /// <value>
-        /// The default validators.
-        /// </value>
-        // todo: add [SitecoreIgnore] to all not mapped properties in the complete model
-        public virtual IList<IValidator> DefaultValidators { get; private set; }
-
-        /// <summary>
         /// Gets or sets a value indicating whether to show this field in the summary or not.
         /// </summary>
         /// <value>
@@ -375,6 +372,15 @@
         public virtual Tooltip Tooltip { get; set; }
 
         /// <summary>
+        /// Gets the default validators.
+        /// </summary>
+        /// <value>
+        /// The default validators.
+        /// </value>
+        [SitecoreIgnore]
+        public virtual IList<IValidator> DefaultValidators { get; private set; }
+
+        /// <summary>
         /// Gets the text label.
         /// </summary>
         /// <value>
@@ -414,8 +420,6 @@
         {
             get
             {
-                //todo: create interfaces for all types (form, step, section and field)
-
                 // lazy loading
                 if (this.isHidden.HasValue) return this.isHidden.Value;
 

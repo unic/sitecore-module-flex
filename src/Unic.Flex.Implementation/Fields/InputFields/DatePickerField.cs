@@ -52,6 +52,7 @@
         /// <value>
         /// The date format.
         /// </value>
+        [SitecoreIgnore]
         public virtual string DateFormat
         {
             get
@@ -66,6 +67,7 @@
         /// <value>
         /// The text value.
         /// </value>
+        [SitecoreIgnore]
         public override string TextValue
         {
             get
@@ -80,6 +82,7 @@
         /// <value>
         /// The name of the view.
         /// </value>
+        [SitecoreIgnore]
         public override string ViewName
         {
             get
@@ -94,6 +97,7 @@
         /// <value>
         /// The locale.
         /// </value>
+        [SitecoreIgnore]
         public virtual string Locale
         {
             get

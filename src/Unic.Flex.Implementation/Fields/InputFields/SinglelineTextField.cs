@@ -19,6 +19,20 @@
         public override string DefaultValue { get; set; }
 
         /// <summary>
+        /// Gets the name of the view.
+        /// </summary>
+        /// <value>
+        /// The name of the view.
+        /// </value>
+        [SitecoreIgnore]
+        public override string ViewName
+        {
+            get
+            {
+                return "Fields/InputFields/SinglelineText";
+            }
+        }
+        /// <summary>
         /// Binds the properties.
         /// </summary>
         public override void BindProperties()
@@ -28,20 +42,6 @@
             this.Attributes.Add("aria-multiline", false);
             this.Attributes.Add("role", "textbox");
             this.AddCssClass("flex_singletextfield");
-        }
-
-        /// <summary>
-        /// Gets the name of the view.
-        /// </summary>
-        /// <value>
-        /// The name of the view.
-        /// </value>
-        public override string ViewName
-        {
-            get
-            {
-                return "Fields/InputFields/SinglelineText";
-            }
         }
     }
 }

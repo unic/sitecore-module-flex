@@ -32,6 +32,7 @@
         /// <value>
         /// The items.
         /// </value>
+        [SitecoreIgnore]
         public virtual IList<string> Items
         {
             get
@@ -46,6 +47,7 @@
         /// <value>
         /// The name of the view.
         /// </value>
+        [SitecoreIgnore]
         public override string ViewName
         {
             get

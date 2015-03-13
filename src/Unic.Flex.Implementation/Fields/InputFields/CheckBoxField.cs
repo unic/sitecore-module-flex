@@ -39,6 +39,7 @@
         /// <value>
         /// The text value.
         /// </value>
+        [SitecoreIgnore]
         public override string TextValue
         {
             get
@@ -53,6 +54,7 @@
         /// <value>
         /// The name of the view.
         /// </value>
+        [SitecoreIgnore]
         public override string ViewName
         {
             get

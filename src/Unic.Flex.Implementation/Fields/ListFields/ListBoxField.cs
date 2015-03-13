@@ -18,6 +18,7 @@
         /// <value>
         /// The default value.
         /// </value>
+        [SitecoreIgnore]
         public override string[] DefaultValue
         {
             get
@@ -26,6 +27,31 @@
             }
         }
 
+        /// <summary>
+        /// Gets the name of the view.
+        /// </summary>
+        /// <value>
+        /// The name of the view.
+        /// </value>
+        [SitecoreIgnore]
+        public override string ViewName
+        {
+            get
+            {
+                return "Fields/ListFields/ListBox";
+            }
+        }
+
+        /// <summary>
+        /// Binds the properties.
+        /// </summary>
+        public override void BindProperties()
+        {
+            base.BindProperties();
+
+            this.AddCssClass("flex_multipleselectfield");
+        }
+        
         /// <summary>
         /// Sets the value.
         /// </summary>
@@ -46,30 +72,6 @@
             }
 
             base.SetValue(value);
-        }
-
-        /// <summary>
-        /// Gets the name of the view.
-        /// </summary>
-        /// <value>
-        /// The name of the view.
-        /// </value>
-        public override string ViewName
-        {
-            get
-            {
-                return "Fields/ListFields/ListBox";
-            }
-        }
-
-        /// <summary>
-        /// Binds the properties.
-        /// </summary>
-        public override void BindProperties()
-        {
-            base.BindProperties();
-
-            this.AddCssClass("flex_multipleselectfield");
         }
     }
 }

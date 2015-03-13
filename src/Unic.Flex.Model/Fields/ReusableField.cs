@@ -16,6 +16,7 @@
         /// The name of the view.
         /// </value>
         /// <exception cref="System.NotImplementedException">This field has no view</exception>
+        [SitecoreIgnore]
         public override string ViewName
         {
             get

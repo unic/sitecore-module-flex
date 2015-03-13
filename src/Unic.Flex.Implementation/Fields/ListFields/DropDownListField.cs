@@ -33,6 +33,7 @@
         /// <value>
         /// The items.
         /// </value>
+        [SitecoreIgnore]
         public override IList<ListItem> Items
         {
             get
@@ -56,6 +57,7 @@
         /// <value>
         /// The default value.
         /// </value>
+        [SitecoreIgnore]
         public override string DefaultValue
         {
             get
@@ -71,6 +73,7 @@
         /// <value>
         /// The name of the view.
         /// </value>
+        [SitecoreIgnore]
         public override string ViewName
         {
             get
@@ -85,6 +88,7 @@
         /// <value>
         ///   <c>true</c> if this instance is hidden; otherwise, <c>false</c>.
         /// </value>
+        [SitecoreIgnore]
         public override bool IsHidden
         {
             get

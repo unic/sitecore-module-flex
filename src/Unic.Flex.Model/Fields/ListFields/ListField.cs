@@ -39,6 +39,7 @@
         /// <value>
         /// The items.
         /// </value>
+        [SitecoreIgnore]
         public virtual IList<TType> Items
         {
             get
@@ -136,6 +137,7 @@
         /// <value>
         ///   <c>true</c> if this instance is hidden; otherwise, <c>false</c>.
         /// </value>
+        [SitecoreIgnore]
         public override bool IsHidden
         {
             get
@@ -182,6 +184,7 @@
         /// <value>
         /// The text value.
         /// </value>
+        [SitecoreIgnore]
         public override string TextValue
         {
             get
