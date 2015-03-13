@@ -19,9 +19,9 @@
         /// <returns>
         /// All real sections, for all steps or only for one
         /// </returns>
-        public static IEnumerable<StandardSection> GetSections(this IForm form, int stepNumber = 0)
+        public static IEnumerable<ISection> GetSections(this IForm form, int stepNumber = 0)
         {
-            if (form == null) return Enumerable.Empty<StandardSection>();
+            if (form == null) return Enumerable.Empty<ISection>();
             
             var steps = form.Steps;
             if (stepNumber > 0)

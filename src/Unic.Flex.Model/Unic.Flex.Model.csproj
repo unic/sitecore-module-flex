@@ -120,6 +120,7 @@
     <Compile Include="IItemBase.cs" />
     <Compile Include="Plugs\LoadPlugBase.cs" />
     <Compile Include="Plugs\SavePlugBase.cs" />
+    <Compile Include="Sections\ISection.cs" />
     <Compile Include="Specifications\Specification.cs" />
     <Compile Include="Plugs\ILoadPlug.cs" />
     <Compile Include="Plugs\ISavePlug.cs" />

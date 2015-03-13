@@ -55,6 +55,6 @@
         /// <value>
         /// The sections.
         /// </value>
-        IList<StandardSection> Sections { get; }
+        IList<ISection> Sections { get; }
     }
 }

@@ -117,7 +117,7 @@
             }
         }
 
-        protected virtual void MapSection(StandardSection section)
+        protected virtual void MapSection(ISection section)
         {
             // map the tooltip
             if (!string.IsNullOrWhiteSpace(section.TooltipTitle) && !string.IsNullOrWhiteSpace(section.TooltipText))

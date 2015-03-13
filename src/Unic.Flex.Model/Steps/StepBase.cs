@@ -14,7 +14,7 @@
         /// <summary>
         /// The sections
         /// </summary>
-        private IList<StandardSection> sections;
+        private IList<ISection> sections;
         
         /// <summary>
         /// Gets or sets the title.
@@ -50,7 +50,7 @@
         /// The sections.
         /// </value>
         [SitecoreReusableChildren(IsLazy = true, InferType = true)]
-        public virtual IEnumerable<StandardSection> LazySections { private get; set; }
+        public virtual IEnumerable<ISection> LazySections { private get; set; }
         
         /// <summary>
         /// Gets or sets a value indicating whether this step is active.
@@ -95,7 +95,7 @@
         /// The sections.
         /// </value>
         [SitecoreIgnore]
-        public virtual IList<StandardSection> Sections
+        public virtual IList<ISection> Sections
         {
             get
             {
