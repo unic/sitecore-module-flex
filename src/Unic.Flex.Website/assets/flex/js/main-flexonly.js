@@ -15378,7 +15378,14 @@ $.extend($.fn, {
 			$from = this.$element.find('[data-key="' + data.from + '"]'),
 			dependentsMatch = true;
 
-		if(data.value) {
+		if(data.url) {
+			// Field is managed by ajax
+			if (typeof key !== 'undefined') {
+				this._updateField($field, data.url, key);
+			} else {
+				$field.show();
+			}
+		} else {
 			_.each(data.value.split(','), _.bind(function(fromKey){
 				// only evaluate, if there is a match until now
 				if (dependentsMatch) {
@@ -15392,13 +15399,6 @@ $.extend($.fn, {
 				$field.show();
 			} else {
 				$field.hide();
-			}
-		} else if (data.url) {
-			// Field is managed by ajax
-			if (typeof key !== 'undefined') {
-				this._updateField($field, data.url, key);
-			} else {
-				$field.show();
 			}
 		}
 	};
