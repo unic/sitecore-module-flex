@@ -20,7 +20,7 @@
 
 <h1>@form.Title</h1>
 
-@foreach (var step in form.Steps.Where(s => !(s is Summary)))
+@foreach (var step in form.Steps.Where(s => !(s is Summary)).Where(step => step.Sections.Any(s => !s.IsHidden && s.Fields.Any(f => f.ShowInSummary && !f.IsHidden && !string.IsNullOrWhiteSpace(f.TextValue)))))
 {
     @Html.FlexComponent(m => step, "Mailers/SavePlug/Step", (string)ViewBag.Theme)
 }
