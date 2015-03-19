@@ -6,6 +6,7 @@
     using System.Web.Mvc;
     using Glass.Mapper.Sc.Configuration;
     using Glass.Mapper.Sc.Configuration.Attributes;
+    using Unic.Flex.Model.Components;
     using Unic.Flex.Model.DataProviders;
     using Unic.Flex.Model.GlassExtensions.Attributes;
     using Unic.Flex.Model.SortOrder;
@@ -16,7 +17,7 @@
     /// </summary>
     /// <typeparam name="TValue">The type of the value.</typeparam>
     /// <typeparam name="TType">The type of the data items.</typeparam>
-    public abstract class ListField<TValue, TType> : FieldBase<TValue> where TType : IDataItem
+    public abstract class ListField<TValue, TType> : FieldBase<TValue>, ICascadingDependency where TType : IDataItem
     {
         /// <summary>
         /// The items
