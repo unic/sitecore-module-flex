@@ -42,7 +42,7 @@
                 if (!this.IsCascadingField && this.items != null) return this.items;
 
                 this.items = base.Items;
-                if (this.AddEmptyOption && (!this.IsCascadingField || this.items.Any()))
+                if (this.AddEmptyOption)
                 {
                     this.items.Insert(0, new ListItem { Text = TranslationHelper.FlexText("Please choose"), Value = string.Empty });
                 }
