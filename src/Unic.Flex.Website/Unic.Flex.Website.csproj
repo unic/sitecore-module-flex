@@ -153,6 +153,8 @@
     <Compile Include="App_Start\GlassConfig.cs" />
     <Compile Include="Controllers\FlexController.cs" />
     <Compile Include="Controllers\FlexSpeakController.cs" />
+    <Compile Include="Models\CascadingFields\CascadingField.cs" />
+    <Compile Include="Models\CascadingFields\CascadingOption.cs" />
     <Compile Include="Models\FlexSpeak\GetAsyncTasks\AsyncTaks.cs" />
     <Compile Include="Models\FlexSpeak\GetAsyncTasks\AsyncTask.cs" />
     <Compile Include="Models\FlexSpeak\GetAvailableForms\DataRow.cs" />

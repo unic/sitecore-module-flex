@@ -8,6 +8,7 @@
     using System.Net;
     using System.Security.Cryptography;
     using System.Web.Mvc;
+    using Newtonsoft.Json;
     using Unic.Configuration;
     using Unic.Flex.Core.Attributes;
     using Unic.Flex.Core.Context;
@@ -20,10 +21,14 @@
     using Unic.Flex.Implementation.Database;
     using Unic.Flex.Implementation.Fields.InputFields;
     using Unic.Flex.Model.Configuration;
+    using Unic.Flex.Model.DataProviders;
+    using Unic.Flex.Model.Fields;
+    using Unic.Flex.Model.Fields.ListFields;
     using Unic.Flex.Model.Forms;
     using Unic.Flex.Model.Steps;
     using Unic.Flex.Model.Validators;
     using Unic.Flex.Model.ViewModels;
+    using Unic.Flex.Website.Models.CascadingFields;
     using Constants = Unic.Flex.Core.Definitions.Constants;
     using DependencyResolver = Unic.Flex.Core.DependencyInjection.DependencyResolver;
     using Profiler = Unic.Profiling.Profiler;
@@ -362,7 +367,7 @@
             }
 
             // get the key of the value
-            var key = Request.Form.AllKeys.FirstOrDefault(x => x.EndsWith("Value"));
+            var key = this.Request.Form.AllKeys.FirstOrDefault(x => x.EndsWith("Value"));
             if (string.IsNullOrWhiteSpace(key))
             {
                 this.logger.Warn(string.Format("No valid value provided to get data for auto complete field '{0}'", field), this);
@@ -380,17 +385,49 @@
         }
 
         /// <summary>
-        /// Get the new data for a cascading field.
+        /// Get the new data for a cascading field. This actually only works for listfields with string as value
+        /// an ListItem as data provider type.
         /// </summary>
         /// <param name="field">The field we want to retrieve data.</param>
         /// <returns>
         /// Json array with data to display
         /// </returns>
-        [HttpPost]
         public virtual ActionResult CascadingField(Guid field)
         {
-            // todo: return correct json
-            return this.Json("[]", JsonRequestBehavior.DenyGet);
+            // get the field
+            var fieldModel = this.formRepository.LoadItem<IField>(field) as ListField<string, ListItem>;
+            if (fieldModel == null)
+            {
+                this.logger.Warn(string.Format("Cascading field with id '{0}' was not found", field), this);
+                return this.Content("error");
+            }
+
+            // check if the field is a dependent field
+            if (!fieldModel.IsCascadingField)
+            {
+                this.logger.Warn(string.Format("Field with id '{0}' is not configured as cascading field", field), this);
+                return this.Content("error");
+            }
+
+            // set value property of the field models which are dependent
+            var collection = this.Request.QueryString;
+            var keys = collection.AllKeys.Where(k => k.EndsWith(".Value")).OrderByDescending(k => k).Skip(1).ToList();
+            var counter = 0;
+            var dependentField = fieldModel.DependentField as ListField<string, ListItem>;
+            while (dependentField != null)
+            {
+                if (counter >= keys.Count) break;
+
+                dependentField.SetValue(collection[keys[counter++]]);
+                dependentField = dependentField.DependentField as ListField<string, ListItem>;
+            }
+
+            // create the data
+            var data = new CascadingField { Options = fieldModel.Items.Select(i => new CascadingOption { Text = i.Text, Value = i.Value }) };
+
+            // create the response
+            this.Response.ContentType = "application/json";
+            return this.Content(JsonConvert.SerializeObject(data));
         }
 
         /// <summary>

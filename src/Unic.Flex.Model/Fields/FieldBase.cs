@@ -176,7 +176,7 @@
         /// Sets the value.
         /// </summary>
         /// <param name="value">The value.</param>
-        protected virtual void SetValue(object value)
+        public virtual void SetValue(object value)
         {
             this.Value = value != null ? (TValue)value : default(TValue);
         }

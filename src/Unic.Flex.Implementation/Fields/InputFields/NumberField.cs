@@ -80,7 +80,7 @@
         /// Sets the value.
         /// </summary>
         /// <param name="value">The value.</param>
-        protected override void SetValue(object value)
+        public override void SetValue(object value)
         {
             if (value == null)
             {

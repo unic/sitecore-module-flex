@@ -179,6 +179,12 @@
         void AddCssClass(string cssClass);
 
         /// <summary>
+        /// Sets the value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        void SetValue(object value);
+
+        /// <summary>
         /// Binds the properties.
         /// </summary>
         void BindProperties();
