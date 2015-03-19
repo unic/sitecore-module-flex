@@ -59,5 +59,12 @@
         /// Boolean value if everything was ok.
         /// </returns>
         bool ResetTaskById(int taskId);
+
+        /// <summary>
+        /// Deletes a specific task.
+        /// </summary>
+        /// <param name="taskId">The task identifier.</param>
+        /// <returns>Boolean value if everything was ok.</returns>
+        bool DeleteTaskById(int taskId);
     }
 }

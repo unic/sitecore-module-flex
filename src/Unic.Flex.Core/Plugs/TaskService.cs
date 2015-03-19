@@ -19,7 +19,6 @@
     using Unic.Flex.Model.Entities;
     using Unic.Flex.Model.Forms;
     using Unic.Flex.Model.Plugs;
-    using Form = Unic.Flex.Model.Entities.Form;
 
     /// <summary>
     /// Task service for executing plugs asynchronous.
@@ -195,6 +194,27 @@
             if (task == null) return false;
 
             task.NumberOfTries = 0;
+            this.unitOfWork.Save();
+            return true;
+        }
+
+        /// <summary>
+        /// Deletes a specific task.
+        /// </summary>
+        /// <param name="taskId">The task identifier.</param>
+        /// <returns>Boolean value if everything was ok.</returns>
+        public virtual bool DeleteTaskById(int taskId)
+        {
+            var task = this.unitOfWork.TaskRepository.Get(includeProperties: "Job").FirstOrDefault(t => t.Id == taskId);
+            if (task == null) return false;
+
+            var job = task.Job;
+            job.Tasks.Remove(task);
+            if (!job.Tasks.Any())
+            {
+                this.unitOfWork.JobRepository.Delete(job);
+            }
+
             this.unitOfWork.Save();
             return true;
         }

@@ -125,6 +125,17 @@
         }
 
         /// <summary>
+        /// Deletes the asynchronous task from the database.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>JSON with boolean value</returns>
+        [AdministratorOnly]
+        public ActionResult DeleteAsyncTask(int id)
+        {
+            return this.Json(this.taskService.DeleteTaskById(id), JsonRequestBehavior.AllowGet);
+        }
+
+        /// <summary>
         /// Gets all available forms in the different repositories.
         /// </summary>
         /// <returns>Json result</returns>

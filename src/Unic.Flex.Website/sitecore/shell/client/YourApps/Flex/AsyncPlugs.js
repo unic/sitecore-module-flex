@@ -28,7 +28,7 @@ define(["sitecore"], function (Sitecore) {
           this.Tasks.viewModel.getData(requestOptions);
       },
 
-      reset: function (id) {
+      resetTask: function (id) {
 
           $.ajax({
               url: "/api/sitecore/FlexSpeak/ResetAsyncTask",
@@ -37,6 +37,22 @@ define(["sitecore"], function (Sitecore) {
                   globalAppRef.refresh();
               },
               error : function() {
+                  alert('An error occurred!');
+              }
+          });
+      },
+
+      deleteTask: function (id) {
+
+          if (!confirm('Are you sure you want to delete this task?')) return false;
+
+          $.ajax({
+              url: "/api/sitecore/FlexSpeak/DeleteAsyncTask",
+              data: { id: id },
+              success: function () {
+                  globalAppRef.refresh();
+              },
+              error: function () {
                   alert('An error occurred!');
               }
           });
