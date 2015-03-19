@@ -15443,7 +15443,8 @@ $.extend($.fn, {
 
 		var from = $field.data(this.options.dataattribute + '-dependent').from.split(','),
 			data = {},
-			$fieldInput = $field.find(':input');
+			$fieldInput = $field.find(':input'),
+			xhr;
 
 		if(!_.contains(from, key)) {
 			return;
@@ -15460,15 +15461,19 @@ $.extend($.fn, {
 			$fieldInput.data('runningrequest').abort();
 		}
 
-		var xhr = $.ajax({
+		xhr = $.ajax({
 			method: 'get',
 			url: url,
 			data: data,
 			success: _.bind(function(response){
-				var $newField = $(response);
-				$field.replaceWith($newField);
-				$newField.show().trigger('change');
-				$document.trigger('ajax_loaded', $newField);
+				var $options = $field.find('select').find('option');
+				_.each(response.options, function(option, i) {
+					// console.log(option, i);
+					$options[i].value = option.value;
+					$options[i].text = option.text;
+				});
+				$field.trigger('change');
+				$document.trigger('ajax_loaded', $field);
 			}, this)
 		});
 		$fieldInput.data('runningrequest', xhr);
