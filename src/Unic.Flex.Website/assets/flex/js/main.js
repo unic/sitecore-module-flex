@@ -16809,14 +16809,14 @@ return datepicker.regional['it-CH'];
 				$field.show();
 			}
 		} else {
+			// console.log($field[0]);
 			_.each(data.value.split(','), _.bind(function(fromKey){
 				// only evaluate, if there is a match until now
 				if (dependentsMatch) {
-					dependentsMatch = $from.find(':checked').filter(_.bind(this._filterCaseInsensitiv, this, fromKey)).length ||
-						$from.find(':selected').filter(_.bind(this._filterCaseInsensitiv, this, fromKey)).length ||
-						$from.find(':text').filter(_.bind(this._filterCaseInsensitiv, this, fromKey)).length;
+					dependentsMatch = $from.find(':checkbox, :radio:checked, :selected, :text').filter(_.bind(this._filterCaseInsensitiv, this, fromKey)).length;
 				}
 			}, this));
+
 
 			if (dependentsMatch) {
 				$field.show();
@@ -16835,7 +16835,23 @@ return datepicker.regional['it-CH'];
 	 * @private
 	 */
 	Plugin.prototype._filterCaseInsensitiv = function(key, index, element) {
-		return element.value.toLowerCase() === key.toLowerCase();
+		var $element = $(element),
+			isCheckbox = $element.is(':checkbox'),
+			isChecked = $element.is(':checked'),
+			keyLow = key.toLowerCase(),
+			matches = false;
+
+		if (isCheckbox && (keyLow === 'false' || keyLow === 'true')) {
+			matches = isChecked.toString().toLowerCase() === keyLow;
+		} else {
+			if ( isCheckbox && !isChecked ) {
+				matches = false;
+			} else {
+				matches = element.value.toLowerCase() === keyLow;
+			}
+		}
+
+		return matches;
 	};
 
 	/**
@@ -16868,7 +16884,7 @@ return datepicker.regional['it-CH'];
 		}
 
 		var xhr = $.ajax({
-			method: 'post',
+			method: 'get',
 			url: url,
 			data: data,
 			success: _.bind(function(response){
