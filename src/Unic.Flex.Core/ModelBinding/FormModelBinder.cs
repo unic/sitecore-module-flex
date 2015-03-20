@@ -100,7 +100,7 @@
             }
 
             var context = DependencyResolver.Resolve<IFlexContext>();
-            this.viewMapper.SimpleMap(context);
+            this.viewMapper.Map(context);
             return context.Form;
         }
     }

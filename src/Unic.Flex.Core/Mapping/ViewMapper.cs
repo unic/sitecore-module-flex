@@ -59,43 +59,14 @@
         }
 
         /// <summary>
-        /// Do a simple map with just needed properties. This is called form the model binder.
-        /// </summary>
-        /// <param name="context">The context.</param>
-        /// <exception cref="System.Exception">Could not found current step in linked step list</exception>
-        public virtual void SimpleMap(IFlexContext context)
-        {
-            if (context == null || context.Form == null || context.Form.ActiveStep == null) return;
-
-            Profiling.Profiler.OnStart(this, "Flex :: Simple map current context for view");
-
-            // get the form
-            var form = context.Form;
-            
-            // get linked steps
-            var linkedSteps = new LinkedList<IStep>(form.Steps);
-            var currentStep = linkedSteps.Find(form.ActiveStep);
-            if (currentStep == null) throw new Exception("Could not found current step in linked step list");
-
-            // handle multistep
-            var multiStep = form.ActiveStep as MultiStep;
-            if (multiStep != null)
-            {
-                multiStep.NextStepUrl = currentStep.Next != null ? currentStep.Next.Value.GetUrl(context) : string.Empty;
-            }
-
-            Profiling.Profiler.OnEnd(this, "Flex :: Simple map current context for view");
-        }
-
-        /// <summary>
         /// Map all properties needed.
         /// </summary>
         /// <param name="context">The context.</param>
-        public virtual void FullMap(IFlexContext context)
+        public virtual void Map(IFlexContext context)
         {
             if (context == null || context.Form == null || context.Form.ActiveStep == null) return;
 
-            Profiling.Profiler.OnStart(this, "Flex :: Full map current context for view");
+            Profiling.Profiler.OnStart(this, "Flex :: Map current context for view");
 
             // get config
             this.optionalLabelText = this.configurationManager.Get<GlobalConfiguration>(c => c.OptionalFieldsLabelText);
@@ -114,7 +85,7 @@
                 }
             }
 
-            Profiling.Profiler.OnEnd(this, "Flex :: Full map current context for view");
+            Profiling.Profiler.OnEnd(this, "Flex :: Map current context for view");
         }
 
         /// <summary>
