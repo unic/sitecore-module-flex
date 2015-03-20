@@ -411,7 +411,7 @@
 
             // set value property of the field models which are dependent
             var collection = this.Request.QueryString;
-            var keys = collection.AllKeys.Where(k => k.EndsWith(".Value")).OrderByDescending(k => k).Skip(1).ToList();
+            var keys = collection.AllKeys.Where(k => k.EndsWith(".Value")).OrderByDescending(k => k).ToList();
             var counter = 0;
             var dependentField = fieldModel.DependentField as ListField<string, ListItem>;
             while (dependentField != null)
