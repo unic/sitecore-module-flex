@@ -28,6 +28,13 @@ or
 > Install-Package Unic.Flex.SimpleInjector
 
 
+Items
+-----
+The serialized items were copied to the "serialization" folder in the root directory. Please copy
+these items into your data directory (or adapt the serialization folder path) and update your
+database.
+
+
 
 Assembly redirects
 ------------------
@@ -65,8 +72,6 @@ Install the database in the data directory and add the connection string in the 
 
 	<add name="Flex" connectionString="Data Source=localhost;Initial Catalog=flex_data;Integrated Security=True" providerName="System.Data.SqlClient" />
 	
-Items
------
-Please manually copy the serialized items in the serialization folder and sync the database. This has do be done after each update of Flex.
+
 
 
