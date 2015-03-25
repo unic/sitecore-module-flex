@@ -35,6 +35,14 @@ these items into your data directory (or adapt the serialization folder path) an
 database.
 
 
+Form Repository
+---------------
+You need to add a form repository in the content tree. The form repository must be created based
+on the following branch template:
+
+/sitecore/templates/Branches/Flex/Global/Repository Root
+
+
 
 Assembly redirects
 ------------------
