@@ -10,10 +10,22 @@
 
 Installation Prerequisites
 --------------------------
-Flex depends on the Unic configuration module, which must be installed on
-the Sitecore instance before running Flex. It can be installed over NuGet:
+Flex depends on the Unic configuration module, which must be installed on the Sitecore instance
+before running Flex. It can be installed over NuGet:
 
 > Install-Package Unic.Configuration.Sitecore7
+
+
+IoC container
+-------------
+You must install an IoC container framework for Flex. Currently there are containers available
+for Ninject and SimpleInjector, which can be installed over NuGet:
+
+> Install-Package Unic.Flex.Ninect
+
+or
+
+> Install-Package Unic.Flex.SimpleInjector
 
 
 
