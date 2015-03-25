@@ -133,7 +133,6 @@
     <Reference Include="Unic.Configuration, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Unic.Configuration.Sitecore7.2.0.0\lib\net45\Unic.Configuration.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Unic.Profiling, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -197,6 +196,7 @@
     <Content Include="assets\flex\js\main.min.js" />
     <Content Include="assets\flex\js\styling.js" />
     <Content Include="assets\flex\js\styling.min.js" />
+    <None Include="readme.txt" />
     <Content Include="sitecore\shell\client\YourApps\Flex\AsyncPlugs.js" />
     <Content Include="sitecore\shell\client\YourApps\Flex\Overview.js" />
     <Content Include="Views\Modules\Flex\Default\Form.cshtml" />
@@ -338,7 +338,7 @@
     <Content Include="Views\Modules\Flex\Default\Fields\InputFields\DatePicker.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Config\Include\Unic.Configuration.config" />
+    <None Include="App_Config\Include\Unic.Configuration.config" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

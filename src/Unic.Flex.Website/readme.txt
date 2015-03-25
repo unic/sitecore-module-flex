@@ -1,6 +1,21 @@
-***********************
-POST INSTALLATION TASKS
-***********************
+  
+  ______   _        ______  __   __
+ |  ____| | |      |  ____| \ \ / /
+ | |__    | |      | |__     \ V / 
+ |  __|   | |      |  __|     > <  
+ | |      | |____  | |____   / . \ 
+ |_|      |______| |______| /_/ \_\
+                                   
+                                   
+
+Installation Prerequisites
+--------------------------
+Flex depends on the Unic configuration module, which must be installed on
+the Sitecore instance before running Flex. It can be installed over NuGet:
+
+> Install-Package Unic.Configuration.Sitecore7
+
+
 
 Assembly redirects
 ------------------
