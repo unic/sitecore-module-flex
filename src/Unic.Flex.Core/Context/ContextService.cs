@@ -64,7 +64,7 @@
             var form = this.formRepository.LoadForm(dataSource, useVersionCountDisabler);
             if (form == null)
             {
-                this.logger.Warn(string.Format("Could not load form with datasource '{0}'", dataSource), this);
+                this.logger.Warn(string.Format("Could not load form with datasource '{0}', maybe it's not available in all languages as the item containing the form", dataSource), this);
                 Profiler.OnEnd(this, "Flex :: Load form from datasource");
                 return null;
             }
