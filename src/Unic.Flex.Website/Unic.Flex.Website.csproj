@@ -196,7 +196,7 @@
     <Content Include="assets\flex\js\main.min.js" />
     <Content Include="assets\flex\js\styling.js" />
     <Content Include="assets\flex\js\styling.min.js" />
-    <Content Include="readme.txt" />
+    <None Include="readme.txt" />
     <Content Include="sitecore\shell\client\YourApps\Flex\AsyncPlugs.js" />
     <Content Include="sitecore\shell\client\YourApps\Flex\Overview.js" />
     <Content Include="Views\Modules\Flex\Default\Form.cshtml" />
