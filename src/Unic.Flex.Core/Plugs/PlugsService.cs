@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using System.Web;
     using Sitecore.Diagnostics;
     using Unic.Configuration;
     using Unic.Flex.Core.Context;
@@ -63,7 +64,8 @@
             if (form == null) return;
             
             // check if we need to execute the load plugs -> only the first time
-            if (this.userDataRepository.IsFormStored(form.Id)) return;
+            if (HttpContext.Current == null || HttpContext.Current.Request.HttpMethod != "GET"
+                || this.userDataRepository.IsFormStored(form.Id)) return;
 
             foreach (var plug in form.LoadPlugs)
             {
