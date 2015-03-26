@@ -171,7 +171,6 @@
     <Content Include="assets\flex\css\styling.css.min.map" />
     <Content Include="assets\flex\css\theme.css.map" />
     <Content Include="assets\flex\css\theme.css.min.map" />
-    <Content Include="C:\Users\kevin.brechbuehl\Desktop\readme.pdf" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -197,6 +196,7 @@
     <Content Include="assets\flex\js\main.min.js" />
     <Content Include="assets\flex\js\styling.js" />
     <Content Include="assets\flex\js\styling.min.js" />
+    <Content Include="readme.txt" />
     <Content Include="sitecore\shell\client\YourApps\Flex\AsyncPlugs.js" />
     <Content Include="sitecore\shell\client\YourApps\Flex\Overview.js" />
     <Content Include="Views\Modules\Flex\Default\Form.cshtml" />
