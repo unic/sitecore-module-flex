@@ -16599,6 +16599,7 @@ return datepicker.regional['it-CH'];
 		this._initDependentFields();
 		this._initValidation();
 		this._initMultistep();
+
 		this._initAllCheckbox();
 
 		if (!Modernizr.placeholder && typeof($.fn.placeholder) === 'function' && this.options.initplaceholder) {
@@ -16808,6 +16809,22 @@ return datepicker.regional['it-CH'];
 			} else {
 				$field.show();
 			}
+
+			// OrT, https://jira.unic.com/browse/POSTWEPP-4063?focusedCommentId=688489
+			// Hide select fields...
+			if ($from.find(':input').val().length) {
+				$field.show();
+			} else {
+				$field.hide();
+				$field
+					// ... whose options...
+					.find('option')
+						// ... have value
+						.filter(function(index, option){
+							return option.value.length;
+						})
+					.remove();
+			}
 		} else {
 			// console.log($field[0]);
 			_.each(data.value.split(','), _.bind(function(fromKey){
@@ -16816,7 +16833,6 @@ return datepicker.regional['it-CH'];
 					dependentsMatch = $from.find(':checkbox, :radio:checked, :selected, :text').filter(_.bind(this._filterCaseInsensitiv, this, fromKey)).length;
 				}
 			}, this));
-
 
 			if (dependentsMatch) {
 				$field.show();
@@ -16865,20 +16881,33 @@ return datepicker.regional['it-CH'];
 	Plugin.prototype._updateField = function($field, url, key) {
 
 		var from = $field.data(this.options.dataattribute + '-dependent').from.split(','),
-			data = {},
 			$fieldInput = $field.find(':input'),
-			xhr;
+			xhr,
+			populateData = _.bind(function(from) {
+				var data1 = {};
+				_.each(from, _.bind(function(fromKey){
+					var $field = this.$element.find('[data-key=' + fromKey + ']'),
+						$input = $field.find(':input'),
+						name = $input.attr('name'),
+						hasDependent = typeof $field.data(this.options.dataattribute + '-dependent') !== 'undefined',
+						from = hasDependent ? $field.data(this.options.dataattribute + '-dependent').from.split(',') : undefined;
+
+					data1[name] = $input.val();
+					if ($.isArray(from)) {
+						$.extend(data, data1, populateData(from));
+					}
+				}, this));
+				//data1[$fieldInput.attr('name')] = $fieldInput.val();
+				return data1;
+			}, this),
+			data = {};
 
 		if(!_.contains(from, key)) {
 			return;
 		}
 
-		_.each(from, _.bind(function(fromKey){
-			var $input = this.$element.find('[data-key=' + fromKey + ']').find(':input'),
-				name = $input.attr('name');
-			data[name] = $input.val();
-		}, this));
-		data[$fieldInput.attr('name')] = $fieldInput.val();
+		$.extend(data, populateData(from));
+		//console.log(data);
 
 		if ($fieldInput.data('runningrequest')) {
 			$fieldInput.data('runningrequest').abort();
@@ -16889,14 +16918,50 @@ return datepicker.regional['it-CH'];
 			url: url,
 			data: data,
 			success: _.bind(function(response){
-				var $options = $field.find('select').find('option');
-				_.each(response.options, function(option, i) {
-					// console.log(option, i);
-					$options[i].value = option.value;
-					$options[i].text = option.text;
-				});
-				$field.trigger('change');
-				$document.trigger('ajax_loaded', $field);
+				var options = '',
+					optionSelected = false,
+					key,
+					errorList,
+					validator = this.$element.validate(),
+					$options = $field.find('select').find('option');
+
+				// Remove options with value
+				$options.filter(function(i,option){ return option.value.length; }).remove();
+
+				if ( 'options' in response && response.options.length ) {
+					// Append options to the select
+					_.each(response.options, function(option) {
+						options += '<option ';
+						options += 'value="' + option.value + '"';
+						options += 'selected' in option && option.selected ? ' selected="selected"' : '';
+						options += '>' + option.text + '</option>';
+						optionSelected = 'selected' in option && option.selected ? true : optionSelected;
+					});
+					$field.find('select').append(options); /*.show().trigger('change');*/
+
+					key = optionSelected ? $field.data().key : undefined;
+
+					// Update dependents visibility
+					this.$element.find('[data-' + this.options.dataattribute + '-dependent]').each(_.bind(this._handleDependents, this, key));
+
+					//Reset summary errors messages
+					this.$element.find('.validation-summary-errors')
+						.addClass('validation-summary-valid')
+						.removeClass('validation-summary-errors');
+
+					$document.trigger('ajax_loaded', $field);
+				} else {
+					// Show some kind of error
+					errorList = {
+						element: $field.find(':input').get(0),
+						message: response.errorMessage
+					};
+					validator.errorList = [errorList];
+					// this.$element.validate();
+					// $.validator.unobtrusive.parse(this.$element);
+					$field.hide();
+					$( this.$element ).triggerHandler( 'invalid-form', [ validator ]);
+				}
 			}, this)
 		});
 		$fieldInput.data('runningrequest', xhr);
