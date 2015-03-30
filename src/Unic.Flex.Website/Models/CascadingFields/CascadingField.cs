@@ -16,6 +16,15 @@
         /// The options.
         /// </value>
         [DataMember(Name = "options")]
-        public IEnumerable<CascadingOption> Options { get; set; }
+        public virtual IEnumerable<CascadingOption> Options { get; set; }
+
+        /// <summary>
+        /// Gets or sets the error message.
+        /// </summary>
+        /// <value>
+        /// The error message.
+        /// </value>
+        [DataMember(Name = "errorMessage", EmitDefaultValue = false)]
+        public virtual string ErrorMessage { get; set; }
     }
 }

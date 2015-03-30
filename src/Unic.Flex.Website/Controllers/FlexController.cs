@@ -423,7 +423,9 @@
             }
 
             // create the data
-            var data = new CascadingField { Options = fieldModel.Items.Select(i => new CascadingOption { Text = i.Text, Value = i.Value }) };
+            var data = new CascadingField { Options = fieldModel.Items.Select(i => new CascadingOption { Text = i.Text, Value = i.Value, Selected = i.Selected }) };
+
+            data.ErrorMessage = "lala";
 
             // create the response
             this.Response.ContentType = "application/json";

@@ -15,7 +15,7 @@
         /// The text.
         /// </value>
         [DataMember(Name = "text")]
-        public string Text { get; set; }
+        public virtual string Text { get; set; }
 
         /// <summary>
         /// Gets or sets the value.
@@ -24,6 +24,15 @@
         /// The value.
         /// </value>
         [DataMember(Name = "value")]
-        public string Value { get; set; }
+        public virtual string Value { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="CascadingOption"/> is selected.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if selected; otherwise, <c>false</c>.
+        /// </value>
+        [DataMember(Name = "selected")]
+        public virtual bool Selected { get; set; }
     }
 }
