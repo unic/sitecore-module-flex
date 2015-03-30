@@ -43,14 +43,6 @@ connection string into "ConnectionStrings.config":
     <add name="Flex" connectionString="Data Source=localhost;Initial Catalog=flex_data;Integrated Security=True" providerName="System.Data.SqlClient" />
 
 
-Form Repository
----------------
-You need to add a form repository in the content tree. The form repository must be created based
-on the following branch template:
-
-    /sitecore/templates/Branches/Flex/Global/Repository Root
-
-
 Assets
 ------
 Flex depends on several assets. There are partial views available to include these. Please add
@@ -71,3 +63,19 @@ To enable client side validation, add the following nodes to the <appSettings>-n
 
     <add key="ClientValidationEnabled" value="true" />
     <add key="UnobtrusiveJavaScriptEnabled" value="true" />
+
+
+Form Repository
+---------------
+You need to add a form repository in the content tree. The form repository must be created based
+on the following branch template:
+
+    /sitecore/templates/Branches/Flex/Global/Repository Root
+
+
+Allow Rendering in Placeholder Settings
+---------------------------------------
+To add a form in the Page Editor, the the following rendering has to be enabled in your placeholder
+settings:
+
+	/sitecore/layout/Renderings/Flex/Flex Form
