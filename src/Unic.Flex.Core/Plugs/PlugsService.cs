@@ -17,11 +17,6 @@
     public class PlugsService : IPlugsService
     {
         /// <summary>
-        /// The user data repository
-        /// </summary>
-        private readonly IUserDataRepository userDataRepository;
-
-        /// <summary>
         /// The logger
         /// </summary>
         private readonly ILogger logger;
@@ -39,13 +34,11 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="PlugsService" /> class.
         /// </summary>
-        /// <param name="userDataRepository">The user data repository.</param>
         /// <param name="logger">The logger.</param>
         /// <param name="configurationManager">The configuration manager.</param>
         /// <param name="taskService">The task service.</param>
-        public PlugsService(IUserDataRepository userDataRepository, ILogger logger, IConfigurationManager configurationManager, ITaskService taskService)
+        public PlugsService(ILogger logger, IConfigurationManager configurationManager, ITaskService taskService)
         {
-            this.userDataRepository = userDataRepository;
             this.logger = logger;
             this.configurationManager = configurationManager;
             this.taskService = taskService;
