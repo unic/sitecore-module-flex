@@ -189,6 +189,7 @@
     <Content Include="assets\flex\css\styling.min.css" />
     <Content Include="assets\flex\css\theme.css" />
     <Content Include="assets\flex\css\theme.min.css" />
+    <Content Include="assets\flex\images\sprite.png" />
     <Content Include="assets\flex\js\head.js" />
     <Content Include="assets\flex\js\head.min.js" />
     <Content Include="assets\flex\js\main-flexonly.js" />
