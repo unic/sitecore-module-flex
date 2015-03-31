@@ -65,7 +65,7 @@
             
             // check if we need to execute the load plugs -> only the first time
             if (HttpContext.Current == null || HttpContext.Current.Request.HttpMethod != "GET"
-                || this.userDataRepository.IsFormStored(form.Id)) return;
+                || form.ActiveStep.StepNumber != 1) return;
 
             foreach (var plug in form.LoadPlugs)
             {
