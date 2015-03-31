@@ -15384,13 +15384,17 @@ $.extend($.fn, {
 			if (typeof key !== 'undefined') {
 				this._updateField($field, data.url, key);
 			} else {
-				$field.show();
+				if ( $field.find('option').filter(function(index, option){ return option.value.length; }).length ) {
+					$field.show();
+				}
 			}
 
 			// OrT, https://jira.unic.com/browse/POSTWEPP-4063?focusedCommentId=688489
 			// Hide select fields...
 			if ($from.find(':input').val().length) {
-				$field.show();
+				if ( $field.find('option').filter(function(index, option){ return option.value.length; }).length ) {
+					$field.show();
+				}
 			} else {
 				$field.hide();
 				$field
@@ -15503,9 +15507,9 @@ $.extend($.fn, {
 					$options = $field.find('select').find('option');
 
 				// Remove options with value
-				$options.filter(function(i,option){ return option.value.length; }).remove();
+				$options.remove();
 
-				if ( 'options' in response && response.options.length ) {
+				if ( 'options' in response ) {
 					// Append options to the select
 					_.each(response.options, function(option) {
 						options += '<option ';
