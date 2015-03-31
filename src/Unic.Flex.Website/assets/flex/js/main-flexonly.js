@@ -15383,29 +15383,20 @@ $.extend($.fn, {
 			// Field is managed by ajax
 			if (typeof key !== 'undefined') {
 				this._updateField($field, data.url, key);
-			} else {
-				if ( $field.find('option').filter(function(index, option){ return option.value.length; }).length ) {
-					$field.show();
-				}
-			}
-
-			// OrT, https://jira.unic.com/browse/POSTWEPP-4063?focusedCommentId=688489
-			// Hide select fields...
-			if ($from.find(':input').val().length) {
-				if ( $field.find('option').filter(function(index, option){ return option.value.length; }).length ) {
-					$field.show();
-				}
+			} else if ( $from.find(':input').val().length && $field.find('option').filter(function(index, option){ return option.value.length; }).length ) {
+				$field.show();
 			} else {
 				$field.hide();
-				$field
+				/*$field
 					// ... whose options...
 					.find('option')
-						// ... have value
-						.filter(function(index, option){
-							return option.value.length;
-						})
-					.remove();
+					// ... have value
+					.filter(function(index, option){
+						return option.value.length;
+					})
+					.remove();*/
 			}
+
 		} else {
 			// console.log($field[0]);
 			_.each(data.value.split(','), _.bind(function(fromKey){
