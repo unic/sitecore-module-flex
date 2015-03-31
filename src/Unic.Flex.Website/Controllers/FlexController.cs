@@ -423,9 +423,11 @@
             }
 
             // create the data
-            var data = new CascadingField { Options = fieldModel.Items.Select(i => new CascadingOption { Text = i.Text, Value = i.Value, Selected = i.Selected }) };
-
-            data.ErrorMessage = "lala";
+            var data = new CascadingField { Options = fieldModel.Items.Select(i => new CascadingOption { Text = i.Text, Value = i.Value, Selected = i.Selected }).ToList() };
+            if (data.Options != null && data.Options.Any() && !data.Options.Any(o => o.Selected))
+            {
+                data.Options.First().Selected = true;
+            }
 
             // create the response
             this.Response.ContentType = "application/json";
