@@ -424,7 +424,7 @@
 
             // create the data
             var data = new CascadingField { Options = fieldModel.Items.Select(i => new CascadingOption { Text = i.Text, Value = i.Value, Selected = i.Selected }).ToList() };
-            if (data.Options != null && data.Options.Any() && !data.Options.Any(o => o.Selected))
+            if (data.Options != null && data.Options.Any() && !data.Options.Any(o => o.Selected) && !string.IsNullOrWhiteSpace(data.Options.First().Value))
             {
                 data.Options.First().Selected = true;
             }
