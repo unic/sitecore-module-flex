@@ -1,26 +1,33 @@
 ----item----
 version: 1
-id: {1484DE3F-BFC7-4E1B-88F1-21A712BEF74A}
+id: {4D043FF8-AFB3-4DA0-A9B5-FAE5268FF00E}
 database: master
-path: /sitecore/templates/Flex/Sections/Reusable Section/Form Configuration
-parent: {773FF85E-C512-4825-A4EA-1FFB181525C9}
-name: Form Configuration
+path: /sitecore/templates/Flex/Global/Standard Content Template/__Standard Values
+parent: {166D93D4-7AA0-4F56-8210-650A2D966959}
+name: __Standard Values
 master: {00000000-0000-0000-0000-000000000000}
-template: {E269FBB5-3750-427A-9149-7AA950B49301}
-templatekey: Template section
+template: {166D93D4-7AA0-4F56-8210-650A2D966959}
+templatekey: Standard Content Template
 
 ----version----
 language: en
 version: 1
-revision: ab59f94f-5d28-4e10-96bc-02a188476b52
+revision: d5e5353b-7d2d-4fc8-99b1-7a861f6c94db
 
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\admin
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
 name: __Created
 key: __created
 content-length: 15
 
-20140428T133451
+20150409T091030
 ----field----
 field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
 name: __Created by
@@ -34,14 +41,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-ab59f94f-5d28-4e10-96bc-02a188476b52
+d5e5353b-7d2d-4fc8-99b1-7a861f6c94db
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20150409T091605:635641677651523624
+20150409T091030:635641674308618282
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
