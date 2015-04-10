@@ -4,7 +4,7 @@
     using System.Linq;
     using Newtonsoft.Json.Linq;
     using Unic.Flex.Model.DataProviders;
-    using Unic.Flex.Model.DomainModel.Fields.ListFields;
+    using Unic.Flex.Model.Fields.ListFields;
 
     /// <summary>
     /// Checkbox list field
@@ -18,6 +18,7 @@
         /// <value>
         /// The default value.
         /// </value>
+        [SitecoreIgnore]
         public override string[] DefaultValue
         {
             get
@@ -27,10 +28,35 @@
         }
 
         /// <summary>
+        /// Gets the name of the view.
+        /// </summary>
+        /// <value>
+        /// The name of the view.
+        /// </value>
+        [SitecoreIgnore]
+        public override string ViewName
+        {
+            get
+            {
+                return "Fields/ListFields/CheckBoxList";
+            }
+        }
+
+        /// <summary>
+        /// Binds the properties.
+        /// </summary>
+        public override void BindProperties()
+        {
+            base.BindProperties();
+
+            this.AddCssClass("flex_checkboxgroup");
+        }
+
+        /// <summary>
         /// Sets the value.
         /// </summary>
         /// <param name="value">The value.</param>
-        protected override void SetValue(object value)
+        public override void SetValue(object value)
         {
             if (value is string)
             {

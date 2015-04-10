@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Unic.Flex.Model.GlassExtensions.Attributes;
-    using Unic.Flex.Model.Validation;
+    using Unic.Flex.Model.Validators;
 
     /// <summary>
     /// Validator for validating numbers.

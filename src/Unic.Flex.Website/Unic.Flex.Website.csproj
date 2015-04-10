@@ -41,20 +41,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=3.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+    <Reference Include="Castle.Core, Version=3.2.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.dll</HintPath>
+      <HintPath>..\..\packages\Castle.Core.3.2.0\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
-    <Reference Include="AutoMapper.Net4, Version=3.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+    <Reference Include="Castle.Windsor, Version=3.2.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.Net4.dll</HintPath>
-    </Reference>
-    <Reference Include="Castle.Core">
-      <HintPath>..\..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Castle.Windsor, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Castle.Windsor.3.3.0\lib\net45\Castle.Windsor.dll</HintPath>
+      <HintPath>..\..\packages\Castle.Windsor.3.2.0\lib\net45\Castle.Windsor.dll</HintPath>
     </Reference>
     <Reference Include="Glass.Mapper, Version=3.0.14.26, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -81,17 +74,13 @@
       <Private>True</Private>
       <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
-    </Reference>
-    <Reference Include="Ninject.Web.Common, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Ninject.Web.Common.3.2.2.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Ninject.Web.Mvc, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Ninject.MVC5.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.Kernel, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -101,6 +90,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Sitecore.Mvc.7.2.140526.49\lib\Sitecore.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -144,7 +134,6 @@
     <Reference Include="Unic.Configuration, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Unic.Configuration.Sitecore7.2.0.0\lib\net45\Unic.Configuration.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Unic.Profiling, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -160,14 +149,29 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\AutoMapperConfig.cs" />
-    <Compile Include="App_Start\FlexBootstrapper.cs" />
+    <Compile Include="App_Start\Bootstrapper.cs" />
     <Compile Include="App_Start\GlassConfig.cs" />
-    <Compile Include="App_Start\NinjectConfig.cs" />
     <Compile Include="Controllers\FlexController.cs" />
+    <Compile Include="Controllers\FlexSpeakController.cs" />
+    <Compile Include="Models\CascadingFields\CascadingField.cs" />
+    <Compile Include="Models\CascadingFields\CascadingOption.cs" />
+    <Compile Include="Models\FlexSpeak\GetAsyncTasks\AsyncTaks.cs" />
+    <Compile Include="Models\FlexSpeak\GetAsyncTasks\AsyncTask.cs" />
+    <Compile Include="Models\FlexSpeak\GetAvailableForms\DataRow.cs" />
+    <Compile Include="Models\FlexSpeak\GetAvailableForms\DataSet.cs" />
+    <Compile Include="Models\FlexSpeak\GetAvailableForms\DataWrapper.cs" />
+    <Compile Include="Models\FlexSpeak\GetAvailableForms\MainWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\flex\css\globals.css.map" />
+    <Content Include="assets\flex\css\globals.css.min.map" />
+    <Content Include="assets\flex\css\main.css.map" />
+    <Content Include="assets\flex\css\main.css.min.map" />
+    <Content Include="assets\flex\css\styling.css.map" />
+    <Content Include="assets\flex\css\styling.css.min.map" />
+    <Content Include="assets\flex\css\theme.css.map" />
+    <Content Include="assets\flex\css\theme.css.min.map" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -177,6 +181,26 @@
     <None Include="App_Config\Include\Serialization.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\flex\css\globals.css" />
+    <Content Include="assets\flex\css\globals.min.css" />
+    <Content Include="assets\flex\css\main.css" />
+    <Content Include="assets\flex\css\main.min.css" />
+    <Content Include="assets\flex\css\styling.css" />
+    <Content Include="assets\flex\css\styling.min.css" />
+    <Content Include="assets\flex\css\theme.css" />
+    <Content Include="assets\flex\css\theme.min.css" />
+    <Content Include="assets\flex\images\sprite.png" />
+    <Content Include="assets\flex\js\head.js" />
+    <Content Include="assets\flex\js\head.min.js" />
+    <Content Include="assets\flex\js\main-flexonly.js" />
+    <Content Include="assets\flex\js\main-flexonly.min.js" />
+    <Content Include="assets\flex\js\main.js" />
+    <Content Include="assets\flex\js\main.min.js" />
+    <Content Include="assets\flex\js\styling.js" />
+    <Content Include="assets\flex\js\styling.min.js" />
+    <None Include="readme.txt" />
+    <Content Include="sitecore\shell\client\YourApps\Flex\AsyncPlugs.js" />
+    <Content Include="sitecore\shell\client\YourApps\Flex\Overview.js" />
     <Content Include="Views\Modules\Flex\Default\Form.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -195,6 +219,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Modules\Flex\Default\Fields\InputFields\AutoComplete.cshtml" />
+    <Content Include="Views\Modules\Flex\Default\Components\LabelLink.cshtml" />
     <None Include="web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -220,9 +245,7 @@
   <ItemGroup>
     <Content Include="Views\Modules\Flex\Default\Fields\InputFields\SinglelineText.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Views\Modules\Flex\BodyIncludes.cshtml" />
   </ItemGroup>
@@ -317,7 +340,7 @@
     <Content Include="Views\Modules\Flex\Default\Fields\InputFields\DatePicker.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Config\Include\Unic.Configuration.config" />
+    <None Include="App_Config\Include\Unic.Configuration.config" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -344,7 +367,6 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <Import Project="..\..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets" Condition="Exists('..\..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>

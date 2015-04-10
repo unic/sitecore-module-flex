@@ -7,7 +7,7 @@ parent: {C9F22EA8-A04F-4466-BE48-35635EB9E8A9}
 name: __Standard Values
 master: {00000000-0000-0000-0000-000000000000}
 template: {C9F22EA8-A04F-4466-BE48-35635EB9E8A9}
-templatekey: Visibility Field Dependency
+templatekey: Visibility Dependency
 
 ----version----
 language: en

@@ -1,7 +1,7 @@
 ﻿@using System.Web.Mvc.Html
 @using Unic.Flex.Core.Globalization
 @using Unic.Flex.Core.Presentation
-@model Unic.Flex.Model.ViewModel.Steps.MultiStepViewModel
+@model Unic.Flex.Model.Steps.MultiStep
 
 @if (Model.ShowNavigationPane && Model.NavigationPane != null)
 {
@@ -30,7 +30,7 @@
                 {
                     <a class="flex_button_secondary" href="@Model.CancelUrl">@Model.CancelText</a>
                 }
-
+                
                 @if (!string.IsNullOrWhiteSpace(Model.PreviousStepUrl))
                 {
                     <a class="flex_button_secondary" href="@Model.PreviousStepUrl">@Model.PreviousButtonText</a>

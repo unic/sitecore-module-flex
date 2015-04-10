@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using System.Web;
     using Sitecore.Diagnostics;
     using Unic.Configuration;
     using Unic.Flex.Core.Context;
@@ -15,11 +16,6 @@
     /// </summary>
     public class PlugsService : IPlugsService
     {
-        /// <summary>
-        /// The user data repository
-        /// </summary>
-        private readonly IUserDataRepository userDataRepository;
-
         /// <summary>
         /// The logger
         /// </summary>
@@ -38,13 +34,11 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="PlugsService" /> class.
         /// </summary>
-        /// <param name="userDataRepository">The user data repository.</param>
         /// <param name="logger">The logger.</param>
         /// <param name="configurationManager">The configuration manager.</param>
         /// <param name="taskService">The task service.</param>
-        public PlugsService(IUserDataRepository userDataRepository, ILogger logger, IConfigurationManager configurationManager, ITaskService taskService)
+        public PlugsService(ILogger logger, IConfigurationManager configurationManager, ITaskService taskService)
         {
-            this.userDataRepository = userDataRepository;
             this.logger = logger;
             this.configurationManager = configurationManager;
             this.taskService = taskService;
@@ -63,7 +57,8 @@
             if (form == null) return;
             
             // check if we need to execute the load plugs -> only the first time
-            if (this.userDataRepository.IsFormStored(form.Id)) return;
+            if (HttpContext.Current == null || HttpContext.Current.Request.HttpMethod != "GET"
+                || form.ActiveStep.StepNumber != 1) return;
 
             foreach (var plug in form.LoadPlugs)
             {

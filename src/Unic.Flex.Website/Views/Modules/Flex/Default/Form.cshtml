@@ -3,20 +3,24 @@
 @using Unic.Flex.Core.Globalization
 @using Unic.Flex.Core.Presentation
 @using Unic.Flex.Implementation.Fields.InputFields
-@model Unic.Flex.Model.ViewModel.Forms.FormViewModel
+@model Unic.Flex.Model.Forms.Form
 
 <h2>@Model.Title</h2>
-<p>@Model.Introduction</p>
+
+@if (!string.IsNullOrWhiteSpace(Model.Introduction))
+{
+    <p>@Model.Introduction</p>
+}
 
 @using (Html.BeginForm(null, null, FormMethod.Post, new {
                                                             @action = this.Request.RawUrl,
                                                             @class = "flex_formcontainer",
-                                                            enctype = Model.Step.Sections.SelectMany(s => s.Fields).Any(f => f is FileUploadFieldViewModel) ? "multipart/form-data" : "application/x-www-form-urlencoded",
+                                                            enctype = Model.ActiveStep.Sections.SelectMany(s => s.Fields).Any(f => f is FileUploadField) ? "multipart/form-data" : "application/x-www-form-urlencoded",
                                                             data_init = "flexform",
-                                                            data_flexstyles_options = "{'uniformOptions': {'fileButtonHtml' : '" + TranslationHelper.FlexText("Choose file") + "', 'fileDefaultHtml': '" + TranslationHelper.FlexText("No file choosen") + "'}}"
+                                                            data_flexstyles_options = "{\"uniformOptions\": {\"fileButtonHtml\" : \"" + TranslationHelper.FlexText("Choose file") + "\", \"fileDefaultHtml\": \"" + TranslationHelper.FlexText("No file choosen") + "\"}}"
                                                         }))
 {
     @Html.AntiForgeryToken()
     @Html.FormHandler()
-    @Html.FlexComponent(m => m.Step)
+    @Html.FlexComponent(m => m.ActiveStep)
 }

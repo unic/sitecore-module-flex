@@ -3,7 +3,7 @@
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Unic.Flex.Core.DependencyInjection;
     using Unic.Flex.Core.Globalization;
-    using Unic.Flex.Model.DomainModel.Fields.InputFields;
+    using Unic.Flex.Model.Fields.InputFields;
 
     /// <summary>
     /// CheckBox field
@@ -21,7 +21,7 @@
         /// </summary>
         public CheckBoxField()
         {
-            this.dictionaryRepository = Container.Resolve<IDictionaryRepository>();
+            this.dictionaryRepository = DependencyResolver.Resolve<IDictionaryRepository>();
         }
 
         /// <summary>
@@ -39,6 +39,7 @@
         /// <value>
         /// The text value.
         /// </value>
+        [SitecoreIgnore]
         public override string TextValue
         {
             get
@@ -48,10 +49,39 @@
         }
 
         /// <summary>
+        /// Gets the name of the view.
+        /// </summary>
+        /// <value>
+        /// The name of the view.
+        /// </value>
+        [SitecoreIgnore]
+        public override string ViewName
+        {
+            get
+            {
+                return "Fields/InputFields/CheckBox";
+            }
+        }
+
+        /// <summary>
+        /// Binds the properties.
+        /// </summary>
+        public override void BindProperties()
+        {
+            base.BindProperties();
+
+            this.AddCssClass("flex_singlecheckbox");
+
+            this.Attributes.Add("aria-multiline", false);
+            this.Attributes.Add("aria-checked", this.Value);
+            this.Attributes.Add("role", "checkbox");
+        }
+
+        /// <summary>
         /// Sets the value.
         /// </summary>
         /// <param name="value">The value.</param>
-        protected override void SetValue(object value)
+        public override void SetValue(object value)
         {
             if (value is string)
             {

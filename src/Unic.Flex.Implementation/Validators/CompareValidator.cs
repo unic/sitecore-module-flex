@@ -7,9 +7,10 @@
     using Unic.Flex.Core.Context;
     using Unic.Flex.Core.DependencyInjection;
     using Unic.Flex.Core.Utilities;
-    using Unic.Flex.Model.DomainModel.Fields;
+    using Unic.Flex.Model.Fields;
+    using Unic.Flex.Model.Forms;
     using Unic.Flex.Model.GlassExtensions.Attributes;
-    using Unic.Flex.Model.Validation;
+    using Unic.Flex.Model.Validators;
 
     /// <summary>
     /// Validator which checks if two fields are equal
@@ -76,8 +77,8 @@
             if (this.OtherFieldModel == null) return false;
             
             // get the other field
-            var context = Container.Resolve<IFlexContext>();
-            var field = context.ViewModel.Step.Sections.SelectMany(section => section.Fields).FirstOrDefault(f => f.Id == this.OtherFieldModel.Id);
+            var context = DependencyResolver.Resolve<IFlexContext>();
+            var field = context.Form.ActiveStep.Sections.SelectMany(section => section.Fields).FirstOrDefault(f => f.Id == this.OtherFieldModel.Id);
             if (field == null) return false;
 
             // compare field values
@@ -98,10 +99,10 @@
             if (this.OtherFieldModel == null) return attributes;
 
             // get the context
-            var context = Container.Resolve<IFlexContext>();
+            var context = DependencyResolver.Resolve<IFlexContext>();
             
             // get all sections
-            var allSections = context.Form.GetSections(context.Form.GetActiveStep().StepNumber);
+            var allSections = context.Form.GetSections(context.Form.ActiveStep.StepNumber);
 
             // get the section index the field is in
             var section = allSections.Select((n, i) => new { n.Fields, Index = i }).FirstOrDefault(s => s.Fields.Any(f => f.Id == this.OtherFieldModel.Id));

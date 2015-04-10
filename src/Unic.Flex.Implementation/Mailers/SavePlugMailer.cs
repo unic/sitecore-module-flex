@@ -14,8 +14,8 @@
     using Unic.Flex.Implementation.Fields.InputFields;
     using Unic.Flex.Implementation.Plugs.SavePlugs;
     using Unic.Flex.Implementation.Validators;
-    using Unic.Flex.Model.DomainModel.Fields;
-    using Unic.Flex.Model.DomainModel.Forms;
+    using Unic.Flex.Model.Fields;
+    using Unic.Flex.Model.Forms;
 
     /// <summary>
     /// Mailer implementation for the send email plug
@@ -63,7 +63,7 @@
         /// <returns>
         /// Message to be sent over the mvc mailer
         /// </returns>
-        public virtual MvcMailMessage GetMessage(Form form, SendEmail plug)
+        public virtual MvcMailMessage GetMessage(IForm form, SendEmail plug)
         {
             // ensure the mailer has been initialized
             if (this.ControllerContext == null)
@@ -83,7 +83,7 @@
             this.ViewBag.Theme = this.theme;
 
             // add content
-            var fields = form.GetSections().SelectMany(s => s.Fields).ToList();
+            var fields = form.GetFields().ToList();
             this.ViewBag.Subject = this.mailService.ReplaceTokens(plug.Subject, fields);
             this.ViewBag.HtmlMailIntroduction = this.mailService.ReplaceTokens(plug.HtmlMailIntroduction, fields);
             this.ViewBag.HtmlMailFooter = this.mailService.ReplaceTokens(plug.HtmlMailFooter, fields);
@@ -159,7 +159,7 @@
         /// <param name="field">The field.</param>
         /// <param name="form">The form.</param>
         /// <returns>The email if valid, or empty string</returns>
-        private string GetEmailFromField(IField field, Form form)
+        private string GetEmailFromField(IField field, IForm form)
         {
             var fieldValue = form.GetFieldValue(field);
             return (!string.IsNullOrWhiteSpace(fieldValue) && (new EmailValidator()).IsValid(fieldValue)) ? fieldValue : string.Empty;
@@ -172,7 +172,7 @@
         /// <param name="form">The form.</param>
         /// <param name="plug">The plug.</param>
         /// <returns>The email address found in the mapping if available.</returns>
-        private string GetMappedEmailFromField(IField field, Form form, SendEmail plug)
+        private string GetMappedEmailFromField(IField field, IForm form, SendEmail plug)
         {
             var fieldValue = form.GetFieldValue(field);
             if (string.IsNullOrWhiteSpace(fieldValue)) return string.Empty;

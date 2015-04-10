@@ -4,11 +4,11 @@
     using System.Linq;
     using System.Web.Mvc;
     using Unic.Flex.Core.Context;
-    using Unic.Flex.Core.DependencyInjection;
     using Unic.Flex.Core.Mapping;
     using Unic.Flex.Core.Utilities;
+    using Unic.Flex.Model.Forms;
     using Unic.Flex.Model.Types;
-    using Unic.Flex.Model.ViewModel.Forms;
+    using DependencyResolver = Unic.Flex.Core.DependencyInjection.DependencyResolver;
 
     /// <summary>
     /// Bind the form model.
@@ -16,31 +16,24 @@
     public class FormModelBinder : DefaultModelBinder
     {
         /// <summary>
-        /// The model converter
-        /// </summary>
-        private readonly IModelConverterService modelConverter;
-
-        /// <summary>
-        /// The field dependency service
-        /// </summary>
-        private readonly IFieldDependencyService fieldDependencyService;
-
-        /// <summary>
         /// The user data repository
         /// </summary>
         private readonly IUserDataRepository userDataRepository;
 
         /// <summary>
+        /// The view mapper
+        /// </summary>
+        private readonly IViewMapper viewMapper;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="FormModelBinder" /> class.
         /// </summary>
-        /// <param name="modelConverter">The model converter.</param>
-        /// <param name="fieldDependencyService">The field dependency service.</param>
         /// <param name="userDataRepository">The user data repository.</param>
-        public FormModelBinder(IModelConverterService modelConverter, IFieldDependencyService fieldDependencyService, IUserDataRepository userDataRepository)
+        /// <param name="viewMapper">The view mapper.</param>
+        public FormModelBinder(IUserDataRepository userDataRepository, IViewMapper viewMapper)
         {
+            this.viewMapper = viewMapper;
             this.userDataRepository = userDataRepository;
-            this.modelConverter = modelConverter;
-            this.fieldDependencyService = fieldDependencyService;
         }
 
         /// <summary>
@@ -54,23 +47,21 @@
         public override object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
             var model = base.BindModel(controllerContext, bindingContext);
-            var form = model as IFormViewModel;
+            var form = model as IForm;
             if (form != null)
             {
-                var allFields = form.Step.Sections.SelectMany(s => s.Fields).ToList();
+                var allFields = form.ActiveStep.Sections.SelectMany(s => s.Fields).ToList();
 
                 // remove validation errors for not visible fields (due to field dependecy)
-                for (var sectionIndex = 0; sectionIndex < form.Step.Sections.Count; sectionIndex++)
+                for (var sectionIndex = 0; sectionIndex < form.ActiveStep.Sections.Count; sectionIndex++)
                 {
-                    var section = form.Step.Sections[sectionIndex];
+                    var section = form.ActiveStep.Sections[sectionIndex];
                     for (var fieldIndex = 0; fieldIndex < section.Fields.Count; fieldIndex++)
                     {
                         var field = section.Fields[fieldIndex];
-                        if (string.IsNullOrWhiteSpace(field.DependentFrom)) continue;
-
-                        if (!this.fieldDependencyService.IsDependentFieldVisible(allFields, field))
+                        if (field.IsHidden)
                         {
-                            bindingContext.ModelState.Remove(MappingHelper.GetFormFieldId(sectionIndex, fieldIndex));
+                            bindingContext.ModelState.Remove(MappingHelper.GetFormFieldId(sectionIndex, fieldIndex));   
                         }
                     }
                 }
@@ -103,14 +94,14 @@
         /// </returns>
         protected override object CreateModel(ControllerContext controllerContext, ModelBindingContext bindingContext, Type modelType)
         {
-            if (modelType != typeof(IFormViewModel))
+            if (modelType != typeof(IForm))
             {
                 return base.CreateModel(controllerContext, bindingContext, modelType);
             }
 
-            var context = Container.Resolve<IFlexContext>();
-            context.ViewModel = this.modelConverter.ConvertToViewModel(context.Form);
-            return context.ViewModel;
+            var context = DependencyResolver.Resolve<IFlexContext>();
+            this.viewMapper.Map(context);
+            return context.Form;
         }
     }
 }

@@ -5,7 +5,7 @@
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Unic.Flex.Core.Globalization;
     using Unic.Flex.Model.DataProviders;
-    using Unic.Flex.Model.DomainModel.Fields.ListFields;
+    using Unic.Flex.Model.Fields.ListFields;
 
     /// <summary>
     /// Dropdown list field
@@ -13,6 +13,11 @@
     [SitecoreType(TemplateId = "{18C0BDC1-5162-4CE4-A92A-0C9A8CAFCF11}")]
     public class DropDownListField : ListField<string, ListItem>
     {
+        /// <summary>
+        /// The items
+        /// </summary>
+        private IList<ListItem> items;
+        
         /// <summary>
         /// Gets or sets a value indicating whether to add an empty option to the list.
         /// </summary>
@@ -28,17 +33,21 @@
         /// <value>
         /// The items.
         /// </value>
+        [SitecoreIgnore]
         public override IList<ListItem> Items
         {
             get
             {
-                var items = base.Items;
+                // lazy loading, but only for non cascading fields
+                if (!this.IsCascadingField && this.items != null) return this.items;
+
+                this.items = base.Items;
                 if (this.AddEmptyOption)
                 {
-                    items.Insert(0, new ListItem { Text = TranslationHelper.FlexText("Please choose"), Value = string.Empty });
+                    this.items.Insert(0, new ListItem { Text = TranslationHelper.FlexText("Please choose"), Value = string.Empty });
                 }
 
-                return items;
+                return this.items;
             }
         }
 
@@ -48,6 +57,7 @@
         /// <value>
         /// The default value.
         /// </value>
+        [SitecoreIgnore]
         public override string DefaultValue
         {
             get
@@ -55,6 +65,46 @@
                 var selectedItem = this.Items.FirstOrDefault(item => item.Selected);
                 return selectedItem != null ? selectedItem.Value : string.Empty;
             }
+        }
+
+        /// <summary>
+        /// Gets the name of the view.
+        /// </summary>
+        /// <value>
+        /// The name of the view.
+        /// </value>
+        [SitecoreIgnore]
+        public override string ViewName
+        {
+            get
+            {
+                return "Fields/ListFields/DropDownList";
+            }
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether this instance is hidden.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is hidden; otherwise, <c>false</c>.
+        /// </value>
+        [SitecoreIgnore]
+        public override bool IsHidden
+        {
+            get
+            {
+                return this.Items.All(item => string.IsNullOrWhiteSpace(item.Value)) || base.IsHidden;
+            }
+        }
+
+        /// <summary>
+        /// Binds the properties.
+        /// </summary>
+        public override void BindProperties()
+        {
+            base.BindProperties();
+
+            this.AddCssClass("flex_singleselectfield");
         }
     }
 }

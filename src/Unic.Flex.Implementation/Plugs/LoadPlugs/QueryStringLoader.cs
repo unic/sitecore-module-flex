@@ -4,9 +4,10 @@
     using Sitecore.Diagnostics;
     using System.Linq;
     using System.Web;
+    using Unic.Flex.Core.Mapping;
     using Unic.Flex.Implementation.Fields.TextOnly;
-    using Unic.Flex.Model.DomainModel.Forms;
-    using Unic.Flex.Model.DomainModel.Plugs.LoadPlugs;
+    using Unic.Flex.Model.Forms;
+    using Unic.Flex.Model.Plugs;
 
     /// <summary>
     /// Load plug to load values from querystring into the form fields
@@ -15,10 +16,24 @@
     public class QueryStringLoader : LoadPlugBase
     {
         /// <summary>
+        /// The user data repository
+        /// </summary>
+        private readonly IUserDataRepository userDataRepository;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="QueryStringLoader" /> class.
+        /// </summary>
+        /// <param name="userDataRepository">The user data repository.</param>
+        public QueryStringLoader(IUserDataRepository userDataRepository)
+        {
+            this.userDataRepository = userDataRepository;
+        }
+
+        /// <summary>
         /// Executes the load plug.
         /// </summary>
         /// <param name="form">The form.</param>
-        public override void Execute(Form form)
+        public override void Execute(IForm form)
         {
             Assert.ArgumentNotNull(form, "form");
 
@@ -34,6 +49,7 @@
                     if (string.IsNullOrWhiteSpace(value)) continue;
 
                     field.Value = value;
+                    this.userDataRepository.SetValue(form.Id, field.Id, value);
                 }
             }
         }

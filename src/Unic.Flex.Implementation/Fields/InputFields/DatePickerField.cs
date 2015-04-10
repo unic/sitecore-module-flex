@@ -5,7 +5,7 @@
     using System.Globalization;
     using Unic.Flex.Core.Globalization;
     using Unic.Flex.Implementation.Validators;
-    using Unic.Flex.Model.DomainModel.Fields.InputFields;
+    using Unic.Flex.Model.Fields.InputFields;
 
     /// <summary>
     /// Field for a date picker
@@ -52,6 +52,7 @@
         /// <value>
         /// The date format.
         /// </value>
+        [SitecoreIgnore]
         public virtual string DateFormat
         {
             get
@@ -66,11 +67,60 @@
         /// <value>
         /// The text value.
         /// </value>
+        [SitecoreIgnore]
         public override string TextValue
         {
             get
             {
                 return !this.Value.HasValue ? base.TextValue : this.Value.Value.ToString(this.DateFormat, CultureInfo.InvariantCulture);
+            }
+        }
+
+        /// <summary>
+        /// Gets the name of the view.
+        /// </summary>
+        /// <value>
+        /// The name of the view.
+        /// </value>
+        [SitecoreIgnore]
+        public override string ViewName
+        {
+            get
+            {
+                return "Fields/InputFields/DatePicker";
+            }
+        }
+
+        /// <summary>
+        /// Gets the locale.
+        /// </summary>
+        /// <value>
+        /// The locale.
+        /// </value>
+        [SitecoreIgnore]
+        public virtual string Locale
+        {
+            get
+            {
+                return Sitecore.Context.Language.CultureInfo.TwoLetterISOLanguageName.ToLowerInvariant();
+            }
+        }
+
+        /// <summary>
+        /// Binds the properties.
+        /// </summary>
+        public override void BindProperties()
+        {
+            base.BindProperties();
+
+            this.AddCssClass("flex_datefield");
+
+            this.Attributes.Add("aria-multiline", false);
+            this.Attributes.Add("role", "textbox");
+
+            if (this.Value != null)
+            {
+                this.Attributes.Add("Value", this.Value.Value.ToString(this.DateFormat, CultureInfo.InvariantCulture));
             }
         }
     }

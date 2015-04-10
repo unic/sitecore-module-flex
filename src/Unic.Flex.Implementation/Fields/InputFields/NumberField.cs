@@ -1,8 +1,9 @@
 ﻿namespace Unic.Flex.Implementation.Fields.InputFields
 {
+    using System.Globalization;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Unic.Flex.Implementation.Validators;
-    using Unic.Flex.Model.DomainModel.Fields.InputFields;
+    using Unic.Flex.Model.Fields.InputFields;
 
     /// <summary>
     /// Number field
@@ -37,10 +38,49 @@
         public virtual string Step { get; set; }
 
         /// <summary>
+        /// Gets the name of the view.
+        /// </summary>
+        /// <value>
+        /// The name of the view.
+        /// </value>
+        [SitecoreIgnore]
+        public override string ViewName
+        {
+            get
+            {
+                return "Fields/InputFields/Number";
+            }
+        }
+
+        /// <summary>
+        /// Binds the properties.
+        /// </summary>
+        public override void BindProperties()
+        {
+            base.BindProperties();
+
+            this.AddCssClass("flex_singletextfield");
+
+            this.Attributes.Add("aria-multiline", false);
+            this.Attributes.Add("role", "textbox");
+            this.Attributes.Add("type", "number");
+
+            if (!string.IsNullOrWhiteSpace(this.Step))
+            {
+                this.Attributes.Add("step", this.Step);
+            }
+
+            if (this.Value.HasValue)
+            {
+                this.Attributes.Add("Value", this.Value.Value.ToString(CultureInfo.InvariantCulture));
+            }
+        }
+
+        /// <summary>
         /// Sets the value.
         /// </summary>
         /// <param name="value">The value.</param>
-        protected override void SetValue(object value)
+        public override void SetValue(object value)
         {
             if (value == null)
             {

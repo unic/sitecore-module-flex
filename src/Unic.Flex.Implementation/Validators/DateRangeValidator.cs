@@ -6,7 +6,7 @@
     using System.Globalization;
     using Unic.Flex.Core.Globalization;
     using Unic.Flex.Model.GlassExtensions.Attributes;
-    using Unic.Flex.Model.Validation;
+    using Unic.Flex.Model.Validators;
 
     /// <summary>
     /// Validates if a date is within a range.

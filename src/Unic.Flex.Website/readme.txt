@@ -1,45 +1,81 @@
-***********************
-POST INSTALLATION TASKS
-***********************
+  
+  ______   _        ______  __   __
+ |  ____| | |      |  ____| \ \ / /
+ | |__    | |      | |__     \ V / 
+ |  __|   | |      |  __|     > <  
+ | |      | |____  | |____   / . \ 
+ |_|      |______| |______| /_/ \_\
+                                   
+                                   
 
-Assembly redirects
-------------------
-Assembly redirect are needed in the web.config of the Sitecore installation. Please check the Flex web.config which one are needed and add them to the following node:
+Installation Prerequisites
+--------------------------
+Flex depends on the Unic configuration module, which must be installed on the Sitecore instance
+before running Flex. It can be installed over NuGet:
 
-	<configuration>
-	  <runtime>
-	    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
-		  ...
-	    </assemblyBinding>
-	  </runtime>
-	</configuration>
+    > Install-Package Unic.Configuration.Sitecore7
 
-Client-side Validation
+
+IoC container
+-------------
+You must install an IoC container framework for Flex. Currently there are containers available
+for Ninject and SimpleInjector, which can be installed over NuGet:
+
+    > Install-Package Unic.Flex.Ninect
+
+or
+
+    > Install-Package Unic.Flex.SimpleInjector
+
+
+Items
+-----
+The serialized items were copied to the "serialization" folder in the root directory. Please copy
+these items into your data directory (or adapt the serialization folder path) and update your
+database.
+
+
+Install Database
+----------------
+Install the database in the "data" directory of Flex to your Sql server. Then put the following
+connection string into "ConnectionStrings.config":
+
+    <add name="Flex" connectionString="Data Source=localhost;Initial Catalog=flex_data;Integrated Security=True" providerName="System.Data.SqlClient" />
+
+
+Assets
+------
+Flex depends on several assets. There are partial views available to include these. Please add
+the following lines of code in your layout view.
+
+Before the closing </head>:
+
+    @Html.Partial("~/Views/Modules/Flex/HeaderIncludes.cshtml")
+
+Before the closing </body>:
+
+    @Html.Partial("~/Views/Modules/Flex/BodyIncludes.cshtml")
+
+
+Client-side validation
 ----------------------
-To enable client side validation, add the following nodes to the <appSettings> of the web.config:
+To enable client side validation, add the following nodes to the <appSettings>-node of the "web.config":
 
     <add key="ClientValidationEnabled" value="true" />
     <add key="UnobtrusiveJavaScriptEnabled" value="true" />
 
-Entity Framework
-----------------
-Add the following config to web.config:
 
-	<configSections>
-		<section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
-	</configSections>
-	<entityFramework>
-		<providers>
-			<provider invariantName="System.Data.SqlClient" type="System.Data.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer" />
-		</providers>
-	</entityFramework>
+Form Repository
+---------------
+You need to add a form repository in the content tree. The form repository must be created based
+on the following branch template:
 
-Install the database in the data directory and add the connection string in the ConnectionStrings.config:
-
-	<add name="Flex" connectionString="Data Source=localhost;Initial Catalog=flex_data;Integrated Security=True" providerName="System.Data.SqlClient" />
-	
-Items
------
-Please manually copy the serialized items in the serialization folder and sync the database. This has do be done after each update of Flex.
+    /sitecore/templates/Branches/Flex/Global/Repository Root
 
 
+Allow Rendering in Placeholder Settings
+---------------------------------------
+To add a form in the Page Editor, the the following rendering has to be enabled in your placeholder
+settings:
+
+	/sitecore/layout/Renderings/Flex/Flex Form

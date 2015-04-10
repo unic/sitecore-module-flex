@@ -56,7 +56,7 @@
         /// <returns>Message with Flex prefix.</returns>
         private string FormatMessage(string message)
         {
-            return string.Format("FLEX :: {0}", message);
+            return string.Format("FLEX :: {0} :: Url {1}", message, Sitecore.Web.WebUtil.GetFullUrl(Sitecore.Web.WebUtil.GetRawUrl()));
         }
     }
 }

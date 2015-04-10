@@ -16,9 +16,9 @@
     using Unic.Flex.Core.Logging;
     using Unic.Flex.Core.Mapping;
     using Unic.Flex.Model.Configuration;
-    using Unic.Flex.Model.DomainModel.Plugs.SavePlugs;
     using Unic.Flex.Model.Entities;
-    using Form = Unic.Flex.Model.DomainModel.Forms.Form;
+    using Unic.Flex.Model.Forms;
+    using Unic.Flex.Model.Plugs;
 
     /// <summary>
     /// Task service for executing plugs asynchronous.
@@ -81,7 +81,7 @@
         public virtual void ExecuteAll(SiteContext site)
         {
             this.logger.Debug("Execute all jobs from database", this);
-            var jobs = this.unitOfWork.JobRepository.Get();
+            var jobs = this.GetAllJobs();
             foreach (var job in jobs)
             {
                 this.Execute(job, site);
@@ -122,13 +122,24 @@
         }
 
         /// <summary>
+        /// Gets all jobs.
+        /// </summary>
+        /// <returns>
+        /// List of jobs
+        /// </returns>
+        public virtual IEnumerable<Job> GetAllJobs()
+        {
+            return this.unitOfWork.JobRepository.Get();
+        }
+
+        /// <summary>
         /// Gets the job for a given form domain model.
         /// </summary>
         /// <param name="form">The form.</param>
         /// <returns>
         /// The job entity
         /// </returns>
-        public virtual Job GetJob(Form form)
+        public virtual Job GetJob(IForm form)
         {
             var formValues = this.userDataRepository.GetFormValues(form.Id);
 
@@ -168,6 +179,44 @@
             this.unitOfWork.JobRepository.Insert(job);
             this.unitOfWork.Save();
             return job;
+        }
+
+        /// <summary>
+        /// Resets the task retry count for a task.
+        /// </summary>
+        /// <param name="taskId">The task identifier.</param>
+        /// <returns>
+        /// Boolean value if everything was ok.
+        /// </returns>
+        public virtual bool ResetTaskById(int taskId)
+        {
+            var task = this.unitOfWork.TaskRepository.Get(includeProperties: "Job").FirstOrDefault(t => t.Id == taskId);
+            if (task == null) return false;
+
+            task.NumberOfTries = 0;
+            this.unitOfWork.Save();
+            return true;
+        }
+
+        /// <summary>
+        /// Deletes a specific task.
+        /// </summary>
+        /// <param name="taskId">The task identifier.</param>
+        /// <returns>Boolean value if everything was ok.</returns>
+        public virtual bool DeleteTaskById(int taskId)
+        {
+            var task = this.unitOfWork.TaskRepository.Get(includeProperties: "Job").FirstOrDefault(t => t.Id == taskId);
+            if (task == null) return false;
+
+            var job = task.Job;
+            job.Tasks.Remove(task);
+            if (!job.Tasks.Any())
+            {
+                this.unitOfWork.JobRepository.Delete(job);
+            }
+
+            this.unitOfWork.Save();
+            return true;
         }
 
         /// <summary>
@@ -242,7 +291,7 @@
         /// <param name="form">The form.</param>
         /// <param name="plug">The plug.</param>
         /// <param name="maxRetries">The maximum retries.</param>
-        protected virtual void ExecuteTask(Job job, Task task, Form form, ISavePlug plug, int maxRetries)
+        protected virtual void ExecuteTask(Job job, Task task, IForm form, ISavePlug plug, int maxRetries)
         {
             try
             {

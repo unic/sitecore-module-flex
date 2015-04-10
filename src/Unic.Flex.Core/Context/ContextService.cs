@@ -1,5 +1,6 @@
 ﻿namespace Unic.Flex.Core.Context
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Castle.Core.Internal;
@@ -10,10 +11,9 @@
     using Sitecore.Diagnostics;
     using Unic.Flex.Core.Logging;
     using Unic.Flex.Core.Mapping;
-    using Unic.Flex.Model.DomainModel.Forms;
-    using Unic.Flex.Model.DomainModel.Steps;
+    using Unic.Flex.Model.Forms;
+    using Unic.Flex.Model.Steps;
     using Unic.Flex.Model.Types;
-    using Unic.Flex.Model.ViewModel.Forms;
     using Profiler = Unic.Profiling.Profiler;
 
     /// <summary>
@@ -32,11 +32,6 @@
         private readonly IUserDataRepository userDataRepository;
 
         /// <summary>
-        /// The field dependency service
-        /// </summary>
-        private readonly IFieldDependencyService fieldDependencyService;
-
-        /// <summary>
         /// The logger
         /// </summary>
         private readonly ILogger logger;
@@ -46,13 +41,11 @@
         /// </summary>
         /// <param name="formRepository">The form repository.</param>
         /// <param name="userDataRepository">The user data repository.</param>
-        /// <param name="fieldDependencyService">The field dependency service.</param>
         /// <param name="logger">The logger.</param>
-        public ContextService(IFormRepository formRepository, IUserDataRepository userDataRepository, IFieldDependencyService fieldDependencyService, ILogger logger)
+        public ContextService(IFormRepository formRepository, IUserDataRepository userDataRepository, ILogger logger)
         {
             this.formRepository = formRepository;
             this.userDataRepository = userDataRepository;
-            this.fieldDependencyService = fieldDependencyService;
             this.logger = logger;
         }
 
@@ -64,14 +57,14 @@
         /// <returns>
         /// The loaded form domain model object.
         /// </returns>
-        public virtual Form LoadForm(string dataSource, bool useVersionCountDisabler = false)
+        public virtual IForm LoadForm(string dataSource, bool useVersionCountDisabler = false)
         {
             Profiler.OnStart(this, "Flex :: Load form from datasource");
 
             var form = this.formRepository.LoadForm(dataSource, useVersionCountDisabler);
             if (form == null)
             {
-                this.logger.Warn(string.Format("Could not load form with datasource '{0}'", dataSource), this);
+                this.logger.Warn(string.Format("Could not load form with datasource '{0}', maybe it's not available in all languages as the item containing the form", dataSource), this);
                 Profiler.OnEnd(this, "Flex :: Load form from datasource");
                 return null;
             }
@@ -91,6 +84,17 @@
                 lastStep.IsLastStep = true;
             }
 
+            // reference the dependent fields
+            foreach (var section in form.GetSections().Where(f => f.DependentField != null))
+            {
+                section.DependentField = form.GetField(section.DependentField);
+            }
+
+            foreach (var field in form.GetFields().Where(f => f.DependentField != null))
+            {
+                field.DependentField = form.GetField(field.DependentField);
+            }
+
             Profiler.OnEnd(this, "Flex :: Load form from datasource");
 
             return form;
@@ -100,7 +104,7 @@
         /// Populates the form values from the session into the form.
         /// </summary>
         /// <param name="form">The form domain model.</param>
-        public virtual void PopulateFormValues(Form form)
+        public virtual void PopulateFormValues(IForm form)
         {
             Assert.ArgumentNotNull(form, "form");
 
@@ -116,9 +120,6 @@
                 }
             }
 
-            // set properties for hidden fields
-            this.fieldDependencyService.HandleVisibilityDependency(form);
-
             Profiler.OnEnd(this, "Flex :: Populating values from user data storage");
         }
 
@@ -127,7 +128,7 @@
         /// </summary>
         /// <param name="form">The form.</param>
         /// <param name="values">The values.</param>
-        public virtual void PopulateFormValues(Form form, IDictionary<string, object> values)
+        public virtual void PopulateFormValues(IForm form, IDictionary<string, object> values)
         {
             Assert.ArgumentNotNull(form, "form");
 
@@ -152,42 +153,39 @@
                 }
             }
 
-            // set properties for hidden fields
-            this.fieldDependencyService.HandleVisibilityDependency(form);
-
             Profiler.OnEnd(this, "Flex :: Populating values from dictionary");
         }
 
         /// <summary>
         /// Stores the form values into the session.
         /// </summary>
-        /// <param name="viewModel">The form view model containing the current values.</param>
-        public virtual void StoreFormValues(IFormViewModel viewModel)
+        /// <param name="form">The form.</param>
+        public virtual void StoreFormValues(IForm form)
         {
-            Assert.ArgumentNotNull(viewModel, "viewModel");
+            Assert.ArgumentNotNull(form, "form");
 
             Profiler.OnStart(this, "Flex :: Store form values to user data storage");
 
-            var allFields = viewModel.Step.Sections.SelectMany(section => section.Fields).ToList();
-            foreach (var section in viewModel.Step.Sections)
+            foreach (var section in form.ActiveStep.Sections)
             {
                 // check if the complete section is invisible -> remove all fields and go to next sections
-                if (!string.IsNullOrWhiteSpace(section.DependentFrom) && !this.fieldDependencyService.IsDependentFieldVisible(allFields, section))
+                if (section.IsHidden)
                 {
-                    section.Fields.ForEach(f => this.userDataRepository.RemoveValue(viewModel.Id, f.Id));
+                    section.Fields.ForEach(f => this.userDataRepository.RemoveValue(form.Id, f.Id));
                     continue;
                 }
 
                 foreach (var field in section.Fields)
                 {
                     // check if field is invisible -> remove from storage and go to next field
-                    if (!string.IsNullOrWhiteSpace(field.DependentFrom) && !this.fieldDependencyService.IsDependentFieldVisible(allFields, field))
+                    if (field.IsHidden)
                     {
-                        this.userDataRepository.RemoveValue(viewModel.Id, field.Id);
+                        this.userDataRepository.RemoveValue(form.Id, field.Id);
+                        field.Value = field.Type.IsValueType ? Activator.CreateInstance(field.Type) : null;
                         continue;
                     }
 
-                    this.userDataRepository.SetValue(viewModel.Id, field.Id, field.Value);
+                    this.userDataRepository.SetValue(form.Id, field.Id, field.Value);
                 }
             }
 
@@ -202,7 +200,7 @@
         /// <returns>
         /// Boolean value if the step may accessed by the user or not
         /// </returns>
-        public virtual bool IsStepAccessible(Form form, StepBase step)
+        public virtual bool IsStepAccessible(IForm form, IStep step)
         {
             Assert.ArgumentNotNull(form, "form");
             Assert.ArgumentNotNull(step, "step");

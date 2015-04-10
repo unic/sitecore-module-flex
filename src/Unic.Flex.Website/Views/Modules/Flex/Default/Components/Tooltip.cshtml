@@ -1,8 +1,8 @@
 ﻿@using System.Web.Mvc.Html
 @using Unic.Flex.Core.Globalization
-@model Unic.Flex.Model.ViewModel.Components.TooltipViewModel
+@model Unic.Flex.Model.Components.Tooltip
 
-@if (Model.ShowTooltip)
+@if (Model != null)
 {
     <div class="flex_tooltipcontainer" id="@Html.IdForModel()" data-init="flextooltip">
         <a href="#" role="tooltip" aria-haspopup="true" data-flextooltip="link">
@@ -12,10 +12,10 @@
         </a>
         <span class="flex_tooltip" aria-expanded="false" data-flextooltip="tooltip">
             <span class="flex_tooltipheader">
-                @Model.TooltipTitle
+                @Model.Title
             </span>
             <span class="flex_tooltipcontent">
-                @Model.TooltipText
+                @Model.Text
             </span>
             <a href="#" class="flex_tooltipclose" data-flextooltip="close">
                 <span>

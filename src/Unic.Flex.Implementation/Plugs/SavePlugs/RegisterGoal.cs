@@ -3,10 +3,10 @@
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Sitecore.Diagnostics;
     using Unic.Flex.Core.Analytics;
-    using Unic.Flex.Model.DomainModel.Analytics;
-    using Unic.Flex.Model.DomainModel.Forms;
-    using Unic.Flex.Model.DomainModel.Plugs.SavePlugs;
+    using Unic.Flex.Model.Analytics;
+    using Unic.Flex.Model.Forms;
     using Unic.Flex.Model.GlassExtensions.Attributes;
+    using Unic.Flex.Model.Plugs;
 
     /// <summary>
     /// Save plug to register a goal in the analytics
@@ -55,7 +55,7 @@
         /// Executes the save plug.
         /// </summary>
         /// <param name="form">The form.</param>
-        public override void Execute(Form form)
+        public override void Execute(IForm form)
         {
             Assert.ArgumentNotNull(form, "form");
 

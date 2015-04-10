@@ -1,10 +1,10 @@
 ﻿@using System.Web.Mvc.Html
 @using Unic.Flex.Core.Presentation
-@model Unic.Flex.Implementation.Fields.InputFields.CheckBoxFieldViewModel
+@model Unic.Flex.Implementation.Fields.InputFields.CheckBoxField
 
 <li class="flex_listitem @Model.CssClass" @Html.Raw(Html.FormatAttributes(Model.ContainerAttributes))>
     @Html.CheckBoxFor(m => m.Value, Html.GetAttributes(Model))
-    @Html.FlexLabel(m => m.Value, Model.Label)
+    @Html.FlexLabel(m => m.Value, Model.Label, Model.LabelLink)
     @Html.FlexValidator(model => model.Value)
     @Html.FlexComponent(model => model.Tooltip)
 </li>

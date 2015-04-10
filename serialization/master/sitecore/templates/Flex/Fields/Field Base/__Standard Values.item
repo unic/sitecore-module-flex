@@ -7,7 +7,7 @@ parent: {0AB071EF-1DBE-42F5-8A22-002B9110E90F}
 name: __Standard Values
 master: {00000000-0000-0000-0000-000000000000}
 template: {0AB071EF-1DBE-42F5-8A22-002B9110E90F}
-templatekey: Field
+templatekey: Field Base
 
 ----version----
 language: en

@@ -30,9 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Castle.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+    <Reference Include="Castle.Core, Version=3.2.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
+      <HintPath>..\..\packages\Castle.Core.3.2.0\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="Glass.Mapper, Version=3.0.14.26, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -93,30 +93,38 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\ICascadingDependency.cs" />
+    <Compile Include="Components\NavigationItem.cs" />
+    <Compile Include="Components\NavigationPane.cs" />
+    <Compile Include="Components\Tooltip.cs" />
     <Compile Include="Configuration\Converters\SpecificationConverter.cs" />
     <Compile Include="Configuration\Extensions\ConfigurationManagerExtensions.cs" />
     <Compile Include="Configuration\GlobalConfiguration.cs" />
     <Compile Include="Configuration\GlobalizationConfiguration.cs" />
     <Compile Include="Configuration\PresentationConfiguration.cs" />
     <Compile Include="DataProviders\IDataItem.cs" />
-    <Compile Include="DomainModel\Analytics\Goal.cs" />
-    <Compile Include="DomainModel\Components\IInvalidComponent.cs" />
-    <Compile Include="DomainModel\Components\IReusableComponent.cs" />
-    <Compile Include="DomainModel\Components\ITooltip.cs" />
-    <Compile Include="DomainModel\Components\IVisibilityDependency.cs" />
-    <Compile Include="DomainModel\Components\IVisibilityDependencyViewModel.cs" />
-    <Compile Include="DomainModel\Fields\FieldBase.cs" />
-    <Compile Include="DomainModel\Fields\IField.cs" />
-    <Compile Include="DomainModel\Fields\ListFields\ListField.cs" />
-    <Compile Include="DomainModel\Fields\ListFields\MulticheckListField.cs" />
-    <Compile Include="DomainModel\Fields\ReusableField.cs" />
-    <Compile Include="DomainModel\Global\Specification.cs" />
-    <Compile Include="DomainModel\Plugs\LoadPlugs\ILoadPlug.cs" />
-    <Compile Include="DomainModel\Plugs\LoadPlugs\LoadPlugBase.cs" />
-    <Compile Include="DomainModel\Plugs\PlugBase.cs" />
-    <Compile Include="DomainModel\Plugs\SavePlugs\ISavePlug.cs" />
-    <Compile Include="DomainModel\Plugs\SavePlugs\SavePlugBase.cs" />
-    <Compile Include="DomainModel\Components\INavigationPane.cs" />
+    <Compile Include="Analytics\Goal.cs" />
+    <Compile Include="Components\IInvalidComponent.cs" />
+    <Compile Include="Components\IReusableComponent.cs" />
+    <Compile Include="Components\ITooltip.cs" />
+    <Compile Include="Components\IFieldDependency.cs" />
+    <Compile Include="Fields\InputFields\HoneypotField.cs" />
+    <Compile Include="Forms\FormExtensions.cs" />
+    <Compile Include="Fields\FieldBase.cs" />
+    <Compile Include="Fields\IField.cs" />
+    <Compile Include="Fields\ListFields\ListField.cs" />
+    <Compile Include="Fields\ListFields\MulticheckListField.cs" />
+    <Compile Include="Fields\ReusableField.cs" />
+    <Compile Include="Forms\IForm.cs" />
+    <Compile Include="Forms\Repository.cs" />
+    <Compile Include="Forms\StatisticForm.cs" />
+    <Compile Include="IItemBase.cs" />
+    <Compile Include="Plugs\LoadPlugBase.cs" />
+    <Compile Include="Plugs\SavePlugBase.cs" />
+    <Compile Include="Sections\ISection.cs" />
+    <Compile Include="Specifications\Specification.cs" />
+    <Compile Include="Plugs\ILoadPlug.cs" />
+    <Compile Include="Plugs\ISavePlug.cs" />
     <Compile Include="Entities\File.cs" />
     <Compile Include="Entities\Form.cs" />
     <Compile Include="Entities\Session.cs" />
@@ -137,58 +145,41 @@
     <Compile Include="GlassExtensions\Handlers\SitecoreSharedQueryTypeMapper.cs" />
     <Compile Include="SortOrder\ISortOrderStrategy.cs" />
     <Compile Include="SortOrder\StrategyFactory.cs" />
+    <Compile Include="Steps\IStep.cs" />
     <Compile Include="Types\UploadedFile.cs" />
-    <Compile Include="Validation\AjaxValidator.cs" />
-    <Compile Include="Validation\FileRequiredValidator.cs" />
-    <Compile Include="Validation\HoneypotValidator.cs" />
-    <Compile Include="Validation\MulticheckRequired.cs" />
-    <Compile Include="Validation\RequiredValidator.cs" />
+    <Compile Include="Validators\AjaxValidator.cs" />
+    <Compile Include="Validators\FileRequiredValidator.cs" />
+    <Compile Include="Validators\HoneypotValidator.cs" />
+    <Compile Include="Validators\MulticheckRequired.cs" />
+    <Compile Include="Validators\RequiredValidator.cs" />
     <Compile Include="GlassExtensions\Attributes\SitecoreSharedFieldAttribute.cs" />
     <Compile Include="GlassExtensions\Configurations\SitecoreSharedFieldConfiguration.cs" />
     <Compile Include="GlassExtensions\Handlers\SitecoreSharedFieldTypeMapper.cs" />
-    <Compile Include="Validation\IValidatableObject.cs" />
-    <Compile Include="ViewModel\Components\ErrorViewModel.cs" />
-    <Compile Include="ViewModel\Components\ITooltipViewModel.cs" />
-    <Compile Include="ViewModel\Components\SuccessMessageViewModel.cs" />
-    <Compile Include="ViewModel\Components\TooltipViewModel.cs" />
-    <Compile Include="ViewModel\Components\NavigationItem.cs" />
-    <Compile Include="ViewModel\Components\NavigationPaneViewModel.cs" />
-    <Compile Include="ViewModel\Fields\FieldBaseViewModel.cs" />
-    <Compile Include="DomainModel\Fields\InputFields\InputField.cs" />
-    <Compile Include="ViewModel\Fields\IFieldViewModel.cs" />
-    <Compile Include="ViewModel\Fields\IFieldWithoutPost.cs" />
-    <Compile Include="ViewModel\Fields\InputFields\HoneypotFieldViewModel.cs" />
-    <Compile Include="ViewModel\Fields\InputFields\InputFieldViewModel.cs" />
-    <Compile Include="ViewModel\Fields\ListFields\ListFieldViewModel.cs" />
-    <Compile Include="ViewModel\Fields\ListFields\MulticheckListFieldViewModel.cs" />
-    <Compile Include="ViewModel\Forms\FormViewModel.cs" />
+    <Compile Include="Validators\IValidatableObject.cs" />
+    <Compile Include="ViewModels\ErrorViewModel.cs" />
+    <Compile Include="ViewModels\SuccessMessageViewModel.cs" />
+    <Compile Include="Fields\InputFields\InputField.cs" />
+    <Compile Include="Fields\IFieldWithoutPost.cs" />
     <Compile Include="GlassExtensions\Attributes\SitecoreDictionaryFallbackFieldAttribute.cs" />
     <Compile Include="GlassExtensions\Configurations\SitecoreDictionaryFallbackFieldConfiguration.cs" />
     <Compile Include="GlassExtensions\Handlers\SitecoreDictionaryFallbackFieldTypeMapper.cs" />
-    <Compile Include="DomainModel\ItemBase.cs" />
-    <Compile Include="DomainModel\Forms\Form.cs" />
+    <Compile Include="ItemBase.cs" />
+    <Compile Include="Forms\Form.cs" />
     <Compile Include="Presentation\IPresentationComponent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DomainModel\Sections\ReusableSection.cs" />
-    <Compile Include="ViewModel\Forms\IFormViewModel.cs" />
-    <Compile Include="ViewModel\Sections\ISectionViewModel.cs" />
-    <Compile Include="ViewModel\Sections\StandardSectionViewModel.cs" />
-    <Compile Include="DomainModel\Sections\StandardSection.cs" />
-    <Compile Include="DomainModel\Steps\StepBase.cs" />
-    <Compile Include="DomainModel\Steps\MultiStep.cs" />
-    <Compile Include="DomainModel\Steps\SingleStep.cs" />
-    <Compile Include="ViewModel\Components\INavigationPaneViewModel.cs" />
-    <Compile Include="ViewModel\Steps\IStepViewModel.cs" />
-    <Compile Include="ViewModel\Steps\MultiStepViewModel.cs" />
-    <Compile Include="ViewModel\Steps\SingleStepViewModel.cs" />
-    <Compile Include="DomainModel\Steps\Summary.cs" />
-    <Compile Include="Validation\IValidator.cs" />
-    <Compile Include="ViewModel\Steps\StepBaseViewModel.cs" />
-    <Compile Include="ViewModel\Steps\SummaryViewModel.cs" />
+    <Compile Include="Sections\ReusableSection.cs" />
+    <Compile Include="Sections\StandardSection.cs" />
+    <Compile Include="Steps\StepBase.cs" />
+    <Compile Include="Steps\MultiStep.cs" />
+    <Compile Include="Steps\SingleStep.cs" />
+    <Compile Include="Steps\Summary.cs" />
+    <Compile Include="Validators\IValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

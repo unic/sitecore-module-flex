@@ -5,11 +5,11 @@
     using Moq;
     using Unic.Flex.Core.Mapping;
     using Unic.Flex.Implementation.Fields.InputFields;
-    using Unic.Flex.Model.DomainModel.Fields;
-    using Unic.Flex.Model.DomainModel.Forms;
-    using Unic.Flex.Model.DomainModel.Sections;
-    using Unic.Flex.Model.DomainModel.Steps;
-    using Unic.Flex.Model.Validation;
+    using Unic.Flex.Model.Fields;
+    using Unic.Flex.Model.Forms;
+    using Unic.Flex.Model.Sections;
+    using Unic.Flex.Model.Steps;
+    using Unic.Flex.Model.Validators;
 
     /// <summary>
     /// Class to generate form reqpository Moqs
@@ -88,17 +88,17 @@
             // generate the sections
             var firstSection = new StandardSection();
             firstSection.Title = "This is the first section";
-            firstSection.Fields = fields;
+            firstSection.LazyFields = fields;
             
             var secondSection = new StandardSection();
             secondSection.Title = "This is the second section";
-            secondSection.Fields = fields;
+            secondSection.LazyFields = fields;
 
             // generate the step
             var step = new SingleStep();
             step.StepNumber = 1;
             step.Url = "step";
-            step.Sections = new List<StandardSection> { firstSection, secondSection };
+            step.LazySections = new List<StandardSection> { firstSection, secondSection };
 
             // generate the form
             var form = new Form();
@@ -124,13 +124,13 @@
             // generate section
             var section = new StandardSection();
             section.Title = "This is the section";
-            section.Fields = fields;
+            section.LazyFields = fields;
 
             // generate the steps
             var steps = new List<StepBase>();
-            steps.Add(new MultiStep { StepNumber = 1, Url = "first", Sections = new List<StandardSection> { section } });
-            steps.Add(new MultiStep { StepNumber = 2, Url = "second", Sections = new List<StandardSection> { section } });
-            steps.Add(new Summary { StepNumber = 3, Url = "summary", Sections = new List<StandardSection>() });
+            steps.Add(new MultiStep { StepNumber = 1, Url = "first", LazySections = new List<StandardSection> { section } });
+            steps.Add(new MultiStep { StepNumber = 2, Url = "second", LazySections = new List<StandardSection> { section } });
+            steps.Add(new Summary { StepNumber = 3, Url = "summary", LazySections = new List<StandardSection>() });
 
             // generate the form
             var form = new Form();

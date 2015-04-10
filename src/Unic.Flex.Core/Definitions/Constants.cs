@@ -64,5 +64,10 @@
         /// The root namespace
         /// </summary>
         public const string RootNamespace = "Unic.Flex";
+
+        /// <summary>
+        /// The label link placeholder
+        /// </summary>
+        public const string LabelLinkPlaceholder = "#link#";
     }
 }

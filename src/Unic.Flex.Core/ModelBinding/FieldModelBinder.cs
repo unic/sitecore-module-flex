@@ -4,8 +4,8 @@
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
     using Unic.Flex.Core.Definitions;
+    using Unic.Flex.Model.Fields;
     using Unic.Flex.Model.Types;
-    using Unic.Flex.Model.ViewModel.Fields;
 
     /// <summary>
     /// Bind fields
@@ -31,7 +31,7 @@
             if (bindingContext.Model is IFieldWithoutPost) return bindingContext.Model;
             
             // get initial values
-            var initialModel = (IFieldViewModel)bindingContext.Model;
+            var initialModel = (IField)bindingContext.Model;
             this.initialValue = initialModel.Value;
 
             // bind the model with the default model binder
@@ -73,7 +73,7 @@
             base.OnModelUpdated(controllerContext, bindingContext);
 
             // set the file uploaded to the initial file (because it maybe wasn't posted but was posted before)
-            var model = (IFieldViewModel)bindingContext.Model;
+            var model = (IField)bindingContext.Model;
             if (model.Value == null && model.Type == typeof(UploadedFile))
             {
                 model.Value = this.initialValue;

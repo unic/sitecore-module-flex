@@ -1,7 +1,7 @@
 ﻿namespace Unic.Flex.Core.Analytics
 {
     using System;
-    using Unic.Flex.Model.DomainModel.Analytics;
+    using Unic.Flex.Model.Analytics;
 
     /// <summary>
     /// Analytics specific actions.

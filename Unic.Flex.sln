@@ -20,6 +20,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unic.Flex.Core.Tests", "tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unic.Flex.Implementation", "src\Unic.Flex.Implementation\Unic.Flex.Implementation.csproj", "{5A1F1575-4FEF-4801-9C6C-A96CF0860885}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unic.Flex.NinjectIoC", "src\Unic.Flex.NinjectIoC\Unic.Flex.NinjectIoC.csproj", "{8CE54113-79E7-4E3A-9421-010CA570A09B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unic.Flex.SimpleInjectorIoC", "src\Unic.Flex.SimpleInjectorIoC\Unic.Flex.SimpleInjectorIoC.csproj", "{6A2A6827-3321-4C18-9681-572D0971503A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +54,14 @@ Global
 		{5A1F1575-4FEF-4801-9C6C-A96CF0860885}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A1F1575-4FEF-4801-9C6C-A96CF0860885}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A1F1575-4FEF-4801-9C6C-A96CF0860885}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CE54113-79E7-4E3A-9421-010CA570A09B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CE54113-79E7-4E3A-9421-010CA570A09B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CE54113-79E7-4E3A-9421-010CA570A09B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CE54113-79E7-4E3A-9421-010CA570A09B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A2A6827-3321-4C18-9681-572D0971503A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A2A6827-3321-4C18-9681-572D0971503A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A2A6827-3321-4C18-9681-572D0971503A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A2A6827-3321-4C18-9681-572D0971503A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

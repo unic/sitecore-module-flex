@@ -8,6 +8,7 @@
     using System.Net;
     using System.Security.Cryptography;
     using System.Web.Mvc;
+    using Newtonsoft.Json;
     using Unic.Configuration;
     using Unic.Flex.Core.Attributes;
     using Unic.Flex.Core.Context;
@@ -20,10 +21,16 @@
     using Unic.Flex.Implementation.Database;
     using Unic.Flex.Implementation.Fields.InputFields;
     using Unic.Flex.Model.Configuration;
-    using Unic.Flex.Model.Validation;
-    using Unic.Flex.Model.ViewModel.Components;
-    using Unic.Flex.Model.ViewModel.Forms;
+    using Unic.Flex.Model.DataProviders;
+    using Unic.Flex.Model.Fields;
+    using Unic.Flex.Model.Fields.ListFields;
+    using Unic.Flex.Model.Forms;
+    using Unic.Flex.Model.Steps;
+    using Unic.Flex.Model.Validators;
+    using Unic.Flex.Model.ViewModels;
+    using Unic.Flex.Website.Models.CascadingFields;
     using Constants = Unic.Flex.Core.Definitions.Constants;
+    using DependencyResolver = Unic.Flex.Core.DependencyInjection.DependencyResolver;
     using Profiler = Unic.Profiling.Profiler;
     using Settings = Sitecore.Configuration.Settings;
 
@@ -46,18 +53,11 @@
         /// Profiling event name for executing save plugs
         /// </summary>
         private const string ProfileExecuteSavePlugsEventName = "Flex :: Execute Save Plugs";
-
-        #region Fields
-
+        
         /// <summary>
         /// The presentation service
         /// </summary>
         private readonly IPresentationService presentationService;
-
-        /// <summary>
-        /// The model converter
-        /// </summary>
-        private readonly IModelConverterService modelConverter;
 
         /// <summary>
         /// The context service
@@ -78,11 +78,6 @@
         /// The flex context
         /// </summary>
         private readonly IFlexContext flexContext;
-
-        /// <summary>
-        /// The URL service
-        /// </summary>
-        private readonly IUrlService urlService;
 
         /// <summary>
         /// The form repository
@@ -114,39 +109,28 @@
         /// </summary>
         private readonly IConfigurationManager configurationManager;
 
-        #endregion
-
+        /// <summary>
+        /// The view mapper
+        /// </summary>
+        private readonly IViewMapper viewMapper;
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="FlexController" /> class.
         /// </summary>
-        /// <param name="presentationService">The presentation service.</param>
-        /// <param name="modelConverter">The model converter.</param>
-        /// <param name="contextService">The context service.</param>
-        /// <param name="userDataRepository">The user data repository.</param>
-        /// <param name="plugsService">The plugs service.</param>
-        /// <param name="flexContext">The flex context.</param>
-        /// <param name="urlService">The URL service.</param>
-        /// <param name="formRepository">The form repository.</param>
-        /// <param name="logger">The logger.</param>
-        /// <param name="taskService">The task service.</param>
-        /// <param name="saveToDatabaseService">The save to database service.</param>
-        /// <param name="dictionaryRepository">The dictionary repository.</param>
-        /// <param name="configurationManager">The configuration manager.</param>
-        public FlexController(IPresentationService presentationService, IModelConverterService modelConverter, IContextService contextService, IUserDataRepository userDataRepository, IPlugsService plugsService, IFlexContext flexContext, IUrlService urlService, IFormRepository formRepository, ILogger logger, ITaskService taskService, ISaveToDatabaseService saveToDatabaseService, IDictionaryRepository dictionaryRepository, IConfigurationManager configurationManager)
+        public FlexController()
         {
-            this.presentationService = presentationService;
-            this.modelConverter = modelConverter;
-            this.contextService = contextService;
-            this.userDataRepository = userDataRepository;
-            this.plugsService = plugsService;
-            this.flexContext = flexContext;
-            this.urlService = urlService;
-            this.formRepository = formRepository;
-            this.logger = logger;
-            this.taskService = taskService;
-            this.saveToDatabaseService = saveToDatabaseService;
-            this.dictionaryRepository = dictionaryRepository;
-            this.configurationManager = configurationManager;
+            this.presentationService = DependencyResolver.Resolve<IPresentationService>();
+            this.contextService = DependencyResolver.Resolve<IContextService>();
+            this.userDataRepository = DependencyResolver.Resolve<IUserDataRepository>();
+            this.plugsService = DependencyResolver.Resolve<IPlugsService>();
+            this.flexContext = DependencyResolver.Resolve<IFlexContext>();
+            this.formRepository = DependencyResolver.Resolve<IFormRepository>();
+            this.logger = DependencyResolver.Resolve<ILogger>();
+            this.taskService = DependencyResolver.Resolve<ITaskService>();
+            this.saveToDatabaseService = DependencyResolver.Resolve<ISaveToDatabaseService>();
+            this.dictionaryRepository = DependencyResolver.Resolve<IDictionaryRepository>();
+            this.configurationManager = DependencyResolver.Resolve<IConfigurationManager>();
+            this.viewMapper = DependencyResolver.Resolve<IViewMapper>();
         }
 
         /// <summary>
@@ -167,7 +151,7 @@
             var form = this.flexContext.Form;
             if (form == null)
             {
-                this.logger.Debug("GET :: Form from FlexContext is null, return empty result", this);
+                this.logger.Warn("GET :: Form from FlexContext is null, return empty result", this);
                 Profiler.OnEnd(this, ProfileGetEventName);
                 return new EmptyResult();
             }
@@ -176,7 +160,7 @@
             this.userDataRepository.SetFormSucceeded(form.Id, false);
 
             // get the current step
-            var currentStep = form.GetActiveStep();
+            var currentStep = form.ActiveStep;
             if (currentStep == null)
             {
                 this.logger.Debug("GET :: Form has no active step, return empty result", this);
@@ -221,12 +205,14 @@
             // revert step completion to the current step
             this.userDataRepository.RevertToStep(form.Id, currentStep.StepNumber);
 
+            // map the active step
+            this.viewMapper.Map(this.flexContext);
+
             // return the view for this step
-            var formViewModel = this.modelConverter.ConvertToViewModel(form);
-            var formView = this.presentationService.ResolveView(this.ControllerContext, formViewModel);
+            var formView = this.presentationService.ResolveView(this.ControllerContext, form);
             this.logger.Debug(string.Format("GET :: Everything ok, returning view '{0}'", formView), this);
             Profiler.OnEnd(this, ProfileGetEventName);
-            return this.View(formView, formViewModel);
+            return this.View(formView, form);
         }
 
         /// <summary>
@@ -237,7 +223,7 @@
         [HttpPost]
         [ValidateFormHandler]
         [ValidateAntiForgeryToken]
-        public virtual ActionResult Form(IFormViewModel model)
+        public virtual ActionResult Form(IForm model)
         {
             // form is not available in page editor
             if (GlassHtml.IsInEditingMode)
@@ -264,7 +250,7 @@
             }
 
             // get the current step
-            var currentStep = form.GetActiveStep();
+            var currentStep = form.ActiveStep;
             if (currentStep == null)
             {
                 this.logger.Debug("POST :: Form has no active step, return empty result", this);
@@ -282,7 +268,7 @@
 
             // return view if we have any validation errors
             var formView = this.presentationService.ResolveView(this.ControllerContext, model);
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
                 this.logger.Debug(string.Format("POST :: We have validation errors, returning view '{0}'", formView), this);
                 Profiler.OnEnd(this, ProfilePostEventName);
@@ -291,13 +277,13 @@
 
             // store the values in the session redirect to next step if we have a next step
             this.contextService.StoreFormValues(model);
-            var nextStepUrl = currentStep.GetNextStepUrl();
-            if (!string.IsNullOrWhiteSpace(nextStepUrl))
+            var multistep = currentStep as MultiStep;
+            if (multistep != null && !string.IsNullOrWhiteSpace(multistep.NextStepUrl))
             {
                 this.logger.Debug("POST :: Step is ok, storing values into session and redirect to next step", this);
                 this.userDataRepository.CompleteStep(form.Id, currentStep.StepNumber);
                 Profiler.OnEnd(this, ProfilePostEventName);
-                return this.Redirect(nextStepUrl);
+                return this.Redirect(multistep.NextStepUrl);
             }
 
             // repopulate the values so we also have the actual values within the current form object
@@ -381,7 +367,7 @@
             }
 
             // get the key of the value
-            var key = Request.Form.AllKeys.FirstOrDefault(x => x.EndsWith("Value"));
+            var key = this.Request.Form.AllKeys.FirstOrDefault(x => x.EndsWith("Value"));
             if (string.IsNullOrWhiteSpace(key))
             {
                 this.logger.Warn(string.Format("No valid value provided to get data for auto complete field '{0}'", field), this);
@@ -396,6 +382,56 @@
 
             // return the list with proposed values
             return this.Json(result, JsonRequestBehavior.DenyGet);
+        }
+
+        /// <summary>
+        /// Get the new data for a cascading field. This actually only works for listfields with string as value
+        /// an ListItem as data provider type.
+        /// </summary>
+        /// <param name="field">The field we want to retrieve data.</param>
+        /// <returns>
+        /// Json array with data to display
+        /// </returns>
+        public virtual ActionResult CascadingField(Guid field)
+        {
+            // get the field
+            var fieldModel = this.formRepository.LoadItem<IField>(field) as ListField<string, ListItem>;
+            if (fieldModel == null)
+            {
+                this.logger.Warn(string.Format("Cascading field with id '{0}' was not found", field), this);
+                return this.Content("error");
+            }
+
+            // check if the field is a dependent field
+            if (!fieldModel.IsCascadingField)
+            {
+                this.logger.Warn(string.Format("Field with id '{0}' is not configured as cascading field", field), this);
+                return this.Content("error");
+            }
+
+            // set value property of the field models which are dependent
+            var collection = this.Request.QueryString;
+            var keys = collection.AllKeys.Where(k => k.EndsWith(".Value")).OrderByDescending(k => k).ToList();
+            var counter = 0;
+            var dependentField = fieldModel.DependentField as ListField<string, ListItem>;
+            while (dependentField != null)
+            {
+                if (counter >= keys.Count) break;
+
+                dependentField.SetValue(collection[keys[counter++]]);
+                dependentField = dependentField.DependentField as ListField<string, ListItem>;
+            }
+
+            // create the data
+            var data = new CascadingField { Options = fieldModel.Items.Select(i => new CascadingOption { Text = i.Text, Value = i.Value, Selected = i.Selected }).ToList() };
+            if (data.Options != null && data.Options.Any() && !data.Options.Any(o => o.Selected) && !string.IsNullOrWhiteSpace(data.Options.First().Value))
+            {
+                data.Options.First().Selected = true;
+            }
+
+            // create the response
+            this.Response.ContentType = "application/json";
+            return this.Content(JsonConvert.SerializeObject(data));
         }
 
         /// <summary>

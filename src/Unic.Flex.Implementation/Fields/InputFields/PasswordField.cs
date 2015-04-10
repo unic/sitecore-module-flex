@@ -4,7 +4,7 @@
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Sitecore.Configuration;
     using Unic.Flex.Implementation.Validators;
-    using Unic.Flex.Model.DomainModel.Fields.InputFields;
+    using Unic.Flex.Model.Fields.InputFields;
 
     /// <summary>
     /// Password field
@@ -27,12 +27,41 @@
         /// <value>
         /// The text value.
         /// </value>
+        [SitecoreIgnore]
         public override string TextValue
         {
             get
             {
                 return "********";
             }
+        }
+
+        /// <summary>
+        /// Gets the name of the view.
+        /// </summary>
+        /// <value>
+        /// The name of the view.
+        /// </value>
+        [SitecoreIgnore]
+        public override string ViewName
+        {
+            get
+            {
+                return "Fields/InputFields/Password";
+            }
+        }
+
+        /// <summary>
+        /// Binds the properties.
+        /// </summary>
+        public override void BindProperties()
+        {
+            base.BindProperties();
+
+            this.Attributes.Add("aria-multiline", false);
+            this.Attributes.Add("role", "textbox");
+            this.AddCssClass("flex_singletextfield");
+            this.AddCssClass("flex_showpassword");
         }
     }
 }

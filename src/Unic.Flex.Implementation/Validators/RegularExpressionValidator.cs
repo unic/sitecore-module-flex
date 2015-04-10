@@ -7,7 +7,7 @@
     using Unic.Flex.Core.DependencyInjection;
     using Unic.Flex.Core.Logging;
     using Unic.Flex.Model.GlassExtensions.Attributes;
-    using Unic.Flex.Model.Validation;
+    using Unic.Flex.Model.Validators;
     using Unic.Profiling;
 
     /// <summary>
@@ -78,7 +78,7 @@
             }
             catch (ArgumentException exception)
             {
-                var logger = Container.Resolve<ILogger>();
+                var logger = DependencyResolver.Resolve<ILogger>();
                 logger.Error(string.Format("Regular expression '{0}' is not valid", this.RegularExpression), this, exception);
                 Profiler.OnEnd(this, eventName);
                 return false;

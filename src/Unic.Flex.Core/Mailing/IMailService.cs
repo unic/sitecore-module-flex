@@ -1,7 +1,7 @@
 ﻿namespace Unic.Flex.Core.Mailing
 {
     using System.Collections.Generic;
-    using Unic.Flex.Model.DomainModel.Fields;
+    using Unic.Flex.Model.Fields;
 
     /// <summary>
     /// Mail service with mail related stuff

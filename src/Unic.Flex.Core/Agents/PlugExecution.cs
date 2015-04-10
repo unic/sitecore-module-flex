@@ -16,6 +16,7 @@
     using Unic.Flex.Core.DependencyInjection;
     using Unic.Flex.Core.Utilities;
     using Unic.Flex.Model.Configuration;
+    using DependencyResolver = Unic.Flex.Core.DependencyInjection.DependencyResolver;
 
     /// <summary>
     /// Agent for executing plugs
@@ -91,7 +92,7 @@
                 using (new SiteContextSwitcher(siteContext))
                 {
                     // check if async execution is allowed
-                    var isAsyncExecutionAllowed = Container.Resolve<IConfigurationManager>().Get<GlobalConfiguration>(c => c.IsAsyncExecutionAllowed);
+                    var isAsyncExecutionAllowed = DependencyResolver.Resolve<IConfigurationManager>().Get<GlobalConfiguration>(c => c.IsAsyncExecutionAllowed);
 
                     // show config
                     this.LogInfo("--------------------------");

@@ -21,7 +21,8 @@
     using Unic.Flex.Core.Logging;
     using Unic.Flex.Core.Utilities;
     using Unic.Flex.Implementation.Database;
-    using Unic.Flex.Model.DomainModel.Forms;
+    using Unic.Flex.Model.Forms;
+    using DependencyResolver = Unic.Flex.Core.DependencyInjection.DependencyResolver;
 
     /// <summary>
     /// Command to export form data from databae to excel
@@ -99,7 +100,7 @@
             Assert.IsNotNull(item, "Item must not be null");
 
             var itemId = item.ID.ToGuid();
-            var service = Container.Resolve<ISaveToDatabaseService>();
+            var service = DependencyResolver.Resolve<ISaveToDatabaseService>();
 
             // check if the user has permission to export the form
             if (!service.HasExportPermissions(itemId))
@@ -124,7 +125,7 @@
         {
             try
             {
-                var form = (Form)arguments[0];
+                var form = (IForm)arguments[0];
                 var fileName = (string)arguments[1];
                 this.saveToDatabaseService.ExportForm(form, fileName);
             }
@@ -157,10 +158,10 @@
         {
             using (new DatabaseSwitcher(Factory.GetDatabase("master")))
             {
-                this.saveToDatabaseService = Container.Resolve<ISaveToDatabaseService>();
-                this.logger = Container.Resolve<ILogger>();
-                this.dictionaryRepository = Container.Resolve<IDictionaryRepository>();
-                this.contextService = Container.Resolve<IContextService>();
+                this.saveToDatabaseService = DependencyResolver.Resolve<ISaveToDatabaseService>();
+                this.logger = DependencyResolver.Resolve<ILogger>();
+                this.dictionaryRepository = DependencyResolver.Resolve<IDictionaryRepository>();
+                this.contextService = DependencyResolver.Resolve<IContextService>();
             }
         }
     }
