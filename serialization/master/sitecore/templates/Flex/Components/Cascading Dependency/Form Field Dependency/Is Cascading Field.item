@@ -2,7 +2,7 @@
 version: 1
 id: {0A1293CE-8F98-42D1-BC52-7F3C682D939C}
 database: master
-path: /sitecore/templates/Flex/Fields/List Fields/List Field/Form Field Dependency/Is Cascading Field
+path: /sitecore/templates/Flex/Components/Cascading Dependency/Form Field Dependency/Is Cascading Field
 parent: {173A39EE-63E8-42A6-BBB9-5A5A00F3AF6A}
 name: Is Cascading Field
 master: {00000000-0000-0000-0000-000000000000}
