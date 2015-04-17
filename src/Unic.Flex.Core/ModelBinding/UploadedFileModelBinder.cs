@@ -1,5 +1,6 @@
 ﻿namespace Unic.Flex.Core.ModelBinding
 {
+    using System;
     using System.IO;
     using System.Web.Mvc;
     using Unic.Flex.Model.Types;
@@ -24,11 +25,18 @@
             if (postedFile.ContentLength == 0 && string.IsNullOrWhiteSpace(postedFile.FileName)) return null;
 
             var uploadedFile = new UploadedFile
-                                    {
-                                        ContentLength = postedFile.ContentLength,
-                                        ContentType = postedFile.ContentType,
-                                        FileName = postedFile.FileName
-                                    };
+            {
+                ContentLength = postedFile.ContentLength,
+                ContentType = postedFile.ContentType,
+                FileName = postedFile.FileName
+            };
+
+            // hack for the IE to remove the path from the file name
+            if (uploadedFile.FileName.Contains("\\"))
+            {
+                var lastIndex = uploadedFile.FileName.LastIndexOf("\\", StringComparison.InvariantCultureIgnoreCase);
+                uploadedFile.FileName = uploadedFile.FileName.Substring(lastIndex + 1);
+            }
 
             using (var stream = new MemoryStream())
             {
