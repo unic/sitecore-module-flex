@@ -52,10 +52,11 @@
                 content,
                 @"({)(.*?)(})",
                 match =>
-                    {
-                        var field = fields.FirstOrDefault(f => f.Key.Equals(match.Groups[2].Value, StringComparison.InvariantCultureIgnoreCase));
-                        return field != null ? field.TextValue : match.Value;
-                    });
+                {
+                    var field = fields.FirstOrDefault(f => !string.IsNullOrWhiteSpace(f.Key)
+                        && f.Key.Equals(match.Groups[2].Value, StringComparison.InvariantCultureIgnoreCase));
+                    return field != null ? field.TextValue : match.Value;
+                });
         }
     }
 }
