@@ -33,9 +33,10 @@
         /// </summary>
         /// <param name="message">The message.</param>
         /// <param name="owner">The owner/sender of the message.</param>
-        public virtual void Warn(string message, object owner)
+        /// <param name="exception">The exception.</param>
+        public virtual void Warn(string message, object owner, Exception exception = null)
         {
-            Log.Warn(this.FormatMessage(message), owner);
+            Log.Warn(this.FormatMessage(message), exception, owner);
         }
 
         /// <summary>
