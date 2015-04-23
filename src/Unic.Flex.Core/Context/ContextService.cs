@@ -142,9 +142,19 @@
                     {
                         var value = values[field.Id];
 
-                        // deserialize JObject again, because if this is the type, then it's an uploaded file within it
-                        var fileValue = value as JObject;
-                        field.Value = fileValue != null ? fileValue.ToObject<UploadedFile>() : value;
+                        try
+                        {
+                            // deserialize JObject again, because if this is the type, then it's an uploaded file within it
+                            var fileValue = value as JObject;
+                            field.Value = fileValue != null ? fileValue.ToObject<UploadedFile>() : value;
+                        }
+                        catch (Exception exception)
+                        {
+                            this.logger.Warn(
+                                string.Format("Could not map field '{0}' of form '{1}'. Ignoring field and go on...", field.Id, form.Id),
+                                this,
+                                exception);
+                        }
                     }
                     else
                     {
