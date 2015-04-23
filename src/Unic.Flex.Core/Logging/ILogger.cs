@@ -26,7 +26,8 @@
         /// </summary>
         /// <param name="message">The message.</param>
         /// <param name="owner">The owner/sender of the message.</param>
-        void Warn(string message, object owner);
+        /// <param name="exception">The exception.</param>
+        void Warn(string message, object owner, Exception exception = null);
 
         /// <summary>
         /// Logs an error message
