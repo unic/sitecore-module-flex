@@ -63,8 +63,12 @@
                     PropertyFilter = bindingContext.PropertyFilter,
                     ValueProvider = bindingContext.ValueProvider
                 };
-                
-                modelList.Add(elementBinder.BindModel(controllerContext, innerContext));
+
+                // if we only have a text-only field (without an input field), then no field in the section
+                // will be posted and the child modelbinding returns null. In this case, we add the initial
+                // model to the list.
+                var bindedModel = elementBinder.BindModel(controllerContext, innerContext);
+                modelList.Add(bindedModel ?? item);
             }
 
             var model = bindingContext.Model;
