@@ -4,7 +4,12 @@
 @model Unic.Flex.Implementation.Fields.InputFields.DatePickerField
 
 <li class="flex_listitem @Model.CssClass" @Html.Raw(Html.FormatAttributes(Model.ContainerAttributes)) data-init="flexdatepicker" data-flexdatepicker-options='{"locale": "@Model.Locale", "dateFormat": "@Model.DateFormat", "changeYear": @Model.ShowYearAndMonthChanger.ToString().ToLower(), "changeMonth": @Model.ShowYearAndMonthChanger.ToString().ToLower() }'>
-    @Html.FlexLabel(m => m.Value, Model.Label, Model.LabelLink, Model.LabelAddition)
+
+    @{
+        var addition = string.Format("{0} <span class=\"visuallyhidden\">{1}</span>", Model.LabelAddition, TranslationHelper.FlexText("Datepicker Usage Description"));
+    }
+    
+    @Html.FlexLabel(m => m.Value, Model.Label, Model.LabelLink, @addition)
     @Html.TextBoxFor(m => m.Value, Html.GetAttributes(Model))
 
     <a href="#" data-flexdatepicker="trigger" class="flex_datepicker_trigger"><span>@TranslationHelper.FlexText("Show Datepicker")</span></a>
