@@ -330,7 +330,12 @@
         public virtual ActionResult AjaxValidator(Guid validator)
         {
             // get the validator
-            var validatorItem = this.formRepository.LoadItem<IValidator>(validator) as AjaxValidator;
+            AjaxValidator validatorItem;
+            using (new VersionCountDisabler())
+            {
+                validatorItem = this.formRepository.LoadItem<IValidator>(validator) as AjaxValidator;
+            }
+
             if (validatorItem == null)
             {
                 this.logger.Warn(string.Format("Ajax validator with guid '{0}' not found", validator), this);
