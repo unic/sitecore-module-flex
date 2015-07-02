@@ -19,5 +19,7 @@
   </metadata>
   <files>
 	<file src="readme.txt" target="" />
+	<file src="..\..\tools\**\*.*" target="tools" />
+	<file src="..\..\serialization\**\*.*" target="serialization" />
   </files>
 </package>
