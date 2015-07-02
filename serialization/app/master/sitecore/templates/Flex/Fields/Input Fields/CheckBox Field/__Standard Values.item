@@ -1,0 +1,44 @@
+----item----
+version: 1
+id: {DCEAD2E9-C134-4849-B7CC-223BFFA277BB}
+database: master
+path: /sitecore/templates/Flex/Fields/Input Fields/CheckBox Field/__Standard Values
+parent: {8583A797-3FE5-4247-B190-26E9BFD4D5A4}
+name: __Standard Values
+master: {00000000-0000-0000-0000-000000000000}
+template: {8583A797-3FE5-4247-B190-26E9BFD4D5A4}
+templatekey: CheckBox Field
+
+----version----
+language: en
+version: 1
+revision: 78a29f4c-6288-4649-b0a8-ccfe1ff66964
+
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20140526T141255
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+78a29f4c-6288-4649-b0a8-ccfe1ff66964
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20141031T184155:635503777154265382
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin
