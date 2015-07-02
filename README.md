@@ -1,6 +1,9 @@
 # Sitecore Flex
 Flex is the acronym for __Fl__exible Forms __Ex__perience, the module to create web forms within a Sitecore MVC solution. Flex is also known as a friend of [Bob the Builder](http://en.wikipedia.org/wiki/Bob_the_Builder "Bob the Builder"), a yellow-black cherry picker with a Northern Irish accent.
 
+## Build
+[![Build](https://teamcity.unic.com/httpAuth/app/rest/builds/buildType:Sitecore_Frameworks_SitecoreModules_SitecoreModuleFlex_Build/statusIcon)](https://teamcity.unic.com/viewType.html?buildTypeId=Sitecore_Frameworks_SitecoreModules_SitecoreModuleFlex_Build)
+
 ## Installation
 ### Assembly redirects
 Assembly redirect are needed in the `web.config` of the Sitecore installation. Please check the Flex `web.config` which one are needed and add them to the following node:
@@ -34,8 +37,6 @@ Add the following config to `web.config`:
 Install the database in the `data` directory and add the connection string in the `ConnectionStrings.config`:
 
 	<add name="Flex" connectionString="Data Source=localhost;Initial Catalog=flex_data;Integrated Security=True" providerName="System.Data.SqlClient" />
-	
+
 ### Items
 Please manually copy the serialized items in the `serialization` folder and sync the database. This has do be done after each update of Flex.
-
-
