@@ -4,8 +4,26 @@ Flex is the acronym for __Fl__exible Forms __Ex__perience, the module to create 
 ## Build
 [![Build](https://teamcity.unic.com/httpAuth/app/rest/builds/buildType:Sitecore_Frameworks_SitecoreModules_SitecoreModuleFlex_Build/statusIcon)](https://teamcity.unic.com/viewType.html?buildTypeId=Sitecore_Frameworks_SitecoreModules_SitecoreModuleFlex_Build)
 
-## Installation
+## Project Installation
+For using Flex in a project, please install the module over NuGet:
+
+	> Install-Package Unic.Flex
+
+After installing, you should follow the instructions in the [readme file](https://git.unic.com/projects/BUECS/repos/sitecore-module-flex/browse/src/Unic.Flex.Website/readme.txt), which will pop up after the installation in your Visual Studio.
+
+## Development Installation (DRAFT)
+
+### Steps
+- Clone repo
+- Add the path to the Sitecore playground installation in `Bob.config.user`
+- Compile
+- Manually copy a a IoC framework assembly (maybe this can be done with a sample project like in `Commex`)
+- Enable client-side validation in `web.config`
+- Install database
+- Serialize items with Unicorn (config module and Flex, maybe the config module items can be added to a saple serialization folder like in `Commex`)
+
 ### Assembly redirects
+
 Assembly redirect are needed in the `web.config` of the Sitecore installation. Please check the Flex `web.config` which one are needed and add them to the following node:
 
 	<configuration>
