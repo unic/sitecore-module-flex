@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\packages\Sitecore.7.2.140526.80\build\Sitecore.props" Condition="Exists('..\..\packages\Sitecore.7.2.140526.80\build\Sitecore.props')" />
   <Import Project="..\..\packages\Unic.Bob.Muck.1.0.0\build\Unic.Bob.Muck.props" Condition="Exists('..\..\packages\Unic.Bob.Muck.1.0.0\build\Unic.Bob.Muck.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -20,7 +21,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
-    <NuGetPackageImportStamp>9fadf82b</NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>57841be7</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -83,12 +84,12 @@
       <HintPath>..\..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.Kernel, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Sitecore.Kernel.7.2.140526.49\lib\Sitecore.Kernel.dll</HintPath>
+      <HintPath>..\..\packages\Sitecore.Kernel.7.2.140526.80\lib\Sitecore.Kernel.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Sitecore.Mvc, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Sitecore.Mvc.7.2.140526.49\lib\Sitecore.Mvc.dll</HintPath>
+      <HintPath>..\..\packages\Sitecore.Mvc.7.2.140526.80\lib\Sitecore.Mvc.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
@@ -376,6 +377,7 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\..\packages\Unic.Bob.Muck.1.0.0\build\Unic.Bob.Muck.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Unic.Bob.Muck.1.0.0\build\Unic.Bob.Muck.props'))" />
     <Error Condition="!Exists('..\..\packages\Unic.Bob.Muck.1.0.0\build\Unic.Bob.Muck.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Unic.Bob.Muck.1.0.0\build\Unic.Bob.Muck.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Sitecore.7.2.140526.80\build\Sitecore.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Sitecore.7.2.140526.80\build\Sitecore.props'))" />
   </Target>
   <Import Project="..\..\packages\Unic.Bob.Muck.1.0.0\build\Unic.Bob.Muck.targets" Condition="Exists('..\..\packages\Unic.Bob.Muck.1.0.0\build\Unic.Bob.Muck.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
