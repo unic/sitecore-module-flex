@@ -9948,7 +9948,7 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
 /**
  * @license
  * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
- * Build: `lodash include="debounce,keys,bind,find,contains,each,filter,uniqueId" -o /var/lib/jenkins/workspace/Flex-Frontend "(release)/source/assets/.tmp/lodash.js" -d`
+ * Build: `lodash include="debounce,keys,bind,find,contains,each,filter,uniqueId" -o /var/lib/jenkins/workspace/Flex-Frontend "(develop)/source/assets/.tmp/lodash.js" -d`
  * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
  * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
  * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -12286,11 +12286,11 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
 }(this, document, jQuery));
 
 /*!
- * jQuery Validation Plugin v1.13.1
+ * jQuery Validation Plugin v1.14.0
  *
  * http://jqueryvalidation.org/
  *
- * Copyright (c) 2014 Jörn Zaefferer
+ * Copyright (c) 2015 Jörn Zaefferer
  * Released under the MIT license
  */
 (function( factory ) {
@@ -12327,23 +12327,24 @@ $.extend($.fn, {
 
 		if ( validator.settings.onsubmit ) {
 
-			this.validateDelegate( ":submit", "click", function( event ) {
+			this.on( "click.validate", ":submit", function( event ) {
 				if ( validator.settings.submitHandler ) {
 					validator.submitButton = event.target;
 				}
+
 				// allow suppressing validation by adding a cancel class to the submit button
-				if ( $( event.target ).hasClass( "cancel" ) ) {
+				if ( $( this ).hasClass( "cancel" ) ) {
 					validator.cancelSubmit = true;
 				}
 
 				// allow suppressing validation by adding the html5 formnovalidate attribute to the submit button
-				if ( $( event.target ).attr( "formnovalidate" ) !== undefined ) {
+				if ( $( this ).attr( "formnovalidate" ) !== undefined ) {
 					validator.cancelSubmit = true;
 				}
 			});
 
 			// validate the form on submit
-			this.submit( function( event ) {
+			this.on( "submit.validate", function( event ) {
 				if ( validator.settings.debug ) {
 					// prevent form submit to be able to see console output
 					event.preventDefault();
@@ -12393,29 +12394,23 @@ $.extend($.fn, {
 	},
 	// http://jqueryvalidation.org/valid/
 	valid: function() {
-		var valid, validator;
+		var valid, validator, errorList;
 
 		if ( $( this[ 0 ] ).is( "form" ) ) {
 			valid = this.validate().form();
 		} else {
+			errorList = [];
 			valid = true;
 			validator = $( this[ 0 ].form ).validate();
 			this.each( function() {
 				valid = validator.element( this ) && valid;
+				errorList = errorList.concat( validator.errorList );
 			});
+			validator.errorList = errorList;
 		}
 		return valid;
 	},
-	// attributes: space separated list of attributes to retrieve and remove
-	removeAttrs: function( attributes ) {
-		var result = {},
-			$element = this;
-		$.each( attributes.split( /\s/ ), function( index, value ) {
-			result[ value ] = $element.attr( value );
-			$element.removeAttr( value );
-		});
-		return result;
-	},
+
 	// http://jqueryvalidation.org/rules/
 	rules: function( command, argument ) {
 		var element = this[ 0 ],
@@ -12559,7 +12554,26 @@ $.extend( $.validator, {
 			}
 		},
 		onkeyup: function( element, event ) {
-			if ( event.which === 9 && this.elementValue( element ) === "" ) {
+			// Avoid revalidate the field when pressing one of the following keys
+			// Shift       => 16
+			// Ctrl        => 17
+			// Alt         => 18
+			// Caps lock   => 20
+			// End         => 35
+			// Home        => 36
+			// Left arrow  => 37
+			// Up arrow    => 38
+			// Right arrow => 39
+			// Down arrow  => 40
+			// Insert      => 45
+			// Num lock    => 144
+			// AltGr key   => 225
+			var excludedKeys = [
+				16, 17, 18, 20, 35, 36, 37,
+				38, 39, 40, 45, 144, 225
+			];
+
+			if ( event.which === 9 && this.elementValue( element ) === "" || $.inArray( event.keyCode, excludedKeys ) !== -1 ) {
 				return;
 			} else if ( element.name in this.submitted || element === this.lastElement ) {
 				this.element( element );
@@ -12646,26 +12660,26 @@ $.extend( $.validator, {
 			});
 
 			function delegate( event ) {
-				var validator = $.data( this[ 0 ].form, "validator" ),
+				var validator = $.data( this.form, "validator" ),
 					eventType = "on" + event.type.replace( /^validate/, "" ),
 					settings = validator.settings;
-				if ( settings[ eventType ] && !this.is( settings.ignore ) ) {
-					settings[ eventType ].call( validator, this[ 0 ], event );
+				if ( settings[ eventType ] && !$( this ).is( settings.ignore ) ) {
+					settings[ eventType ].call( validator, this, event );
 				}
 			}
+
 			$( this.currentForm )
-				.validateDelegate( ":text, [type='password'], [type='file'], select, textarea, " +
-					"[type='number'], [type='search'] ,[type='tel'], [type='url'], " +
-					"[type='email'], [type='datetime'], [type='date'], [type='month'], " +
-					"[type='week'], [type='time'], [type='datetime-local'], " +
-					"[type='range'], [type='color'], [type='radio'], [type='checkbox']",
-					"focusin focusout keyup", delegate)
+				.on( "focusin.validate focusout.validate keyup.validate",
+					":text, [type='password'], [type='file'], select, textarea, [type='number'], [type='search'], " +
+					"[type='tel'], [type='url'], [type='email'], [type='datetime'], [type='date'], [type='month'], " +
+					"[type='week'], [type='time'], [type='datetime-local'], [type='range'], [type='color'], " +
+					"[type='radio'], [type='checkbox']", delegate)
 				// Support: Chrome, oldIE
 				// "select" is provided as event.target when clicking a option
-				.validateDelegate("select, option, [type='radio'], [type='checkbox']", "click", delegate);
+				.on("click.validate", "select, option, [type='radio'], [type='checkbox']", delegate);
 
 			if ( this.settings.invalidHandler ) {
-				$( this.currentForm ).bind( "invalid-form.validate", this.settings.invalidHandler );
+				$( this.currentForm ).on( "invalid-form.validate", this.settings.invalidHandler );
 			}
 
 			// Add aria-required to any Static/Data/Class required fields before first validation
@@ -12758,10 +12772,18 @@ $.extend( $.validator, {
 			this.lastElement = null;
 			this.prepareForm();
 			this.hideErrors();
-			this.elements()
-					.removeClass( this.settings.errorClass )
-					.removeData( "previousValue" )
-					.removeAttr( "aria-invalid" );
+			var i, elements = this.elements()
+				.removeData( "previousValue" )
+				.removeAttr( "aria-invalid" );
+
+			if ( this.settings.unhighlight ) {
+				for ( i = 0; elements[ i ]; i++ ) {
+					this.settings.unhighlight.call( this, elements[ i ],
+						this.settings.errorClass, "" );
+				}
+			} else {
+				elements.removeClass( this.settings.errorClass );
+			}
 		},
 
 		numberOfInvalids: function() {
@@ -12823,7 +12845,7 @@ $.extend( $.validator, {
 			// select all valid inputs inside the form (no submit or reset buttons)
 			return $( this.currentForm )
 			.find( "input, select, textarea" )
-			.not( ":submit, :reset, :image, [disabled], [readonly]" )
+			.not( ":submit, :reset, :image, :disabled" )
 			.not( this.settings.ignore )
 			.filter( function() {
 				if ( !this.name && validator.settings.debug && window.console ) {
@@ -12874,7 +12896,7 @@ $.extend( $.validator, {
 				type = element.type;
 
 			if ( type === "radio" || type === "checkbox" ) {
-				return $( "input[name='" + element.name + "']:checked" ).val();
+				return this.findByName( element.name ).filter(":checked").val();
 			} else if ( type === "number" && typeof element.validity !== "undefined" ) {
 				return element.validity.badInput ? false : $element.val();
 			}
@@ -12924,6 +12946,10 @@ $.extend( $.validator, {
 					if ( this.settings.debug && window.console ) {
 						console.log( "Exception occurred when checking element " + element.id + ", check the '" + rule.method + "' method.", e );
 					}
+					if ( e instanceof TypeError ) {
+						e.message += ".  Exception occurred when checking element " + element.id + ", check the '" + rule.method + "' method.";
+					}
+
 					throw e;
 				}
 			}
@@ -13073,7 +13099,7 @@ $.extend( $.validator, {
 					// If the element is not a child of an associated label, then it's necessary
 					// to explicitly apply aria-describedby
 
-					errorID = error.attr( "id" ).replace( /(:|\.|\[|\])/g, "\\$1");
+					errorID = error.attr( "id" ).replace( /(:|\.|\[|\]|\$)/g, "\\$1");
 					// Respect existing non-error aria-describedby
 					if ( !describedBy ) {
 						describedBy = errorID;
@@ -13205,6 +13231,15 @@ $.extend( $.validator, {
 				valid: true,
 				message: this.defaultMessage( element, "remote" )
 			});
+		},
+
+		// cleans up all forms and elements, removes validator-specific events
+		destroy: function() {
+			this.resetForm();
+
+			$( this.currentForm )
+				.off( ".validate" )
+				.removeData( "validator" );
 		}
 
 	},
@@ -13242,6 +13277,29 @@ $.extend( $.validator, {
 		return rules;
 	},
 
+	normalizeAttributeRule: function( rules, type, method, value ) {
+
+		// convert the value to a number for number inputs, and for text for backwards compability
+		// allows type="date" and others to be compared as strings
+		if ( /min|max/.test( method ) && ( type === null || /number|range|text/.test( type ) ) ) {
+			value = Number( value );
+
+			// Support Opera Mini, which returns NaN for undefined minlength
+			if ( isNaN( value ) ) {
+				value = undefined;
+			}
+		}
+
+		if ( value || value === 0 ) {
+			rules[ method ] = value;
+		} else if ( type === method && type !== "range" ) {
+
+			// exception: the jquery validate 'range' method
+			// does not test for the html5 'range' type
+			rules[ method ] = true;
+		}
+	},
+
 	attributeRules: function( element ) {
 		var rules = {},
 			$element = $( element ),
@@ -13253,30 +13311,20 @@ $.extend( $.validator, {
 			// support for <input required> in both html5 and older browsers
 			if ( method === "required" ) {
 				value = element.getAttribute( method );
+
 				// Some browsers return an empty string for the required attribute
 				// and non-HTML5 browsers might have required="" markup
 				if ( value === "" ) {
 					value = true;
 				}
+
 				// force non-HTML5 browsers to return bool
 				value = !!value;
 			} else {
 				value = $element.attr( method );
 			}
 
-			// convert the value to a number for number inputs, and for text for backwards compability
-			// allows type="date" and others to be compared as strings
-			if ( /min|max/.test( method ) && ( type === null || /number|range|text/.test( type ) ) ) {
-				value = Number( value );
-			}
-
-			if ( value || value === 0 ) {
-				rules[ method ] = value;
-			} else if ( type === method && type !== "range" ) {
-				// exception: the jquery validate 'range' method
-				// does not test for the html5 'range' type
-				rules[ method ] = true;
-			}
+			this.normalizeAttributeRule( rules, type, method, value );
 		}
 
 		// maxlength may be returned as -1, 2147483647 ( IE ) and 524288 ( safari ) for text inputs
@@ -13288,13 +13336,14 @@ $.extend( $.validator, {
 	},
 
 	dataRules: function( element ) {
-		var method, value,
-			rules = {}, $element = $( element );
+		var rules = {},
+			$element = $( element ),
+			type = element.getAttribute( "type" ),
+			method, value;
+
 		for ( method in $.validator.methods ) {
 			value = $element.data( "rule" + method.charAt( 0 ).toUpperCase() + method.substring( 1 ).toLowerCase() );
-			if ( value !== undefined ) {
-				rules[ method ] = value;
-			}
+			this.normalizeAttributeRule( rules, type, method, value );
 		}
 		return rules;
 	},
@@ -13412,12 +13461,12 @@ $.extend( $.validator, {
 			if ( this.checkable( element ) ) {
 				return this.getLength( value, element ) > 0;
 			}
-			return $.trim( value ).length > 0;
+			return value.length > 0;
 		},
 
 		// http://jqueryvalidation.org/email-method/
 		email: function( value, element ) {
-			// From http://www.whatwg.org/specs/web-apps/current-work/multipage/states-of-the-type-attribute.html#e-mail-state-%28type=email%29
+			// From https://html.spec.whatwg.org/multipage/forms.html#valid-e-mail-address
 			// Retrieved 2014-01-14
 			// If you have a problem with this implementation, report a bug against the above spec
 			// Or use custom methods to implement your own email validation
@@ -13426,8 +13475,12 @@ $.extend( $.validator, {
 
 		// http://jqueryvalidation.org/url-method/
 		url: function( value, element ) {
-			// contributed by Scott Gonzalez: http://projects.scottsplayground.com/iri/
-			return this.optional( element ) || /^(https?|s?ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i.test( value );
+
+			// Copyright (c) 2010-2013 Diego Perini, MIT licensed
+			// https://gist.github.com/dperini/729294
+			// see also https://mathiasbynens.be/demo/url-regex
+			// modified to allow protocol-relative URLs
+			return this.optional( element ) || /^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})).?)(?::\d{2,5})?(?:[/?#]\S*)?$/i.test( value );
 		},
 
 		// http://jqueryvalidation.org/date-method/
@@ -13442,7 +13495,7 @@ $.extend( $.validator, {
 
 		// http://jqueryvalidation.org/number-method/
 		number: function( value, element ) {
-			return this.optional( element ) || /^-?(?:\d+|\d{1,3}(?:,\d{3})+)?(?:\.\d+)?$/.test( value );
+			return this.optional( element ) || /^(?:-?\d+|-?\d{1,3}(?:,\d{3})+)?(?:\.\d+)?$/.test( value );
 		},
 
 		// http://jqueryvalidation.org/digits-method/
@@ -13451,7 +13504,7 @@ $.extend( $.validator, {
 		},
 
 		// http://jqueryvalidation.org/creditcard-method/
-		// based on http://en.wikipedia.org/wiki/Luhn/
+		// based on http://en.wikipedia.org/wiki/Luhn_algorithm
 		creditcard: function( value, element ) {
 			if ( this.optional( element ) ) {
 				return "dependency-mismatch";
@@ -13527,7 +13580,7 @@ $.extend( $.validator, {
 			// TODO find a way to bind the event just once, avoiding the unbind-rebind overhead
 			var target = $( param );
 			if ( this.settings.onfocusout ) {
-				target.unbind( ".validate-equalTo" ).bind( "blur.validate-equalTo", function() {
+				target.off( ".validate-equalTo" ).on( "blur.validate-equalTo", function() {
 					$( element ).valid();
 				});
 			}
@@ -13561,7 +13614,6 @@ $.extend( $.validator, {
 			data = {};
 			data[ element.name ] = value;
 			$.ajax( $.extend( true, {
-				url: param,
 				mode: "abort",
 				port: "validate" + element.name,
 				dataType: "json",
@@ -13592,14 +13644,9 @@ $.extend( $.validator, {
 			}, param ) );
 			return "pending";
 		}
-
 	}
 
 });
-
-$.format = function deprecated() {
-	throw "$.format has been deprecated. Please use $.validator.format instead.";
-};
 
 // ajax mode: abort
 // usage: $.ajax({ mode: "abort"[, port: "uniqueport"]});
@@ -13634,20 +13681,6 @@ if ( $.ajaxPrefilter ) {
 		return ajax.apply(this, arguments);
 	};
 }
-
-// provides delegate(type: String, delegate: Selector, handler: Callback) plugin for easier event delegation
-// handler is only called when $(event.target).is(delegate), in the scope of the jquery-object for event.target
-
-$.extend($.fn, {
-	validateDelegate: function( delegate, type, handler ) {
-		return this.bind(type, function( event ) {
-			var target = $(event.target);
-			if ( target.is(delegate) ) {
-				return handler.apply(target, arguments);
-			}
-		});
-	}
-});
 
 }));
 /* NUGET: BEGIN LICENSE TEXT
@@ -16599,8 +16632,8 @@ return datepicker.regional['it-CH'];
 		this._initDependentFields();
 		this._initValidation();
 		this._initMultistep();
-
 		this._initAllCheckbox();
+
 
 		if (!Modernizr.placeholder && typeof($.fn.placeholder) === 'function' && this.options.initplaceholder) {
 			this.$element.find('input, textarea').placeholder();
@@ -16616,6 +16649,7 @@ return datepicker.regional['it-CH'];
 		}
 		$invalidFields.closest('li').addClass(constants.haserrorClass);
 		this.$element.on('change.' + pluginName, 'input[type=checkbox], input[type=radio]', _.bind(this._syncCheckedStatus, this));
+
 	};
 
 	/**
@@ -16628,6 +16662,53 @@ return datepicker.regional['it-CH'];
 	};
 
 	/**
+	 * Method to add missing attributes like aria-invalid="true" to initial states
+	 * @private
+	 */
+	Plugin.prototype._setAriaInvalid = function() {
+		_.each(this.$element.find('input, textarea, select'), function (element) {
+			var $element = $(element);
+
+			/* handle checkboxes & radios */
+			if (($element.attr('type') === 'checkbox' || $element.attr('type') === 'radio') && ($element.attr('required') || $element.data('val')) && !$element.attr('checked')) {
+				$element.attr('aria-invalid', 'true');
+				return;
+			}
+
+			/* handle the rest - textfields & selects */
+			if (($element.val() === '' || $element.val() === null) && $element.attr('required')) {
+				$element.attr('aria-invalid', 'true');
+			}
+
+		}, this);
+
+		// handle change and aria-invalid state on checkboxes/radios.
+		this.$element
+			.on('change.' + pluginName, this.$element.find('input[type="radio"]'), _.bind(function (event) {
+
+				var $element = $(event.target);
+
+				if ($element.attr('type') === 'radio') {
+					this.$element.find('[name="' + $element.attr('name') + '"]').attr('aria-invalid', 'false');
+					return;
+				}
+
+			}, this))
+			.on('change.' + pluginName, this.$element.find('input[type="checkbox"]'), _.bind(function (event) {
+
+				var $element = $(event.target);
+
+				if ($element.attr('type') === 'checkbox' && $element.is(':checked') && $element.data('val')) {
+					$element.attr('aria-invalid', 'false');
+					return;
+				}
+
+				$element.attr('aria-invalid', 'true');
+
+			}, this));
+	};
+
+	/**
 	 * Method to configure Validation-Plugin if necessary and add default customValidators.
 	 * @private
 	 */
@@ -16637,6 +16718,7 @@ return datepicker.regional['it-CH'];
 		}
 
 		this.$element.on('invalid-form.validate.' + pluginName, _.bind(function () {
+			this._setAriaInvalid();
 			$document.trigger(events.EVENT_VALIDATION_INVALID, this.$element);
 		}, this));
 
@@ -16699,9 +16781,9 @@ return datepicker.regional['it-CH'];
 		if ($checkbox.is('[data-' + pluginName + '=all]')) {
 			// User clicked on 'all'
 			if (value) {
-				$group.find(':checkbox').attr('aria-checked', true).prop('checked', true).attr('checked', 'checked');
+				$group.find(':checkbox').attr({'aria-checked': true, 'aria-invalid': false}).prop('checked', true).attr('checked', 'checked');
 			} else {
-				$group.find(':checkbox').attr('aria-checked', false).prop('checked', false).removeAttr('checked');
+				$group.find(':checkbox').attr({'aria-checked': false, 'aria-invalid': true}).prop('checked', false).removeAttr('checked');
 			}
 		} else {
 			// User clicked on another checkbox
@@ -16723,9 +16805,9 @@ return datepicker.regional['it-CH'];
 			checkedBoxes = $group.find(':checked[data-' + pluginName + '!=all]');
 
 		if (checkedBoxes.length === totalBoxes.length - 1) {
-			$group.find('[data-' + pluginName + '=all]').attr('aria-checked', true).prop('checked', true).attr('checked', 'checked');
+			$group.find('[data-' + pluginName + '=all]').attr({'aria-checked': true, 'aria-invalid': false}).prop('checked', true).attr('checked', 'checked');
 		} else {
-			$group.find('[data-' + pluginName + '=all]').attr('aria-checked', false).prop('checked', false).removeAttr('checked');
+			$group.find('[data-' + pluginName + '=all]').attr({'aria-checked': false, 'aria-invalid': true}).prop('checked', false).removeAttr('checked');
 		}
 	};
 
@@ -16772,6 +16854,10 @@ return datepicker.regional['it-CH'];
 			$elements.each(_.bind(this._handleDependents, this, undefined));
 
 			this.$element.on('change.' + pluginName, _.bind(this._changeDependents, this));
+
+			// POSTWEPP-4416
+			this.$element.find('input:selected, input:checked, select option:selected').not(':hidden').trigger('change');
+
 		}
 	};
 
@@ -16781,11 +16867,15 @@ return datepicker.regional['it-CH'];
 	 * @private
 	 */
 	Plugin.prototype._changeDependents = function(event){
-		var $changed = $(event.target).closest('[data-key]');
-		var $elements = this.$element.find('[data-' + this.options.dataattribute + '-dependent]').filter(_.bind(function(i, el){
-			return _.contains($(el).data(this.options.dataattribute + '-dependent').from.split(','), $changed.data().key);
-		}, this));
-		$elements.each(_.bind(this._handleDependents, this, $changed.data().key));
+		var $changed = $(event.target).closest('[data-key]'),
+			$elements;
+
+		if ($changed.length) {
+			$elements = this.$element.find('[data-' + this.options.dataattribute + '-dependent]').filter(_.bind(function(i, el){
+				return _.contains($(el).data(this.options.dataattribute + '-dependent').from.split(','), $changed.data().key);
+			}, this));
+			$elements.each(_.bind(this._handleDependents, this, $changed.data().key));
+		}
 	};
 
 	/**
@@ -16799,8 +16889,15 @@ return datepicker.regional['it-CH'];
 
 		var $field = $(element),
 			data = $field.data(this.options.dataattribute + '-dependent'),
-			$from = this.$element.find('[data-key="' + data.from + '"]'),
+			from = [],
+			$from,
+			//$from = this.$element.find('[data-key="' + data.from + '"]'),
 			dependentsMatch = true;
+
+		_.each(data.from.split(','), function(fromKey){
+			from.push( '[data-key="' + fromKey + '"]' );
+		});
+		$from = this.$element.find(from.join(','));
 
 		if(data.url) {
 			// Field is managed by ajax
@@ -16883,16 +16980,24 @@ return datepicker.regional['it-CH'];
 				_.each(from, _.bind(function(fromKey){
 					var $field = this.$element.find('[data-key=' + fromKey + ']'),
 						$input = $field.find(':input'),
+						type = $input.attr('type'),
 						name = $input.attr('name'),
 						hasDependent = typeof $field.data(this.options.dataattribute + '-dependent') !== 'undefined',
 						from = hasDependent ? $field.data(this.options.dataattribute + '-dependent').from.split(',') : undefined;
+
+					//POSTWEPP-4380
+					if (type === 'radio' || type === 'checkbox') {
+						$input = $field.find(':input:checked');
+					}
 
 					data1[name] = $input.val();
 					if ($.isArray(from)) {
 						$.extend(data, data1, populateData(from));
 					}
 				}, this));
-				//data1[$fieldInput.attr('name')] = $fieldInput.val();
+
+				// POSTWEPP-4346: adding dependent field value to the ajax request as well
+				data1[$fieldInput.attr('name')] = $fieldInput.val();
 				return data1;
 			}, this),
 			data = {};
@@ -16902,7 +17007,6 @@ return datepicker.regional['it-CH'];
 		}
 
 		$.extend(data, populateData(from));
-		//console.log(data);
 
 		if ($fieldInput.data('runningrequest')) {
 			$fieldInput.data('runningrequest').abort();
@@ -17015,6 +17119,23 @@ return datepicker.regional['it-CH'];
 		$.validator.methods.email = function(){
 			return true;
 		};
+
+		// Add Mandatory for Checkboxes, as they don't support 'required' (POSTSC-5)
+		// http://stackoverflow.com/questions/4934032/mvc3-make-checkbox-required-via-jquery-validate
+		$.validator.unobtrusive.adapters.add('mandatory', function (options) {
+			options.rules.required = true;
+			if (options.message) {
+				options.messages.required = options.message;
+			}
+		});
+		$.validator.unobtrusive.adapters.addBool('mandatory', 'required');
+		// We can't write mandatory in Backend, so we do here.
+		var $requiredCheckboxes = $(':checkbox[data-val-required]');
+		$requiredCheckboxes.each(function(){
+			var $checkbox = $(this);
+			$checkbox.attr('data-val-mandatory', $checkbox.attr('data-val-required'));
+			$checkbox.removeAttr('data-val-required');
+		});
 
 		// Multicheckrequired
 		$.validator.unobtrusive.adapters.add('multicheckrequired', [], function (options) {
@@ -17195,6 +17316,7 @@ return datepicker.regional['it-CH'];
 /**
  * Datepicker
  * @author RMa, Unic AG
+ * @edited OrT, Unic AG
  * @license All rights reserved Unic AG
  */
 
@@ -17235,6 +17357,10 @@ return datepicker.regional['it-CH'];
 	 * Initialize module, bind events
 	 */
 	Plugin.prototype.init = function() {
+		var findNextFocusable = function($element) {
+			return $element.next().is(':focusable') ? $element.next() : findNextFocusable($element.next());
+		};
+
 		this.$element.on('click.' + pluginName, '[data-' + pluginName + '=trigger]', _.bind(this._showDatePicker, this));
 		this.$datefield = this.$element.find('input');
 
@@ -17250,18 +17376,221 @@ return datepicker.regional['it-CH'];
 
 		$.datepicker.setDefaults( $.datepicker.regional[this.options.locale] );
 
+
+		// OrT: Re-map key-bindings. This replaces the original datePicker function, which was pasted here.
+		$.extend($.datepicker, {
+			_doKeyDown: function(event) {
+				var onSelect, dateStr, sel,
+					inst = $.datepicker._getInst(event.target),
+					handled = true,
+					isRTL = inst.dpDiv.is('.ui-datepicker-rtl');
+				//console.log('S-------------------------');
+				//console.log(event.keyCode, $.datepicker._datepickerShowing, event.target);
+
+				inst._keyEvent = true;
+				if ($.datepicker._datepickerShowing) {
+					switch (event.keyCode) {
+						// TAB
+						case 9:
+							// console.log('tab');
+							inst.dpDiv.find(':focusable').first().focus();
+							/*$.datepicker._hideDatepicker();
+							handled = false;*/
+							break; // hide on tab out
+
+						// ENTER
+						case 13:
+							//console.log('enter');
+							sel = $('td.' + $.datepicker._dayOverClass + ':not(.' + $.datepicker._currentClass + ')', inst.dpDiv);
+							if (sel[0]) {
+								$.datepicker._selectDay(event.target, inst.selectedMonth, inst.selectedYear, sel[0]);
+							}
+							onSelect = $.datepicker._get(inst, 'onSelect');
+							if (onSelect) {
+								dateStr = $.datepicker._formatDate(inst);
+								// trigger custom callback
+								onSelect.apply((inst.input ? inst.input[0] : null), [dateStr, inst]);
+							} else {
+								$.datepicker._hideDatepicker();
+							}
+							return false; // don't submit the form
+
+						// ESCAPE
+						case 27:
+							//console.log('escape');
+							$.datepicker._hideDatepicker();
+							break; // hide on escape
+
+						// PAGE_UP
+						/*case 33:
+							$.datepicker._adjustDate(
+								event.target,
+								(event.ctrlKey ?
+									-$.datepicker._get(inst, 'stepBigMonths') :
+									-$.datepicker._get(inst, 'stepMonths')
+								),
+								'M'
+							);
+							break; // previous month/year on page up/+ ctrl*/
+
+						// PAGE_DOWN
+						/*case 34:
+							$.datepicker._adjustDate(
+								event.target,
+								(event.ctrlKey ?
+									+$.datepicker._get(inst, 'stepBigMonths') :
+									+$.datepicker._get(inst, 'stepMonths')
+								),
+								'M');
+							break; // next month/year on page down/+ ctrl*/
+
+						// END
+						case 35:
+							$.datepicker._clearDate(event.target);
+							/*if (event.ctrlKey || event.metaKey) {
+								$.datepicker._clearDate(event.target);
+							}*/
+							handled = event.ctrlKey || event.metaKey;
+							break; // clear on ctrl or command +end
+
+						// HOME
+						case 36:
+							$.datepicker._gotoToday(event.target);
+							/*if (event.ctrlKey || event.metaKey) {
+								$.datepicker._gotoToday(event.target);
+							}*/
+							$.datepicker._setDate(inst, $.datepicker._formatDate(inst, inst.selectedDay, inst.selectedMonth, inst.selectedYear));
+							handled = event.ctrlKey || event.metaKey;
+							break; // current on ctrl or command +home
+
+						// LEFT
+						case 37:
+							$.datepicker._adjustDate(event.target, (isRTL ? +1 : -1), 'D');
+							/*if (event.ctrlKey || event.metaKey) {
+								$.datepicker._adjustDate(event.target, (isRTL ? +1 : -1), 'D');
+							}*/
+							//console.log($.datepicker._getDate(inst));
+							$.datepicker._setDate(inst, $.datepicker._formatDate(inst, inst.selectedDay, inst.selectedMonth, inst.selectedYear));
+							handled = event.ctrlKey || event.metaKey;
+							// -1 day on ctrl or command +left
+							if (event.originalEvent.altKey) {
+								$.datepicker._adjustDate(event.target, (event.ctrlKey ?
+									-$.datepicker._get(inst, 'stepBigMonths') :
+									-$.datepicker._get(inst, 'stepMonths')), 'M');
+							}
+							// next month/year on alt +left on Mac
+							break;
+
+						// UP
+						case 38:
+							$.datepicker._adjustDate(event.target, -7, 'D');
+							/*if (event.ctrlKey || event.metaKey) {
+								$.datepicker._adjustDate(event.target, -7, 'D');
+							}*/
+							//console.log($.datepicker._getDate(inst));
+							$.datepicker._setDate(inst, $.datepicker._formatDate(inst, inst.selectedDay, inst.selectedMonth, inst.selectedYear));
+							handled = event.ctrlKey || event.metaKey;
+							break; // -1 week on ctrl or command +up
+
+						// RIGHT
+						case 39:
+							$.datepicker._adjustDate(event.target, (isRTL ? -1 : +1), 'D');
+							/*if (event.ctrlKey || event.metaKey) {
+								$.datepicker._adjustDate(event.target, (isRTL ? -1 : +1), 'D');
+							}*/
+							//console.log($.datepicker._getDate(inst));
+							$.datepicker._setDate(inst, $.datepicker._formatDate(inst, inst.selectedDay, inst.selectedMonth, inst.selectedYear));
+							handled = event.ctrlKey || event.metaKey;
+							// +1 day on ctrl or command +right
+							if (event.originalEvent.altKey) {
+								$.datepicker._adjustDate(event.target, (event.ctrlKey ?
+									+$.datepicker._get(inst, 'stepBigMonths') :
+									+$.datepicker._get(inst, 'stepMonths')), 'M');
+							}
+							// next month/year on alt +right
+							break;
+
+						// DOWN
+						case 40:
+							$.datepicker._adjustDate(event.target, +7, 'D');
+							/*if (event.ctrlKey || event.metaKey) {
+								$.datepicker._adjustDate(event.target, +7, 'D');
+							}*/
+							//console.log($.datepicker._getDate(inst));
+							handled = event.ctrlKey || event.metaKey;
+							$.datepicker._setDate(inst, $.datepicker._formatDate(inst, inst.selectedDay, inst.selectedMonth, inst.selectedYear));
+							break; // +1 week on ctrl or command +down
+
+						default:
+							handled = false;
+					}
+					//console.log('E-------------------------');
+				} else if (event.keyCode === 36 && event.ctrlKey) { // display the date picker on ctrl+home
+					$.datepicker._showDatepicker(this);
+				} else {
+					handled = false;
+				}
+
+				if (handled) {
+					event.preventDefault();
+					event.stopPropagation();
+				}
+			}
+		});
+
 		this.options.beforeShow = _.bind(function(input, instance){
+			//console.log('beforeShow');
 			this._styleDatePicker(instance);
+
+			//console.log('beforeshow', instance);
+			this.dpWidget = instance.dpDiv;
+			// OrT: Adding an extra input field after the widget to avoid loosing the focus to the address bar. This happens in Chrome at least cause the widget is the last DOM element.
+			if(!$('#dp-focus-helper').length) {
+				this.dpWidget.after('<input type="text" class="visuallyhidden" id="dp-focus-helper" />');
+			}
+			this.dpWidget.on('focusout.'+pluginName, _.bind(function(event) {
+				var isInWidget = !!$(event.relatedTarget).parents('.ui-datepicker').length/*,
+					isNullNextFocusElem = event.relatedTarget === null*/;
+				//console.log(isInWidget, isNullNextFocusElem, event.relatedTarget);
+
+				if (!isInWidget) {
+					//console.log('!isInWidget');
+					// OrT: if the focus is in the helper input field...
+					if ( $(event.relatedTarget).is($('#dp-focus-helper')) ) {
+						// OrT: ...then the datepicker is not closed and we set the focus back to the 1st focusable element...
+						setTimeout(_.bind(function(){ this.dpWidget.find(':focusable').first().focus(); }, this) , 0);
+					} else {
+						// OrT: ...else, unbind anything from the widget to avoid recursivly this check
+						this.dpWidget.off('.'+pluginName);
+					}
+				} /*else {
+					console.log('isInWidget');
+				}*/
+			}, this));
 		}, this);
+
 		this.options.onChangeMonthYear = _.bind(function(year, month, instance){
+			//console.log('onChangeMonthYear');
 			this._styleDatePicker(instance);
 		}, this);
 
-		this.options.onClose = function(){
+		this.options.onClose = function(/*date, instance*/){
 			var $element = $(this);
+			//console.log('onClose', $element);
+
+			// OrT: unbinding events should be first to avoid extra callbacks from the binded events when we change the focus
+			if (this.dpWidget) {
+				this.dpWidget.off('.'+pluginName);
+			}
+
 			if(typeof $element.valid === 'function') {
 				$element.valid();
 			}
+
+			setTimeout(function(){
+				findNextFocusable($element).focus();
+				$('#dp-focus-helper').remove();
+			}, 0);
 		};
 
 		this.$datefield.datepicker(this.options);
@@ -17469,6 +17798,679 @@ return datepicker.regional['it-CH'];
 })(window, document, jQuery, Unic);
 
 /**
+ * Plugin to handle File Input-Fields in Flex.
+ * Based on http://oaa-accessibility.org/examplep/slider1/.
+ * @author MiM, Unic AG
+ * @license All rights reserved Unic AG
+ */
+
+(function(window, document, $, Unic, undefined) {
+	'use strict';
+
+//	var $document = $(document);
+
+	var pluginName = 'flexrangefield',
+		events = {/* eventname: pluginName +'_eventname' */},
+		defaults = {
+			vert: false, //vert is true if the slider is vertical; false if horizontal
+			range: false, //range is true if the slider is a range slider todo range slider needs some work
+			keys: {//Define values for keycodes
+				backspace: 8,
+				tab: 9,
+				enter: 13,
+				esc: 27,
+				space: 32,
+				pageup: 33,
+				pagedown: 34,
+				end: 35,
+				home: 36,
+				left: 37,
+				up: 38,
+				right: 39,
+				down: 40
+			},
+			stateClasses: {
+				isFocus: 'flex_is_focus'
+			}
+		};
+
+	// Globally accessible data like event names
+	Unic.modules[pluginName] = {
+		events: events
+	};
+
+	/**
+	 * Create an instance of the module
+	 * @param {object} element The DOM element to bind the module
+	 * @param {object} options Options overwriting the defaults
+	 * @constructor
+	 */
+	var Plugin = function(element, options) {
+		// Call super constructor
+		this.helper = Unic.modules.PluginHelper;
+		this.helper(pluginName, defaults, element, options);
+	};
+
+	Plugin.prototype = $.extend(true, {}, Unic.modules.PluginHelper.prototype, Plugin.prototype);
+
+	/**
+	 * Initialize module, bind events
+	 */
+	Plugin.prototype.init = function() {
+
+		this.$input = $('input[type="range"]', this.$element);
+		this.$input.hide();
+
+		// Handle empty value
+		if (this.$input.attr('value') === '') {
+			this.$input.attr('value', this.$input.attr('min'));
+		}
+
+		//get input id or create new one
+		if (!(this.id = this.$input.attr('id'))) {
+			this.id = _.uniqueId(pluginName + '_');
+
+			this.$input.attr('id', this.id);
+		}
+
+		this.$container = $('<div data-' + pluginName +  '="container" id="' + this.id + '_container" class="flex_rangefield-input flex_slider flex_slider-' + (this.options.vert === true ? 'v':'h') +'"></div>');
+
+		this.$container.insertAfter(this.$input);
+
+		this.$valueContainer = $('[data-' + pluginName + '="value"]', this.$element);
+		this.valueContainerSuffix = this.$valueContainer.data('suffix') || '';
+
+		// Store the size of the slider
+		this.width = this.$container.outerWidth();
+		this.height = this.$container.outerHeight();
+
+		// Store the page position of the slider
+		this.left = Math.round(this.$container.offset().left);
+		this.top = Math.round(this.$container.offset().top);
+
+		// Store the minimum and maximum and initial values
+		this.min = this.$input.attr('min');
+		this.max = this.$input.attr('max');
+		this.inc = parseFloat(this.$input.attr('step')); //inc is the increment value for the slider
+		this.jump = this.options.jump || (this.$input.attr('step') * 10); //jump is the large increment value for the slider (pgUp/pgDown keys)
+		this.val1 = this.$input.attr('value'); //val1 specifies the initial value of the slider or of the first slide handle if this is a range slider. Must be >= min.
+
+		// If range is true, store the second value
+		if (this.options.range === true) {
+			this.val2 = this.options.val2; //val2 specifies the initial value of the second slide handle. Ignored if range is false (i.e. not a range slider). Must be <= max.
+		}
+
+		this._bindEvents();
+
+		// create the range highlight div
+		this._createRangeDiv();
+
+		if ( this.options.range === false) {
+			// Create the handle
+			this._createHandle(this.val1);
+		} else {
+
+			// Create the first handle
+			this._createHandle(this.val1, 1);
+
+			// create the second handle
+			this._createHandle(this.val2, 2);
+		}
+	};
+
+	/**
+	 * Listen events on $element
+	 */
+	Plugin.prototype._bindEvents = function() {
+		//events manager (original events don't work on mobile)
+		this.$element.on('keydown', '[data-' + pluginName + '="handle"]', _.bind(function(event) {
+			var $handle = $(event.currentTarget);
+
+			return this._handleKeyDown($handle, event);
+		}, this));
+
+		this.$element.on('keypress', '[data-' + pluginName + '="handle"]', _.bind(function(event) {
+			var $handle = $(event.currentTarget);
+
+			return this._handleKeyPress($handle, event);
+		}, this));
+
+		this.$element.on('focus', '[data-' + pluginName + '="handle"]', _.bind(function(event) {
+			var $handle = $(event.currentTarget);
+
+			return this._handleFocus($handle, event);
+		}, this));
+
+		this.$element.on('blur', '[data-' + pluginName + '="handle"]', _.bind(function(event) {
+			var $handle = $(event.currentTarget);
+
+			return this._handleBlur($handle, event);
+		}, this));
+
+		this.$element.on('mousedown', '[data-' + pluginName + '="handle"]', _.bind(function(event) {
+			var $handle = $(event.currentTarget);
+
+			event.stopPropagation(); //to prevent click on container
+
+			$handle.focus();
+		}, this));
+
+		this.$element.on('mousedown', '[data-' + pluginName + '="container"]', _.bind(function(event) {
+			$('[data-' + pluginName + '="handle"]', this.$element).focus();
+
+			this._handleMove(event.originalEvent);
+		}, this));
+
+		this.$element.on('mouseup', '[data-' + pluginName + '="handle"]', _.bind(function(event) {
+			var $handle = $(event.currentTarget);
+
+			$handle.blur();
+		}, this));
+
+		this.$element.on('mousemove', '[data-' + pluginName + '="container"]', _.bind(function(event) {
+			this._handleMove(event.originalEvent);
+		}, this));
+
+		//events triggered for mobile
+		this.$element.on('touchstart', '[data-' + pluginName + '="handle"]', _.bind(function(event) {
+			var $handle = $(event.currentTarget);
+
+			event.stopPropagation(); //to prevent click on container
+
+			$handle.focus();
+		}, this));
+
+		this.$element.on('touchstart', '[data-' + pluginName + '="container"]', _.bind(function(event) {
+			this._handleMove(event.originalEvent);
+		}, this));
+
+		this.$element.on('touchend', '[data-' + pluginName + '="handle"]', _.bind(function(event) {
+			var $handle = $(event.currentTarget);
+
+			$handle.blur();
+		}, this));
+
+		this.$element.on('touchmove', '[data-' + pluginName + '="container"]', _.bind(function(event) {
+			return this._handleMove(event.originalEvent, true);
+		}, this));
+	};
+
+	/**
+	 * function createHandle() creates a handle for the slider. It defines ARIA attributes for
+	 * the handle and positions it at the specified value in the slider range. if showVals is true,
+	 * create and position divs to display the handle value.
+	 *
+	 * @param {integer} val is the initial value of the handle
+	 * @param {integer} num is the handle number. (optional)
+	 * @return {object} returns the object pointer of the newly created handle
+	 */
+	Plugin.prototype._createHandle = function(val, num) {
+
+		var id = this.id + '_handle' + (typeof num === 'undefined' ? '' : num);
+		var label = this.id + '_label' + (typeof num === 'undefined' ? '' : num);
+		var controls = this.id + '_text' + (typeof num === 'undefined' ? '' : num);
+		var $handle;
+
+		var handle = '<span id="' + id + '" class="flex_handle flex_handle-' + (this.options.vert === true ? 'v':'h') +'" ' +
+			'role="slider" ' +
+			'aria-valuemin="' + this.min +
+			'" aria-valuemax="' + this.max +
+			'" aria-valuenow="' + (typeof val === 'undefined' ? this.min : val) +
+			'" aria-labelledby="' + label +
+			'" aria-controls="' + controls + '" tabindex="0" data-' + pluginName + '="handle" />';
+
+		// Create the handle
+		this.$container.append(handle);
+
+		// store the handle object
+		$handle = $('#' + id);
+
+		// position handle
+		this._positionHandle($handle, val);
+
+		return $handle;
+	};
+
+	/**
+	 * function createRangeDiv() creates a div for the highlight of a range slider.
+	 * It sets the initial top or left position to match that of the slider container.
+	 */
+	Plugin.prototype._createRangeDiv = function() {
+
+		var id = this.id + '_range',
+				range = '<div id="' + id + '" class="flex_range"></div>';
+
+		// Create the range div
+		this.$container.append(range);
+
+		// Store the div object
+		this.$rangeDiv = $('#' + id);
+
+		if (this.options.range === true) {
+
+			if (this.options.vert === false) { // horizontal slider
+				this.$rangeDiv.css('top', this.top + 'px');
+				this.$rangeDiv.css('height', this.$container.height() + 'px');
+			} else { // vertical slider
+				this.$rangeDiv.css('left', this.left + 'px');
+				this.$rangeDiv.css('width', this.$container.width() + 'px');
+			}
+		}
+	};
+
+	/**
+	 * function positionHandle() is a member function to position a handle at the specified value for the
+	 * slider. If showVal is true, it also positions and updates the displayed value container.
+	 *
+	 * @param {object} $handle is a pointer to the handle jQuery object to manipulate
+	 * @param {integer} val is the new value of the slider
+	 */
+	Plugin.prototype._positionHandle = function($handle, val) {
+
+		var handleHeight = $handle.outerHeight(), // the total height of the handle
+				handleWidth = $handle.outerWidth(), // the total width of the handle
+				xPos, // calculated horizontal position of the handle;
+				yPos, // calculated vertical position of the handle;
+				valPos; //calculated new pixel position for the value;
+		//var handleOffset; // the distance from the value position for centering the handle
+
+		if (this.options.vert === false) {
+			// horizontal slider
+
+			// calculate the horizontal pixel position of the specified value
+			valPos = ((val - this.min) / (this.max - this.min)) * this.width;
+
+			xPos = Math.round(valPos - (handleWidth / 2));
+			//yPos = Math.round((this.height / 2) - (handleHeight / 2)); //done by css
+
+		} else {
+			// vertical slider
+
+			// calculate the vertical pixel position of the specified value
+			valPos = ( (val - this.min) / (this.max - this.min) ) * this.height;
+
+			xPos = Math.round((this.width / 2) - (handleWidth / 2));
+			yPos = Math.round(valPos - (handleHeight / 2));
+		}
+
+		// Set the position of the handle
+		$handle.css('top', yPos + 'px');
+		$handle.css('left', xPos + 'px');
+
+		// Set the aria-valuenow position of the handle
+		$handle.attr('aria-valuenow', val);
+
+		this.$input.val(val);
+
+		// Update the stored handle values
+		if (/1$/.test($handle.attr('id')) === true) {
+			// first handle
+			this.val1 = val;
+		} else {
+			// second handle
+			this.val2 = val;
+		}
+
+		// set the position of the range div
+		this._positionRangeDiv();
+
+		// update the value container
+		if (this.$valueContainer.length) {
+			this._updateValBox($handle);
+		}
+	};
+
+	/**
+	 * function positionRangeDiv() is a member function to reposition the range div when a handle is moved
+	 */
+	Plugin.prototype._positionRangeDiv = function() {
+
+		var pos; //calculated new range start position;
+		var size; //calculated new range size;
+
+		if (this.options.range === false) {
+
+			if (this.options.vert === false) {
+				size = ((this.val2 - this.min) / (this.max - this.min)) * this.width;
+
+				this.$rangeDiv.css('width', size + 'px');
+			} else {
+				size = ((this.val2 - this.min) / (this.max - this.min)) * this.height;
+
+				this.$rangeDiv.css('height', size + 'px');
+			}
+		} else {
+
+			if (this.options.vert === false) { // Horizontal slider
+
+				// calculate the range start position
+				pos = Math.round( ((this.val1 - this.min) / (this.max - this.min)) * this.width) + this.left;
+
+				// calculate the new range width
+				size = Math.round( ((this.val2 - this.min) / (this.max - this.min)) * this.width) + this.left - pos;
+
+				// set the new range position
+				this.$rangeDiv.css('left', pos + 'px');
+
+				// set the new range width
+				this.$rangeDiv.css('width', size + 'px');
+			} else {
+				// calculate the range start position
+				pos = Math.round(( (this.val1 - this.min) / (this.max - this.min)) * this.height)+ this.top;
+
+				// calculate the new range width
+				size = Math.round(( (this.val2 - this.min) / (this.max - this.min) ) * this.height) + this.top - pos;
+
+				// set the new range position
+				this.$rangeDiv.css('top', pos + 'px');
+
+				// set the new range width
+				this.$rangeDiv.css('height', size + 'px');
+			}
+		}
+
+	};
+
+	/**
+	 * function updateValBox() is a member function to reposition a handle value box and update its contents
+	 *
+	 * @param {object} $handle is the jQuery object of the handle that was moved
+	 */
+	Plugin.prototype._updateValBox = function($handle) {
+
+		// Set the text in the box to the handle value
+		this.$valueContainer.text($handle.attr('aria-valuenow') + this.valueContainerSuffix);
+	};
+
+	/**
+	 * function handleKeyDown() is a member function to process keydown events for a slider handle
+	 *
+	 * @param {object} $handle is the object associated with the event
+	 * @param {object} evt is the event object associated witthe the event
+	 * @returns {boolean} true if propagating; false if consuming event
+	 */
+	Plugin.prototype._handleKeyDown = function($handle, evt) {
+		var newVal, stopVal;
+
+		if (evt.ctrlKey || evt.shiftKey || evt.altKey) {
+			// Do nothing
+			return true;
+		}
+
+		switch (evt.keyCode) {
+			case this.options.keys.home: {
+				// move the handle to the slider minimum
+				if (this.options.range === false) {
+					this._positionHandle($handle, this.min);
+				} else {
+					if (/1$/.test($handle.attr('id')) === true) {
+						// handle 1 - move to the min value
+						this._positionHandle($handle, this.min);
+					} else {
+						// handle 2 - move to the position of handle 1
+						this._positionHandle($handle, this.val1);
+					}
+				}
+				evt.stopPropagation();
+				return false;
+			}
+			case this.options.keys.end: {
+				if (this.options.range === false) {
+					// move the handle to the slider maximum
+					this._positionHandle($handle, this.max);
+				}
+				else {
+					if (/1$/.test($handle.attr('id')) === true) {
+						// handle 1 - move to the position of handle 2
+						this._positionHandle($handle, this.val2);
+					}
+					else {
+						// handle 2 - move to the max value
+						this._positionHandle($handle, this.max);
+					}
+				}
+				evt.stopPropagation();
+				return false;
+			}
+			case this.options.keys.pageup: {
+
+				// Decrease by jump value
+				newVal = $handle.attr('aria-valuenow') - this.jump;
+				stopVal = this.min; // where to stop moving
+
+				if (this.options.range === true) {
+					// if this is handle 2, stop when we reach the value
+					// for handle 1
+					if (/2$/.test($handle.attr('id')) === true) {
+						stopVal = this.val1;
+					}
+				}
+
+				// move the handle one jump increment toward the slider minimum
+				// If value is less than stopVal, set at stopVal instead
+				this._positionHandle($handle, (newVal > stopVal ? newVal : stopVal));
+
+				evt.stopPropagation();
+				return false;
+			}
+			case this.options.keys.pagedown: {
+
+				// Increase by jump value
+				newVal = parseInt($handle.attr('aria-valuenow')) + this.jump;
+				stopVal = this.max; // where to stop moving
+
+				if (this.options.range === true) {
+					// if this is handle 1, stop when we reach the value
+					// for handle 2
+					if (/1$/.test($handle.attr('id')) === true) {
+						stopVal = this.val2;
+					}
+				}
+
+				// move the handle one jump increment toward the slider maximum
+				// If value is greater than maximum, set at maximum instead
+				this._positionHandle($handle, (newVal < stopVal ? newVal : stopVal));
+
+				evt.stopPropagation();
+				return false;
+			}
+			case this.options.keys.left:
+			case this.options.keys.up: { // decrement
+
+				newVal = $handle.attr('aria-valuenow') - this.inc;
+				stopVal = this.min; // where to stop moving
+
+				if (this.options.range === true) {
+					// if this is handle 2, stop when we reach the value
+					// for handle 1
+					if (/2$/.test($handle.attr('id')) === true) {
+						stopVal = this.val1;
+					}
+				}
+
+				// move the handle one jump increment toward the stopVal
+				// If value is less than stopVal, set at stopVal instead
+				this._positionHandle($handle, (newVal > stopVal ? newVal : stopVal));
+
+				evt.stopPropagation();
+				return false;
+			}
+			case this.options.keys.right:
+			case this.options.keys.down: { // increment
+
+				newVal = parseInt($handle.attr('aria-valuenow')) + this.inc;
+				stopVal = this.max; // where to stop moving
+
+				if (this.options.range === true) {
+					// if this is handle 1, stop when we reach the value
+					// for handle 2
+					if (/1$/.test($handle.attr('id')) === true) {
+						stopVal = this.val2;
+					}
+				}
+
+				// move the handle one increment toward the slider maximum
+				// If value is greater than maximum, set at maximum instead
+				this._positionHandle($handle, (newVal < stopVal ? newVal : stopVal));
+
+				evt.stopPropagation();
+				return false;
+			}
+		} // end switch
+
+		return true;
+	};
+
+	/**
+	 * function handleKeyPress() is a member function to process keypress events for a slider handle. Needed for
+	 * browsers that perform window scrolling on keypress rather than keydown events.
+	 *
+	 * @param {object} $handle is the object associated with the event
+	 * @param {object} evt is the event object associated with the event
+	 * @returns {boolean} true if propagating; false if consuming event
+	 */
+	Plugin.prototype._handleKeyPress = function($handle, evt) {
+
+		if (evt.ctrlKey || evt.shiftKey || evt.altKey) {
+			// Do nothing
+			return true;
+		}
+
+		switch (evt.keyCode) {
+			case this.options.keys.home:
+			case this.options.keys.pageup:
+			case this.options.keys.end:
+			case this.options.keys.pagedown:
+			case this.options.keys.left:
+			case this.options.keys.up:
+			case this.options.keys.right:
+			case this.options.keys.down: {
+
+				// Consume the event
+				evt.stopPropagation();
+				return false;
+			}
+		} // end switch
+
+		return true;
+	};
+
+	/**
+	 * function handleFocus() is a member function to process focus events for a slider handle
+	 *
+	 * @param {object} $handle is the object associated with the event
+	 * @param {object} evt is the event object associated with the event
+	 * @returns {boolean} true if propagating; false if consuming event
+	 */
+	Plugin.prototype._handleFocus = function($handle, evt) {
+
+		// remove focus highlight from all other slider handles on the page
+		$('.handle', this.$element).removeClass(this.options.stateClasses.isFocus);
+
+		$handle.addClass(this.options.stateClasses.isFocus);
+
+		this.$activeHandle = $handle;
+
+		evt.stopPropagation();
+	};
+
+	/**
+	 * function handleBlur() is a member function to process blur events for a slider handle
+	 *
+	 * @param {object} $handle is the object associated with the event
+	 * @param {object} evt is the event object associated with the event
+	 * @returns {boolean} true if propagating; false if consuming event
+	 */
+	Plugin.prototype._handleBlur = function($handle, evt) {
+
+		$handle.removeClass(this.options.stateClasses.isFocus);
+
+		this.$activeHandle = undefined;
+
+		evt.stopPropagation();
+	};
+
+	/**
+	 * function handleMove() is a member function to process mousemove and touchmove events for a slider handle.
+	 *
+	 * @param {object} evt is the event object associated with the event
+	 * @param {boolean} mobile true - method is triggered by mobile device
+	 * @returns {boolean} true if propagating; false if consuming event
+	 */
+	Plugin.prototype._handleMove = function(evt, mobile) {
+		var newVal,
+				startVal = this.min,
+				stopVal = this.max,
+				pageX,
+				pageY;
+
+		if (mobile) {
+			//activate handler if it doesn't (only for mobile)
+			if (typeof this.$activeHandle === 'undefined') {
+				this.$activeHandle = $('[data-' + pluginName + '="handle"]', this.$element);
+			}
+
+			pageX = evt.targetTouches[0].pageX;
+			pageY = evt.targetTouches[0].pageX;
+		} else {
+			pageX = evt.pageX;
+			pageY = evt.pageY;
+		}
+
+		if (typeof this.$activeHandle !== 'undefined') {
+
+			if (this.options.range === true) {
+				// if this is handle 1, set stopVal to be the value
+				// for handle 2
+				if (/1$/.test(this.$activeHandle.attr('id')) === true) {
+					stopVal = this.val2;
+				} else {
+					// This is handle 2: Set startVal to be the value
+					// for handle 1
+					startVal = this.val1;
+				}
+			}
+
+			if (this.options.vert === false) {
+				// horizontal slider
+
+				// Calculate the new slider value based on the horizontal pixel position of the mouse
+				newVal = Math.round((pageX - this.left) / this.width * (this.max - this.min)) + parseFloat(this.min);
+			} else {
+				// vertical slider
+
+				// Calculate the new slider value based on the vertical pixel position of the mouse
+				newVal = Math.round((pageY - this.top) / this.height * (this.max - this.min)) + parseFloat(this.min);
+			}
+
+			if (newVal >= startVal && newVal <= stopVal) {
+
+				// Do not move handle unless new value is a slider increment
+				if (newVal % this.inc === 0) {
+					this._positionHandle(this.$activeHandle, newVal);
+				}
+			} else if (newVal < startVal) {
+
+				// value is less than minimum for slider - set handle to min
+				this._positionHandle(this.$activeHandle, startVal);
+			} else if (newVal > stopVal) {
+
+				// value is greater than maximum for slider - set handle to max
+				this._positionHandle(this.$activeHandle, stopVal);
+			}
+		}
+
+		evt.stopPropagation();
+		return false;
+	};
+
+
+	// Make the plugin available through jQuery (and the global project namespace)
+	Unic.modules.PluginHelper.register(Plugin, pluginName, ['ready', 'ajax_loaded']);
+
+})(window, document, jQuery, Unic);
+
+/**
  * @class       flexautocomplete
  * @classdesc   An Autocomplete-Plugin for the Flex-Formmodule.
  * @author      Rosmarie Maurer-Wysseier, Unic AG.
@@ -17490,7 +18492,6 @@ return datepicker.regional['it-CH'];
 			openClass: 'flex_is_open',
 			parameterName: 'query',
 			disabledKeys: [40, 39, 13, 38, 37, 27],
-			noResults: 'No Result available',
 			sendAll: true
 		};
 
@@ -17613,7 +18614,7 @@ return datepicker.regional['it-CH'];
 		}, this));
 
 		// No data here
-		if(!data || data === '' || !data.length) {
+		if((!data || data === '' || !data.length) && this.options.noResults) {
 			this.$list.append('<li class="u_var_noresult">' + this.options.noResults + '</li>');
 		}
 
@@ -17728,6 +18729,7 @@ return datepicker.regional['it-CH'];
  * @requires ../../modules/tooltips/tooltips.js
  * @requires ../../modules/inputfields/datepicker.js
  * @requires ../../modules/inputfields/fileinput.js
+ * @requires ../../modules/rangefield/rangefield.js
  * @requires ../../modules/autocomplete/_autocomplete.js
  * //*autoinsertmodule*
  *
