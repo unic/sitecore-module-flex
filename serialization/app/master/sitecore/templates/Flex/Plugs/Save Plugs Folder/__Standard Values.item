@@ -1,0 +1,58 @@
+----item----
+version: 1
+id: {C46F0E69-8B9A-4A83-BFBD-75770902BDC8}
+database: master
+path: /sitecore/templates/Flex/Plugs/Save Plugs Folder/__Standard Values
+parent: {EA3EB18D-41E5-45DF-A0CF-8BF300741FA3}
+name: __Standard Values
+master: {00000000-0000-0000-0000-000000000000}
+template: {EA3EB18D-41E5-45DF-A0CF-8BF300741FA3}
+templatekey: Save Plugs Folder
+
+----field----
+field: {1172F251-DAD4-4EFB-A329-0C63500E4F1E}
+name: __Masters
+key: __masters
+content-length: 116
+
+{DF5C2C2F-4A48-4206-9DFB-0DCDE27E2233}|{77613F9B-AC9A-4229-B97A-ACD6FBFCB252}|{9A7F5FA1-E267-4BF2-8D3C-4D487792B636}
+----version----
+language: en
+version: 1
+revision: 39bc6795-70ea-4cd7-b573-2dba7b4b899c
+
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20140424T172134
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+39bc6795-70ea-4cd7-b573-2dba7b4b899c
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20141024T092441:635497394813414935
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

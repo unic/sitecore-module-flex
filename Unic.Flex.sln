@@ -24,6 +24,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unic.Flex.NinjectIoC", "src
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unic.Flex.SimpleInjectorIoC", "src\Unic.Flex.SimpleInjectorIoC\Unic.Flex.SimpleInjectorIoC.csproj", "{6A2A6827-3321-4C18-9681-572D0971503A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unic.Flex.Integration.Website", "src\Unic.Flex.Integration.Website\Unic.Flex.Integration.Website.csproj", "{CE4A4367-43F3-4A10-8F1B-FCCABC342213}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Integration", "Integration", "{04994618-3529-484D-952F-5BF2AD1CD0B9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,6 +66,10 @@ Global
 		{6A2A6827-3321-4C18-9681-572D0971503A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A2A6827-3321-4C18-9681-572D0971503A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A2A6827-3321-4C18-9681-572D0971503A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE4A4367-43F3-4A10-8F1B-FCCABC342213}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE4A4367-43F3-4A10-8F1B-FCCABC342213}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE4A4367-43F3-4A10-8F1B-FCCABC342213}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE4A4367-43F3-4A10-8F1B-FCCABC342213}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,5 +77,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{AE341D4C-2CA6-4194-B476-7284FA3EF429} = {7F01601C-CD63-42C7-8B65-A14851B19DFD}
 		{55A9B413-3DFD-432E-83F0-9A4B07E0BC64} = {7F01601C-CD63-42C7-8B65-A14851B19DFD}
+		{CE4A4367-43F3-4A10-8F1B-FCCABC342213} = {04994618-3529-484D-952F-5BF2AD1CD0B9}
 	EndGlobalSection
 EndGlobal

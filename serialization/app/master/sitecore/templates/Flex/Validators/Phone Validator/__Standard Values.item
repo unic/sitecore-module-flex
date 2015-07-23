@@ -1,0 +1,44 @@
+----item----
+version: 1
+id: {D2E1E917-0D94-48A3-9C3F-E4E78EF3C5BB}
+database: master
+path: /sitecore/templates/Flex/Validators/Phone Validator/__Standard Values
+parent: {35946BDB-3616-4F81-B237-0E9ED7DCBB54}
+name: __Standard Values
+master: {00000000-0000-0000-0000-000000000000}
+template: {35946BDB-3616-4F81-B237-0E9ED7DCBB54}
+templatekey: Phone Validator
+
+----version----
+language: en
+version: 1
+revision: 75209616-74c2-4593-adc5-57f413f73851
+
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20140829T141651
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+75209616-74c2-4593-adc5-57f413f73851
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20140829T141651:635449186116543456
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

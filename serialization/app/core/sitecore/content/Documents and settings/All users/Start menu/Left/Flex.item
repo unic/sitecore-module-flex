@@ -1,0 +1,93 @@
+----item----
+version: 1
+id: {F9D356DE-0166-443A-A409-A8FC3ED47B39}
+database: core
+path: /sitecore/content/Documents and settings/All users/Start menu/Left/Flex
+parent: {EBA3991F-8D26-41B1-97E5-090D55020AA0}
+name: Flex
+master: {5E8CFCF9-CEF2-4BDB-9E35-219C50184066}
+template: {72450C9C-98C4-4117-88B7-573110C7E0C0}
+templatekey: Application shortcut
+
+----field----
+field: {8A1AC797-0304-4C50-AAAC-4D9DBBFF435F}
+name: Application
+key: application
+content-length: 137
+
+<link text='' url="/Applications/Flex" linktype='internal' class='' alt=''  querystring='' id='{B103B263-CC3A-4B26-BD3A-1FAF9C1479A0}' />
+----field----
+field: {06D5295C-ED2F-4A54-9BF2-26228D113318}
+name: __Icon
+key: __icon
+content-length: 66
+
+/sitecore/shell/themes/standard/Software/16x16/application_run.png
+----field----
+field: {BA3F86A2-4A1C-4D78-B63D-91C2779C1B5E}
+name: __Sortorder
+key: __sortorder
+content-length: 3
+
+175
+----version----
+language: en
+version: 1
+revision: 4d5f7778-08e8-47da-91ad-99bde360aedc
+
+----field----
+field: {C032DB76-CC34-4F8F-BE2D-D2FB35237AAB}
+name: Display name
+key: display name
+content-length: 14
+
+Flex Dashboard
+----field----
+field: {BB865E67-0BE3-49D8-B8BD-1DB4B34AB2E3}
+name: Tool tip
+key: tool tip
+content-length: 23
+
+Manage the form module.
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20150226T160518
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+4d5f7778-08e8-47da-91ad-99bde360aedc
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20150226T162610:635605647706798318
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin
