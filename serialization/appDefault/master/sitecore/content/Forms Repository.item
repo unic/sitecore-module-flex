@@ -1,0 +1,51 @@
+----item----
+version: 1
+id: {CC073522-6461-47C4-BB6C-36F6FC7D3361}
+database: master
+path: /sitecore/content/Forms Repository
+parent: {0DE95AE4-41AB-4D01-9EB0-67441B7C2450}
+name: Forms Repository
+master: {626DA5F6-D30B-4124-B593-12330AEE07E8}
+template: {7212DD21-1769-43AA-AF6A-92756C97A269}
+templatekey: Repository Root
+
+----field----
+field: {F6D8A61C-2F84-4401-BD24-52D2068172BC}
+name: __Originator
+key: __originator
+content-length: 0
+
+
+----version----
+language: en
+version: 1
+revision: a1917266-7276-452b-ae5d-65cada1ee538
+
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20150723T150430
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+a1917266-7276-452b-ae5d-65cada1ee538
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20150723T150430:635732606707806428
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

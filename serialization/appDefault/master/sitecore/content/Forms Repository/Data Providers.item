@@ -1,0 +1,58 @@
+----item----
+version: 1
+id: {2AE683DD-A4CD-4553-B0FF-9165AD2A233B}
+database: master
+path: /sitecore/content/Forms Repository/Data Providers
+parent: {CC073522-6461-47C4-BB6C-36F6FC7D3361}
+name: Data Providers
+master: {626DA5F6-D30B-4124-B593-12330AEE07E8}
+template: {AA34D784-5307-4DA2-B6A1-47D0469C93FD}
+templatekey: Data Providers Folder
+
+----field----
+field: {BA3F86A2-4A1C-4D78-B63D-91C2779C1B5E}
+name: __Sortorder
+key: __sortorder
+content-length: 3
+
+300
+----field----
+field: {F6D8A61C-2F84-4401-BD24-52D2068172BC}
+name: __Originator
+key: __originator
+content-length: 0
+
+
+----version----
+language: en
+version: 1
+revision: b0dd4903-42d6-43ed-9ec9-62a418030f5e
+
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20150723T150430
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+b0dd4903-42d6-43ed-9ec9-62a418030f5e
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20150723T150430:635732606708867033
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin
