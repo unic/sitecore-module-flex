@@ -1,21 +1,21 @@
 ----item----
 version: 1
-id: {35FDAFA5-FE00-42DC-849B-642C44BBFFEB}
+id: {6F3B7EDF-FD94-4821-8141-373D549760B6}
 database: master
-path: /sitecore/content/Home/Simple Form
-parent: {6F3B7EDF-FD94-4821-8141-373D549760B6}
-name: Simple Form
+path: /sitecore/content/Flex/Home
+parent: {5B53A00E-3EF5-45D2-9E7F-F4D126891DDC}
+name: Home
 master: {00000000-0000-0000-0000-000000000000}
 template: {76036F5E-CBCE-46D1-AF0A-4143F9B557AA}
 templatekey: Sample Item
 
 ----field----
-field: {F1A1FE9E-A60C-4DDB-A3A0-BB5B29FE732E}
-name: __Renderings
-key: __renderings
-content-length: 266
+field: {06D5295C-ED2F-4A54-9BF2-26228D113318}
+name: __Icon
+key: __icon
+content-length: 22
 
-<r xmlns:p="p" xmlns:s="s" p:p="1"><d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}"><r uid="{24DDD39E-4280-45C2-B84E-AEAC0B45B6D9}" s:ds="{3303D7B9-536F-48BE-B601-E93B3C80ADB3}" s:id="{FA6D13FC-4415-4403-A412-1EB8E2045DF9}" s:ph="/main/centercolumn/content" /></d></r>
+Network/16x16/home.png
 ----field----
 field: {A4F985D9-98B3-4B52-AAAF-4344F6E747C6}
 name: __Workflow
@@ -26,22 +26,30 @@ content-length: 38
 ----version----
 language: en
 version: 1
-revision: cc6c36be-0971-468e-bb12-61c832817909
+revision: 00d86934-e925-48f4-8b5b-9fb5d74816db
 
 ----field----
 field: {75577384-3C97-45DA-A847-81B00500E250}
 name: Title
 key: title
-content-length: 11
+content-length: 8
 
-Simple Form
+Sitecore
+----field----
+field: {A60ACD61-A6DB-4182-8329-C957982CEC74}
+name: Text
+key: text
+content-length: 139
+
+<p>Please choose one of the following forms:</p>
+<p><a href="~/link.aspx?_id=35FDAFA5FE0042DC849B642C44BBFFEB&amp;_z=z">Simple Form</a></p>
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
 name: __Created
 key: __created
 content-length: 15
 
-20150723T150537
+20150723T154039
 ----field----
 field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
 name: __Created by
@@ -55,14 +63,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-cc6c36be-0971-468e-bb12-61c832817909
+00d86934-e925-48f4-8b5b-9fb5d74816db
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20150723T154209:635732629292429376
+20150723T162204:635732653240206748
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
@@ -77,10 +85,3 @@ key: __workflow state
 content-length: 38
 
 {190B1C84-F1BE-47ED-AA41-F42193D9C8FC}
-----field----
-field: {001DD393-96C5-490B-924A-B0F25CD9EFD8}
-name: __Lock
-key: __lock
-content-length: 5
-
-<r />

@@ -1,21 +1,14 @@
 ----item----
 version: 1
-id: {A6F9F361-53AC-499C-ADD8-6F51E7628780}
+id: {EB52C0E9-161C-496D-977A-67062641387F}
 database: master
-path: /sitecore/content/Forms Repository/Forms/Simple Form/Steps
-parent: {3303D7B9-536F-48BE-B601-E93B3C80ADB3}
-name: Steps
-master: {266FE8EF-C58E-4056-963B-B85F5C3F3E3F}
-template: {5197ED42-0678-4268-8EB1-E47DE7718AE8}
-templatekey: Steps Folder
+path: /sitecore/content/Flex/Forms Repository/Sections
+parent: {CC073522-6461-47C4-BB6C-36F6FC7D3361}
+name: Sections
+master: {626DA5F6-D30B-4124-B593-12330AEE07E8}
+template: {5F72B58A-14CC-43BD-94A4-35D1FA7A0696}
+templatekey: Sections Folder
 
-----field----
-field: {BA3F86A2-4A1C-4D78-B63D-91C2779C1B5E}
-name: __Sortorder
-key: __sortorder
-content-length: 2
-
-50
 ----field----
 field: {F6D8A61C-2F84-4401-BD24-52D2068172BC}
 name: __Originator
@@ -26,7 +19,7 @@ content-length: 0
 ----version----
 language: en
 version: 1
-revision: a8cbf0db-4c70-4321-a4ae-0c06f57ba2c9
+revision: 159df809-be6d-444d-8dbd-69b77d3f1089
 
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
@@ -34,21 +27,21 @@ name: __Created
 key: __created
 content-length: 15
 
-20150723T150447
+20150723T150430
 ----field----
 field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
 name: __Revision
 key: __revision
 content-length: 36
 
-a8cbf0db-4c70-4321-a4ae-0c06f57ba2c9
+159df809-be6d-444d-8dbd-69b77d3f1089
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20150723T150447:635732606879877667
+20150723T150430:635732606708366691
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

@@ -2,7 +2,7 @@
 version: 1
 id: {B9146F30-9188-4C43-959D-93A5AF684762}
 database: master
-path: /sitecore/content/Forms Repository/Forms/Simple Form/Steps/Single Step/Standard Section/Singleline Text Field
+path: /sitecore/content/Flex/Forms Repository/Forms/Simple Form/Steps/Single Step/Standard Section/Singleline Text Field
 parent: {1FA388EE-A246-46B9-B72F-7712B8275677}
 name: Singleline Text Field
 master: {00000000-0000-0000-0000-000000000000}
