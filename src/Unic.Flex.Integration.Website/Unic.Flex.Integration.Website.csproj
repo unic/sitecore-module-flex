@@ -49,6 +49,18 @@
       <HintPath>..\..\packages\Ninject.3.0.1.10\lib\net45-full\Ninject.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Sitecore.Ship.AspNet, Version=0.3.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sitecore.Ship.AspNet.0.3.5\lib\net40\Sitecore.Ship.AspNet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Sitecore.Ship.Core, Version=0.3.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sitecore.Ship.AspNet.0.3.5\lib\net40\Sitecore.Ship.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Sitecore.Ship.Infrastructure, Version=0.3.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sitecore.Ship.AspNet.0.3.5\lib\net40\Sitecore.Ship.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -65,6 +77,18 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Unic.Bob.Scrambler.ContentSearch, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Unic.Bob.Scrambler.ContentSearch.1.1.0\lib\net45\Unic.Bob.Scrambler.ContentSearch.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Unic.Bob.Scrambler.Core, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Unic.Bob.Scrambler.Core.1.1.0\lib\net40\Unic.Bob.Scrambler.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Unic.Bob.Scrambler.Website, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Unic.Bob.Scrambler.1.1.0\lib\net40\Unic.Bob.Scrambler.Website.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Unicorn, Version=2.0.4.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Unicorn.2.0.4\lib\net45\Unicorn.dll</HintPath>
       <Private>True</Private>
@@ -89,6 +113,8 @@
     <Content Include="Views\Renderings\Sample\SampleRendering.cshtml" />
     <Content Include="Views\Renderings\Sample\SampleSublayout.cshtml" />
     <Content Include="Views\Web.config" />
+    <Content Include="App_Config\Include\Unic.Bob.Scrambler.config" />
+    <Content Include="App_Config\Include\Unic.Bob.Scrambler.ContentSearch.config" />
     <None Include="Web.base.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
