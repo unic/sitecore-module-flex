@@ -90,20 +90,27 @@
 
             attributes.Add("data-val-number", this.ValidationMessage);
 
-            if (this.NumberRangeStart > 0 || this.NumberRangeEnd > 0)
+            var rangeValiation = this.NumberRangeStart != 0 && this.NumberRangeEnd != 0;
+            if (rangeValiation)
             {
                 attributes.Add("data-val-range", this.ValidationMessage);
-                if (this.NumberRangeStart > 0)
-                {
-                    attributes.Add("data-val-range-min", this.NumberRangeStart);
-                    attributes.Add("min", this.NumberRangeStart);
-                }
+                attributes.Add("data-val-range-min", this.NumberRangeStart);
+                attributes.Add("data-val-range-max", this.NumberRangeEnd);
+                return attributes;
+            }
 
-                if (this.NumberRangeEnd > 0)
-                {
-                    attributes.Add("data-val-range-max", this.NumberRangeEnd);
-                    attributes.Add("max", this.NumberRangeEnd);
-                }
+            if (this.NumberRangeStart != 0)
+            {
+                attributes.Add("min", this.NumberRangeStart);
+                attributes.Add("data-msg-min", this.ValidationMessage);
+                return attributes;
+            }
+
+            if (this.NumberRangeEnd != 0)
+            {
+                attributes.Add("max", this.NumberRangeEnd);
+                attributes.Add("data-msg-max", this.ValidationMessage);
+                return attributes;
             }
 
             return attributes;
