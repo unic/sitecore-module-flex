@@ -75,6 +75,17 @@
             this.Attributes.Add("aria-multiline", false);
             this.Attributes.Add("aria-checked", this.Value);
             this.Attributes.Add("role", "checkbox");
+
+            /*
+            this is an ugly hack, because of a b-u-g with jQuery validate and checkboxes which should not be required...
+            because for a checkbox there is always an additional hidden field with value "false" and according to this,
+            the value is always required (needs to be true or false). But this breaks the frontend...So we say that
+            we don't need a validation with "data-val=false" if it is not required.
+            */
+            if (!this.IsRequired)
+            {
+                this.Attributes.Add("data-val", false);
+            }
         }
 
         /// <summary>
