@@ -18,12 +18,11 @@ else {
 
 if($config -and $config.SerializationPath) {
     $serializationPath = Join-Path $config.WebsitePath $config.SerializationPath
-    $appSerializationPath = Join-Path $serializationPath "app"
     $sourceSerialization = (Join-Path $installPath "serialization") + "\"
 
     ls $sourceSerialization -Recurse |  ? { ! $_.PSIsContainer } | % {
         $relativePath = $_.FullName.Substring($sourceSerialization.Length)
-        $target = Join-Path $appSerializationPath $relativePath
+        $target = Join-Path $serializationPath $relativePath
         if(-not (Test-Path $target))  {
             cp $_.FullName $target
         }
