@@ -3,6 +3,7 @@
     using Castle.Core.Internal;
     using Mvc.Mailer;
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Net.Mail;
@@ -97,14 +98,14 @@
             var bcc = this.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.Bcc), plug.Bcc, useGlobalConfig);
             
             // get the receiver email address
-            var to = useGlobalConfig ? string.Empty : this.GetMappedEmailFromField(plug.ReceiverField, form, plug);
+            var to = useGlobalConfig ? string.Empty : this.GetMappedEmailFromFields(plug.ReceiverFields, form, plug);
             if (string.IsNullOrWhiteSpace(to))
             {
                 to = this.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.To), plug.To, useGlobalConfig);
             }
 
             // get reply to
-            var replyTo = useGlobalConfig ? string.Empty : this.GetEmailFromField(plug.ReplyToField, form);
+            var replyTo = useGlobalConfig ? string.Empty : this.GetEmailFromFields(plug.ReplyToFields, form);
             if (string.IsNullOrWhiteSpace(replyTo))
             {
                 replyTo = this.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.ReplyTo), plug.ReplyTo, useGlobalConfig);
@@ -156,6 +157,23 @@
         /// <summary>
         /// Gets the email address from a field.
         /// </summary>
+        /// <param name="fields">The fields.</param>
+        /// <param name="form">The form.</param>
+        /// <returns>The email if valid, or empty string</returns>
+        private string GetEmailFromFields(IEnumerable<IField> fields, IForm form)
+        {
+            foreach (var field in fields)
+            {
+                var email = this.GetEmailFromField(field, form);
+                if (!string.IsNullOrWhiteSpace(email)) return email;
+            }
+
+            return string.Empty;
+        }
+
+        /// <summary>
+        /// Gets the email address from a field.
+        /// </summary>
         /// <param name="field">The field.</param>
         /// <param name="form">The form.</param>
         /// <returns>The email if valid, or empty string</returns>
@@ -163,6 +181,24 @@
         {
             var fieldValue = form.GetFieldValue(field);
             return (!string.IsNullOrWhiteSpace(fieldValue) && (new EmailValidator()).IsValid(fieldValue)) ? fieldValue : string.Empty;
+        }
+
+        /// <summary>
+        /// Gets the mapped email from the referenced field.
+        /// </summary>
+        /// <param name="fields">The fields.</param>
+        /// <param name="form">The form.</param>
+        /// <param name="plug">The plug.</param>
+        /// <returns>The email address found in the mapping if available.</returns>
+        private string GetMappedEmailFromFields(IEnumerable<IField> fields, IForm form, SendEmail plug)
+        {
+            foreach (var field in fields)
+            {
+                var email = this.GetMappedEmailFromField(field, form, plug);
+                if (!string.IsNullOrWhiteSpace(email)) return email;
+            }
+
+            return string.Empty;
         }
 
         /// <summary>
