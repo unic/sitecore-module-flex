@@ -1,6 +1,7 @@
 ﻿namespace Unic.Flex.Implementation.Plugs.SavePlugs
 {
     using System;
+    using System.Collections.Generic;
     using System.Collections.Specialized;
     using Glass.Mapper.Sc.Configuration;
     using Glass.Mapper.Sc.Configuration.Attributes;
@@ -164,13 +165,13 @@
         public virtual bool SendAttachments { get; set; }
 
         /// <summary>
-        /// Gets or sets the receiver field.
+        /// Gets or sets the receiver fields.
         /// </summary>
         /// <value>
-        /// The receiver field.
+        /// The receiver fields.
         /// </value>
-        [SitecoreReusableField("Receiver Field", Setting = SitecoreFieldSettings.InferType)]
-        public virtual IField ReceiverField { get; set; }
+        [SitecoreReusableField("Receiver Fields", Setting = SitecoreFieldSettings.InferType)]
+        public virtual IEnumerable<IField> ReceiverFields { get; set; }
 
         /// <summary>
         /// Gets or sets the receiver email mapping.
@@ -182,13 +183,13 @@
         public virtual NameValueCollection ReceiverEmailMapping { get; set; }
 
         /// <summary>
-        /// Gets or sets the reply to field.
+        /// Gets or sets the reply to fields.
         /// </summary>
         /// <value>
-        /// The reply to field.
+        /// The reply to fields.
         /// </value>
-        [SitecoreReusableField("Reply To Field", Setting = SitecoreFieldSettings.InferType)]
-        public virtual IField ReplyToField { get; set; }
+        [SitecoreReusableField("Reply To Fields", Setting = SitecoreFieldSettings.InferType)]
+        public virtual IEnumerable<IField> ReplyToFields { get; set; }
 
         /// <summary>
         /// Executes the save plug.

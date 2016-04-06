@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\..\packages\Unic.Bob.Muck.0.4.0-unstable0015\build\Unic.Bob.Muck.props" Condition="Exists('..\..\packages\Unic.Bob.Muck.0.4.0-unstable0015\build\Unic.Bob.Muck.props')" />
+  <Import Project="..\..\packages\Sitecore.7.2.140526.136\build\Sitecore.props" Condition="Exists('..\..\packages\Sitecore.7.2.140526.136\build\Sitecore.props')" />
+  <Import Project="..\..\packages\Unic.Bob.Muck.1.0.0\build\Unic.Bob.Muck.props" Condition="Exists('..\..\packages\Unic.Bob.Muck.1.0.0\build\Unic.Bob.Muck.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -20,7 +21,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
-    <NuGetPackageImportStamp>96d2efb0</NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>cf9ed70f</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -65,10 +66,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Glass.Mapper.Sc.Mvc-5.3.3.0.43\lib\net45\Glass.Mapper.Sc.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="Kamsar.WebConsole">
-      <HintPath>..\..\packages\Kamsar.WebConsole.1.2.2.0\lib\net40\Kamsar.WebConsole.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -78,17 +75,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
-    </Reference>
     <Reference Include="Sitecore.Kernel, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Sitecore.Kernel.7.2.140526.49\lib\Sitecore.Kernel.dll</HintPath>
+      <HintPath>..\..\packages\Sitecore.Kernel.7.2.140526.136\lib\Sitecore.Kernel.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Sitecore.Mvc, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Sitecore.Mvc.7.2.140526.49\lib\Sitecore.Mvc.dll</HintPath>
+      <HintPath>..\..\packages\Sitecore.Mvc.7.2.140526.136\lib\Sitecore.Mvc.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
@@ -139,10 +132,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Unic.Profiling.1.1.0\lib\net40\Unic.Profiling.dll</HintPath>
     </Reference>
-    <Reference Include="Unicorn, Version=2.0.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Unicorn.2.0.4\lib\net45\Unicorn.dll</HintPath>
-    </Reference>
     <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\WebActivatorEx.2.0.5\lib\net40\WebActivatorEx.dll</HintPath>
@@ -164,6 +153,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App_Config\Bob.config.user" />
     <Content Include="assets\flex\css\globals.css.map" />
     <Content Include="assets\flex\css\globals.css.min.map" />
     <Content Include="assets\flex\css\main.css.map" />
@@ -178,7 +168,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App_Config\Bob.config" />
-    <None Include="App_Config\Include\Serialization.config" />
+    <BobPublishLocal Include="App_Config\Include\Unic.Flex.Serialization.config">
+      <SubType>Designer</SubType>
+    </BobPublishLocal>
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\flex\css\globals.css" />
@@ -265,9 +257,6 @@
     <Content Include="Views\Modules\Flex\Default\Fields\InputFields\Email.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App_Config\Include\Glass.Mapper.Sc.Mvc.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Modules\Flex\Default\Components\NavigationPane.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -339,9 +328,6 @@
   <ItemGroup>
     <Content Include="Views\Modules\Flex\Default\Fields\InputFields\DatePicker.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="App_Config\Include\Unic.Configuration.config" />
-  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -371,10 +357,11 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\packages\Unic.Bob.Muck.0.4.0-unstable0015\build\Unic.Bob.Muck.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Unic.Bob.Muck.0.4.0-unstable0015\build\Unic.Bob.Muck.props'))" />
-    <Error Condition="!Exists('..\..\packages\Unic.Bob.Muck.0.4.0-unstable0015\build\Unic.Bob.Muck.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Unic.Bob.Muck.0.4.0-unstable0015\build\Unic.Bob.Muck.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Unic.Bob.Muck.1.0.0\build\Unic.Bob.Muck.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Unic.Bob.Muck.1.0.0\build\Unic.Bob.Muck.props'))" />
+    <Error Condition="!Exists('..\..\packages\Unic.Bob.Muck.1.0.0\build\Unic.Bob.Muck.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Unic.Bob.Muck.1.0.0\build\Unic.Bob.Muck.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Sitecore.7.2.140526.136\build\Sitecore.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Sitecore.7.2.140526.136\build\Sitecore.props'))" />
   </Target>
-  <Import Project="..\..\packages\Unic.Bob.Muck.0.4.0-unstable0015\build\Unic.Bob.Muck.targets" Condition="Exists('..\..\packages\Unic.Bob.Muck.0.4.0-unstable0015\build\Unic.Bob.Muck.targets')" />
+  <Import Project="..\..\packages\Unic.Bob.Muck.1.0.0\build\Unic.Bob.Muck.targets" Condition="Exists('..\..\packages\Unic.Bob.Muck.1.0.0\build\Unic.Bob.Muck.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -40,13 +40,18 @@
             // no field referenced is valid
             if (string.IsNullOrWhiteSpace(fieldValue)) return ValidatorResult.Valid;
 
-            // check if item has valid base template
-            var item = this.GetItem().Database.GetItem(fieldValue);
-            if (item != null && item.HasBaseTemplate(FieldTemplateId)) return ValidatorResult.Valid;
-            
-            // referenced item is not valid
-            this.Text = TranslationHelper.FlexText(string.Format("The item referenced in field \"{0}\" is not a valid form field", field.Name));
-            return this.GetFailedResult(ValidatorResult.Error);
+            // check if items have a valid base template
+            foreach (var itemId in fieldValue.Split('|'))
+            {
+                var item = this.GetItem().Database.GetItem(itemId);
+                if (item == null || !item.HasBaseTemplate(FieldTemplateId))
+                {
+                    this.Text = TranslationHelper.FlexText(string.Format("One of the items referenced in field \"{0}\" is not a valid form field", field.Name));
+                    return this.GetFailedResult(ValidatorResult.Error);
+                }
+            }
+
+            return ValidatorResult.Valid;
         }
 
         /// <summary>

@@ -1,0 +1,44 @@
+----item----
+version: 1
+id: {B622AFC8-7228-4F86-83D9-54DC6BFA80B8}
+database: master
+path: /sitecore/templates/Flex/Validators/Length Validator/__Standard Values
+parent: {FAFB0D25-6930-4AEE-8BB1-3CE6E021C5EE}
+name: __Standard Values
+master: {00000000-0000-0000-0000-000000000000}
+template: {FAFB0D25-6930-4AEE-8BB1-3CE6E021C5EE}
+templatekey: Length Validator
+
+----version----
+language: en
+version: 1
+revision: e7492571-f51f-452b-9979-35f5876361eb
+
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20141126T095212
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+e7492571-f51f-452b-9979-35f5876361eb
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20141126T095212:635525923328664220
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin
