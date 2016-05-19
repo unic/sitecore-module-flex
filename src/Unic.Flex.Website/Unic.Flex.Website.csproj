@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\packages\Unic.Bob.Muck.2.0.0\build\Unic.Bob.Muck.props" Condition="Exists('..\..\packages\Unic.Bob.Muck.2.0.0\build\Unic.Bob.Muck.props')" />
   <Import Project="..\..\packages\Sitecore.8.1.160302.206\build\Sitecore.props" Condition="Exists('..\..\packages\Sitecore.8.1.160302.206\build\Sitecore.props')" />
-  <Import Project="..\..\packages\Unic.Bob.Muck.1.0.0\build\Unic.Bob.Muck.props" Condition="Exists('..\..\packages\Unic.Bob.Muck.1.0.0\build\Unic.Bob.Muck.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -155,7 +155,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App_Config\Bob.config.user" />
     <Content Include="assets\flex\css\globals.css.map" />
     <Content Include="assets\flex\css\globals.css.min.map" />
     <Content Include="assets\flex\css\main.css.map" />
@@ -169,7 +168,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App_Config\Bob.config" />
     <BobPublishLocal Include="App_Config\Include\Unic.Flex.Serialization.config">
       <SubType>Designer</SubType>
     </BobPublishLocal>
@@ -361,11 +359,11 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\packages\Unic.Bob.Muck.1.0.0\build\Unic.Bob.Muck.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Unic.Bob.Muck.1.0.0\build\Unic.Bob.Muck.props'))" />
-    <Error Condition="!Exists('..\..\packages\Unic.Bob.Muck.1.0.0\build\Unic.Bob.Muck.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Unic.Bob.Muck.1.0.0\build\Unic.Bob.Muck.targets'))" />
     <Error Condition="!Exists('..\..\packages\Sitecore.8.1.160302.206\build\Sitecore.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Sitecore.8.1.160302.206\build\Sitecore.props'))" />
+    <Error Condition="!Exists('..\..\packages\Unic.Bob.Muck.2.0.0\build\Unic.Bob.Muck.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Unic.Bob.Muck.2.0.0\build\Unic.Bob.Muck.props'))" />
+    <Error Condition="!Exists('..\..\packages\Unic.Bob.Muck.2.0.0\build\Unic.Bob.Muck.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Unic.Bob.Muck.2.0.0\build\Unic.Bob.Muck.targets'))" />
   </Target>
-  <Import Project="..\..\packages\Unic.Bob.Muck.1.0.0\build\Unic.Bob.Muck.targets" Condition="Exists('..\..\packages\Unic.Bob.Muck.1.0.0\build\Unic.Bob.Muck.targets')" />
+  <Import Project="..\..\packages\Unic.Bob.Muck.2.0.0\build\Unic.Bob.Muck.targets" Condition="Exists('..\..\packages\Unic.Bob.Muck.2.0.0\build\Unic.Bob.Muck.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

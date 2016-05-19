@@ -1,0 +1,15 @@
+{
+  "commands": {
+    "install web.config's": {
+      "fileName": "powershell.exe",
+      "workingDirectory": ".",
+      "arguments": "/noprofile /c ls ./packages/Unic.Bob.Scoop.*/tools/Scoop | select -last 1 | import-module; Install-WebConfig"
+    },
+    "bump": {
+      "fileName": "powershell.exe",
+      "workingDirectory": ".",
+      "arguments": "/noprofile /c ls ./packages/Unic.Bob.Scoop.*/tools/Scoop | select -last 1 | import-module; bump"
+    }
+  }
+
+}
