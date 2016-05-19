@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\packages\Sitecore.8.1.160302.206\build\Sitecore.props" Condition="Exists('..\..\packages\Sitecore.8.1.160302.206\build\Sitecore.props')" />
   <Import Project="..\..\packages\Unic.Bob.Muck.1.0.0\build\Unic.Bob.Muck.props" Condition="Exists('..\..\packages\Unic.Bob.Muck.1.0.0\build\Unic.Bob.Muck.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -20,7 +21,9 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
-    <NuGetPackageImportStamp>c1488c72</NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -97,7 +100,9 @@
   <ItemGroup>
     <None Include="App_Config\Bob.config.user" />
     <Content Include="App_Data\license.xml" />
-    <Content Include="App_Config\ConnectionStrings.config" />
+    <Content Include="App_Config\ConnectionStrings.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_Config\Include\Glass.Mapper.Sc.Mvc.config" />
     <Content Include="App_Config\Include\Serialization.config">
       <SubType>Designer</SubType>
@@ -126,7 +131,9 @@
     <None Include="App_Config\Bob.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Unic.Flex.SimpleInjectorIoC\Unic.Flex.SimpleInjectorIoC.csproj">
@@ -165,6 +172,7 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\..\packages\Unic.Bob.Muck.1.0.0\build\Unic.Bob.Muck.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Unic.Bob.Muck.1.0.0\build\Unic.Bob.Muck.props'))" />
     <Error Condition="!Exists('..\..\packages\Unic.Bob.Muck.1.0.0\build\Unic.Bob.Muck.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Unic.Bob.Muck.1.0.0\build\Unic.Bob.Muck.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Sitecore.8.1.160302.206\build\Sitecore.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Sitecore.8.1.160302.206\build\Sitecore.props'))" />
   </Target>
   <Import Project="..\..\packages\Unic.Bob.Muck.1.0.0\build\Unic.Bob.Muck.targets" Condition="Exists('..\..\packages\Unic.Bob.Muck.1.0.0\build\Unic.Bob.Muck.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
