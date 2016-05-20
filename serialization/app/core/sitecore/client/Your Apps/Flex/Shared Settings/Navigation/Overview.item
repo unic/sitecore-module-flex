@@ -10,6 +10,13 @@ template: {6B2C1723-B4E0-49BE-8EF2-F1D12C969E54}
 templatekey: HyperlinkButton Parameters
 
 ----field----
+field: {DF407AD6-A4C8-4E04-92AC-C59C53B1CDAC}
+name: IsButtonMode
+key: isbuttonmode
+content-length: 0
+
+
+----field----
 field: {AEE5C6C6-CB2D-4645-AE50-8640E8ED293F}
 name: NavigateUrl
 key: navigateurl
@@ -26,7 +33,7 @@ content-length: 1
 ----version----
 language: en
 version: 1
-revision: 13e46d0f-e230-4b93-a3cf-cec0d29ed86e
+revision: 0ff63789-2705-48c2-af03-38cd281d6f23
 
 ----field----
 field: {368E1AB6-8708-4F58-AF08-7DAA53A5BF32}
@@ -48,14 +55,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-13e46d0f-e230-4b93-a3cf-cec0d29ed86e
+0ff63789-2705-48c2-af03-38cd281d6f23
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
-content-length: 34
+content-length: 16
 
-20150227T085028:635606238286238370
+20160520T094437Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

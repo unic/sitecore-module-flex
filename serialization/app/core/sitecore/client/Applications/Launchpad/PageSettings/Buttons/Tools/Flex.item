@@ -13,9 +13,9 @@ templatekey: LaunchPad-Button
 field: {D25B56D4-23B6-4462-BE25-B6A6D7F38E13}
 name: Icon
 key: icon
-content-length: 19
+content-length: 25
 
-Apps/32x32/IPad.png
+Apps/32x32/Magic-cube.png
 ----field----
 field: {044E3FDB-22AE-4E6C-B50E-2ABDFBABD338}
 name: Link
@@ -33,7 +33,7 @@ content-length: 3
 ----version----
 language: en
 version: 1
-revision: e367d5c9-c1a6-46bf-84eb-7dd2688f2c2e
+revision: 44bbf20d-cf43-44c0-9fb6-70b870fe194f
 
 ----field----
 field: {AA4A4643-5BFC-45A7-B9D9-5183A5211D99}
@@ -55,14 +55,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-e367d5c9-c1a6-46bf-84eb-7dd2688f2c2e
+44bbf20d-cf43-44c0-9fb6-70b870fe194f
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 16
 
-20160520T085201Z
+20160520T095001Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
