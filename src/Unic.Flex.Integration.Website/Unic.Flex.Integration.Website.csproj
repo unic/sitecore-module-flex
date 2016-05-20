@@ -52,16 +52,16 @@
       <HintPath>..\..\packages\Ninject.3.0.1.10\lib\net45-full\Ninject.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sitecore.Ship.AspNet, Version=0.3.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sitecore.Ship.AspNet.0.3.5\lib\net40\Sitecore.Ship.AspNet.dll</HintPath>
+    <Reference Include="Sitecore.Ship.AspNet, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sitecore.Ship.AspNet.0.4.0.150818\lib\net45\Sitecore.Ship.AspNet.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sitecore.Ship.Core, Version=0.3.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sitecore.Ship.AspNet.0.3.5\lib\net40\Sitecore.Ship.Core.dll</HintPath>
+    <Reference Include="Sitecore.Ship.Core, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sitecore.Ship.AspNet.0.4.0.150818\lib\net45\Sitecore.Ship.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sitecore.Ship.Infrastructure, Version=0.3.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sitecore.Ship.AspNet.0.3.5\lib\net40\Sitecore.Ship.Infrastructure.dll</HintPath>
+    <Reference Include="Sitecore.Ship.Infrastructure, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sitecore.Ship.AspNet.0.4.0.150818\lib\net45\Sitecore.Ship.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
@@ -109,6 +109,7 @@
     <Content Include="App_Config\Include\Unic.Configuration.config" />
     <Content Include="App_Config\Include\Unic.Flex.Integration.config" />
     <Content Include="default.css" />
+    <Content Include="App_Config\Include\ship.config" />
     <None Include="Web.config">
       <SubType>Designer</SubType>
     </None>
