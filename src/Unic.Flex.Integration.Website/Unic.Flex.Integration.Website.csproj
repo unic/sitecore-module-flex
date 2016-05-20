@@ -109,9 +109,9 @@
     <Content Include="App_Config\Include\Unic.Configuration.config" />
     <Content Include="App_Config\Include\Unic.Flex.Integration.config" />
     <Content Include="default.css" />
-    <Content Include="Web.config">
+    <None Include="Web.config">
       <SubType>Designer</SubType>
-    </Content>
+    </None>
     <Content Include="Views\Renderings\Sample\SampleInnerSublayout.cshtml" />
     <Content Include="Views\Renderings\Sample\SampleLayout.cshtml" />
     <Content Include="Views\Renderings\Sample\SampleRendering.cshtml" />
