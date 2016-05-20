@@ -2,6 +2,7 @@
 {
     using Glass.Mapper.Sc;
     using SimpleInjector;
+    using SimpleInjector.Diagnostics;
     using Unic.Configuration;
     using Unic.Flex.Core.Analytics;
     using Unic.Flex.Core.Context;
@@ -29,7 +30,7 @@
         public static void Initialize(Container container)
         {
             // logging
-            container.RegisterSingle<ILogger, SitecoreLogger>();
+            container.Register<ILogger, SitecoreLogger>(Lifestyle.Singleton);
             
             // business logic
             container.Register<IContextService, ContextService>();
@@ -40,13 +41,13 @@
             container.Register<ICultureService, CultureService>();
             
             // data access
-            container.Register<IDictionaryRepository, DictionaryRepository>();
+            container.Register<IDictionaryRepository, DictionaryRepository>(Lifestyle.Singleton);
             container.Register<IFormRepository, FormRepository>();
             container.Register<IUserDataRepository, UserDataRepository>();
             container.Register<IUnitOfWork, UnitOfWork>();
 
             // model binding and converting
-            container.RegisterSingle<IViewMapper, ViewMapper>();
+            container.Register<IViewMapper, ViewMapper>(Lifestyle.Singleton);
 
             container.Register<FormModelBinder>();
             container.Register<ListModelBinder>();
@@ -56,22 +57,28 @@
             container.Register<DecimalModelBinder>();
             
             // context
-            container.RegisterPerWebRequest<IFlexContext, FlexContext>();
+            container.Register<IFlexContext, FlexContext>(Lifestyle.Scoped);
 
             // mailing
             container.Register<IMailRepository, MailRepository>();
             container.Register<IMailService, MailService>();
 
             // helpers
-            container.RegisterSingle<IUrlService, UrlService>();
+            container.Register<IUrlService, UrlService>(Lifestyle.Singleton);
 
             // implementation classes
             container.Register<ISavePlugMailer, SavePlugMailer>();
             container.Register<ISaveToDatabaseService, SaveToDatabaseService>();
 
             // third party classes
-            container.Register<IConfigurationManager>(() => new ConfigurationManager());
-            container.Register<ISitecoreContext>(() => new SitecoreContext(Constants.GlassMapperContextName));
+            container.Register<IConfigurationManager>(() => new ConfigurationManager(), Lifestyle.Singleton);
+            container.Register<ISitecoreContext>(() => new SitecoreContext(Constants.GlassMapperContextName), Lifestyle.Scoped);
+
+            // suppress warnings
+            container.GetRegistration(typeof(IPlugsService)).Registration.SuppressDiagnosticWarning(DiagnosticType.LifestyleMismatch, "Bad application design, but we can't change this now without huge amount of testing...");
+            container.GetRegistration(typeof(IContextService)).Registration.SuppressDiagnosticWarning(DiagnosticType.LifestyleMismatch, "Bad application design, but we can't change this now without huge amount of testing...");
+            
+            container.GetRegistration(typeof(IUnitOfWork)).Registration.SuppressDiagnosticWarning(DiagnosticType.DisposableTransientComponent, "Needed outside of a http context, so needs to be transient");
         }
     }
 }

@@ -119,7 +119,6 @@
     <Content Include="Views\Web.config" />
     <Content Include="App_Config\Include\Unic.Bob.Scrambler.config" />
     <Content Include="App_Config\Include\Unic.Bob.Scrambler.ContentSearch.config" />
-    <Content Include="App_Config\Include\DevEnvironment.config" />
     <None Include="Web.base.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

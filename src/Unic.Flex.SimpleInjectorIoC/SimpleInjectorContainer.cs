@@ -2,6 +2,7 @@
 {
     using SimpleInjector;
     using System;
+    using SimpleInjector.Integration.Web;
     using Unic.Flex.Core.DependencyInjection;
 
     /// <summary>
@@ -22,7 +23,8 @@
             // create the container
             this.container = new Container();
             this.container.Options.AllowOverridingRegistrations = true;
-            
+            this.container.Options.DefaultScopedLifestyle = new WebRequestLifestyle();
+
             // initialize bindings
             Bootstrapper.Initialize(this.container);
         }
