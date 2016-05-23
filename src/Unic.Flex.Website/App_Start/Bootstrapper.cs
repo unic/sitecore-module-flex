@@ -5,7 +5,7 @@ namespace Unic.Flex.Website.App_Start
     using System;
     using System.Collections.Generic;
     using System.Web.Mvc;
-    using Unic.Configuration.Converter;
+    using Unic.Configuration.Core.Converter;
     using Unic.Flex.Core.ModelBinding;
     using Unic.Flex.Model.Configuration.Converters;
     using Unic.Flex.Model.Fields;

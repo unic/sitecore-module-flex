@@ -1,0 +1,14 @@
+﻿---
+ID: "7a665df8-073a-4c12-bb0b-20bc12a22b07"
+Parent: "736285f1-8f0e-437b-900e-3294ecf8b990"
+Template: "267d9ac7-5d85-4e9d-af89-99ab296cc218"
+Path: /sitecore/system/Modules/Flex/Dictionary/Plugs
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140924T125800

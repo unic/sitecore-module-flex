@@ -1,0 +1,75 @@
+﻿---
+ID: "4db0418e-33d5-44b6-b551-2b86dd17052f"
+Parent: "9e5c2223-cdb2-48ff-85fc-b1c02c406cb3"
+Template: "8f8e2549-c77f-4860-b83b-54fa31e2befa"
+Path: /sitecore/system/Settings/Validation Rules/Field Rules/Flex/Form Field Validator
+DB: master
+SharedFields:
+- ID: "43a829d1-43da-465c-b772-ebaa0d515e3e"
+  Hint: Type
+  Value: Unic.Flex.Core.Validators.FieldValidators.FormFieldValidator, Unic.Flex.Core
+Languages:
+- Language: da
+  Fields:
+  - ID: "b5e02ad9-d56f-4c41-a065-a133db87bdeb"
+    Hint: __Display name
+    Value: "Gyldig bucket-forespørgsel"
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20140314T141226:635304031460497428"
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin
+    - ID: "da43c533-cbae-43d0-9019-65b1e346f984"
+      Hint: Title
+      Value: "Gyldig bucket-forespørgsel"
+- Language: "de-DE"
+  Fields:
+  - ID: "b5e02ad9-d56f-4c41-a065-a133db87bdeb"
+    Hint: __Display name
+    Value: Gültige Bucket Suchanfrage
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20140314T140351:635304026312817996"
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin
+    - ID: "da43c533-cbae-43d0-9019-65b1e346f984"
+      Hint: Title
+      Value: Gültige Bucket Suchanfrage
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20071107T101400
+    - ID: "58014183-26fe-4568-b19f-c26745824c32"
+      Hint: Description
+      Value: The referenced field must be a form field.
+    - ID: "da43c533-cbae-43d0-9019-65b1e346f984"
+      Hint: Title
+      Value: Is valid form field
+- Language: "ja-JP"
+  Fields:
+  - ID: "b5e02ad9-d56f-4c41-a065-a133db87bdeb"
+    Hint: __Display name
+    Value: 有効なバケット クエリ
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20140314T142111:635304036715689257"
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin
+    - ID: "da43c533-cbae-43d0-9019-65b1e346f984"
+      Hint: Title
+      Value: 有効なバケット クエリ

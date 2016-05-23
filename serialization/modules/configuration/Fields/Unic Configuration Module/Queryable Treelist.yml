@@ -1,0 +1,30 @@
+﻿---
+ID: "b90facf9-6131-4d63-8967-789fa0d70056"
+Parent: "5f82ec8b-16b8-428a-b2e4-cd1a9bef0dcd"
+Template: "f8a17d6a-118e-4cd7-b5f5-88ff37a4f237"
+Path: /sitecore/system/Field types/Unic Configuration Module/Queryable Treelist
+DB: core
+SharedFields:
+- ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
+  Hint: __Icon
+  Value: /sitecore/shell/themes/standard/control/16x16/treeview_b.png
+- ID: "6bf5ed07-bc70-42f4-bb77-c017d340950e"
+  Hint: Assembly
+  Value: Unic.Configuration
+- ID: "9fe6154a-a16e-4827-99f6-f51533c34ec8"
+  Hint: Class
+  Value: Unic.Configuration.Shell.Applications.ContentEditor.FieldTypes.QueryableTreeList
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20071024T111021
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin
+    - ID: "c8f93afe-bfd4-4e8f-9c61-152559854661"
+      Hint: __Valid from
+      Value: 20060307T124329

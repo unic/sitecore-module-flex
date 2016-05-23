@@ -1,0 +1,18 @@
+﻿---
+ID: "c65a36c1-c91d-4810-a4d4-b9db61440c48"
+Parent: "5debc58d-a20f-461b-a57f-39d4bc50e755"
+Template: "de9fd373-1399-4b7b-8334-130c3086bc4d"
+Path: /sitecore/system/Modules/Flex/Configuration/Configs/Presentation Configuration
+DB: master
+SharedFields:
+- ID: "3cd1b6f4-7156-4124-9cd8-ea4627f69b27"
+  Hint: Theme
+  Value: "{7E757B79-61E5-44FE-988C-33B3B9D50A08}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140619T151639

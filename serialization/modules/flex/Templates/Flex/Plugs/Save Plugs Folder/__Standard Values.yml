@@ -1,0 +1,25 @@
+﻿---
+ID: "c46f0e69-8b9a-4a83-bfbd-75770902bdc8"
+Parent: "ea3eb18d-41e5-45df-a0cf-8bf300741fa3"
+Template: "ea3eb18d-41e5-45df-a0cf-8bf300741fa3"
+Path: /sitecore/templates/Flex/Plugs/Save Plugs Folder/__Standard Values
+DB: master
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Type: TreelistEx
+  Value: |
+    {DF5C2C2F-4A48-4206-9DFB-0DCDE27E2233}
+    {77613F9B-AC9A-4229-B97A-ACD6FBFCB252}
+    {9A7F5FA1-E267-4BF2-8D3C-4D487792B636}
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140424T172134
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin

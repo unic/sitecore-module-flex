@@ -1,0 +1,22 @@
+﻿---
+ID: "2d509a30-3036-4f6a-8526-bf617d44afea"
+Parent: "5cb920d5-ca20-4311-bc86-007a10519fa8"
+Template: "e35eaa2d-edea-431c-a9e6-488272b53782"
+Path: /sitecore/client/Your Apps/Flex/Pages/Async Plugs/PageSettings
+DB: core
+BranchID: "ef643281-0f7f-41f0-9af3-93e2da21a9a6"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 0
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20150227T081825
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin

@@ -118,9 +118,13 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="Unic.Configuration, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Unic.Configuration.Sitecore7.2.0.0\lib\net45\Unic.Configuration.dll</HintPath>
+    <Reference Include="Unic.Configuration.Core, Version=1.3.0.19, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Unic.Configuration.Core.1.3.0-add-new-structur0019\lib\net45\Unic.Configuration.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Unic.Configuration.Website, Version=1.3.0.19, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Unic.Configuration.1.3.0-add-new-structur0019\lib\net45\Unic.Configuration.Website.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Unic.Profiling, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -155,14 +159,12 @@
     <Content Include="assets\flex\css\styling.css.min.map" />
     <Content Include="assets\flex\css\theme.css.map" />
     <Content Include="assets\flex\css\theme.css.min.map" />
+    <BobPublishLocal Include="App_Config\Include\01_modules_author\Unic.Configuration.config" />
+    <BobPublishLocal Include="App_Config\Include\01_modules\Unic.Configuration.config" />
+    <Content Include="App_Config\Include\01_modules_author\Unic.Flex.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <BobPublishLocal Include="App_Config\Include\Unic.Flex.Serialization.config">
-      <SubType>Designer</SubType>
-    </BobPublishLocal>
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\flex\css\globals.css" />
@@ -209,7 +211,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Config\Include\Unic.Flex.config">
+    <Content Include="App_Config\Include\01_modules\Unic.Flex.config">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>

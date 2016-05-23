@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using Sitecore.Diagnostics;
-    using Unic.Configuration;
+    using Unic.Configuration.Core;
     using Unic.Flex.Core.Context;
     using Unic.Flex.Core.Definitions;
     using Unic.Flex.Core.Globalization;

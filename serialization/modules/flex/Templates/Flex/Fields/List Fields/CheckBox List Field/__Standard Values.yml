@@ -1,0 +1,14 @@
+﻿---
+ID: "67057100-3cc0-49ae-8047-cdf996628184"
+Parent: "7532f52a-8ba7-4903-9b27-9e18fa1c4b92"
+Template: "7532f52a-8ba7-4903-9b27-9e18fa1c4b92"
+Path: /sitecore/templates/Flex/Fields/List Fields/CheckBox List Field/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140528T073851

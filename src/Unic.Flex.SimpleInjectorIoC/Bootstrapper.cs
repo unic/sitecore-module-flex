@@ -3,7 +3,7 @@
     using Glass.Mapper.Sc;
     using SimpleInjector;
     using SimpleInjector.Diagnostics;
-    using Unic.Configuration;
+    using Unic.Configuration.Core;
     using Unic.Flex.Core.Analytics;
     using Unic.Flex.Core.Context;
     using Unic.Flex.Core.Database;

@@ -1,0 +1,27 @@
+﻿---
+ID: "a47c84a6-c4e7-4069-9316-fa1340c5363f"
+Parent: "ec9508b4-16c9-4cf5-8595-57c80681f570"
+Template: "ab86861a-6030-46c5-b394-e8f99e8b87db"
+Path: /sitecore/templates/Flex/Plugs/Load Plugs/Load Plug
+DB: master
+SharedFields:
+- ID: "12c33f3f-86c5-43a5-aeb4-5598cec45116"
+  Hint: __Base template
+  Type: tree list
+  Value: |
+    {1930BBEB-7805-471A-A3BE-4858AC7CF696}
+    {79170589-4722-4172-A592-FC21D33297C1}
+- ID: "f7d48a55-2158-4f02-9356-756654404f73"
+  Hint: __Standard values
+  Value: "{C3AC3536-D7BB-471C-A0CF-C33FE2600C60}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140604T143440
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin

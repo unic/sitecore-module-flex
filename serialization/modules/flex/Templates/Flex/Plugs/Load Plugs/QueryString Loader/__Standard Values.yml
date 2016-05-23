@@ -1,0 +1,14 @@
+﻿---
+ID: "5040642f-992d-4378-b745-ba3ded2fd255"
+Parent: "4906df7c-b200-4825-b1ac-488d7d928452"
+Template: "4906df7c-b200-4825-b1ac-488d7d928452"
+Path: /sitecore/templates/Flex/Plugs/Load Plugs/QueryString Loader/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140604T143012

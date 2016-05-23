@@ -1,6 +1,6 @@
 ﻿namespace Unic.Flex.Model.Configuration
 {
-    using Unic.Configuration;
+    using Unic.Configuration.Core;
 
     /// <summary>
     /// Globalization configuration

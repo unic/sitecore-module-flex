@@ -1,0 +1,18 @@
+﻿---
+ID: "41983b54-e308-4bda-a37f-04c024b3de9d"
+Parent: "c0b2931d-d32e-424e-88dc-fcc2f9487f83"
+Template: "5197ed42-0678-4268-8eb1-e47de7718ae8"
+Path: /sitecore/templates/Branches/Flex/Forms/Form/$name/Steps
+DB: master
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 50
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140424T172350

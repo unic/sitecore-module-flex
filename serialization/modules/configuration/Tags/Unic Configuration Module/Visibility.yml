@@ -1,0 +1,15 @@
+﻿---
+ID: "f2122fd2-55eb-4e82-b62f-5fc37f3142af"
+Parent: "f19a7a85-5ed1-45b1-aed9-b27e69d17d7d"
+Template: "aa91a868-02f2-41d3-8b78-1cad91b4dcae"
+Path: /sitecore/system/Settings/Rules/Definitions/Tags/Unic Configuration Module/Visibility
+DB: master
+BranchID: "60e3e35b-cef9-4afa-9f89-204ed015ccb9"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20141002T142246

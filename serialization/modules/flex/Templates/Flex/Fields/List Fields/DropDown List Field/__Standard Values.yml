@@ -1,0 +1,14 @@
+﻿---
+ID: "24116a78-2451-4500-a260-df22411359b0"
+Parent: "18c0bdc1-5162-4ce4-a92a-0c9a8cafcf11"
+Template: "18c0bdc1-5162-4ce4-a92a-0c9a8cafcf11"
+Path: /sitecore/templates/Flex/Fields/List Fields/DropDown List Field/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140526T160129

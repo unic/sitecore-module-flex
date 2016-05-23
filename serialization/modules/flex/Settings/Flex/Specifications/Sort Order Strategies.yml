@@ -1,0 +1,14 @@
+﻿---
+ID: "16ff48dc-694f-492c-945f-824fe18e7651"
+Parent: "839a4f81-ec10-4045-99db-6349b5762fe2"
+Template: "54c4ece0-ab7f-4dc3-b18c-facd92bc1a1d"
+Path: /sitecore/system/Modules/Flex/Specifications/Sort Order Strategies
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20150121T111727

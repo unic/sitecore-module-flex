@@ -1,0 +1,21 @@
+﻿---
+ID: "0553b927-e641-4f8b-9a6a-f63f4083e79a"
+Parent: "64399920-55f4-47da-9e51-737bd2c19e45"
+Template: "47d4110f-7d21-4dc8-89f0-41302db57637"
+Path: /sitecore/system/Modules/Flex/Specifications/YesNo/No
+DB: master
+SharedFields:
+- ID: "11b2a1ce-2bcc-4118-adc5-94b444b07913"
+  Hint: Value
+  Value: 0
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 200
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20141108T205553

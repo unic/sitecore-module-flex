@@ -1,0 +1,14 @@
+﻿---
+ID: "13f8983d-5920-4dea-b4ac-13efb358bb3f"
+Parent: "535aadcb-f275-4f37-a4d6-da29fd83bdca"
+Template: "535aadcb-f275-4f37-a4d6-da29fd83bdca"
+Path: /sitecore/templates/Flex/Validators/Max File Size Validator/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140901T152237

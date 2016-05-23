@@ -1,0 +1,14 @@
+﻿---
+ID: "a194c136-ed78-49fd-a04c-a3336e868773"
+Parent: "2974489b-2791-4369-9016-be09df014f00"
+Template: "a87a00b1-e6db-45ab-8b54-636fec3b5523"
+Path: /sitecore/client/Your Apps/Flex/Shared Settings/Navigation
+DB: core
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20150227T083007

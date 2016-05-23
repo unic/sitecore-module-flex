@@ -1,0 +1,31 @@
+﻿---
+ID: "18c0bdc1-5162-4ce4-a92a-0c9a8cafcf11"
+Parent: "bd898353-64d4-4999-a735-cf3e0b8b79b0"
+Template: "ab86861a-6030-46c5-b394-e8f99e8b87db"
+Path: /sitecore/templates/Flex/Fields/List Fields/DropDown List Field
+DB: master
+SharedFields:
+- ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
+  Hint: __Icon
+  Value: business/32x32/row.png
+- ID: "12c33f3f-86c5-43a5-aeb4-5598cec45116"
+  Hint: __Base template
+  Type: tree list
+  Value: |
+    {1930BBEB-7805-471A-A3BE-4858AC7CF696}
+    {A0BED174-2C0F-49C2-9D8A-FC0A124A3129}
+    {1521ABC6-2CCC-4DC1-8188-225DD1F02E62}
+- ID: "f7d48a55-2158-4f02-9356-756654404f73"
+  Hint: __Standard values
+  Value: "{24116A78-2451-4500-A260-DF22411359B0}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140526T160127
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin

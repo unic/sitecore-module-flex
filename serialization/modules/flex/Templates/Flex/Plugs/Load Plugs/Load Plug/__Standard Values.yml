@@ -1,0 +1,14 @@
+﻿---
+ID: "c3ac3536-d7bb-471c-a0cf-c33fe2600c60"
+Parent: "a47c84a6-c4e7-4069-9316-fa1340c5363f"
+Template: "a47c84a6-c4e7-4069-9316-fa1340c5363f"
+Path: /sitecore/templates/Flex/Plugs/Load Plugs/Load Plug/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140604T143445

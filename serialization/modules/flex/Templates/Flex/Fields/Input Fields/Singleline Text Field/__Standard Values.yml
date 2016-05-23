@@ -1,0 +1,23 @@
+﻿---
+ID: "2fd44197-fb9d-44ba-a134-ac27353caaa8"
+Parent: "c706d294-adc2-477f-b5e1-63eb1ef345e5"
+Template: "c706d294-adc2-477f-b5e1-63eb1ef345e5"
+Path: /sitecore/templates/Flex/Fields/Input Fields/Singleline Text Field/__Standard Values
+DB: master
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Type: TreelistEx
+  Value: |
+    {90C8A94E-EDEE-41B6-ACF3-4C264B9FDBE1}
+    {0E0AAF18-7D98-4A59-AF1F-45A0652DF4C9}
+    {16F14E15-2392-4E4E-A12D-0FF7455E4C72}
+    {FAFB0D25-6930-4AEE-8BB1-3CE6E021C5EE}
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140428T141114

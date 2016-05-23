@@ -2,7 +2,7 @@
 {
     using System.Web.Mvc;
     using Sitecore.Diagnostics;
-    using Unic.Configuration;
+    using Unic.Configuration.Core;
     using Unic.Flex.Model.Configuration;
     using Unic.Flex.Model.Configuration.Extensions;
     using Unic.Flex.Model.Presentation;

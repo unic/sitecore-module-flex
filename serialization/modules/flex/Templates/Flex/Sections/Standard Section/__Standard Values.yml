@@ -1,0 +1,78 @@
+﻿---
+ID: "1b6f95e6-0e29-449d-830f-e48c4a5afb1e"
+Parent: "b2b5cab2-2bd7-4ffe-80b1-7607a310771e"
+Template: "b2b5cab2-2bd7-4ffe-80b1-7607a310771e"
+Path: /sitecore/templates/Flex/Sections/Standard Section/__Standard Values
+DB: master
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Type: TreelistEx
+  Value: |
+    {C71F2A06-56B1-4045-A96E-FDF1F3E76284}
+    {A9FD64D4-F178-498F-9BD1-D6264FD4B452}
+    {8583A797-3FE5-4247-B190-26E9BFD4D5A4}
+    {5CBCDE45-F0A9-4F6D-8273-685249ABDDF6}
+    {337AD4A8-DFEE-4CEB-851E-5133AB87269C}
+    {6D95AE6A-4472-479C-B0AA-572A68C95E9A}
+    {C2E610E1-B3C7-4BDD-8E5C-F1869BFF461A}
+    {D5768466-2ADA-4C3C-B5C2-6B0299D08F2E}
+    {C9C6AC45-7763-4851-A684-A075D2176FF7}
+    {47632CE8-1AA6-4A08-8A0B-528CBAE8C07E}
+    {07AC3EF4-7E76-4454-B3BE-49FF647D9439}
+    {C706D294-ADC2-477F-B5E1-63EB1EF345E5}
+    {7532F52A-8BA7-4903-9B27-9E18FA1C4B92}
+    {18C0BDC1-5162-4CE4-A92A-0C9A8CAFCF11}
+    {9A0208D4-4A39-436F-90E2-84765CC7A63A}
+    {188683AC-127C-45A1-8F7D-4ABF6E68E7AF}
+    {C2B3372D-F1BA-4A98-9FDE-7A2A0C0EE76B}
+Languages:
+- Language: de
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20150116T102538
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin
+    - ID: "f6e5c9d7-3b14-4091-8141-5663e3abfdc4"
+      Hint: Title
+      Value: $name
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140424T155716
+    - ID: "f6e5c9d7-3b14-4091-8141-5663e3abfdc4"
+      Hint: Title
+      Value: $name
+- Language: fr
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20150116T102543
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin
+    - ID: "f6e5c9d7-3b14-4091-8141-5663e3abfdc4"
+      Hint: Title
+      Value: $name
+- Language: it
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20150116T102549
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin
+    - ID: "f6e5c9d7-3b14-4091-8141-5663e3abfdc4"
+      Hint: Title
+      Value: $name

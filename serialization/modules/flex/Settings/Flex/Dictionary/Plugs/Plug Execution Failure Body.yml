@@ -1,0 +1,84 @@
+﻿---
+ID: "0e9665b0-8c58-4034-afb2-e7b5dbfd8fcb"
+Parent: "7a665df8-073a-4c12-bb0b-20bc12a22b07"
+Template: "6d1cd897-1936-4a3a-a511-289a94c2a7b1"
+Path: /sitecore/system/Modules/Flex/Dictionary/Plugs/Plug Execution Failure Body
+DB: master
+SharedFields:
+- ID: "580c75a8-c01a-4580-83cb-987776ceb3af"
+  Hint: Key
+  Value: Plug Execution Failure Body
+Languages:
+- Language: de
+  Fields:
+  - ID: "2ba3454a-9a9c-4cdf-a9f8-107fd484eb6e"
+    Hint: Phrase
+    Value: |
+      Der Plug mit ID '{1}' hat die zulässige Anzahl wiederholter Ausführungsversuche  im Formular mit ID '{0}' überschritten.
+      
+      Ausnahme: {2}
+      
+      {3}
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20150116T141941:635570147810108860"
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin
+- Language: en
+  Fields:
+  - ID: "2ba3454a-9a9c-4cdf-a9f8-107fd484eb6e"
+    Hint: Phrase
+    Value: |
+      The plug with ID '{1}' has exceeded the permitted number of repeated execution attempts in the form with ID '{0}'.
+      
+      Exception: {2}
+      
+      {3}
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140924T125944
+- Language: fr
+  Fields:
+  - ID: "2ba3454a-9a9c-4cdf-a9f8-107fd484eb6e"
+    Hint: Phrase
+    Value: |
+      La connexion portant l’ID '{1}' a dépassé le nombre maximal de tentatives d’exécution dans le formulaire avec l’ID '{0}'.
+      
+      Exception: {2}
+      
+      {3}
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20150219T101441:635599376818970489"
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin
+- Language: it
+  Fields:
+  - ID: "2ba3454a-9a9c-4cdf-a9f8-107fd484eb6e"
+    Hint: Phrase
+    Value: |
+      Il plug con ID '{1}' ha superato il numero consentito di tentativi ripetuti nel modulo con ID '{0}'.
+      
+      Eccezione: {2}
+      
+      {3}
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: "20150219T101441:635599376819871135"
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin

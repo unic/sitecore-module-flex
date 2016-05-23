@@ -1,0 +1,56 @@
+﻿---
+ID: "30f5550c-8549-44cb-a542-424aabfa9747"
+Parent: "cdea38f7-9bc3-45d9-b8ed-8462a6b9d569"
+Template: "cdea38f7-9bc3-45d9-b8ed-8462a6b9d569"
+Path: /sitecore/templates/Flex/Steps/Step/__Standard Values
+DB: master
+Languages:
+- Language: de
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20150116T102620
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin
+    - ID: "bd716805-ee6d-4432-a114-60222e740712"
+      Hint: Title
+      Value: $name
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140623T105939
+    - ID: "bd716805-ee6d-4432-a114-60222e740712"
+      Hint: Title
+      Value: $name
+- Language: fr
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20150116T102625
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin
+    - ID: "bd716805-ee6d-4432-a114-60222e740712"
+      Hint: Title
+      Value: $name
+- Language: it
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20150116T102631
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin
+    - ID: "bd716805-ee6d-4432-a114-60222e740712"
+      Hint: Title
+      Value: $name

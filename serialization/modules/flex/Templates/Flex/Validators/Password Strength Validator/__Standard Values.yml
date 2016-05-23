@@ -1,0 +1,14 @@
+﻿---
+ID: "331e1dab-aeff-463c-a035-210ac6712b9c"
+Parent: "007eb78d-c72d-4e31-b447-194e64349aba"
+Template: "007eb78d-c72d-4e31-b447-194e64349aba"
+Path: /sitecore/templates/Flex/Validators/Password Strength Validator/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140821T072251

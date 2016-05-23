@@ -1,0 +1,15 @@
+﻿---
+ID: "5f82ec8b-16b8-428a-b2e4-cd1a9bef0dcd"
+Parent: "76e6d8c7-1f93-4712-872b-da3c96b808f2"
+Template: "a87a00b1-e6db-45ab-8b54-636fec3b5523"
+Path: /sitecore/system/Field types/Unic Configuration Module
+DB: core
+BranchID: "30235f43-6242-4107-87ab-5267e34edf0c"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20160523T111214

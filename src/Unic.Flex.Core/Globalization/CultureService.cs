@@ -1,7 +1,7 @@
 ﻿namespace Unic.Flex.Core.Globalization
 {
     using System.Threading;
-    using Unic.Configuration;
+    using Unic.Configuration.Core;
     using Unic.Flex.Model.Configuration;
 
     /// <summary>

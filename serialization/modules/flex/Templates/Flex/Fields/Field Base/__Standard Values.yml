@@ -1,0 +1,17 @@
+﻿---
+ID: "3ad02cc1-8452-47b6-93ce-00d7fad18aee"
+Parent: "0ab071ef-1dbe-42f5-8a22-002b9110e90f"
+Template: "0ab071ef-1dbe-42f5-8a22-002b9110e90f"
+Path: /sitecore/templates/Flex/Fields/Field Base/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20141211T113911
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin

@@ -1,0 +1,22 @@
+﻿---
+ID: "17cc3651-b6c4-4bb0-8f8a-4b30b94ecbe5"
+Parent: "319a93df-4c9b-4370-a54c-f5277c3b84df"
+Template: "319a93df-4c9b-4370-a54c-f5277c3b84df"
+Path: /sitecore/templates/Flex/Fields/Minimal Field/__Standard Values
+DB: master
+SharedFields:
+- ID: "4f77eb60-be8a-438e-a598-fc034df43c24"
+  Hint: Show in Summary
+  Type: Checkbox
+  Value: 1
+- ID: "7c06bdb6-0f34-4771-b1a6-9eaae3c10871"
+  Hint: Key
+  Value: $name
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140825T141839

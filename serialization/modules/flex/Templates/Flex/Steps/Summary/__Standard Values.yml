@@ -1,0 +1,14 @@
+﻿---
+ID: "889de5a1-3080-4143-890a-49957955529c"
+Parent: "d8d5719a-4799-44d4-8bdc-9ea78e029385"
+Template: "d8d5719a-4799-44d4-8bdc-9ea78e029385"
+Path: /sitecore/templates/Flex/Steps/Summary/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140424T173005

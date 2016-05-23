@@ -1,0 +1,24 @@
+﻿---
+ID: "ca61b9c9-814f-401f-b4fb-13a5657425eb"
+Parent: "f2bb7497-1d26-41d5-ab67-d72f2b7d298b"
+Template: "ecd7d8b0-b6ce-4deb-8994-a51674a03887"
+Path: /sitecore/client/Your Apps/Flex/Pages/Overview/PageSettings/AvailableForms Parameters/Category
+DB: core
+SharedFields:
+- ID: "29b1c584-0f87-49a2-be09-ea4fb0a0abf1"
+  Hint: DataField
+  Value: repository
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20150303T133252
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin
+    - ID: "b4929234-6dcc-4adb-827e-cdcdc128b8af"
+      Hint: HeaderText
+      Value: Form Repository

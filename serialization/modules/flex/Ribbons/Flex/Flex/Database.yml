@@ -1,0 +1,24 @@
+﻿---
+ID: "f1d35b67-4a35-4b01-8dc2-9c2ba72d6f7d"
+Parent: "d576a87e-f3e5-4def-ae6d-ed03a7d00f06"
+Template: "8f3d8f9b-2d76-4ace-803f-35415d2b230a"
+Path: /sitecore/content/Applications/Content Editor/Ribbons/Contextual Ribbons/Flex/Flex/Database
+DB: core
+SharedFields:
+- ID: "8bb9a5e3-cae8-49c6-b830-258a51d970c9"
+  Hint: ID
+  Value: DatabaseChunk
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140929T144315
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin
+    - ID: "c95d21bd-66c3-444b-a37f-d346cbaf2b55"
+      Hint: Header
+      Value: Database

@@ -1,0 +1,21 @@
+﻿---
+ID: "52d7eff7-1f8f-49c5-9f67-bdc414ac207d"
+Parent: "de9fd373-1399-4b7b-8334-130c3086bc4d"
+Template: "de9fd373-1399-4b7b-8334-130c3086bc4d"
+Path: /sitecore/templates/Flex/Configurations/Presentation Configuration/__Standard Values
+DB: master
+SharedFields:
+- ID: "fcafa161-b9de-41f6-89b5-e94df856005a"
+  Hint: Type
+  Value: Unic.Flex.Model.Configuration.PresentationConfiguration, Unic.Flex.Model
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140619T151557
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin

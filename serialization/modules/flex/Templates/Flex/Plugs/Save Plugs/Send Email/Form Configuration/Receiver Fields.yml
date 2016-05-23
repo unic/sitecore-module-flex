@@ -1,0 +1,44 @@
+﻿---
+ID: "e556d285-86b1-4d20-bc78-1b899c7183f0"
+Parent: "ca1a2526-bb49-4923-b765-286e1d1f291d"
+Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
+Path: /sitecore/templates/Flex/Plugs/Save Plugs/Send Email/Form Configuration/Receiver Fields
+DB: master
+SharedFields:
+- ID: "1eb8ae32-e190-44a6-968d-ed904c794ebf"
+  Hint: Source
+  Value: "query:./ancestor-or-self::*[@@templateid='{7212DD21-1769-43AA-AF6A-92756C97A269}']"
+- ID: "21828437-ea4b-40a1-8c61-4ce60ea41db6"
+  Hint: Validate Button
+  Type: tree list
+  Value: "{4DB0418E-33D5-44B6-B551-2B86DD17052F}"
+- ID: "337e20e1-999a-4eea-85ad-b58a03ae75cc"
+  Hint: Quick Action Bar
+  Type: tree list
+  Value: "{4DB0418E-33D5-44B6-B551-2B86DD17052F}"
+- ID: "53c432c4-7122-4e2d-8296-db4184fd1735"
+  Hint: Workflow
+  Type: tree list
+  Value: "{4DB0418E-33D5-44B6-B551-2B86DD17052F}"
+- ID: "9c903e29-650d-4af2-b9bd-526d5c14a1a5"
+  Hint: Validator Bar
+  Type: tree list
+  Value: "{4DB0418E-33D5-44B6-B551-2B86DD17052F}"
+- ID: "ab162cc0-dc80-4abf-8871-998ee5d7ba32"
+  Hint: Type
+  Value: Treelist
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 100
+- ID: "be351a73-fcb0-4213-93fa-c302d8ab4f51"
+  Hint: Shared
+  Type: Checkbox
+  Value: 1
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140904T200442

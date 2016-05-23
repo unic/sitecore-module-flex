@@ -1,0 +1,17 @@
+﻿---
+ID: "8f11e332-7719-4707-9eeb-43b7c2aaa026"
+Parent: "d5768466-2ada-4c3c-b5c2-6b0299d08f2e"
+Template: "e269fbb5-3750-427a-9149-7aa950b49301"
+Path: /sitecore/templates/Flex/Fields/Input Fields/Multiline Text Field/Form Configuration
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140515T133123
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin
