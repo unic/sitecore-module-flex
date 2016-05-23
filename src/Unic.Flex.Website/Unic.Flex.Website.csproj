@@ -130,14 +130,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Unic.Profiling.1.1.0\lib\net40\Unic.Profiling.dll</HintPath>
     </Reference>
-    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\WebActivatorEx.2.0.5\lib\net40\WebActivatorEx.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\Bootstrapper.cs" />
-    <Compile Include="App_Start\GlassConfig.cs" />
+    <Compile Include="Pipelines\Initialize\Bootstrapper.cs" />
+    <Compile Include="Pipelines\Initialize\GlassConfig.cs" />
     <Compile Include="Controllers\FlexController.cs" />
     <Compile Include="Controllers\FlexSpeakController.cs" />
     <Compile Include="Models\CascadingFields\CascadingField.cs" />

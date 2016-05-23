@@ -1,4 +1,4 @@
-namespace Unic.Flex.Website.App_Start
+namespace Unic.Flex.Website.Initialize
 {
     using System.Web.Hosting;
     using Glass.Mapper;

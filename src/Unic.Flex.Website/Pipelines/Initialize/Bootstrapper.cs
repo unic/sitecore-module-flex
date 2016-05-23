@@ -1,10 +1,9 @@
-﻿[assembly: WebActivatorEx.PostApplicationStartMethod(typeof(Unic.Flex.Website.App_Start.Bootstrapper), "PostStart", Order = 1)]
-
-namespace Unic.Flex.Website.App_Start
+﻿namespace Unic.Flex.Website.Initialize
 {
     using System;
     using System.Collections.Generic;
     using System.Web.Mvc;
+    using Sitecore.Pipelines;
     using Unic.Configuration.Core.Converter;
     using Unic.Flex.Core.ModelBinding;
     using Unic.Flex.Model.Configuration.Converters;
@@ -20,18 +19,18 @@ namespace Unic.Flex.Website.App_Start
     public class Bootstrapper
     {
         /// <summary>
-        /// The method called after starting the application.
+        /// Initialize the application..
         /// </summary>
-        public static void PostStart()
+        public virtual void Process(PipelineArgs args)
         {
-            RegisterModelBinders();
-            RegisterConfigurationConverters();
+            this.RegisterModelBinders();
+            this.RegisterConfigurationConverters();
         }
 
         /// <summary>
         /// Registers the ASP.NET MVC model binders.
         /// </summary>
-        private static void RegisterModelBinders()
+        protected virtual void RegisterModelBinders()
         {
             ModelBinders.Binders.Add(typeof(IForm), DependencyResolver.Resolve<FormModelBinder>());
             ModelBinders.Binders.Add(typeof(IList<ISection>), DependencyResolver.Resolve<ListModelBinder>());
@@ -46,7 +45,7 @@ namespace Unic.Flex.Website.App_Start
         /// <summary>
         /// Registers the configuration converters for the config module.
         /// </summary>
-        private static void RegisterConfigurationConverters()
+        protected virtual void RegisterConfigurationConverters()
         {
             ConverterFactory.RegisterConverter(new SpecificationConverter());
         }

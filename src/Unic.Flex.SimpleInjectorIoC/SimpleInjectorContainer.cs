@@ -26,7 +26,7 @@
             this.container.Options.DefaultScopedLifestyle = new WebRequestLifestyle();
 
             // initialize bindings
-            Bootstrapper.Initialize(this.container);
+            Config.Initialize(this.container);
         }
 
         /// <summary>

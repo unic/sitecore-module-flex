@@ -153,12 +153,6 @@
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Unic.Flex.SimpleInjectorIoC\Unic.Flex.SimpleInjectorIoC.csproj">
-      <Project>{6a2a6827-3321-4c18-9681-572d0971503a}</Project>
-      <Name>Unic.Flex.SimpleInjectorIoC</Name>
-    </ProjectReference>
-  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

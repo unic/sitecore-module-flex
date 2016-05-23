@@ -1,18 +1,17 @@
-﻿[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Unic.Flex.NinjectIoC.Activator), "PreStart", Order = 1)]
-
-namespace Unic.Flex.NinjectIoC
+﻿namespace Unic.Flex.NinjectIoC
 {
+    using Sitecore.Pipelines;
     using Unic.Flex.Core.DependencyInjection;
 
     /// <summary>
     /// Ninject configuration activator
     /// </summary>
-    public static class Activator
+    public class Bootstrapper
     {
         /// <summary>
-        /// Starts the application
+        /// Initialize the application
         /// </summary>
-        public static void PreStart()
+        public virtual void Process(PipelineArgs args)
         {
             DependencyResolver.SetContainer(new NinjectContainer());
         }
