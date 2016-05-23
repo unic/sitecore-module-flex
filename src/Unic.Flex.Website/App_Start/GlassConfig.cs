@@ -1,15 +1,12 @@
 namespace Unic.Flex.Website.App_Start
 {
-    using System.Collections.Generic;
     using System.Web.Hosting;
-    using Castle.MicroKernel.Registration;
-    using Castle.Windsor;
     using Glass.Mapper;
     using Glass.Mapper.Configuration;
     using Glass.Mapper.Configuration.Attributes;
-    using Glass.Mapper.Pipelines.ObjectConstruction;
-    using Glass.Mapper.Sc.CastleWindsor;
-    using Glass.Mapper.Sc.DataMappers.SitecoreQueryParameters;
+    using Glass.Mapper.Maps;
+    using Glass.Mapper.Sc.Configuration.Fluent;
+    using Glass.Mapper.Sc.IoC;
     using Sitecore.Pipelines;
     using Unic.Flex.Core.Definitions;
     using Unic.Flex.Core.Pipelines.ObjectConstruction;
@@ -26,56 +23,79 @@ namespace Unic.Flex.Website.App_Start
         /// <param name="args">The arguments.</param>
         public virtual void Process(PipelineArgs args)
         {
-            // create the resolver
-            var resolver = DependencyResolver.CreateStandardResolver();
-
-            // install the custom services
-            this.CastleConfig(resolver.Container);
-
-            // create a context
+            // create a resolver and register the context
+            var resolver = this.CreateResolver();
             var context = Context.Create(resolver, Constants.GlassMapperContextName);
-            context.Load(this.GlassLoaders());
+
+            // load configurations
+            this.Configure(resolver);
+
+            // get configuration loader
+            var configurationLoader = this.GetConfigurationLoader(resolver);
+            if (configurationLoader != null)
+            {
+                context.Load(configurationLoader);
+            }
+
+            // load the assemblies with Glass components
+            context.Load(this.GetAssemblies());
         }
 
         /// <summary>
-        /// Loads all glass configurations.
+        /// Creates the resolver.
         /// </summary>
-        /// <returns>Array with configuration loaders</returns>
-        protected virtual IConfigurationLoader[] GlassLoaders()
+        /// <returns>Glass Dependency Resolver</returns>
+        protected virtual IDependencyResolver CreateResolver()
+        {
+            var config = new Glass.Mapper.Sc.Config();
+
+            var dependencyResolver = new DependencyResolver(config);
+
+            return dependencyResolver;
+        }
+
+        /// <summary>
+        /// Configures the Glass resolver.
+        /// </summary>
+        /// <param name="resolver">The resolver.</param>
+        protected virtual void Configure(IDependencyResolver resolver)
+        {
+            // add tasks
+            resolver.ObjectConstructionFactory.Insert(0, () => new DependencyInjectorTask());
+            
+            // add data mappers
+            resolver.DataMapperFactory.Insert(0, () => new SitecoreSharedFieldTypeMapper());
+            resolver.DataMapperFactory.Insert(0, () => new SitecoreDictionaryFallbackFieldTypeMapper());
+            resolver.DataMapperFactory.Insert(0, () => new SitecoreSharedQueryTypeMapper(resolver.QueryParameterFactory.GetItems()));
+            resolver.DataMapperFactory.Insert(0, () => new SitecoreReusableFieldTypeMapper());
+            resolver.DataMapperFactory.Insert(0, () => new SitecoreReusableChildrenTypeMapper());
+        }
+
+        /// <summary>
+        /// Get the configuration loader.
+        /// </summary>
+        /// <param name="resolver">The resolver.</param>
+        protected virtual IConfigurationLoader GetConfigurationLoader(IDependencyResolver resolver)
+        {
+            var dependencyResolver = resolver as DependencyResolver;
+            if (dependencyResolver == null)
+            {
+                return null;
+            }
+
+            var configurationMap = new ConfigurationMap(dependencyResolver);
+            return configurationMap.GetConfigurationLoader<SitecoreFluentConfigurationLoader>();
+        }
+
+        /// <summary>
+        /// Get all assemblies we need to load.
+        /// </summary>
+        /// <returns>Array with assemblies to load</returns>
+        protected virtual IConfigurationLoader[] GetAssemblies()
         {
             var model = new AttributeConfigurationLoader(HostingEnvironment.MapPath("/bin/Unic.Flex.Model.dll"));
             var implementations = new AttributeConfigurationLoader(HostingEnvironment.MapPath("/bin/Unic.Flex.Implementation.dll"));
             return new IConfigurationLoader[] { model, implementations };
-        }
-
-        /// <summary>
-        /// Install Glass Mapper into the dependency injection container.
-        /// </summary>
-        /// <param name="container">The container.</param>
-        protected virtual void CastleConfig(IWindsorContainer container)
-        {
-            // get new config
-            var config = new Config();
-
-            // register parameters
-            container.Register(Component.For<IEnumerable<ISitecoreQueryParameter>>().ImplementedBy<List<ItemPathParameter>>().LifeStyle.Transient);
-            container.Register(Component.For<IEnumerable<ISitecoreQueryParameter>>().ImplementedBy<List<ItemIdParameter>>().LifeStyle.Transient);
-            container.Register(Component.For<IEnumerable<ISitecoreQueryParameter>>().ImplementedBy<List<ItemIdNoBracketsParameter>>().LifeStyle.Transient);
-            container.Register(Component.For<IEnumerable<ISitecoreQueryParameter>>().ImplementedBy<List<ItemEscapedPathParameter>>().LifeStyle.Transient);
-            container.Register(Component.For<IEnumerable<ISitecoreQueryParameter>>().ImplementedBy<List<ItemDateNowParameter>>().LifeStyle.Transient);
-
-            // register custom type mapper
-            container.Register(Component.For<AbstractDataMapper>().ImplementedBy<SitecoreDictionaryFallbackFieldTypeMapper>().LifeStyle.Transient);
-            container.Register(Component.For<AbstractDataMapper>().ImplementedBy<SitecoreSharedFieldTypeMapper>().LifeStyle.Transient);
-            container.Register(Component.For<AbstractDataMapper>().ImplementedBy<SitecoreSharedQueryTypeMapper>().LifeStyle.Transient);
-            container.Register(Component.For<AbstractDataMapper>().ImplementedBy<SitecoreReusableFieldTypeMapper>().LifeStyle.Transient);
-            container.Register(Component.For<AbstractDataMapper>().ImplementedBy<SitecoreReusableChildrenTypeMapper>().LifeStyle.Transient);
-
-            // register IoC object creation
-            container.Register(Component.For<IObjectConstructionTask>().ImplementedBy<DependencyInjectorTask>().LifestylePerWebRequest());
-
-            // install the config
-            container.Install(new SitecoreInstaller(config));
         }
     }
 }
