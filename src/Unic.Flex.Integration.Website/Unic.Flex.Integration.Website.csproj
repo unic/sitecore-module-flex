@@ -114,9 +114,6 @@
     <Content Include="App_Config\ConnectionStrings.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="App_Config\Include\Serialization.config">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="App_Config\Include\Unic.Configuration.config" />
     <Content Include="App_Config\Include\Unic.Flex.Integration.config" />
     <Content Include="default.css" />
