@@ -9,6 +9,9 @@ Languages:
   Versions:
   - Version: 1
     Fields:
+    - ID: "16b493f7-943b-41a8-b782-432a1edc5df5"
+      Hint: Error Message
+      Value: <p>Ihre Mitteilung konnte leider nicht korrekt verarbeitet werden.</p>
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20150116T102420
@@ -18,10 +21,16 @@ Languages:
     - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
       Hint: __Created by
       Value: sitecore\admin
+    - ID: "a54e5344-b5d1-45d0-b231-aedba12e32d5"
+      Hint: Message
+      Value: <p>Vielen Dank f&uuml;r Ihre Mitteilung.</p>
 - Language: en
   Versions:
   - Version: 1
     Fields:
+    - ID: "16b493f7-943b-41a8-b782-432a1edc5df5"
+      Hint: Error Message
+      Value: <p>Unfortunately your message could not be sent successfully.</p>
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20140424T155557
@@ -31,10 +40,16 @@ Languages:
     - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
       Hint: __Created by
       Value: sitecore\admin
+    - ID: "a54e5344-b5d1-45d0-b231-aedba12e32d5"
+      Hint: Message
+      Value: <p>Thank you for your message.</p>
 - Language: fr
   Versions:
   - Version: 1
     Fields:
+    - ID: "16b493f7-943b-41a8-b782-432a1edc5df5"
+      Hint: Error Message
+      Value: <p>Malheureusement, votre communication n'a pas pu &ecirc;tre trait&eacute;e correctement.</p>
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20150116T102425
@@ -44,10 +59,16 @@ Languages:
     - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
       Hint: __Created by
       Value: sitecore\admin
+    - ID: "a54e5344-b5d1-45d0-b231-aedba12e32d5"
+      Hint: Message
+      Value: <p>Merci pour votre message.</p>
 - Language: it
   Versions:
   - Version: 1
     Fields:
+    - ID: "16b493f7-943b-41a8-b782-432a1edc5df5"
+      Hint: Error Message
+      Value: <p>La sua segnalazione non pu&ograve; purtroppo essere elaborata correttamente.</p>
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
       Value: 20150116T102430
@@ -57,3 +78,6 @@ Languages:
     - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
       Hint: __Created by
       Value: sitecore\admin
+    - ID: "a54e5344-b5d1-45d0-b231-aedba12e32d5"
+      Hint: Message
+      Value: <p>Grazie per il tuo messaggio.</p>
