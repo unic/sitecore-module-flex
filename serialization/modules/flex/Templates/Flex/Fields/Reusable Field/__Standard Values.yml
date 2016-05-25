@@ -1,0 +1,14 @@
+﻿---
+ID: "b8cf237e-0507-4a84-bcfd-d7ad63395b44"
+Parent: "c71f2a06-56b1-4045-a96e-fdf1f3e76284"
+Template: "c71f2a06-56b1-4045-a96e-fdf1f3e76284"
+Path: /sitecore/templates/Flex/Fields/Reusable Field/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140908T144206

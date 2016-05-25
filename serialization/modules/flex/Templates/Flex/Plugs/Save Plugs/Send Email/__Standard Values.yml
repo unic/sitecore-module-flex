@@ -1,0 +1,19 @@
+﻿---
+ID: "50a263b3-732a-4dcf-a10a-f273de46a4eb"
+Parent: "df5c2c2f-4a48-4206-9dfb-0dcde27e2233"
+Template: "df5c2c2f-4a48-4206-9dfb-0dcde27e2233"
+Path: /sitecore/templates/Flex/Plugs/Save Plugs/Send Email/__Standard Values
+DB: master
+SharedFields:
+- ID: "b96d8c6b-20bc-40c0-89c2-09b6468a8a78"
+  Hint: Send Attachments
+  Type: Checkbox
+  Value: 1
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140903T103915

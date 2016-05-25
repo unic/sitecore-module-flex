@@ -1,0 +1,24 @@
+﻿---
+ID: "e0430da2-9d19-49b1-ab8c-f318df29a9f7"
+Parent: "ae825de2-5fe8-4d15-ae56-3c793467a00b"
+Template: "ae825de2-5fe8-4d15-ae56-3c793467a00b"
+Path: /sitecore/templates/Flex/Steps/Standard Step/__Standard Values
+DB: master
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Type: TreelistEx
+  Value: |
+    {B2B5CAB2-2BD7-4FFE-80B1-7607A310771E}
+    {773FF85E-C512-4825-A4EA-1FFB181525C9}
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140424T173109
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin

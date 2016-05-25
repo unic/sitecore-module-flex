@@ -1,0 +1,18 @@
+﻿---
+ID: "2276e4cf-733c-49c9-b896-6e989aa91bdc"
+Parent: "041d1719-bcac-4e6e-b443-9a3b15274bb0"
+Template: "b80890a3-e506-4b7f-8ff0-d0909c4c57be"
+Path: /sitecore/templates/Branches/Flex/Global/Repository Root/$name/Fields
+DB: master
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 200
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140908T144049

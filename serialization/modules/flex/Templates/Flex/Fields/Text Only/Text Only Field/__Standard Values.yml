@@ -1,0 +1,14 @@
+﻿---
+ID: "1c4013f9-ab97-48e9-b5a4-0d5595539277"
+Parent: "c2b3372d-f1ba-4a98-9fde-7a2a0c0ee76b"
+Template: "c2b3372d-f1ba-4a98-9fde-7a2a0c0ee76b"
+Path: /sitecore/templates/Flex/Fields/Text Only/Text Only Field/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140825T131224

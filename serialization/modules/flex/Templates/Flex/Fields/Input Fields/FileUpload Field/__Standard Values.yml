@@ -1,0 +1,21 @@
+﻿---
+ID: "ea93cb87-dbb1-42f8-bb07-cfb60e44853d"
+Parent: "6d95ae6a-4472-479c-b0aa-572a68c95e9a"
+Template: "6d95ae6a-4472-479c-b0aa-572a68c95e9a"
+Path: /sitecore/templates/Flex/Fields/Input Fields/FileUpload Field/__Standard Values
+DB: master
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Type: TreelistEx
+  Value: |
+    {535AADCB-F275-4F37-A4D6-DA29FD83BDCA}
+    {14945398-D128-4E64-A0F8-7642252117C4}
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140901T124722

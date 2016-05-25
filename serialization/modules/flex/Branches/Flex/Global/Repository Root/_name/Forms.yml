@@ -1,0 +1,14 @@
+﻿---
+ID: "c3c6ec9b-ec0c-4b4a-aeeb-6a5399206229"
+Parent: "041d1719-bcac-4e6e-b443-9a3b15274bb0"
+Template: "9f8487e3-36b1-49d0-ae1c-8e4522897e86"
+Path: /sitecore/templates/Branches/Flex/Global/Repository Root/$name/Forms
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140424T160012

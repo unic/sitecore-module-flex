@@ -1,0 +1,14 @@
+﻿---
+ID: "d2e1e917-0d94-48a3-9c3f-e4e78ef3c5bb"
+Parent: "35946bdb-3616-4f81-b237-0e9ed7dcbb54"
+Template: "35946bdb-3616-4f81-b237-0e9ed7dcbb54"
+Path: /sitecore/templates/Flex/Validators/Phone Validator/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140829T141651

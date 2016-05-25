@@ -1,0 +1,22 @@
+﻿---
+ID: "0b2baa37-06b2-4cd9-8394-b036e8a383f6"
+Parent: "8de453f6-a236-4738-84b6-5d8821bd5911"
+Template: "854ba861-63ea-4a0c-8c7b-541e9a7ec4c1"
+Path: /sitecore/system/Settings/Rules/Unic Configuration Module/Tags/Default
+DB: master
+BranchID: "bdc41fdd-a3ac-4b69-a0ba-471c425cb083"
+SharedFields:
+- ID: "42f77151-098f-496a-94cf-590b7edeeabe"
+  Hint: Tags
+  Type: Multilist
+  Value: |
+    {F19A7A85-5ED1-45B1-AED9-B27E69D17D7D}
+    {5A355A23-0148-48CB-9017-90A696EAF155}
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20141002T142732

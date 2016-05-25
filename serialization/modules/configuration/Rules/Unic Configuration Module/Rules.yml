@@ -1,0 +1,15 @@
+﻿---
+ID: "79892b68-fdc6-4a2e-b856-d035ad25515e"
+Parent: "56345c4f-70a6-4171-8ee5-823e630215da"
+Template: "8ea2cf67-4250-47a2-aeca-4f70fd200dc7"
+Path: /sitecore/system/Settings/Rules/Unic Configuration Module/Rules
+DB: master
+BranchID: "bdc41fdd-a3ac-4b69-a0ba-471c425cb083"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20141002T142732

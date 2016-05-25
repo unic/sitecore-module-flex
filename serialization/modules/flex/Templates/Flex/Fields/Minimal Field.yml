@@ -1,0 +1,31 @@
+﻿---
+ID: "319a93df-4c9b-4370-a54c-f5277c3b84df"
+Parent: "51d99d47-c151-46b1-b169-1880169c7733"
+Template: "ab86861a-6030-46c5-b394-e8f99e8b87db"
+Path: /sitecore/templates/Flex/Fields/Minimal Field
+DB: master
+SharedFields:
+- ID: "12c33f3f-86c5-43a5-aeb4-5598cec45116"
+  Hint: __Base template
+  Type: tree list
+  Value: |
+    {1930BBEB-7805-471A-A3BE-4858AC7CF696}
+    {C9F22EA8-A04F-4466-BE48-35635EB9E8A9}
+    {0AB071EF-1DBE-42F5-8A22-002B9110E90F}
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 200
+- ID: "f7d48a55-2158-4f02-9356-756654404f73"
+  Hint: __Standard values
+  Value: "{17CC3651-B6C4-4BB0-8F8A-4B30B94ECBE5}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140825T141831
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin

@@ -1,0 +1,21 @@
+﻿---
+ID: "1857e457-19c9-4180-9310-ce7c4fdd80ad"
+Parent: "e7748d67-ff59-4464-80fa-0b65a6446eb4"
+Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
+Path: /sitecore/templates/Flex/Fields/Input Fields/Phone Field/Form Content/Default Value
+DB: master
+SharedFields:
+- ID: "ab162cc0-dc80-4abf-8871-998ee5d7ba32"
+  Hint: Type
+  Value: "Single-Line Text"
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 100
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140829T141417

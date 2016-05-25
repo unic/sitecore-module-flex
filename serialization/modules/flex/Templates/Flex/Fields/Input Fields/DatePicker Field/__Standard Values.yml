@@ -1,0 +1,21 @@
+﻿---
+ID: "010a94b9-9e10-4045-82e2-874e2a9c1ac4"
+Parent: "5cbcde45-f0a9-4f6d-8273-685249abddf6"
+Template: "5cbcde45-f0a9-4f6d-8273-685249abddf6"
+Path: /sitecore/templates/Flex/Fields/Input Fields/DatePicker Field/__Standard Values
+DB: master
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Type: TreelistEx
+  Value: |
+    {93738462-A6E0-4DA3-9C07-9A71E23F30AE}
+    {DA39F16E-79C5-4C6C-8813-A47E22F1D2F4}
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140925T154541

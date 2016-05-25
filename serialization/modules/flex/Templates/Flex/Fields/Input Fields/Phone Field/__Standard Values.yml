@@ -1,0 +1,22 @@
+﻿---
+ID: "11c92549-5359-45f9-bd6d-bebc6625ed72"
+Parent: "07ac3ef4-7e76-4454-b3be-49ff647d9439"
+Template: "07ac3ef4-7e76-4454-b3be-49ff647d9439"
+Path: /sitecore/templates/Flex/Fields/Input Fields/Phone Field/__Standard Values
+DB: master
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Type: TreelistEx
+  Value: |
+    {90C8A94E-EDEE-41B6-ACF3-4C264B9FDBE1}
+    {35946BDB-3616-4F81-B237-0E9ED7DCBB54}
+    {0E0AAF18-7D98-4A59-AF1F-45A0652DF4C9}
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140829T141347

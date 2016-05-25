@@ -3,7 +3,7 @@
     using Glass.Mapper.Sc;
     using Ninject.Modules;
     using Ninject.Web.Common;
-    using Unic.Configuration;
+    using Unic.Configuration.Core;
     using Unic.Flex.Core.Analytics;
     using Unic.Flex.Core.Context;
     using Unic.Flex.Core.Database;
@@ -40,7 +40,7 @@
             this.Bind<ICultureService>().To<CultureService>();
 
             // data access
-            this.Bind<IDictionaryRepository>().To<DictionaryRepository>();
+            this.Bind<IDictionaryRepository>().To<DictionaryRepository>().InSingletonScope();
             this.Bind<IFormRepository>().To<FormRepository>();
             this.Bind<IUserDataRepository>().To<UserDataRepository>();
             this.Bind<IUnitOfWork>().To<UnitOfWork>();
@@ -70,8 +70,11 @@
             this.Bind<ISaveToDatabaseService>().To<SaveToDatabaseService>();
 
             // third party classes
-            this.Bind<IConfigurationManager>().To<ConfigurationManager>();
-            this.Bind<ISitecoreContext>().To<SitecoreContext>().WithConstructorArgument("contextName", Constants.GlassMapperContextName);
+            this.Bind<IConfigurationManager>().To<ConfigurationManager>().InSingletonScope();
+            this.Bind<ISitecoreContext>()
+                .To<SitecoreContext>()
+                .InRequestScope()
+                .WithConstructorArgument("contextName", Constants.GlassMapperContextName);
         }
     }
 }

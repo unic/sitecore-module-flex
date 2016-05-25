@@ -1,0 +1,21 @@
+﻿---
+ID: "7841492b-ed7e-4c9c-92b8-ad4eab4757ab"
+Parent: "337ad4a8-dfee-4ceb-851e-5133ab87269c"
+Template: "337ad4a8-dfee-4ceb-851e-5133ab87269c"
+Path: /sitecore/templates/Flex/Fields/Input Fields/Email Field/__Standard Values
+DB: master
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Type: TreelistEx
+  Value: |
+    {D9FC76E6-3C1B-44EE-9C91-51E97428153A}
+    {90C8A94E-EDEE-41B6-ACF3-4C264B9FDBE1}
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140612T102158

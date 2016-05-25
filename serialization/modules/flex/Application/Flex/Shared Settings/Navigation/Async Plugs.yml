@@ -1,0 +1,24 @@
+﻿---
+ID: "1e7d8bc6-274d-49d2-bfa4-9b7a30da4ac1"
+Parent: "a194c136-ed78-49fd-a04c-a3336e868773"
+Template: "6b2c1723-b4e0-49be-8ef2-f1d12c969e54"
+Path: /sitecore/client/Your Apps/Flex/Shared Settings/Navigation/Async Plugs
+DB: core
+SharedFields:
+- ID: "aee5c6c6-cb2d-4645-ae50-8640e8ed293f"
+  Hint: NavigateUrl
+  Value: Async Plugs
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 200
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20150227T083320
+    - ID: "368e1ab6-8708-4f58-af08-7daa53a5bf32"
+      Hint: Text
+      Value: Async Plugs

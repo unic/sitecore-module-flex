@@ -1,0 +1,17 @@
+﻿---
+ID: "f6ee868c-386d-4986-8bd9-7c0ec26c52ec"
+Parent: "a65da0a5-d9da-483f-8667-b3a4e20029f4"
+Template: "253c4f54-f361-4103-8cfd-8e6878c7b5cd"
+Path: /sitecore/system/Modules/Flex/Configuration/Rulesets
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140619T143629
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin

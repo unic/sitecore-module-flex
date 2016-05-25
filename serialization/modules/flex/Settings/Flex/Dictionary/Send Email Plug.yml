@@ -1,0 +1,14 @@
+﻿---
+ID: "9124dc58-bf98-4b2e-b110-576671b4d75f"
+Parent: "736285f1-8f0e-437b-900e-3294ecf8b990"
+Template: "267d9ac7-5d85-4e9d-af89-99ab296cc218"
+Path: /sitecore/system/Modules/Flex/Dictionary/Send Email Plug
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140903T194752

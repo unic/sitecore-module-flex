@@ -1,0 +1,14 @@
+﻿---
+ID: "726dc695-ec8d-4606-b5fa-4d6eec1e43e2"
+Parent: "5debc58d-a20f-461b-a57f-39d4bc50e755"
+Template: "6881fff3-cb76-43db-a8b9-625d1790244d"
+Path: /sitecore/system/Modules/Flex/Configuration/Configs/Globalization Configuration
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20141031T151958

@@ -1,0 +1,18 @@
+﻿---
+ID: "21b24233-17a7-4ca3-bd68-0917a0dba225"
+Parent: "a0bed174-2c0f-49c2-9d8a-fc0a124a3129"
+Template: "a0bed174-2c0f-49c2-9d8a-fc0a124a3129"
+Path: /sitecore/templates/Flex/Fields/List Fields/List Field/__Standard Values
+DB: master
+SharedFields:
+- ID: "19e66978-2e75-4560-8f05-76743fcaabe0"
+  Hint: Items Sort Order
+  Value: "{20383DEC-F670-4004-8E1A-4A43D8C4BE9D}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140526T160133

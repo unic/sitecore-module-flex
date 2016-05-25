@@ -1,0 +1,14 @@
+﻿---
+ID: "37791f2e-c332-472a-8c39-1742e6dce587"
+Parent: "a9fd64d4-f178-498f-9bd1-d6264fd4b452"
+Template: "a9fd64d4-f178-498f-9bd1-d6264fd4b452"
+Path: /sitecore/templates/Flex/Fields/Input Fields/Auto Complete Field/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20141105T123749

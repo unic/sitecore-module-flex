@@ -1,0 +1,24 @@
+﻿---
+ID: "22119607-9bec-44bc-9441-874f1c676d49"
+Parent: "1b0cf740-e9bb-4b51-90bd-cf09c2508a73"
+Template: "1b0cf740-e9bb-4b51-90bd-cf09c2508a73"
+Path: /sitecore/templates/Configuration/Folders/Configuration Folder/__Standard Values
+DB: master
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Type: TreelistEx
+  Value: |
+    {CF1CA8D4-A6D0-43D0-AFB2-AD7D72AB9997}
+    {1B0CF740-E9BB-4B51-90BD-CF09C2508A73}
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20130417T110722
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\tobias.studer

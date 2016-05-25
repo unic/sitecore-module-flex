@@ -1,0 +1,17 @@
+﻿---
+ID: "d9a5d7eb-8220-4d25-a4f4-2b773bec6905"
+Parent: "e9690d91-e157-4ab0-8bbd-0af2098a6ce5"
+Template: "3a1a3b48-3434-4e5a-8f05-ad6e1687d888"
+Path: /sitecore/content/Applications/Content Editor/Ribbons/Contextual Ribbons/Flex
+DB: core
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140929T143909
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin

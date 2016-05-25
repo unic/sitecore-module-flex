@@ -1,0 +1,14 @@
+﻿---
+ID: "bdc3a681-9bfa-41c5-bf98-7da6f600cce9"
+Parent: "188683ac-127c-45a1-8f7d-4abf6e68e7af"
+Template: "188683ac-127c-45a1-8f7d-4abf6e68e7af"
+Path: /sitecore/templates/Flex/Fields/List Fields/RadioButton List Field/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140825T134031

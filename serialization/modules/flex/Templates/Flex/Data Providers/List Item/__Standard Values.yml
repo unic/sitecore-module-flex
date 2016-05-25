@@ -1,0 +1,60 @@
+﻿---
+ID: "f49d19b5-d4a0-4a35-a769-7d650aacfeda"
+Parent: "e4de7509-97b6-4284-a9b9-bbc3452757f5"
+Template: "e4de7509-97b6-4284-a9b9-bbc3452757f5"
+Path: /sitecore/templates/Flex/Data Providers/List Item/__Standard Values
+DB: master
+SharedFields:
+- ID: "cc74b417-a552-42a1-8da1-e46afcfdeb8a"
+  Hint: Value
+  Value: $name
+Languages:
+- Language: de
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "12961263-5e05-4bc4-b2e3-ac75f519cbeb"
+      Hint: Text
+      Value: $name
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20150116T102121
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "12961263-5e05-4bc4-b2e3-ac75f519cbeb"
+      Hint: Text
+      Value: $name
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140925T124725
+- Language: fr
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "12961263-5e05-4bc4-b2e3-ac75f519cbeb"
+      Hint: Text
+      Value: $name
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20150116T102126
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin
+- Language: it
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "12961263-5e05-4bc4-b2e3-ac75f519cbeb"
+      Hint: Text
+      Value: $name
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20150116T102131
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin

@@ -1,0 +1,14 @@
+﻿---
+ID: "f7291525-a052-42d0-9b3d-82ea9d668708"
+Parent: "dcfe2299-56fc-485c-be3a-1e466d93cb09"
+Template: "85adbf5b-e836-4932-a333-fe0f9fa1ed1e"
+Path: /sitecore/templates/Branches/Flex/Global
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140424T155946

@@ -1,0 +1,14 @@
+﻿---
+ID: "002af2d3-5135-4fb9-845c-c9024427d3b5"
+Parent: "c0b2931d-d32e-424e-88dc-fcc2f9487f83"
+Template: "1b356427-d163-45ab-8c72-c8f28f41f520"
+Path: /sitecore/templates/Branches/Flex/Forms/Form/$name/Load Plugs
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140424T172400

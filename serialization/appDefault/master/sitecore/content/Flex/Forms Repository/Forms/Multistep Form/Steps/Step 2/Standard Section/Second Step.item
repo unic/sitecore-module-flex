@@ -1,0 +1,58 @@
+----item----
+version: 1
+id: {7F8B2176-7F89-47E5-9743-81B37EBD7AE1}
+database: master
+path: /sitecore/content/Flex/Forms Repository/Forms/Multistep Form/Steps/Step 2/Standard Section/Second Step
+parent: {7BBA952A-6442-4C28-B0B0-F179013FE2F9}
+name: Second Step
+master: {00000000-0000-0000-0000-000000000000}
+template: {C706D294-ADC2-477F-B5E1-63EB1EF345E5}
+templatekey: Singleline Text Field
+
+----field----
+field: {7C06BDB6-0F34-4771-B1A6-9EAAE3C10871}
+name: Key
+key: key
+content-length: 11
+
+Second Step
+----version----
+language: en
+version: 1
+revision: 2ff1dd79-0003-4f77-93e3-2732ade1df8c
+
+----field----
+field: {BB556E4E-CC68-459D-B316-7FF0070BA2D8}
+name: Label
+key: label
+content-length: 11
+
+Second Step
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20160520T095640Z
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+2ff1dd79-0003-4f77-93e3-2732ade1df8c
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 16
+
+20160520T095640Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

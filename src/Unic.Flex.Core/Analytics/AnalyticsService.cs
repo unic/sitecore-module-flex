@@ -1,7 +1,8 @@
 ﻿namespace Unic.Flex.Core.Analytics
 {
     using System;
-    using Sitecore.Analytics.Data.Items;
+    using Sitecore.Analytics;
+    using Sitecore.Analytics.Data;
     using Unic.Flex.Core.Logging;
     using Unic.Flex.Model.Analytics;
 
@@ -32,26 +33,32 @@
         public virtual void RegisterGoal(Goal goal, Guid itemId)
         {
             // check if analytics is enabled
-            if (!Sitecore.Analytics.Tracker.IsActive)
+            if (!Tracker.IsActive)
             {
                 this.logger.Info("Analytics is disabled, therefor the Goal has not been triggered", this);
                 return;
             }
 
             // check if we have a valid page
-            if (Sitecore.Analytics.Tracker.CurrentPage == null)
+            if (Tracker.Current == null
+                || Tracker.Current.Session == null
+                || Tracker.Current.Session.Interaction == null
+                || Tracker.Current.Session.Interaction.CurrentPage == null)
             {
-                this.logger.Error("Analytics.CurrentPage is null, therefor the Goal has not  been triggered", this);
+                this.logger.Error("No valid tracker or session available, therefor the Goal has not  been triggered", this);
                 return;
             }
-            
-            // register the goal
-            var pageEventRow = Sitecore.Analytics.Tracker.CurrentPage.Register(new PageEventItem(goal.InnerItem));
-            pageEventRow.DataKey = "Flex";
-            pageEventRow.Data = "Form submit completed";
-            pageEventRow.Text = goal.Description;
-            pageEventRow.ItemId = itemId;
-            Sitecore.Analytics.Tracker.Submit();
+
+            // generate the data 
+            var pageEventData = new PageEventData("Flex", goal.InnerItem.ID.ToGuid())
+            {
+                ItemId = itemId,
+                Data = "Form submit completed",
+                Text = goal.Description
+            };
+
+            // register the event
+            Tracker.Current.Session.Interaction.CurrentPage.Register(pageEventData);
         }
     }
 }

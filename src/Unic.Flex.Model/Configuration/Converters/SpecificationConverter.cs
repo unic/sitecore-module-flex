@@ -1,8 +1,8 @@
 ﻿namespace Unic.Flex.Model.Configuration.Converters
 {
     using Sitecore.Diagnostics;
-    using Unic.Configuration;
-    using Unic.Configuration.Converter;
+    using Unic.Configuration.Core;
+    using Unic.Configuration.Core.Converter;
     using Unic.Flex.Model.Specifications;
 
     /// <summary>

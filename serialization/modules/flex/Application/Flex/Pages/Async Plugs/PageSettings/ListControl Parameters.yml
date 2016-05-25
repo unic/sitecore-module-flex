@@ -1,0 +1,14 @@
+﻿---
+ID: "5b1a576e-ae74-4356-aa67-b609cca3e847"
+Parent: "2d509a30-3036-4f6a-8526-bf617d44afea"
+Template: "88b6af7b-7253-471d-a644-12b81ef8f578"
+Path: /sitecore/client/Your Apps/Flex/Pages/Async Plugs/PageSettings/ListControl Parameters
+DB: core
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20150227T094719

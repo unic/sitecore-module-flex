@@ -1,0 +1,25 @@
+﻿---
+ID: "cdd75551-e614-49cd-82da-4fb886ef0ec4"
+Parent: "5197ed42-0678-4268-8eb1-e47de7718ae8"
+Template: "5197ed42-0678-4268-8eb1-e47de7718ae8"
+Path: /sitecore/templates/Flex/Steps/Steps Folder/__Standard Values
+DB: master
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Type: TreelistEx
+  Value: |
+    {62607958-C3F4-4925-BD8E-786E37F10E9A}
+    {93EC9DA3-81FC-4A1E-82F8-DD988A2D355B}
+    {D8D5719A-4799-44D4-8BDC-9EA78E029385}
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140424T172207
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin

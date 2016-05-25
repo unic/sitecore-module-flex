@@ -1,0 +1,14 @@
+﻿---
+ID: "e5238ee8-f416-4956-b895-addd8ad2d5d7"
+Parent: "77613f9b-ac9a-4229-b97a-acd6fbfcb252"
+Template: "77613f9b-ac9a-4229-b97a-acd6fbfcb252"
+Path: /sitecore/templates/Flex/Plugs/Save Plugs/Save To Database/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140604T203153

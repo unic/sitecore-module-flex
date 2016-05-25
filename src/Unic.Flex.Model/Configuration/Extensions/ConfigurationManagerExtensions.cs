@@ -2,7 +2,7 @@
 {
     using System;
     using System.Linq.Expressions;
-    using Unic.Configuration;
+    using Unic.Configuration.Core;
     using Unic.Flex.Model.Specifications;
 
     /// <summary>

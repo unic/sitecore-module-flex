@@ -1,0 +1,14 @@
+﻿---
+ID: "a575a353-9ab3-4597-a9ba-35b9705ef325"
+Parent: "041d1719-bcac-4e6e-b443-9a3b15274bb0"
+Template: "5f72b58a-14cc-43bd-94a4-35d1fa7a0696"
+Path: /sitecore/templates/Branches/Flex/Global/Repository Root/$name/Sections
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140424T160023
