@@ -118,12 +118,12 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="Unic.Configuration.Core, Version=1.3.0.19, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Unic.Configuration.Core.1.3.0-add-new-structur0019\lib\net45\Unic.Configuration.Core.dll</HintPath>
+    <Reference Include="Unic.Configuration.Core, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Unic.Configuration.Core.3.0.0\lib\net45\Unic.Configuration.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Unic.Configuration.Website, Version=1.3.0.19, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Unic.Configuration.1.3.0-add-new-structur0019\lib\net45\Unic.Configuration.Website.dll</HintPath>
+    <Reference Include="Unic.Configuration.Website, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Unic.Configuration.3.0.0\lib\net45\Unic.Configuration.Website.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Unic.Profiling, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -155,9 +155,9 @@
     <Content Include="assets\flex\css\styling.css.min.map" />
     <Content Include="assets\flex\css\theme.css.map" />
     <Content Include="assets\flex\css\theme.css.min.map" />
-    <BobPublishLocal Include="App_Config\Include\01_modules_author\Unic.Configuration.config" />
-    <BobPublishLocal Include="App_Config\Include\01_modules\Unic.Configuration.config" />
     <Content Include="App_Config\Include\01_modules_author\Unic.Flex.config" />
+    <Content Include="App_Config\Include\01_modules_author\Unic.Configuration.config" />
+    <Content Include="App_Config\Include\01_modules\Unic.Configuration.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

@@ -10,10 +10,10 @@ SharedFields:
   Value: /sitecore/shell/themes/standard/control/16x16/treeview_b.png
 - ID: "6bf5ed07-bc70-42f4-bb77-c017d340950e"
   Hint: Assembly
-  Value: Unic.Configuration
+  Value: Unic.Configuration.Core
 - ID: "9fe6154a-a16e-4827-99f6-f51533c34ec8"
   Hint: Class
-  Value: Unic.Configuration.Shell.Applications.ContentEditor.FieldTypes.QueryableTreeList
+  Value: Unic.Configuration.Core.Shell.Applications.ContentEditor.FieldTypes.QueryableTreeList
 Languages:
 - Language: en
   Versions:
