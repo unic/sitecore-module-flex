@@ -1,0 +1,14 @@
+﻿---
+ID: "f3c737a6-0f08-484e-9a61-aca2c63ce81a"
+Parent: "93ec9da3-81fc-4a1e-82f8-dd988a2d355b"
+Template: "93ec9da3-81fc-4a1e-82f8-dd988a2d355b"
+Path: /sitecore/templates/Flex/Steps/Multi Step/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140424T172953

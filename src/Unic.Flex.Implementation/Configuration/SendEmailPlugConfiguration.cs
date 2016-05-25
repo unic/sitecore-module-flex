@@ -1,6 +1,6 @@
 ﻿namespace Unic.Flex.Implementation.Configuration
 {
-    using Unic.Configuration;
+    using Unic.Configuration.Core;
 
     /// <summary>
     /// Send email plug configuration

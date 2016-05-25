@@ -1,0 +1,14 @@
+﻿---
+ID: "dcead2e9-c134-4849-b7cc-223bffa277bb"
+Parent: "8583a797-3fe5-4247-b190-26e9bfd4d5a4"
+Template: "8583a797-3fe5-4247-b190-26e9bfd4d5a4"
+Path: /sitecore/templates/Flex/Fields/Input Fields/CheckBox Field/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140526T141255

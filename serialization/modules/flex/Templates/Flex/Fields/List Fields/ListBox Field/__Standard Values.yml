@@ -1,0 +1,14 @@
+﻿---
+ID: "34484979-3efe-4782-89fb-b10f085084a7"
+Parent: "9a0208d4-4a39-436f-90e2-84765cc7a63a"
+Template: "9a0208d4-4a39-436f-90e2-84765cc7a63a"
+Path: /sitecore/templates/Flex/Fields/List Fields/ListBox Field/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140623T144428

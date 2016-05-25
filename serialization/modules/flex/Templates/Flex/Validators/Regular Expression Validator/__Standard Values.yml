@@ -1,0 +1,14 @@
+﻿---
+ID: "67179c2d-11e7-470e-a3e3-55e301efb5af"
+Parent: "0e0aaf18-7d98-4a59-af1f-45a0652df4c9"
+Template: "0e0aaf18-7d98-4a59-af1f-45a0652df4c9"
+Path: /sitecore/templates/Flex/Validators/Regular Expression Validator/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140606T140118

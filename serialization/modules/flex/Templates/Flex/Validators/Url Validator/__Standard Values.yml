@@ -1,0 +1,14 @@
+﻿---
+ID: "587f6056-b912-4352-b118-47fcc731d6a2"
+Parent: "16f14e15-2392-4e4e-a12d-0ff7455e4c72"
+Template: "16f14e15-2392-4e4e-a12d-0ff7455e4c72"
+Path: /sitecore/templates/Flex/Validators/Url Validator/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140903T070405

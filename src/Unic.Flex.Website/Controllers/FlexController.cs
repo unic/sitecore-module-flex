@@ -9,7 +9,7 @@
     using System.Security.Cryptography;
     using System.Web.Mvc;
     using Newtonsoft.Json;
-    using Unic.Configuration;
+    using Unic.Configuration.Core;
     using Unic.Flex.Core.Attributes;
     using Unic.Flex.Core.Context;
     using Unic.Flex.Core.Globalization;

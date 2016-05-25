@@ -9,7 +9,7 @@
     using Sitecore.Diagnostics;
     using Sitecore.Globalization;
     using Sitecore.Sites;
-    using Unic.Configuration;
+    using Unic.Configuration.Core;
     using Unic.Flex.Core.Context;
     using Unic.Flex.Core.Database;
     using Unic.Flex.Core.Globalization;

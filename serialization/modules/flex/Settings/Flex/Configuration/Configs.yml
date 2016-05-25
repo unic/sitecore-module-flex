@@ -1,0 +1,17 @@
+﻿---
+ID: "5debc58d-a20f-461b-a57f-39d4bc50e755"
+Parent: "a65da0a5-d9da-483f-8667-b3a4e20029f4"
+Template: "1b0cf740-e9bb-4b51-90bd-cf09c2508a73"
+Path: /sitecore/system/Modules/Flex/Configuration/Configs
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140619T143616
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin

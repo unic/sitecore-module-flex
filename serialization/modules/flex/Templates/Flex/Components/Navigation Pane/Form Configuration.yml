@@ -1,0 +1,17 @@
+﻿---
+ID: "abe6790d-e928-4da2-9bc4-d61a791c903d"
+Parent: "569c95e7-c1e0-4dd7-ae84-9673dbd3cb18"
+Template: "e269fbb5-3750-427a-9149-7aa950b49301"
+Path: /sitecore/templates/Flex/Components/Navigation Pane/Form Configuration
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140623T105140
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin

@@ -1,0 +1,37 @@
+﻿---
+ID: "e09e9551-5a2b-48ed-9ecf-f90bd06c603b"
+Parent: "cceff9fa-9c24-4801-8f60-0b342e422110"
+Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
+Path: /sitecore/templates/Flex/Fields/Input Fields/Email Field/Form Content/Default Value
+DB: master
+SharedFields:
+- ID: "21828437-ea4b-40a1-8c61-4ce60ea41db6"
+  Hint: Validate Button
+  Type: tree list
+  Value: "{469E570C-5FC3-48F2-9E33-8DC31246377C}"
+- ID: "337e20e1-999a-4eea-85ad-b58a03ae75cc"
+  Hint: Quick Action Bar
+  Type: tree list
+  Value: "{469E570C-5FC3-48F2-9E33-8DC31246377C}"
+- ID: "53c432c4-7122-4e2d-8296-db4184fd1735"
+  Hint: Workflow
+  Type: tree list
+  Value: "{469E570C-5FC3-48F2-9E33-8DC31246377C}"
+- ID: "9c903e29-650d-4af2-b9bd-526d5c14a1a5"
+  Hint: Validator Bar
+  Type: tree list
+  Value: "{469E570C-5FC3-48F2-9E33-8DC31246377C}"
+- ID: "ab162cc0-dc80-4abf-8871-998ee5d7ba32"
+  Hint: Type
+  Value: "Single-Line Text"
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 100
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140815T145115

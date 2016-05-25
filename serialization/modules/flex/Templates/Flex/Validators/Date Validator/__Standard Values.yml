@@ -1,0 +1,14 @@
+﻿---
+ID: "94d22210-79d4-4685-a39a-2027f1d2f69e"
+Parent: "93738462-a6e0-4da3-9c07-9a71e23f30ae"
+Template: "93738462-a6e0-4da3-9c07-9a71e23f30ae"
+Path: /sitecore/templates/Flex/Validators/Date Validator/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140925T161836

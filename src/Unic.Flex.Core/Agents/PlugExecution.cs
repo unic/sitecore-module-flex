@@ -12,7 +12,7 @@
     using Sitecore.Diagnostics;
     using Sitecore.Sites;
     using Sitecore.Web;
-    using Unic.Configuration;
+    using Unic.Configuration.Core;
     using Unic.Flex.Core.DependencyInjection;
     using Unic.Flex.Core.Utilities;
     using Unic.Flex.Model.Configuration;

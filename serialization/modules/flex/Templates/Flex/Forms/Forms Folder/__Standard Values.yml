@@ -1,0 +1,24 @@
+﻿---
+ID: "08e1cc23-77f1-4681-acc9-f34818915a52"
+Parent: "9f8487e3-36b1-49d0-ae1c-8e4522897e86"
+Template: "9f8487e3-36b1-49d0-ae1c-8e4522897e86"
+Path: /sitecore/templates/Flex/Forms/Forms Folder/__Standard Values
+DB: master
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Type: TreelistEx
+  Value: |
+    {9F8487E3-36B1-49D0-AE1C-8E4522897E86}
+    {266FE8EF-C58E-4056-963B-B85F5C3F3E3F}
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140424T154039
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin

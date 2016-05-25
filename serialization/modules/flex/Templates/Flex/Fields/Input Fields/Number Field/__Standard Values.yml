@@ -1,0 +1,25 @@
+﻿---
+ID: "31dd5b0e-e118-4def-a48b-06507b8de463"
+Parent: "c9c6ac45-7763-4851-a684-a075d2176ff7"
+Template: "c9c6ac45-7763-4851-a684-a075d2176ff7"
+Path: /sitecore/templates/Flex/Fields/Input Fields/Number Field/__Standard Values
+DB: master
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Type: TreelistEx
+  Value: |
+    {90C8A94E-EDEE-41B6-ACF3-4C264B9FDBE1}
+    {29129AFA-3651-4A7F-BA87-CF1DEEDB48A5}
+    {0E0AAF18-7D98-4A59-AF1F-45A0652DF4C9}
+- ID: "bea11e4d-e0bb-47a4-80f1-72a0b95faa3c"
+  Hint: Step
+  Value: 1
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140526T124826

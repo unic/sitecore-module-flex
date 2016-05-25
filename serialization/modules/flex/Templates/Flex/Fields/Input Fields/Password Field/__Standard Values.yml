@@ -1,0 +1,22 @@
+﻿---
+ID: "b208a232-cb6b-43c1-bab8-c8fbbfdcaf38"
+Parent: "47632ce8-1aa6-4a08-8a0b-528cbae8c07e"
+Template: "47632ce8-1aa6-4a08-8a0b-528cbae8c07e"
+Path: /sitecore/templates/Flex/Fields/Input Fields/Password Field/__Standard Values
+DB: master
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Type: TreelistEx
+  Value: |
+    {90C8A94E-EDEE-41B6-ACF3-4C264B9FDBE1}
+    {007EB78D-C72D-4E31-B447-194E64349ABA}
+    {0E0AAF18-7D98-4A59-AF1F-45A0652DF4C9}
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140821T071035

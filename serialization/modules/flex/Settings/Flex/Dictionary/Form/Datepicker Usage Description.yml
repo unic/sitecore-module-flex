@@ -1,0 +1,64 @@
+﻿---
+ID: "5e8f8e4a-1fc5-4657-ac57-95d5df92fee4"
+Parent: "5bcb992d-96f0-4364-89f6-145a359614fc"
+Template: "6d1cd897-1936-4a3a-a511-289a94c2a7b1"
+Path: /sitecore/system/Modules/Flex/Dictionary/Form/Datepicker Usage Description
+DB: master
+SharedFields:
+- ID: "580c75a8-c01a-4580-83cb-987776ceb3af"
+  Hint: Key
+  Value: Datepicker Usage Description
+Languages:
+- Language: de
+  Fields:
+  - ID: "2ba3454a-9a9c-4cdf-a9f8-107fd484eb6e"
+    Hint: Phrase
+    Value: "Mit Links-/Rechts-Pfeiltaste zwischen Tagen hin- und hernavigieren. Mit Aufwärts-/Abwärts-Pfeiltaste zwischen Wochen hin- und hernavigieren. Mit Enter-Taste Datum auswählen. Mit Escape-Taste Kalender schliessen. Mit End-Taste Inhalt entfernen. Mit Home-Taste heutiges Datum festlegen."
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20150603T134834
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin
+- Language: en
+  Fields:
+  - ID: "2ba3454a-9a9c-4cdf-a9f8-107fd484eb6e"
+    Hint: Phrase
+    Value: Use arrows left and right to navigate forth and back between days. Use arrows up and down to navigate forth and back between weeks. Use enter to select a date. Use escape to close the date picker. Use end key to empty the field. Use home key to set today's date.
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20150603T134819
+- Language: fr
+  Fields:
+  - ID: "2ba3454a-9a9c-4cdf-a9f8-107fd484eb6e"
+    Hint: Phrase
+    Value: "Utilisez les flèches gauche et droite pour naviguer en avant et en arrière entre les jours. Utilisez les flèches haut et bas pour naviguer en avant et en arrière entre les semaines. Activez \"Enter\" pour sélectionner une date. Appuyez sur \"Escape\" pour fermer le calendrier. Activez la touche \"End\" pour vider le champ. Appuyez sur la touche \"Home\" pour définir la date du jour."
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20150603T134848
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin
+- Language: it
+  Fields:
+  - ID: "2ba3454a-9a9c-4cdf-a9f8-107fd484eb6e"
+    Hint: Phrase
+    Value: Utilizzate le frecce “destra” e “sinistra” per navigare avanti e indietro tra i giorni. Utilizzate le frecce “su” e “giù'” per navigare avanti e indietro tra le settimane. Attivate “Enter” per selezionare una data. Cliccate su „Escape“ per chiudere il calendario. Selezionate il tasto “End” per vuotare il campo. Cliccate sul tasto “Home” per impostare la data odierna.
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20150603T134906
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin

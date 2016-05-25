@@ -1,0 +1,14 @@
+﻿---
+ID: "f86695b6-b318-490d-9617-7bcb40cd3c9f"
+Parent: "14945398-d128-4e64-a0f8-7642252117c4"
+Template: "14945398-d128-4e64-a0f8-7642252117c4"
+Path: /sitecore/templates/Flex/Validators/Valid File Type Validator/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140901T153601

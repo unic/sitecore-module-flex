@@ -1,0 +1,14 @@
+﻿---
+ID: "9c910bc8-b697-4617-ae3f-f893694edb91"
+Parent: "1684e3a7-8184-4523-8920-7c160171c3c9"
+Template: "1684e3a7-8184-4523-8920-7c160171c3c9"
+Path: /sitecore/templates/Flex/Fields/Input Fields/Input Field/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140428T141108

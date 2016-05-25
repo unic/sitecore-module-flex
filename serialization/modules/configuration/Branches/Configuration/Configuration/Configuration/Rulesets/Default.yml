@@ -1,0 +1,32 @@
+﻿---
+ID: "ad970cf7-370d-4f23-92ac-e03b1699d549"
+Parent: "ae39699a-e12a-4c69-b479-b2a34a46b5ba"
+Template: "ecd7572d-1361-414c-a5b6-d00d2c5ba9a3"
+Path: /sitecore/templates/Branches/Configuration/Configuration/Configuration/Rulesets/Default
+DB: master
+SharedFields:
+- ID: "59816d32-e2f2-4e2e-b536-911753da241c"
+  Hint: Rules
+  Type: Rules
+  Value: |
+    <ruleset>
+      <rule
+        uid="{203D1F77-EF45-48AC-8F27-94A2084923AA}">
+        <conditions>
+          <condition
+            id="{4888ABBB-F17D-4485-B14B-842413F88732}"
+            uid="CB13610CF0F345BDAAD9FAB6B7A1AA39" />
+        </conditions>
+      </rule>
+    </ruleset>
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140729T155441
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin

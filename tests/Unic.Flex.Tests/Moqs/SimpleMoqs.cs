@@ -3,7 +3,7 @@
     using System;
     using System.Linq.Expressions;
     using Moq;
-    using Unic.Configuration;
+    using Unic.Configuration.Core;
     using Unic.Flex.Core.Globalization;
     using Unic.Flex.Core.Logging;
     using Unic.Flex.Model.Configuration;

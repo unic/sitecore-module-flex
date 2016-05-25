@@ -1,0 +1,14 @@
+﻿---
+ID: "88cf08ce-19fe-4230-9736-54e9a8121549"
+Parent: "da39f16e-79c5-4c6c-8813-a47e22f1d2f4"
+Template: "da39f16e-79c5-4c6c-8813-a47e22f1d2f4"
+Path: /sitecore/templates/Flex/Validators/Date Range Validator/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20141126T141009

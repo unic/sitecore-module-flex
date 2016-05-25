@@ -1,0 +1,24 @@
+﻿---
+ID: "d576a87e-f3e5-4def-ae6d-ed03a7d00f06"
+Parent: "d9a5d7eb-8220-4d25-a4f4-2b773bec6905"
+Template: "ec6d62a5-5d00-4329-8958-8ac1ad100ebb"
+Path: /sitecore/content/Applications/Content Editor/Ribbons/Contextual Ribbons/Flex/Flex
+DB: core
+SharedFields:
+- ID: "12c1ceb4-f549-472a-97ed-99bff70eb84e"
+  Hint: ID
+  Value: FlexStrip
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140929T143959
+    - ID: "5453dc07-6a17-48ba-8d05-17db90a2e795"
+      Hint: Header
+      Value: Flex
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin

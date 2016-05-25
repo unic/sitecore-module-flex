@@ -1,0 +1,30 @@
+﻿---
+ID: "8526bb40-e0e6-402e-9cf6-60b65da3c82c"
+Parent: "5debc58d-a20f-461b-a57f-39d4bc50e755"
+Template: "a7a700a6-b553-4080-93e7-9eb9f5a3f0e3"
+Path: /sitecore/system/Modules/Flex/Configuration/Configs/Send Email Plug Configuration
+DB: master
+SharedFields:
+- ID: "109991ef-2912-4439-a3ae-b51e71d385ae"
+  Hint: To
+  Value: "{DefaultTo}"
+- ID: "4f90136a-2ff0-4a07-b598-b0f0edaad814"
+  Hint: From
+  Value: "{DefaultFrom}"
+- ID: "75918506-8605-4193-9860-ca3d006d13b7"
+  Hint: Bcc
+  Value: "{DefaultBcc}"
+- ID: "c823fe50-e870-4818-a6e6-33340bd325c3"
+  Hint: Cc
+  Value: "{DefaultCc}"
+- ID: "ffae4bba-f5ad-499a-876c-6f53ea3aa3f8"
+  Hint: Reply To
+  Value: "{DefaultReplyTo}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140903T112802

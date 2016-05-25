@@ -1,0 +1,14 @@
+﻿---
+ID: "b3b4a1b0-e3d2-4f43-ad52-8257041dc0fb"
+Parent: "79170589-4722-4172-a592-fc21d33297c1"
+Template: "79170589-4722-4172-a592-fc21d33297c1"
+Path: /sitecore/templates/Flex/Plugs/Plug/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140604T142938

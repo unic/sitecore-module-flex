@@ -1,0 +1,14 @@
+﻿---
+ID: "3ee7ed91-c56f-4fe1-ae82-6a8e337b98b0"
+Parent: "773ff85e-c512-4825-a4ea-1ffb181525c9"
+Template: "773ff85e-c512-4825-a4ea-1ffb181525c9"
+Path: /sitecore/templates/Flex/Sections/Reusable Section/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140424T155733

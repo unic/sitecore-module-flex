@@ -1,0 +1,14 @@
+﻿---
+ID: "75acd033-6e7e-4aa8-b913-841bb671af49"
+Parent: "40aea426-7971-40b9-b997-339dcffee58a"
+Template: "40aea426-7971-40b9-b997-339dcffee58a"
+Path: /sitecore/templates/Flex/Plugs/Save Plugs/Save Plug/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140604T203123

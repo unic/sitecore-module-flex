@@ -1,0 +1,28 @@
+﻿---
+ID: "ae825de2-5fe8-4d15-ae56-3c793467a00b"
+Parent: "5b52a98c-b095-4687-b4ab-b2f8b8c2b7c1"
+Template: "ab86861a-6030-46c5-b394-e8f99e8b87db"
+Path: /sitecore/templates/Flex/Steps/Standard Step
+DB: master
+SharedFields:
+- ID: "12c33f3f-86c5-43a5-aeb4-5598cec45116"
+  Hint: __Base template
+  Type: tree list
+  Value: |
+    {1930BBEB-7805-471A-A3BE-4858AC7CF696}
+    {A87A00B1-E6DB-45AB-8B54-636FEC3B5523}
+    {CDEA38F7-9BC3-45D9-B8ED-8462A6B9D569}
+- ID: "f7d48a55-2158-4f02-9356-756654404f73"
+  Hint: __Standard values
+  Value: "{E0430DA2-9D19-49B1-AB8C-F318DF29A9F7}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140424T173105
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin

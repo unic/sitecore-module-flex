@@ -8,7 +8,7 @@
     using System.Linq;
     using System.Net.Mail;
     using System.Web;
-    using Unic.Configuration;
+    using Unic.Configuration.Core;
     using Unic.Flex.Core.Mailing;
     using Unic.Flex.Core.Presentation;
     using Unic.Flex.Implementation.Configuration;

@@ -1,0 +1,36 @@
+﻿---
+ID: "f2bb7497-1d26-41d5-ab67-d72f2b7d298b"
+Parent: "0b2d337b-8117-4297-8208-f9e25e4fdbb7"
+Template: "9861cfd2-0055-4c3e-a015-4c92bc64ac3e"
+Path: /sitecore/client/Your Apps/Flex/Pages/Overview/PageSettings/AvailableForms Parameters
+DB: core
+SharedFields:
+- ID: "18f374eb-7ee4-4998-8a16-5d810ccab395"
+  Hint: ValueChartFields
+  Value: "{A3BEAF65-650D-4683-B2C0-FCFD3B49D8CD}"
+- ID: "3d05aa71-cf9f-48e8-a3d9-346a14062a58"
+  Hint: ShowValues
+  Type: Checkbox
+  Value: 1
+- ID: "6ac5aaa2-fe37-4e29-9934-bca5936f0c81"
+  Hint: ShowLegend
+  Type: Checkbox
+  Value: 1
+- ID: "7c3b2afe-7a86-4fac-a99e-a416af883720"
+  Hint: CategoryChartField
+  Value: "{CA61B9C9-814F-401F-B4FB-13A5657425EB}"
+- ID: "dd51450f-476c-4670-af02-8d67ff8de168"
+  Hint: SeriesChartField
+  Value: "{FAF9B809-2B85-48FC-B1EF-3FCD2DDC518E}"
+- ID: "e0007292-ba2f-4de9-8a04-721a9d5885cc"
+  Hint: ShowAxis
+  Type: Checkbox
+  Value: 1
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20150303T131438

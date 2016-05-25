@@ -4,7 +4,7 @@
     using System.Linq;
     using System.Web;
     using Sitecore.Diagnostics;
-    using Unic.Configuration;
+    using Unic.Configuration.Core;
     using Unic.Flex.Core.Context;
     using Unic.Flex.Core.Logging;
     using Unic.Flex.Core.Mapping;

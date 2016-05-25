@@ -1,0 +1,14 @@
+﻿---
+ID: "2ae4cc58-3b0d-4580-9dae-d9a9e3522aae"
+Parent: "c2e610e1-b3c7-4bdd-8e5c-f1869bff461a"
+Template: "c2e610e1-b3c7-4bdd-8e5c-f1869bff461a"
+Path: /sitecore/templates/Flex/Fields/Input Fields/Hidden Field/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140829T135942

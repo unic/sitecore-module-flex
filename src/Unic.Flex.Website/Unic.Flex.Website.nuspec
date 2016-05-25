@@ -15,12 +15,11 @@
         <dependency id="Unic.Flex.Core" version="$NuGetVersion$" />
         <dependency id="Unic.Flex.Implementation" version="$NuGetVersion$" />
         <dependency id="Unic.Flex.Model" version="$NuGetVersion$" />
-		<dependency id="Sitecore" version="7.2.140526.136" />
+		<dependency id="Sitecore" version="8.1.160302.206" />
     </dependencies>
   </metadata>
   <files>
 	<file src="readme.txt" target="" />
-	<file src="..\..\tools\**\*.*" target="tools" />
-	<file src="..\..\serialization\app\**\*.*" target="serialization\app" />
+	<file src="..\..\serialization\modules\flex\**\*.*" target="serialization\modules\flex" />	
   </files>
 </package>
