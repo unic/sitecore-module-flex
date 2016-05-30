@@ -18,13 +18,19 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="SimpleInjectorContainer"/> class.
         /// </summary>
-        public SimpleInjectorContainer()
+        public SimpleInjectorContainer() : this(CreateStandardContainer())
         {
-            // create the container
-            this.container = new Container();
-            this.container.Options.AllowOverridingRegistrations = true;
-            this.container.Options.DefaultScopedLifestyle = new WebRequestLifestyle();
+        }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SimpleInjectorContainer"/> class.
+        /// </summary>
+        /// <param name="container">The container.</param>
+        public SimpleInjectorContainer(Container container)
+        {
+            // set container
+            this.container = container;
+            
             // initialize bindings
             Config.Initialize(this.container);
         }
@@ -73,6 +79,19 @@
         public object Resolve(Type type)
         {
             return this.container.GetInstance(type);
+        }
+
+        /// <summary>
+        /// Creates a standard container.
+        /// </summary>
+        /// <returns>Dependency injection container</returns>
+        private static Container CreateStandardContainer()
+        {
+            var standardContainer = new Container();
+            standardContainer.Options.AllowOverridingRegistrations = true;
+            standardContainer.Options.DefaultScopedLifestyle = new WebRequestLifestyle();
+
+            return standardContainer;
         }
     }
 }
