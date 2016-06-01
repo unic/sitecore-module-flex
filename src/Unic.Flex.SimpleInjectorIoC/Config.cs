@@ -73,11 +73,17 @@
             // third party classes
             container.Register<IConfigurationManager>(() => new ConfigurationManager(), Lifestyle.Singleton);
             container.Register<ISitecoreContext>(() => new SitecoreContext(Constants.GlassMapperContextName), Lifestyle.Scoped);
+        }
 
-            // suppress warnings
+        /// <summary>
+        /// Configure validation issues we are aware of and which should be suppressed.
+        /// </summary>
+        /// <param name="container">The container.</param>
+        public static void Suppression(Container container)
+        {
             container.GetRegistration(typeof(IPlugsService)).Registration.SuppressDiagnosticWarning(DiagnosticType.LifestyleMismatch, "Bad application design, but we can't change this now without huge amount of testing...");
             container.GetRegistration(typeof(IContextService)).Registration.SuppressDiagnosticWarning(DiagnosticType.LifestyleMismatch, "Bad application design, but we can't change this now without huge amount of testing...");
-            
+
             container.GetRegistration(typeof(IUnitOfWork)).Registration.SuppressDiagnosticWarning(DiagnosticType.DisposableTransientComponent, "Needed outside of a http context, so needs to be transient");
         }
     }

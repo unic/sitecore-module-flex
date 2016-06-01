@@ -43,6 +43,9 @@
         /// </returns>
         public bool VerifyContainer()
         {
+            // suppress warnings and issues
+            Config.Suppression(this.container);
+
             this.container.Verify();
             return true;
         }
