@@ -1,5 +1,7 @@
 ﻿namespace Unic.Flex.Core.Validators.FieldValidators
 {
+    using System;
+    using System.Runtime.Serialization;
     using Sitecore.Data.Validators;
     using Unic.Flex.Core.Globalization;
     using Unic.Flex.Core.Utilities;
@@ -7,13 +9,23 @@
     /// <summary>
     /// Validates if the references item is a form field.
     /// </summary>
+    [Serializable]
     public class FormFieldValidator : StandardValidator
     {
         /// <summary>
         /// The field template identifier
         /// </summary>
         private const string FieldTemplateId = "{0AB071EF-1DBE-42F5-8A22-002B9110E90F}";
-        
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FormFieldValidator"/> class.
+        /// </summary>
+        /// <param name="info">The serialization info.</param>
+        /// <param name="context">The streaming context.</param>
+        protected FormFieldValidator(SerializationInfo info, StreamingContext context) : base(info, context)
+        {
+        }
+
         /// <summary>
         /// Gets the name.
         /// </summary>
