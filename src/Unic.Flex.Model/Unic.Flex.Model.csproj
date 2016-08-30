@@ -108,6 +108,7 @@
     <Compile Include="Configuration\GlobalConfiguration.cs" />
     <Compile Include="Configuration\GlobalizationConfiguration.cs" />
     <Compile Include="Configuration\PresentationConfiguration.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="DataProviders\IDataItem.cs" />
     <Compile Include="Analytics\Goal.cs" />
     <Compile Include="Components\IInvalidComponent.cs" />

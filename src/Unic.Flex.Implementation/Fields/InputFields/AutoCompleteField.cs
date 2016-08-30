@@ -7,6 +7,7 @@
     using Glass.Mapper.Sc.Configuration;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Unic.Flex.Core.Globalization;
+    using Unic.Flex.Model;
     using Unic.Flex.Model.DataProviders;
     using Unic.Flex.Model.Fields.InputFields;
     using Unic.Flex.Model.GlassExtensions.Attributes;
@@ -89,7 +90,7 @@
         private string GetProviderUrl()
         {
             var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
-            return urlHelper.Action("AutoCompleteField", "Flex", new { field = this.ItemId, sc_lang = Sitecore.Context.Language });
+            return urlHelper.RouteUrl(Constants.MvcRouteName, new { controller = "Flex", action = "AutoCompleteField", field = this.ItemId, sc_lang = Sitecore.Context.Language });
         }
     }
 }

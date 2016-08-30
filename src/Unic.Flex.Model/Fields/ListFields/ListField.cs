@@ -218,7 +218,7 @@
         private string GetCascadingDataUrl()
         {
             var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
-            return urlHelper.Action("CascadingField", "Flex", new { field = this.ItemId, sc_lang = Sitecore.Context.Language });
+            return urlHelper.RouteUrl(Constants.MvcRouteName, new { controller = "Flex", action = "CascadingField", field = this.ItemId, sc_lang = Sitecore.Context.Language });
         }
     }
 }

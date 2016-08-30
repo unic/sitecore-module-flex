@@ -17,9 +17,21 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="NinjectContainer"/> class.
         /// </summary>
-        public NinjectContainer()
+        public NinjectContainer() : this (CreateStandardKernel())
         {
-            this.kernel = new StandardKernel(new Config());
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NinjectContainer"/> class.
+        /// </summary>
+        /// <param name="kernel">The kernel.</param>
+        public NinjectContainer(IKernel kernel)
+        {
+            // set the kernel
+            this.kernel = kernel;
+
+            // configure dependencies
+            this.kernel.Load(new Config());
         }
 
         /// <summary>
@@ -76,6 +88,15 @@
         public object Resolve(Type type)
         {
             return this.kernel.Get(type);
+        }
+
+        /// <summary>
+        /// Creates a standard kernel.
+        /// </summary>
+        /// <returns>Dependency inection container</returns>
+        private static IKernel CreateStandardKernel()
+        {
+            return new StandardKernel();
         }
     }
 }

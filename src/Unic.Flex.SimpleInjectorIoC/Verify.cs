@@ -4,16 +4,17 @@
     using Unic.Flex.Core.DependencyInjection;
 
     /// <summary>
-    /// Simple injector configuration activator
+    /// Simple injector configuration verification
     /// </summary>
-    public class Bootstrapper
+    public class Verify
     {
         /// <summary>
-        /// Initialize the application
+        /// Verifies the current container configuration.
         /// </summary>
+        /// <param name="args">The arguments.</param>
         public virtual void Process(PipelineArgs args)
         {
-            DependencyResolver.SetContainer(new SimpleInjectorContainer());
+            DependencyResolver.VerifyContainer();
         }
     }
 }

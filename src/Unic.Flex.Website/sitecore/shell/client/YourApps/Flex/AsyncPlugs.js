@@ -23,7 +23,7 @@ define(["sitecore"], function (Sitecore) {
           var sortDirection = sorting != null && sorting != "" && sorting.substring(0, 1) == "a" ? "asc" : "desc";
 
           var params = $.param({ 'sort': sortField, 'direction': sortDirection });
-          var apiUrl = "/api/sitecore/FlexSpeak/GetAsyncTasks?" + params;
+          var apiUrl = "/flexapi/FlexSpeak/GetAsyncTasks?" + params;
           var requestOptions = { parameters: "", onSuccess: null, url: apiUrl };
           this.Tasks.viewModel.getData(requestOptions);
       },
@@ -31,7 +31,7 @@ define(["sitecore"], function (Sitecore) {
       resetTask: function (id) {
 
           $.ajax({
-              url: "/api/sitecore/FlexSpeak/ResetAsyncTask",
+              url: "/flexapi/FlexSpeak/ResetAsyncTask",
               data: { id: id },
               success : function() {
                   globalAppRef.refresh();
@@ -47,7 +47,7 @@ define(["sitecore"], function (Sitecore) {
           if (!confirm('Are you sure you want to delete this task?')) return false;
 
           $.ajax({
-              url: "/api/sitecore/FlexSpeak/DeleteAsyncTask",
+              url: "/flexapi/FlexSpeak/DeleteAsyncTask",
               data: { id: id },
               success: function () {
                   globalAppRef.refresh();

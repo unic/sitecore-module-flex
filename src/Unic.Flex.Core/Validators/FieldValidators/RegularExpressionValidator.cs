@@ -1,5 +1,7 @@
 ﻿namespace Unic.Flex.Core.Validators.FieldValidators
 {
+    using System;
+    using System.Runtime.Serialization;
     using System.Text.RegularExpressions;
     using Sitecore.Data.Validators;
     using Unic.Flex.Core.Globalization;
@@ -7,8 +9,18 @@
     /// <summary>
     /// Sitecore validator to check for a valid regular expression.
     /// </summary>
+    [Serializable]
     public class RegularExpressionValidator : StandardValidator
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RegularExpressionValidator"/> class.
+        /// </summary>
+        /// <param name="info">The serialization info.</param>
+        /// <param name="context">The streaming context.</param>
+        protected RegularExpressionValidator(SerializationInfo info, StreamingContext context) : base(info, context)
+        {
+        }
+
         /// <summary>
         /// Gets the name.
         /// </summary>
