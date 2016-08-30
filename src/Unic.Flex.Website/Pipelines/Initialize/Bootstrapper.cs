@@ -3,9 +3,11 @@
     using System;
     using System.Collections.Generic;
     using System.Web.Mvc;
+    using System.Web.Routing;
     using Sitecore.Pipelines;
     using Unic.Configuration.Core.Converter;
     using Unic.Flex.Core.ModelBinding;
+    using Unic.Flex.Model;
     using Unic.Flex.Model.Configuration.Converters;
     using Unic.Flex.Model.Fields;
     using Unic.Flex.Model.Forms;
@@ -25,6 +27,7 @@
         {
             this.RegisterModelBinders();
             this.RegisterConfigurationConverters();
+            this.AddRoutes();
         }
 
         /// <summary>
@@ -48,6 +51,14 @@
         protected virtual void RegisterConfigurationConverters()
         {
             ConverterFactory.RegisterConverter(new SpecificationConverter());
+        }
+
+        /// <summary>
+        /// Adds mvc routes used by Flex.
+        /// </summary>
+        protected virtual void AddRoutes()
+        {
+            RouteTable.Routes.MapRoute(Constants.MvcRouteName, "flexapi/{controller}/{action}", null, new { controller = @"Flex|FlexSpeak" });
         }
     }
 }

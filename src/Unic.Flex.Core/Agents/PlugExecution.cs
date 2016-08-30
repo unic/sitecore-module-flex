@@ -160,10 +160,9 @@
             var now = DateUtil.IsoNow;
             var urlHelper = this.GetUrlHelper();
             return WebUtil.GetFullUrl(
-                    urlHelper.Action(
-                        "ExecutePlugs",
-                        "Flex",
-                        new { sc_site = siteName, timestamp = now, hash = SecurityUtil.GetMd5Hash(MD5.Create(), now) }),
+                    urlHelper.RouteUrl(
+                        Model.Constants.MvcRouteName,
+                        new { controller = "Flex", action = "ExecutePlugs", sc_site = siteName, timestamp = now, hash = SecurityUtil.GetMd5Hash(MD5.Create(), now) }),
                     WebUtil.GetServerUrl());
         }
 
