@@ -1,5 +1,6 @@
 ﻿namespace Unic.Flex.Model.GlassExtensions.Configurations
 {
+    using Glass.Mapper.Configuration;
     using Glass.Mapper.Sc.Configuration;
 
     /// <summary>
@@ -15,27 +16,19 @@
         /// </value>
         public string DictionaryKey { get; set; }
 
+        protected override AbstractPropertyConfiguration CreateCopy()
+        {
+            return new SitecoreDictionaryFallbackFieldConfiguration();
+        }
+
         /// <summary>
         /// Makes a copy of the SitecoreFieldConfiguration
         /// </summary>
-        /// <returns>The copied config of specific type.</returns>
-        public override SitecoreFieldConfiguration Copy()
+        protected override void Copy(AbstractPropertyConfiguration copy)
         {
-            return new SitecoreDictionaryFallbackFieldConfiguration
-            {
-                CodeFirst = this.CodeFirst,
-                FieldId = this.FieldId,
-                FieldName = this.FieldName,
-                FieldSource = this.FieldSource,
-                FieldTitle = this.FieldTitle,
-                FieldType = this.FieldType,
-                IsShared = this.IsShared,
-                IsUnversioned = this.IsUnversioned,
-                PropertyInfo = this.PropertyInfo,
-                ReadOnly = this.ReadOnly,
-                SectionName = this.SectionName,
-                Setting = this.Setting
-            };
+            var config = copy as SitecoreDictionaryFallbackFieldConfiguration;
+            config.DictionaryKey = this.DictionaryKey;
+            base.Copy(copy);
         }
     }
 }
