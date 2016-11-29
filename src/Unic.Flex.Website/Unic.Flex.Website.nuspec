@@ -15,7 +15,6 @@
         <dependency id="Unic.Flex.Core" version="$NuGetVersion$" />
         <dependency id="Unic.Flex.Implementation" version="$NuGetVersion$" />
         <dependency id="Unic.Flex.Model" version="$NuGetVersion$" />
-		<dependency id="Sitecore" version="8.1.160302.206" />
     </dependencies>
   </metadata>
   <files>

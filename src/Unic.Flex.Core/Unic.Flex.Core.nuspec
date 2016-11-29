@@ -13,7 +13,6 @@
     <tags>Sitecore Unic MVC Forms</tags>
     <dependencies>
         <dependency id="Unic.Flex.Model" version="$NuGetVersion$" />
-		<dependency id="Sitecore" version="8.1.160302.206" />
     </dependencies> 
   </metadata>
 </package>

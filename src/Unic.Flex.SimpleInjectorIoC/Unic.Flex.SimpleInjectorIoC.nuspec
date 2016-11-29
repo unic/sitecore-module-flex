@@ -12,7 +12,6 @@
     <copyright>$copyright$</copyright>
     <tags>Sitecore Unic MVC Forms</tags>
     <dependencies>
-		<dependency id="Sitecore" version="8.1.160302.206" />
     </dependencies> 
   </metadata>
 </package>
