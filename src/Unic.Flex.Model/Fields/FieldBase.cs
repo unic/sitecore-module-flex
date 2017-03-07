@@ -435,7 +435,7 @@
                 var listValue = this.DependentField.Value as IEnumerable<string>;
                 var dependentValues = DependentValue.Split('|');
 
-                // check if dependen values use or conjunction
+                // check if dependent values use or conjunction
                 if (dependentValues.Length > 1)
                 {
                     isHidden = listValue != null
