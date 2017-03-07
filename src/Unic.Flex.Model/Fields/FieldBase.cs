@@ -433,10 +433,22 @@
                 // get the value of the dependent field
                 var dependentValue = this.DependentField.Value != null ? this.DependentField.Value.ToString() : string.Empty;
                 var listValue = this.DependentField.Value as IEnumerable<string>;
-                if (listValue != null) dependentValue = string.Join(",", listValue);
+                var dependentValues = DependentValue.Split('|');
 
-                // compare the values
-                this.isHidden = !dependentValue.Equals(this.DependentValue, StringComparison.InvariantCultureIgnoreCase);
+                // check if dependen values use or conjunction
+                if (dependentValues.Length > 1)
+                {
+                    isHidden = listValue != null
+                        ? !dependentValues.Intersect(listValue).Any()
+                        : !dependentValues.Contains(dependentValue);
+                }
+                else
+                {
+                    if (listValue != null) dependentValue = string.Join(",", listValue);
+                    // compare the values
+                    this.isHidden = !dependentValue.Equals(this.DependentValue, StringComparison.InvariantCultureIgnoreCase);
+                }
+                
                 return this.isHidden.Value;
             }
         }
