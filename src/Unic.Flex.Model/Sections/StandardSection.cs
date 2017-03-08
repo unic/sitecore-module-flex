@@ -156,14 +156,14 @@
                 // get the value of the dependent field
                 var dependentValue = this.DependentField.Value != null ? this.DependentField.Value.ToString() : string.Empty;
                 var listValue = this.DependentField.Value as IEnumerable<string>;
-                var dependentValues = DependentValue.Split('|');
+                var orDependentValues = DependentValue.Split('|');
 
                 // check if dependent values use or conjunction
-                if (dependentValues.Length > 1)
+                if (orDependentValues.Length > 1)
                 {
-                    isHidden = listValue != null
-                        ? !dependentValues.Intersect(listValue).Any()
-                        : !dependentValues.Contains(dependentValue);
+                    this.isHidden = listValue != null
+                        ? !orDependentValues.Intersect(listValue).Any()
+                        : !orDependentValues.Contains(dependentValue);
                 }
                 else
                 {
