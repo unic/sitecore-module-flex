@@ -1,14 +1,9 @@
 ﻿---
-ID: "3ee7ed91-c56f-4fe1-ae82-6a8e337b98b0"
+ID: "e5c242a3-7e8d-4775-b73f-d3e792d7ccd6"
 Parent: "773ff85e-c512-4825-a4ea-1ffb181525c9"
 Template: "773ff85e-c512-4825-a4ea-1ffb181525c9"
 Path: /sitecore/templates/Flex/Sections/Reusable Section/__Standard Values
 DB: master
-SharedFields:
-- ID: "2864405a-180d-40db-aa1f-1d9b0cac77c8"
-  Hint: Show in Summary
-  Type: Checkbox
-  Value: 1
 Languages:
 - Language: en
   Versions:
@@ -16,4 +11,4 @@ Languages:
     Fields:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20140424T155733
+      Value: 20170327T130535Z

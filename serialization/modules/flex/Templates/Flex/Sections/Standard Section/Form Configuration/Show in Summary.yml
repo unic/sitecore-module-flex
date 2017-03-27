@@ -1,8 +1,8 @@
 ﻿---
-ID: "2864405a-180d-40db-aa1f-1d9b0cac77c8"
-Parent: "1484de3f-bfc7-4e1b-88f1-21a712bef74a"
+ID: "11c84933-ebf7-4053-b068-a0144720f61a"
+Parent: "604cf805-9841-4569-bce8-ec4270ca46f4"
 Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
-Path: /sitecore/templates/Flex/Sections/Reusable Section/Form Configuration/Show in Summary
+Path: /sitecore/templates/Flex/Sections/Standard Section/Form Configuration/Show in Summary
 DB: master
 SharedFields:
 - ID: "ab162cc0-dc80-4abf-8871-998ee5d7ba32"
@@ -22,4 +22,4 @@ Languages:
     Fields:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20170327T075441Z
+      Value: 20170327T130355Z
