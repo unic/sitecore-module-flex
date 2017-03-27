@@ -117,6 +117,12 @@
         public virtual StandardSection ReusableComponent { get; set; }
 
         /// <summary>
+        /// 
+        /// </summary>
+        [SitecoreField("Show in Summary")]
+        public virtual bool ShowInSummary { get; set; }
+
+        /// <summary>
         /// Gets the step title.
         /// </summary>
         /// <value>

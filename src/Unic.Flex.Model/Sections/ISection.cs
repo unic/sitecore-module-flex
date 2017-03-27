@@ -33,7 +33,12 @@
         ///   <c>true</c> if the fieldset markup should not be outputed; otherwise, <c>false</c>.
         /// </value>
         bool DisableFieldset { get; }
-        
+
+        /// <summary>
+        /// 
+        /// </summary>
+        bool ShowInSummary { get; set; }
+
         /// <summary>
         /// Gets the fields.
         /// </summary>

@@ -25,7 +25,7 @@
                 <p>@Html.Raw(Model.Introduction.Replace(Environment.NewLine, "<br />"))</p>
             }
 
-            @foreach (var stepSection in Model.Sections.Where(s => !s.IsHidden))
+            @foreach (var stepSection in Model.Sections.Where(s => !s.IsHidden && s.ShowInSummary))
             {
                 if (stepTitle != stepSection.StepTitle)
                 {

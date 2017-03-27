@@ -26,6 +26,10 @@ SharedFields:
     {9A0208D4-4A39-436F-90E2-84765CC7A63A}
     {188683AC-127C-45A1-8F7D-4ABF6E68E7AF}
     {C2B3372D-F1BA-4A98-9FDE-7A2A0C0EE76B}
+- ID: "11c84933-ebf7-4053-b068-a0144720f61a"
+  Hint: Show in Summary
+  Type: Checkbox
+  Value: 1
 Languages:
 - Language: de
   Versions:
