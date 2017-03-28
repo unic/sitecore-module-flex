@@ -260,26 +260,6 @@
         }
 
         /// <summary>
-        /// Gets or sets whether to show a component in summary.
-        /// </summary>
-        /// <value>
-        /// The show in summary.
-        /// </value>
-        [SitecoreIgnore]
-        bool IReusableComponent.ShowInSummary
-        {
-            get
-            {
-                return this.ShowInSummary;
-            }
-
-            set
-            {
-                this.ShowInSummary = value;
-            }
-        }
-
-        /// <summary>
         /// Binds the properties.
         /// </summary>
         public virtual void BindProperties()
