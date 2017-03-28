@@ -256,6 +256,20 @@
             }
         }
 
+        [SitecoreIgnore]
+        bool IReusableComponent.ShowInSummary
+        {
+            get
+            {
+                return this.ShowInSummary;
+            }
+
+            set
+            {
+                this.ShowInSummary = value;
+            }
+        }
+
         /// <summary>
         /// Binds the properties.
         /// </summary>

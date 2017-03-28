@@ -6,6 +6,7 @@
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
+    using Sections;
     using Unic.Flex.Model.Components;
     using Unic.Flex.Model.GlassExtensions.Configurations;
 
@@ -91,7 +92,37 @@
             /// <returns>List of components and/or reusable components</returns>
             private IEnumerable<T> ProcessItems(IEnumerable<T> items)
             {
-                return items.OfType<IReusableComponent>().Select(child => (child.ReusableComponent ?? child) as T).Where(child => !(child is IInvalidComponent));
+                var processedItems = new List<T>();
+
+                foreach(var item in items.OfType<IReusableComponent>())
+                {
+                    T processedItem;
+
+                    if (item.ReusableComponent != null)
+                    {
+                        var reusableComponent = item.ReusableComponent;
+
+                        var reusableSection = reusableComponent as ISection;
+
+                        if (reusableSection != null)
+                        {
+                            reusableSection.ShowInSummary = item.ShowInSummary;
+                        }
+
+                        processedItem = (T)reusableComponent;
+                    }
+                    else
+                    {
+                        processedItem = (T)item;
+                    }
+
+                    if (processedItem != null && !(processedItem is IInvalidComponent))
+                    {
+                        processedItems.Add(processedItem);
+                    }
+                }
+
+                return processedItems;
             }
         }
     }

@@ -27,5 +27,13 @@
         /// The reusable component.
         /// </value>
         object ReusableComponent { get; set; }
+
+        /// <summary>
+        /// Gets or sets whether to show a component in summary.
+        /// </summary>
+        /// <value>
+        /// The show in summary.
+        /// </value>
+        bool ShowInSummary { get; set; }
     }
 }
