@@ -96,25 +96,7 @@
 
                 foreach(var item in items.OfType<IReusableComponent>())
                 {
-                    T processedItem;
-
-                    if (item.ReusableComponent != null)
-                    {
-                        var reusableComponent = item.ReusableComponent;
-
-                        var reusableSection = reusableComponent as ISection;
-
-                        if (reusableSection != null)
-                        {
-                            reusableSection.ShowInSummary = item.ShowInSummary;
-                        }
-
-                        processedItem = (T)reusableComponent;
-                    }
-                    else
-                    {
-                        processedItem = (T)item;
-                    }
+                    var processedItem = ProcessItem(item);
 
                     if (processedItem != null && !(processedItem is IInvalidComponent))
                     {
@@ -123,6 +105,36 @@
                 }
 
                 return processedItems;
+            }
+
+            /// <summary>
+            /// Processes the item for mapping.
+            /// </summary>
+            /// <param name="item">The item to be mapped.</param>
+            /// <returns>The mapped item.</returns>
+            private static T ProcessItem(IReusableComponent item)
+            {
+                T processedItem;
+
+                if (item.ReusableComponent != null)
+                {
+                    var reusableComponent = item.ReusableComponent;
+
+                    var reusableSection = reusableComponent as ISection;
+
+                    if (reusableSection != null)
+                    {
+                        reusableSection.ShowInSummary = item.ShowInSummary;
+                    }
+
+                    processedItem = (T) reusableComponent;
+                }
+                else
+                {
+                    processedItem = (T) item;
+                }
+
+                return processedItem;
             }
         }
     }
