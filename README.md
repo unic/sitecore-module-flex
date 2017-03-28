@@ -5,6 +5,10 @@ Flex is the acronym for __Fl__exible Forms __Ex__perience, the module to create 
 [![Build](https://teamcity.unic.com/httpAuth/app/rest/builds/buildType:Sitecore_Frameworks_SitecoreModules_SitecoreModuleFlex_Build/statusIcon)](https://teamcity.unic.com/viewType.html?buildTypeId=Sitecore_Frameworks_SitecoreModules_SitecoreModuleFlex_Build)
 
 ## Changelog
+
+### 2.5 
+* Added field "Show in Summary" for Reusable fields
+
 ### 2.4
 * Added label to a hidden field
 
