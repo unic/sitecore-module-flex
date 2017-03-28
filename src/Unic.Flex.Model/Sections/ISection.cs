@@ -35,8 +35,11 @@
         bool DisableFieldset { get; }
 
         /// <summary>
-        /// 
+        /// Gets or sets whether to show a component in summary.
         /// </summary>
+        /// <value>
+        /// The show in summary.
+        /// </value>
         bool ShowInSummary { get; set; }
 
         /// <summary>
