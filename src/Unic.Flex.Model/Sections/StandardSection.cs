@@ -117,8 +117,11 @@
         public virtual StandardSection ReusableComponent { get; set; }
 
         /// <summary>
-        /// 
+        /// Gets or sets whether to show a component in summary.
         /// </summary>
+        /// <value>
+        /// The show in summary.
+        /// </value>
         [SitecoreField("Show in Summary")]
         public virtual bool ShowInSummary { get; set; }
 
@@ -256,6 +259,12 @@
             }
         }
 
+        /// <summary>
+        /// Gets or sets whether to show a component in summary.
+        /// </summary>
+        /// <value>
+        /// The show in summary.
+        /// </value>
         [SitecoreIgnore]
         bool IReusableComponent.ShowInSummary
         {
