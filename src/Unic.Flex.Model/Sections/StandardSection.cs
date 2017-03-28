@@ -122,7 +122,7 @@
         /// <value>
         /// The show in summary.
         /// </value>
-        [SitecoreField("Show in Summary")]
+        [SitecoreIgnore]
         public virtual bool ShowInSummary { get; set; }
 
         /// <summary>
