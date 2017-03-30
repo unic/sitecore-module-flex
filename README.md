@@ -6,6 +6,9 @@ Flex is the acronym for __Fl__exible Forms __Ex__perience, the module to create 
 
 ## Changelog
 
+### 2.5.1
+* Fixed standard values ID on Reusable Section, so that Show in Summary is ticked by default
+
 ### 2.5 
 * Added field "Show in Summary" for Reusable fields
 
