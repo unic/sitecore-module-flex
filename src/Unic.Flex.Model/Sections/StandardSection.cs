@@ -21,11 +21,6 @@
         /// Private field for storing the is hidden property.
         /// </summary>
         private bool? isHidden;
-
-        /// <summary>
-        /// Private field for storing whether the section should be shown in the summary.
-        /// </summary>
-        private bool showInSummary;
         
         /// <summary>
         /// The fields
@@ -38,7 +33,6 @@
         public StandardSection()
         {
             this.ContainerAttributes = new Dictionary<string, object>();
-            this.showInSummary = true;
         }
         
         /// <summary>
@@ -129,17 +123,7 @@
         /// The show in summary.
         /// </value>
         [SitecoreIgnore]
-        public virtual bool ShowInSummary
-        {
-            get
-            {
-                return this.showInSummary;
-            }
-            set
-            {
-                this.showInSummary = value;
-            }
-        }
+        public virtual bool ShowInSummary { get; set; } = true;
 
         /// <summary>
         /// Gets the step title.
