@@ -10,15 +10,6 @@
     public class ReusableField : FieldBase<object>, IInvalidComponent
     {
         /// <summary>
-        /// Gets or sets whether to show a component in summary.
-        /// </summary>
-        /// <value>
-        /// The show in summary.
-        /// </value>
-        [SitecoreField("Show in Summary")]
-        public override bool ShowInSummary { get; set; }
-
-        /// <summary>
         /// Gets the name of the view.
         /// </summary>
         /// <value>

@@ -6,6 +6,7 @@
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
+    using Fields;
     using Sections;
     using Unic.Flex.Model.Components;
     using Unic.Flex.Model.GlassExtensions.Configurations;
@@ -115,16 +116,25 @@
             private static T ProcessItem(IReusableComponent item)
             {
                 T processedItem;
-
+                
                 if (item.ReusableComponent != null)
                 {
                     var reusableComponent = item.ReusableComponent;
 
+                    // Show in Summary functionality for Reusable Section
                     var reusableSection = reusableComponent as ISection;
 
                     if (reusableSection != null)
                     {
                         reusableSection.ShowInSummary = item.ShowInSummary;
+                    }
+
+                    // Show in Summary functionality for Reusable Field
+                    var reusableField = reusableComponent as IField;
+
+                    if (item is ReusableField && reusableField != null && reusableField.ShowInSummary)
+                    {
+                        reusableField.ShowInSummary = item.ShowInSummary;
                     }
 
                     processedItem = (T) reusableComponent;
