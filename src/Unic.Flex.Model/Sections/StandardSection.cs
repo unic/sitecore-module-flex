@@ -26,7 +26,7 @@
         /// Private field for storing whether the section should be shown in the summary.
         /// </summary>
         private bool showInSummary;
-        
+
         /// <summary>
         /// The fields
         /// </summary>
@@ -40,7 +40,7 @@
             this.ContainerAttributes = new Dictionary<string, object>();
             this.showInSummary = true;
         }
-        
+
         /// <summary>
         /// Gets or sets the title.
         /// </summary>
