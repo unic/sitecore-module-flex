@@ -4,6 +4,11 @@ Parent: "c71f2a06-56b1-4045-a96e-fdf1f3e76284"
 Template: "c71f2a06-56b1-4045-a96e-fdf1f3e76284"
 Path: /sitecore/templates/Flex/Fields/Reusable Field/__Standard Values
 DB: master
+SharedFields:
+- ID: "9d1e2ca6-7d01-4996-ab5a-f7041d4bf95f"
+  Hint: Show in Summary
+  Type: Checkbox
+  Value: 1
 Languages:
 - Language: en
   Versions:
