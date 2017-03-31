@@ -8,7 +8,6 @@ Flex is the acronym for __Fl__exible Forms __Ex__perience, the module to create 
 
 ### 2.6
 * Added Show in Summary functionality for Reusable Fields
-* Set default value on Standard Section Show in Summary property using new C# syntax
 
 ### 2.5.1
 * Fixed standard values ID on Reusable Section, so that Show in Summary is ticked by default
