@@ -194,7 +194,7 @@
                 {
                     this.isHidden = listValue != null
                        // check if selected values contain all values from dependent field definition
-                       ? this.isHidden = this.DependentValue.Split(',').Except(listValue).Any()
+                       ? this.DependentValue.Split(',').Except(listValue).Any()
                        : !dependentValue.Equals(this.DependentValue, StringComparison.InvariantCultureIgnoreCase);
                 }
 
