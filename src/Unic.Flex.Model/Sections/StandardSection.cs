@@ -192,9 +192,10 @@
                 }
                 else
                 {
-                    if (listValue != null) dependentValue = string.Join(",", listValue);
-                    // compare the values
-                    this.isHidden = !dependentValue.Equals(this.DependentValue, StringComparison.InvariantCultureIgnoreCase);
+                    this.isHidden = listValue != null
+                       // check if selected values contain all values from dependent field definition
+                       ? this.DependentValue.Split(',').Except(listValue).Any()
+                       : !dependentValue.Equals(this.DependentValue, StringComparison.InvariantCultureIgnoreCase);
                 }
 
                 // mark sections with only hidden fields also as hidden
