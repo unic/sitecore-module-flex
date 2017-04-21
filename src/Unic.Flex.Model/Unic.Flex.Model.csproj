@@ -155,7 +155,6 @@
     <Compile Include="SortOrder\StrategyFactory.cs" />
     <Compile Include="Steps\IStep.cs" />
     <Compile Include="Types\UploadedFile.cs" />
-    <Compile Include="Validators\AjaxValidator.cs" />
     <Compile Include="Validators\FileRequiredValidator.cs" />
     <Compile Include="Validators\HoneypotValidator.cs" />
     <Compile Include="Validators\MulticheckRequired.cs" />

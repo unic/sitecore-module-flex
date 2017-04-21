@@ -1,16 +1,26 @@
-﻿namespace Unic.Flex.Model.Validators
+﻿namespace Unic.Flex.Implementation.Validators
 {
     using System;
     using System.Collections.Generic;
     using System.Web;
     using System.Web.Mvc;
+    using Core.Context;
     using Glass.Mapper.Sc.Configuration.Attributes;
+    using Model;
+    using Model.Validators;
 
     /// <summary>
     /// Abstract ajax validator to add needed properties and attribute for remote validation
     /// </summary>
     public abstract class AjaxValidator : IValidator
     {
+        private readonly IFlexContext context;
+
+        public AjaxValidator(IFlexContext context)
+        {
+            this.context = context;
+        }
+
         /// <summary>
         /// Gets the default validation message dictionary key.
         /// </summary>
@@ -88,7 +98,7 @@
         private string GetValidationUrl()
         {
             var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
-            return urlHelper.RouteUrl(Constants.MvcRouteName, new { controller = "Flex", action = "AjaxValidator", validator = this.ValidatorId });
+            return urlHelper.RouteUrl(Constants.MvcRouteName, new { controller = "Flex", action = "AjaxValidator", validator = this.ValidatorId, sc_site = this.context.SiteContext.Name, sc_lang = this.context.Language});
         }
     }
 }
