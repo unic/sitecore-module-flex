@@ -126,7 +126,7 @@
         /// </value>
         public virtual SiteContext SiteContext { get; set; }
 
-        public string Language { get; set; }
+        public virtual string Language { get; set; }
 
         /// <summary>
         /// Sets the context item.
