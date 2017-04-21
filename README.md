@@ -6,6 +6,9 @@ Flex is the acronym for __Fl__exible Forms __Ex__perience, the module to create 
 
 ## Changelog
 
+### 2.7 
+* Fix Ajax Validators with Virutal Folders (SCMFLEX-51)
+
 ### 2.6.1
 * fix dependent field display for multilist checkboxes (SCMFLEX-52)
 
