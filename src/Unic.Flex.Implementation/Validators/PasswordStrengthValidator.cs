@@ -3,9 +3,9 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Web.Security;
+    using Core.Context;
     using Glass.Mapper.Sc.Configuration.Attributes;
-    using Unic.Flex.Model.GlassExtensions.Attributes;
-    using Unic.Flex.Model.Validators;
+    using Model.GlassExtensions.Attributes;
 
     /// <summary>
     /// Validates the password strength from a value
@@ -13,6 +13,10 @@
     [SitecoreType(TemplateId = "{007EB78D-C72D-4E31-B447-194E64349ABA}")]
     public class PasswordStrengthValidator : AjaxValidator
     {
+        public PasswordStrengthValidator(IFlexContext context) : base(context)
+        {   
+        }
+
         /// <summary>
         /// Gets the default validation message dictionary key.
         /// </summary>

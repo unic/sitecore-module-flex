@@ -1,6 +1,7 @@
 ﻿namespace Unic.Flex.Implementation.Fields.InputFields
 {
     using System;
+    using Core.Context;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Sitecore.Configuration;
     using Unic.Flex.Implementation.Validators;
@@ -15,10 +16,10 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="PasswordField"/> class.
         /// </summary>
-        public PasswordField()
+        public PasswordField(IFlexContext context)
         {
             // we use the standard values item here as validator id, because we do not have a specific item for the validator as it is defined here and not in Sitecore
-            this.DefaultValidators.Add(new PasswordStrengthValidator { ValidatorId = new Guid(Settings.GetSetting("Flex.PasswordStrengthValidator.StandardValues.ItemId")) });
+            this.DefaultValidators.Add(new PasswordStrengthValidator(context) { ValidatorId = new Guid(Settings.GetSetting("Flex.PasswordStrengthValidator.StandardValues.ItemId")) });
         }
 
         /// <summary>

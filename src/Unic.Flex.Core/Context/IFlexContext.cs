@@ -42,6 +42,8 @@
         /// </value>
         SiteContext SiteContext { get; set; }
 
+        string Language { get; set; }
+
         /// <summary>
         /// Sets the context item.
         /// </summary>
