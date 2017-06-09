@@ -16,7 +16,11 @@
         public override void Execute(ObjectConstructionArgs args)
         {
             // check that no other task has created an object and that this is a dynamic object
-            if (args.Result != null || args.Configuration.Type.IsAssignableFrom(typeof(IDynamicMetaObjectProvider))) return;
+            if (args.Result != null || args.Configuration.Type.IsAssignableFrom(typeof(IDynamicMetaObjectProvider)))
+            {
+                base.Execute(args);
+                return;
+            }
             
             // create instance using IoC container
             var obj = DependencyResolver.Resolve(args.Configuration.Type);

@@ -6,6 +6,9 @@ Flex is the acronym for __Fl__exible Forms __Ex__perience, the module to create 
 
 ## Changelog
 
+### 3.0.1
+* Fix accidental ObjectConstruction pipeline abort by not completely following Glass.Mapper 4.3 upgrade instruction
+
 ### 3.0
 * Update Glass.Mapper to 4.3.4.197
 
