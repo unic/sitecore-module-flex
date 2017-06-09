@@ -3,7 +3,7 @@
 
 
 ---------------------------------------
-@Model.Title
+@Html.Raw(Model.Title)
 ---------------------------------------
 
 @foreach (var standardSection in @Model.Sections.Where(s => !s.IsHidden && s.ShowInSummary).Where(s => s.Fields.Any(f => f.ShowInSummary && !f.IsHidden && !string.IsNullOrWhiteSpace(f.TextValue))))

@@ -3,12 +3,12 @@
 @using Unic.Flex.Core.Presentation
 @model Unic.Flex.Model.Sections.StandardSection
 
-@Model.Title
+@Html.Raw(Model.Title)
 @{
     var fieldTitle = TranslationHelper.FlexText("Field Title");
     var valueTitle = TranslationHelper.FlexText("Value Title");
 }
-@fieldTitle:  @valueTitle
+@Html.Raw(fieldTitle):  @Html.Raw(valueTitle)
 ---------------------------------------
 @foreach (var field in Model.Fields.Where(field => field.ShowInSummary).Where(field => !field.IsHidden))
 {
