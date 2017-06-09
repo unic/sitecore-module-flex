@@ -7,13 +7,13 @@
     /// <summary>
     /// Glass Mapper task to create an object and inject classes using registered IoC container
     /// </summary>
-    public class DependencyInjectorTask : IObjectConstructionTask
+    public class DependencyInjectorTask : AbstractObjectConstructionTask
     {
         /// <summary>
         /// Executes the specified arguments.
         /// </summary>
         /// <param name="args">The arguments.</param>
-        public virtual void Execute(ObjectConstructionArgs args)
+        public override void Execute(ObjectConstructionArgs args)
         {
             // check that no other task has created an object and that this is a dynamic object
             if (args.Result != null || args.Configuration.Type.IsAssignableFrom(typeof(IDynamicMetaObjectProvider))) return;
@@ -26,6 +26,8 @@
 
             // set the new object as the returned result
             args.Result = obj;
+
+            base.Execute(args);
         }
     }
 }

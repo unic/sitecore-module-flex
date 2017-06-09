@@ -25,7 +25,7 @@ namespace Unic.Flex.Website.Initialize
         {
             // create a resolver and register the context
             var resolver = this.CreateResolver();
-            var context = Context.Create(resolver, Constants.GlassMapperContextName);
+            var context = Context.Create(resolver, Core.Definitions.Constants.GlassMapperContextName);
 
             // load configurations
             this.Configure(resolver);

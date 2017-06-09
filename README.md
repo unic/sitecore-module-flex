@@ -6,6 +6,9 @@ Flex is the acronym for __Fl__exible Forms __Ex__perience, the module to create 
 
 ## Changelog
 
+### 3.0
+* Update Glass.Mapper to 4.3.4.197
+
 ### 2.9 
 * Added aria-invalid param when validation failed
 
