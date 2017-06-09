@@ -137,6 +137,11 @@
             {
                 if (!validator.IsValid(this.Value))
                 {
+                    if (!this.Attributes.ContainsKey("aria-invalid"))
+                    {
+                        this.Attributes.Add("aria-invalid", "true");
+                    }
+
                     yield return new ValidationResult(validator.ValidationMessage, new[] { "Value" });
                 }
             }
