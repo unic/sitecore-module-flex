@@ -6,6 +6,9 @@ Flex is the acronym for __Fl__exible Forms __Ex__perience, the module to create 
 
 ## Changelog
 
+### 2.9 
+* Added aria-invalid param when validation failed
+
 ### 2.8 
 * Fix encoding special characters in plain text email
 
