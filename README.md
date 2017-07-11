@@ -6,6 +6,12 @@ Flex is the acronym for __Fl__exible Forms __Ex__perience, the module to create 
 
 ## Changelog
 
+### 3.1
+* Improve performance of the form database export
+* Improve performance of the form database export button in content editor (active or disabled check)
+* Improve performance of the insertion of form data into the database
+* Switch to Roslyn compiler to support C# 6 features
+
 ### 3.0.1
 * Fix accidental ObjectConstruction pipeline abort by not completely following Glass.Mapper 4.3 upgrade instruction
 

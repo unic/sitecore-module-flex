@@ -61,8 +61,7 @@
             }
 
             // create current session
-            var sessionEntity = new Session { Language = form.Language, Timestamp = DateTime.Now, Fields = new Collection<Field>() };
-            formEntity.Sessions.Add(sessionEntity);
+            var sessionEntity = new Session { Language = form.Language, Timestamp = DateTime.Now, Fields = new Collection<Field>(), Form = formEntity };
 
             // add fields
             foreach (var field in form.GetFields())
@@ -72,7 +71,7 @@
                 
                 // add blobs
                 var fileUploadField = field as FileUploadField;
-                if (fileUploadField != null && fileUploadField.Value != null)
+                if (fileUploadField?.Value != null)
                 {
                     fieldEntity.File = new File
                                            {
@@ -85,6 +84,8 @@
 
                 sessionEntity.Fields.Add(fieldEntity);
             }
+
+            this.unitOfWork.SessionRepository.Insert(sessionEntity);
 
             // save data to database
             this.unitOfWork.Save();
@@ -99,10 +100,7 @@
         /// </returns>
         public virtual bool HasEntries(Guid formId)
         {
-            var form = this.unitOfWork.FormRepository.Get(f => f.ItemId == formId).FirstOrDefault();
-            if (form == null) return false;
-
-            return form.Sessions != null && form.Sessions.Any();
+           return this.unitOfWork.SessionRepository.Any(s => s.Form.ItemId == formId);
         }
 
         /// <summary>
@@ -132,8 +130,8 @@
             Assert.ArgumentNotNull(form, "form");
             
             // get the form data
-            var formData = this.unitOfWork.FormRepository.Get(f => f.ItemId == form.ItemId).FirstOrDefault();
-            if (formData == null || !formData.Sessions.Any()) return;
+            var formData = this.unitOfWork.FormRepository.Get(f => f.ItemId == form.ItemId, includeProperties:"Sessions.Fields", disableTracking: true).FirstOrDefault();
+            if (formData == null) return;
 
             // generate worksheet
             var file = new FileInfo(fileName);

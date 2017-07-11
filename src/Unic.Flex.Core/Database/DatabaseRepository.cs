@@ -87,13 +87,20 @@
         /// <param name="filter">The filter.</param>
         /// <param name="orderBy">The sort order.</param>
         /// <param name="includeProperties">The include properties which should be eager loaded.</param>
+        /// <param name="disableTracking">Defines whether the tracking of the returned entities should be disabled</param>
         /// <returns>List of entities</returns>
         public virtual IEnumerable<TEntity> Get(
             Expression<Func<TEntity, bool>> filter = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-            string includeProperties = "")
+            string includeProperties = "",
+            bool disableTracking = false)
         {
             IQueryable<TEntity> query = this.DatabaseSet;
+
+            if (disableTracking)
+            {
+                query = query.AsNoTracking();
+            }
 
             if (filter != null)
             {
@@ -121,6 +128,25 @@
         public virtual TEntity GetById(object id)
         {
             return this.DatabaseSet.Find(id);
+        }
+
+        /// <summary>
+        /// Determines whether any entity exists with the given filter
+        /// </summary>
+        /// <param name="filter">Optional filter</param>
+        /// <returns>
+        ///     <c>true</c> if there is any entity that matches the filter; otherwise, <c>false</c>.
+        /// </returns>
+        public bool Any(Expression<Func<TEntity, bool>> filter = null)
+        {
+            IQueryable<TEntity> query = this.DatabaseSet.AsNoTracking();
+
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+
+            return query.Any();
         }
     }
 }

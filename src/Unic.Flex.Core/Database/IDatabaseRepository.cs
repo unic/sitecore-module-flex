@@ -41,11 +41,13 @@
         /// <param name="filter">The filter.</param>
         /// <param name="orderBy">The sort order.</param>
         /// <param name="includeProperties">The include properties which should be eager loaded.</param>
+        /// <param name="disableTracking">Defines whether the tracking of the returned entities should be disabled</param>
         /// <returns>List of entities</returns>
         IEnumerable<TEntity> Get(
             Expression<Func<TEntity, bool>> filter = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-            string includeProperties = "");
+            string includeProperties = "",
+            bool disableTracking = false);
 
         /// <summary>
         /// Gets an entity by id.
@@ -53,5 +55,14 @@
         /// <param name="id">The id.</param>
         /// <returns>The entity with this id</returns>
         TEntity GetById(object id);
+
+        /// <summary>
+        /// Determines whether any entity exists with the given filter
+        /// </summary>
+        /// <param name="filter">Optional filter</param>
+        /// <returns>
+        ///     <c>true</c> if there is any entity that matches the filter; otherwise, <c>false</c>.
+        /// </returns>
+        bool Any(Expression<Func<TEntity, bool>> filter = null);
     }
 }
