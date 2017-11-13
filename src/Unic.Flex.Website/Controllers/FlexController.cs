@@ -219,12 +219,12 @@
         /// <summary>
         /// Controller action for POST requests.
         /// </summary>
-        /// <param name="model">The model.</param>
+        /// <param name="formModel">The model.</param>
         /// <returns>Result of the action.</returns>
         [HttpPost]
         [ValidateFormHandler]
         [ValidateAntiForgeryToken]
-        public virtual ActionResult Form(IForm model)
+        public virtual ActionResult Form(IForm formModel)
         {
             // form is not available in page editor
             if (GlassHtml.IsInEditingMode)
@@ -268,16 +268,16 @@
             }
 
             // return view if we have any validation errors
-            var formView = this.presentationService.ResolveView(this.ControllerContext, model);
+            var formView = this.presentationService.ResolveView(this.ControllerContext, formModel);
             if (!this.ModelState.IsValid)
             {
                 this.logger.Debug(string.Format("POST :: We have validation errors, returning view '{0}'", formView), this);
                 Profiler.OnEnd(this, ProfilePostEventName);
-                return this.View(formView, model);
+                return this.View(formView, formModel);
             }
 
             // store the values in the session redirect to next step if we have a next step
-            this.contextService.StoreFormValues(model);
+            this.contextService.StoreFormValues(formModel);
             var multistep = currentStep as MultiStep;
             if (multistep != null && !string.IsNullOrWhiteSpace(multistep.NextStepUrl))
             {
