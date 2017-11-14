@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Castle.Core.Internal;
+    using Glass.Mapper;
     using Newtonsoft.Json.Linq;
     using Sitecore.Configuration;
     using Sitecore.Data;
