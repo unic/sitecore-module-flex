@@ -1,6 +1,5 @@
 ﻿namespace Unic.Flex.Implementation.Mailers
 {
-    using Castle.Core.Internal;
     using Mvc.Mailer;
     using System;
     using System.Collections.Generic;
@@ -8,6 +7,7 @@
     using System.Linq;
     using System.Net.Mail;
     using System.Web;
+    using Glass.Mapper;
     using Unic.Configuration.Core;
     using Unic.Flex.Core.Mailing;
     using Unic.Flex.Core.Presentation;

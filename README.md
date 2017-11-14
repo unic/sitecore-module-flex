@@ -6,6 +6,12 @@ Flex is the acronym for __Fl__exible Forms __Ex__perience, the module to create 
 
 ## Changelog
 
+### 3.2
+* Update Castle.Core to 4.2.1
+* Update Glass.Mapper to 4.4.0.199
+* Rename model parameter in FlexController HttpPost Action to prevent name clashes with Nitro.net
+* Replace ForEach extension call to use Glass.Mapper's implementation, as it has been dropped from Castle
+
 ### 3.1
 * Improve performance of the form database export
 * Improve performance of the form database export button in content editor (active or disabled check)
