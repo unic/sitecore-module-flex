@@ -226,6 +226,11 @@
         [ValidateAntiForgeryToken]
         public virtual ActionResult Form(IForm formModel)
         {
+            // Note (dsz, 14.11.2017): Do not rename the formModel parameter to 'model' as this will cause clashes
+            // with nitronet in DefaultModelBinder when searching for a matching key in the value providers.
+            // 'Model', along with 'template' and 'data' seems to be added by Nitro.Net to the RouteDataValueProvider
+            // and ChildActionValueProvider.
+
             // form is not available in page editor
             if (GlassHtml.IsInEditingMode)
             {
