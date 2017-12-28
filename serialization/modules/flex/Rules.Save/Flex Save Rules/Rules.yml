@@ -1,0 +1,14 @@
+﻿---
+ID: "8b5232b3-aa8a-411e-ab2c-442b4c769c27"
+Parent: "81ac8587-2a83-431b-902f-d169cf48a808"
+Template: "8ea2cf67-4250-47a2-aeca-4f70fd200dc7"
+Path: /sitecore/system/Settings/Rules/Flex Save Rules/Rules
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20171121T104057Z

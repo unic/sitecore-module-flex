@@ -1,5 +1,6 @@
 ﻿namespace Unic.Flex.NinjectIoC
 {
+    using Core.MarketingAutomation;
     using Glass.Mapper.Sc;
     using Ninject.Modules;
     using Ninject.Web.Common;
@@ -68,6 +69,10 @@
             // implementation classes
             this.Bind<ISavePlugMailer>().To<SavePlugMailer>();
             this.Bind<ISaveToDatabaseService>().To<SaveToDatabaseService>();
+            
+            
+            // Marketing Automation
+            this.Bind<IMarketingAutomationContactService, MarketingAutomationContactService>();
 
             // third party classes
             this.Bind<IConfigurationManager>().To<ConfigurationManager>().InSingletonScope();

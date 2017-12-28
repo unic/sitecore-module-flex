@@ -131,6 +131,8 @@
     <Compile Include="Forms\Repository.cs" />
     <Compile Include="Forms\StatisticForm.cs" />
     <Compile Include="IItemBase.cs" />
+    <Compile Include="MarketingAutomation\IContactFacetDefinition.cs" />
+    <Compile Include="MarketingAutomation\IContactFieldDefinition.cs" />
     <Compile Include="Plugs\LoadPlugBase.cs" />
     <Compile Include="Plugs\SavePlugBase.cs" />
     <Compile Include="Sections\ISection.cs" />
@@ -192,7 +194,6 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

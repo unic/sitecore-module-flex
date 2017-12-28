@@ -1,0 +1,15 @@
+﻿---
+ID: "bae61e61-ae9a-4297-ac83-71fa520987b7"
+Parent: "c9f12f48-6fd3-4123-880a-fbefadeb6977"
+Template: "aa91a868-02f2-41d3-8b78-1cad91b4dcae"
+Path: /sitecore/system/Settings/Rules/Definitions/Tags/Flex Load Rules/Visibility
+DB: master
+BranchID: "60e3e35b-cef9-4afa-9f89-204ed015ccb9"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20171121T103032Z

@@ -8,7 +8,9 @@ SharedFields:
 - ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
   Hint: __Masters
   Type: TreelistEx
-  Value: "{4906DF7C-B200-4825-B1AC-488D7D928452}"
+  Value: |
+    {4906DF7C-B200-4825-B1AC-488D7D928452}
+    {A3DF6696-BE85-4A66-8056-6773CA260742}
 Languages:
 - Language: en
   Versions:
@@ -16,7 +18,7 @@ Languages:
     Fields:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20140424T172120
+      Value: 20140424T152120Z
     - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
       Hint: __Created by
       Value: sitecore\admin

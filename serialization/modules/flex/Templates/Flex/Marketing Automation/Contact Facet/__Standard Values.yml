@@ -1,0 +1,22 @@
+﻿---
+ID: "42fae3e2-b3e6-460a-b590-2e58a937f62a"
+Parent: "c0f3505f-7033-4700-a51f-9401565bc38a"
+Template: "c0f3505f-7033-4700-a51f-9401565bc38a"
+Path: /sitecore/templates/Flex/Marketing Automation/Contact Facet/__Standard Values
+DB: master
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Type: TreelistEx
+  Value: "{D2FF6DBF-67AE-4387-B02A-1956E07DF809}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20171121T134459Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin

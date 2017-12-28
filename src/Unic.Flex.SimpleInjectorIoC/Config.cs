@@ -1,5 +1,6 @@
 ﻿namespace Unic.Flex.SimpleInjectorIoC
 {
+    using Core.MarketingAutomation;
     using Glass.Mapper.Sc;
     using SimpleInjector;
     using SimpleInjector.Diagnostics;
@@ -69,6 +70,9 @@
             // implementation classes
             container.Register<ISavePlugMailer, SavePlugMailer>();
             container.Register<ISaveToDatabaseService, SaveToDatabaseService>();
+            
+            // Marketing Automation
+            container.Register<IMarketingAutomationContactService, MarketingAutomationContactService>();
 
             // third party classes
             container.Register<IConfigurationManager>(() => new ConfigurationManager(), Lifestyle.Singleton);

@@ -1,0 +1,14 @@
+﻿---
+ID: "8cb7fdad-b822-4e4c-8ce5-49c1c45c1860"
+Parent: "c4e0ca64-89ec-4b44-9262-a06b858f199f"
+Template: "8ea2cf67-4250-47a2-aeca-4f70fd200dc7"
+Path: /sitecore/system/Settings/Rules/Flex Load Rules/Rules
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20171121T104046Z
