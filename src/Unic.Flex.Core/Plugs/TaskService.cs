@@ -5,6 +5,7 @@
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Net.Mail;
+    using DependencyInjection;
     using Newtonsoft.Json;
     using Sitecore.Diagnostics;
     using Sitecore.Globalization;
@@ -29,11 +30,6 @@
         /// The unit of work
         /// </summary>
         private readonly IUnitOfWork unitOfWork;
-
-        /// <summary>
-        /// The context service
-        /// </summary>
-        private readonly IContextService contextService;
 
         /// <summary>
         /// The user data repository
@@ -67,7 +63,6 @@
         public TaskService(IUnitOfWork unitOfWork, IContextService contextService, IUserDataRepository userDataRepository, ILogger logger, IConfigurationManager configurationManager, IDictionaryRepository dictionaryRepository)
         {
             this.unitOfWork = unitOfWork;
-            this.contextService = contextService;
             this.userDataRepository = userDataRepository;
             this.logger = logger;
             this.configurationManager = configurationManager;
@@ -111,6 +106,7 @@
             // start thread and execute specific job
             System.Threading.Tasks.Task.Factory.StartNew(() =>
             {
+                var scope = DependencyResolver.BeginScope();
                 using (new SiteContextSwitcher(site))
                 {
                     using (new LanguageSwitcher(language))
@@ -118,6 +114,7 @@
                         this.ExecuteJob(site, language, job, maxRetries, timeBetweenTries);
                     }
                 }
+                DependencyResolver.EndScope(scope);
             }).ContinueWith(task => this.unitOfWork.Save());
         }
 
@@ -232,11 +229,12 @@
             try
             {
                 this.logger.Debug(string.Format("Starting executing of job '{0}'", job.Id), this);
-                
+
+                var contextService = DependencyResolver.Resolve<IContextService>();
                 var tasks = new List<System.Threading.Tasks.Task>();
-                var form = this.contextService.LoadForm(job.ItemId.ToString(), true);
+                var form = contextService.LoadForm(job.ItemId.ToString(), true);
                 var formValues = JsonConvert.DeserializeObject<IDictionary<string, object>>(job.Data);
-                this.contextService.PopulateFormValues(form, formValues);
+                contextService.PopulateFormValues(form, formValues);
 
                 foreach (var task in job.Tasks.Where(t => t.NumberOfTries <= maxRetries))
                 {

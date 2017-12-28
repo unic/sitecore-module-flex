@@ -2,6 +2,8 @@
 {
     using SimpleInjector;
     using System;
+    using System.Web;
+    using SimpleInjector.Extensions.LifetimeScoping;
     using SimpleInjector.Integration.Web;
     using Unic.Flex.Core.DependencyInjection;
 
@@ -84,6 +86,17 @@
             return this.container.GetInstance(type);
         }
 
+        public object BeginScope()
+        {
+            return this.container.BeginLifetimeScope();
+        }
+
+        public void EndScope(object scope)
+        {
+            var disposableScope = scope as IDisposable;
+            disposableScope?.Dispose();
+        }
+
         /// <summary>
         /// Creates a standard container.
         /// </summary>
@@ -92,9 +105,19 @@
         {
             var standardContainer = new Container();
             standardContainer.Options.AllowOverridingRegistrations = true;
-            standardContainer.Options.DefaultScopedLifestyle = new WebRequestLifestyle();
+            standardContainer.Options.DefaultScopedLifestyle = GetHybridLifestyle();;
 
             return standardContainer;
+        }
+        
+        private static ScopedLifestyle GetHybridLifestyle()
+        {
+            return Lifestyle.CreateHybrid(IsInWebContext, new WebRequestLifestyle(), new LifetimeScopeLifestyle());
+        }
+
+        private static bool IsInWebContext()
+        {
+            return HttpContext.Current != null;
         }
     }
 }
