@@ -131,8 +131,8 @@
     <Compile Include="Forms\Repository.cs" />
     <Compile Include="Forms\StatisticForm.cs" />
     <Compile Include="IItemBase.cs" />
-    <Compile Include="MarketingAutomation\IContactFacetDefinition.cs" />
-    <Compile Include="MarketingAutomation\IContactFieldDefinition.cs" />
+    <Compile Include="MarketingAutomation\ContactFacetDefinition.cs" />
+    <Compile Include="MarketingAutomation\ContactFieldDefinition.cs" />
     <Compile Include="Plugs\LoadPlugBase.cs" />
     <Compile Include="Plugs\SavePlugBase.cs" />
     <Compile Include="Sections\ISection.cs" />
