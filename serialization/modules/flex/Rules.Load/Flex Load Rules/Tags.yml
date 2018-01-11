@@ -1,0 +1,14 @@
+﻿---
+ID: "5a78177f-f908-4ce0-a203-ffe871ffc373"
+Parent: "c4e0ca64-89ec-4b44-9262-a06b858f199f"
+Template: "96c8e5dd-63c3-496b-a97c-a3e37e1dacba"
+Path: /sitecore/system/Settings/Rules/Flex Load Rules/Tags
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20171121T104046Z

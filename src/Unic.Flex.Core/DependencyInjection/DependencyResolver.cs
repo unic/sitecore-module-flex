@@ -65,5 +65,15 @@
         {
             return container.Resolve(type);
         }
+
+        public static object BeginScope()
+        {
+            return container.BeginScope();
+        }
+
+        public static void EndScope(object scope)
+        {
+            container.EndScope(scope);
+        }
     }
 }

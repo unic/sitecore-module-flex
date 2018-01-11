@@ -1,0 +1,14 @@
+﻿---
+ID: "ef257e89-729e-452b-8643-71abbc1aa33b"
+Parent: "d6733a22-33d8-45d7-994e-ff3eb8daebf7"
+Template: "aa91a868-02f2-41d3-8b78-1cad91b4dcae"
+Path: /sitecore/system/Settings/Rules/Definitions/Elements/Flex Save Rules/Visibility
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20171121T104154Z

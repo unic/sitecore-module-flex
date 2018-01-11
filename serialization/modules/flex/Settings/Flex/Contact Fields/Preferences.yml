@@ -1,0 +1,21 @@
+﻿---
+ID: "3ce7c9fa-64a3-4439-a520-e5fdfcd95e31"
+Parent: "c5fea337-d128-46c9-a8db-aeff0d310991"
+Template: "c0f3505f-7033-4700-a51f-9401565bc38a"
+Path: /sitecore/system/Modules/Flex/Contact Fields/Preferences
+DB: master
+SharedFields:
+- ID: "228c6ec1-9cb6-4246-be9b-83432bdbd74c"
+  Hint: Facet Name
+  Value: Preferences
+- ID: "f559df3a-8b58-44f5-9cd3-b06f48873e9c"
+  Hint: Type
+  Value: Sitecore.Analytics.Model.Entities.IContactPreferences
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20171228T150737Z

@@ -90,6 +90,15 @@
             return this.kernel.Get(type);
         }
 
+        public object BeginScope()
+        {
+            return null;
+        }
+
+        public void EndScope(object scope)
+        {
+        }
+
         /// <summary>
         /// Creates a standard kernel.
         /// </summary>

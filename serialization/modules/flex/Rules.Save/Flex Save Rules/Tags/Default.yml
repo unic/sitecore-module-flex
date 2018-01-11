@@ -1,0 +1,19 @@
+﻿---
+ID: "714c2bf9-358b-49b2-a5c3-3d6f1c6c4ad7"
+Parent: "7e494a92-04b1-42a6-8f8c-e0a73fab05f4"
+Template: "854ba861-63ea-4a0c-8c7b-541e9a7ec4c1"
+Path: /sitecore/system/Settings/Rules/Flex Save Rules/Tags/Default
+DB: master
+SharedFields:
+- ID: "42f77151-098f-496a-94cf-590b7edeeabe"
+  Hint: Tags
+  Type: Multilist
+  Value: "{B5C4B2B6-23EF-4056-BCE6-5A26A56EEABD}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20171121T104058Z

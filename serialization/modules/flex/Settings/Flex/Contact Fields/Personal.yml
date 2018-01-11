@@ -1,0 +1,28 @@
+﻿---
+ID: "a934a8fc-dbbd-4459-a55b-25c690f3e4f2"
+Parent: "c5fea337-d128-46c9-a8db-aeff0d310991"
+Template: "c0f3505f-7033-4700-a51f-9401565bc38a"
+Path: /sitecore/system/Modules/Flex/Contact Fields/Personal
+DB: master
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Type: TreelistEx
+  Value: "{D2FF6DBF-67AE-4387-B02A-1956E07DF809}"
+- ID: "228c6ec1-9cb6-4246-be9b-83432bdbd74c"
+  Hint: Facet Name
+  Value: Personal
+- ID: "f559df3a-8b58-44f5-9cd3-b06f48873e9c"
+  Hint: Type
+  Value: Sitecore.Analytics.Model.Entities.IContactPersonalInfo, Sitecore.Analytics.Model
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20171121T134417Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin

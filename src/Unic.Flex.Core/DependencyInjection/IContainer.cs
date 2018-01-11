@@ -39,5 +39,9 @@
         /// Instance of the type
         /// </returns>
         object Resolve(Type type);
+
+        object BeginScope();
+        
+        void EndScope(object scope);
     }
 }

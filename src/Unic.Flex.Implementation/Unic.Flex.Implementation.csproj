@@ -66,6 +66,9 @@
       <HintPath>..\..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Sitecore.Analytics, Version=8.1.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\Sitecore.Analytics.8.1.160302.206\lib\Sitecore.Analytics.dll</HintPath>
+    </Reference>
     <Reference Include="Sitecore.Kernel, Version=8.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Sitecore.Kernel.8.1.160302.206\lib\Sitecore.Kernel.dll</HintPath>
       <Private>True</Private>
@@ -139,11 +142,25 @@
     <Compile Include="Mailers\ISavePlugMailer.cs" />
     <Compile Include="Mailers\SavePlugMailer.cs" />
     <Compile Include="Plugs\LoadPlugs\QueryStringLoader.cs" />
+    <Compile Include="Plugs\LoadPlugs\RulesExecutionLoadPlug.cs" />
     <Compile Include="Plugs\SavePlugs\RegisterGoal.cs" />
+    <Compile Include="Plugs\SavePlugs\RulesExecutionSavePlug.cs" />
     <Compile Include="Plugs\SavePlugs\SaveToDatabase.cs" />
     <Compile Include="Plugs\SavePlugs\SendEmail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataProviders\ChildrenProvider.cs" />
+    <Compile Include="Rules\FlexFormRuleContext.cs" />
+    <Compile Include="Rules\LoadRules\BaseFlexLoadAction.cs" />
+    <Compile Include="Rules\LoadRules\LoadContactEmailAddressAction.cs" />
+    <Compile Include="Rules\LoadRules\LoadContactIdAction.cs" />
+    <Compile Include="Rules\LoadRules\LoadFromContactFieldAction.cs" />
+    <Compile Include="Rules\LoadRules\LoadSimpleContactFieldAction.cs" />
+    <Compile Include="Rules\SaveRules\BaseFlexSaveAction.cs" />
+    <Compile Include="Rules\SaveRules\FieldValueCondition.cs" />
+    <Compile Include="Rules\SaveRules\FieldValueIsEmptyCondition.cs" />
+    <Compile Include="Rules\SaveRules\SaveContactEmailAction.cs" />
+    <Compile Include="Rules\SaveRules\SaveContactFieldAction.cs" />
+    <Compile Include="Rules\SaveRules\SaveSimpleContactFieldAction.cs" />
     <Compile Include="Validators\AjaxValidator.cs" />
     <Compile Include="Validators\CompareValidator.cs" />
     <Compile Include="Validators\DateRangeValidator.cs" />

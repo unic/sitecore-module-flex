@@ -6,6 +6,12 @@ Flex is the acronym for __Fl__exible Forms __Ex__perience, the module to create 
 
 ## Changelog
 
+### 3.3
+* Added new Load and Save Plugs `Execute Rule`
+* Added multiple actions to prefill a form with values from the xDB profile
+* Added multiple actions to save values from the form to the xDB profile
+* SCMFLEX-46 fixed bug with asynchrous exeuction of async save plugs
+
 ### 3.2
 * Update Castle.Core to 4.2.1
 * Update Glass.Mapper to 4.4.0.199

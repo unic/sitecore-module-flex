@@ -1,0 +1,14 @@
+﻿---
+ID: "9f83b682-f5af-4ff4-9c15-8452aaab094b"
+Parent: "a3df6696-be85-4a66-8056-6773ca260742"
+Template: "a3df6696-be85-4a66-8056-6773ca260742"
+Path: /sitecore/templates/Flex/Plugs/Load Plugs/Execute Rule Load Plug/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20171121T101853Z
