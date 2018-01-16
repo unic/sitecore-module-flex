@@ -8,7 +8,6 @@ namespace Unic.Flex.Website.Initialize
     using Glass.Mapper.Sc.Configuration.Fluent;
     using Glass.Mapper.Sc.IoC;
     using Sitecore.Pipelines;
-    using Unic.Flex.Core.Definitions;
     using Unic.Flex.Core.Pipelines.ObjectConstruction;
     using Unic.Flex.Model.GlassExtensions.Handlers;
 
@@ -29,6 +28,9 @@ namespace Unic.Flex.Website.Initialize
 
             // load configurations
             this.Configure(resolver);
+
+            // finalise configuration
+            this.FinaliseConfiguration(resolver);
 
             // get configuration loader
             var configurationLoader = this.GetConfigurationLoader(resolver);
@@ -62,13 +64,22 @@ namespace Unic.Flex.Website.Initialize
         {
             // add tasks
             resolver.ObjectConstructionFactory.Insert(0, () => new DependencyInjectorTask());
-            
+
             // add data mappers
             resolver.DataMapperFactory.Insert(0, () => new SitecoreSharedFieldTypeMapper());
             resolver.DataMapperFactory.Insert(0, () => new SitecoreDictionaryFallbackFieldTypeMapper());
             resolver.DataMapperFactory.Insert(0, () => new SitecoreSharedQueryTypeMapper(resolver.QueryParameterFactory.GetItems()));
             resolver.DataMapperFactory.Insert(0, () => new SitecoreReusableFieldTypeMapper());
             resolver.DataMapperFactory.Insert(0, () => new SitecoreReusableChildrenTypeMapper());
+        }
+
+        /// <summary>
+        /// Finalises the Glass resolver configuration
+        /// </summary>
+        /// <param name="resolver"></param>
+        protected virtual void FinaliseConfiguration(IDependencyResolver resolver)
+        {
+            resolver.Finalise();
         }
 
         /// <summary>

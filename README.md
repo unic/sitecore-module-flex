@@ -6,7 +6,13 @@ Flex is the acronym for __Fl__exible Forms __Ex__perience, the module to create 
 
 ## Changelog
 
+### 3.4
+
+- Update `Glass.Mapper` to `4.5.0.4`
+- Add call to `DependencyResolver.Finalise()` - this behaviour can be overriden in the `GlassConfig.FinaliseConfiguration` method. See http://glass.lu/Mapper/Sc/Releases for more information
+
 ### 3.3
+
 * Added new Load and Save Plugs `Execute Rule`
 * Added multiple actions to prefill a form with values from the xDB profile
 * Added multiple actions to save values from the form to the xDB profile
