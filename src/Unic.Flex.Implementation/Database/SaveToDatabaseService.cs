@@ -48,7 +48,7 @@
         /// Saves the specified form to the database.
         /// </summary>
         /// <param name="form">The form.</param>
-        public virtual void Save(IForm form)
+        public virtual int Save(IForm form)
         {
             Assert.ArgumentNotNull(form,  "form");
 
@@ -89,6 +89,8 @@
 
             // save data to database
             this.unitOfWork.Save();
+
+            return sessionEntity.Id;
         }
 
         /// <summary>
