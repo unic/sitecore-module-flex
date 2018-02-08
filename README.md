@@ -7,7 +7,7 @@ Flex is the acronym for __Fl__exible Forms __Ex__perience, the module to create 
 ## Changelog
 
 ### 3.5
-* Return ID of session entity after saving it to the database.
+* Update save-method in SaveToDatabaseService to Return ID of session entity after saving it to the database.
 
 ### 3.4
 
