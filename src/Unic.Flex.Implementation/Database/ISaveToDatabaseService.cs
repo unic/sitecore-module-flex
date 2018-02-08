@@ -12,7 +12,7 @@
         /// Saves the specified form to the database.
         /// </summary>
         /// <param name="form">The form.</param>
-        void Save(IForm form);
+        int Save(IForm form);
 
         /// <summary>
         /// Determines whether the specified form identifier has entries.
