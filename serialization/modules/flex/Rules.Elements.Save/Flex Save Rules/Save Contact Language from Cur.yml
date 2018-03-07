@@ -1,0 +1,24 @@
+﻿---
+ID: "207719f5-04c3-4496-bb53-5513098cdd46"
+Parent: "d6733a22-33d8-45d7-994e-ff3eb8daebf7"
+Template: "f90052a5-b4e6-4e6d-9812-1e1b88a6fcea"
+Path: /sitecore/system/Settings/Rules/Definitions/Elements/Flex Save Rules/Save Contact Language from Current Language
+DB: master
+SharedFields:
+- ID: "ff55d5a7-6d4b-4cd1-83e0-bac268073f66"
+  Hint: Type
+  Value: Unic.Flex.Implementation.Rules.SaveRules.SaveLanguageAction, Unic.Flex.Implementation
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20180307T124133Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin
+    - ID: "eeb36a3b-40d9-4af5-862a-de257b84dca3"
+      Hint: Text
+      Value: Save current language to contact language
