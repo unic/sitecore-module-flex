@@ -12,6 +12,8 @@
     [SitecoreType(TemplateId = "{4906DF7C-B200-4825-B1AC-488D7D928452}")]
     public class QueryStringLoader : LoadPlugBase
     {
+        private const char DomainsSeparator = ';';
+
         private readonly IUserDataRepository userDataRepository;
 
         [SitecoreField("Is Domain Protected")]
@@ -53,6 +55,8 @@
             !IsDomainProtected || (IsDomainProtected && this.IsDomainAllowed());
 
         private bool IsDomainAllowed() =>
-            AllowFromDomains.Contains(HttpContext.Current.Request.Url.Host);
+            AllowFromDomains
+            .Split(DomainsSeparator)
+            .Contains(HttpContext.Current.Request.UrlReferrer.Host);
     }
 }
