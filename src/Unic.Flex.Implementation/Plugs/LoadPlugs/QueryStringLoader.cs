@@ -2,7 +2,6 @@
 {
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Sitecore.Diagnostics;
-    using System;
     using System.Linq;
     using System.Web;
     using Unic.Flex.Core.Mapping;
