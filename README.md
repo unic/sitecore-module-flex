@@ -7,7 +7,7 @@ Flex is the acronym for __Fl__exible Forms __Ex__perience, the module to create 
 ## Changelog
 
 ### 3.5.1
-* Fixed `Label Link` functionality
+* Fixed broken `Label Link` functionality. `Label Links` could not be used due to a call to a removed overload of `GlassHtml.BeginRenderLink`, which resulted in exceptions during dynamic compilation. The newly added `alwaysRender` argument prevents the rendering of the element when the link is `null`.
 
 ### 3.5
 * Update save-method in SaveToDatabaseService to Return ID of session entity after saving it to the database.
