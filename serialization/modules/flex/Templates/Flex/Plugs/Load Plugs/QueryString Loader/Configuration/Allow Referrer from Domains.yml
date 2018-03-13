@@ -2,7 +2,7 @@
 ID: "65a4c01b-510f-476c-bb4b-fdbc3231d045"
 Parent: "128a1a19-7984-491d-b9b5-13d110bcc9d6"
 Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
-Path: /sitecore/templates/Flex/Plugs/Load Plugs/QueryString Loader/Configuration/Allow from Domains
+Path: /sitecore/templates/Flex/Plugs/Load Plugs/QueryString Loader/Configuration/Allow Referrer from Domains
 DB: master
 SharedFields:
 - ID: "ab162cc0-dc80-4abf-8871-998ee5d7ba32"

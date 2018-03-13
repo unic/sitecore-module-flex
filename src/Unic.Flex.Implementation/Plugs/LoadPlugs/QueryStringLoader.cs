@@ -52,7 +52,8 @@
         }
 
         private bool CanQueryStringBeProcessed() =>
-            !IsDomainProtected || (IsDomainProtected && this.IsDomainAllowed());
+            !IsDomainProtected ||
+            (IsDomainProtected && HttpContext.Current.Request.UrlReferrer != null && this.IsDomainAllowed());
 
         private bool IsDomainAllowed() =>
             AllowFromDomains
