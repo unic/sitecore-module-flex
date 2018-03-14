@@ -2,6 +2,7 @@
 {
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Sitecore.Diagnostics;
+    using System;
     using System.Linq;
     using System.Web;
     using Unic.Flex.Core.Mapping;
@@ -58,6 +59,6 @@
         private bool IsDomainAllowed() =>
             AllowFromDomains
             .Split(DomainsSeparator)
-            .Contains(HttpContext.Current.Request.UrlReferrer.Host);
+            .Any(domain => domain.Equals(HttpContext.Current.Request.UrlReferrer.Host, StringComparison.OrdinalIgnoreCase));
     }
 }
