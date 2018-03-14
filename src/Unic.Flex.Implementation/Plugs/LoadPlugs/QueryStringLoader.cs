@@ -17,11 +17,11 @@
 
         private readonly IUserDataRepository userDataRepository;
 
-        [SitecoreField("Is Domain Protected")]
-        public bool IsDomainProtected { get; set; }
+        [SitecoreField("Is Url Referrer Protected")]
+        public bool IsUrlReferrerProtected { get; set; }
 
-        [SitecoreField("Allow from Domains")]
-        public string AllowFromDomains { get; set; }
+        [SitecoreField("Allow Referrer from Domains")]
+        public string AllowedDomains { get; set; }
 
         public QueryStringLoader(IUserDataRepository userDataRepository)
         {
@@ -53,11 +53,11 @@
         }
 
         private bool CanQueryStringBeProcessed() =>
-            !IsDomainProtected ||
-            (IsDomainProtected && HttpContext.Current.Request.UrlReferrer != null && this.IsDomainAllowed());
+            !IsUrlReferrerProtected ||
+            (IsUrlReferrerProtected && HttpContext.Current.Request.UrlReferrer != null && this.IsDomainAllowed());
 
         private bool IsDomainAllowed() =>
-            AllowFromDomains
+            AllowedDomains
             .Split(DomainsSeparator)
             .Any(domain => domain.Equals(HttpContext.Current.Request.UrlReferrer.Host, StringComparison.OrdinalIgnoreCase));
     }
