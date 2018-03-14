@@ -8,6 +8,7 @@
     using Sitecore.Analytics.Model.Entities;
     using Sitecore.Analytics.Tracking;
     using Sitecore.Reflection;
+    using Utilities;
 
     public class MarketingAutomationContactService : IMarketingAutomationContactService
     {
@@ -66,6 +67,16 @@
                 entry = this.GetEmailAdresses(contact).Entries.Create(name);
             }
             entry.SmtpAddress = email;
+        }
+
+        public void IdentifyContactEmail(string name)
+        {
+            var contact = this.GetCurrentContact();
+
+            var emailEntry = this.GetEmailAddressEntry(name);
+
+            var hash = SecurityUtil.GenerateHash(emailEntry.SmtpAddress);
+            Tracker.Current.Session.Identify(hash);
         }
 
         private IContactEmailAddresses GetEmailAdresses(Contact contact)

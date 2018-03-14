@@ -159,6 +159,7 @@
     <Compile Include="Rules\SaveRules\FieldValueCondition.cs" />
     <Compile Include="Rules\SaveRules\FieldValueIsEmptyCondition.cs" />
     <Compile Include="Rules\SaveRules\SaveContactEmailAction.cs" />
+    <Compile Include="Rules\SaveRules\IdentifyContactEmailAction.cs" />
     <Compile Include="Rules\SaveRules\SaveLanguageAction.cs" />
     <Compile Include="Rules\SaveRules\SaveContactFieldAction.cs" />
     <Compile Include="Rules\SaveRules\SaveSimpleContactFieldAction.cs" />
