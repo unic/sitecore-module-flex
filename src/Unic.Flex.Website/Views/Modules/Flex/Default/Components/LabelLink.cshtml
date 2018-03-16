@@ -3,6 +3,6 @@
 @model Glass.Mapper.Sc.Fields.Link
 
 @{
-    var result = GlassHtml.BeginRenderLink(Model, new SafeDictionary<string>(), null, GetOutputWriter());  
+    var result = GlassHtml.BeginRenderLink(Model, new SafeDictionary<string>(), null, GetOutputWriter(), alwaysRender: false);
     result.Dispose();
 } 
