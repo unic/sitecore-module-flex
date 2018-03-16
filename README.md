@@ -6,6 +6,10 @@ Flex is the acronym for __Fl__exible Forms __Ex__perience, the module to create 
 
 ## Changelog
 
+### 3.7
+* Added new action to the saverules for saving the current language to a contact 
+* Added new action to the saverules for identifying the contact
+
 ### 3.6
 * Added UrlReferrer Protection to QueryStringLoader Load Plug.
 
