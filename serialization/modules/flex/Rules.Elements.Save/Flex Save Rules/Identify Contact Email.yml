@@ -21,4 +21,4 @@ Languages:
       Value: sitecore\admin
     - ID: "eeb36a3b-40d9-4af5-862a-de257b84dca3"
       Hint: Text
-      Value: "Identify contact by email address with name [EmailAddressName,,,email address name]"
+      Value: "Identify contact by email field with the key [FieldKey,,,key]"

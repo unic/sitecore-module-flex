@@ -7,13 +7,15 @@
     public class IdentifyContactEmailAction<T> : BaseFlexSaveAction<T>
         where T : RuleContext
     {
-        public string EmailAddressName { get; set; }
 
         public override void Apply(T ruleContext)
         {
             var analyticsContactService = DependencyResolver.Resolve<IMarketingAutomationContactService>();
 
-            analyticsContactService.IdentifyContactEmail(this.EmailAddressName);
+            var value = this.GetFieldValue(ruleContext);
+            if (value == null) return;
+
+            analyticsContactService.IdentifyContactEmail( value);
         }
     }
 }

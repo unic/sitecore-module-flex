@@ -197,6 +197,7 @@
     <Compile Include="Utilities\ItemHelpers.cs" />
     <Compile Include="Utilities\MappingHelper.cs" />
     <Compile Include="Utilities\SecurityUtil.cs" />
+    <Compile Include="Utilities\TrackerWrapper.cs" />
     <Compile Include="Validators\FieldValidators\FormFieldValidator.cs" />
     <Compile Include="Validators\FieldValidators\RegularExpressionValidator.cs" />
     <Compile Include="Utilities\TypeHelper.cs" />

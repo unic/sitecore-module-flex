@@ -61,10 +61,12 @@
 
         public static string GenerateHash(string content)
         {
-            SHA1Managed crypt = new SHA1Managed();
-            var contentWithSaltBytes = Encoding.UTF8.GetBytes(content + Salt);
-            byte[] crypto = crypt.ComputeHash(contentWithSaltBytes, 0, contentWithSaltBytes.Length);
-            return Convert.ToBase64String(crypto);
+            using (var crypt = new SHA1Managed())
+            {
+                var contentWithSaltBytes = Encoding.UTF8.GetBytes(content + Salt);
+                var crypto = crypt.ComputeHash(contentWithSaltBytes, 0, contentWithSaltBytes.Length);
+                return Convert.ToBase64String(crypto);
+            }
         }
     }
 }
