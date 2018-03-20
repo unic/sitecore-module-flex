@@ -12,10 +12,12 @@
     public class MarketingAutomationContactService : IMarketingAutomationContactService
     {
         private readonly ISitecoreContext sitecoreContext;
+        private readonly ITrackerWrapper trackerWrapper;
 
-        public MarketingAutomationContactService(ISitecoreContext sitecoreContext)
+        public MarketingAutomationContactService(ISitecoreContext sitecoreContext, ITrackerWrapper trackerWrapper)
         {
             this.sitecoreContext = sitecoreContext;
+            this.trackerWrapper = trackerWrapper;
         }
 
         public object GetContactValue(Guid contactFieldDefinitionId)
@@ -45,7 +47,7 @@
 
         private IEmailAddress GetEmailAddressEntry(string name)
         {
-            var contact = TrackerWrapper.GetCurrentTracker().Contact;
+            var contact = this.trackerWrapper.GetCurrentTracker().Contact;
             var entries = this.GetEmailAdresses(contact).Entries;
 
             if (entries.Contains(name))
@@ -58,7 +60,7 @@
 
         public void SetEmailAddress(string name, string email)
         {
-            var contact = TrackerWrapper.GetCurrentTracker().Contact;
+            var contact = this.trackerWrapper.GetCurrentTracker().Contact;
 
             var entry = this.GetEmailAddressEntry(name);
             if (entry == null)
@@ -68,11 +70,11 @@
             entry.SmtpAddress = email;
         }
 
-        public void IdentifyContactEmail(string email)
+        public void IdentifyContact(string identifier)
         {
-            var hash = SecurityUtil.GenerateHash(email);
+            var hash = SecurityUtil.GenerateHash(identifier);
 
-            var tracker = TrackerWrapper.GetCurrentTracker();
+            var tracker = this.trackerWrapper.GetCurrentTracker();
             tracker.Session.Identify(hash);
         }
 
@@ -103,19 +105,19 @@
 
         public void SetContactValue(string contactFieldName, string value)
         {
-            var contact = TrackerWrapper.GetCurrentTracker().Contact;
+            var contact = this.trackerWrapper.GetCurrentTracker().Contact;
             contact.Extensions.SimpleValues[contactFieldName] = value;
         }
 
         public object GetContactValue(string simpleFieldName)
         {
-            var contact = TrackerWrapper.GetCurrentTracker().Contact;
+            var contact = this.trackerWrapper.GetCurrentTracker().Contact;
             return contact.Extensions.SimpleValues[simpleFieldName];
         }
 
         private object GetFacet(Type facetType,  ContactFacetDefinition contactFacetDefinition)
         {
-            var contact = TrackerWrapper.GetCurrentTracker().Contact;
+            var contact = this.trackerWrapper.GetCurrentTracker().Contact;
 
             if (contact == null) return null;
 

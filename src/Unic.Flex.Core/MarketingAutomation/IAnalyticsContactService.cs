@@ -16,6 +16,6 @@
 
         void SetEmailAddress(string name, string email);
 
-        void IdentifyContactEmail(string name);
+        void IdentifyContact(string name);
     }
 }

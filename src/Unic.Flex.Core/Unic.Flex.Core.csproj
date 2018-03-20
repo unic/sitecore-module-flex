@@ -195,6 +195,7 @@
     <Compile Include="Rules\Conditions\FormCondition.cs" />
     <Compile Include="Rules\Conditions\InstanceCondition.cs" />
     <Compile Include="Utilities\ItemHelpers.cs" />
+    <Compile Include="Utilities\ITrackerWrapper.cs" />
     <Compile Include="Utilities\MappingHelper.cs" />
     <Compile Include="Utilities\SecurityUtil.cs" />
     <Compile Include="Utilities\TrackerWrapper.cs" />

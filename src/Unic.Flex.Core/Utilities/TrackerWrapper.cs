@@ -2,9 +2,9 @@
 {
     using Sitecore.Analytics;
 
-    public static class TrackerWrapper
+    public class TrackerWrapper : ITrackerWrapper
     {
-        public static ITracker GetCurrentTracker()
+        public ITracker GetCurrentTracker()
         {
             if (Tracker.Current == null)
             {

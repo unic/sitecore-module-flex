@@ -4,7 +4,7 @@
     using Core.MarketingAutomation;
     using Sitecore.Rules;
 
-    public class IdentifyContactEmailAction<T> : BaseFlexSaveAction<T>
+    public class IdentifyContactAction<T> : BaseFlexSaveAction<T>
         where T : RuleContext
     {
 
@@ -15,7 +15,7 @@
             var value = this.GetFieldValue(ruleContext);
             if (value == null) return;
 
-            analyticsContactService.IdentifyContactEmail( value);
+            analyticsContactService.IdentifyContact( value);
         }
     }
 }
