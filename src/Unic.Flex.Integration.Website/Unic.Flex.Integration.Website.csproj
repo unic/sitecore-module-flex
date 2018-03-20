@@ -26,6 +26,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -139,6 +140,12 @@
     <None Include="Web.config">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="sitecore_services\admin\FlushSession.aspx" />
+    <Content Include="sitecore_services\admin\Identify.aspx" />
+    <Content Include="sitecore_services\admin\jquery.json-viewer.css" />
+    <Content Include="sitecore_services\admin\jquery.json-viewer.js" />
+    <Content Include="sitecore_services\admin\jquery.min.js" />
+    <Content Include="sitecore_services\admin\ViewContact.aspx" />
     <Content Include="Views\Renderings\Sample\SampleInnerSublayout.cshtml" />
     <Content Include="Views\Renderings\Sample\SampleLayout.cshtml" />
     <Content Include="Views\Renderings\Sample\SampleRendering.cshtml" />

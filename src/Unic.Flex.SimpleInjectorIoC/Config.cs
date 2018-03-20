@@ -1,6 +1,7 @@
 ﻿namespace Unic.Flex.SimpleInjectorIoC
 {
     using Core.MarketingAutomation;
+    using Core.Utilities;
     using Glass.Mapper.Sc;
     using SimpleInjector;
     using SimpleInjector.Diagnostics;
@@ -66,6 +67,7 @@
 
             // helpers
             container.Register<IUrlService, UrlService>(Lifestyle.Singleton);
+            container.Register<ITrackerWrapper, TrackerWrapper>();
 
             // implementation classes
             container.Register<ISavePlugMailer, SavePlugMailer>();
