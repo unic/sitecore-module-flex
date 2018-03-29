@@ -1,38 +1,39 @@
 ﻿namespace Unic.Flex.Website.Controllers
 {
-    using Glass.Mapper.Sc;
-    using Sitecore;
     using System;
     using System.IO;
     using System.Linq;
     using System.Net;
     using System.Security.Cryptography;
     using System.Web.Mvc;
+    using Configuration.Core;
+    using Core.Attributes;
+    using Core.Context;
+    using Core.Globalization;
+    using Core.Logging;
+    using Core.Mapping;
+    using Core.Plugs;
+    using Core.Presentation;
+    using Core.Utilities;
+    using Glass.Mapper.Sc;
+    using Implementation.Database;
+    using Implementation.Fields.InputFields;
+    using Implementation.Services;
     using Implementation.Validators;
+    using Model.Configuration;
+    using Model.DataProviders;
+    using Model.Fields;
+    using Model.Fields.ListFields;
+    using Model.Forms;
+    using Model.Steps;
+    using Model.Validators;
+    using Model.ViewModels;
+    using Models.CascadingFields;
     using Newtonsoft.Json;
-    using Unic.Configuration.Core;
-    using Unic.Flex.Core.Attributes;
-    using Unic.Flex.Core.Context;
-    using Unic.Flex.Core.Globalization;
-    using Unic.Flex.Core.Logging;
-    using Unic.Flex.Core.Mapping;
-    using Unic.Flex.Core.Plugs;
-    using Unic.Flex.Core.Presentation;
-    using Unic.Flex.Core.Utilities;
-    using Unic.Flex.Implementation.Database;
-    using Unic.Flex.Implementation.Fields.InputFields;
-    using Unic.Flex.Model.Configuration;
-    using Unic.Flex.Model.DataProviders;
-    using Unic.Flex.Model.Fields;
-    using Unic.Flex.Model.Fields.ListFields;
-    using Unic.Flex.Model.Forms;
-    using Unic.Flex.Model.Steps;
-    using Unic.Flex.Model.Validators;
-    using Unic.Flex.Model.ViewModels;
-    using Unic.Flex.Website.Models.CascadingFields;
-    using Constants = Unic.Flex.Core.Definitions.Constants;
-    using DependencyResolver = Unic.Flex.Core.DependencyInjection.DependencyResolver;
-    using Profiler = Unic.Profiling.Profiler;
+    using Profiling;
+    using Sitecore;
+    using Constants = Implementation.Definitions.Constants;
+    using DependencyResolver = Core.DependencyInjection.DependencyResolver;
     using Settings = Sitecore.Configuration.Settings;
 
     /// <summary>
@@ -40,84 +41,24 @@
     /// </summary>
     public class FlexController : Controller
     {
-        /// <summary>
-        /// Profiling event name for GET method
-        /// </summary>
         private const string ProfileGetEventName = "Flex :: GET Controller Action";
-
-        /// <summary>
-        /// Profiling event name for POST method
-        /// </summary>
         private const string ProfilePostEventName = "Flex :: POST Controller Action";
-
-        /// <summary>
-        /// Profiling event name for executing save plugs
-        /// </summary>
         private const string ProfileExecuteSavePlugsEventName = "Flex :: Execute Save Plugs";
-        
-        /// <summary>
-        /// The presentation service
-        /// </summary>
+
         private readonly IPresentationService presentationService;
-
-        /// <summary>
-        /// The context service
-        /// </summary>
         private readonly IContextService contextService;
-
-        /// <summary>
-        /// The user data repository
-        /// </summary>
         private readonly IUserDataRepository userDataRepository;
-
-        /// <summary>
-        /// The plugs service
-        /// </summary>
         private readonly IPlugsService plugsService;
-
-        /// <summary>
-        /// The flex context
-        /// </summary>
         private readonly IFlexContext flexContext;
-
-        /// <summary>
-        /// The form repository
-        /// </summary>
         private readonly IFormRepository formRepository;
-
-        /// <summary>
-        /// The logger
-        /// </summary>
         private readonly ILogger logger;
-
-        /// <summary>
-        /// The task service
-        /// </summary>
         private readonly ITaskService taskService;
-
-        /// <summary>
-        /// The save to database service
-        /// </summary>
         private readonly ISaveToDatabaseService saveToDatabaseService;
-
-        /// <summary>
-        /// The dictionary repository
-        /// </summary>
         private readonly IDictionaryRepository dictionaryRepository;
-
-        /// <summary>
-        /// The configuration manager
-        /// </summary>
         private readonly IConfigurationManager configurationManager;
-
-        /// <summary>
-        /// The view mapper
-        /// </summary>
         private readonly IViewMapper viewMapper;
+        private readonly IDoubleOptinService doubleOptinService;
         
-        /// <summary>
-        /// Initializes a new instance of the <see cref="FlexController" /> class.
-        /// </summary>
         public FlexController()
         {
             this.presentationService = DependencyResolver.Resolve<IPresentationService>();
@@ -132,12 +73,9 @@
             this.dictionaryRepository = DependencyResolver.Resolve<IDictionaryRepository>();
             this.configurationManager = DependencyResolver.Resolve<IConfigurationManager>();
             this.viewMapper = DependencyResolver.Resolve<IViewMapper>();
+            this.doubleOptinService = DependencyResolver.Resolve<IDoubleOptinService>();
         }
 
-        /// <summary>
-        /// Controller action for GET requests
-        /// </summary>
-        /// <returns>Result of this action.</returns>
         public virtual ActionResult Form()
         {
             // form is not available in page editor
@@ -155,6 +93,15 @@
                 this.logger.Warn("GET :: Form from FlexContext is null, return empty result", this);
                 Profiler.OnEnd(this, ProfileGetEventName);
                 return new EmptyResult();
+            }
+
+            //check if there are query params
+            if (Context.Request.QueryString.AllKeys.Contains(Constants.ScActionQueryKey) && Context.Request.QueryString[Constants.ScActionQueryKey] == Constants.OptionQueryKey)
+            {
+                foreach (var saveplug in form.SavePlugs)
+                {
+                    this.doubleOptinService.ExecuteSubSavePlugs(saveplug);
+                }
             }
 
             // reset the form to not be in succeeded state anymore
@@ -179,7 +126,7 @@
             }
 
             // check if we need to cancel the current form
-            if (Request.QueryString[Constants.CancelQueryStringKey] == Constants.CancelQueryStringValue
+            if (Request.QueryString[Core.Definitions.Constants.CancelQueryStringKey] == Core.Definitions.Constants.CancelQueryStringValue
                 && form.CancelLink != null
                 && !string.IsNullOrWhiteSpace(form.CancelLink.Url))
             {

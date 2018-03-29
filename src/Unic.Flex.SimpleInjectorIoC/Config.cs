@@ -3,6 +3,7 @@
     using Core.MarketingAutomation;
     using Core.Utilities;
     using Glass.Mapper.Sc;
+    using Implementation.Services;
     using SimpleInjector;
     using SimpleInjector.Diagnostics;
     using Unic.Configuration.Core;
@@ -64,6 +65,7 @@
             // mailing
             container.Register<IMailRepository, MailRepository>();
             container.Register<IMailService, MailService>();
+            container.Register<IMailerHelper, MailerHelper>();
 
             // helpers
             container.Register<IUrlService, UrlService>(Lifestyle.Singleton);
@@ -71,8 +73,10 @@
 
             // implementation classes
             container.Register<ISavePlugMailer, SavePlugMailer>();
+            container.Register<IDoubleOptinSavePlugMailer, DoubleOptinSavePlugMailer>();
             container.Register<ISaveToDatabaseService, SaveToDatabaseService>();
-            
+            container.Register<IDoubleOptinService, DoubleOptinService>();
+
             // Marketing Automation
             container.Register<IMarketingAutomationContactService, MarketingAutomationContactService>();
 
