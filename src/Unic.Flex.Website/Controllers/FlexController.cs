@@ -36,9 +36,6 @@
     using DependencyResolver = Core.DependencyInjection.DependencyResolver;
     using Settings = Sitecore.Configuration.Settings;
 
-    /// <summary>
-    /// The one and only controller for Flex
-    /// </summary>
     public class FlexController : Controller
     {
         private const string ProfileGetEventName = "Flex :: GET Controller Action";
@@ -95,12 +92,12 @@
                 return new EmptyResult();
             }
 
-            //check if there are query params
+            //check if there are query parameterr
             if (Context.Request.QueryString.AllKeys.Contains(Constants.ScActionQueryKey) && Context.Request.QueryString[Constants.ScActionQueryKey] == Constants.OptionQueryKey)
             {
                 foreach (var saveplug in form.SavePlugs)
                 {
-                    this.doubleOptinService.ExecuteSubSavePlugs(saveplug);
+                    this.doubleOptinService.ExecuteSubSavePlugs(saveplug, form);
                 }
             }
 

@@ -72,7 +72,8 @@
 
         public void IdentifyContact(string identifier)
         {
-            var hash = SecurityUtil.GenerateHash(identifier);
+            var salt = Sitecore.Configuration.Settings.GetSetting("Flex.DoubleOptin.Salt");
+            var hash = SecurityUtil.GenerateHash(identifier, salt);
 
             var tracker = this.trackerWrapper.GetCurrentTracker();
             tracker.Session.Identify(hash);

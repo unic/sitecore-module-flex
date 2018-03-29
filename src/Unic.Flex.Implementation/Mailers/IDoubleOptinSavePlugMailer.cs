@@ -6,6 +6,6 @@
 
     public interface IDoubleOptinSavePlugMailer
     {
-        MvcMailMessage GetMessage(IForm form, DoubleOptinSavePlug plug);
+        MvcMailMessage GetMessage(IForm form, DoubleOptinSavePlug plug, string doubleOptinLink);
     }
 }

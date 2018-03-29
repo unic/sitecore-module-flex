@@ -30,7 +30,7 @@
             this.mailHelper = mailHelper;
         }
 
-        public MvcMailMessage GetMessage(IForm form, DoubleOptinSavePlug plug)
+        public MvcMailMessage GetMessage(IForm form, DoubleOptinSavePlug plug, string doubleOptinLink)
         {
             // ensure the mailer has been initialized
             if (ControllerContext == null)
