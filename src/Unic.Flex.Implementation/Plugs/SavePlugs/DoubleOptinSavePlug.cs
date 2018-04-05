@@ -5,9 +5,11 @@
     using Core.Utilities;
     using Database;
     using Glass.Mapper.Sc;
+    using Glass.Mapper.Sc.Configuration;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Mailers;
     using Model;
+    using Model.Fields;
     using Model.Forms;
     using Model.GlassExtensions.Attributes;
     using Model.Plugs;
@@ -41,8 +43,8 @@
         [SitecoreField("Reply To")]
         public virtual string ReplyTo { get; set; }
 
-        [SitecoreField("To")]
-        public virtual string To { get; set; }
+        [SitecoreField("To", Setting = SitecoreFieldSettings.InferType)]
+        public virtual IField To { get; set; }
 
         [SitecoreField("Cc")]
         public virtual string Cc { get; set; }
@@ -67,7 +69,7 @@
             Assert.ArgumentNotNull(form, "form");
 
             var recordId = this.saveToDatabaseService.Save(form);
-            var doubleOptinLink = CreateConfirmationLink(form.Id, recordId);
+            var doubleOptinLink = CreateConfirmationLink(form.Id, form.GetFieldValue(this.To), recordId);
             var mailMessage = this.doubleOptinSavePlugMailer.GetMessage(form, this, doubleOptinLink);
             
             this.mailRepository.SendMail(mailMessage);
@@ -75,11 +77,11 @@
 
         public override bool IsAsync => false;
 
-        private string CreateConfirmationLink(string formId, int optInRecordId)
+        private string CreateConfirmationLink(string formId, string toEmail, int optInRecordId)
         {
-            var optInHash = this.CreateOptInHash(optInRecordId, this.To, formId);
+            var optInHash = this.CreateOptInHash(optInRecordId, toEmail, formId);
             var url = sitecoreContext.GetCurrentItem<ItemBase>().Url;
-            var link = $"{url}?{Constants.ScActionQueryKey}={Constants.OptionQueryKey}&{Constants.OptInFormIdKey}={formId}&{Constants.OptInRecordIdKey}={optInRecordId}&{Constants.OptInHashKey}={optInHash}";
+            var link = $"{url}?{Constants.ScActionQueryKey}={Constants.OptionQueryKey}&{Constants.OptInFormIdKey}={formId}&{Constants.OptInRecordIdKey}={optInRecordId}&{Constants.OptInEmailKey}={toEmail}&{Constants.OptInHashKey}={optInHash}";
 
             return link;
         }

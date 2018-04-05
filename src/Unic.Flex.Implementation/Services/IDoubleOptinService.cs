@@ -5,6 +5,6 @@
 
     public interface IDoubleOptinService
     {
-        void ExecuteSubSavePlugs(ISavePlug saveplug, IForm form);
+        void ExecuteSubSavePlugs(ISavePlug saveplug, IForm form, string optInFormId, string optInRecordId, string emailId, string optInHash);
     }
 }

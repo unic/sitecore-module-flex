@@ -95,9 +95,14 @@
             //check if there are query parameterr
             if (Context.Request.QueryString.AllKeys.Contains(Constants.ScActionQueryKey) && Context.Request.QueryString[Constants.ScActionQueryKey] == Constants.OptionQueryKey)
             {
+                var optInFormId = Context.Request.QueryString[Constants.OptInFormIdKey];
+                var optInRecordId = Context.Request.QueryString[Constants.OptInRecordIdKey];
+                var optInHash = Context.Request.QueryString[Constants.OptInHashKey];
+                var optInEmail = Context.Request.QueryString[Constants.OptInEmailKey];
+
                 foreach (var saveplug in form.SavePlugs)
                 {
-                    this.doubleOptinService.ExecuteSubSavePlugs(saveplug, form);
+                    this.doubleOptinService.ExecuteSubSavePlugs(saveplug, form, optInFormId, optInRecordId, optInEmail, optInHash);
                 }
             }
 

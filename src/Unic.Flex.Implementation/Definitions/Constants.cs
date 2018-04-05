@@ -7,5 +7,6 @@
         public const string OptInFormIdKey = "optInFormId";
         public const string OptInRecordIdKey = "optInRecordId";
         public const string OptInHashKey = "optInHash";
+        public const string OptInEmailKey = "email";
     }
 }

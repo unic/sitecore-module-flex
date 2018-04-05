@@ -52,14 +52,13 @@
             // add content
             var fields = form.GetFields().ToList();
             ViewBag.Subject = mailService.ReplaceTokens(plug.Subject, fields);
-            ViewBag.HtmlMail = mailService.ReplaceTokens(plug.HtmlMail, fields);
+            ViewBag.HtmlMail = mailService.ReplaceTokens(plug.HtmlMail, fields).Replace("{doubleOptinLink}", doubleOptinLink);
             ViewBag.TextMail = mailService.ReplaceTokens(plug.TextMail, fields);
-            ViewBag.DoubleOptinLink = mailService.ReplaceTokens(plug.DoubleOptinLink, fields);
 
             // get email addresses
             var useGlobalConfig = IsGlobalConfigEnabled();
             var from = this.mailHelper.GetEmailAddresses(configurationManager.Get<SendEmailPlugConfiguration>(c => c.From), plug.From, useGlobalConfig);
-            var to = this.mailHelper.GetEmailAddresses(configurationManager.Get<SendEmailPlugConfiguration>(c => c.To), plug.To, useGlobalConfig);
+            var to = this.mailHelper.GetEmailAddresses(configurationManager.Get<SendEmailPlugConfiguration>(c => c.To), form.GetFieldValue(plug.To), useGlobalConfig);
             var cc = this.mailHelper.GetEmailAddresses(configurationManager.Get<SendEmailPlugConfiguration>(c => c.Cc), plug.Cc, useGlobalConfig);
             var bcc = this.mailHelper.GetEmailAddresses(configurationManager.Get<SendEmailPlugConfiguration>(c => c.Bcc), plug.Bcc, useGlobalConfig);
             var replyTo = this.mailHelper.GetEmailAddresses(configurationManager.Get<SendEmailPlugConfiguration>(c => c.ReplyTo), plug.ReplyTo, useGlobalConfig);
