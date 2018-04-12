@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Web;
+    using Core.Context;
     using Core.Mailing;
     using Core.Utilities;
     using Database;
@@ -15,6 +16,7 @@
     using Model.GlassExtensions.Attributes;
     using Model.Plugs;
     using Model.Specifications;
+    using Services;
     using Sitecore.Diagnostics;
     using Constants = Definitions.Constants;
 
@@ -25,13 +27,17 @@
         private readonly IDoubleOptinSavePlugMailer doubleOptinSavePlugMailer;
         private readonly ISaveToDatabaseService saveToDatabaseService;
         private readonly ISitecoreContext sitecoreContext;
+        private readonly IDoubleOptinService doubleOptinService;
+        private readonly IFlexContext flexContext;
 
-        public DoubleOptinSavePlug(IMailRepository mailRepository, IDoubleOptinSavePlugMailer doubleOptinSavePlugMailer, ISaveToDatabaseService saveToDatabaseService, ISitecoreContext sitecoreContext)
+        public DoubleOptinSavePlug(IMailRepository mailRepository, IDoubleOptinSavePlugMailer doubleOptinSavePlugMailer, ISaveToDatabaseService saveToDatabaseService, ISitecoreContext sitecoreContext, IDoubleOptinService doubleOptinService, IFlexContext flexContext)
         {
             this.mailRepository = mailRepository;
             this.doubleOptinSavePlugMailer = doubleOptinSavePlugMailer;
             this.saveToDatabaseService = saveToDatabaseService;
             this.sitecoreContext = sitecoreContext;
+            this.doubleOptinService = doubleOptinService;
+            this.flexContext = flexContext;
         }
 
         [SitecoreSharedField("Theme")]
@@ -69,9 +75,17 @@
 
         public override void Execute(IForm form)
         {
+            
             Assert.ArgumentNotNull(form, "form");
 
             var recordId = this.saveToDatabaseService.Save(form);
+
+            if (Sitecore.Context.User.IsAuthenticated & (Sitecore.Context.User.Profile.Email == form.GetFieldValue(this.To)))
+            {
+                this.doubleOptinService.ExecuteSubSavePlugs(this, flexContext, recordId.ToString());
+                return;
+            }
+
             var doubleOptinLink = CreateConfirmationLink(form.Id, form.GetFieldValue(this.To), recordId);
             var mailMessage = this.doubleOptinSavePlugMailer.GetMessage(form, this, doubleOptinLink);
             
