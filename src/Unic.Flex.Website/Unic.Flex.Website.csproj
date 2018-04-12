@@ -206,6 +206,8 @@
   <ItemGroup>
     <Content Include="Views\Modules\Flex\Default\Fields\InputFields\AutoComplete.cshtml" />
     <Content Include="Views\Modules\Flex\Default\Components\LabelLink.cshtml" />
+    <Content Include="Views\Modules\Flex\Default\Mailers\SavePlug\DoubleOptin.cshtml" />
+    <Content Include="Views\Modules\Flex\Default\Mailers\SavePlug\DoubleOptin.text.cshtml" />
     <None Include="web.config">
       <SubType>Designer</SubType>
     </None>

@@ -66,7 +66,7 @@
             // populate the mail
             return Populate(x =>
             {
-                x.ViewName = presentationService.ResolveView(ControllerContext, "Mailers/SavePlug/Form", theme);
+                x.ViewName = presentationService.ResolveView(ControllerContext, "Mailers/SavePlug/DoubleOptin", theme);
                 x.Subject = ViewBag.Subject;
 
                 // add addresses
