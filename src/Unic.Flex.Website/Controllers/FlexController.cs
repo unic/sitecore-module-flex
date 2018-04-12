@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Net;
     using System.Security.Cryptography;
+    using System.Web;
     using System.Web.Mvc;
     using Configuration.Core;
     using Core.Attributes;
@@ -18,6 +19,7 @@
     using Glass.Mapper.Sc;
     using Implementation.Database;
     using Implementation.Fields.InputFields;
+    using Implementation.Plugs.SavePlugs;
     using Implementation.Services;
     using Implementation.Validators;
     using Model.Configuration;
@@ -55,7 +57,7 @@
         private readonly IConfigurationManager configurationManager;
         private readonly IViewMapper viewMapper;
         private readonly IDoubleOptinService doubleOptinService;
-        
+
         public FlexController()
         {
             this.presentationService = DependencyResolver.Resolve<IPresentationService>();
@@ -82,7 +84,7 @@
             }
 
             Profiler.OnStart(this, ProfileGetEventName);
-            
+
             // get the form
             var form = this.flexContext.Form;
             if (form == null)
@@ -95,14 +97,21 @@
             //check if there are query parameterr
             if (Context.Request.QueryString.AllKeys.Contains(Constants.ScActionQueryKey) && Context.Request.QueryString[Constants.ScActionQueryKey] == Constants.OptionQueryKey)
             {
-                var optInFormId = Context.Request.QueryString[Constants.OptInFormIdKey];
-                var optInRecordId = Context.Request.QueryString[Constants.OptInRecordIdKey];
-                var optInHash = Context.Request.QueryString[Constants.OptInHashKey];
-                var optInEmail = Context.Request.QueryString[Constants.OptInEmailKey];
+                var optInFormId = HttpUtility.UrlDecode(Context.Request.QueryString[Constants.OptInFormIdKey]);
+                var optInRecordId = HttpUtility.UrlDecode(Context.Request.QueryString[Constants.OptInRecordIdKey]);
+                var optInHash = HttpUtility.UrlDecode(Context.Request.QueryString[Constants.OptInHashKey]);
+                var optInEmail = HttpUtility.UrlDecode(Context.Request.QueryString[Constants.OptInEmailKey]);
+                
+                var doubleOptinSavePlug = form.SavePlugs.OfType<DoubleOptinSavePlug>().FirstOrDefault();
 
-                foreach (var saveplug in form.SavePlugs)
+                if (doubleOptinSavePlug != null)
                 {
-                    this.doubleOptinService.ExecuteSubSavePlugs(saveplug, form, optInFormId, optInRecordId, optInEmail, optInHash);
+                    if (this.doubleOptinService.ValidateConfirmationLink(optInFormId, optInRecordId, optInEmail, optInHash))
+                    {
+                        this.doubleOptinService.ExecuteSubSavePlugs(doubleOptinSavePlug, flexContext, optInRecordId);
+
+                        return this.ShowSuccessMessage(doubleOptinSavePlug.ConfirmMessage);
+                    }
                 }
             }
 
@@ -185,9 +194,9 @@
             {
                 return this.ShowError(this.dictionaryRepository.GetText("Page Editor Message"));
             }
-            
+
             Profiler.OnStart(this, ProfilePostEventName);
-            
+
             // get the current form
             var form = this.flexContext.Form;
             if (form == null)
@@ -305,7 +314,7 @@
                 this.logger.Warn(string.Format("No valid value provided to check ajax validator '{0}'", validator), this);
                 return this.Json(false, JsonRequestBehavior.AllowGet);
             }
-            
+
             // validate
             return this.Json(validatorItem.IsValid(collection[key]), JsonRequestBehavior.AllowGet);
         }
@@ -419,7 +428,7 @@
         public virtual ActionResult ExecutePlugs(string timestamp, string hash)
         {
             this.logger.Debug("Received request to execute save plugs", this);
-            
+
             // check the hash
             if (!SecurityUtil.VerifyMd5Hash(MD5.Create(), timestamp, hash))
             {
@@ -445,7 +454,7 @@
                 this.logger.Error("Error while asynchronous executing plugs", this, exception);
                 return this.Content(false.ToString());
             }
-            
+
             return this.Content(true.ToString());
         }
 
@@ -473,7 +482,7 @@
                 this.logger.Warn(string.Format("Try for exporting form '{0}' with invalid hash", formId), this);
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            
+
             // get the correct path to the temp folder
             var filePath = Path.Combine(MainUtil.MapPath(Settings.TempFolderPath), fileName);
             if (!System.IO.File.Exists(filePath))

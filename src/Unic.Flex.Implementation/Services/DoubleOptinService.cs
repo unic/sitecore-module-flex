@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using Core.Context;
     using Core.Database;
     using Core.Logging;
     using Core.Mapping;
@@ -23,21 +24,27 @@
             this.unitOfWork = unitOfWork;
             this.logger = logger;
         }
-        public void ExecuteSubSavePlugs(ISavePlug saveplug, IForm form, string optInFormId, string optInRecordId, string email, string optInHash)
-        {
-            if (!this.ValidateConfirmationLink(optInFormId, optInRecordId, email, optInHash)) return;
 
+        public void ExecuteSubSavePlugs(ISavePlug saveplug, IFlexContext flexContext, string optInRecordId)
+        {
             var item = this.sitecoreContext.GetItem<DoubleOptinSavePlug>(saveplug.ItemId);
             var saveplugs = item.SavePlugs;
-
-            foreach (var savePlug in saveplugs)
+            try
             {
-               form = this.FillFormWithData(form, optInRecordId);
-               savePlug.Execute(form);
+                foreach (var savePlug in saveplugs)
+                {
+                    flexContext.Form = this.FillFormWithData(flexContext.Form, optInRecordId);
+                    savePlug.Execute(flexContext.Form);
+                }
+            }
+            catch (Exception exception)
+            {
+                flexContext.ErrorMessage = flexContext.Form.ErrorMessage;
+                this.logger.Error("Error while executing save plug", this, exception);
             }
         }
 
-        private bool ValidateConfirmationLink(string optInFormId, string optInRecordId, string email, string optInHashFromLink)
+        public bool ValidateConfirmationLink(string optInFormId, string optInRecordId, string email, string optInHashFromLink)
         {
             var optInHash = this.CreateOptInHash(optInRecordId, email, optInFormId);
             if (optInHash != optInHashFromLink)
@@ -67,13 +74,13 @@
 
             foreach (var formStep in form.Steps)
             {
-               foreach (var formStepSection in formStep.Sections)
+                foreach (var formStepSection in formStep.Sections)
                 {
                     foreach (var field in formStepSection.Fields)
                     {
                         field.Value = fields.FirstOrDefault(x => x.ItemId == field.ItemId)?.Value;
                     }
-               }
+                }
             }
 
             return form;

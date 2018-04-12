@@ -1,6 +1,7 @@
 ﻿namespace Unic.Flex.Implementation.Plugs.SavePlugs
 {
     using System.Collections.Generic;
+    using System.Web;
     using Core.Mailing;
     using Core.Utilities;
     using Database;
@@ -15,7 +16,6 @@
     using Model.Plugs;
     using Model.Specifications;
     using Sitecore.Diagnostics;
-    using Sitecore.Links;
     using Constants = Definitions.Constants;
 
     [SitecoreType(TemplateId = "{F8239638-A672-491F-BBD4-A59CD3090C8B}")]
@@ -61,6 +61,9 @@
         [SitecoreField("Text Mail")]
         public virtual string TextMail { get; set; }
 
+        [SitecoreField("Confirm Message")]
+        public virtual string ConfirmMessage { get; set; }
+
         [SitecoreChildren(IsLazy = true, InferType = true)]
         public virtual IEnumerable<ISavePlug> SavePlugs { get; set; }
 
@@ -81,7 +84,7 @@
         {
             var optInHash = this.CreateOptInHash(optInRecordId, toEmail, formId);
             var url = sitecoreContext.GetCurrentItem<ItemBase>().Url;
-            var link = $"{url}?{Constants.ScActionQueryKey}={Constants.OptionQueryKey}&{Constants.OptInFormIdKey}={formId}&{Constants.OptInRecordIdKey}={optInRecordId}&{Constants.OptInEmailKey}={toEmail}&{Constants.OptInHashKey}={optInHash}";
+            var link = $"{url}?{Constants.ScActionQueryKey}={Constants.OptionQueryKey}&{Constants.OptInFormIdKey}={HttpUtility.UrlEncode(formId)}&{Constants.OptInRecordIdKey}={optInRecordId}&{Constants.OptInEmailKey}={HttpUtility.UrlEncode(toEmail)}&{Constants.OptInHashKey}={HttpUtility.UrlEncode(optInHash)}";
 
             return link;
         }
