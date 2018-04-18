@@ -45,7 +45,7 @@
                 return false;
             }
 
-            if (!this.unitOfWork.SessionRepository.Any(x => x.Id.ToString() == optInRecordId))
+            if (!this.unitOfWork.SessionRepository.Any(x => x.Id.ToString() == optInRecordId && x.Form.ItemId.ToString() == optInFormId))
             {
                 this.logger.Warn($"DoubleOptinLinkService.ValidateConfirmationLink: No session with this ID was found. OptInRecordId={optInRecordId}", this);
                 return false;
