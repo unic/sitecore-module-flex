@@ -25,7 +25,7 @@
         {
             var optInHash = this.CreateOptInHash(optInRecordId, toEmail, formId);
             var url = this.sitecoreContext.GetCurrentItem<ItemBase>().Url;
-            var link = $"{url}?{Definitions.Constants.ScActionQueryKey}={Definitions.Constants.OptionQueryKey}&{Definitions.Constants.OptInFormIdKey}={HttpUtility.UrlEncode(formId)}&{Definitions.Constants.OptInRecordIdKey}={optInRecordId}&{Definitions.Constants.OptInHashKey}={Uri.EscapeDataString(optInHash)}";
+            var link = $"{url}?{Definitions.Constants.ScActionQueryKey}={Definitions.Constants.OptionQueryKey}&{Definitions.Constants.OptInFormIdKey}={Uri.EscapeDataString(formId)}&{Definitions.Constants.OptInRecordIdKey}={optInRecordId}&{Definitions.Constants.OptInHashKey}={Uri.EscapeDataString(optInHash)}";
 
             return link;
         }
