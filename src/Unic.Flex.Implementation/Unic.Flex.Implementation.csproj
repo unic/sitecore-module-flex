@@ -169,7 +169,9 @@
     <Compile Include="Rules\SaveRules\SaveLanguageAction.cs" />
     <Compile Include="Rules\SaveRules\SaveContactFieldAction.cs" />
     <Compile Include="Rules\SaveRules\SaveSimpleContactFieldAction.cs" />
+    <Compile Include="Services\DoubleOptinLinkService.cs" />
     <Compile Include="Services\DoubleOptinService.cs" />
+    <Compile Include="Services\IDoubleOptinLinkService.cs" />
     <Compile Include="Services\IDoubleOptinService.cs" />
     <Compile Include="Validators\AjaxValidator.cs" />
     <Compile Include="Validators\CompareValidator.cs" />

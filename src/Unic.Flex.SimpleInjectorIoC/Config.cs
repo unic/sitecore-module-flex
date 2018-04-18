@@ -76,6 +76,7 @@
             container.Register<IDoubleOptinSavePlugMailer, DoubleOptinSavePlugMailer>();
             container.Register<ISaveToDatabaseService, SaveToDatabaseService>();
             container.Register<IDoubleOptinService, DoubleOptinService>();
+            container.Register<IDoubleOptinLinkService, DoubleOptinLinkService>();
 
             // Marketing Automation
             container.Register<IMarketingAutomationContactService, MarketingAutomationContactService>();

@@ -1,5 +1,4 @@
-﻿@using Unic.Flex.Core.Context
-@using Unic.Flex.Model.Forms
+﻿@using Unic.Flex.Model.Forms
 @{
     Layout = ViewBag.TextLayout;
     var form = ViewBag.Form as Form;
@@ -7,12 +6,6 @@
     {
         return;
     }
-
-    var formUrl = Sitecore.Web.WebUtil.GetFullUrl(form.GetFirstStepUrl()).Replace(":443", string.Empty);
 }
 
-@Html.Raw(form.Title)
-
 @Html.Raw(ViewBag.HtmlMail)
-
-

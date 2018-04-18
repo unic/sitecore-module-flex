@@ -10,6 +10,7 @@
     using Configuration.Core;
     using Core.Attributes;
     using Core.Context;
+    using Core.Database;
     using Core.Globalization;
     using Core.Logging;
     using Core.Mapping;
@@ -35,6 +36,7 @@
     using Profiling;
     using Sitecore;
     using Constants = Implementation.Definitions.Constants;
+    using Convert = System.Convert;
     using DependencyResolver = Core.DependencyInjection.DependencyResolver;
     using Settings = Sitecore.Configuration.Settings;
 
@@ -57,6 +59,8 @@
         private readonly IConfigurationManager configurationManager;
         private readonly IViewMapper viewMapper;
         private readonly IDoubleOptinService doubleOptinService;
+        private readonly IDoubleOptinLinkService doubleOptinLinkService;
+        private readonly IUnitOfWork unitOfWork;
 
         public FlexController()
         {
@@ -73,6 +77,8 @@
             this.configurationManager = DependencyResolver.Resolve<IConfigurationManager>();
             this.viewMapper = DependencyResolver.Resolve<IViewMapper>();
             this.doubleOptinService = DependencyResolver.Resolve<IDoubleOptinService>();
+            this.doubleOptinLinkService = DependencyResolver.Resolve<IDoubleOptinLinkService>();
+            this.unitOfWork = DependencyResolver.Resolve<IUnitOfWork>();
         }
 
         public virtual ActionResult Form()
@@ -97,16 +103,17 @@
             //check if there are query parameterr
             if (Context.Request.QueryString.AllKeys.Contains(Constants.ScActionQueryKey) && Context.Request.QueryString[Constants.ScActionQueryKey] == Constants.OptionQueryKey)
             {
-                var optInFormId = HttpUtility.UrlDecode(Context.Request.QueryString[Constants.OptInFormIdKey]);
-                var optInRecordId = HttpUtility.UrlDecode(Context.Request.QueryString[Constants.OptInRecordIdKey]);
-                var optInHash = HttpUtility.UrlDecode(Context.Request.QueryString[Constants.OptInHashKey]);
-                var optInEmail = HttpUtility.UrlDecode(Context.Request.QueryString[Constants.OptInEmailKey]);
+                var optInFormId = Uri.UnescapeDataString(Context.Request.QueryString[Constants.OptInFormIdKey]);
+                var optInRecordId = Uri.UnescapeDataString(Context.Request.QueryString[Constants.OptInRecordIdKey]);
+                var optInHash = Uri.UnescapeDataString(Context.Request.QueryString[Constants.OptInHashKey]);
                 
                 var doubleOptinSavePlug = form.SavePlugs.OfType<DoubleOptinSavePlug>().FirstOrDefault();
 
                 if (doubleOptinSavePlug != null)
                 {
-                    if (this.doubleOptinService.ValidateConfirmationLink(optInFormId, optInRecordId, optInEmail, optInHash))
+                    var fields = this.unitOfWork.SessionRepository.GetById(Convert.ToInt32(optInRecordId)).Fields;
+                    var email = fields.FirstOrDefault(x => x.ItemId == doubleOptinSavePlug.To.ItemId)?.Value;
+                    if (this.doubleOptinLinkService.ValidateConfirmationLink(optInFormId, optInRecordId, email, optInHash))
                     {
                         this.doubleOptinService.ExecuteSubSavePlugs(doubleOptinSavePlug, flexContext, optInRecordId);
 

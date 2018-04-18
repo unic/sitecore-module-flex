@@ -73,6 +73,7 @@
             this.Bind<IDoubleOptinSavePlugMailer>().To<DoubleOptinSavePlugMailer>();
             this.Bind<ISaveToDatabaseService>().To<SaveToDatabaseService>();
             this.Bind<IDoubleOptinService>().To<DoubleOptinService>();
+            this.Bind<IDoubleOptinLinkService>().To<DoubleOptinLinkService>();
             
             // Marketing Automation
             this.Bind<IMarketingAutomationContactService, MarketingAutomationContactService>();

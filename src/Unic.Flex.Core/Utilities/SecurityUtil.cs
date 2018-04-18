@@ -29,11 +29,11 @@
             return 0 == comparer.Compare(hashOfInput, hash);
         }
 
-        public static string GenerateHash(string content, string salt)
+        public static string GenerateHash(string content)
         {
             using (var crypt = new SHA1Managed())
             {
-                var contentWithSaltBytes = Encoding.UTF8.GetBytes(content + salt);
+                var contentWithSaltBytes = Encoding.UTF8.GetBytes(content + Salt);
                 var crypto = crypt.ComputeHash(contentWithSaltBytes, 0, contentWithSaltBytes.Length);
                 return Convert.ToBase64String(crypto);
             }

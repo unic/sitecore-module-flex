@@ -6,7 +6,6 @@
     using Core.Database;
     using Core.Logging;
     using Core.Mapping;
-    using Core.Utilities;
     using Glass.Mapper.Sc;
     using Model.Forms;
     using Model.Plugs;
@@ -25,15 +24,16 @@
             this.logger = logger;
         }
 
-        public void ExecuteSubSavePlugs(ISavePlug saveplug, IFlexContext flexContext, string optInRecordId)
+        public void ExecuteSubSavePlugs(ISavePlug doubleOptinSavePlug, IFlexContext flexContext, string optInRecordId)
         {
-            var item = this.sitecoreContext.GetItem<DoubleOptinSavePlug>(saveplug.ItemId);
+            var item = this.sitecoreContext.GetItem<DoubleOptinSavePlug>(doubleOptinSavePlug.ItemId);
             var saveplugs = item.SavePlugs;
             try
             {
+                flexContext.Form = this.FillFormWithData(flexContext.Form, optInRecordId);
+
                 foreach (var savePlug in saveplugs)
                 {
-                    flexContext.Form = this.FillFormWithData(flexContext.Form, optInRecordId);
                     savePlug.Execute(flexContext.Form);
                 }
             }
@@ -43,31 +43,7 @@
                 this.logger.Error("Error while executing save plug", this, exception);
             }
         }
-
-        public bool ValidateConfirmationLink(string optInFormId, string optInRecordId, string email, string optInHashFromLink)
-        {
-            var optInHash = this.CreateOptInHash(optInRecordId, email, optInFormId);
-            if (optInHash != optInHashFromLink)
-            {
-                this.logger.Warn($"OptinService.ValidateConfirmationLink: OptInHash did not match. OptInHash={optInHashFromLink} OptInRecordId={optInRecordId} Email:{email}", this);
-                return false;
-            }
-
-            if (!this.unitOfWork.FormRepository.Any(x => x.ItemId.ToString() == optInFormId))
-            {
-                this.logger.Warn($"OptinService.ValidateConfirmationLink: No form with this ID was found. OptInFormID={optInFormId}", this);
-                return false;
-            }
-
-            if (!this.unitOfWork.SessionRepository.Any(x => x.Id.ToString() == optInRecordId))
-            {
-                this.logger.Warn($"OptinService.ValidateConfirmationLink: No session with this ID was found. OptInRecordId={optInRecordId}", this);
-                return false;
-            }
-
-            return true;
-        }
-
+        
         private IForm FillFormWithData(IForm form, string optInRecordId)
         {
             var fields = this.unitOfWork.SessionRepository.GetById(Convert.ToInt32(optInRecordId)).Fields;
@@ -84,13 +60,6 @@
             }
 
             return form;
-        }
-
-        private string CreateOptInHash(string optInRecordId, string email, string formId)
-        {
-            var salt = Sitecore.Configuration.Settings.GetSetting("Flex.DoubleOptin.Salt");
-            var stringToHash = $"{optInRecordId}|{email}|{formId}";
-            return SecurityUtil.GenerateHash(stringToHash, salt);
         }
     }
 }

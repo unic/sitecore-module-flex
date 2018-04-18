@@ -15,7 +15,7 @@
             var value = this.GetFieldValue(ruleContext);
             if (value == null) return;
 
-            analyticsContactService.IdentifyContact( value);
+            analyticsContactService.IdentifyContact(value);
         }
     }
 }

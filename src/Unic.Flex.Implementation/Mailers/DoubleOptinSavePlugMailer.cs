@@ -38,9 +38,6 @@
                 Initialize(HttpContext.Current.Request.RequestContext);
             }
 
-            // set the theme
-            theme = plug.Theme != null ? plug.Theme.Value : string.Empty;
-
             // get the layouts
             ViewBag.HtmlLayout = presentationService.ResolveView(ControllerContext, "Mailers/_Layout", theme);
             ViewBag.TextLayout = presentationService.ResolveView(ControllerContext, "Mailers/_Layout.text", theme);
@@ -52,7 +49,7 @@
             // add content
             var fields = form.GetFields().ToList();
             ViewBag.Subject = mailService.ReplaceTokens(plug.Subject, fields);
-            ViewBag.HtmlMail = mailService.ReplaceTokens(plug.HtmlMail, fields).Replace("{doubleOptinLink}", doubleOptinLink);
+            ViewBag.HtmlMail = mailService.ReplaceTokens(plug.HtmlMail, fields).Replace("{DoubleOptinLink}", doubleOptinLink);
             ViewBag.TextMail = mailService.ReplaceTokens(plug.TextMail, fields);
 
             // get email addresses
