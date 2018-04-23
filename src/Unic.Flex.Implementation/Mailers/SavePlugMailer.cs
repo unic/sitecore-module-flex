@@ -37,46 +37,46 @@
 
         public virtual MvcMailMessage GetMessage(IForm form, SendEmail plug)
         {
-            if (ControllerContext == null)
+            if (this.ControllerContext == null)
             {
                 Initialize(HttpContext.Current.Request.RequestContext);
             }
             
-            theme = plug.Theme != null ? plug.Theme.Value : string.Empty;
+            this.theme = plug.Theme != null ? plug.Theme.Value : string.Empty;
             
-            ViewBag.HtmlLayout = presentationService.ResolveView(ControllerContext, "Mailers/_Layout", theme);
-            ViewBag.TextLayout = presentationService.ResolveView(ControllerContext, "Mailers/_Layout.text", theme);
+            ViewBag.HtmlLayout = this.presentationService.ResolveView(this.ControllerContext, "Mailers/_Layout", this.theme);
+            ViewBag.TextLayout = this.presentationService.ResolveView(this.ControllerContext, "Mailers/_Layout.text", this.theme);
 
             ViewBag.Form = form;
-            ViewBag.Theme = theme;
+            ViewBag.Theme = this.theme;
 
             var fields = form.GetFields().ToList();
-            ViewBag.Subject = mailService.ReplaceTokens(plug.Subject, fields);
-            ViewBag.HtmlMailIntroduction = mailService.ReplaceTokens(plug.HtmlMailIntroduction, fields);
-            ViewBag.HtmlMailFooter = mailService.ReplaceTokens(plug.HtmlMailFooter, fields);
-            ViewBag.TextMailIntroduction = mailService.ReplaceTokens(plug.TextMailIntroduction, fields);
-            ViewBag.TextMailFooter = mailService.ReplaceTokens(plug.TextMailFooter, fields);
+            ViewBag.Subject = this.mailService.ReplaceTokens(plug.Subject, fields);
+            ViewBag.HtmlMailIntroduction = this.mailService.ReplaceTokens(plug.HtmlMailIntroduction, fields);
+            ViewBag.HtmlMailFooter = this.mailService.ReplaceTokens(plug.HtmlMailFooter, fields);
+            ViewBag.TextMailIntroduction = this.mailService.ReplaceTokens(plug.TextMailIntroduction, fields);
+            ViewBag.TextMailFooter = this.mailService.ReplaceTokens(plug.TextMailFooter, fields);
 
             var useGlobalConfig = IsGlobalConfigEnabled();
-            var from = this.mailHelper.GetEmailAddresses(configurationManager.Get<SendEmailPlugConfiguration>(c => c.From), plug.From, useGlobalConfig);
-            var cc = this.mailHelper.GetEmailAddresses(configurationManager.Get<SendEmailPlugConfiguration>(c => c.Cc), plug.Cc, useGlobalConfig);
-            var bcc = this.mailHelper.GetEmailAddresses(configurationManager.Get<SendEmailPlugConfiguration>(c => c.Bcc), plug.Bcc, useGlobalConfig);
+            var from = this.mailHelper.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.From), plug.From, useGlobalConfig);
+            var cc = this.mailHelper.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.Cc), plug.Cc, useGlobalConfig);
+            var bcc = this.mailHelper.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.Bcc), plug.Bcc, useGlobalConfig);
             
             var to = useGlobalConfig ? string.Empty : GetMappedEmailFromFields(plug.ReceiverFields, form, plug);
             if (string.IsNullOrWhiteSpace(to))
             {
-                to = this.mailHelper.GetEmailAddresses(configurationManager.Get<SendEmailPlugConfiguration>(c => c.To), plug.To, useGlobalConfig);
+                to = this.mailHelper.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.To), plug.To, useGlobalConfig);
             }
 
             var replyTo = useGlobalConfig ? string.Empty : this.mailHelper.GetEmailFromFields(plug.ReplyToFields, form);
             if (string.IsNullOrWhiteSpace(replyTo))
             {
-                replyTo = this.mailHelper.GetEmailAddresses(configurationManager.Get<SendEmailPlugConfiguration>(c => c.ReplyTo), plug.ReplyTo, useGlobalConfig);
+                replyTo = this.mailHelper.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.ReplyTo), plug.ReplyTo, useGlobalConfig);
             }
             
-            return Populate(x =>
+            return this.Populate(x =>
             {
-                x.ViewName = presentationService.ResolveView(ControllerContext, "Mailers/SavePlug/Form", theme);
+                x.ViewName = this.presentationService.ResolveView(this.ControllerContext, "Mailers/SavePlug/Form", this.theme);
                 x.Subject = ViewBag.Subject;
 
                 x.From = new MailAddress(from);
@@ -97,12 +97,12 @@
 
         public override string TextViewName(string viewName)
         {
-            return presentationService.ResolveView(ControllerContext, "Mailers/SavePlug/Form.text", theme);
+            return this.presentationService.ResolveView(this.ControllerContext, "Mailers/SavePlug/Form.text", this.theme);
         }
 
         protected virtual bool IsGlobalConfigEnabled()
         {
-            return Settings.GetBoolSetting("Flex.EmailAddresses.AlwaysUseGlobalConfig", false);
+            return Settings.GetBoolSetting(Definitions.Constants.AlwaysUseGlobalConfig, false);
         }
 
         private static string GetMappedEmailFromFields(IEnumerable<IField> fields, IForm form, SendEmail plug)

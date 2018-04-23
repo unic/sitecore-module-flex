@@ -20,7 +20,6 @@
         private readonly IConfigurationManager configurationManager;
         private readonly IMailService mailService;
         private readonly IMailerHelper mailHelper;
-        private string theme;
 
         public DoubleOptinSavePlugMailer(IPresentationService presentationService, IConfigurationManager configurationManager, IMailService mailService, IMailerHelper mailHelper)
         {
@@ -33,37 +32,36 @@
         public MvcMailMessage GetMessage(IForm form, DoubleOptinSavePlug plug, string doubleOptinLink)
         {
             // ensure the mailer has been initialized
-            if (ControllerContext == null)
+            if (this.ControllerContext == null)
             {
                 Initialize(HttpContext.Current.Request.RequestContext);
             }
 
             // get the layouts
-            ViewBag.HtmlLayout = presentationService.ResolveView(ControllerContext, "Mailers/_Layout", theme);
-            ViewBag.TextLayout = presentationService.ResolveView(ControllerContext, "Mailers/_Layout.text", theme);
+            ViewBag.HtmlLayout = this.presentationService.ResolveView(this.ControllerContext, "Mailers/_Layout");
+            ViewBag.TextLayout = this.presentationService.ResolveView(this.ControllerContext, "Mailers/_Layout.text");
 
             // add data
             ViewBag.Form = form;
-            ViewBag.Theme = theme;
 
             // add content
             var fields = form.GetFields().ToList();
-            ViewBag.Subject = mailService.ReplaceTokens(plug.Subject, fields);
-            ViewBag.HtmlMail = mailService.ReplaceTokens(plug.HtmlMail, fields).Replace("{DoubleOptinLink}", doubleOptinLink);
-            ViewBag.TextMail = mailService.ReplaceTokens(plug.TextMail, fields);
+            ViewBag.Subject = this.mailService.ReplaceTokens(plug.Subject, fields);
+            ViewBag.HtmlMail = this.mailService.ReplaceTokens(plug.HtmlMail, fields).Replace("{DoubleOptinLink}", doubleOptinLink);
+            ViewBag.TextMail = this.mailService.ReplaceTokens(plug.TextMail, fields);
 
             // get email addresses
             var useGlobalConfig = IsGlobalConfigEnabled();
-            var from = this.mailHelper.GetEmailAddresses(configurationManager.Get<SendEmailPlugConfiguration>(c => c.From), plug.From, useGlobalConfig);
-            var to = this.mailHelper.GetEmailAddresses(configurationManager.Get<SendEmailPlugConfiguration>(c => c.To), form.GetFieldValue(plug.To), useGlobalConfig);
-            var cc = this.mailHelper.GetEmailAddresses(configurationManager.Get<SendEmailPlugConfiguration>(c => c.Cc), plug.Cc, useGlobalConfig);
-            var bcc = this.mailHelper.GetEmailAddresses(configurationManager.Get<SendEmailPlugConfiguration>(c => c.Bcc), plug.Bcc, useGlobalConfig);
-            var replyTo = this.mailHelper.GetEmailAddresses(configurationManager.Get<SendEmailPlugConfiguration>(c => c.ReplyTo), plug.ReplyTo, useGlobalConfig);
+            var from = this.mailHelper.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.From), plug.From, useGlobalConfig);
+            var to = this.mailHelper.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.To), form.GetFieldValue(plug.To), useGlobalConfig);
+            var cc = this.mailHelper.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.Cc), plug.Cc, useGlobalConfig);
+            var bcc = this.mailHelper.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.Bcc), plug.Bcc, useGlobalConfig);
+            var replyTo = this.mailHelper.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.ReplyTo), plug.ReplyTo, useGlobalConfig);
 
             // populate the mail
             return Populate(x =>
             {
-                x.ViewName = presentationService.ResolveView(ControllerContext, "Mailers/SavePlug/DoubleOptin", theme);
+                x.ViewName = this.presentationService.ResolveView(this.ControllerContext, "Mailers/SavePlug/DoubleOptin");
                 x.Subject = ViewBag.Subject;
 
                 // add addresses
@@ -77,7 +75,7 @@
 
         protected virtual bool IsGlobalConfigEnabled()
         {
-            return Settings.GetBoolSetting("Flex.EmailAddresses.AlwaysUseGlobalConfig", false);
+            return Settings.GetBoolSetting(Definitions.Constants.AlwaysUseGlobalConfig, false);
         }
     }
 }

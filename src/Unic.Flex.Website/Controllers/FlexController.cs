@@ -100,8 +100,8 @@
                 return new EmptyResult();
             }
 
-            //check if there are query parameterr
-            if (Context.Request.QueryString.AllKeys.Contains(Constants.ScActionQueryKey) && Context.Request.QueryString[Constants.ScActionQueryKey] == Constants.OptionQueryKey)
+            //check if there are query parameters
+            if (Context.Request.QueryString.AllKeys.Contains(Constants.ScActionQueryKey) && Context.Request.QueryString[Constants.ScActionQueryKey] == Constants.OptinQueryKey)
             {
                 var optInFormId = Uri.UnescapeDataString(Context.Request.QueryString[Constants.OptInFormIdKey]);
                 var optInRecordId = Uri.UnescapeDataString(Context.Request.QueryString[Constants.OptInRecordIdKey]);
@@ -116,6 +116,14 @@
                     if (this.doubleOptinLinkService.ValidateConfirmationLink(optInFormId, optInRecordId, email, optInHash))
                     {
                         this.doubleOptinService.ExecuteSubSavePlugs(doubleOptinSavePlug, flexContext, optInRecordId);
+
+                        if (!string.IsNullOrWhiteSpace(this.flexContext.ErrorMessage))
+                        {
+                            var result = this.ShowError();
+                            this.logger.Debug("GET :: Show error messages", this);
+                            Profiler.OnEnd(this, ProfileGetEventName);
+                            return result;
+                        }
 
                         return this.ShowSuccessMessage(doubleOptinSavePlug.ConfirmMessage);
                     }
