@@ -119,12 +119,11 @@
 
                         if (!string.IsNullOrWhiteSpace(this.flexContext.ErrorMessage))
                         {
-                            var result = this.ShowError();
-                            this.logger.Debug("GET :: Show error messages", this);
                             Profiler.OnEnd(this, ProfileGetEventName);
-                            return result;
+                            return this.ShowError();
                         }
 
+                        Profiler.OnEnd(this, ProfileGetEventName);
                         return this.ShowSuccessMessage(doubleOptinSavePlug.ConfirmMessage);
                     }
                 }
