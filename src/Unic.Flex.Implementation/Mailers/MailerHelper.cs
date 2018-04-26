@@ -23,7 +23,7 @@
                 if (!string.IsNullOrWhiteSpace(email)) return email;
             }
 
-            return string.Empty;
+            return null;
         }
 
         public string GetEmailFromField(IField field, IForm form)

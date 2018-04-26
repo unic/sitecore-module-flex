@@ -43,20 +43,14 @@
                 this.logger.Error("Error while executing save plug", this, exception);
             }
         }
-        
+
         private IForm FillFormWithData(IForm form, string optInRecordId)
         {
             var fields = this.unitOfWork.SessionRepository.GetById(Convert.ToInt32(optInRecordId)).Fields;
 
-            foreach (var formStep in form.Steps)
+            foreach (var field in form.Steps.SelectMany(step => step.Sections).SelectMany(section => section.Fields))
             {
-                foreach (var formStepSection in formStep.Sections)
-                {
-                    foreach (var field in formStepSection.Fields)
-                    {
-                        field.Value = fields.FirstOrDefault(x => x.ItemId == field.ItemId)?.Value;
-                    }
-                }
+               field.Value = fields.FirstOrDefault(x => x.ItemId == field.ItemId)?.Value;
             }
 
             return form;

@@ -103,27 +103,26 @@
             //check if there are query parameters
             if (Context.Request.QueryString.AllKeys.Contains(Constants.ScActionQueryKey) && Context.Request.QueryString[Constants.ScActionQueryKey] == Constants.OptinQueryKey)
             {
-                var optInFormId = Uri.UnescapeDataString(Context.Request.QueryString[Constants.OptInFormIdKey]);
-                var optInRecordId = Uri.UnescapeDataString(Context.Request.QueryString[Constants.OptInRecordIdKey]);
-                var optInHash = Uri.UnescapeDataString(Context.Request.QueryString[Constants.OptInHashKey]);
+                var optInFormId = Uri.UnescapeDataString(Context.Request.QueryString[Constants.OptInFormIdKey] ?? string.Empty);
+                var optInRecordId = Uri.UnescapeDataString(Context.Request.QueryString[Constants.OptInRecordIdKey] ?? string.Empty);
+                var optInHash = Uri.UnescapeDataString(Context.Request.QueryString[Constants.OptInHashKey] ?? string.Empty);
                 
                 var doubleOptinSavePlug = form.SavePlugs.OfType<DoubleOptinSavePlug>().FirstOrDefault();
+                var formRecord = this.unitOfWork.SessionRepository.GetById(Convert.ToInt32(optInRecordId));
 
-                if (doubleOptinSavePlug != null)
+                if (doubleOptinSavePlug != null & formRecord != null)
                 {
-                    var fields = this.unitOfWork.SessionRepository.GetById(Convert.ToInt32(optInRecordId)).Fields;
-                    var email = fields.FirstOrDefault(x => x.ItemId == doubleOptinSavePlug.To.ItemId)?.Value;
+                    var fields = formRecord.Fields;
+                    var email = fields.FirstOrDefault(x => x.ItemId == doubleOptinSavePlug.To.ItemId)?.Value ?? string.Empty;
                     if (this.doubleOptinLinkService.ValidateConfirmationLink(optInFormId, optInRecordId, email, optInHash))
                     {
                         this.doubleOptinService.ExecuteSubSavePlugs(doubleOptinSavePlug, flexContext, optInRecordId);
 
                         if (!string.IsNullOrWhiteSpace(this.flexContext.ErrorMessage))
                         {
-                            Profiler.OnEnd(this, ProfileGetEventName);
                             return this.ShowError();
                         }
-
-                        Profiler.OnEnd(this, ProfileGetEventName);
+                        
                         return this.ShowSuccessMessage(doubleOptinSavePlug.ConfirmMessage);
                     }
                 }
