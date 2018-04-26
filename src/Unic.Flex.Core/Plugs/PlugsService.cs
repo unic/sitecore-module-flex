@@ -4,39 +4,18 @@
     using System.Linq;
     using System.Web;
     using Sitecore.Diagnostics;
-    using Unic.Configuration.Core;
-    using Unic.Flex.Core.Context;
-    using Unic.Flex.Core.Logging;
-    using Unic.Flex.Core.Mapping;
-    using Unic.Flex.Model.Configuration;
-    using Unic.Flex.Model.Entities;
+    using Configuration.Core;
+    using Context;
+    using Logging;
+    using Model.Configuration;
+    using Model.Entities;
 
-    /// <summary>
-    /// Service for the plug framework.
-    /// </summary>
     public class PlugsService : IPlugsService
     {
-        /// <summary>
-        /// The logger
-        /// </summary>
         private readonly ILogger logger;
-
-        /// <summary>
-        /// The configuration manager
-        /// </summary>
         private readonly IConfigurationManager configurationManager;
-
-        /// <summary>
-        /// The task service
-        /// </summary>
         private readonly ITaskService taskService;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="PlugsService" /> class.
-        /// </summary>
-        /// <param name="logger">The logger.</param>
-        /// <param name="configurationManager">The configuration manager.</param>
-        /// <param name="taskService">The task service.</param>
         public PlugsService(ILogger logger, IConfigurationManager configurationManager, ITaskService taskService)
         {
             this.logger = logger;
@@ -44,15 +23,10 @@
             this.taskService = taskService;
         }
 
-        /// <summary>
-        /// Executes the load plugs.
-        /// </summary>
-        /// <param name="context">The context.</param>
         public virtual void ExecuteLoadPlugs(IFlexContext context)
         {
             Assert.ArgumentNotNull(context, "context");
 
-            // get the form
             var form = context.Form;
             if (form == null) return;
             
@@ -64,7 +38,7 @@
             {
                 try
                 {
-                    this.logger.Debug(string.Format("Execute load plug '{0}' for form '{1}'", plug.ItemId, form.ItemId), this);
+                    this.logger.Debug($"Execute load plug '{plug.ItemId}' for form '{form.ItemId}'", this);
                     plug.Execute(form);
                 }
                 catch (Exception exception)
@@ -76,10 +50,6 @@
             }
         }
 
-        /// <summary>
-        /// Executes the save plugs.
-        /// </summary>
-        /// <param name="context">The context.</param>
         public virtual void ExecuteSavePlugs(IFlexContext context)
         {
             Assert.ArgumentNotNull(context, "context");
@@ -98,7 +68,7 @@
                 Job job = null;
                 if (hasAsyncPlug)
                 {
-                    this.logger.Debug(string.Format("Form '{0}' has async plugs", form.ItemId), this);
+                    this.logger.Debug($"Form '{form.ItemId}' has async plugs", this);
                     job = this.taskService.GetJob(form);
                 }
 
@@ -107,12 +77,12 @@
                 {
                     if (isAsyncExecutionAllowed && plug.IsAsync)
                     {
-                        this.logger.Debug(string.Format("Add async save plug '{0}' as background job for form '{1}'", plug.ItemId, form.ItemId), this);
+                        this.logger.Debug($"Add async save plug '{plug.ItemId}' as background job for form '{form.ItemId}'", this);
                         job.Tasks.Add(this.taskService.GetTask(plug));
                     }
                     else
                     {
-                        this.logger.Debug(string.Format("Execute sync save plug '{0}' for form '{1}'", plug.ItemId, form.ItemId), this);
+                        this.logger.Debug($"Execute sync save plug '{plug.ItemId}' for form '{form.ItemId}'", this);
                         plug.Execute(form);
                     }
                 }
@@ -121,7 +91,7 @@
                 if (hasAsyncPlug)
                 {
                     job = this.taskService.Save(job);
-                    this.logger.Debug(string.Format("Saved job '{0}' for form '{1}' to database", job.Id, form.ItemId), this);
+                    this.logger.Debug($"Saved job '{job.Id}' for form '{form.ItemId}' to database", this);
 
                     this.taskService.Execute(job, context.SiteContext);
                 }
