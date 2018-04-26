@@ -33,7 +33,7 @@
         /// <value>
         /// The URL.
         /// </value>
-        [SitecoreInfo(SitecoreInfoType.Url)]
+        [SitecoreInfo(SitecoreInfoType.Url, UrlOptions = SitecoreInfoUrlOptions.AlwaysIncludeServerUrl)]
         public virtual string Url { get; set; }
 
         /// <summary>

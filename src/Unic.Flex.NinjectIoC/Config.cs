@@ -2,6 +2,7 @@
 {
     using Core.MarketingAutomation;
     using Glass.Mapper.Sc;
+    using Implementation.Services;
     using Ninject.Modules;
     using Ninject.Web.Common;
     using Unic.Configuration.Core;
@@ -62,14 +63,17 @@
             // mailing
             this.Bind<IMailRepository>().To<MailRepository>();
             this.Bind<IMailService>().To<MailService>();
+            this.Bind<IMailerHelper>().To<MailerHelper>();
 
             // helpers
             this.Bind<IUrlService>().To<UrlService>().InSingletonScope();
 
             // implementation classes
             this.Bind<ISavePlugMailer>().To<SavePlugMailer>();
+            this.Bind<IDoubleOptinSavePlugMailer>().To<DoubleOptinSavePlugMailer>();
             this.Bind<ISaveToDatabaseService>().To<SaveToDatabaseService>();
-            
+            this.Bind<IDoubleOptinService>().To<DoubleOptinService>();
+            this.Bind<IDoubleOptinLinkService>().To<DoubleOptinLinkService>();
             
             // Marketing Automation
             this.Bind<IMarketingAutomationContactService, MarketingAutomationContactService>();
