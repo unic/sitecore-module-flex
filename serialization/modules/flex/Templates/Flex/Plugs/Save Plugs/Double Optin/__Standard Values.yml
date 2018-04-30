@@ -5,10 +5,6 @@ Template: "f8239638-a672-491f-bbd4-a59cd3090c8b"
 Path: /sitecore/templates/Flex/Plugs/Save Plugs/Double Optin/__Standard Values
 DB: master
 SharedFields:
-- ID: "b3ff9b14-c440-4985-b709-79c3035e5cdb"
-  Hint: Send Attachments
-  Type: Checkbox
-  Value: 1
 Languages:
 - Language: en
   Versions:
