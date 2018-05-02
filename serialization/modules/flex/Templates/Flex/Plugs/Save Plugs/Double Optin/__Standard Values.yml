@@ -5,6 +5,12 @@ Template: "f8239638-a672-491f-bbd4-a59cd3090c8b"
 Path: /sitecore/templates/Flex/Plugs/Save Plugs/Double Optin/__Standard Values
 DB: master
 SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Type: TreelistEx
+  Value: |
+    {9A7F5FA1-E267-4BF2-8D3C-4D487792B636}
+    {DF5C2C2F-4A48-4206-9DFB-0DCDE27E2233}
 Languages:
 - Language: en
   Versions:
