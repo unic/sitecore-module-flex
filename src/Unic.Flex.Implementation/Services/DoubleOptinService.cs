@@ -6,9 +6,12 @@
     using Core.Database;
     using Core.Logging;
     using Core.Mapping;
+    using Fields.InputFields;
+    using Glass.Mapper;
     using Glass.Mapper.Sc;
     using Model.Forms;
     using Model.Plugs;
+    using Model.Types;
     using Plugs.SavePlugs;
 
     public class DoubleOptinService : IDoubleOptinService
@@ -50,7 +53,24 @@
 
             foreach (var field in form.Steps.SelectMany(step => step.Sections).SelectMany(section => section.Fields))
             {
-               field.Value = fields.FirstOrDefault(x => x.ItemId == field.ItemId)?.Value;
+                if (field is FileUploadField)
+                {
+                    var file = fields.FirstOrDefault(x => x.ItemId == field.ItemId)?.File;
+
+                    var uploadedFile = new UploadedFile
+                    {
+                        ContentLength = file.ContentLength,
+                        ContentType = file.ContentType,
+                        FileName = file.FileName,
+                        Data = file.Data
+                    };
+
+                    field.Value = uploadedFile;
+                }
+                else
+                {
+                    field.Value = fields.FirstOrDefault(x => x.ItemId == field.ItemId)?.Value;
+                }
             }
 
             return form;
