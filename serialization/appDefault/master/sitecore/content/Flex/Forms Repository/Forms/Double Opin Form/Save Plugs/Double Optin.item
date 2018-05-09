@@ -1,0 +1,100 @@
+----item----
+version: 1
+id: {797E959F-AB0E-41A3-946A-B53989FDB4A3}
+database: master
+path: /sitecore/content/Flex/Forms Repository/Forms/Double Opin Form/Save Plugs/Double Optin
+parent: {CEA48733-0313-42EE-A637-69C33B31B097}
+name: Double Optin
+master: {00000000-0000-0000-0000-000000000000}
+template: {F8239638-A672-491F-BBD4-A59CD3090C8B}
+templatekey: Double Optin
+
+----field----
+field: {21FFD468-8AF2-4E9E-994E-FFC94A5D318E}
+name: Theme
+key: theme
+content-length: 38
+
+{7E757B79-61E5-44FE-988C-33B3B9D50A08}
+----field----
+field: {50ACA5BF-0D0E-4F09-ADD8-C2B0FCAEA60F}
+name: From
+key: from
+content-length: 0
+
+
+----field----
+field: {DEF4F923-0AC9-44E4-B927-9E8274E31E4D}
+name: To
+key: to
+content-length: 38
+
+{9AB07B57-16D4-48FF-B2FA-65802C81AC4D}
+----field----
+field: {B66ABBCC-99D6-435A-8E28-9A62520D8785}
+name: Reply To
+key: reply to
+content-length: 0
+
+
+----version----
+language: en
+version: 1
+revision: 7626976f-5673-4498-8596-550f44eaad83
+
+----field----
+field: {EA4D8F6E-BB7C-4E0A-AD0C-96F06F184046}
+name: Subject
+key: subject
+content-length: 12
+
+Double Optin
+----field----
+field: {97E9FDC4-7C9E-4A01-A4D0-1FF7B32D5C65}
+name: Html Mail
+key: html mail
+content-length: 39
+
+<a href="{DoubleOptinLink}">Confirm</a>
+----field----
+field: {26A97471-A645-4065-9A5D-27CF3D4CF12C}
+name: Confirm Message
+key: confirm message
+content-length: 49
+
+You successfully confirmed the double optin. yay!
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20180323T075900Z
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+7626976f-5673-4498-8596-550f44eaad83
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 16
+
+20180418T071805Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin
