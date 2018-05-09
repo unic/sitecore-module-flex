@@ -120,6 +120,7 @@
     <Compile Include="Components\IReusableComponent.cs" />
     <Compile Include="Components\ITooltip.cs" />
     <Compile Include="Components\IFieldDependency.cs" />
+    <Compile Include="Definitions\Constants.cs" />
     <Compile Include="Fields\InputFields\HoneypotField.cs" />
     <Compile Include="Forms\FormExtensions.cs" />
     <Compile Include="Fields\FieldBase.cs" />

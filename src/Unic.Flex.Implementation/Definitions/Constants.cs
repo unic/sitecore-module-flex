@@ -13,5 +13,4 @@
 
         public const string DoubleOptinLinkReplacement = "{DoubleOptinLink}";
     }
-
 }

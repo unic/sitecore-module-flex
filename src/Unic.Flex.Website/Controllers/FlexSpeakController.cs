@@ -57,12 +57,12 @@
             foreach (var job in this.taskService.GetAllJobs())
             {
                 var form = this.sitecoreContext.GetItem<ItemBase>(job.ItemId);
-                var formName = form != null ? form.ItemName : "-";
+                var formName = form != null ? form.ItemName : Model.Definitions.Constants.EmptyFlexFieldDefaultValue;
 
                 foreach (var task in job.Tasks)
                 {
                     var plug = this.sitecoreContext.GetItem<ItemBase>(task.ItemId);
-                    var plugName = plug != null ? plug.ItemName : "-";
+                    var plugName = plug != null ? plug.ItemName : Model.Definitions.Constants.EmptyFlexFieldDefaultValue;
 
                     taskList.Add(new AsyncTask
                                        {
