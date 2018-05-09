@@ -1,6 +1,7 @@
 ﻿namespace Unic.Flex.Implementation.Fields.InputFields
 {
     using Glass.Mapper.Sc.Configuration.Attributes;
+    using Model.Entities;
     using Unic.Flex.Model.Fields.InputFields;
     using Unic.Flex.Model.Types;
 
@@ -10,40 +11,38 @@
     [SitecoreType(TemplateId = "{6D95AE6A-4472-479C-B0AA-572A68C95E9A}")]
     public class FileUploadField : InputField<UploadedFile>
     {
-        /// <summary>
-        /// Gets the text value.
-        /// </summary>
-        /// <value>
-        /// The text value.
-        /// </value>
         [SitecoreIgnore]
         public override string TextValue
         {
             get
             {
                 if (this.Value == null) return base.TextValue;
-                return !string.IsNullOrWhiteSpace(this.Value.FileName) ? this.Value.FileName : "-";
+                return !string.IsNullOrWhiteSpace(this.Value.FileName) ? this.Value.FileName : Model.Definitions.Constants.EmptyFlexFieldDefaultValue;
             }
         }
 
-        /// <summary>
-        /// Gets the name of the view.
-        /// </summary>
-        /// <value>
-        /// The name of the view.
-        /// </value>
         [SitecoreIgnore]
-        public override string ViewName
+        public override string ViewName => "Fields/InputFields/FileUpload";
+
+        public override void SetValue(object value)
         {
-            get
+            var file = value as File;
+            if (file != null)
             {
-                return "Fields/InputFields/FileUpload";
+                this.Value = new UploadedFile
+                {
+                    ContentLength = file.ContentLength,
+                    ContentType = file.ContentType,
+                    FileName = file.FileName,
+                    Data = file.Data
+                };
+            }
+            else
+            {
+                base.SetValue(value);
             }
         }
 
-        /// <summary>
-        /// Binds the properties.
-        /// </summary>
         public override void BindProperties()
         {
             base.BindProperties();

@@ -3,6 +3,7 @@
     using Glass.Mapper.Sc.Configuration.Attributes;
     using System;
     using System.Globalization;
+    using Glass.Mapper;
     using Unic.Flex.Core.Globalization;
     using Unic.Flex.Implementation.Validators;
     using Unic.Flex.Model.Fields.InputFields;
@@ -13,102 +14,56 @@
     [SitecoreType(TemplateId = "{5CBCDE45-F0A9-4F6D-8273-685249ABDDF6}")]
     public class DatePickerField : InputField<DateTime?>
     {
-        /// <summary>
-        /// The culture service
-        /// </summary>
         private readonly ICultureService cultureService;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DatePickerField" /> class.
-        /// </summary>
-        /// <param name="cultureService">The culture service.</param>
         public DatePickerField(ICultureService cultureService)
         {
             this.cultureService = cultureService;
             this.DefaultValidators.Add(new DateValidator());
         }
-        
-        /// <summary>
-        /// Gets or sets the default value.
-        /// </summary>
-        /// <value>
-        /// The default value.
-        /// </value>
+
         [SitecoreField("Default Value")]
         public override DateTime? DefaultValue { get; set; }
 
-        /// <summary>
-        /// Gets or sets a value indicating whether to show the year and month changer.
-        /// </summary>
-        /// <value>
-        /// <c>true</c> if the year and month changer should be shown; otherwise, <c>false</c>.
-        /// </value>
         [SitecoreField("Show Year and Month Changer")]
         public virtual bool ShowYearAndMonthChanger { get; set; }
 
-        /// <summary>
-        /// Gets the date format.
-        /// </summary>
-        /// <value>
-        /// The date format.
-        /// </value>
         [SitecoreIgnore]
-        public virtual string DateFormat
+        public virtual string DateFormat => this.cultureService.GetDateFormat();
+
+        [SitecoreIgnore]
+        public override string TextValue => Value?.ToString(this.DateFormat, CultureInfo.InvariantCulture) ?? base.TextValue;
+
+        [SitecoreIgnore]
+        public override string ViewName => "Fields/InputFields/DatePicker";
+
+        [SitecoreIgnore]
+        public virtual string Locale => Sitecore.Context.Language.CultureInfo.TwoLetterISOLanguageName.ToLowerInvariant();
+
+        public override void SetValue(object value)
         {
-            get
+            if (!(value is string))
             {
-                return this.cultureService.GetDateFormat();
+                base.SetValue(value);
+                return;
+            }
+
+            if (value.ToString() == Model.Definitions.Constants.EmptyFlexFieldDefaultValue)
+            {
+                this.Value = null;
+                return;
+            }
+
+            try
+            {
+                this.Value = DateTime.Parse(value.ToString());
+            }
+            catch (FormatException ex)
+            {
+                base.SetValue(value);
             }
         }
 
-        /// <summary>
-        /// Gets the text value.
-        /// </summary>
-        /// <value>
-        /// The text value.
-        /// </value>
-        [SitecoreIgnore]
-        public override string TextValue
-        {
-            get
-            {
-                return !this.Value.HasValue ? base.TextValue : this.Value.Value.ToString(this.DateFormat, CultureInfo.InvariantCulture);
-            }
-        }
-
-        /// <summary>
-        /// Gets the name of the view.
-        /// </summary>
-        /// <value>
-        /// The name of the view.
-        /// </value>
-        [SitecoreIgnore]
-        public override string ViewName
-        {
-            get
-            {
-                return "Fields/InputFields/DatePicker";
-            }
-        }
-
-        /// <summary>
-        /// Gets the locale.
-        /// </summary>
-        /// <value>
-        /// The locale.
-        /// </value>
-        [SitecoreIgnore]
-        public virtual string Locale
-        {
-            get
-            {
-                return Sitecore.Context.Language.CultureInfo.TwoLetterISOLanguageName.ToLowerInvariant();
-            }
-        }
-
-        /// <summary>
-        /// Binds the properties.
-        /// </summary>
         public override void BindProperties()
         {
             base.BindProperties();

@@ -7,7 +7,6 @@
     using Core.Logging;
     using Core.Mapping;
     using Fields.InputFields;
-    using Glass.Mapper;
     using Glass.Mapper.Sc;
     using Model.Forms;
     using Model.Plugs;
@@ -31,6 +30,7 @@
         {
             var item = this.sitecoreContext.GetItem<DoubleOptinSavePlug>(doubleOptinSavePlug.ItemId);
             var saveplugs = item.SavePlugs;
+
             try
             {
                 flexContext.Form = this.FillFormWithData(flexContext.Form, optInRecordId);
@@ -43,7 +43,7 @@
             catch (Exception exception)
             {
                 flexContext.ErrorMessage = flexContext.Form.ErrorMessage;
-                this.logger.Error("Error while executing save plug", this, exception);
+                this.logger.Error($"Error while executing Sub SavePlug for Double Optin SavePlug with Id: {doubleOptinSavePlug.ItemId}", this, exception);
             }
         }
 
@@ -55,17 +55,7 @@
             {
                 if (field is FileUploadField)
                 {
-                    var file = fields.FirstOrDefault(x => x.ItemId == field.ItemId)?.File;
-
-                    var uploadedFile = new UploadedFile
-                    {
-                        ContentLength = file.ContentLength,
-                        ContentType = file.ContentType,
-                        FileName = file.FileName,
-                        Data = file.Data
-                    };
-
-                    field.Value = uploadedFile;
+                    field.Value = fields.FirstOrDefault(x => x.ItemId == field.ItemId)?.File;
                 }
                 else
                 {
