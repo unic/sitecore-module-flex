@@ -1,6 +1,7 @@
 ﻿namespace Unic.Flex.Core.Context
 {
     using Sitecore.Data.Items;
+    using Sitecore.Globalization;
     using Sitecore.Sites;
     using Unic.Flex.Model;
     using Unic.Flex.Model.Forms;
@@ -42,7 +43,9 @@
         /// </value>
         SiteContext SiteContext { get; set; }
 
-        string Language { get; set; }
+        string LanguageName { get; set; }
+
+        Language Language { get; }
 
         /// <summary>
         /// Sets the context item.

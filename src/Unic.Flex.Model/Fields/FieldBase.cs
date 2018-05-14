@@ -120,7 +120,7 @@
             get
             {
                 var value = !Equals(this.Value, null) ? this.Value.ToString() : string.Empty;
-                return !string.IsNullOrWhiteSpace(value) ? value : "-";
+                return !string.IsNullOrWhiteSpace(value) ? value : Definitions.Constants.EmptyFlexFieldDefaultValue;
             }
         }
 

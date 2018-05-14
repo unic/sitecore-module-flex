@@ -6,9 +6,11 @@
     using Core.Database;
     using Core.Logging;
     using Core.Mapping;
+    using Fields.InputFields;
     using Glass.Mapper.Sc;
     using Model.Forms;
     using Model.Plugs;
+    using Model.Types;
     using Plugs.SavePlugs;
 
     public class DoubleOptinService : IDoubleOptinService
@@ -28,6 +30,7 @@
         {
             var item = this.sitecoreContext.GetItem<DoubleOptinSavePlug>(doubleOptinSavePlug.ItemId);
             var saveplugs = item.SavePlugs;
+
             try
             {
                 flexContext.Form = this.FillFormWithData(flexContext.Form, optInRecordId);
@@ -40,7 +43,7 @@
             catch (Exception exception)
             {
                 flexContext.ErrorMessage = flexContext.Form.ErrorMessage;
-                this.logger.Error("Error while executing save plug", this, exception);
+                this.logger.Error($"Error while executing Sub SavePlug for Double Optin SavePlug with Id: {doubleOptinSavePlug.ItemId}", this, exception);
             }
         }
 
@@ -50,7 +53,14 @@
 
             foreach (var field in form.Steps.SelectMany(step => step.Sections).SelectMany(section => section.Fields))
             {
-               field.Value = fields.FirstOrDefault(x => x.ItemId == field.ItemId)?.Value;
+                if (field is FileUploadField)
+                {
+                    field.Value = fields.FirstOrDefault(x => x.ItemId == field.ItemId)?.File;
+                }
+                else
+                {
+                    field.Value = fields.FirstOrDefault(x => x.ItemId == field.ItemId)?.Value;
+                }
             }
 
             return form;

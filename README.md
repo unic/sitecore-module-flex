@@ -6,6 +6,9 @@ Flex is the acronym for __Fl__exible Forms __Ex__perience, the module to create 
 
 ## Changelog
 
+### 3.8.1
+* Added handling for custom field types when setting their value
+
 ### 3.8
 * Added new SavePlug for Double Optin
 

@@ -10,6 +10,7 @@
         public const string OptInEmailKey = "email";
 
         public const string AlwaysUseGlobalConfig = "Flex.EmailAddresses.AlwaysUseGlobalConfig";
-    }
 
+        public const string DoubleOptinLinkReplacement = "{DoubleOptinLink}";
+    }
 }

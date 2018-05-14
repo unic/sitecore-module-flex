@@ -114,6 +114,7 @@
                 {
                     var fields = formRecord.Fields;
                     var email = fields.FirstOrDefault(x => x.ItemId == doubleOptinSavePlug.To.ItemId)?.Value ?? string.Empty;
+
                     if (this.doubleOptinLinkService.ValidateConfirmationLink(optInFormId, optInRecordId, email, optInHash))
                     {
                         this.doubleOptinService.ExecuteSubSavePlugs(doubleOptinSavePlug, flexContext, optInRecordId);

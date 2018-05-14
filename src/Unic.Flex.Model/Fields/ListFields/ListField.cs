@@ -194,7 +194,7 @@
                                 ? this.DataProvider.GetTextValue<TValue>(this.Value)
                                 : string.Empty;
                 
-                return !string.IsNullOrWhiteSpace(value) ? value : "-";
+                return !string.IsNullOrWhiteSpace(value) ? value : Definitions.Constants.EmptyFlexFieldDefaultValue;
             }
         }
 

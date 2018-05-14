@@ -98,7 +98,7 @@
         private string GetValidationUrl()
         {
             var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
-            return urlHelper.RouteUrl(Constants.MvcRouteName, new { controller = "Flex", action = "AjaxValidator", validator = this.ValidatorId, sc_site = this.context.SiteContext.Name, sc_lang = this.context.Language});
+            return urlHelper.RouteUrl(Constants.MvcRouteName, new { controller = "Flex", action = "AjaxValidator", validator = this.ValidatorId, sc_site = this.context.SiteContext.Name, sc_lang = this.context.LanguageName});
         }
     }
 }

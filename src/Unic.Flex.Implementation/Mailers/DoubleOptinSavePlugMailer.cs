@@ -47,7 +47,7 @@
             // add content
             var fields = form.GetFields().ToList();
             ViewBag.Subject = this.mailService.ReplaceTokens(plug.Subject, fields);
-            ViewBag.HtmlMail = this.mailService.ReplaceTokens(plug.HtmlMail, fields).Replace("{DoubleOptinLink}", doubleOptinLink);
+            ViewBag.HtmlMail = this.mailService.ReplaceTokens(plug.HtmlMail, fields).Replace(Definitions.Constants.DoubleOptinLinkReplacement, doubleOptinLink);
             ViewBag.TextMail = this.mailService.ReplaceTokens(plug.TextMail, fields);
 
             // get email addresses
