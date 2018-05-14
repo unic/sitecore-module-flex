@@ -3,6 +3,7 @@
     using System.Web;
     using Glass.Mapper.Sc;
     using Sitecore.Data.Items;
+    using Sitecore.Globalization;
     using Sitecore.Sites;
     using Unic.Flex.Core.Plugs;
     using Unic.Flex.Model;
