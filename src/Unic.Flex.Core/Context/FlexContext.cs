@@ -57,7 +57,7 @@
             this.sitecoreContext = sitecoreContext;
 
             this.SiteContext = Sitecore.Context.Site;
-            this.Language = Sitecore.Context.Language.Name;
+            this.LanguageName = Sitecore.Context.Language.Name;
         }
 
         /// <summary>
@@ -126,7 +126,9 @@
         /// </value>
         public virtual SiteContext SiteContext { get; set; }
 
-        public virtual string Language { get; set; }
+        public virtual string LanguageName { get; set; }
+
+        public virtual Language Language => Sitecore.Context.Language;
 
         /// <summary>
         /// Sets the context item.

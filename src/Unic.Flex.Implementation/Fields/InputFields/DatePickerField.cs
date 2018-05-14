@@ -3,10 +3,11 @@
     using Glass.Mapper.Sc.Configuration.Attributes;
     using System;
     using System.Globalization;
-    using Glass.Mapper;
+    using Core.Context;
     using Unic.Flex.Core.Globalization;
     using Unic.Flex.Implementation.Validators;
     using Unic.Flex.Model.Fields.InputFields;
+    using Core.Logging;
 
     /// <summary>
     /// Field for a date picker
@@ -15,10 +16,15 @@
     public class DatePickerField : InputField<DateTime?>
     {
         private readonly ICultureService cultureService;
+        private readonly IFlexContext context;
+        private readonly ILogger logger;
 
-        public DatePickerField(ICultureService cultureService)
+        public DatePickerField(ICultureService cultureService, IFlexContext context, ILogger logger)
         {
             this.cultureService = cultureService;
+            this.context = context;
+            this.logger = logger;
+
             this.DefaultValidators.Add(new DateValidator());
         }
 
@@ -38,7 +44,7 @@
         public override string ViewName => "Fields/InputFields/DatePicker";
 
         [SitecoreIgnore]
-        public virtual string Locale => Sitecore.Context.Language.CultureInfo.TwoLetterISOLanguageName.ToLowerInvariant();
+        public virtual string Locale => this.context.Language.CultureInfo.TwoLetterISOLanguageName.ToLowerInvariant();
 
         public override void SetValue(object value)
         {
@@ -48,18 +54,20 @@
                 return;
             }
 
-            if (value.ToString() == Model.Definitions.Constants.EmptyFlexFieldDefaultValue)
+            if (value.ToString().Equals(Model.Definitions.Constants.EmptyFlexFieldDefaultValue))
             {
                 this.Value = null;
                 return;
             }
 
-            try
+            DateTime parseResult;
+            if (DateTime.TryParse(value.ToString(), out parseResult))
             {
-                this.Value = DateTime.Parse(value.ToString());
+                this.Value = parseResult;
             }
-            catch (FormatException ex)
+            else
             {
+                this.logger.Warn($"Could not parse {value} to DateTime.", this);
                 base.SetValue(value);
             }
         }

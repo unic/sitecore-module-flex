@@ -16,7 +16,7 @@
             var analyticsContactService = DependencyResolver.Resolve<IMarketingAutomationContactService>();
             var flexContext = DependencyResolver.Resolve<IFlexContext>();
 
-            var language = flexContext.Language;
+            var language = flexContext.LanguageName;
 
             analyticsContactService.SetContactValue(LanguageField, language);
         }

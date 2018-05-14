@@ -17,7 +17,7 @@
             get
             {
                 if (this.Value == null) return base.TextValue;
-                return !string.IsNullOrWhiteSpace(this.Value.FileName) ? this.Value.FileName : Model.Definitions.Constants.EmptyFlexFieldDefaultValue;
+                return string.IsNullOrWhiteSpace(this.Value.FileName) ? Model.Definitions.Constants.EmptyFlexFieldDefaultValue : this.Value.FileName;
             }
         }
 
