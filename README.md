@@ -6,6 +6,9 @@ Flex is the acronym for __Fl__exible Forms __Ex__perience, the module to create 
 
 ## Changelog
 
+### 3.8.2
+* Fixed save and load actions "set field value to contact" and "load field value from contact" in non-english context
+
 ### 3.8.1
 * Added handling for custom field types when setting their value
 
