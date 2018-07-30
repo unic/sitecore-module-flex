@@ -35,6 +35,7 @@
     using Newtonsoft.Json;
     using Profiling;
     using Sitecore;
+    using Sitecore.Mvc.Extensions;
     using Constants = Implementation.Definitions.Constants;
     using Convert = System.Convert;
     using DependencyResolver = Core.DependencyInjection.DependencyResolver;
@@ -114,6 +115,7 @@
                 {
                     var fields = formRecord.Fields;
                     var email = fields.FirstOrDefault(x => x.ItemId == doubleOptinSavePlug.To.ItemId)?.Value ?? string.Empty;
+                    var redirectUrl = doubleOptinSavePlug.RedirectUrl;
 
                     if (this.doubleOptinLinkService.ValidateConfirmationLink(optInFormId, optInRecordId, email, optInHash))
                     {
@@ -123,8 +125,13 @@
                         {
                             return this.ShowError();
                         }
-                        
-                        return this.ShowSuccessMessage(doubleOptinSavePlug.ConfirmMessage);
+
+                        if (redirectUrl.IsEmptyOrNull())
+                        {
+                            return this.ShowSuccessMessage(doubleOptinSavePlug.ConfirmMessage);
+                        }
+
+                        return this.Redirect(redirectUrl);
                     }
                 }
             }

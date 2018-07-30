@@ -60,6 +60,9 @@
         [SitecoreField("Confirm Message")]
         public virtual string ConfirmMessage { get; set; }
 
+        [SitecoreField("Redirect Url")]
+        public virtual string RedirectUrl { get; set; }
+
         [SitecoreChildren(IsLazy = true, InferType = true)]
         public virtual IEnumerable<ISavePlug> SavePlugs { get; set; }
 
