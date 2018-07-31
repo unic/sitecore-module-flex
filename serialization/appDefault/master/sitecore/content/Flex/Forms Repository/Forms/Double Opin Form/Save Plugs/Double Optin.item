@@ -40,7 +40,7 @@ content-length: 0
 ----version----
 language: en
 version: 1
-revision: 7626976f-5673-4498-8596-550f44eaad83
+revision: 0f00b267-82f8-4c22-ad34-d7c7e6e6bee8
 
 ----field----
 field: {EA4D8F6E-BB7C-4E0A-AD0C-96F06F184046}
@@ -64,6 +64,13 @@ content-length: 49
 
 You successfully confirmed the double optin. yay!
 ----field----
+field: {19964EE6-BBE2-49B2-8260-44BEDC0CE208}
+name: Redirect Link
+key: redirect link
+content-length: 54
+
+<link linktype="external" url="http://www.unic.com" />
+----field----
 field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
 name: __Owner
 key: __owner
@@ -83,14 +90,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-7626976f-5673-4498-8596-550f44eaad83
+0f00b267-82f8-4c22-ad34-d7c7e6e6bee8
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 16
 
-20180418T071805Z
+20180731T070716Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

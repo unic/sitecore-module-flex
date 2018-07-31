@@ -6,6 +6,10 @@ Flex is the acronym for __Fl__exible Forms __Ex__perience, the module to create 
 
 ## Changelog
 
+## 3.9
+* Added possibility to redirect user after Double Optin confirmation
+* Updated Unic.Bob.Scoop to V. 3.1.0
+
 ### 3.8.3
 * Fixed Unicorn dependency to Modules.Configuration
 

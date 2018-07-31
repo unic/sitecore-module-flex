@@ -5,7 +5,6 @@
     using System.Linq;
     using System.Net;
     using System.Security.Cryptography;
-    using System.Web;
     using System.Web.Mvc;
     using Configuration.Core;
     using Core.Attributes;
@@ -114,6 +113,7 @@
                 {
                     var fields = formRecord.Fields;
                     var email = fields.FirstOrDefault(x => x.ItemId == doubleOptinSavePlug.To.ItemId)?.Value ?? string.Empty;
+                    var redirectLink = doubleOptinSavePlug.RedirectLink;
 
                     if (this.doubleOptinLinkService.ValidateConfirmationLink(optInFormId, optInRecordId, email, optInHash))
                     {
@@ -123,8 +123,13 @@
                         {
                             return this.ShowError();
                         }
-                        
-                        return this.ShowSuccessMessage(doubleOptinSavePlug.ConfirmMessage);
+
+                        if (string.IsNullOrWhiteSpace(redirectLink?.Url))
+                        {
+                            return this.ShowSuccessMessage(doubleOptinSavePlug.ConfirmMessage);
+                        }
+
+                        return this.Redirect(redirectLink.Url);
                     }
                 }
             }
