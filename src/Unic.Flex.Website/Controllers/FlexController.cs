@@ -124,7 +124,7 @@
                             return this.ShowError();
                         }
 
-                        if (!redirectLink.HasValue())
+                        if (string.IsNullOrWhiteSpace(redirectLink?.Url))
                         {
                             return this.ShowSuccessMessage(doubleOptinSavePlug.ConfirmMessage);
                         }
