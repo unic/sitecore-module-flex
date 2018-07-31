@@ -5,7 +5,6 @@
     using System.Linq;
     using System.Net;
     using System.Security.Cryptography;
-    using System.Web;
     using System.Web.Mvc;
     using Configuration.Core;
     using Core.Attributes;
@@ -35,7 +34,6 @@
     using Newtonsoft.Json;
     using Profiling;
     using Sitecore;
-    using Sitecore.Mvc.Extensions;
     using Constants = Implementation.Definitions.Constants;
     using Convert = System.Convert;
     using DependencyResolver = Core.DependencyInjection.DependencyResolver;
@@ -115,7 +113,7 @@
                 {
                     var fields = formRecord.Fields;
                     var email = fields.FirstOrDefault(x => x.ItemId == doubleOptinSavePlug.To.ItemId)?.Value ?? string.Empty;
-                    var redirectUrl = doubleOptinSavePlug.RedirectUrl;
+                    var redirectLink = doubleOptinSavePlug.RedirectLink;
 
                     if (this.doubleOptinLinkService.ValidateConfirmationLink(optInFormId, optInRecordId, email, optInHash))
                     {
@@ -126,12 +124,12 @@
                             return this.ShowError();
                         }
 
-                        if (redirectUrl.IsEmptyOrNull())
+                        if (!redirectLink.HasValue())
                         {
                             return this.ShowSuccessMessage(doubleOptinSavePlug.ConfirmMessage);
                         }
 
-                        return this.Redirect(redirectUrl);
+                        return this.Redirect(redirectLink.Url);
                     }
                 }
             }

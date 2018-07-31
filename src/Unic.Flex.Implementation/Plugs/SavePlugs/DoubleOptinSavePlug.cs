@@ -6,6 +6,7 @@
     using Database;
     using Glass.Mapper.Sc.Configuration;
     using Glass.Mapper.Sc.Configuration.Attributes;
+    using Glass.Mapper.Sc.Fields;
     using Mailers;
     using Model.Fields;
     using Model.Forms;
@@ -60,8 +61,8 @@
         [SitecoreField("Confirm Message")]
         public virtual string ConfirmMessage { get; set; }
 
-        [SitecoreField("Redirect Url")]
-        public virtual string RedirectUrl { get; set; }
+        [SitecoreField("Redirect Link")]
+        public virtual Link RedirectLink { get; set; }
 
         [SitecoreChildren(IsLazy = true, InferType = true)]
         public virtual IEnumerable<ISavePlug> SavePlugs { get; set; }
