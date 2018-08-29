@@ -49,6 +49,7 @@
         {
             base.BindProperties();
 
+            this.Items.SetTooltips();
             this.AddCssClass("flex_radiogroup");
         }
     }
