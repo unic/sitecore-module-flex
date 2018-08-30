@@ -3,6 +3,9 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Web.UI.WebControls;
+    using Logging;
+    using Model.DataProviders;
     using Sitecore.Diagnostics;
     using Unic.Configuration.Core;
     using Unic.Flex.Core.Context;
@@ -18,6 +21,7 @@
     using Unic.Flex.Model.Steps;
     using Unic.Flex.Model.Types;
     using Unic.Flex.Model.Validators;
+    using ListItem = Model.DataProviders.ListItem;
     using NavigationItem = Unic.Flex.Model.Components.NavigationItem;
 
     /// <summary>
@@ -39,7 +43,7 @@
         /// The configuration manager
         /// </summary>
         private readonly IConfigurationManager configurationManager;
-
+        
         /// <summary>
         /// The optional label text
         /// </summary>
@@ -216,6 +220,29 @@
             if (!string.IsNullOrWhiteSpace(field.TooltipTitle) && !string.IsNullOrWhiteSpace(field.TooltipText))
             {
                 field.Tooltip = this.GetTooltip(field.TooltipTitle, field.TooltipText);
+            }
+
+            //map the separate tooltips for specific list fields
+            if (TypeHelper.IsSubclassOfRawGeneric(typeof(ListField<,>), field.GetType()) && field.GetType().GetProperty("HasSeparateTooltips")?.GetValue(field) as bool? == true)
+            {
+                var items = field.GetType().GetProperty("Items")?.GetValue(field) as List<ListItem>;
+                if (items != null)
+                {
+                    foreach (var item in items)
+                    {
+                        var itemWithTooltip = (ITooltip) item;
+                        if (!string.IsNullOrWhiteSpace(itemWithTooltip.TooltipTitle) &&
+                            !string.IsNullOrWhiteSpace(itemWithTooltip.TooltipText))
+                        {
+                            itemWithTooltip.Tooltip = new Tooltip
+                            {
+                                Title = itemWithTooltip.TooltipTitle,
+                                Text = itemWithTooltip.TooltipText
+                            };
+                        }
+                    }
+                }
+
             }
 
             // bind properties

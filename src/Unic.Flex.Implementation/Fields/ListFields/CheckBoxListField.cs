@@ -12,6 +12,8 @@
     [SitecoreType(TemplateId = "{7532F52A-8BA7-4903-9B27-9E18FA1C4B92}")]
     public class CheckBoxListField : MulticheckListField<string[], ListItem>
     {
+        public override bool HasSeparateTooltips => true;
+
         /// <summary>
         /// Gets the default value.
         /// </summary>
@@ -48,8 +50,7 @@
         public override void BindProperties()
         {
             base.BindProperties();
-
-            this.Items.SetTooltips();
+            
             this.AddCssClass("flex_checkboxgroup");
         }
 

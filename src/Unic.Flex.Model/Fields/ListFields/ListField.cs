@@ -34,6 +34,8 @@
         /// </summary>
         private bool? isHidden;
         
+        public virtual bool HasSeparateTooltips => false;
+
         /// <summary>
         /// Gets the items.
         /// </summary>
