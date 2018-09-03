@@ -6,6 +6,9 @@ Flex is the acronym for __Fl__exible Forms __Ex__perience, the module to create 
 
 ## Changelog
 
+##3.10
+* Extended the checkbox list field and radio button list field with possibility to add a separate tooltip for each item
+
 ## 3.9
 * Added possibility to redirect user after Double Optin confirmation
 * Updated Unic.Bob.Scoop to V. 3.1.0
