@@ -10,7 +10,7 @@
     /// Checkbox list field
     /// </summary>
     [SitecoreType(TemplateId = "{7532F52A-8BA7-4903-9B27-9E18FA1C4B92}")]
-    public class CheckBoxListField : MulticheckListField<string[], ListItem>
+    public class CheckBoxListField : MulticheckListField<string[], ListItem>, IListItemsWithTooltips
     {
         /// <summary>
         /// Gets the default value.
@@ -48,7 +48,7 @@
         public override void BindProperties()
         {
             base.BindProperties();
-
+            
             this.AddCssClass("flex_checkboxgroup");
         }
 

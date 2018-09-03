@@ -39,7 +39,7 @@
         /// The configuration manager
         /// </summary>
         private readonly IConfigurationManager configurationManager;
-
+        
         /// <summary>
         /// The optional label text
         /// </summary>
@@ -216,6 +216,18 @@
             if (!string.IsNullOrWhiteSpace(field.TooltipTitle) && !string.IsNullOrWhiteSpace(field.TooltipText))
             {
                 field.Tooltip = this.GetTooltip(field.TooltipTitle, field.TooltipText);
+            }
+
+            // map tooltips for list items
+            if (field is IListItemsWithTooltips)
+            {
+                foreach (var item in ((IListItemsWithTooltips)field).Items)
+                {
+                    if (!string.IsNullOrWhiteSpace(item.TooltipTitle) && !string.IsNullOrWhiteSpace(item.TooltipText))
+                    {
+                        item.Tooltip = new Tooltip { Title = item.TooltipTitle, Text = item.TooltipText };
+                    }
+                }
             }
 
             // bind properties

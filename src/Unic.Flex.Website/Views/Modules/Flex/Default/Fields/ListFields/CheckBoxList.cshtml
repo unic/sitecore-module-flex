@@ -42,7 +42,7 @@
                     <label class="flex_label" for="@propertyId" id="@propertyLabel">
                         @item.Text
                     </label>
-
+                    @Html.FlexComponent(option => item.Tooltip)
                 </div>
             }
 

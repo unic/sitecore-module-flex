@@ -17,7 +17,7 @@
     /// </summary>
     /// <typeparam name="TValue">The type of the value.</typeparam>
     /// <typeparam name="TType">The type of the data items.</typeparam>
-    public abstract class ListField<TValue, TType> : FieldBase<TValue>, ICascadingDependency where TType : IDataItem
+    public abstract class ListField<TValue, TType> : FieldBase<TValue>, ICascadingDependency, IListItems<TType> where TType : IDataItem
     {
         /// <summary>
         /// The items
