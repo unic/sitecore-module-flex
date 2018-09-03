@@ -218,6 +218,7 @@
                 field.Tooltip = this.GetTooltip(field.TooltipTitle, field.TooltipText);
             }
 
+            // map tooltips for list items
             if (field is IListItemsWithTooltips)
             {
                 foreach (var item in ((IListItemsWithTooltips)field).Items)

@@ -2,7 +2,6 @@
 {
     using System.Linq;
     using Glass.Mapper.Sc.Configuration.Attributes;
-    using Model.Components;
     using Unic.Flex.Model.DataProviders;
     using Unic.Flex.Model.Fields.ListFields;
 
