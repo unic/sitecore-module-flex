@@ -3,9 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Web.UI.WebControls;
-    using Logging;
-    using Model.DataProviders;
     using Sitecore.Diagnostics;
     using Unic.Configuration.Core;
     using Unic.Flex.Core.Context;
@@ -21,7 +18,6 @@
     using Unic.Flex.Model.Steps;
     using Unic.Flex.Model.Types;
     using Unic.Flex.Model.Validators;
-    using ListItem = Model.DataProviders.ListItem;
     using NavigationItem = Unic.Flex.Model.Components.NavigationItem;
 
     /// <summary>

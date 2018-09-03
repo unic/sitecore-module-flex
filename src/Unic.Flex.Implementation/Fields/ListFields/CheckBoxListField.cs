@@ -74,21 +74,5 @@
             
             base.SetValue(value);
         }
-        
-        public void SetSeparateTooltips()
-        {
-            foreach (var item in this.Items)
-            {
-                if (!string.IsNullOrWhiteSpace(item.TooltipTitle) &&
-                    !string.IsNullOrWhiteSpace(item.TooltipText))
-                {
-                    item.Tooltip = new Tooltip
-                    {
-                        Title = item.TooltipTitle,
-                        Text = item.TooltipText
-                    };
-                }
-            }
-        }
     }
 }
