@@ -2,6 +2,7 @@
 {
     using Glass.Mapper.Sc.Configuration.Attributes;
     using System.Linq;
+    using Model.Components;
     using Newtonsoft.Json.Linq;
     using Unic.Flex.Model.DataProviders;
     using Unic.Flex.Model.Fields.ListFields;
@@ -10,10 +11,8 @@
     /// Checkbox list field
     /// </summary>
     [SitecoreType(TemplateId = "{7532F52A-8BA7-4903-9B27-9E18FA1C4B92}")]
-    public class CheckBoxListField : MulticheckListField<string[], ListItem>
+    public class CheckBoxListField : MulticheckListField<string[], ListItem>, IListItemsWithTooltips
     {
-        public override bool HasSeparateTooltips => true;
-
         /// <summary>
         /// Gets the default value.
         /// </summary>
@@ -74,6 +73,22 @@
             }
             
             base.SetValue(value);
+        }
+        
+        public void SetSeparateTooltips()
+        {
+            foreach (var item in this.Items)
+            {
+                if (!string.IsNullOrWhiteSpace(item.TooltipTitle) &&
+                    !string.IsNullOrWhiteSpace(item.TooltipText))
+                {
+                    item.Tooltip = new Tooltip
+                    {
+                        Title = item.TooltipTitle,
+                        Text = item.TooltipText
+                    };
+                }
+            }
         }
     }
 }

@@ -1,7 +1,10 @@
 ﻿namespace Unic.Flex.Implementation.Fields.ListFields
 {
     using System.Linq;
+    using Core.DependencyInjection;
+    using Core.Logging;
     using Glass.Mapper.Sc.Configuration.Attributes;
+    using Model.Components;
     using Unic.Flex.Model.DataProviders;
     using Unic.Flex.Model.Fields.ListFields;
 
@@ -9,10 +12,8 @@
     /// Radio button list field
     /// </summary>
     [SitecoreType(TemplateId = "{188683AC-127C-45A1-8F7D-4ABF6E68E7AF}")]
-    public class RadioButtonListField : ListField<string, ListItem>
+    public class RadioButtonListField : ListField<string, ListItem>, IListItemsWithTooltips
     {
-        public override bool HasSeparateTooltips => true;
-
         /// <summary>
         /// Gets the default value.
         /// </summary>
@@ -38,10 +39,7 @@
         [SitecoreIgnore]
         public override string ViewName
         {
-            get
-            {
-                return "Fields/ListFields/RadioButtonList";
-            }
+            get { return "Fields/ListFields/RadioButtonList"; }
         }
 
         /// <summary>
@@ -50,8 +48,24 @@
         public override void BindProperties()
         {
             base.BindProperties();
-            
+
             this.AddCssClass("flex_radiogroup");
+        }
+
+        public void SetSeparateTooltips()
+        {
+            foreach (var item in this.Items)
+            {
+                if (!string.IsNullOrWhiteSpace(item.TooltipTitle) &&
+                    !string.IsNullOrWhiteSpace(item.TooltipText))
+                {
+                    item.Tooltip = new Tooltip
+                    {
+                        Title = item.TooltipTitle,
+                        Text = item.TooltipText
+                    };
+                }
+            }
         }
     }
 }

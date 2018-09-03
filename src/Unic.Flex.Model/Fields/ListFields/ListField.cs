@@ -17,7 +17,7 @@
     /// </summary>
     /// <typeparam name="TValue">The type of the value.</typeparam>
     /// <typeparam name="TType">The type of the data items.</typeparam>
-    public abstract class ListField<TValue, TType> : FieldBase<TValue>, ICascadingDependency where TType : IDataItem
+    public abstract class ListField<TValue, TType> : FieldBase<TValue>, ICascadingDependency, IListItems<TType> where TType : IDataItem
     {
         /// <summary>
         /// The items
@@ -33,8 +33,8 @@
         /// Private field for storing the is hidden property.
         /// </summary>
         private bool? isHidden;
-        
-        public virtual bool HasSeparateTooltips => false;
+
+        public bool HasSeparateTooltips => false;
 
         /// <summary>
         /// Gets the items.
