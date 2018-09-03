@@ -4,6 +4,5 @@
 
     public interface IListItemsWithTooltips : IListItems<ListItem>
     {
-        bool HasSeparateTooltips { get; }
     }
 }

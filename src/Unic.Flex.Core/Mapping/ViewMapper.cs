@@ -232,28 +232,6 @@
                     }
                 }
             }
-            ////map the separate tooltips for specific list fields
-            //if (TypeHelper.IsSubclassOfRawGeneric(typeof(ListField<,>), field.GetType()) && field.GetType().GetProperty("HasSeparateTooltips")?.GetValue(field) as bool? == true)
-            //{
-            //    var items = field.GetType().GetProperty("Items")?.GetValue(field) as List<ListItem>;
-            //    if (items != null)
-            //    {
-            //        foreach (var item in items)
-            //        {
-            //            var itemWithTooltip = (ITooltip) item;
-            //            if (!string.IsNullOrWhiteSpace(itemWithTooltip.TooltipTitle) &&
-            //                !string.IsNullOrWhiteSpace(itemWithTooltip.TooltipText))
-            //            {
-            //                itemWithTooltip.Tooltip = new Tooltip
-            //                {
-            //                    Title = itemWithTooltip.TooltipTitle,
-            //                    Text = itemWithTooltip.TooltipText
-            //                };
-            //            }
-            //        }
-            //    }
-
-            //}
 
             // bind properties
             field.BindProperties();

@@ -1,6 +1,7 @@
 ﻿namespace Unic.Flex.Core.Utilities
 {
     using System;
+    using System.Linq;
 
     /// <summary>
     /// Helper class for Type specific actions.

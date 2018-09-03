@@ -33,9 +33,7 @@
         /// Private field for storing the is hidden property.
         /// </summary>
         private bool? isHidden;
-
-        public bool HasSeparateTooltips => false;
-
+        
         /// <summary>
         /// Gets the items.
         /// </summary>
