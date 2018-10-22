@@ -14,8 +14,8 @@
 
             if (value == null) return;
 
-            var analyticsContactService = DependencyResolver.Resolve<IMarketingAutomationContactService>();
-            analyticsContactService.SetContactValue(this.ContactFieldName?.Trim(), value);
+            var marketingAutomationContactService = DependencyResolver.Resolve<IMarketingAutomationContactService>();
+            marketingAutomationContactService.SetContactValue(this.ContactFieldName?.Trim(), value);
         }
     }
 }

@@ -25,11 +25,9 @@
             using (new VersionCountDisabler())
             {
                 var contactFieldDefinition = this.sitecoreContext.GetItem<ContactFieldDefinition>(contactFieldDefinitionId);
-
                 if (contactFieldDefinition == null) return null;
 
                 var contactFacetDefinition = contactFieldDefinition.Facet;
-
                 if (contactFacetDefinition == null) return null;
 
                 var facetType = ReflectionUtil.GetTypeInfo(contactFacetDefinition.Type);
