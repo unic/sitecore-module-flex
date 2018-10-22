@@ -13,12 +13,12 @@
 
         public override void Apply(T ruleContext)
         {
-            var analyticsContactService = DependencyResolver.Resolve<IMarketingAutomationContactService>();
+            var marketingAutomationContactService = DependencyResolver.Resolve<IMarketingAutomationContactService>();
             var flexContext = DependencyResolver.Resolve<IFlexContext>();
 
             var language = flexContext.LanguageName;
 
-            analyticsContactService.SetContactValue(LanguageField, language);
+            marketingAutomationContactService.SetContactValue(LanguageField, language);
         }
     }
 }
