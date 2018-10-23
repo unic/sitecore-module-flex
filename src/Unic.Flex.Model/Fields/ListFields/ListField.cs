@@ -146,6 +146,13 @@
                 // lazy loading, but only for non cascading fields
                 if (!this.IsCascadingField && this.isHidden.HasValue) return this.isHidden.Value;
 
+                // Check upwards the cascade of dependent fields if one of them is hidden. This is a recursion!
+                if (this.DependentField != null && this.DependentField.IsHidden)
+                {
+                    this.isHidden = true;
+                    return this.isHidden.Value;
+                }
+
                 if (this.IsCascadingField && this.DependentField != null)
                 {
                     // value of dependent field is empty, so this field is hidden

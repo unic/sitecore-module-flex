@@ -1,0 +1,58 @@
+----item----
+version: 1
+id: {2530913E-7BF3-47AD-B461-B069CB771B10}
+database: master
+path: /sitecore/content/Flex/Forms Repository/Forms/Nested Dependency Form/Steps
+parent: {44213FC0-75A8-45CD-A9CD-91916CFFE8B8}
+name: Steps
+master: {266FE8EF-C58E-4056-963B-B85F5C3F3E3F}
+template: {5197ED42-0678-4268-8EB1-E47DE7718AE8}
+templatekey: Steps Folder
+
+----field----
+field: {BA3F86A2-4A1C-4D78-B63D-91C2779C1B5E}
+name: __Sortorder
+key: __sortorder
+content-length: 2
+
+50
+----field----
+field: {F6D8A61C-2F84-4401-BD24-52D2068172BC}
+name: __Originator
+key: __originator
+content-length: 0
+
+
+----version----
+language: en
+version: 1
+revision: 79d541aa-172f-4f7e-8f38-1b8e433fabe6
+
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20181023T142352Z
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+79d541aa-172f-4f7e-8f38-1b8e433fabe6
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 16
+
+20181023T142352Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

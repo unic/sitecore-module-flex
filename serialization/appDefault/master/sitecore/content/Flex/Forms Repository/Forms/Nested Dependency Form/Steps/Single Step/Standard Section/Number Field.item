@@ -1,0 +1,65 @@
+----item----
+version: 1
+id: {FC09DA40-7785-4A56-861E-36122D6B0255}
+database: master
+path: /sitecore/content/Flex/Forms Repository/Forms/Nested Dependency Form/Steps/Single Step/Standard Section/Number Field
+parent: {64A7C3F6-C3FA-4292-B96A-CED1D9E9B121}
+name: Number Field
+master: {00000000-0000-0000-0000-000000000000}
+template: {C9C6AC45-7763-4851-A684-A075D2176FF7}
+templatekey: Number Field
+
+----field----
+field: {7C06BDB6-0F34-4771-B1A6-9EAAE3C10871}
+name: Key
+key: key
+content-length: 12
+
+Number Field
+----version----
+language: en
+version: 1
+revision: 7c5cd682-a078-4bc9-bb48-32ade787ed26
+
+----field----
+field: {BB556E4E-CC68-459D-B316-7FF0070BA2D8}
+name: Label
+key: label
+content-length: 12
+
+Number Field
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20180917T125241Z
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+7c5cd682-a078-4bc9-bb48-32ade787ed26
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 16
+
+20180917T125241Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

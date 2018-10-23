@@ -1,0 +1,100 @@
+----item----
+version: 1
+id: {F230EE12-2B08-4F53-84EA-D63DA38A19D3}
+database: master
+path: /sitecore/content/Flex/Forms Repository/Forms/Nested Dependency Form/Steps/Single Step/Nested Dependent Fields Section/CheckBox List Field Level 3 If a-a
+parent: {BE01FE01-76A0-4CFA-8214-E1020C5F4E7E}
+name: CheckBox List Field Level 3 If a-a
+master: {00000000-0000-0000-0000-000000000000}
+template: {7532F52A-8BA7-4903-9B27-9E18FA1C4B92}
+templatekey: CheckBox List Field
+
+----field----
+field: {2F57CD30-F3A6-441E-8442-82A5B5077764}
+name: Data Provider
+key: data provider
+content-length: 38
+
+{C8E7B3B0-2141-46B8-9823-3BAB0A108410}
+----field----
+field: {2FCFE75A-C5BC-4BAD-8130-47098BF527F1}
+name: Dependent Field
+key: dependent field
+content-length: 38
+
+{77519F7F-6C7D-4CB6-9D22-19636D4A82B4}
+----field----
+field: {41D7594C-C1E0-4700-9BAF-32D97B6A658E}
+name: Dependent Value
+key: dependent value
+content-length: 1
+
+a
+----field----
+field: {369A3D49-5193-4C4B-8025-F13B3AADE243}
+name: Is Required
+key: is required
+content-length: 1
+
+1
+----field----
+field: {7C06BDB6-0F34-4771-B1A6-9EAAE3C10871}
+name: Key
+key: key
+content-length: 34
+
+CheckBox List Field Level 3 If a-a
+----field----
+field: {BA3F86A2-4A1C-4D78-B63D-91C2779C1B5E}
+name: __Sortorder
+key: __sortorder
+content-length: 3
+
+250
+----version----
+language: en
+version: 1
+revision: 895e2f36-20df-4c3e-a5ee-014a553e8949
+
+----field----
+field: {BB556E4E-CC68-459D-B316-7FF0070BA2D8}
+name: Label
+key: label
+content-length: 34
+
+CheckBox List Field Level 3 If a-a
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20181023T124334Z
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+895e2f36-20df-4c3e-a5ee-014a553e8949
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 16
+
+20181023T150047Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin
