@@ -6,9 +6,16 @@ path: /sitecore/content/Flex/Forms Repository/Forms/Nested Dependency Form/Steps
 parent: {BE01FE01-76A0-4CFA-8214-E1020C5F4E7E}
 name: CheckBox List Field Level 3 If c-c
 master: {00000000-0000-0000-0000-000000000000}
-template: {7532F52A-8BA7-4903-9B27-9E18FA1C4B92}
-templatekey: CheckBox List Field
+template: {18C0BDC1-5162-4CE4-A92A-0C9A8CAFCF11}
+templatekey: DropDown List Field
 
+----field----
+field: {EC198906-B0D5-446C-9B86-D45C59C75D38}
+name: Add Empty Option
+key: add empty option
+content-length: 1
+
+1
 ----field----
 field: {2F57CD30-F3A6-441E-8442-82A5B5077764}
 name: Data Provider
@@ -54,7 +61,7 @@ content-length: 3
 ----version----
 language: en
 version: 1
-revision: 881b3762-772a-4927-864b-dc2b0a4dba43
+revision: 6db5863e-2402-4d3e-be87-eaeb6a6bba51
 
 ----field----
 field: {BB556E4E-CC68-459D-B316-7FF0070BA2D8}
@@ -83,14 +90,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-881b3762-772a-4927-864b-dc2b0a4dba43
+6db5863e-2402-4d3e-be87-eaeb6a6bba51
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 16
 
-20181023T150231Z
+20181026T121047Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
