@@ -1,0 +1,79 @@
+----item----
+version: 1
+id: {BF835E7C-BBC6-445C-849E-CDDD23B16191}
+database: master
+path: /sitecore/content/Flex/Forms Repository/Forms/Nested Dependency Form/Steps/Single Step/Nested Dependent Fields Section/RadioButton List Field Level 1
+parent: {BE01FE01-76A0-4CFA-8214-E1020C5F4E7E}
+name: RadioButton List Field Level 1
+master: {00000000-0000-0000-0000-000000000000}
+template: {188683AC-127C-45A1-8F7D-4ABF6E68E7AF}
+templatekey: RadioButton List Field
+
+----field----
+field: {2F57CD30-F3A6-441E-8442-82A5B5077764}
+name: Data Provider
+key: data provider
+content-length: 38
+
+{C8E7B3B0-2141-46B8-9823-3BAB0A108410}
+----field----
+field: {369A3D49-5193-4C4B-8025-F13B3AADE243}
+name: Is Required
+key: is required
+content-length: 1
+
+1
+----field----
+field: {7C06BDB6-0F34-4771-B1A6-9EAAE3C10871}
+name: Key
+key: key
+content-length: 30
+
+RadioButton List Field Level 1
+----version----
+language: en
+version: 1
+revision: d3f7fd71-0ef5-4745-ae4e-e12f836b3def
+
+----field----
+field: {BB556E4E-CC68-459D-B316-7FF0070BA2D8}
+name: Label
+key: label
+content-length: 30
+
+RadioButton List Field Level 1
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20181023T123840Z
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+d3f7fd71-0ef5-4745-ae4e-e12f836b3def
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 16
+
+20181023T123855Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

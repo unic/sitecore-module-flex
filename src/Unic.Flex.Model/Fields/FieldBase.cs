@@ -435,6 +435,13 @@
                     return this.isHidden.Value;
                 }
 
+                // Check upwards the cascade of dependent fields if one of them is hidden. This is a recursion!
+                if (this.DependentField.IsHidden)
+                {
+                    this.isHidden = true;
+                    return this.isHidden.Value;
+                }
+
                 // get the value of the dependent field
                 var dependentValue = this.DependentField.Value != null ? this.DependentField.Value.ToString() : string.Empty;
                 var listValue = this.DependentField.Value as IEnumerable<string>;
