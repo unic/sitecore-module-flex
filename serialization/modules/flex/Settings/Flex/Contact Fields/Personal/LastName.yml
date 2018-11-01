@@ -7,7 +7,7 @@ DB: master
 SharedFields:
 - ID: "7b1ad91f-6087-4c6c-945f-04fce804ce3b"
   Hint: Field Name
-  Value: LastName
+  Value: Surname
 Languages:
 - Language: en
   Versions:

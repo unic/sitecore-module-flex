@@ -11,8 +11,8 @@
 
         protected override object GetValue()
         {
-            var analyticsContactService = DependencyResolver.Resolve<IMarketingAutomationContactService>();
-            return analyticsContactService.GetContactValue(this.ContactFieldName?.Trim());
+            var marketingAutomationContactService = DependencyResolver.Resolve<IMarketingAutomationContactService>();
+            return marketingAutomationContactService.GetContactValue(this.ContactFieldName?.Trim());
         }
     }
 }

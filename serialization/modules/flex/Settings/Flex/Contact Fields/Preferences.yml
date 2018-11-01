@@ -10,7 +10,7 @@ SharedFields:
   Value: Preferences
 - ID: "f559df3a-8b58-44f5-9cd3-b06f48873e9c"
   Hint: Type
-  Value: Sitecore.Analytics.Model.Entities.IContactPreferences
+  Value: Sitecore.Analytics.Model.Entities.IContactPreferences, Sitecore.Analytics.Model
 Languages:
 - Language: en
   Versions:

@@ -171,8 +171,8 @@
     <Compile Include="Mapping\Ordering\SitecoreSortOrder.cs" />
     <Compile Include="Mapping\UserDataRepository.cs" />
     <Compile Include="Mapping\ViewMapper.cs" />
-    <Compile Include="MarketingAutomation\AnalyticsContactService.cs" />
-    <Compile Include="MarketingAutomation\IAnalyticsContactService.cs" />
+    <Compile Include="MarketingAutomation\IMarketingAutomationContactService.cs" />
+    <Compile Include="MarketingAutomation\MarketingAutomationContactService.cs" />
     <Compile Include="ModelBinding\DateTimeModelBinder.cs" />
     <Compile Include="ModelBinding\DecimalModelBinder.cs" />
     <Compile Include="ModelBinding\FieldModelBinder.cs" />

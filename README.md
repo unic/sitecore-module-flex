@@ -6,7 +6,13 @@ Flex is the acronym for __Fl__exible Forms __Ex__perience, the module to create 
 
 ## Changelog
 
-## Next
+## 3.13
+* Fixed bug with nested dependent fields
+
+## 3.12
+* Fixed saving Lastname and Language to Contact
+
+## 3.11
 * Added detailed exception description when datasource is not a form
 
 ## 3.10
