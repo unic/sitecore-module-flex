@@ -18,7 +18,7 @@
     </dependencies>
   </metadata>
   <files>
-	<file src="readme.txt" target="" />
+	<file src="..\..\README.md" target="readme.txt" />
 	<file src="..\..\serialization\modules\flex\**\*.*" target="serialization\modules\flex" />	
   </files>
 </package>
