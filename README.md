@@ -11,20 +11,20 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ## Changelog
 
-## 3.13
+### 3.13
 * Fixed bug with nested dependent fields
 
-## 3.12
+### 3.12
 * Fixed saving Lastname and Language to Contact
 
-## 3.11
+### 3.11
 * Added detailed exception description when datasource is not a form
 
-## 3.10
+### 3.10
 * Extended the checkbox list field and radio button list field with possibility 
 to add a separate tooltip for each item
 
-## 3.9
+### 3.9
 * Added possibility to redirect user after Double Optin confirmation
 * Updated Unic.Bob.Scoop to V. 3.1.0
 
@@ -164,7 +164,7 @@ Unicorn is configured to deserialize the items back into the database.
 #### Sitecore Default Update Package
 
 An item udpate package with standard serialized items is also available in the Unic.Flex 
-NuGet package under  `.\packages\Unic.Flex.[version]\serialization\flex.update`.
+NuGet package under  `.\packages\Unic.Flex.[version]\serialization\Flex.update`.
 You can install this package instead of deserializing the Unicorn/Rainbow Files.
 
 ### Install Database
