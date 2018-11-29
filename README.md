@@ -1,6 +1,7 @@
 # Flex
 
-Flex is the acronym for __Fl__exible Forms __Ex__perience, the module to empower Sitecore Authors and Marketers to create amazing web form experiences.
+Flex is the acronym for __Fl__exible Forms __Ex__perience, the module to empower 
+Sitecore Authors and Marketers to create amazing web form experiences.
 
 ## Table of Content
 
@@ -20,7 +21,8 @@ Flex is the acronym for __Fl__exible Forms __Ex__perience, the module to empower
 * Added detailed exception description when datasource is not a form
 
 ## 3.10
-* Extended the checkbox list field and radio button list field with possibility to add a separate tooltip for each item
+* Extended the checkbox list field and radio button list field with possibility 
+to add a separate tooltip for each item
 
 ## 3.9
 * Added possibility to redirect user after Double Optin confirmation
@@ -30,7 +32,8 @@ Flex is the acronym for __Fl__exible Forms __Ex__perience, the module to empower
 * Fixed Unicorn dependency to Modules.Configuration
 
 ### 3.8.2
-* Fixed save and load actions "set field value to contact" and "load field value from contact" in non-english context
+* Fixed save and load actions "set field value to contact" and "load field value 
+from contact" in non-english context
 
 ### 3.8.1
 * Added handling for custom field types when setting their value
@@ -49,7 +52,10 @@ Flex is the acronym for __Fl__exible Forms __Ex__perience, the module to empower
 
 ### 3.5.1
 
-* Fixed broken `Label Link` functionality. `Label Links` could not be used due to a call to a removed overload of `GlassHtml.BeginRenderLink`, which resulted in exceptions during dynamic compilation. The newly added `alwaysRender` argument prevents the rendering of the element when the link is `null`.
+* Fixed broken `Label Link` functionality. `Label Links` could not be used due to a 
+call to a removed overload of `GlassHtml.BeginRenderLink`, which resulted in exceptions 
+during dynamic compilation. The newly added `alwaysRender` argument prevents the rendering 
+of the element when the link is `null`.
 
 ### 3.5
 
@@ -58,7 +64,8 @@ Flex is the acronym for __Fl__exible Forms __Ex__perience, the module to empower
 ### 3.4
 
 * Update `Glass.Mapper` to `4.5.0.4`
-* Add call to `DependencyResolver.Finalise()` - this behaviour can be overriden in the `GlassConfig.FinaliseConfiguration` method. See http://glass.lu/Mapper/Sc/Releases for more information
+* Add call to `DependencyResolver.Finalise()` - this behaviour can be overriden in the 
+`GlassConfig.FinaliseConfiguration` method. See http://glass.lu/Mapper/Sc/Releases for more information.
 
 ### 3.3
 
@@ -83,7 +90,8 @@ Flex is the acronym for __Fl__exible Forms __Ex__perience, the module to empower
 
 ### 3.0.1
 
-* Fix accidental ObjectConstruction pipeline abort by not completely following Glass.Mapper 4.3 upgrade instruction
+* Fix accidental ObjectConstruction pipeline abort by not completely following Glass.Mapper 4.3 
+upgrade instruction
 
 ### 3.0
 
@@ -111,7 +119,8 @@ Flex is the acronym for __Fl__exible Forms __Ex__perience, the module to empower
 
 ### 2.5.1
 
-* Fixed standard values ID on Reusable Section, so that Show in Summary is ticked by default
+* Fixed standard values ID on Reusable Section, so that Show in Summary is 
+ticked by default
 
 ### 2.5
 
@@ -123,8 +132,8 @@ Flex is the acronym for __Fl__exible Forms __Ex__perience, the module to empower
 
 ## Installation Instructions
 
-Flex depends on the Unic Configuration module, which must be installed on the Sitecore instance
-before running Flex. It can be installed over NuGet:
+Flex depends on the Unic Configuration module, which must be installed on the 
+Sitecore instance before running Flex. It can be installed over NuGet:
 
   > Install-Package Unic.Configuration
 
@@ -134,10 +143,10 @@ Then, proceed with Flex as follows:
 
 ### IoC container
 
-You must install an IoC container framework for Flex. Currently there are containers available
-for Ninject and SimpleInjector, which can be installed over NuGet:
+You must install an IoC container framework for Flex. Currently there are containers 
+available for Ninject and SimpleInjector, which can be installed over NuGet:
 
-  > Install-Package Unic.Flex.Ninect
+  > Install-Package Unic.Flex.Ninject
 
 or
 
@@ -147,21 +156,28 @@ or
 
 #### Unicorn/Rainbow Format
 
-The serialized items (Unicorn/Rainbow based YAML files) are included in the Unic.Flex NuGet package and thus can be copied out of the `.\packages\Unic.Flex.[version]\serialization folder`  to wherever your data folder for Unicorn is configured to deserialize the items back into the database.
+The serialized items (Unicorn/Rainbow based YAML files) are included in the 
+Unic.Flex NuGet package and thus can be copied out of the 
+`.\packages\Unic.Flex.[version]\serialization folder` to wherever your data folder for 
+Unicorn is configured to deserialize the items back into the database.
 
 #### Sitecore Default Update Package
 
-TBD
+An item udpate package with standard serialized items is also available in the Unic.Flex 
+NuGet package under  `.\packages\Unic.Flex.[version]\serialization\flex.update`.
+You can install this package instead of deserializing the Unicorn/Rainbow Files.
 
 ### Install Database
 
-Install the database in the "data" directory of Flex to your Sql server. Then put the following connection string into "ConnectionStrings.config":
+Install the database in the "data" directory of Flex to your Sql server. Then put the 
+following connection string into "ConnectionStrings.config":
 
     <add name="Flex" connectionString="Data Source=localhost;Initial Catalog=flex_data;Integrated Security=True" providerName="System.Data.SqlClient" />
 
 ### Assets
 
-Flex depends on several assets. There are partial views available to include these. Please add the following lines of code in your layout view.
+Flex depends on several assets. There are partial views available to include these. 
+Please add the following lines of code in your layout view.
 
 Before the closing `</head>`:
 
@@ -173,21 +189,23 @@ Before the closing `</body>`:
 
 ### Client-side validation
 
-To enable client side validation, add the following nodes to the `<appSettings>`-node of the `web.config`:
+To enable client side validation, add the following nodes to the `<appSettings>`-node 
+of the `web.config`:
 
     <add key="ClientValidationEnabled" value="true" />
     <add key="UnobtrusiveJavaScriptEnabled" value="true" />
 
 ### Form Repository
 
-You need to add a form repository in the content tree. The form repository must be created based on the following branch template:
+You need to add a form repository in the content tree. The form repository must be created 
+based on the following branch template:
 
     /sitecore/templates/Branches/Flex/Global/Repository Root
 
 ### Allow Rendering in Placeholder Settings
 
-To add a form in the Page Editor, the the following rendering has to be enabled in your placeholder
-settings:
+To add a form in the Page Editor, the the following rendering has to be enabled in your 
+placeholder settings:
 
     /sitecore/layout/Renderings/Flex/Flex Form
 
