@@ -1,0 +1,65 @@
+----item----
+version: 1
+id: {93CCBCFD-70EF-4FBA-A09D-19233F359AFA}
+database: master
+path: /sitecore/content/Flex/Forms Repository/Forms/Nested Dependency Form/Save Plugs/Send Email
+parent: {E35BD623-69CF-4984-A35D-790DD32B8C14}
+name: Send Email
+master: {00000000-0000-0000-0000-000000000000}
+template: {DF5C2C2F-4A48-4206-9DFB-0DCDE27E2233}
+templatekey: Send Email
+
+----field----
+field: {FAFF1E6B-2975-4F4A-B886-12308D3436E3}
+name: From
+key: from
+content-length: 16
+
+flex@unictest.ch
+----field----
+field: {4C2D3AE6-B26F-4762-9044-825482DCE895}
+name: To
+key: to
+content-length: 16
+
+flex@unictest.ch
+----version----
+language: en
+version: 1
+revision: 5de518d0-c62b-431f-9d09-e5dfbe0291e4
+
+----field----
+field: {72C7EABD-1BD5-481D-887F-2C073763D645}
+name: Subject
+key: subject
+content-length: 11
+
+Simple Form
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20150723T150513
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+5de518d0-c62b-431f-9d09-e5dfbe0291e4
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 16
+
+20181023T091347Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

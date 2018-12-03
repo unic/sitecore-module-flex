@@ -35,7 +35,7 @@
         /// </returns>
         public virtual string GetEmailAddressFromSettings(string configKey)
         {
-            return Sitecore.Configuration.Settings.GetSetting(string.Format("Flex.EmailAddresses.{0}", configKey));
+            return Sitecore.Configuration.Settings.GetSetting($"Flex.EmailAddresses.{configKey}");
         }
 
         /// <summary>

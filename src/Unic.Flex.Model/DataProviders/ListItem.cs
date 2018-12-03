@@ -1,5 +1,6 @@
 ﻿namespace Unic.Flex.Model.DataProviders
 {
+    using Components;
     using Glass.Mapper.Sc.Configuration;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Unic.Flex.Model.GlassExtensions.Attributes;
@@ -8,7 +9,7 @@
     /// Represents an item in the list
     /// </summary>
     [SitecoreType(TemplateId = "{E4DE7509-97B6-4284-A9B9-BBC3452757F5}")]
-    public class ListItem : IDataItem
+    public class ListItem : IDataItem, ITooltip
     {
         /// <summary>
         /// Gets or sets the text.
@@ -45,5 +46,32 @@
         /// </value>
         [SitecoreSharedField("Cascading Data Provider", Setting = SitecoreFieldSettings.InferType)]
         public virtual IDataProvider<ListItem> CascadingDataProvider { get; set; }
+
+        /// <summary>
+        /// Gets or sets the tooltip title.
+        /// </summary>
+        /// <value>
+        /// The tooltip title.
+        /// </value>
+        [SitecoreDictionaryFallbackField("Tooltip Title", "Tooltip Title")]
+        public virtual string TooltipTitle { get; set; }
+
+        /// <summary>
+        /// Gets or sets the tooltip text.
+        /// </summary>
+        /// <value>
+        /// The tooltip text.
+        /// </value>
+        [SitecoreField("Tooltip Text")]
+        public virtual string TooltipText { get; set; }
+
+        /// <summary>
+        /// Gets or sets the tooltip.
+        /// </summary>
+        /// <value>
+        /// The tooltip.
+        /// </value>
+        [SitecoreIgnore]
+        public virtual Tooltip Tooltip { get; set; }
     }
 }

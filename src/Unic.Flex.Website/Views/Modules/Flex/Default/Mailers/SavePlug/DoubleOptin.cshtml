@@ -1,0 +1,12 @@
+﻿@using Unic.Flex.Model.Forms
+
+@{
+    Layout = ViewBag.HtmlLayout;
+    var form = ViewBag.Form as Form;
+    if (form == null)
+    {
+        return;
+    }
+}
+
+@Html.Raw(ViewBag.HtmlMail)

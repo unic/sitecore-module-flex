@@ -17,7 +17,7 @@
     /// </summary>
     /// <typeparam name="TValue">The type of the value.</typeparam>
     /// <typeparam name="TType">The type of the data items.</typeparam>
-    public abstract class ListField<TValue, TType> : FieldBase<TValue>, ICascadingDependency where TType : IDataItem
+    public abstract class ListField<TValue, TType> : FieldBase<TValue>, ICascadingDependency, IListItems<TType> where TType : IDataItem
     {
         /// <summary>
         /// The items
@@ -146,6 +146,13 @@
                 // lazy loading, but only for non cascading fields
                 if (!this.IsCascadingField && this.isHidden.HasValue) return this.isHidden.Value;
 
+                // Check upwards the cascade of dependent fields if one of them is hidden. This is a recursion!
+                if (this.DependentField != null && this.DependentField.IsHidden)
+                {
+                    this.isHidden = true;
+                    return this.isHidden.Value;
+                }
+
                 if (this.IsCascadingField && this.DependentField != null)
                 {
                     // value of dependent field is empty, so this field is hidden
@@ -194,7 +201,7 @@
                                 ? this.DataProvider.GetTextValue<TValue>(this.Value)
                                 : string.Empty;
                 
-                return !string.IsNullOrWhiteSpace(value) ? value : "-";
+                return !string.IsNullOrWhiteSpace(value) ? value : Definitions.Constants.EmptyFlexFieldDefaultValue;
             }
         }
 

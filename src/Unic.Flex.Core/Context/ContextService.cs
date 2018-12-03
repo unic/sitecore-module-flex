@@ -61,10 +61,21 @@
         {
             Profiler.OnStart(this, "Flex :: Load form from datasource");
 
-            var form = this.formRepository.LoadForm(dataSource, useVersionCountDisabler);
+            IForm form;
+            try
+            {
+                form = this.formRepository.LoadForm(dataSource, useVersionCountDisabler);
+            }
+            catch (Exception ex)
+            {
+                string errorMsg = $"Could not load the datasource {dataSource}, make sure it is available and of the type form";
+                this.logger.Error(errorMsg, this, ex);
+                throw new Exception(errorMsg, ex);
+            }
+
             if (form == null)
             {
-                this.logger.Warn(string.Format("Could not load form with datasource '{0}', maybe it's not available in all languages as the item containing the form", dataSource), this);
+                this.logger.Warn(string.Format("Could not load form with datasource '{0}'. Check if the datasource is a Form item, maybe it's not available in all languages as the item containing the form", dataSource), this);
                 Profiler.OnEnd(this, "Flex :: Load form from datasource");
                 return null;
             }

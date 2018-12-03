@@ -1,0 +1,21 @@
+﻿---
+ID: "7f3d6561-2c77-4a22-a891-e7b8d91b7ed0"
+Parent: "f8239638-a672-491f-bbd4-a59cd3090c8b"
+Template: "f8239638-a672-491f-bbd4-a59cd3090c8b"
+Path: /sitecore/templates/Flex/Plugs/Save Plugs/Double Optin/__Standard Values
+DB: master
+SharedFields:
+- ID: "1172f251-dad4-4efb-a329-0c63500e4f1e"
+  Hint: __Masters
+  Type: TreelistEx
+  Value: |
+    {9A7F5FA1-E267-4BF2-8D3C-4D487792B636}
+    {DF5C2C2F-4A48-4206-9DFB-0DCDE27E2233}
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20140903T103915

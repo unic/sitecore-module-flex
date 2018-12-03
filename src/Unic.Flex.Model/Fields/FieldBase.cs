@@ -120,7 +120,7 @@
             get
             {
                 var value = !Equals(this.Value, null) ? this.Value.ToString() : string.Empty;
-                return !string.IsNullOrWhiteSpace(value) ? value : "-";
+                return !string.IsNullOrWhiteSpace(value) ? value : Definitions.Constants.EmptyFlexFieldDefaultValue;
             }
         }
 
@@ -432,6 +432,13 @@
                 if (this.DependentField == null)
                 {
                     this.isHidden = false;
+                    return this.isHidden.Value;
+                }
+
+                // Check upwards the cascade of dependent fields if one of them is hidden. This is a recursion!
+                if (this.DependentField.IsHidden)
+                {
+                    this.isHidden = true;
                     return this.isHidden.Value;
                 }
 

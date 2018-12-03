@@ -1,0 +1,51 @@
+----item----
+version: 1
+id: {018820E1-BD4A-4A00-9803-B04CBA269175}
+database: master
+path: /sitecore/content/Flex/Forms Repository/Forms/Double Opin Form/Steps/Single Step
+parent: {4634B9DD-6610-4956-9B1F-F89505423529}
+name: Single Step
+master: {00000000-0000-0000-0000-000000000000}
+template: {62607958-C3F4-4925-BD8E-786E37F10E9A}
+templatekey: Single Step
+
+----version----
+language: en
+version: 1
+revision: 251484bb-fb58-43a5-aac4-a9d5ca00c088
+
+----field----
+field: {BD716805-EE6D-4432-A114-60222E740712}
+name: Title
+key: title
+content-length: 11
+
+Single Step
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20180322T152448Z
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+251484bb-fb58-43a5-aac4-a9d5ca00c088
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 16
+
+20180322T152448Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

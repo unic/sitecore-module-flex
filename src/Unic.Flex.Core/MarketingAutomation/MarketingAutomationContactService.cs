@@ -22,22 +22,23 @@
 
         public object GetContactValue(Guid contactFieldDefinitionId)
         {
-            var contactFieldDefinition = this.sitecoreContext.GetItem<ContactFieldDefinition>(contactFieldDefinitionId);
+            using (new VersionCountDisabler())
+            {
+                var contactFieldDefinition = this.sitecoreContext.GetItem<ContactFieldDefinition>(contactFieldDefinitionId);
+                if (contactFieldDefinition == null) return null;
 
-            if (contactFieldDefinition == null) return null;
+                var contactFacetDefinition = contactFieldDefinition.Facet;
+                if (contactFacetDefinition == null) return null;
 
-            var contactFacetDefinition = contactFieldDefinition.Facet;
+                var facetType = ReflectionUtil.GetTypeInfo(contactFacetDefinition.Type);
+                var facet = this.GetFacet(facetType, contactFacetDefinition);
 
-            if (contactFacetDefinition == null) return null;
+                var fieldProperty = facetType.GetProperty(contactFieldDefinition.FieldName, BindingFlags.Public | BindingFlags.Instance);
 
-            var facetType = ReflectionUtil.GetTypeInfo(contactFacetDefinition.Type);
-            var facet = this.GetFacet(facetType, contactFacetDefinition);
+                if (fieldProperty == null) return null;
 
-            var fieldProperty = facetType.GetProperty(contactFieldDefinition.FieldName, BindingFlags.Public | BindingFlags.Instance);
-
-            if (fieldProperty == null) return null;
-
-            return fieldProperty.GetValue(facet);
+                return fieldProperty.GetValue(facet);
+            }
         }
 
         public string GetEmailAddress(string name)
@@ -85,22 +86,25 @@
 
         public void SetContactValue(Guid contactFieldDefinitionId, object value)
         {
-            var contactFieldDefinition = this.sitecoreContext.GetItem<ContactFieldDefinition>(contactFieldDefinitionId);
+            using (new VersionCountDisabler())
+            {
+                var contactFieldDefinition = this.sitecoreContext.GetItem<ContactFieldDefinition>(contactFieldDefinitionId);
 
-            if (contactFieldDefinition == null) return;
+                if (contactFieldDefinition == null) return;
 
-            var contactFacetDefinition = contactFieldDefinition.Facet;
+                var contactFacetDefinition = contactFieldDefinition.Facet;
 
-            if (contactFacetDefinition == null) return;
+                if (contactFacetDefinition == null) return;
 
-            var facetType = ReflectionUtil.GetTypeInfo(contactFacetDefinition.Type);
-            var facet = this.GetFacet(facetType, contactFacetDefinition);
+                var facetType = ReflectionUtil.GetTypeInfo(contactFacetDefinition.Type);
+                var facet = this.GetFacet(facetType, contactFacetDefinition);
 
-            var fieldProperty = facetType.GetProperty(contactFieldDefinition.FieldName, BindingFlags.Public | BindingFlags.Instance);
+                var fieldProperty = facetType.GetProperty(contactFieldDefinition.FieldName, BindingFlags.Public | BindingFlags.Instance);
 
-            if (fieldProperty == null) return;
+                if (fieldProperty == null) return;
 
-            fieldProperty.SetValue(facet, value);
+                fieldProperty.SetValue(facet, value);
+            }
         }
 
         public void SetContactValue(string contactFieldName, string value)

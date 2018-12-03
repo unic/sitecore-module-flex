@@ -26,7 +26,7 @@ content-length: 38
 ----version----
 language: en
 version: 1
-revision: f8872c88-07ad-4eb3-8fe2-17e2c92f45ed
+revision: 6b752c72-b5ae-47f9-9f84-2b5dcbd2f74b
 
 ----field----
 field: {75577384-3C97-45DA-A847-81B00500E250}
@@ -39,18 +39,20 @@ Sitecore
 field: {A60ACD61-A6DB-4182-8329-C957982CEC74}
 name: Text
 key: text
-content-length: 233
+content-length: 432
 
 <p>Please choose one of the following forms:</p>
 <p><a href="~/link.aspx?_id=35FDAFA5FE0042DC849B642C44BBFFEB&amp;_z=z">Simple Form</a></p>
 <p><a href="~/link.aspx?_id=849990C0259E428C8EB45D74845B4265&amp;_z=z">Multistep Form</a></p>
+<p><a href="~/link.aspx?_id=EC72FB4C516744C9BB6B82F7B2848BA3&amp;_z=z">Double Optin Form</a></p>
+<p><a href="~/link.aspx?_id=E781D7C738294339BCCD5AB7BA24ECFB&amp;_z=z">Nested Dependency Form</a></p>
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
 name: __Created
 key: __created
-content-length: 15
+content-length: 16
 
-20150723T154039
+20150723T134039Z
 ----field----
 field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
 name: __Created by
@@ -64,14 +66,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-f8872c88-07ad-4eb3-8fe2-17e2c92f45ed
+6b752c72-b5ae-47f9-9f84-2b5dcbd2f74b
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 16
 
-20160520T135319Z
+20181023T145848Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

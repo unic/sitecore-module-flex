@@ -206,7 +206,7 @@
         /// <returns>The formatted exported value</returns>
         private string GetExportValue(FieldItem fieldItem, Field field)
         {
-            if (fieldItem == null) return "-";
+            if (fieldItem == null) return Model.Definitions.Constants.EmptyFlexFieldDefaultValue;
             if (TypeHelper.IsSubclassOfRawGeneric(typeof(ListField<,>), fieldItem.Type)) return field.Value.Replace(Environment.NewLine, ", ");
             return field.Value;
         }

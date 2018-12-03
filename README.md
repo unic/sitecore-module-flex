@@ -6,6 +6,34 @@ Flex is the acronym for __Fl__exible Forms __Ex__perience, the module to create 
 
 ## Changelog
 
+## 3.13
+* Fixed bug with nested dependent fields
+
+## 3.12
+* Fixed saving Lastname and Language to Contact
+
+## 3.11
+* Added detailed exception description when datasource is not a form
+
+## 3.10
+* Extended the checkbox list field and radio button list field with possibility to add a separate tooltip for each item
+
+## 3.9
+* Added possibility to redirect user after Double Optin confirmation
+* Updated Unic.Bob.Scoop to V. 3.1.0
+
+### 3.8.3
+* Fixed Unicorn dependency to Modules.Configuration
+
+### 3.8.2
+* Fixed save and load actions "set field value to contact" and "load field value from contact" in non-english context
+
+### 3.8.1
+* Added handling for custom field types when setting their value
+
+### 3.8
+* Added new SavePlug for Double Optin
+
 ### 3.7
 * Added new action to the saverules for saving the current language to a contact 
 * Added new action to the saverules for identifying the contact

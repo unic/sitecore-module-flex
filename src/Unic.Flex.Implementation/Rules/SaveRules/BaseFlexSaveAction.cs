@@ -15,7 +15,6 @@ namespace Unic.Flex.Implementation.Rules.SaveRules
             var form = flexContext?.Form;
 
             var field = form?.GetFields().FirstOrDefault(_ => _.Key == this.FieldKey);
-
             if (field?.Value == null) return null;
 
             var value = field.Value.ToString();

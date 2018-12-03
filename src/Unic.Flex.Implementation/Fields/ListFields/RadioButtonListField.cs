@@ -9,7 +9,7 @@
     /// Radio button list field
     /// </summary>
     [SitecoreType(TemplateId = "{188683AC-127C-45A1-8F7D-4ABF6E68E7AF}")]
-    public class RadioButtonListField : ListField<string, ListItem>
+    public class RadioButtonListField : ListField<string, ListItem>, IListItemsWithTooltips
     {
         /// <summary>
         /// Gets the default value.
@@ -36,10 +36,7 @@
         [SitecoreIgnore]
         public override string ViewName
         {
-            get
-            {
-                return "Fields/ListFields/RadioButtonList";
-            }
+            get { return "Fields/ListFields/RadioButtonList"; }
         }
 
         /// <summary>

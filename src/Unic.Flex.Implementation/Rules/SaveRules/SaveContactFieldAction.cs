@@ -12,12 +12,12 @@
 
         public override void Apply(T ruleContext)
         {
-            var analyticsContactService = DependencyResolver.Resolve<IMarketingAutomationContactService>();
+            var marketingAutomationContactService = DependencyResolver.Resolve<IMarketingAutomationContactService>();
 
             var value = this.GetFieldValue(ruleContext);
             if (value == null) return;
 
-            analyticsContactService.SetContactValue(this.ContactField, value);
+            marketingAutomationContactService.SetContactValue(this.ContactField, value);
         }
     }
 }
