@@ -11,34 +11,49 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ## Changelog
 
+### 3.14
+
+* Combined Readme.md from repository and Readme.txt from NuGet package
+* Introduced an item update package in addition to the serialized item files
+* Updated Unic.Bob.Scoop to latest version
+
 ### 3.13
+
 * Fixed bug with nested dependent fields
 
 ### 3.12
+
 * Fixed saving Lastname and Language to Contact
 
 ### 3.11
+
 * Added detailed exception description when datasource is not a form
 
 ### 3.10
+
 * Extended the checkbox list field and radio button list field with possibility 
 to add a separate tooltip for each item
 
 ### 3.9
+
 * Added possibility to redirect user after Double Optin confirmation
 * Updated Unic.Bob.Scoop to V. 3.1.0
 
 ### 3.8.3
+
 * Fixed Unicorn dependency to Modules.Configuration
 
 ### 3.8.2
+
 * Fixed save and load actions "set field value to contact" and "load field value 
 from contact" in non-english context
 
 ### 3.8.1
+
 * Added handling for custom field types when setting their value
 
 ### 3.8
+
 * Added new SavePlug for Double Optin
 
 ### 3.7
@@ -132,15 +147,6 @@ ticked by default
 
 ## Installation Instructions
 
-Flex depends on the Unic Configuration module, which must be installed on the 
-Sitecore instance before running Flex. It can be installed over NuGet:
-
-  > Install-Package Unic.Configuration
-
-Then, proceed with Flex as follows:
-
-  > Install-Package Unic.Flex
-
 ### IoC container
 
 You must install an IoC container framework for Flex. Currently there are containers 
@@ -156,9 +162,14 @@ or
 
 #### Unicorn/Rainbow Format
 
-The serialized items (Unicorn/Rainbow based YAML files) are included in the 
+The serialized items for Flex (Unicorn/Rainbow based YAML files) are included in the 
 Unic.Flex NuGet package and thus can be copied out of the 
 `.\packages\Unic.Flex.[version]\serialization folder` to wherever your data folder for 
+Unicorn is configured to deserialize the items back into the database.
+
+The serialized items for the Unic.Configuration module (Unicorn/Rainbow based YAML files) 
+are included in the Unic.Configuration NuGet package and thus can be copied out of the 
+`.\packages\Unic.Configuration.[version]\serialization folder` to wherever your data folder for 
 Unicorn is configured to deserialize the items back into the database.
 
 #### Sitecore Default Update Package
@@ -166,6 +177,8 @@ Unicorn is configured to deserialize the items back into the database.
 An item udpate package with standard serialized items is also available in the Unic.Flex 
 NuGet package under  `.\packages\Unic.Flex.[version]\serialization\Flex.update`.
 You can install this package instead of deserializing the Unicorn/Rainbow Files.
+
+Note: The Flex.update package also contains items to all dependent module items (e.g. Unic.Configuration)
 
 ### Install Database
 
