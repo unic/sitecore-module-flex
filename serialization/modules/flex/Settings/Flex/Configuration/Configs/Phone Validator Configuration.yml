@@ -14,4 +14,4 @@ Languages:
       Value: 20190116T135445Z
     - ID: "d9e2611d-71da-43e7-9e49-1d128f922ec2"
       Hint: Regular Expression
-      Value: "^[0|\+]{1}[0-9|\ ]{9,}$"
+      Value: "^[0|\+]{1}[0-9|\ ]{6,}$"
