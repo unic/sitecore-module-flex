@@ -55,7 +55,7 @@
             }
         }
 
-        private void string GetRegularExpressionFromConfig()
+        private string GetRegularExpressionFromConfig()
         {
             return this.configurationManager.Get<PhoneValidatorConfiguration>(c => c.RegularExpression);
         }
