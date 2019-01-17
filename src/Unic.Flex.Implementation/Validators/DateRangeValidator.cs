@@ -70,6 +70,15 @@
         public virtual DateTime? MaximumDate { get; set; }
 
         /// <summary>
+        /// Gets or sets the dynamic year and today range. 
+        /// </summary>
+        /// <value>
+        /// The dynamic year and today range.
+        /// </value>
+        [SitecoreField("Dynamic Year And Today Range")]
+        public virtual int? DynamicYearAndTodayRange { get; set; }
+
+        /// <summary>
         /// Determines whether the specified value is valid.
         /// </summary>
         /// <param name="value">The value.</param>
@@ -83,6 +92,19 @@
             var dateValue = (DateTime)value;
             if (this.MinimumDate.HasValue && dateValue < this.MinimumDate.Value) return false;
             if (this.MaximumDate.HasValue && dateValue > this.MaximumDate.Value) return false;
+
+            if (this.DynamicYearAndTodayRange.HasValue)
+            {
+                var dynamicDate = DateTime.Today.AddYears(this.DynamicYearAndTodayRange.Value);
+                if (this.DynamicYearAndTodayRange > 0) 
+                {
+                    return DateTime.Today <= dateValue && dateValue <= dynamicDate;
+                }
+                else 
+                {
+                    return dynamicDate <= dateValue && dateValue <= DateTime.Today;
+                }
+            }
 
             return true;
         }
@@ -108,6 +130,11 @@
             if (this.MaximumDate.HasValue)
             {
                 attributes.Add("data-val-daterange-max", this.MaximumDate.Value.ToString(dateFormat, CultureInfo.InvariantCulture));
+            }
+
+            if (this.DynamicYearAndTodayRange.HasValue)
+            {
+                attributes.Add("data-val-daterange-range", this.DynamicYearAndTodayRange);
             }
 
             return attributes;
