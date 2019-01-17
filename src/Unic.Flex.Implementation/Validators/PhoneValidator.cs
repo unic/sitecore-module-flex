@@ -1,8 +1,6 @@
 ﻿namespace Unic.Flex.Implementation.Validators
 {
     using Glass.Mapper.Sc.Configuration.Attributes;
-    using Unic.Configuration.Core;
-    using Unic.Flex.Implementation.Configuration;
     using Unic.Flex.Model.GlassExtensions.Attributes;
 
     /// <summary>
@@ -11,11 +9,11 @@
     [SitecoreType(TemplateId = "{35946BDB-3616-4F81-B237-0E9ED7DCBB54}")]
     public class PhoneValidator : RegularExpressionValidator
     {
-        private readonly IConfigurationManager configurationManager;
+        private readonly string regularExpression;
 
-        public PhoneValidator(IConfigurationManager configurationManager)
+        public PhoneValidator(string regularExpression)
         {
-            this.configurationManager = configurationManager;
+            this.regularExpression = regularExpression;
         }
 
         /// <summary>
@@ -51,13 +49,8 @@
         {
             get
             {
-                return GetRegularExpressionFromConfig();
+                return this.regularExpression;
             }
-        }
-
-        private string GetRegularExpressionFromConfig()
-        {
-            return this.configurationManager.Get<PhoneValidatorConfiguration>(c => c.RegularExpression);
         }
     }
 }
