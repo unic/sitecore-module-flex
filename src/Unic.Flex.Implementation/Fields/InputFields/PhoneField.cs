@@ -1,6 +1,7 @@
 ﻿namespace Unic.Flex.Implementation.Fields.InputFields
 {
     using Glass.Mapper.Sc.Configuration.Attributes;
+    using Unic.Configuration.Core;
     using Unic.Flex.Implementation.Validators;
     using Unic.Flex.Model.Fields.InputFields;
 
@@ -13,9 +14,9 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="PhoneField"/> class.
         /// </summary>
-        public PhoneField()
+        public PhoneField(IConfigurationManager configurationManager)
         {
-            this.DefaultValidators.Add(new PhoneValidator());
+            this.DefaultValidators.Add(new PhoneValidator(configurationManager));
         }
         
         /// <summary>

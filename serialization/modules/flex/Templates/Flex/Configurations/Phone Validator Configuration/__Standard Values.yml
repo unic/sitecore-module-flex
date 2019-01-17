@@ -1,0 +1,24 @@
+﻿---
+ID: "a80b887e-9888-4b29-9cf0-045aa17e1f29"
+Parent: "63d04756-2704-482d-8562-17b818dcdc6c"
+Template: "63d04756-2704-482d-8562-17b818dcdc6c"
+Path: /sitecore/templates/Flex/Configurations/Phone Validator Configuration/__Standard Values
+DB: master
+SharedFields:
+- ID: "fcafa161-b9de-41f6-89b5-e94df856005a"
+  Hint: Type
+  Value: Unic.Flex.Implementation.Configuration.PhoneValidatorConfiguration, Unic.Flex.Implementation
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20190116T135145Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin
+    - ID: "d9e2611d-71da-43e7-9e49-1d128f922ec2"
+      Hint: Regular Expression
+      Value: 
