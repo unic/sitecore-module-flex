@@ -11,6 +11,10 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ## Changelog
 
+### 3.15
+
+* Added Dynamic Year And Today Range to Date Range Validator
+
 ### 3.14
 
 * Combined Readme.md from repository and Readme.txt from NuGet package
