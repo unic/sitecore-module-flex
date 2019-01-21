@@ -95,14 +95,15 @@
 
             if (this.DynamicYearAndTodayRange.HasValue)
             {
-                var dynamicDate = DateTime.Today.AddYears(this.DynamicYearAndTodayRange.Value);
+                var today = DateTime.Today;
+                var dynamicDate = today.AddYears(this.DynamicYearAndTodayRange.Value);
                 if (this.DynamicYearAndTodayRange > 0) 
                 {
-                    return DateTime.Today <= dateValue && dateValue <= dynamicDate;
+                    return today <= dateValue && dateValue <= dynamicDate;
                 }
                 else 
                 {
-                    return dynamicDate <= dateValue && dateValue <= DateTime.Today;
+                    return dynamicDate <= dateValue && dateValue <= today;
                 }
             }
 
