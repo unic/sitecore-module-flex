@@ -14,6 +14,7 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 ### 3.15
 
 * Added Dynamic Year And Today Range to Date Range Validator
+* Phone Validator regex can be configured.
 
 ### 3.14
 

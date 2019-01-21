@@ -9,6 +9,13 @@
     [SitecoreType(TemplateId = "{35946BDB-3616-4F81-B237-0E9ED7DCBB54}")]
     public class PhoneValidator : RegularExpressionValidator
     {
+        private readonly string regularExpression;
+
+        public PhoneValidator(string regularExpression)
+        {
+            this.regularExpression = regularExpression;
+        }
+
         /// <summary>
         /// Gets the default validation message dictionary key.
         /// </summary>
@@ -42,7 +49,7 @@
         {
             get
             {
-                return @"^[0|\+]{1}[0-9|\ ]{6,}$";
+                return this.regularExpression;
             }
         }
     }

@@ -1,6 +1,8 @@
 ﻿namespace Unic.Flex.Implementation.Fields.InputFields
 {
     using Glass.Mapper.Sc.Configuration.Attributes;
+    using Unic.Configuration.Core;
+    using Unic.Flex.Implementation.Configuration;
     using Unic.Flex.Implementation.Validators;
     using Unic.Flex.Model.Fields.InputFields;
 
@@ -13,11 +15,12 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="PhoneField"/> class.
         /// </summary>
-        public PhoneField()
+        public PhoneField(IConfigurationManager configurationManager)
         {
-            this.DefaultValidators.Add(new PhoneValidator());
+            var phoneValidatorRegEx = GetPhoneValidatorRegEx(configurationManager);
+            this.DefaultValidators.Add(new PhoneValidator(phoneValidatorRegEx));
         }
-        
+
         /// <summary>
         /// Gets or sets the default value.
         /// </summary>
@@ -54,6 +57,11 @@
             this.Attributes.Add("aria-multiline", false);
             this.Attributes.Add("role", "textbox");
             this.Attributes.Add("type", "tel");
+        }
+
+        private string GetPhoneValidatorRegEx(IConfigurationManager configurationManager)
+        {
+            return configurationManager.Get<PhoneValidatorConfiguration>(c => c.RegularExpression);
         }
     }
 }
