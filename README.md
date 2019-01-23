@@ -13,7 +13,7 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ### 3.15.1
 
-* Phone validator fix, now working for all languages
+* Phone validator fix, now works for all languages
 
 ### 3.15
 
