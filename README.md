@@ -11,6 +11,10 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ## Changelog
 
+### 3.15.1
+
+* Phone validator fix, now works for all languages
+
 ### 3.15
 
 * Added Dynamic Year And Today Range to Date Range Validator
