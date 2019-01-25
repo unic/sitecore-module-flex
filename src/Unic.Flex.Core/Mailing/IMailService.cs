@@ -1,6 +1,7 @@
 ﻿namespace Unic.Flex.Core.Mailing
 {
     using System.Collections.Generic;
+    using System.Collections.Specialized;
     using Unic.Flex.Model.Fields;
 
     /// <summary>
@@ -29,5 +30,14 @@
         /// <param name="fields">The fields.</param>
         /// <returns>Content with replaced values</returns>
         string ReplaceTokens(string content, IEnumerable<IField> fields);
+
+        /// <summary>
+        /// Replaces {Salutation} token with the values from the mapping of salutation to corresponding gender values
+        /// </summary>
+        /// <param name="content">Content in which we do the replacement</param>
+        /// <param name="genderField">Field with selected gender value</param>
+        /// <param name="genderSalutationMapping">Mapping of gender values and salutations</param>
+        /// <returns>Content with replaced values</returns>
+        string ReplaceSalutationToken(string content, IField genderField, NameValueCollection genderSalutationMapping);
     }
 }

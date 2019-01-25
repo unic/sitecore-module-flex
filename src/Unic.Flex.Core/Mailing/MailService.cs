@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.Specialized;
     using System.Linq;
     using System.Text.RegularExpressions;
     using Unic.Flex.Model.Fields;
@@ -53,10 +54,33 @@
                 @"({)(.*?)(})",
                 match =>
                 {
-                    var field = fields.FirstOrDefault(f => !string.IsNullOrWhiteSpace(f.Key)
-                        && f.Key.Equals(match.Groups[2].Value, StringComparison.InvariantCultureIgnoreCase));
+                    var field = fields.FirstOrDefault(f => !string.IsNullOrWhiteSpace(f.Key) && f.Key.Equals(match.Groups[2].Value, StringComparison.InvariantCultureIgnoreCase));
                     return field != null ? field.TextValue : match.Value;
                 });
+        }
+
+        /// <summary>
+        /// Replaces {Salutation} token with the values from the mapping of salutation to corresponding gender values
+        /// </summary>
+        /// <param name="content">Content in which we do the replacement</param>
+        /// <param name="genderField">Field with selected gender value</param>
+        /// <param name="genderSalutationMapping">Mapping of gender values and salutations</param>
+        /// <returns>Content with replaced values</returns>
+        public virtual string ReplaceSalutationToken(string content, IField genderField, NameValueCollection genderSalutationMapping)
+        {
+            return Regex.Replace(
+                content,
+                @"({)(salutation)(})",
+                match =>
+                {
+                    if (genderSalutationMapping != null && genderField != null)
+                    {
+                        return genderSalutationMapping.Get((string)genderField.Value);
+                    }
+
+                    return match.Value;
+                },
+                RegexOptions.IgnoreCase);
         }
     }
 }
