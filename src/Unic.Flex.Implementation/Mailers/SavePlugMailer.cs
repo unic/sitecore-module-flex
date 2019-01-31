@@ -52,13 +52,11 @@
 
             this.ViewBag.Form = form;
 
-            var fields = form.GetFields().ToList();
-
-            this.ViewBag.Subject = this.ReplaceTokens(plug.Subject, fields, plug);
-            this.ViewBag.HtmlMailIntroduction = this.ReplaceTokens(plug.HtmlMailIntroduction, fields, plug);
-            this.ViewBag.HtmlMailFooter = this.ReplaceTokens(plug.HtmlMailFooter, fields, plug);
-            this.ViewBag.TextMailIntroduction = this.ReplaceTokens(plug.TextMailIntroduction, fields, plug);
-            this.ViewBag.TextMailFooter = this.ReplaceTokens(plug.TextMailFooter, fields, plug);
+            this.ViewBag.Subject = this.ReplaceTokens(plug.Subject, form, plug);
+            this.ViewBag.HtmlMailIntroduction = this.ReplaceTokens(plug.HtmlMailIntroduction, form, plug);
+            this.ViewBag.HtmlMailFooter = this.ReplaceTokens(plug.HtmlMailFooter, form, plug);
+            this.ViewBag.TextMailIntroduction = this.ReplaceTokens(plug.TextMailIntroduction, form, plug);
+            this.ViewBag.TextMailFooter = this.ReplaceTokens(plug.TextMailFooter, form, plug);
 
             var useGlobalConfig = this.IsGlobalConfigEnabled();
             var from = this.mailHelper.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.From), plug.From, useGlobalConfig);
@@ -90,7 +88,7 @@
 
                 if (plug.SendAttachments)
                 {
-                    foreach (var fileField in fields.OfType<FileUploadField>().Where(field => field.Value != null))
+                    foreach (var fileField in form.GetFields().OfType<FileUploadField>().Where(field => field.Value != null))
                     {
                         x.Attachments.Add(new Attachment(new MemoryStream(fileField.Value.Data), fileField.Value.FileName));
                     }
@@ -108,24 +106,24 @@
             return Settings.GetBoolSetting(Definitions.Constants.AlwaysUseGlobalConfig, false);
         }
 
-        private string ReplaceTokens(string emailContent, IEnumerable<IField> fields, SendEmail plug)
+        private string ReplaceTokens(string source, IForm form, SendEmail plug)
         {
-            var emailContentWithReplacedFieldTokens = this.ReplaceFieldTokens(emailContent, fields);
-            var emailContentWithReplacedTokens = this.ReplaceSalutationToken(emailContentWithReplacedFieldTokens, fields, plug);
+            var emailContentWithReplacedFieldTokens = this.ReplaceFieldTokens(source, form.GetFields());
+            var emailContentWithReplacedTokens = this.ReplaceSalutationToken(emailContentWithReplacedFieldTokens, form, plug);
             return emailContentWithReplacedTokens;
         }
 
-        private string ReplaceFieldTokens(string emailContent, IEnumerable<IField> fields)
+        private string ReplaceFieldTokens(string source, IEnumerable<IField> fields)
         {
-            return this.mailService.ReplaceTokens(emailContent, fields);
+            return this.mailService.ReplaceTokens(source, fields);
         }
 
-        private string ReplaceSalutationToken(string emailContent, IEnumerable<IField> fields, SendEmail plug)
+        private string ReplaceSalutationToken(string source, IForm form, SendEmail plug)
         {
-            if (plug.GenderField == null) return emailContent;
+            if (plug.GenderField == null) return source;
 
-            var genderField = fields.FirstOrDefault(f => f.Key == plug.GenderField.Key);
-            return this.mailService.ReplaceSalutationToken(emailContent, genderField, plug.GenderSalutationMapping);
+            var genderFieldValue = form.GetFieldValue(plug.GenderField);
+            return this.mailService.ReplaceSalutationToken(source, genderFieldValue, plug.GenderSalutationMapping);
         }
 
         private string GetMappedEmailFromFields(IEnumerable<IField> fields, IForm form, SendEmail plug)
