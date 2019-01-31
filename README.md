@@ -11,6 +11,10 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ## Changelog
 
+### 3.16
+
+* Added custom token {Salutation} to enable personal greeting based on the gender in Send Email Save Plug
+
 ### 3.15.1
 
 * Phone validator fix, now works for all languages
