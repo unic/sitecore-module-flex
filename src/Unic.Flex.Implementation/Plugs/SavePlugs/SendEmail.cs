@@ -1,6 +1,5 @@
 ﻿namespace Unic.Flex.Implementation.Plugs.SavePlugs
 {
-    using System;
     using System.Collections.Generic;
     using System.Collections.Specialized;
     using Glass.Mapper.Sc.Configuration;
@@ -118,6 +117,18 @@
         /// </value>
         [SitecoreField("Subject")]
         public virtual string Subject { get; set; }
+
+        /// <summary>
+        /// Gets or sets the gender field for token with Salutation: {Salutation}
+        /// </summary>
+        [SitecoreReusableField("Gender Field For Salutation", Setting = SitecoreFieldSettings.InferType)]
+        public virtual IField GenderField { get; set; }
+
+        /// <summary>
+        /// Gets or sets the salutation mappings depending on the gender value
+        /// </summary>
+        [SitecoreField("Gender Salutation Mapping")]
+        public virtual NameValueCollection GenderSalutationMapping { get; set; }
 
         /// <summary>
         /// Gets or sets the HTML mail introduction.
