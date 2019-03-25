@@ -1,8 +1,6 @@
 ﻿namespace Unic.Flex.Implementation.Fields.InputFields
 {
     using Glass.Mapper.Sc.Configuration.Attributes;
-    using Unic.Configuration.Core;
-    using Unic.Flex.Implementation.Configuration;
     using Unic.Flex.Implementation.Validators;
     using Unic.Flex.Model.Fields.InputFields;
 
@@ -15,9 +13,9 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="PhoneField"/> class.
         /// </summary>
-        public PhoneField(IConfigurationManager configurationManager)
+        public PhoneField()
         {
-            var phoneValidatorRegEx = GetPhoneValidatorRegEx(configurationManager);
+            var phoneValidatorRegEx = GetPhoneValidatorRegEx();
             this.DefaultValidators.Add(new PhoneValidator(phoneValidatorRegEx));
         }
 
@@ -59,9 +57,9 @@
             this.Attributes.Add("type", "tel");
         }
 
-        private string GetPhoneValidatorRegEx(IConfigurationManager configurationManager)
+        private string GetPhoneValidatorRegEx()
         {
-            return configurationManager.Get<PhoneValidatorConfiguration>(c => c.RegularExpression);
+            return Sitecore.Configuration.Settings.GetSetting(Definitions.Constants.PhoneValidatorRegExConfig);
         }
     }
 }
