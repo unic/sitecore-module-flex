@@ -11,6 +11,11 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ## Changelog
 
+### 3.17
+
+* BEKB-1812 Export form craches when it has a phone field - bug fixed,
+phone validator regular expression is now stored in the sitecore config
+
 ### 3.16
 
 * Added custom token {Salutation} to enable personal greeting based on the gender in Send Email Save Plug
