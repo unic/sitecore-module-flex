@@ -61,7 +61,11 @@
                         var field = section.Fields[fieldIndex];
                         if (field.IsHidden)
                         {
-                            bindingContext.ModelState.Remove(MappingHelper.GetFormFieldId(sectionIndex, fieldIndex));   
+                            // model state contains not only the state of the hidden field, but also its dependent fields
+                            var fieldKey = MappingHelper.GetFormFieldIdPrefix(sectionIndex, fieldIndex);
+                            bindingContext.ModelState.Keys.Where(key => key.StartsWith(fieldKey))
+                                .ToList()
+                                .ForEach(key => bindingContext.ModelState.Remove(key));
                         }
                     }
                 }
