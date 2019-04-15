@@ -11,6 +11,10 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ## Changelog
 
+### 3.19
+
+* Fixed the bug that caused backend validation error on nested dependent required fields that remain hidden
+
 ### 3.18
 
 * Accessibility fix. Boolean attributes values lowercase only.
