@@ -57,7 +57,7 @@
         {
             var attributes = new Dictionary<string, object>();
             attributes.Add("data-val-filerequired", this.ValidationMessage);
-            attributes.Add("aria-required", true);
+            attributes.Add("aria-required", "true");
             return attributes;
         }
     }
