@@ -11,6 +11,10 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ## Changelog
 
+### 3.18
+
+* Accessibility fix. Boolean attributes values lowercase only.
+
 ### 3.17
 
 * BEKB-1812 Export form craches when it has a phone field - bug fixed,
