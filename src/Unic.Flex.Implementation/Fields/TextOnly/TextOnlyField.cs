@@ -19,7 +19,7 @@
         public override string DefaultValue { get; set; }
 
         /// <summary>
-        /// Gets or sets the value used in aria-describedby field of the submit button.
+        /// Gets or sets the value used in aria-describedby attribute of the submit button.
         /// </summary>
         [SitecoreField("Describes the Form Step")]
         public bool DescribesFormStep { get; set; }
