@@ -122,6 +122,7 @@
     <Compile Include="Components\IFieldDependency.cs" />
     <Compile Include="Definitions\Constants.cs" />
     <Compile Include="Fields\InputFields\HoneypotField.cs" />
+    <Compile Include="Fields\IStepDescribingField.cs" />
     <Compile Include="Fields\ListFields\IListItemsWithTooltips.cs" />
     <Compile Include="Fields\ListFields\IListItems.cs" />
     <Compile Include="Forms\FormExtensions.cs" />

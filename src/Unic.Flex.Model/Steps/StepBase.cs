@@ -2,6 +2,8 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using Definitions;
+    using Fields;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Unic.Flex.Model.GlassExtensions.Attributes;
     using Unic.Flex.Model.Sections;
@@ -116,5 +118,26 @@
         /// </value>
         [SitecoreIgnore]
         public abstract string ViewName { get; }
+
+        /// <summary>
+        /// Gets the attributes that should be set on the step's submit button.
+        /// </summary>
+        [SitecoreIgnore]
+        public virtual IDictionary<string, object> ButtonAttributes
+        {
+            get
+            {
+                var describingFields = this.Sections?.SelectMany(section => section.Fields)
+                    .Where(field =>
+                    {
+                        var describingField = field as IStepDescribingField;
+                        return describingField != null && describingField.DescribesFormStep;
+                    })
+                    .Select(field => string.Format("{0}_{1}", field.Id, Constants.DescriptorIdSuffix))
+                    .ToList();
+                if (describingFields == null || !describingFields.Any()) return new Dictionary<string, object>();
+                return new Dictionary<string, object> { { "aria-describedby", string.Join(" ", describingFields) } };
+            }
+        }
     }
 }
