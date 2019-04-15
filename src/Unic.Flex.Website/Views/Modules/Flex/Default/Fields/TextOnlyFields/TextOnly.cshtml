@@ -9,7 +9,7 @@
         <strong class="flex_label">@Model.Label</strong>
     }
 
-    <div class="flex_rtecontent" id="@string.Format("{0}_{1}", Model.Id, Constants.DescriptorIdSuffix)">
+    <div class="flex_rtecontent" id="@(Model.DescribesFormStep ? string.Format("{0}_{1}", Model.Id, Constants.DescriptorIdSuffix) : null)">
         @if (Model.Value.StartsWith("<p>"))
         {
             @Html.Raw(Model.Value)
