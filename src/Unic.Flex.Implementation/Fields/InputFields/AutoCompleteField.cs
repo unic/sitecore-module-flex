@@ -75,7 +75,7 @@
 
             base.BindProperties();
 
-            this.Attributes.Add("aria-multiline", false);
+            this.Attributes.Add("aria-multiline", "false");
             this.Attributes.Add("role", "textbox");
             this.Attributes.Add("data-init", "flexautocomplete");
             this.Attributes.Add("data-flexautocomplete-options", "{\"noResults\": \"" + translationService.GetText("No Results") + "\", \"sendAll\": false, \"url\": \"" + this.GetProviderUrl() + "\"}");

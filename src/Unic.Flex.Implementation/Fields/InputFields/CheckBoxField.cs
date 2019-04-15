@@ -72,8 +72,8 @@
 
             this.AddCssClass("flex_singlecheckbox");
 
-            this.Attributes.Add("aria-multiline", false);
-            this.Attributes.Add("aria-checked", this.Value);
+            this.Attributes.Add("aria-multiline", "false");
+            this.Attributes.Add("aria-checked", this.Value.ToString().ToLower());
             this.Attributes.Add("role", "checkbox");
 
             /*
@@ -84,7 +84,7 @@
             */
             if (!this.IsRequired)
             {
-                this.Attributes.Add("data-val", false);
+                this.Attributes.Add("data-val", "false");
             }
         }
 

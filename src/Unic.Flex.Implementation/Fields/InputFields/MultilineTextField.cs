@@ -51,7 +51,7 @@
 
             this.AddCssClass("flex_textarea");
 
-            this.Attributes.Add("aria-multiline", true);
+            this.Attributes.Add("aria-multiline", "true");
             this.Attributes.Add("role", "textbox");
             this.Attributes.Add("Rows", this.Rows);
         }
