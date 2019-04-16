@@ -7,7 +7,7 @@
     /// Field with text only content
     /// </summary>
     [SitecoreType(TemplateId = "{C2B3372D-F1BA-4A98-9FDE-7A2A0C0EE76B}")]
-    public class TextOnlyField : FieldBase<string>, IFieldWithoutPost
+    public class TextOnlyField : FieldBase<string>, IFieldWithoutPost, IStepDescribingField
     {
         /// <summary>
         /// Gets or sets the default value.
@@ -17,6 +17,12 @@
         /// </value>
         [SitecoreField("Text")]
         public override string DefaultValue { get; set; }
+
+        /// <summary>
+        /// Gets or sets the value used in aria-describedby attribute of the submit button.
+        /// </summary>
+        [SitecoreField("Describes the Form Step")]
+        public bool DescribesFormStep { get; set; }
 
         /// <summary>
         /// Gets the name of the view.

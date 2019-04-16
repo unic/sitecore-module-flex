@@ -1,16 +1,20 @@
 ﻿---
-ID: "b7812974-7d29-4619-a7ce-0ce261a8b621"
-Parent: "56a49449-fbe7-4453-938e-cb080c03afb3"
+ID: "027f376a-f13e-412f-a2d6-262519186d24"
+Parent: "6efe604a-30a2-4aea-a761-bd4b2197cbe9"
 Template: "455a3e98-a627-4b40-8035-e683a0331ac7"
-Path: /sitecore/templates/Flex/Fields/Text Only/Text Only Field/Form Content/Label
+Path: /sitecore/templates/Flex/Fields/Step Describing Field/Accessibility/Describes the Form Step
 DB: master
 SharedFields:
 - ID: "ab162cc0-dc80-4abf-8871-998ee5d7ba32"
   Hint: Type
-  Value: "Single-Line Text"
+  Value: Checkbox
 - ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
   Hint: __Sortorder
-  Value: 50
+  Value: 100
+- ID: "be351a73-fcb0-4213-93fa-c302d8ab4f51"
+  Hint: Shared
+  Type: Checkbox
+  Value: 1
 Languages:
 - Language: en
   Versions:
@@ -18,4 +22,4 @@ Languages:
     Fields:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20141119T070827
+      Value: 20190415T104148Z

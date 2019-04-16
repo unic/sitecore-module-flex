@@ -4,6 +4,11 @@ Parent: "c2b3372d-f1ba-4a98-9fde-7a2a0c0ee76b"
 Template: "c2b3372d-f1ba-4a98-9fde-7a2a0c0ee76b"
 Path: /sitecore/templates/Flex/Fields/Text Only/Text Only Field/__Standard Values
 DB: master
+SharedFields:
+- ID: "027f376a-f13e-412f-a2d6-262519186d24"
+  Hint: Describes the Form Step
+  Type: Checkbox
+  Value: 1
 Languages:
 - Language: en
   Versions:
