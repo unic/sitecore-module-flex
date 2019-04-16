@@ -11,6 +11,10 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ## Changelog
 
+### 3.20
+
+* BEKB-1787 Added possibility to set Text-Only Fields as describing the step's submit button, and therefore read in all screen reader modes
+
 ### 3.19
 
 * Fixed the bug that caused backend validation error on nested dependent required fields that remain hidden
