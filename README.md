@@ -11,6 +11,10 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ## Changelog
 
+### 3.21
+
+* Fix for bug where data would be added to the wrong column
+
 ### 3.20
 
 * BEKB-1787 Added possibility to set Text-Only Fields as describing the step's submit button, and therefore read in all screen reader modes
