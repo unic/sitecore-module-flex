@@ -15,8 +15,12 @@
         /// </summary>
         public PhoneField()
         {
-            var phoneValidatorRegEx = GetPhoneValidatorRegEx();
-            this.DefaultValidators.Add(new PhoneValidator(phoneValidatorRegEx));
+            var validator = new PhoneValidator
+            {
+                RegularExpression = GetPhoneValidatorRegEx()
+            };
+
+            this.DefaultValidators.Add(validator);
         }
 
         /// <summary>
