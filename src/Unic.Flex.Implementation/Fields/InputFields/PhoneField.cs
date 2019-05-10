@@ -1,7 +1,7 @@
 ﻿namespace Unic.Flex.Implementation.Fields.InputFields
 {
     using Glass.Mapper.Sc.Configuration.Attributes;
-    using Unic.Flex.Implementation.Validators;
+    using Validators;
     using Unic.Flex.Model.Fields.InputFields;
 
     /// <summary>
@@ -17,7 +17,7 @@
         {
             var validator = new PhoneValidator
             {
-                RegularExpression = GetPhoneValidatorRegEx()
+                RegularExpression = this.GetPhoneValidatorRegEx()
             };
 
             this.DefaultValidators.Add(validator);
