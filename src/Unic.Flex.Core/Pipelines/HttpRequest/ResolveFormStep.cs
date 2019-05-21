@@ -155,7 +155,7 @@
         /// <returns>Boolean value if the url parts match or not</returns>
         private bool IsStepEqual(string stepUrl, string currentUrlPart)
         {
-            var lastPart = stepUrl.Split('/').Last();
+            var lastPart = stepUrl.Split(new[]{'/'}, StringSplitOptions.RemoveEmptyEntries).Last();
             if (lastPart.Contains("."))
             {
                 lastPart = lastPart.Remove(lastPart.LastIndexOf(".", StringComparison.Ordinal));
