@@ -4,6 +4,10 @@ Parent: "3afe4256-1c3e-4441-98af-b3d0037a8b1f"
 Template: "3afe4256-1c3e-4441-98af-b3d0037a8b1f"
 Path: /sitecore/templates/Flex/Forms/Form/__Standard Values
 DB: master
+SharedFields:
+- ID: "4e6a41b8-ed42-4ee8-9c64-f1108681980e"
+  Hint: Title Level
+  Value: "{16D8D9BD-EA1D-4CD0-9223-D4A25664C5D8}"
 Languages:
 - Language: de
   Versions:
@@ -33,7 +37,7 @@ Languages:
       Value: <p>Unfortunately your message could not be sent successfully.</p>
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20140424T155557
+      Value: 20140424T135557Z
     - ID: "303cf95d-eca0-422a-ad0e-4791d88efd21"
       Hint: Title
       Value: $name

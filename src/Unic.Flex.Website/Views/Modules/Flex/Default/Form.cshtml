@@ -5,7 +5,12 @@
 @using Unic.Flex.Implementation.Fields.InputFields
 @model Unic.Flex.Model.Forms.Form
 
-<h2>@Model.Title</h2>
+@{
+    var optionalHide = Model.TitleVisuallyHidden ? "class='visuallyhidden'" : "";
+    var header = $"<h{Model.TitleLevel.Value} {optionalHide}>{Model.Title}</h{Model.TitleLevel.Value}>";
+}
+
+@Html.Raw(header)
 
 @if (!string.IsNullOrWhiteSpace(Model.Introduction))
 {

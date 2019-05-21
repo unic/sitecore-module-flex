@@ -1,0 +1,18 @@
+﻿---
+ID: "d2b38567-17bb-4869-a5b0-032cf9190c50"
+Parent: "10dcbf99-ce2e-4263-a9b4-863f700e2ced"
+Template: "47d4110f-7d21-4dc8-89f0-41302db57637"
+Path: /sitecore/system/Modules/Flex/Specifications/TitleLevel/H5
+DB: master
+SharedFields:
+- ID: "11b2a1ce-2bcc-4118-adc5-94b444b07913"
+  Hint: Value
+  Value: 5
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20190521T124024Z
