@@ -11,6 +11,10 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ## Changelog
 
+### 3.22
+
+* Fix for IsCascading field not available on all ListFields
+
 ### 3.21
 
 * Fix for bug where data would be added to the wrong column
