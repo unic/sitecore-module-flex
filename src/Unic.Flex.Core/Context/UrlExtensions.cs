@@ -27,7 +27,7 @@
             if (context.Form == null) return item.Url;
             if (item.StepNumber == 1) return context.Item.Url;
 
-            return string.Join("/", context.Item.Url, item.Url.Split('/').Last());
+            return string.Join("/", context.Item.Url, item.Url.Split(new[]{ '/' }, StringSplitOptions.RemoveEmptyEntries).Last());
         }
 
         /// <summary>
