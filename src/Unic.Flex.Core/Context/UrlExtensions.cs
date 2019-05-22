@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Sitecore;
     using Unic.Flex.Core.DependencyInjection;
     using Unic.Flex.Model.Forms;
     using Unic.Flex.Model.Steps;
@@ -27,7 +28,8 @@
             if (context.Form == null) return item.Url;
             if (item.StepNumber == 1) return context.Item.Url;
 
-            return string.Join("/", context.Item.Url, item.Url.Split(new[]{ '/' }, StringSplitOptions.RemoveEmptyEntries).Last());
+            var contextItemUrl = StringUtil.RemovePostfix('/', context.Item.Url);
+            return string.Join("/", contextItemUrl, item.Url.Split(new[]{ '/' }, StringSplitOptions.RemoveEmptyEntries).Last());
         }
 
         /// <summary>
