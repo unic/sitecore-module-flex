@@ -11,6 +11,10 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ## Changelog
 
+### 3.23
+
+* Title Level and Title Visually Hidden fields added to Form template
+
 ### 3.22
 
 * Fix for IsCascading field not available on all ListFields

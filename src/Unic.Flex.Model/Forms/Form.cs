@@ -5,6 +5,7 @@
     using Glass.Mapper.Sc.Configuration;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Glass.Mapper.Sc.Fields;
+    using Specifications;
     using Unic.Flex.Model.GlassExtensions.Attributes;
     using Unic.Flex.Model.Plugs;
     using Unic.Flex.Model.Steps;
@@ -37,6 +38,24 @@
         /// </value>
         [SitecoreField("Title")]
         public virtual string Title { get; set; }
+
+        /// <summary>
+        /// Gets or sets the title level.
+        /// </summary>
+        /// <value>
+        /// The title level.
+        /// </value>
+        [SitecoreField("Title Level")]
+        public virtual Specification TitleLevel { get; set; }
+
+        /// <summary>
+        /// Gets or sets the title visually hidden.
+        /// </summary>
+        /// <value>
+        /// The title visually hidden.
+        /// </value>
+        [SitecoreField("Title Visually Hidden")]
+        public virtual bool TitleVisuallyHidden { get; set; }
 
         /// <summary>
         /// Gets or sets the introduction.
