@@ -6,8 +6,8 @@
 @model Unic.Flex.Model.Forms.Form
 
 @{
-    var optionalHide = Model.TitleVisuallyHidden ? "class='visuallyhidden'" : "";
-    var header = $"<h{Model.TitleLevel.Value} {optionalHide}>{Model.Title}</h{Model.TitleLevel.Value}>";
+    var optionalHide = Model.TitleVisuallyHidden ? " class='visuallyhidden'" : "";
+    var header = $"<h{Model.TitleLevel.Value}{optionalHide}>{Model.Title}</h{Model.TitleLevel.Value}>";
 }
 
 @Html.Raw(header)
