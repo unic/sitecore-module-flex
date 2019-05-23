@@ -14,6 +14,7 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 ### 3.23
 
 * Title Level and Title Visually Hidden fields added to Form template
+* Fix for Phone Validator issues when added to the field manually
 
 ### 3.22
 
