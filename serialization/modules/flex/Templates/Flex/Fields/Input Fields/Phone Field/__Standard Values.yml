@@ -10,7 +10,6 @@ SharedFields:
   Type: TreelistEx
   Value: |
     {90C8A94E-EDEE-41B6-ACF3-4C264B9FDBE1}
-    {35946BDB-3616-4F81-B237-0E9ED7DCBB54}
     {0E0AAF18-7D98-4A59-AF1F-45A0652DF4C9}
 Languages:
 - Language: en
@@ -19,4 +18,4 @@ Languages:
     Fields:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20140829T141347
+      Value: 20140829T121347Z

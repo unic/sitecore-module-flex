@@ -9,13 +9,6 @@
     [SitecoreType(TemplateId = "{35946BDB-3616-4F81-B237-0E9ED7DCBB54}")]
     public class PhoneValidator : RegularExpressionValidator
     {
-        private readonly string regularExpression;
-
-        public PhoneValidator(string regularExpression)
-        {
-            this.regularExpression = regularExpression;
-        }
-
         /// <summary>
         /// Gets the default validation message dictionary key.
         /// </summary>
@@ -38,19 +31,5 @@
         /// </value>
         [SitecoreDictionaryFallbackField("Validation Message", "Phone number is invalid")]
         public override string ValidationMessage { get; set; }
-
-        /// <summary>
-        /// Gets the regular expression.
-        /// </summary>
-        /// <value>
-        /// The regular expression.
-        /// </value>
-        public override string RegularExpression
-        {
-            get
-            {
-                return this.regularExpression;
-            }
-        }
     }
 }
