@@ -45,7 +45,7 @@
         /// <value>
         /// The title level.
         /// </value>
-        [SitecoreField("Title Level")]
+        [SitecoreSharedField("Title Level")]
         public virtual Specification TitleLevel { get; set; }
 
         /// <summary>
