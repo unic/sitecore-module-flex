@@ -29,13 +29,16 @@
 
             var form = context.Form;
             if (form == null) return;
-            
+
             // check if we need to execute the load plugs -> only the first time
-            if (HttpContext.Current == null || HttpContext.Current.Request.HttpMethod != "GET"
-                || form.ActiveStep.StepNumber != 1) return;
+            if (HttpContext.Current == null || form.ActiveStep.StepNumber != 1) return;
+
+            var isHttpGetRequest = HttpContext.Current.Request.HttpMethod == "GET";
 
             foreach (var plug in form.LoadPlugs)
             {
+                if(!isHttpGetRequest && !plug.IgnoreHttpMethodExecutionFilter) continue;
+
                 try
                 {
                     this.logger.Debug($"Execute load plug '{plug.ItemId}' for form '{form.ItemId}'", this);

@@ -21,5 +21,7 @@
         /// </summary>
         /// <param name="form">The form.</param>
         void Execute(IForm form);
+
+        bool IgnoreHttpMethodExecutionFilter { get; set; }
     }
 }
