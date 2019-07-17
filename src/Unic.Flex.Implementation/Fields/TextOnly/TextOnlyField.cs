@@ -24,6 +24,8 @@
         [SitecoreField("Describes the Form Step")]
         public bool DescribesFormStep { get; set; }
 
+        public override string Value { get => DefaultValue; }
+
         /// <summary>
         /// Gets the name of the view.
         /// </summary>

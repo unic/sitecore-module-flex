@@ -11,6 +11,10 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ## Changelog
 
+### 3.23.2
+
+* TextOnlyField language switch fix.
+
 ### 3.23.1
 
 * Sitecore shared field mapping fix
