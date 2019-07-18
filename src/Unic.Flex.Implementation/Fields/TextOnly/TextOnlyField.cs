@@ -23,7 +23,7 @@
         /// </summary>
         [SitecoreField("Describes the Form Step")]
         public bool DescribesFormStep { get; set; }
-        
+
         /// <summary>
         /// Gets the name of the view.
         /// </summary>
