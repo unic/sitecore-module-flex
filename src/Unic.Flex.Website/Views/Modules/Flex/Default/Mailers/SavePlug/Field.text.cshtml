@@ -1,2 +1,3 @@
-﻿@model Unic.Flex.Model.Fields.IField
-@Html.Raw(Model.TextLabel): @Html.Raw(Model.TextValue)
+﻿@using Unic.Flex.Implementation.Fields.TextOnly
+@model Unic.Flex.Model.Fields.IField
+@Html.Raw(Model.TextLabel): @{(Model is TextOnlyField ? Html.Raw(Model.DefaultValue) : Html.Raw(Model.TextValue))}

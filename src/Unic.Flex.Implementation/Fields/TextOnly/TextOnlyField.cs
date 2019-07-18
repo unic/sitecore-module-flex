@@ -23,15 +23,7 @@
         /// </summary>
         [SitecoreField("Describes the Form Step")]
         public bool DescribesFormStep { get; set; }
-
-        public override string Value
-        {
-            get
-            {
-                return DefaultValue;
-            }
-        }
-
+        
         /// <summary>
         /// Gets the name of the view.
         /// </summary>

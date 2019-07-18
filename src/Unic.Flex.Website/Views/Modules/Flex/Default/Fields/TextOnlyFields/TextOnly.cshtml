@@ -12,11 +12,11 @@
     <div class="flex_rtecontent" id="@(Model.DescribesFormStep ? string.Format("{0}_{1}", Model.Id, Constants.DescriptorIdSuffix) : null)">
         @if (Model.Value.StartsWith("<p>"))
         {
-            @Html.Raw(Model.Value)
+            @Html.Raw(Model.DefaultValue)
         }
         else
         {
-            <p>@Html.Raw(Model.Value)</p>
+            <p>@Html.Raw(Model.DefaultValue)</p>
         }
     </div>
 
