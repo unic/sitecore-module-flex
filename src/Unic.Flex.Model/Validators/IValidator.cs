@@ -8,6 +8,11 @@
     public interface IValidator
     {
         /// <summary>
+        /// Gets the Type of Validation
+        /// </summary>
+        ValidationType Type { get; }
+
+        /// <summary>
         /// Gets the default validation message dictionary key.
         /// </summary>
         /// <value>

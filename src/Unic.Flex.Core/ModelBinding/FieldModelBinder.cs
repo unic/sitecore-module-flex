@@ -1,11 +1,11 @@
 ﻿namespace Unic.Flex.Core.ModelBinding
 {
     using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
     using Unic.Flex.Core.Definitions;
     using Unic.Flex.Model.Fields;
     using Unic.Flex.Model.Types;
+    using Utilities;
 
     /// <summary>
     /// Bind fields
@@ -33,6 +33,7 @@
             // get initial values
             var initialModel = (IField)bindingContext.Model;
             this.initialValue = initialModel.Value;
+            initialModel.ModelName = bindingContext.ModelName;
 
             // bind the model with the default model binder
             var model = base.BindModel(controllerContext, bindingContext);
@@ -42,7 +43,7 @@
 
             // otherwise no values has been posted -> reset the field value, do validation and return the initial model
             initialModel.Value = null;
-            ForceModelValidation(bindingContext);
+            MappingHelper.ForceFieldValidation(bindingContext, initialModel);
             return initialModel;
         }
 
@@ -79,28 +80,7 @@
                 model.Value = this.initialValue;
             }
 
-            ForceModelValidation(bindingContext);
-        }
-
-        /// <summary>
-        /// Forces the model validation.
-        /// </summary>
-        /// <param name="bindingContext">The binding context.</param>
-        private static void ForceModelValidation(ModelBindingContext bindingContext)
-        {
-            var model = bindingContext.Model as IValidatableObject;
-            if (model == null) return;
-
-            var modelName = bindingContext.ModelName;
-            var modelState = bindingContext.ModelState;
-            var errors = model.Validate(new ValidationContext(model, null, null));
-            foreach (var error in errors)
-            {
-                foreach (var memberName in error.MemberNames)
-                {
-                    modelState.AddModelError(string.Join(".", modelName, memberName), error.ErrorMessage);
-                }
-            }
+            MappingHelper.ForceFieldValidation(bindingContext, model);
         }
     }
 }

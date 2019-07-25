@@ -125,6 +125,11 @@
         }
 
         /// <summary>
+        /// Get's the Name for the Field in the Dom Model
+        /// </summary>
+        public string ModelName { get; set; }
+
+        /// <summary>
         /// Determines whether the specified object is valid.
         /// </summary>
         /// <param name="validationContext">The validation context.</param>
@@ -133,9 +138,22 @@
         /// </returns>
         public virtual IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
+            return this.Validate(validationContext, ValidationType.FieldValidation);
+        }
+
+        /// <summary>
+        /// Determines whether the specified object is valid.
+        /// </summary>
+        /// <param name="validationContext">The validation context.</param>
+        /// <param name="type">The validation type</param>
+        /// <returns>
+        /// A collection that holds failed-validation information.
+        /// </returns>
+        public virtual IEnumerable<ValidationResult> Validate(ValidationContext validationContext, ValidationType type)
+        {
             foreach (var validator in this.validators)
             {
-                if (!validator.IsValid(this.Value))
+                if (validator.Type == type && !validator.IsValid(this.Value))
                 {
                     if (!this.Attributes.ContainsKey("aria-invalid"))
                     {

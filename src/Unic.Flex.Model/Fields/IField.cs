@@ -77,6 +77,11 @@
         string Key { get; }
 
         /// <summary>
+        /// Get's the Name for the Field in the Dom Model
+        /// </summary>
+        string ModelName { get; set; }
+
+        /// <summary>
         /// Gets the label.
         /// </summary>
         /// <value>
@@ -163,14 +168,6 @@
         /// The default validators.
         /// </value>
         IList<IValidator> DefaultValidators { get; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether to show this field in the summary or not.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if this field should be shown in the summary; otherwise, <c>false</c>.
-        /// </value>
-        bool ShowInSummary { get; set; }
 
         /// <summary>
         /// Adds the CSS class.
