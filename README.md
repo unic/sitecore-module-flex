@@ -11,6 +11,10 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ## Changelog
 
+### 3.23.2
+
+* Fixes the issue in TextOnlyField, where after changing the language, the text was still shown in the original language
+
 ### 3.23.1
 
 * Sitecore shared field mapping fix
