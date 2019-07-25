@@ -13,7 +13,7 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ### 3.23.2
 
-* TextOnlyField language switch fix.
+* Fixes the issue in TextOnlyField, where after changing the language, the text was still shown in the original language
 
 ### 3.23.1
 
