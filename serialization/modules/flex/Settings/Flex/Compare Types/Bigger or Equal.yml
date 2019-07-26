@@ -1,0 +1,17 @@
+﻿---
+ID: "259c3bf7-ecd1-430a-a0a5-e15bcf0bd37d"
+Parent: "1ee63f4e-f862-48c1-9f0c-9c36c2646bde"
+Template: "e10aa1b0-d9d8-4e84-8a92-26c903f35599"
+Path: /sitecore/system/Modules/Flex/Compare Types/Bigger or Equal
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20190715T071826Z
+    - ID: "83f0c78b-7885-41ba-bf07-2128530557a8"
+      Hint: Title
+      Value: Bigger or Equal
