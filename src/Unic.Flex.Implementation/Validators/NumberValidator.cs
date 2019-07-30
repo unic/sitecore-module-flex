@@ -10,7 +10,7 @@
     /// Validator for validating numbers.
     /// </summary>
     [SitecoreType(TemplateId = "{29129AFA-3651-4A7F-BA87-CF1DEEDB48A5}")]
-    public class NumberValidator : IValidator
+    public class NumberValidator : ValidatorBase
     {
         /// <summary>
         /// Gets the default validation message dictionary key.
@@ -18,7 +18,7 @@
         /// <value>
         /// The default validation message dictionary key.
         /// </value>
-        public virtual string DefaultValidationMessageDictionaryKey
+        public override string DefaultValidationMessageDictionaryKey
         {
             get
             {
@@ -33,7 +33,7 @@
         /// The validation message.
         /// </value>
         [SitecoreDictionaryFallbackField("Validation Message", "Please enter a valid number")]
-        public virtual string ValidationMessage { get; set; }
+        public override string ValidationMessage { get; set; }
 
         /// <summary>
         /// Gets or sets the start of the range to validate.
@@ -60,7 +60,7 @@
         /// <returns>
         ///   <c>true</c> if the value entered is valid, <c>false</c> otherwise
         /// </returns>
-        public virtual bool IsValid(object value)
+        public override bool IsValid(object value)
         {
             if (value == null) return true;
             if (string.IsNullOrWhiteSpace(value.ToString())) return true;
@@ -84,7 +84,7 @@
         /// <returns>
         /// Key-Value based dictionary with additional html attributes
         /// </returns>
-        public virtual IDictionary<string, object> GetAttributes()
+        public override IDictionary<string, object> GetAttributes()
         {
             var attributes = new Dictionary<string, object>();
 

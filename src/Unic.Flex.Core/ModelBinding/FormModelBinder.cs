@@ -3,6 +3,7 @@
     using System;
     using System.Linq;
     using System.Web.Mvc;
+    using Model.Validators;
     using Unic.Flex.Core.Context;
     using Unic.Flex.Core.Mapping;
     using Unic.Flex.Core.Utilities;
@@ -51,6 +52,11 @@
             if (form != null)
             {
                 var allFields = form.ActiveStep.Sections.SelectMany(s => s.Fields).ToList();
+
+                foreach (var field in allFields)
+                {
+                    MappingHelper.ForceFieldValidation(bindingContext, field, ValidationType.FormValidation);
+                }
 
                 // remove validation errors for not visible fields (due to field dependecy)
                 for (var sectionIndex = 0; sectionIndex < form.ActiveStep.Sections.Count; sectionIndex++)

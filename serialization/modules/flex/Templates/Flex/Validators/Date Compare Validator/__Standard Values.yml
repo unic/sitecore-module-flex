@@ -1,0 +1,14 @@
+﻿---
+ID: "deb5a667-6cc6-4974-ab2c-e9762a6e000e"
+Parent: "bd19ea8f-bca6-44db-ad3e-1bbfc3e0ed50"
+Template: "bd19ea8f-bca6-44db-ad3e-1bbfc3e0ed50"
+Path: /sitecore/templates/Flex/Validators/Date Compare Validator/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20190711T082639Z

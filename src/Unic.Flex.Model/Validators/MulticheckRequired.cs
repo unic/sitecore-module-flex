@@ -6,7 +6,7 @@
     /// <summary>
     /// Required validator for fields with multiple options to check (checkboxlist)
     /// </summary>
-    public class MulticheckRequired : IValidator
+    public class MulticheckRequired : ValidatorBase
     {
         /// <summary>
         /// Gets the default validation message dictionary key.
@@ -14,21 +14,13 @@
         /// <value>
         /// The default validation message dictionary key.
         /// </value>
-        public virtual string DefaultValidationMessageDictionaryKey
+        public override string DefaultValidationMessageDictionaryKey
         {
             get
             {
                 return "Field is required";
             }
         }
-        
-        /// <summary>
-        /// Gets or sets the validation message.
-        /// </summary>
-        /// <value>
-        /// The validation message.
-        /// </value>
-        public virtual string ValidationMessage { get; set; }
 
         /// <summary>
         /// Determines whether the specified value is valid.
@@ -37,7 +29,7 @@
         /// <returns>
         ///   <c>true</c> if the value entered is valid, <c>false</c> otherwise
         /// </returns>
-        public virtual bool IsValid(object value)
+        public override bool IsValid(object value)
         {
             if (value == null) return false;
 
@@ -53,7 +45,7 @@
         /// <returns>
         /// Key-Value based dictionary with additional html attributes
         /// </returns>
-        public virtual IDictionary<string, object> GetAttributes()
+        public override IDictionary<string, object> GetAttributes()
         {
             var attributes = new Dictionary<string, object>();
             attributes.Add("data-val-multicheckrequired", this.ValidationMessage);

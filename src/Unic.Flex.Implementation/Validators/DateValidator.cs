@@ -10,7 +10,7 @@
     /// Validates a date input field.
     /// </summary>
     [SitecoreType(TemplateId = "{93738462-A6E0-4DA3-9C07-9A71E23F30AE}")]
-    public class DateValidator : IValidator
+    public class DateValidator : ValidatorBase
     {
         /// <summary>
         /// Gets the default validation message dictionary key.
@@ -18,7 +18,7 @@
         /// <value>
         /// The default validation message dictionary key.
         /// </value>
-        public virtual string DefaultValidationMessageDictionaryKey
+        public override string DefaultValidationMessageDictionaryKey
         {
             get
             {
@@ -33,7 +33,7 @@
         /// The validation message.
         /// </value>
         [SitecoreDictionaryFallbackField("Validation Message", "Invalid date format")]
-        public virtual string ValidationMessage { get; set; }
+        public override string ValidationMessage { get; set; }
 
         /// <summary>
         /// Determines whether the specified value is valid.
@@ -42,7 +42,7 @@
         /// <returns>
         ///   <c>true</c> if the value entered is valid, <c>false</c> otherwise
         /// </returns>
-        public virtual bool IsValid(object value)
+        public override bool IsValid(object value)
         {
             return value == null || value is DateTime;
         }
@@ -53,7 +53,7 @@
         /// <returns>
         /// Key-Value based dictionary with additional html attributes
         /// </returns>
-        public virtual IDictionary<string, object> GetAttributes()
+        public override IDictionary<string, object> GetAttributes()
         {
             var attributes = new Dictionary<string, object>();
             attributes.Add("data-val-date", this.ValidationMessage);
