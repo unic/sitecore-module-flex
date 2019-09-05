@@ -3,6 +3,15 @@
 @using Unic.Flex.Core.Presentation
 @model Unic.Flex.Model.Steps.MultiStep
 
+@functions {
+    string GetHeaderClasses()
+    {
+        return !string.IsNullOrWhiteSpace(Model.HeaderAdditionalClasses)
+            ? "visuallyhidden " + Model.HeaderAdditionalClasses
+            : "visuallyhidden";
+    }
+}
+
 @if (Model.ShowNavigationPane && Model.NavigationPane != null)
 {
     @Html.FlexComponent(m => m.NavigationPane)
@@ -12,8 +21,8 @@
 
 <div class="flex_multistep_active">
     <section class="flex_multistep_content">
-        <h1 class="visuallyhidden @Model.HeaderAdditionalClasses">@Model.Title</h1>
-        
+        <h1 class="@GetHeaderClasses()">@Model.Title</h1>
+
         @if (!string.IsNullOrWhiteSpace(Model.Introduction))
         {
             <p>@Html.Raw(Model.Introduction.Replace(Environment.NewLine, "<br />"))</p>
@@ -30,7 +39,7 @@
                 {
                     <a class="flex_button_secondary" href="@Model.CancelUrl">@Model.CancelText</a>
                 }
-                
+
                 @if (!string.IsNullOrWhiteSpace(Model.PreviousStepUrl))
                 {
                     <a class="flex_button_secondary" href="@Model.PreviousStepUrl">@Model.PreviousButtonText</a>
