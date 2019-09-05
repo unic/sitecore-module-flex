@@ -12,7 +12,7 @@
 
 <div class="flex_multistep_active">
     <section class="flex_multistep_content">
-        <h1 class="visuallyhidden">@Model.Title</h1>
+        <h1 class="visuallyhidden @Model.HeaderAdditionalClasses">@Model.Title</h1>
         
         @if (!string.IsNullOrWhiteSpace(Model.Introduction))
         {
