@@ -14,7 +14,7 @@
         /// Gets or sets CSS classes for title.
         /// </summary>
         /// <value>
-        /// The Additional Classes.
+        /// The Header Additional Classes field.
         /// </value>
         [SitecoreField("Header Additional Classes")]
         public virtual string HeaderAdditionalClasses { get; set; }
