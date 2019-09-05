@@ -11,6 +11,15 @@
     public class MultiStep : StepBase
     {
         /// <summary>
+        /// Gets or sets CSS classes for title.
+        /// </summary>
+        /// <value>
+        /// The Header Additional Classes field.
+        /// </value>
+        [SitecoreField("Header Additional Classes")]
+        public virtual string HeaderAdditionalClasses { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether to show the navigation pane.
         /// </summary>
         /// <value>
