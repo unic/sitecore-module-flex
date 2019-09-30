@@ -27,5 +27,7 @@
         public const string RootNamespace = "Unic.Flex";
 
         public const string LabelLinkPlaceholder = "#link#";
+
+        public const string HonorTrailingSlashConfig = "Flex.Urls.HonorTrailingSlash";
     }
 }

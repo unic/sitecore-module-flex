@@ -5,9 +5,9 @@
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
     using Sitecore.Pipelines.HttpRequest;
-    using Unic.Flex.Core.Context;
-    using Unic.Flex.Core.DependencyInjection;
-    using Unic.Flex.Core.Logging;
+    using Context;
+    using DependencyInjection;
+    using Logging;
 
     /// <summary>
     /// Pipeline processor for resolving the current form step.
@@ -155,7 +155,19 @@
         /// <returns>Boolean value if the url parts match or not</returns>
         private bool IsStepEqual(string stepUrl, string currentUrlPart)
         {
-            var lastPart = stepUrl.Split(new[]{'/'}, StringSplitOptions.RemoveEmptyEntries).Last();
+            var honorTrailingSlash = Sitecore.Configuration.Settings.GetBoolSetting(Definitions.Constants.HonorTrailingSlashConfig, false);
+
+            string lastPart;
+            if (!honorTrailingSlash)
+            {
+                lastPart = stepUrl.Split('/').Last();
+            }
+            else
+            {
+                lastPart = stepUrl.Split(new[] { '/' }, StringSplitOptions.RemoveEmptyEntries).Last();
+
+            }
+
             if (lastPart.Contains("."))
             {
                 lastPart = lastPart.Remove(lastPart.LastIndexOf(".", StringComparison.Ordinal));
