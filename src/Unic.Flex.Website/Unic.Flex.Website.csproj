@@ -151,6 +151,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\flex\css\globals.css.map" />
+    <Content Include="assets\flex\css\globals.css.min.map" />
+    <Content Include="assets\flex\css\main.css.map" />
+    <Content Include="assets\flex\css\main.css.min.map" />
+    <Content Include="assets\flex\css\styling.css.map" />
+    <Content Include="assets\flex\css\styling.css.min.map" />
+    <Content Include="assets\flex\css\theme.css.map" />
+    <Content Include="assets\flex\css\theme.css.min.map" />
     <Content Include="App_Config\Include\01_modules_author\Unic.Flex.config" />
     <Content Include="App_Config\Include\01_modules_author\Unic.Configuration.config" />
     <Content Include="App_Config\Include\01_modules\Unic.Configuration.config" />
@@ -159,6 +167,23 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\flex\css\globals.css" />
+    <Content Include="assets\flex\css\globals.min.css" />
+    <Content Include="assets\flex\css\main.css" />
+    <Content Include="assets\flex\css\main.min.css" />
+    <Content Include="assets\flex\css\styling.css" />
+    <Content Include="assets\flex\css\styling.min.css" />
+    <Content Include="assets\flex\css\theme.css" />
+    <Content Include="assets\flex\css\theme.min.css" />
+    <Content Include="assets\flex\images\sprite.png" />
+    <Content Include="assets\flex\js\head.js" />
+    <Content Include="assets\flex\js\head.min.js" />
+    <Content Include="assets\flex\js\main-flexonly.js" />
+    <Content Include="assets\flex\js\main-flexonly.min.js" />
+    <Content Include="assets\flex\js\main.js" />
+    <Content Include="assets\flex\js\main.min.js" />
+    <Content Include="assets\flex\js\styling.js" />
+    <Content Include="assets\flex\js\styling.min.js" />
     <None Include="readme.txt" />
     <Content Include="sitecore\shell\client\YourApps\Flex\AsyncPlugs.js" />
     <Content Include="sitecore\shell\client\YourApps\Flex\Overview.js" />
