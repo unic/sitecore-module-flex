@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Web;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Unic.Flex.Model.GlassExtensions.Attributes;
     using Unic.Flex.Model.Types;
@@ -11,7 +12,7 @@
     /// Validates the uploaded files file type.
     /// </summary>
     [SitecoreType(TemplateId = "{14945398-D128-4E64-A0F8-7642252117C4}")]
-    public class ValidFileTypeValidator : ValidatorBase
+    public class ValidFileTypeValidator : IValidator
     {
         /// <summary>
         /// Gets the default validation message dictionary key.
@@ -19,7 +20,7 @@
         /// <value>
         /// The default validation message dictionary key.
         /// </value>
-        public override string DefaultValidationMessageDictionaryKey
+        public virtual string DefaultValidationMessageDictionaryKey
         {
             get
             {
@@ -34,7 +35,7 @@
         /// The validation message.
         /// </value>
         [SitecoreDictionaryFallbackField("Validation Message", "Invalid file type")]
-        public override string ValidationMessage { get; set; }
+        public virtual string ValidationMessage { get; set; }
 
         /// <summary>
         /// Gets or sets the valid file extensions.
@@ -52,7 +53,7 @@
         /// <returns>
         ///   <c>true</c> if the value entered is valid, <c>false</c> otherwise
         /// </returns>
-        public override bool IsValid(object value)
+        public virtual bool IsValid(object value)
         {
             if (value == null || string.IsNullOrWhiteSpace(this.ValidFileExtensions)) return true;
 
@@ -69,7 +70,7 @@
         /// <returns>
         /// Key-Value based dictionary with additional html attributes
         /// </returns>
-        public override IDictionary<string, object> GetAttributes()
+        public virtual IDictionary<string, object> GetAttributes()
         {
             var attributes = new Dictionary<string, object>();
             attributes.Add("accept", this.ValidFileExtensions);

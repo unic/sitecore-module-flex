@@ -12,7 +12,7 @@
     /// Validates if a date is within a range.
     /// </summary>
     [SitecoreType(TemplateId = "{DA39F16E-79C5-4C6C-8813-A47E22F1D2F4}")]
-    public class DateRangeValidator : ValidatorBase
+    public class DateRangeValidator : IValidator
     {
         /// <summary>
         /// The culture service
@@ -34,7 +34,7 @@
         /// <value>
         /// The default validation message dictionary key.
         /// </value>
-        public override string DefaultValidationMessageDictionaryKey
+        public virtual string DefaultValidationMessageDictionaryKey
         {
             get
             {
@@ -49,7 +49,7 @@
         /// The validation message.
         /// </value>
         [SitecoreDictionaryFallbackField("Validation Message", "Date is not valid")]
-        public override string ValidationMessage { get; set; }
+        public virtual string ValidationMessage { get; set; }
 
         /// <summary>
         /// Gets or sets the minimum date.
@@ -76,7 +76,7 @@
         /// <returns>
         ///   <c>true</c> if the value entered is valid, <c>false</c> otherwise
         /// </returns>
-        public override bool IsValid(object value)
+        public virtual bool IsValid(object value)
         {
             if (!(value is DateTime)) return true;
 
@@ -93,7 +93,7 @@
         /// <returns>
         /// Key-Value based dictionary with additional html attributes
         /// </returns>
-        public override IDictionary<string, object> GetAttributes()
+        public virtual IDictionary<string, object> GetAttributes()
         {
             var attributes = new Dictionary<string, object>();
 

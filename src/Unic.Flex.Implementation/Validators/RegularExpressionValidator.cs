@@ -14,7 +14,7 @@
     /// Regular expression validator
     /// </summary>
     [SitecoreType(TemplateId = "{0E0AAF18-7D98-4A59-AF1F-45A0652DF4C9}")]
-    public class RegularExpressionValidator : ValidatorBase
+    public class RegularExpressionValidator : IValidator
     {
         /// <summary>
         /// The profile event name
@@ -27,7 +27,7 @@
         /// <value>
         /// The default validation message dictionary key.
         /// </value>
-        public override string DefaultValidationMessageDictionaryKey
+        public virtual string DefaultValidationMessageDictionaryKey
         {
             get
             {
@@ -42,7 +42,7 @@
         /// The validation message.
         /// </value>
         [SitecoreDictionaryFallbackField("Validation Message", "Input is invalid")]
-        public override string ValidationMessage { get; set; }
+        public virtual string ValidationMessage { get; set; }
 
         /// <summary>
         /// Gets or sets the regular expression.
@@ -60,7 +60,7 @@
         /// <returns>
         ///   <c>true</c> if the value entered is valid, <c>false</c> otherwise
         /// </returns>
-        public override bool IsValid(object value)
+        public virtual bool IsValid(object value)
         {
             var eventName = string.Format(ProfileEventName, this.RegularExpression);
             Profiler.OnStart(this, eventName);
@@ -91,7 +91,7 @@
         /// <returns>
         /// Key-Value based dictionary with additional html attributes
         /// </returns>
-        public override IDictionary<string, object> GetAttributes()
+        public virtual IDictionary<string, object> GetAttributes()
         {
             var attributes = new Dictionary<string, object>();
             attributes.Add("data-val-regex", this.ValidationMessage);

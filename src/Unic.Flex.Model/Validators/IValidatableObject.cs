@@ -12,9 +12,9 @@
 
         /// <summary>Determines whether the specified object is valid.</summary>
         /// <param name="validationContext">The validation context.</param>
-        /// <param name="type">The type of the validation</param>
+        /// <param name="requestedValidationType">The type of the validation</param>
         /// <returns>A collection that holds failed-validation information.</returns>
-        IEnumerable<ValidationResult> Validate(ValidationContext validationContext, ValidationType type);
+        IEnumerable<ValidationResult> Validate(ValidationContext validationContext, ValidationType requestedValidationType);
 
         /// <summary>
         /// Adds a validator to the field.

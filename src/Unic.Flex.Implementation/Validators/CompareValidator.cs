@@ -16,21 +16,21 @@
     /// Validator which checks if two fields are equal
     /// </summary>
     [SitecoreType(TemplateId = "{90C8A94E-EDEE-41B6-ACF3-4C264B9FDBE1}")]
-    public class CompareValidator : ValidatorBase
+    public class CompareValidator : IValidator
     {
-
-        /// <summary>
-        /// Validation Type Form, because the validator is depending on an other field and can not be executed on field level
-        /// </summary>
-        public override ValidationType Type => ValidationType.FormValidation;
-
         /// <summary>
         /// Gets the default validation message dictionary key.
         /// </summary>
         /// <value>
         /// The default validation message dictionary key.
         /// </value>
-        public override string DefaultValidationMessageDictionaryKey => "Fields are not equal";
+        public virtual string DefaultValidationMessageDictionaryKey
+        {
+            get
+            {
+                return "Fields are not equal";
+            }
+        }
 
         /// <summary>
         /// Gets or sets the validation message.
@@ -39,7 +39,7 @@
         /// The validation message.
         /// </value>
         [SitecoreDictionaryFallbackField("Validation Message", "Fields are not equal")]
-        public override string ValidationMessage { get; set; }
+        public virtual string ValidationMessage { get; set; }
 
         /// <summary>
         /// Gets or sets the other field model.
@@ -71,7 +71,7 @@
         /// <returns>
         ///   <c>true</c> if the value entered is valid, <c>false</c> otherwise
         /// </returns>
-        public override bool IsValid(object value)
+        public virtual bool IsValid(object value)
         {
             // other field not configured or not found
             if (this.OtherFieldModel == null) return false;
@@ -91,7 +91,7 @@
         /// <returns>
         /// Key-Value based dictionary with additional html attributes
         /// </returns>
-        public override IDictionary<string, object> GetAttributes()
+        public virtual IDictionary<string, object> GetAttributes()
         {
             var attributes = new Dictionary<string, object>();
 

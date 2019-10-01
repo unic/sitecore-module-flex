@@ -9,7 +9,7 @@
     /// Validates the input on specific length
     /// </summary>
     [SitecoreType(TemplateId = "{FAFB0D25-6930-4AEE-8BB1-3CE6E021C5EE}")]
-    public class LengthValidator : ValidatorBase
+    public class LengthValidator : IValidator
     {
         /// <summary>
         /// Gets the default validation message dictionary key.
@@ -17,7 +17,7 @@
         /// <value>
         /// The default validation message dictionary key.
         /// </value>
-        public override string DefaultValidationMessageDictionaryKey
+        public virtual string DefaultValidationMessageDictionaryKey
         {
             get
             {
@@ -32,7 +32,7 @@
         /// The validation message.
         /// </value>
         [SitecoreDictionaryFallbackField("Validation Message", "Length of input is not valid")]
-        public override string ValidationMessage { get; set; }
+        public virtual string ValidationMessage { get; set; }
 
         /// <summary>
         /// Gets or sets the minimum length.
@@ -59,7 +59,7 @@
         /// <returns>
         ///   <c>true</c> if the value entered is valid, <c>false</c> otherwise
         /// </returns>
-        public override bool IsValid(object value)
+        public virtual bool IsValid(object value)
         {
             if (value == null) return true;
 
@@ -79,7 +79,7 @@
         /// <returns>
         /// Key-Value based dictionary with additional html attributes
         /// </returns>
-        public override IDictionary<string, object> GetAttributes()
+        public virtual IDictionary<string, object> GetAttributes()
         {
             var attributes = new Dictionary<string, object>();
 

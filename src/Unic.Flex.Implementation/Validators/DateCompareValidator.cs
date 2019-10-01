@@ -6,6 +6,7 @@
     using Core.DependencyInjection;
     using Glass.Mapper.Sc.Configuration;
     using Glass.Mapper.Sc.Configuration.Attributes;
+    using Model.Attributes;
     using Model.Fields;
     using Model.Forms;
     using Model.GlassExtensions.Attributes;
@@ -16,7 +17,8 @@
     /// Validator that compare two dates with selected compare type.
     /// </summary>
     [SitecoreType(TemplateId = "{BD19EA8F-BCA6-44DB-AD3E-1BBFC3E0ED50}")]
-    public class DateCompareValidator : ValidatorBase
+    [EnableFormValidation]
+    public class DateCompareValidator : IValidator
     {
         private readonly Dictionary<CompareTypes, Func<DateTime, DateTime, bool>> Comparators
             = new Dictionary<CompareTypes, Func<DateTime, DateTime, bool>>
@@ -30,9 +32,12 @@
             };
 
         /// <summary>
-        /// Validation Type Form, because the validator is depending on an other field and can not be executed on field level
+        /// Gets the default validation message dictionary key.
         /// </summary>
-        public override ValidationType Type => ValidationType.FormValidation;
+        /// <value>
+        /// The default validation message dictionary key.
+        /// </value>
+        public string DefaultValidationMessageDictionaryKey { get; }
 
         /// <summary>
         /// Gets or sets the validation message.
@@ -41,7 +46,7 @@
         /// The validation message.
         /// </value>
         [SitecoreDictionaryFallbackField("Validation Message", "First date is smaller")]
-        public override string ValidationMessage { get; set; }
+        public string ValidationMessage { get; set; }
 
         /// <summary>
         /// Gets or sets the other field model.
@@ -68,7 +73,7 @@
         /// <returns>
         ///   <c>true</c> if the value entered is valid, <c>false</c> otherwise
         /// </returns>
-        public override bool IsValid(object value)
+        public bool IsValid(object value)
         {
             DateTime firstDate = DateTime.MinValue, secondDate;
             if (value is DateTime)
@@ -96,6 +101,17 @@
             var isValid = comparator(firstDate, secondDate);
 
             return isValid;
+        }
+
+        /// <summary>
+        /// Gets the additional html attributes which should be rendered.
+        /// </summary>
+        /// <returns>
+        /// Key-Value based dictionary with additional html attributes
+        /// </returns>
+        public IDictionary<string, object> GetAttributes()
+        {
+            return new Dictionary<string, object>();
         }
 
         /// <summary>

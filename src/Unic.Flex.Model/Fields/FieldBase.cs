@@ -7,6 +7,7 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Web;
+    using Attributes;
     using Castle.DynamicProxy;
     using Glass.Mapper.Sc.Configuration;
     using Glass.Mapper.Sc.Configuration.Attributes;
@@ -34,7 +35,7 @@
         {
             this.validators = new List<IValidator>();
         }
-        
+
         /// <summary>
         /// Gets or sets the value.
         /// </summary>
@@ -145,23 +146,27 @@
         /// Determines whether the specified object is valid.
         /// </summary>
         /// <param name="validationContext">The validation context.</param>
-        /// <param name="type">The validation type</param>
+        /// <param name="requestedValidationType">The validation type</param>
         /// <returns>
         /// A collection that holds failed-validation information.
         /// </returns>
-        public virtual IEnumerable<ValidationResult> Validate(ValidationContext validationContext, ValidationType type)
+        public virtual IEnumerable<ValidationResult> Validate(ValidationContext validationContext, ValidationType requestedValidationType)
         {
             foreach (var validator in this.validators)
             {
-                if (validator.Type == type && !validator.IsValid(this.Value))
-                {
-                    if (!this.Attributes.ContainsKey("aria-invalid"))
-                    {
-                        this.Attributes.Add("aria-invalid", "true");
-                    }
+                var validatorType = validator.GetType().GetCustomAttributes(typeof(EnableFormValidationAttribute), true).Any()
+                    ? ValidationType.FormValidation
+                    : ValidationType.FieldValidation;
+                if (validatorType != requestedValidationType) continue;
 
-                    yield return new ValidationResult(validator.ValidationMessage, new[] { "Value" });
+                if (validator.IsValid(this.Value)) continue;
+
+                if (!this.Attributes.ContainsKey("aria-invalid"))
+                {
+                    this.Attributes.Add("aria-invalid", "true");
                 }
+
+                yield return new ValidationResult(validator.ValidationMessage, new[] { "Value" });
             }
         }
 
@@ -239,7 +244,7 @@
         /// Private field for storing the is hidden property.
         /// </summary>
         private bool? isHidden;
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="FieldBase"/> class.
         /// </summary>
