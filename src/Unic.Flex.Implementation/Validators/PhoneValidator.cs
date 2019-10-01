@@ -31,19 +31,5 @@
         /// </value>
         [SitecoreDictionaryFallbackField("Validation Message", "Phone number is invalid")]
         public override string ValidationMessage { get; set; }
-
-        /// <summary>
-        /// Gets the regular expression.
-        /// </summary>
-        /// <value>
-        /// The regular expression.
-        /// </value>
-        public override string RegularExpression
-        {
-            get
-            {
-                return @"^[0|\+]{1}[0-9|\ ]{6,}$";
-            }
-        }
     }
 }

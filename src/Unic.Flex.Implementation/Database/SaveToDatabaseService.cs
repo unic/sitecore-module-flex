@@ -181,9 +181,12 @@
                     foreach (var item in fields)
                     {
                         var field = session.Fields.FirstOrDefault(f => f.ItemId == item.Id);
-                        if (field == null) continue;
+                        if (field != null)
+                        {
+                            worksheet.Cells[row, column].Value = this.GetExportValue(item, field);
+                        }
 
-                        worksheet.Cells[row, column++].Value = this.GetExportValue(item, field);
+                        column++;
                     }
 
                     row++;

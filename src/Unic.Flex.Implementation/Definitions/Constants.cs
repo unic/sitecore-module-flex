@@ -12,5 +12,7 @@
         public const string AlwaysUseGlobalConfig = "Flex.EmailAddresses.AlwaysUseGlobalConfig";
 
         public const string DoubleOptinLinkReplacement = "{DoubleOptinLink}";
+
+        public const string PhoneValidatorRegExConfig = "Flex.PhoneValidator.RegEx";
     }
 }

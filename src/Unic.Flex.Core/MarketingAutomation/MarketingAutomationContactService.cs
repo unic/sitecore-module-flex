@@ -34,7 +34,6 @@
                 var facet = this.GetFacet(facetType, contactFacetDefinition);
 
                 var fieldProperty = facetType.GetProperty(contactFieldDefinition.FieldName, BindingFlags.Public | BindingFlags.Instance);
-
                 if (fieldProperty == null) return null;
 
                 return fieldProperty.GetValue(facet);
@@ -89,18 +88,15 @@
             using (new VersionCountDisabler())
             {
                 var contactFieldDefinition = this.sitecoreContext.GetItem<ContactFieldDefinition>(contactFieldDefinitionId);
-
                 if (contactFieldDefinition == null) return;
 
                 var contactFacetDefinition = contactFieldDefinition.Facet;
-
                 if (contactFacetDefinition == null) return;
 
                 var facetType = ReflectionUtil.GetTypeInfo(contactFacetDefinition.Type);
                 var facet = this.GetFacet(facetType, contactFacetDefinition);
 
                 var fieldProperty = facetType.GetProperty(contactFieldDefinition.FieldName, BindingFlags.Public | BindingFlags.Instance);
-
                 if (fieldProperty == null) return;
 
                 fieldProperty.SetValue(facet, value);
@@ -122,7 +118,6 @@
         private object GetFacet(Type facetType,  ContactFacetDefinition contactFacetDefinition)
         {
             var contact = this.trackerWrapper.GetCurrentTracker().Contact;
-
             if (contact == null) return null;
 
             var getFacet = typeof(Contact).GetMethod(nameof(contact.GetFacet));

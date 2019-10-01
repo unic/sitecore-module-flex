@@ -1,7 +1,7 @@
 ﻿namespace Unic.Flex.Implementation.Fields.InputFields
 {
     using Glass.Mapper.Sc.Configuration.Attributes;
-    using Unic.Flex.Implementation.Validators;
+    using Validators;
     using Unic.Flex.Model.Fields.InputFields;
 
     /// <summary>
@@ -15,9 +15,14 @@
         /// </summary>
         public PhoneField()
         {
-            this.DefaultValidators.Add(new PhoneValidator());
+            var validator = new PhoneValidator
+            {
+                RegularExpression = this.GetPhoneValidatorRegEx()
+            };
+
+            this.DefaultValidators.Add(validator);
         }
-        
+
         /// <summary>
         /// Gets or sets the default value.
         /// </summary>
@@ -51,9 +56,14 @@
 
             this.AddCssClass("flex_singletextfield");
 
-            this.Attributes.Add("aria-multiline", false);
+            this.Attributes.Add("aria-multiline", "false");
             this.Attributes.Add("role", "textbox");
             this.Attributes.Add("type", "tel");
+        }
+
+        private string GetPhoneValidatorRegEx()
+        {
+            return Sitecore.Configuration.Settings.GetSetting(Definitions.Constants.PhoneValidatorRegExConfig);
         }
     }
 }

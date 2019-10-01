@@ -19,7 +19,7 @@
         {
             foreach (var field in fields)
             {
-                var email = GetEmailFromField(field, form);
+                var email = this.GetEmailFromField(field, form);
                 if (!string.IsNullOrWhiteSpace(email)) return email;
             }
 

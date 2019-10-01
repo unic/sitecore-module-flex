@@ -23,7 +23,7 @@
             <a class="flex_button_secondary" href="@Model.CancelUrl">@Model.CancelText</a>
         }
 
-        <button type="submit" role="button">
+        <button type="submit" role="button" @Html.Raw(Html.FormatAttributes(Model.ButtonAttributes))>
             <span>
                 @string.Format("{0}", !string.IsNullOrWhiteSpace(Model.ButtonText) ? Model.ButtonText : TranslationHelper.FlexText("Finish Form"))
             </span>

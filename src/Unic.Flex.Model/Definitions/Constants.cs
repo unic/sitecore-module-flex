@@ -3,5 +3,7 @@
     public class Constants
     {
         public const string EmptyFlexFieldDefaultValue = "-";
+
+        public const string DescriptorIdSuffix = "Descriptor";
     }
 }

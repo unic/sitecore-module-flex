@@ -1,4 +1,5 @@
 ﻿@using Unic.Flex.Core.Presentation
+@using Unic.Flex.Model.Definitions
 @model Unic.Flex.Implementation.Fields.TextOnly.TextOnlyField
 
 <li class="@Model.CssClass" @Html.Raw(Html.FormatAttributes(Model.ContainerAttributes))>
@@ -8,14 +9,14 @@
         <strong class="flex_label">@Model.Label</strong>
     }
 
-    <div class="flex_rtecontent">
-        @if (Model.Value.StartsWith("<p>"))
+    <div class="flex_rtecontent" id="@(Model.DescribesFormStep ? string.Format("{0}_{1}", Model.Id, Constants.DescriptorIdSuffix) : null)">
+        @if (Model.DefaultValue.StartsWith("<p>"))
         {
-            @Html.Raw(Model.Value)
+            @Html.Raw(Model.DefaultValue)
         }
         else
         {
-            <p>@Html.Raw(Model.Value)</p>
+            <p>@Html.Raw(Model.DefaultValue)</p>
         }
     </div>
 

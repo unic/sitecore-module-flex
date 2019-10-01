@@ -1,0 +1,17 @@
+﻿---
+ID: "3b9dede8-1f69-4807-8e1f-f2225186b372"
+Parent: "1bf1a0c5-3fc4-4a6b-a30a-efed98b5fd4a"
+Template: "1bf1a0c5-3fc4-4a6b-a30a-efed98b5fd4a"
+Path: /sitecore/templates/Flex/Fields/Step Describing Field/__Standard Values
+DB: master
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20190415T104246Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin

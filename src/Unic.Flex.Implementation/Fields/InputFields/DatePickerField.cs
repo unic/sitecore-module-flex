@@ -78,7 +78,7 @@
 
             this.AddCssClass("flex_datefield");
 
-            this.Attributes.Add("aria-multiline", false);
+            this.Attributes.Add("aria-multiline", "false");
             this.Attributes.Add("role", "textbox");
 
             if (this.Value != null)

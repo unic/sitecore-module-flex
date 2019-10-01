@@ -5,7 +5,7 @@
     using Unic.Flex.Model.Forms;
 
     /// <summary>
-    /// Base class for all load plugs
+    /// Base class for all save plugs
     /// </summary>
     public abstract class SavePlugBase : ISavePlug
     {

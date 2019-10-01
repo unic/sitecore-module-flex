@@ -554,7 +554,7 @@
             if (this.IsDisabled)
             {
                 this.Attributes.Add("disabled", "disabled");
-                this.Attributes.Add("aria-disabled", true);
+                this.Attributes.Add("aria-disabled", "true");
                 this.AddCssClass("flex_disabled");
             }
 

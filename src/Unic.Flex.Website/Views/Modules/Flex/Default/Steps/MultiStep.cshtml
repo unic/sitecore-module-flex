@@ -50,7 +50,7 @@
                     <a class="flex_button_secondary" href="@Model.NextStepUrl">@Model.SkipButtonText</a>
                 }
 
-                <button type="submit" role="button">
+                <button type="submit" role="button" @Html.Raw(Html.FormatAttributes(Model.ButtonAttributes))>
                     <span>
                         @string.Format("{0}", !string.IsNullOrWhiteSpace(Model.ButtonText) ? Model.ButtonText : (Model.IsLastStep ? TranslationHelper.FlexText("Finish Form") : TranslationHelper.FlexText("Next Step")))
                     </span>
