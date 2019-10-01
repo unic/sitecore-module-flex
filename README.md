@@ -13,10 +13,10 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ### 3.24
 
-This versions brings back changes which were implemented in a separate branch during the SWT project. Those changes have now been properly ported to be backwards compatible and are opt-in with feature toggles:
+This versions brings back changes which were implemented in a separate branch during one of our projects. Those changes have now been properly ported to be backwards compatible and are opt-in with feature toggles:
 
 * Form validation has been introduced, allowing validators to properly reference and check other fields values. For opting in, add the `EnableFormValidationAttribute` on class level of your custom validator. An example has been introduced with the new `DateCompareValidator`.
-* `AllowLoadPlugsOnNonHttpGet` is a new setting that allows load plugs to be executed upon non-http GET requests, such as `POST`. In order to keep backwards compatibility, a new `IgnoreHttpMethodExecutionFilter` property has been introduced on `LoadPlugBase`, which need to be set to `true` (default is `false`).
+* `Flex.Plugs.AllowLoadPlugsOnNonHttpGet` is a new setting that allows load plugs to be executed upon non-http GET requests, such as `POST`. In order to keep backwards compatibility, a new `IgnoreHttpMethodExecutionFilter` property has been introduced on `LoadPlugBase`, which need to be set to `true` (default is `false`).
 * `Flex.Urls.HonorTrailingSlash` is a new setting that allows Flex to honor trailing slashes in URLs, such as `http://flex.local/Multistep-Form/Step-2/`.
 
 ### 3.23.2

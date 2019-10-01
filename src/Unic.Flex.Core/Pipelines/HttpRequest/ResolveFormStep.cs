@@ -95,7 +95,8 @@
 
             // check if we are on a valid step (/ means the first step and is valid)
             var currentUrlPart = path.Split('/').Last();
-            var activeStep = form.Steps.Skip(1).FirstOrDefault(step => this.IsStepEqual(step.Url, currentUrlPart));
+            var honorTrailingSlash = Sitecore.Configuration.Settings.GetBoolSetting(Definitions.Constants.HonorTrailingSlashConfig, false);
+            var activeStep = form.Steps.Skip(1).FirstOrDefault(step => this.IsStepEqual(step.Url, currentUrlPart, honorTrailingSlash));
             if (activeStep == null)
             {
                 this.logger.Debug("Something went wrong, current step could not be loaded by url, exit form step resolving", this);
@@ -153,10 +154,8 @@
         /// <param name="stepUrl">The step URL.</param>
         /// <param name="currentUrlPart">The current URL part.</param>
         /// <returns>Boolean value if the url parts match or not</returns>
-        private bool IsStepEqual(string stepUrl, string currentUrlPart)
+        private bool IsStepEqual(string stepUrl, string currentUrlPart, bool honorTrailingSlash)
         {
-            var honorTrailingSlash = Sitecore.Configuration.Settings.GetBoolSetting(Definitions.Constants.HonorTrailingSlashConfig, false);
-
             string lastPart;
             if (!honorTrailingSlash)
             {

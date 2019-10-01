@@ -32,24 +32,20 @@
 
             // check if we need to execute the load plugs -> only the first time
             var executeLoadPlugsOnNonHttpGet = Sitecore.Configuration.Settings.GetBoolSetting(Definitions.Constants.AllowLoadPlugsOnNonHttpGet, false);
+            var isHttpGetRequest = HttpContext.Current.Request.HttpMethod == "GET";
+
             if (executeLoadPlugsOnNonHttpGet)
             {
                 if (HttpContext.Current == null || form.ActiveStep.StepNumber != 1) return;
             }
             else
             {
-                if (HttpContext.Current == null || HttpContext.Current.Request.HttpMethod != "GET"
-                                                || form.ActiveStep.StepNumber != 1) return;
+                if (HttpContext.Current == null || !isHttpGetRequest || form.ActiveStep.StepNumber != 1) return;
             }
-
-            var isHttpGetRequest = HttpContext.Current.Request.HttpMethod == "GET";
 
             foreach (var plug in form.LoadPlugs)
             {
-                if (executeLoadPlugsOnNonHttpGet)
-                {
-                    if (!isHttpGetRequest && !plug.IgnoreHttpMethodExecutionFilter) continue;
-                }
+                if (executeLoadPlugsOnNonHttpGet && !isHttpGetRequest && !plug.IgnoreHttpMethodExecutionFilter) continue;
 
                 try
                 {
