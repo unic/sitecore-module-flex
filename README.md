@@ -11,6 +11,10 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ## Changelog
 
+### 3.23.3
+
+* Fix from 3.23.2 revrted and approach differently to support TextOnlyField with dynamically overriden value. DafultValue is not anymore save to Value, instead TextValue has fallback to DefaultValue if Value is not set. Therefore the property to present TextOnlyField on views is now TextValue.
+
 ### 3.23.2
 
 * Fixes the issue in TextOnlyField, where after changing the language, the text was still shown in the original language
