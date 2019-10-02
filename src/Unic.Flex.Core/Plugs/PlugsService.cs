@@ -29,13 +29,24 @@
 
             var form = context.Form;
             if (form == null) return;
-            
+
             // check if we need to execute the load plugs -> only the first time
-            if (HttpContext.Current == null || HttpContext.Current.Request.HttpMethod != "GET"
-                || form.ActiveStep.StepNumber != 1) return;
+            var executeLoadPlugsOnNonHttpGet = Sitecore.Configuration.Settings.GetBoolSetting(Definitions.Constants.AllowLoadPlugsOnNonHttpGet, false);
+            var isHttpGetRequest = HttpContext.Current.Request.HttpMethod == "GET";
+
+            if (executeLoadPlugsOnNonHttpGet)
+            {
+                if (HttpContext.Current == null || form.ActiveStep.StepNumber != 1) return;
+            }
+            else
+            {
+                if (HttpContext.Current == null || !isHttpGetRequest || form.ActiveStep.StepNumber != 1) return;
+            }
 
             foreach (var plug in form.LoadPlugs)
             {
+                if (executeLoadPlugsOnNonHttpGet && !isHttpGetRequest && !plug.IgnoreHttpMethodExecutionFilter) continue;
+
                 try
                 {
                     this.logger.Debug($"Execute load plug '{plug.ItemId}' for form '{form.ItemId}'", this);

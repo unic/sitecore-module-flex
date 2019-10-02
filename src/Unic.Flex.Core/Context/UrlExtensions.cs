@@ -1,11 +1,11 @@
 ﻿namespace Unic.Flex.Core.Context
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using Unic.Flex.Core.DependencyInjection;
-    using Unic.Flex.Model.Forms;
-    using Unic.Flex.Model.Steps;
+    using Sitecore;
+    using DependencyInjection;
+    using Model.Forms;
+    using Model.Steps;
 
     /// <summary>
     /// Extensions for url related objects.
@@ -27,7 +27,17 @@
             if (context.Form == null) return item.Url;
             if (item.StepNumber == 1) return context.Item.Url;
 
-            return string.Join("/", context.Item.Url, item.Url.Split('/').Last());
+            var honorTrailingSlash = Sitecore.Configuration.Settings.GetBoolSetting(Definitions.Constants.HonorTrailingSlashConfig, false);
+
+            if (!honorTrailingSlash)
+            {
+                return string.Join("/", context.Item.Url, item.Url.Split('/').Last());
+            }
+            else
+            {
+                var contextItemUrl = StringUtil.RemovePostfix('/', context.Item.Url);
+                return string.Join("/", contextItemUrl, item.Url.Split(new[]{ '/' }, StringSplitOptions.RemoveEmptyEntries).Last());
+            }
         }
 
         /// <summary>
