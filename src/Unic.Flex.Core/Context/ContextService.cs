@@ -125,9 +125,10 @@
             {
                 foreach (var field in section.Fields)
                 {
-                    field.Value = this.userDataRepository.IsFieldStored(form.Id, field.Id)
-                                      ? this.userDataRepository.GetValue(form.Id, field.Id)
-                                      : field.DefaultValue;
+                    if (this.userDataRepository.IsFieldStored(form.Id, field.Id))
+                    {
+                        field.Value = this.userDataRepository.GetValue(form.Id, field.Id);
+                    }
                 }
             }
 
@@ -166,10 +167,6 @@
                                 this,
                                 exception);
                         }
-                    }
-                    else
-                    {
-                        field.Value = field.DefaultValue;
                     }
                 }
             }

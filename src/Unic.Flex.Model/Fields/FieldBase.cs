@@ -119,7 +119,7 @@
         {
             get
             {
-                var value = !Equals(this.Value, null) ? this.Value.ToString() : string.Empty;
+                var value = !Equals(this.Value, null) ? this.Value.ToString() : !Equals(this.DefaultValue, null) ? this.DefaultValue.ToString() : string.Empty;
                 return !string.IsNullOrWhiteSpace(value) ? value : Definitions.Constants.EmptyFlexFieldDefaultValue;
             }
         }
