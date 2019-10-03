@@ -190,7 +190,10 @@
             // these are used for client side validation
             foreach (var attribute in validator.GetAttributes())
             {
-                this.Attributes.Add(attribute.Key, attribute.Value);
+                if (!this.Attributes.ContainsKey(attribute.Key))
+                {
+                    this.Attributes.Add(attribute.Key, attribute.Value);
+                }
             }
 
             // add the "data-val" attribute to specify that this field needs to be validated
