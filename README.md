@@ -11,6 +11,10 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ## Changelog
 
+### 3.25
+
+* Fix an issue when mutliple validators with the same html attributes on the same field caused a .net exception. With the new logic, the first added validator takes priority.
+
 ### 3.24
 
 This versions brings back changes which were implemented in a separate branch during one of our projects. Those changes have now been properly ported to be backwards compatible and are opt-in with feature toggles:
