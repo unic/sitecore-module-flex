@@ -13,7 +13,8 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ### 3.26
 
-* Allow Form and Field items to setup autocomplete attribute
+* Allow Form and Field items to setup autocomplete attribute. Hint: please adjust custom themes on project level by line which setup autocomplete attribute of form (example: Views\Modules\Flex\Default\Form.cshtml).
+
 
 ### 3.25
 

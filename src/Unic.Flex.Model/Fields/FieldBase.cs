@@ -390,7 +390,7 @@
         /// <value>
         /// The autocomplete value.
         /// </value>
-        [SitecoreField("Autocomplete")]
+        [SitecoreSharedField("Autocomplete")]
         public virtual Specification Autocomplete { get; set; }
 
         /// <summary>
