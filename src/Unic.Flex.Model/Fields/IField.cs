@@ -170,6 +170,14 @@
         IList<IValidator> DefaultValidators { get; }
 
         /// <summary>
+        /// Gets the autocomplete value
+        /// </summary>
+        /// <value>
+        /// The autocomplete value.
+        /// </value> 
+        Specification Autocomplete { get; set; }
+
+        /// <summary>
         /// Adds the CSS class.
         /// </summary>
         /// <param name="cssClass">The CSS class.</param>

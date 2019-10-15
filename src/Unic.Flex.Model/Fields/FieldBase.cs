@@ -385,6 +385,15 @@
         public virtual string DependentValue { get; set; }
 
         /// <summary>
+        /// Gets or sets the autocomplete value.
+        /// </summary>
+        /// <value>
+        /// The autocomplete value.
+        /// </value>
+        [SitecoreField("Autocomplete")]
+        public virtual Specification Autocomplete { get; set; }
+
+        /// <summary>
         /// Gets or sets the reusable component.
         /// </summary>
         /// <value>
@@ -559,6 +568,11 @@
                 this.Attributes.Add("disabled", "disabled");
                 this.Attributes.Add("aria-disabled", "true");
                 this.AddCssClass("flex_disabled");
+            }
+
+            if (this.Autocomplete != null && !string.IsNullOrWhiteSpace(this.Autocomplete.Value))
+            {
+                this.Attributes.Add("autocomplete", this.Autocomplete.Value);
             }
 
             // handle field dependency

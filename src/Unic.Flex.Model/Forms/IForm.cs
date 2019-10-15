@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using Glass.Mapper.Sc.Fields;
+    using Specifications;
     using Unic.Flex.Model.Plugs;
     using Unic.Flex.Model.Presentation;
     using Unic.Flex.Model.Steps;
@@ -74,6 +75,14 @@
         /// The active step.
         /// </value>
         IStep ActiveStep { get; }
+
+        /// <summary>
+        /// Gets the autocomplete value.
+        /// </summary>
+        /// <value>
+        /// The autocomplete value.
+        /// </value>
+        Specification Autocomplete { get; }
 
         /// <summary>
         /// Gets the load plugs.

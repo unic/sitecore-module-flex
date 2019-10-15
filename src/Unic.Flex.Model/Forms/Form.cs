@@ -94,6 +94,15 @@
         public virtual ItemBase SuccessRedirect { get; set; }
 
         /// <summary>
+        /// Gets or sets the autocomplete value.
+        /// </summary>
+        /// <value>
+        /// The autocomplete value.
+        /// </value>
+        [SitecoreField("Autocomplete")]
+        public virtual Specification Autocomplete { get; set; }
+
+        /// <summary>
         /// Gets or sets the error message.
         /// </summary>
         /// <value>

@@ -11,6 +11,10 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ## Changelog
 
+### 3.26
+
+* Allow Form and Field items to setup autocomplete attribute
+
 ### 3.25
 
 * Fix an issue when mutliple validators with the same html attributes on the same field caused a .net exception. With the new logic, the first added validator takes priority.
