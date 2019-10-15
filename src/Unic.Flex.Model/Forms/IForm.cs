@@ -77,12 +77,12 @@
         IStep ActiveStep { get; }
 
         /// <summary>
-        /// Gets the autocomplete value.
+        /// Gets the disable-autocomplete value.
         /// </summary>
         /// <value>
-        /// The autocomplete value.
+        /// The disable-autocomplete value.
         /// </value>
-        Specification Autocomplete { get; }
+        bool DisableAutocomplete { get; }
 
         /// <summary>
         /// Gets the load plugs.

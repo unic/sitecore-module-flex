@@ -94,13 +94,13 @@
         public virtual ItemBase SuccessRedirect { get; set; }
 
         /// <summary>
-        /// Gets or sets the autocomplete value.
+        /// Gets or sets the disable-autocomplete value.
         /// </summary>
         /// <value>
-        /// The autocomplete value.
+        /// The disable-autocomplete value.
         /// </value>
-        [SitecoreField("Autocomplete")]
-        public virtual Specification Autocomplete { get; set; }
+        [SitecoreField("Disable Autocomplete Function")]
+        public virtual bool DisableAutocomplete { get; set; }
 
         /// <summary>
         /// Gets or sets the error message.
