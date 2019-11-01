@@ -4,7 +4,9 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
+    using Glass.Mapper;
     using Glass.Mapper.Sc;
+    using Glass.Mapper.Sc.Web;
     using Newtonsoft.Json;
     using Sitecore.Data.Managers;
     using Sitecore.Globalization;
@@ -28,7 +30,7 @@
         /// <summary>
         /// The sitecore context
         /// </summary>
-        private readonly ISitecoreContext sitecoreContext;
+        private readonly IRequestContext requestContext;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FlexSpeakController"/> class.
@@ -36,7 +38,7 @@
         public FlexSpeakController()
         {
             this.taskService = Core.DependencyInjection.DependencyResolver.Resolve<ITaskService>();
-            this.sitecoreContext = Core.DependencyInjection.DependencyResolver.Resolve<ISitecoreContext>();
+            this.requestContext = Core.DependencyInjection.DependencyResolver.Resolve<IRequestContext>();
         }
 
         /// <summary>
@@ -52,26 +54,26 @@
         {
             // initialize
             var taskList = new List<AsyncTask>();
-            
+
             // get elements
             foreach (var job in this.taskService.GetAllJobs())
             {
-                var form = this.sitecoreContext.GetItem<ItemBase>(job.ItemId);
+                var form = this.requestContext.SitecoreService.GetItem<ItemBase>(job.ItemId);
                 var formName = form != null ? form.ItemName : Model.Definitions.Constants.EmptyFlexFieldDefaultValue;
 
                 foreach (var task in job.Tasks)
                 {
-                    var plug = this.sitecoreContext.GetItem<ItemBase>(task.ItemId);
+                    var plug = this.requestContext.SitecoreService.GetItem<ItemBase>(task.ItemId);
                     var plugName = plug != null ? plug.ItemName : Model.Definitions.Constants.EmptyFlexFieldDefaultValue;
 
                     taskList.Add(new AsyncTask
-                                       {
-                                           TaskId = task.Id,
-                                           Form = formName,
-                                           Plug = plugName,
-                                           Attemps = task.NumberOfTries,
-                                           LastTry = task.LastTry
-                                       });
+                    {
+                        TaskId = task.Id,
+                        Form = formName,
+                        Plug = plugName,
+                        Attemps = task.NumberOfTries,
+                        LastTry = task.LastTry
+                    });
                 }
             }
 
@@ -94,7 +96,7 @@
                 case "last_try":
                     sortPredicate = x => x.LastTry;
                     break;
-                
+
                 default:
                     sortPredicate = x => x.TaskId;
                     break;
@@ -102,11 +104,11 @@
 
             // generate object
             var tasks = new AsyncTaks
-                            {
-                                Data = direction == "asc"
+            {
+                Data = direction == "asc"
                                         ? taskList.OrderBy(sortPredicate)
                                         : taskList.OrderByDescending(sortPredicate)
-                            };
+            };
 
             // create the response
             this.Response.ContentType = "application/json";
@@ -145,12 +147,12 @@
             var rows = new List<DataRow>();
 
             // add forms for each language
-            var allLanguages = LanguageManager.GetLanguages(this.sitecoreContext.Database);
+            var allLanguages = LanguageManager.GetLanguages(this.requestContext.SitecoreService.Database);
             foreach (var language in allLanguages)
             {
                 using (new LanguageSwitcher(language))
                 {
-                    this.AddForms(rows, language.Name);
+                    this.AddForms(rows, language.Name, true);
                 }
             }
 
@@ -167,10 +169,7 @@
             }
 
             // add total forms
-            using (new VersionCountDisabler())
-            {
-                this.AddForms(rows, "total");
-            }
+            this.AddForms(rows, "total", false);
 
             // generate object
             var sortedRows = rows.OrderBy(r => r.Repository).ThenBy(r => r.Language);
@@ -186,9 +185,17 @@
         /// </summary>
         /// <param name="rows">The rows.</param>
         /// <param name="languageName">Name of the language.</param>
-        private void AddForms(List<DataRow> rows, string languageName)
+        /// <param name="versionCountEnabled">Enable Version Count</param>
+        private void AddForms(List<DataRow> rows, string languageName, bool versionCountEnabled)
         {
-            var allForms = this.sitecoreContext.Query<StatisticForm>("fast://*[@@templateid='{3AFE4256-1C3E-4441-98AF-B3D0037A8B1F}']");
+            //var queryOptions = new GetItemsByQueryOptions(new Query("fast://*[@@templateid='{3AFE4256-1C3E-4441-98AF-B3D0037A8B1F}']"))
+            var queryOptions = new GetItemsByQueryOptions(new Query("fast:/Sitecore/content//*[@@templateid='{3AFE4256-1C3E-4441-98AF-B3D0037A8B1F}']"))
+            {
+                Lazy = LazyLoading.Disabled,
+                VersionCount = versionCountEnabled
+            };
+            var allForms = this.requestContext.SitecoreService.GetItems<StatisticForm>(queryOptions);
+
             foreach (var row in allForms.Where(f => f.Repository != null).GroupBy(f => f.Repository.FullPath))
             {
                 rows.Add(new DataRow { Repository = row.Key, Forms = row.Count(), Language = languageName.ToLowerInvariant() });

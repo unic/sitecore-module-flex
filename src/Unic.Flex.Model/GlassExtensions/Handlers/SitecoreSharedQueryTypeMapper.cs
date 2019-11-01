@@ -32,16 +32,13 @@
         /// </returns>
         public override object MapToProperty(AbstractDataMappingContext mappingContext)
         {
-            var config = this.Configuration as SitecoreQueryConfiguration;
-            if (config != null)
+            mappingContext.Options.Lazy = LazyLoading.Disabled;
+            if (mappingContext.Options is GetOptionsSc scOptions)
             {
-                config.IsLazy = false;
+                scOptions.VersionCount = false;
             }
-            
-            using (new VersionCountDisabler())
-            {
-                return base.MapToProperty(mappingContext);
-            }
+
+            return base.MapToProperty(mappingContext);
         }
 
         /// <summary>

@@ -13,7 +13,7 @@
         /// <value>
         /// The repository.
         /// </value>
-        [SitecoreSharedQuery("./ancestor::*[@@templateid='{7212DD21-1769-43AA-AF6A-92756C97A269}']", IsLazy = false, IsRelative = true, InferType = true)]
+        [SitecoreSharedQuery("./ancestor::*[@@templateid='{7212DD21-1769-43AA-AF6A-92756C97A269}']", IsRelative = true, InferType = true)]
         public virtual Repository Repository { get; set; }
     }
 }

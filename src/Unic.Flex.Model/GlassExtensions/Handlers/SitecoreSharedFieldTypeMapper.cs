@@ -21,10 +21,12 @@
         /// <returns>Field value object.</returns>
         public override object GetFieldValue(string fieldValue, SitecoreFieldConfiguration config, SitecoreDataMappingContext context)
         {
-            using (new VersionCountDisabler())
+            if (context.Options is GetOptionsSc scOptions)
             {
-                return base.GetFieldValue(fieldValue, config, context);
+                scOptions.VersionCount = false;
             }
+
+            return base.GetFieldValue(fieldValue, config, context);
         }
 
         /// <summary>

@@ -56,7 +56,7 @@
         /// <value>
         /// The parent.
         /// </value>
-        [SitecoreParent(IsLazy = true, InferType = true)]
+        [SitecoreParent(InferType = true)]
         public virtual ItemBase Step { private get; set; }
 
         /// <summary>
@@ -74,7 +74,7 @@
         /// <value>
         /// The fields.
         /// </value>
-        [SitecoreReusableChildren(IsLazy = true, InferType = true)]
+        [SitecoreReusableChildren(InferType = true)]
         public virtual IEnumerable<IField> LazyFields { private get; set; }
 
         /// <summary>

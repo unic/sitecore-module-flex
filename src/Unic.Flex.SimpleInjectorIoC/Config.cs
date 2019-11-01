@@ -3,6 +3,7 @@
     using Core.MarketingAutomation;
     using Core.Utilities;
     using Glass.Mapper.Sc;
+    using Glass.Mapper.Sc.Web;
     using Implementation.Services;
     using SimpleInjector;
     using SimpleInjector.Diagnostics;
@@ -34,7 +35,7 @@
         {
             // logging
             container.Register<ILogger, SitecoreLogger>(Lifestyle.Singleton);
-            
+
             // business logic
             container.Register<IContextService, ContextService>();
             container.Register<IPresentationService, PresentationService>();
@@ -42,7 +43,7 @@
             container.Register<ITaskService, TaskService>();
             container.Register<IAnalyticsService, AnalyticsService>();
             container.Register<ICultureService, CultureService>();
-            
+
             // data access
             container.Register<IDictionaryRepository, DictionaryRepository>(Lifestyle.Singleton);
             container.Register<IFormRepository, FormRepository>();
@@ -58,7 +59,7 @@
             container.Register<UploadedFileModelBinder>();
             container.Register<DateTimeModelBinder>();
             container.Register<DecimalModelBinder>();
-            
+
             // context
             container.Register<IFlexContext, FlexContext>(Lifestyle.Scoped);
 
@@ -83,7 +84,26 @@
 
             // third party classes
             container.Register<IConfigurationManager>(() => new ConfigurationManager(), Lifestyle.Singleton);
-            container.Register<ISitecoreContext>(() => new SitecoreContext(Constants.GlassMapperContextName), Lifestyle.Scoped);
+            container.Register<IRequestContext>(() => new RequestContext(GetService()), Lifestyle.Scoped);
+
+            //// Forms
+            //container.Register<Unic.Flex.Model.Forms.IForm, Unic.Flex.Model.Forms.Form>();
+            //container.Register<SitecoreSharedFieldTypeMapper>(Lifestyle.Scoped);
+            //container.Register<SitecoreDictionaryFallbackFieldTypeMapper>(Lifestyle.Scoped);
+            //container.Register<SitecoreReusableFieldTypeMapper>(Lifestyle.Scoped);
+            //container.Register<SitecoreReusableChildrenTypeMapper>(Lifestyle.Scoped);
+
+        }
+
+        private static ISitecoreService GetService()
+        {
+            var databaseName = Sitecore.Context.Database?.Name;
+            if (string.IsNullOrEmpty(databaseName))
+            {
+                databaseName = "web";
+            }
+
+            return new SitecoreService(databaseName, Constants.GlassMapperContextName);
         }
 
         /// <summary>

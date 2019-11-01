@@ -64,7 +64,7 @@
         [SitecoreField("Redirect Link")]
         public virtual Link RedirectLink { get; set; }
 
-        [SitecoreChildren(IsLazy = true, InferType = true)]
+        [SitecoreChildren(InferType = true)]
         public virtual IEnumerable<ISavePlug> SavePlugs { get; set; }
 
         public override void Execute(IForm form)

@@ -314,10 +314,7 @@
         {
             // get the validator
             AjaxValidator validatorItem;
-            using (new VersionCountDisabler())
-            {
-                validatorItem = this.formRepository.LoadItem<IValidator>(validator) as AjaxValidator;
-            }
+            validatorItem = this.formRepository.LoadItem<IValidator>(id: validator, useVersionCountDisabler: true) as AjaxValidator;
 
             if (validatorItem == null)
             {
