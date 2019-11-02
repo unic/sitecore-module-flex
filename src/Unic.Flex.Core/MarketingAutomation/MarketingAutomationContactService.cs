@@ -6,6 +6,7 @@
     using Glass.Mapper.Sc.Web;
     using Model.MarketingAutomation;
     using Sitecore.Analytics.Model.Entities;
+    using Sitecore.Analytics.Rules.Conditions;
     using Sitecore.Analytics.Tracking;
     using Sitecore.Reflection;
     using Utilities;
@@ -78,8 +79,8 @@
             var hash = SecurityUtil.GenerateHash(identifier);
 
             var tracker = this.trackerWrapper.GetCurrentTracker();
-            //TODO: Check Analytics
-            //tracker.Session.Identify(hash);
+            // Using "xDB.Tracker" as Source Identifier 
+            tracker.Session.IdentifyAs(Sitecore.Analytics.XConnect.DataAccess.Constants.IdentifierSource, hash);
         }
 
         private IContactEmailAddresses GetEmailAdresses(Contact contact)

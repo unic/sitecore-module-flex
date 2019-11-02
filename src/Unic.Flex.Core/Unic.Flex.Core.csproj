@@ -73,6 +73,9 @@
     <Reference Include="Sitecore.Analytics.Model, Version=13.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Sitecore.Analytics.Model.9.2.0\lib\net471\Sitecore.Analytics.Model.dll</HintPath>
     </Reference>
+    <Reference Include="Sitecore.Analytics.XConnect, Version=13.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sitecore.Analytics.XConnect.9.2.0\lib\net471\Sitecore.Analytics.XConnect.dll</HintPath>
+    </Reference>
     <Reference Include="Sitecore.Kernel, Version=13.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Sitecore.Kernel.9.2.0\lib\net471\Sitecore.Kernel.dll</HintPath>
     </Reference>
