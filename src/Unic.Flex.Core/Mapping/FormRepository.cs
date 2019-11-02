@@ -39,7 +39,7 @@
             Assert.ArgumentCondition(Sitecore.Data.ID.IsID(dataSource), dataSource, "Datasource is not valid");
             var id = Guid.Parse(dataSource);
 
-            return this.LoadItem<IForm>(id, useVersionCountDisabler, false);  //TODO: FORM STEPS
+            return this.LoadItem<IForm>(id, useVersionCountDisabler, true, true);  //TODO: FORM STEPS
         }
 
         /// <summary>
@@ -74,11 +74,26 @@
         /// </summary>
         /// <param name="id">Item Id</param>
         /// <param name="useVersionCountDisabler"></param>
-        /// <param name="lazyLoad"></param>
+        /// <param name="isLazy"></param>
         /// <returns></returns>
         private T LoadItem<T>(Guid id, bool useVersionCountDisabler, bool isLazy) where T : class
         {
-            var options = GetOptions(id, useVersionCountDisabler, isLazy);
+            return LoadItem<T>(id, useVersionCountDisabler, isLazy, false);
+        }
+
+        /// <summary>
+        /// Get Item Options
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="id"></param>
+        /// <param name="useVersionCountDisabler"></param>
+        /// <param name="isLazy"></param>
+        /// <param name="infer"></param>
+        /// <returns></returns>
+        private T LoadItem<T>(Guid id, bool useVersionCountDisabler, bool isLazy, bool infer) where T : class
+        {
+            var options = GetOptions(id, useVersionCountDisabler, isLazy, infer);
+
             return this.requestContext.SitecoreService.GetItem<T>(options);
         }
 
@@ -88,13 +103,16 @@
         /// <param name="id"></param>
         /// <param name="useVersionCountDisabler"></param>
         /// <param name="lazyLoad"></param>
+        /// <param name="infer"></param>
         /// <returns></returns>
-        private static GetItemByIdOptions GetOptions(Guid id, bool useVersionCountDisabler, bool lazyLoad = true)
+        private static GetItemByIdOptions GetOptions(Guid id, bool useVersionCountDisabler, bool lazyLoad = true,
+            bool infer = false)
         {
             return new GetItemByIdOptions(id)
             {
                 VersionCount = !useVersionCountDisabler,
-                Lazy = lazyLoad ? LazyLoading.Enabled : LazyLoading.Disabled
+                Lazy = lazyLoad ? LazyLoading.Enabled : LazyLoading.Disabled,
+                InferType = infer
             };
         }
 
