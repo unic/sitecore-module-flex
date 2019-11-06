@@ -29,6 +29,10 @@ Function Invoke-BumpSc9{
         Install-Sif -SIFRequiredVersion $config.SIFRequiredVersion -SitecoreFundamentalRequiredVersion $config.SitecoreFundamentalsRequiredVersion -config $config -nugetOutput $PackagesRoot
     }
 
+    # Download Sitecore and xConnect from nuget
+    Invoke-ScDownloadPackage $config.SitecorePackage -version $config.SitecoreVersion -nugetOutput $PackagesRoot -nuget $nuget
+    Invoke-ScDownloadPackage $config.xConnectPackage -version $config.SitecoreVersion -nugetOutput $PackagesRoot -nuget $nuget
+
     # Check and Install SitecorePrerequisites
     if([System.Convert]::ToBoolean($config.InstallIdentity)){
         $SifConfigPaths = Join-Path $config.WebsitePath $config.SifConfigPaths
@@ -70,7 +74,7 @@ $packageRoot = Resolve-Path(Join-Path $PSScriptRoot "packages")
 
 # Start Solr 
 $solrPath = Get-Item (Resolve-Path(Join-Path $PSScriptRoot "misc\solr\Start-Solr.cmd"))
-Start-Process -FilePath $solrPath.FullName -WorkingDirectory $solrPath.Directory
+Start-Process -FilePath $solrPath.FullName -WorkingDirectory $solrPath.Directory -Wait
 
 # Start Installation
 Invoke-BumpSc9 -PackagesRoot $packageRoot
