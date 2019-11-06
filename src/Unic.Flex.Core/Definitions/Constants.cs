@@ -31,5 +31,9 @@
         public const string HonorTrailingSlashConfig = "Flex.Urls.HonorTrailingSlash";
 
         public const string AllowLoadPlugsOnNonHttpGet = "Flex.Plugs.AllowLoadPlugsOnNonHttpGet";
+
+        public const string FlexInitialDatabaseSetting = "Unic.Feature.Flex.InitialDatabase";
+
+        public const string FlexInitialDatabaseName = "web";
     }
 }

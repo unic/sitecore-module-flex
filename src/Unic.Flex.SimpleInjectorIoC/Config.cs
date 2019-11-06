@@ -86,21 +86,20 @@
             container.Register<IConfigurationManager>(() => new ConfigurationManager(), Lifestyle.Singleton);
             container.Register<IRequestContext>(() => new RequestContext(GetService()), Lifestyle.Scoped);
 
-            //// Forms
-            //container.Register<Unic.Flex.Model.Forms.IForm, Unic.Flex.Model.Forms.Form>();
-            //container.Register<SitecoreSharedFieldTypeMapper>(Lifestyle.Scoped);
-            //container.Register<SitecoreDictionaryFallbackFieldTypeMapper>(Lifestyle.Scoped);
-            //container.Register<SitecoreReusableFieldTypeMapper>(Lifestyle.Scoped);
-            //container.Register<SitecoreReusableChildrenTypeMapper>(Lifestyle.Scoped);
-
         }
 
+        /// <summary>
+        /// Get the Sitecore Service For Glassmapper
+        /// In the Initial Pipeline Sitecore Database is null, so for kick-start the container we will set it manually on master or web, depends on the config.
+        /// Afterwards it will uses the Context.Database
+        /// </summary>
+        /// <returns></returns>
         private static ISitecoreService GetService()
         {
             var databaseName = Sitecore.Context.Database?.Name;
             if (string.IsNullOrEmpty(databaseName))
             {
-                databaseName = "web";
+                databaseName = Sitecore.Configuration.Settings.GetSetting(Constants.FlexInitialDatabaseSetting, Constants.FlexInitialDatabaseName);
             }
 
             return new SitecoreService(databaseName, Constants.GlassMapperContextName);

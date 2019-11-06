@@ -126,6 +126,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Config\Include\20_author\Unic.Feature.Flex.Config" />
+    <Content Include="App_Config\Include\20_delivery\Unic.Feature.Flex.Config" />
     <None Include="packages.config" />
     <None Include="Web.config" />
   </ItemGroup>
@@ -154,6 +156,7 @@
       <Name>Unic.Flex.Implementation</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
