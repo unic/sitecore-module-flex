@@ -34,7 +34,7 @@ Function Invoke-BumpSc9{
     Invoke-ScDownloadPackage $config.xConnectPackage -version $config.SitecoreVersion -nugetOutput $PackagesRoot -nuget $nuget
 
     # Check and Install SitecorePrerequisites
-    if([System.Convert]::ToBoolean($config.InstallIdentity)){
+    if([System.Convert]::ToBoolean($config.InstallPrerequisites)){
         $SifConfigPaths = Join-Path $config.WebsitePath $config.SifConfigPaths
         Install-SitecorePrerequisites -SifConfigPaths $SifConfigPaths
         # Required Restart
