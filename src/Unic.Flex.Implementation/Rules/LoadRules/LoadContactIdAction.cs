@@ -1,5 +1,6 @@
 ﻿namespace Unic.Flex.Implementation.Rules.LoadRules
 {
+    using System.Linq;
     using Sitecore.Analytics;
     using Sitecore.Rules;
 
@@ -8,7 +9,9 @@
     {
         protected override object GetValue()
         {
-            return Tracker.Current.Contact?.Identifiers?.Identifier;
+            return Tracker.Current.Contact?.Identifiers?.FirstOrDefault(x =>
+                x.Identifier == Sitecore.Analytics.XConnect.DataAccess.Constants.IdentifierSource);
+
         }
     }
 }
