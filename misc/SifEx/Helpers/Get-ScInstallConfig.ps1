@@ -6,10 +6,11 @@ Function Get-ScInstallConfig {
     )
     Set-StrictMode -Off
     $packagePath = Join-Path $BobConfig.WebsitePath $BobConfig.PackagesRoot
+    $sitecoreVersion         =  Get-ScFallbackConfig $BobConfig.SitecoreXp0WdpVersion $BobConfig.SitecoreVersion
     # General Vars
-    $sitecorePackage         = Get-ScPackagePath $BobConfig.SitecorePackage -version $BobConfig.SitecoreVersion -nugetOutput $packagePath
-    $xConnectPackage         = Get-ScPackagePath $BobConfig.xConnectPackage -version $BobConfig.SitecoreVersion -nugetOutput $packagePath
-    $identityPackage         = Get-ScPackagePath $BobConfig.IdentityPacakge -version $BobConfig.SitecoreVersion -nugetOutput $packagePath
+    $sitecorePackage         = Get-ScPackagePath $BobConfig.SitecorePackage -version $sitecoreVersion -nugetOutput $packagePath
+    $xConnectPackage         = Get-ScPackagePath $BobConfig.xConnectPackage -version $sitecoreVersion -nugetOutput $packagePath
+    $identityPackage         = Get-ScPackagePath $BobConfig.IdentityPacakge -version $sitecoreVersion -nugetOutput $packagePath
     $SifConfigPaths          = Join-Path $BobConfig.WebsitePath $BobConfig.SifConfigPaths
     $prefix                  = $BobConfig.WebsiteCodeName 
     $SitecoreAdminPassword   = Get-ScFallbackConfig $BobConfig.SitecoreAdminPassword "b"

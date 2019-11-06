@@ -217,12 +217,8 @@ ticked by default
 
 ### IoC container
 
-You must install an IoC container framework for Flex. Currently there are containers 
-available for Ninject and SimpleInjector, which can be installed over NuGet:
-
-  > Install-Package Unic.Flex.Ninject
-
-or
+You must install an IoC container framework for Flex. Currently For Sitecor 9
+you should install SimpleInjector, which can be installed over NuGet:
 
   > Install-Package Unic.Flex.SimpleInjector
 
@@ -290,14 +286,25 @@ placeholder settings:
 
     /sitecore/layout/Renderings/Flex/Flex Form
 
+## Glassmapper Dependencies
+
+Flex will uses the `Glass.Mapper.Sc.92.Core` for its internal functionality. One of the
+pipelines has dependency on `Glass.Mapper.Sc.92.MVC` so you need to install and deploy 
+also this MVC package in your solution.
+
+
 ## Setup for Development
 
 For installing a Flex development instance, the following steps are required:
 
 * Clone the repository
+* Run the `BumpSc9.ps1` from Solution root to install Sitecore 9 and xconnect
 * Open the solution in Visual Studio
 * Restore all NuGet packages
 * Restart Visual Studio
-* Execute `bump` in the Package Manager Console for the project *Unic.Flex.Integration.Website*
+* Execute `Set-ScSerializationReference` in the Package Manager Console
+* Execute `Install-WebConfig` in the Package Manager Console
+* Build the Project
+* Call http://flex-sc9.local/unicorn.aspx and run a full sync 
 
-The development instance is now available under http://flex.local.
+The development instance is now available under http://flex-sc9.local/.

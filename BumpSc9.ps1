@@ -30,8 +30,7 @@ Function Invoke-BumpSc9{
     }
 
     # Download Sitecore and xConnect from nuget
-    Invoke-ScDownloadPackage $config.SitecorePackage -version $config.SitecoreVersion -nugetOutput $PackagesRoot -nuget $nuget
-    Invoke-ScDownloadPackage $config.xConnectPackage -version $config.SitecoreVersion -nugetOutput $PackagesRoot -nuget $nuget
+    Install-ScSitecoreNugetPackages -config $config -nugetOutput $PackagesRoot -nuget $nuget
 
     # Check and Install SitecorePrerequisites
     if([System.Convert]::ToBoolean($config.InstallPrerequisites)){
