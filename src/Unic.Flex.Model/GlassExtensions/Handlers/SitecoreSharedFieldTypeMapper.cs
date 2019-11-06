@@ -21,7 +21,8 @@
         /// <returns>Field value object.</returns>
         public override object GetFieldValue(string fieldValue, SitecoreFieldConfiguration config, SitecoreDataMappingContext context)
         {
-            if (context.Options is GetOptionsSc scOptions)
+            var scOptions = context.Options as GetOptionsSc;
+            if (scOptions != null)
             {
                 scOptions.VersionCount = false;
             }

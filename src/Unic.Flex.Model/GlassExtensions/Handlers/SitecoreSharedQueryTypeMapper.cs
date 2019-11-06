@@ -33,7 +33,8 @@
         public override object MapToProperty(AbstractDataMappingContext mappingContext)
         {
             mappingContext.Options.Lazy = LazyLoading.Disabled;
-            if (mappingContext.Options is GetOptionsSc scOptions)
+            var scOptions = mappingContext.Options as GetOptionsSc;
+            if (scOptions != null)
             {
                 scOptions.VersionCount = false;
             }
