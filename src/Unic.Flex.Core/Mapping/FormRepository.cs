@@ -78,7 +78,9 @@
         /// <returns></returns>
         private T LoadItem<T>(Guid id, bool useVersionCountDisabler, bool isLazy) where T : class
         {
-            // To Prevent Apppool crash! infer any laze set to be the same
+            //Set isLazy and infer to be the same value, in order to prevent possible IIS Application Pool crashes. 
+            //ref: https://sitecorefootsteps.blogspot.com/2019/07/glass-mapper-stackoverflow-memory.html
+            
             return LoadItem<T>(id, useVersionCountDisabler, isLazy, infer: isLazy);
         }
 
