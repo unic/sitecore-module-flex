@@ -10,8 +10,8 @@
         protected override object GetValue()
         {
             return Tracker.Current.Contact?.Identifiers?.FirstOrDefault(x =>
-                x.Identifier == Sitecore.Analytics.XConnect.DataAccess.Constants.IdentifierSource);
-
+                x.Identifier == Sitecore.Analytics.XConnect.DataAccess.Constants.IdentifierSource)
+                ?.Identifier;
         }
     }
 }
