@@ -1,10 +1,10 @@
 ﻿namespace Unic.Flex.Implementation.Validators
 {
-    using Glass.Mapper.Sc.Configuration.Attributes;
     using System;
     using System.Collections.Generic;
-    using Model.Specifications;
+    using Glass.Mapper.Sc.Configuration.Attributes;
     using Unic.Flex.Model.GlassExtensions.Attributes;
+    using Unic.Flex.Model.Specifications;
     using Unic.Flex.Model.Validators;
 
     [SitecoreType(TemplateId = "{43B8BE85-8474-43A9-BEC5-14778B993B45}")]
@@ -33,8 +33,8 @@
         [SitecoreField("Interval Type")]
         public virtual Specification IntervalType { get; set; }
 
-        [SitecoreField("Compare Type")]
-        public virtual Specification CompareType { get; set; }
+        [SitecoreField("Time Compare Type")]
+        public virtual Specification TimeCompareType { get; set; }
 
         /// <summary>
         /// Determines whether the specified value is valid.
@@ -49,24 +49,26 @@
 
             var amount = this.Amount;
             var intervalType = this.IntervalType.Value;
-            var compareType = this.CompareType.Value;
+            var compareType = this.TimeCompareType.Value;
 
             if (amount == null || intervalType == null) return true;
 
             var dateValue = (DateTime)value;
 
-            switch (this.GetEnumType<CompareTypes>(compareType))
+            switch (this.GetEnumType<TimeCompareTypes>(compareType))
             {
-                case CompareTypes.Bigger:
-                    return dateValue < this.CalculateIntervalDate(amount.Value, intervalType);
-                case CompareTypes.BiggerOrEqual:
-                    return dateValue <= this.CalculateIntervalDate(amount.Value, intervalType);
-                case CompareTypes.Equal:
-                    return dateValue == this.CalculateIntervalDate(amount.Value, intervalType);
-                case CompareTypes.Smaller:
+                case TimeCompareTypes.Past:
                     return dateValue > this.CalculateIntervalDate(amount.Value * -1, intervalType);
-                case CompareTypes.SmallerOrEqual:
+                case TimeCompareTypes.PastOrEqual:
                     return dateValue >= this.CalculateIntervalDate(amount.Value * -1, intervalType);
+                case TimeCompareTypes.EqualPast:
+                    return dateValue == this.CalculateIntervalDate(amount.Value * -1, intervalType);
+                case TimeCompareTypes.EqualFuture:
+                    return dateValue == this.CalculateIntervalDate(amount.Value, intervalType);
+                case TimeCompareTypes.Future:
+                    return dateValue < this.CalculateIntervalDate(amount.Value, intervalType);
+                case TimeCompareTypes.FutureOrEqual:
+                    return dateValue <= this.CalculateIntervalDate(amount.Value, intervalType);
             }
 
             return true;
@@ -130,13 +132,14 @@
         /// <summary>
         /// Predefined compare types.
         /// </summary>
-        internal enum CompareTypes
+        internal enum TimeCompareTypes
         {
-            Bigger,
-            BiggerOrEqual,
-            Equal,
-            Smaller,
-            SmallerOrEqual
+            Past,
+            PastOrEqual,
+            EqualPast,
+            EqualFuture,
+            Future,
+            FutureOrEqual
         }
     }
 }
