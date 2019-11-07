@@ -39,7 +39,7 @@
             Assert.ArgumentCondition(Sitecore.Data.ID.IsID(dataSource), dataSource, "Datasource is not valid");
             var id = Guid.Parse(dataSource);
 
-            return this.LoadItem<IForm>(id, useVersionCountDisabler, true, true);  //TODO: FORM STEPS
+            return this.LoadItem<IForm>(id, useVersionCountDisabler, isLazy: true, infer: true);
         }
 
         /// <summary>
@@ -52,7 +52,7 @@
         /// </returns>
         public T LoadItem<T>(Guid id) where T : class
         {
-            return LoadItem<T>(id, false);
+            return LoadItem<T>(id, useVersionCountDisabler: false);
         }
 
         /// <summary>
@@ -66,7 +66,7 @@
         /// </returns>
         public T LoadItem<T>(Guid id, bool useVersionCountDisabler) where T : class
         {
-            return LoadItem<T>(id, useVersionCountDisabler, true);
+            return LoadItem<T>(id, useVersionCountDisabler, isLazy: true);
         }
 
         /// <summary>
@@ -78,7 +78,8 @@
         /// <returns></returns>
         private T LoadItem<T>(Guid id, bool useVersionCountDisabler, bool isLazy) where T : class
         {
-            return LoadItem<T>(id, useVersionCountDisabler, isLazy, false);
+            // To Prevent Apppool crash! infer any laze set to be the same
+            return LoadItem<T>(id, useVersionCountDisabler, isLazy, infer: isLazy);
         }
 
         /// <summary>
@@ -115,7 +116,5 @@
                 InferType = infer
             };
         }
-
-
     }
 }

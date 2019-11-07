@@ -188,7 +188,6 @@
         /// <param name="versionCountEnabled">Enable Version Count</param>
         private void AddForms(List<DataRow> rows, string languageName, bool versionCountEnabled)
         {
-            //var queryOptions = new GetItemsByQueryOptions(new Query("fast://*[@@templateid='{3AFE4256-1C3E-4441-98AF-B3D0037A8B1F}']"))
             var queryOptions = new GetItemsByQueryOptions(new Query("fast:/Sitecore/content//*[@@templateid='{3AFE4256-1C3E-4441-98AF-B3D0037A8B1F}']"))
             {
                 Lazy = LazyLoading.Disabled,
