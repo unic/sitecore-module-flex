@@ -176,6 +176,7 @@
     <Compile Include="Validators\AjaxValidator.cs" />
     <Compile Include="Validators\CompareValidator.cs" />
     <Compile Include="Validators\DateCompareValidator.cs" />
+    <Compile Include="Validators\DateIntervalValidator.cs" />
     <Compile Include="Validators\DateRangeValidator.cs" />
     <Compile Include="Validators\DateValidator.cs" />
     <Compile Include="Validators\EmailValidator.cs" />
