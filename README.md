@@ -291,7 +291,8 @@ placeholder settings:
 Flex will uses the `Glass.Mapper.Sc.92.Core` for its internal functionality. One of the
 pipelines has dependency on `Glass.Mapper.Sc.92.MVC` so you need to install and deploy 
 also this MVC package in your solution.
-
+If your `Web` database has diffrent name, other that standard, then you need to adjust
+the `Unic.Feature.Flex.InitialDatabase` setting.
 
 ## Setup for Development
 
