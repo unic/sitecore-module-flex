@@ -7,7 +7,7 @@ Function Install-ScSitecoreNugetPackages {
     [string]
     $nuget
     )
-    $sitecoreVersion = Get-ScFallbackConfig $BobConfig.SitecoreXp0WdpVersion $BobConfig.SitecoreVersion
+    $sitecoreVersion = Get-ScFallbackConfig $config.SitecoreXp0WdpVersion $config.SitecoreVersion
 
     Invoke-ScDownloadPackage $config.SitecorePackage -version $SitecoreVersion -nugetOutput $nugetOutput -nuget $nuget
     Invoke-ScDownloadPackage $config.xConnectPackage -version $SitecoreVersion -nugetOutput $nugetOutput -nuget $nuget
