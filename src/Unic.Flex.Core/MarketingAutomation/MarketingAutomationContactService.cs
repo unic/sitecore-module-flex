@@ -128,13 +128,8 @@
             if (contact == null) return null;
 
             var getFacet = typeof(Contact).GetMethod(nameof(contact.GetFacet));
-            if (getFacet != null)
-            {
-                var getFacetGeneric = getFacet.MakeGenericMethod(facetType);
-                return getFacetGeneric.Invoke(contact, new object[] { contactFacetDefinition.FacetName });
-            }
-
-            return null;
+            var getFacetGeneric = getFacet.MakeGenericMethod(facetType);
+            return getFacetGeneric.Invoke(contact, new object[] { contactFacetDefinition.FacetName });
         }
     }
 }
