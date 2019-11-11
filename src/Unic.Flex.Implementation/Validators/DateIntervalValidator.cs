@@ -1,4 +1,4 @@
-﻿namespace Unic.Flex.Implementation.Validators
+﻿namespace Post.Core.Forms.Validators
 {
     using System;
     using System.Collections.Generic;
@@ -10,49 +10,30 @@
     [SitecoreType(TemplateId = "{43B8BE85-8474-43A9-BEC5-14778B993B45}")]
     public class DateIntervalValidator : IValidator
     {
-        /// <summary>
-        /// Gets the default validation message dictionary key.
-        /// </summary>
-        /// <value>
-        /// The default validation message dictionary key.
-        /// </value>
         public virtual string DefaultValidationMessageDictionaryKey => "Date is not valid";
 
-        /// <summary>
-        /// Gets or sets the validation message.
-        /// </summary>
-        /// <value>
-        /// The validation message.
-        /// </value>
         [SitecoreDictionaryFallbackField("Validation Message", "Date is not valid")]
         public virtual string ValidationMessage { get; set; }
 
-        [SitecoreField("Amount")]
-        public virtual int? Amount { get; set; }
+        [SitecoreField("Time Amount")]
+        public virtual int? TimeAmount { get; set; }
 
-        [SitecoreField("Interval Type")]
-        public virtual Specification IntervalType { get; set; }
+        [SitecoreField("Time Interval Type")]
+        public virtual Specification TimeIntervalType { get; set; }
 
         [SitecoreField("Time Compare Type")]
         public virtual Specification TimeCompareType { get; set; }
 
-        /// <summary>
-        /// Determines whether the specified value is valid.
-        /// </summary>
-        /// <param name="value">The value.</param>
-        /// <returns>
-        ///   <c>true</c> if the value entered is valid, <c>false</c> otherwise
-        /// </returns>
         public virtual bool IsValid(object value)
         {
             if (!(value is DateTime)) return true;
 
-            var amount = this.Amount;
-            var intervalType = this.IntervalType.Value;
-            var compareType = this.TimeCompareType.Value;
+            var amount = this.TimeAmount;
+            var intervalType = this.TimeIntervalType.Value;
 
             if (amount == null || intervalType == null) return true;
 
+            var compareType = this.TimeCompareType.Value;
             var dateValue = (DateTime)value;
 
             switch (this.GetEnumType<TimeCompareTypes>(compareType))
@@ -71,15 +52,9 @@
                     return dateValue <= this.CalculateIntervalDate(amount.Value, intervalType);
             }
 
-            return true;
+            return false;
         }
 
-        /// <summary>
-        /// Gets the additional html attributes which should be rendered.
-        /// </summary>
-        /// <returns>
-        /// Key-Value based dictionary with additional html attributes
-        /// </returns>
         public virtual IDictionary<string, object> GetAttributes()
         {
             return new Dictionary<string, object>();
@@ -102,11 +77,6 @@
             return today;
         }
 
-        /// <summary>
-        /// Parse selected interval type.
-        /// </summary>
-        /// <param name="intervalType">Interval type name.</param>
-        /// <returns>Predefined enum value of interval types.</returns>
         private T? GetEnumType<T>(string intervalType)
             where T : struct
         {
@@ -119,9 +89,6 @@
             return null;
         }
 
-        /// <summary>
-        /// Predefined interval types.
-        /// </summary>
         internal enum IntervalTypes
         {
             Day,
@@ -129,9 +96,6 @@
             Year
         }
 
-        /// <summary>
-        /// Predefined compare types.
-        /// </summary>
         internal enum TimeCompareTypes
         {
             Past,
