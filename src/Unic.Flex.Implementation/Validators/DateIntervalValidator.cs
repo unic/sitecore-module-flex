@@ -1,8 +1,10 @@
-﻿namespace Post.Core.Forms.Validators
+﻿namespace Unic.Flex.Implementation.Validators
 {
     using System;
     using System.Collections.Generic;
+    using Definitions;
     using Glass.Mapper.Sc.Configuration.Attributes;
+    using Unic.Flex.Core.Logging;
     using Unic.Flex.Model.GlassExtensions.Attributes;
     using Unic.Flex.Model.Specifications;
     using Unic.Flex.Model.Validators;
@@ -10,6 +12,17 @@
     [SitecoreType(TemplateId = "{43B8BE85-8474-43A9-BEC5-14778B993B45}")]
     public class DateIntervalValidator : IValidator
     {
+        private readonly ILogger logger;
+
+        public DateIntervalValidator()
+        {
+        }
+
+        public DateIntervalValidator(ILogger logger)
+        {
+            this.logger = logger;
+        }
+
         public virtual string DefaultValidationMessageDictionaryKey => "Date is not valid";
 
         [SitecoreDictionaryFallbackField("Validation Message", "Date is not valid")]
@@ -18,10 +31,10 @@
         [SitecoreField("Time Amount")]
         public virtual int? TimeAmount { get; set; }
 
-        [SitecoreField("Time Interval Type")]
+        [SitecoreSharedField("Time Interval Type")]
         public virtual Specification TimeIntervalType { get; set; }
 
-        [SitecoreField("Time Compare Type")]
+        [SitecoreSharedField("Time Compare Type")]
         public virtual Specification TimeCompareType { get; set; }
 
         public virtual bool IsValid(object value)
@@ -36,23 +49,23 @@
             var compareType = this.TimeCompareType.Value;
             var dateValue = (DateTime)value;
 
-            switch (this.GetEnumType<TimeCompareTypes>(compareType))
+            switch (this.GetEnumType<Enums.TimeCompareTypes>(compareType))
             {
-                case TimeCompareTypes.Past:
+                case Enums.TimeCompareTypes.Past:
                     return dateValue > this.CalculateIntervalDate(amount.Value * -1, intervalType);
-                case TimeCompareTypes.PastOrEqual:
+                case Enums.TimeCompareTypes.PastOrEqual:
                     return dateValue >= this.CalculateIntervalDate(amount.Value * -1, intervalType);
-                case TimeCompareTypes.EqualPast:
+                case Enums.TimeCompareTypes.EqualPast:
                     return dateValue == this.CalculateIntervalDate(amount.Value * -1, intervalType);
-                case TimeCompareTypes.EqualFuture:
+                case Enums.TimeCompareTypes.EqualFuture:
                     return dateValue == this.CalculateIntervalDate(amount.Value, intervalType);
-                case TimeCompareTypes.Future:
+                case Enums.TimeCompareTypes.Future:
                     return dateValue < this.CalculateIntervalDate(amount.Value, intervalType);
-                case TimeCompareTypes.FutureOrEqual:
+                case Enums.TimeCompareTypes.FutureOrEqual:
                     return dateValue <= this.CalculateIntervalDate(amount.Value, intervalType);
+                default:
+                    return false;
             }
-
-            return false;
         }
 
         public virtual IDictionary<string, object> GetAttributes()
@@ -64,46 +77,37 @@
         {
             var today = DateTime.Today;
 
-            switch (this.GetEnumType<IntervalTypes>(intervalType))
+            switch (this.GetEnumType<Enums.TimeIntervalTypes>(intervalType))
             {
-                case IntervalTypes.Day:
+                case Enums.TimeIntervalTypes.Day:
                     return today.AddDays(amount);
-                case IntervalTypes.Month:
+                case Enums.TimeIntervalTypes.Month:
                     return today.AddMonths(amount);
-                case IntervalTypes.Year:
+                case Enums.TimeIntervalTypes.Year:
                     return today.AddYears(amount);
+                default:
+                    return default(DateTime);
             }
-
-            return today;
         }
 
         private T? GetEnumType<T>(string intervalType)
             where T : struct
         {
-            T type;
-            if (Enum.TryParse(intervalType, true, out type))
+            try
             {
-                return type;
+                T type;
+                if (Enum.TryParse(intervalType, true, out type))
+                {
+                    return type;
+                }
+
+                return null;
             }
-
-            return null;
-        }
-
-        internal enum IntervalTypes
-        {
-            Day,
-            Month,
-            Year
-        }
-
-        internal enum TimeCompareTypes
-        {
-            Past,
-            PastOrEqual,
-            EqualPast,
-            EqualFuture,
-            Future,
-            FutureOrEqual
+            catch (Exception exception)
+            {
+                this.logger.Error($"Error while exporting form: {exception.Message}", this, exception);
+                return null;
+            }
         }
     }
 }

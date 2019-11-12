@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.852
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unic.Flex.Model", "src\Unic.Flex.Model\Unic.Flex.Model.csproj", "{C47272B9-C13F-4F53-B9F3-D3066BB45810}"
 EndProject
@@ -33,6 +33,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unic.Flex.SimpleInjectorIoC", "src\Unic.Flex.SimpleInjectorIoC\Unic.Flex.SimpleInjectorIoC.csproj", "{62B17FE2-41C9-4F66-87CA-BE817BBBD982}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unic.Flex.NinjectIoC", "src\Unic.Flex.NinjectIoC\Unic.Flex.NinjectIoC.csproj", "{9A2CF6BA-C009-4893-9179-8615B99DF1F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unic.Flex.Implementation.Tests", "tests\Unic.Flex.Implementation.Tests\Unic.Flex.Implementation.Tests.csproj", "{DBD63210-C530-401A-8A25-2B808E22A4FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -76,6 +78,10 @@ Global
 		{9A2CF6BA-C009-4893-9179-8615B99DF1F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A2CF6BA-C009-4893-9179-8615B99DF1F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A2CF6BA-C009-4893-9179-8615B99DF1F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBD63210-C530-401A-8A25-2B808E22A4FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBD63210-C530-401A-8A25-2B808E22A4FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBD63210-C530-401A-8A25-2B808E22A4FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBD63210-C530-401A-8A25-2B808E22A4FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -84,5 +90,9 @@ Global
 		{AE341D4C-2CA6-4194-B476-7284FA3EF429} = {7F01601C-CD63-42C7-8B65-A14851B19DFD}
 		{55A9B413-3DFD-432E-83F0-9A4B07E0BC64} = {7F01601C-CD63-42C7-8B65-A14851B19DFD}
 		{CE4A4367-43F3-4A10-8F1B-FCCABC342213} = {04994618-3529-484D-952F-5BF2AD1CD0B9}
+		{DBD63210-C530-401A-8A25-2B808E22A4FD} = {7F01601C-CD63-42C7-8B65-A14851B19DFD}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7F1013F9-24D5-4B2F-B7D6-94888C8BE45C}
 	EndGlobalSection
 EndGlobal
