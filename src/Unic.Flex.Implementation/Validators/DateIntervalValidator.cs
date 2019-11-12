@@ -28,7 +28,7 @@
         [SitecoreDictionaryFallbackField("Validation Message", "Date is not valid")]
         public virtual string ValidationMessage { get; set; }
 
-        [SitecoreField("Time Amount")]
+        [SitecoreSharedField("Time Amount")]
         public virtual int? TimeAmount { get; set; }
 
         [SitecoreSharedField("Time Interval Type")]
