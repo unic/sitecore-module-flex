@@ -55,6 +55,9 @@
     <Reference Include="Glass.Mapper.Sc, Version=5.5.28.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Glass.Mapper.Sc.92.Core.5.5.28\lib\net471\Glass.Mapper.Sc.dll</HintPath>
     </Reference>
+    <Reference Include="Glass.Mapper.Sc.Mvc, Version=5.5.28.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Glass.Mapper.Sc.92.Mvc.5.5.28\lib\net471\Glass.Mapper.Sc.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -126,8 +129,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Config\Include\20_author\Unic.Feature.Flex.Config" />
-    <Content Include="App_Config\Include\20_delivery\Unic.Feature.Flex.Config" />
+    <Content Include="App_Config\Include\20_author\Unic.Feature.Flex.Config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Config\Include\20_delivery\Unic.Feature.Flex.Config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="packages.config" />
     <None Include="Web.config" />
   </ItemGroup>

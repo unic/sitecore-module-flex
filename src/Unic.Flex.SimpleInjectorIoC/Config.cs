@@ -4,6 +4,7 @@
     using Core.Utilities;
     using Glass.Mapper.Sc;
     using Glass.Mapper.Sc.Web;
+    using Glass.Mapper.Sc.Web.Mvc;
     using Implementation.Services;
     using SimpleInjector;
     using SimpleInjector.Diagnostics;
@@ -84,7 +85,9 @@
 
             // third party classes
             container.Register<IConfigurationManager>(() => new ConfigurationManager(), Lifestyle.Singleton);
+            container.Register<ISitecoreService>(GetService, Lifestyle.Scoped);
             container.Register<IRequestContext>(() => new RequestContext(GetService()), Lifestyle.Scoped);
+            container.Register<IMvcContext>(() => new MvcContext(GetService()), Lifestyle.Scoped);
 
         }
 
