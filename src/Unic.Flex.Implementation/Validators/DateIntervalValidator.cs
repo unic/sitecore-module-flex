@@ -42,11 +42,26 @@
             if (!(value is DateTime)) return true;
 
             var amount = this.TimeAmount;
-            var intervalType = this.TimeIntervalType.Value;
+            if (amount == null)
+            {
+                this.logger.Warn("Settings property Time Amount does not have a value set", this);
+                return false;
+            }
 
-            if (amount == null || intervalType == null) return true;
+            var intervalType = this.TimeIntervalType?.Value;
+            if (intervalType == null)
+            {
+                this.logger.Warn("Settings property Time Interval Type does not have a value set", this);
+                return false;
+            }
 
-            var compareType = this.TimeCompareType.Value;
+            var compareType = this.TimeCompareType?.Value;
+            if (compareType == null)
+            {
+                this.logger.Warn("Settings property Time Compare Type does not have a value set", this);
+                return false;
+            }
+
             var dateValue = (DateTime)value;
 
             switch (this.GetEnumType<Enums.TimeCompareTypes>(compareType))
