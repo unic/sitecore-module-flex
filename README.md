@@ -11,6 +11,11 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ## Changelog
 
+### 3.27
+
+* DateIntervalValidator added for DatePicker Field
+* Added project Unic.Flex.Implementation.Tests and tests for DateIntervalValidator
+
 ### 3.26
 
 * Allow Form and Field items to setup autocomplete attribute. Hint: please adjust custom themes on project level by line which setup autocomplete attribute of form (example: Views\Modules\Flex\Default\Form.cshtml).
