@@ -14,10 +14,6 @@
     {
         private readonly ILogger logger;
 
-        public DateIntervalValidator()
-        {
-        }
-
         public DateIntervalValidator(ILogger logger)
         {
             this.logger = logger;
@@ -66,17 +62,13 @@
 
             switch (this.GetEnumType<Enums.TimeCompareTypes>(compareType))
             {
-                case Enums.TimeCompareTypes.Past:
-                    return dateValue > this.CalculateIntervalDate(amount.Value * -1, intervalType);
-                case Enums.TimeCompareTypes.PastOrEqual:
+                case Enums.TimeCompareTypes.NotOlderThan:
                     return dateValue >= this.CalculateIntervalDate(amount.Value * -1, intervalType);
-                case Enums.TimeCompareTypes.EqualPast:
-                    return dateValue == this.CalculateIntervalDate(amount.Value * -1, intervalType);
-                case Enums.TimeCompareTypes.EqualFuture:
-                    return dateValue == this.CalculateIntervalDate(amount.Value, intervalType);
-                case Enums.TimeCompareTypes.Future:
-                    return dateValue < this.CalculateIntervalDate(amount.Value, intervalType);
-                case Enums.TimeCompareTypes.FutureOrEqual:
+                case Enums.TimeCompareTypes.PastAndNotOlderThan:
+                    return dateValue >= this.CalculateIntervalDate(amount.Value * -1, intervalType) && dateValue <= DateTime.Today;
+                case Enums.TimeCompareTypes.FutureAndNotNewerThan:
+                    return dateValue >= DateTime.Today && dateValue <= this.CalculateIntervalDate(amount.Value, intervalType);
+                case Enums.TimeCompareTypes.NotNewerThan:
                     return dateValue <= this.CalculateIntervalDate(amount.Value, intervalType);
                 default:
                     return false;

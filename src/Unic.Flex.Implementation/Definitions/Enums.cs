@@ -11,12 +11,10 @@
 
         public enum TimeCompareTypes
         {
-            Past,
-            PastOrEqual,
-            EqualPast,
-            EqualFuture,
-            Future,
-            FutureOrEqual
+            NotOlderThan,
+            PastAndNotOlderThan,
+            NotNewerThan,
+            FutureAndNotNewerThan
         }
     }
 }
