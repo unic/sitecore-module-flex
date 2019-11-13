@@ -33,6 +33,7 @@
                 yield return new TestCaseData(4, Enums.TimeIntervalTypes.Year, Enums.TimeCompareTypes.PastAndNotOlderThan);
                 yield return new TestCaseData(5, Enums.TimeIntervalTypes.Year, Enums.TimeCompareTypes.NotOlderThan);
                 yield return new TestCaseData(1, Enums.TimeIntervalTypes.Day, Enums.TimeCompareTypes.NotNewerThan);
+                yield return new TestCaseData(1, Enums.TimeIntervalTypes.Year, Enums.TimeCompareTypes.NotOlderThan);
             }
         }
 
@@ -44,7 +45,7 @@
 
                 yield return new TestCaseData(4, Enums.TimeIntervalTypes.Month, Enums.TimeCompareTypes.FutureAndNotNewerThan);
                 yield return new TestCaseData(3, Enums.TimeIntervalTypes.Month, Enums.TimeCompareTypes.PastAndNotOlderThan);
-                yield return new TestCaseData(1, Enums.TimeIntervalTypes.Year, Enums.TimeCompareTypes.NotOlderThan);
+                yield return new TestCaseData(123, Enums.TimeIntervalTypes.Day, Enums.TimeCompareTypes.NotOlderThan);
             }
         }
 
