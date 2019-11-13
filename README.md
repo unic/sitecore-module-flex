@@ -13,7 +13,7 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ### 3.27
 
-* DateIntervalValidator added for DatePicker Field
+* DateIntervalValidator added for DatePicker Field - validator checks if selected date is within specified interval (days, months, years in the future or in the past)
 * Added project Unic.Flex.Implementation.Tests and tests for DateIntervalValidator
 
 ### 3.26
