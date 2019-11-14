@@ -1,0 +1,18 @@
+﻿---
+ID: "d7bf7d33-9af7-43ba-8fb5-743f77356c05"
+Parent: "2a2ed920-6460-4d47-ba4f-4b84835bd728"
+Template: "47d4110f-7d21-4dc8-89f0-41302db57637"
+Path: /sitecore/system/Modules/Flex/Specifications/Time Compare Types/PastAndNotOlderThan
+DB: master
+SharedFields:
+- ID: "11b2a1ce-2bcc-4118-adc5-94b444b07913"
+  Hint: Value
+  Value: PastAndNotOlderThan
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20191113T125807Z
