@@ -16,6 +16,8 @@
 
         public override void Execute(IForm form)
         {
+            if (!this.IsConditionFulfilled(form)) return;
+
             var ruleContext = new FlexFormRuleContext();
             ruleContext.Form = form;
             foreach (Rule<RuleContext> rule in this.Rule.Rules)

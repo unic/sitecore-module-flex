@@ -1,12 +1,15 @@
 ﻿namespace Unic.Flex.Model.Plugs
 {
-    using System;
     using Glass.Mapper.Sc.Configuration.Attributes;
+    using Sitecore.Rules;
+    using System;
+    using System.Linq;
     using Unic.Flex.Model.Forms;
 
     /// <summary>
     /// Base class for all save plugs
     /// </summary>
+    [SitecoreType(TemplateId = "{40AEA426-7971-40B9-B997-339DCFFEE58A}")]
     public abstract class SavePlugBase : ISavePlug
     {
         /// <summary>
@@ -25,6 +28,22 @@
         /// <c>true</c> if this plug should be executed asynchronous; otherwise, <c>false</c>.
         /// </value>
         public abstract bool IsAsync { get; }
+
+        [SitecoreField("Conditional Rule")]
+        public RuleList<RuleContext> ConditionalRule { get; set; }
+
+        /// <summary>
+        /// Check in conditions from Rule list are fulfilled 
+        /// </summary>
+        /// <c>true</c> if all conditions are met; otherwise, <c>false</c>.
+        /// <param name="form"></param>
+        public bool IsConditionFulfilled(IForm form)
+        {
+            var ruleContext = new FlexFormRuleContext();
+            ruleContext.Form = form;
+
+            return !this.ConditionalRule.Rules.Any() || this.ConditionalRule.Rules.All(rule => rule.Evaluate(ruleContext));
+        }
 
         /// <summary>
         /// Executes the save plug.

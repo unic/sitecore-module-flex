@@ -208,6 +208,8 @@
         /// <param name="form">The form.</param>
         public override void Execute(IForm form)
         {
+            if (!this.IsConditionFulfilled(form)) return;
+
             Assert.ArgumentNotNull(form, "form");
 
             var mailMessage = this.savePlugMailer.GetMessage(form, this);

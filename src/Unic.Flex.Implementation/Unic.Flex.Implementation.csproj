@@ -156,7 +156,6 @@
     <Compile Include="Plugs\SavePlugs\SendEmail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataProviders\ChildrenProvider.cs" />
-    <Compile Include="Rules\FlexFormRuleContext.cs" />
     <Compile Include="Rules\LoadRules\BaseFlexLoadAction.cs" />
     <Compile Include="Rules\LoadRules\LoadContactEmailAddressAction.cs" />
     <Compile Include="Rules\LoadRules\LoadContactIdAction.cs" />

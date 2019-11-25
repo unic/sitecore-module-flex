@@ -1,5 +1,7 @@
 ﻿namespace Unic.Flex.Model.Plugs
 {
+    using Glass.Mapper.Sc.Configuration.Attributes;
+    using Sitecore.Rules;
     using System;
     using Unic.Flex.Model.Forms;
 
@@ -24,6 +26,15 @@
         /// </value>
         bool IsAsync { get; }
         
+        RuleList<RuleContext> ConditionalRule { get; set; }
+
+        /// <summary>
+        /// Check in conditions from Rule list are fulfilled 
+        /// </summary>
+        /// <c>true</c> if all conditions are met; otherwise, <c>false</c>.
+        /// <param name="form"></param>
+        bool IsConditionFulfilled(IForm form);
+
         /// <summary>
         /// Executes the load plug.
         /// </summary>

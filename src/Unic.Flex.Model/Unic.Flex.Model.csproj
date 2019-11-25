@@ -138,6 +138,7 @@
     <Compile Include="IItemBase.cs" />
     <Compile Include="MarketingAutomation\ContactFacetDefinition.cs" />
     <Compile Include="MarketingAutomation\ContactFieldDefinition.cs" />
+    <Compile Include="Plugs\FlexFormRuleContext.cs" />
     <Compile Include="Plugs\LoadPlugBase.cs" />
     <Compile Include="Plugs\SavePlugBase.cs" />
     <Compile Include="Sections\ISection.cs" />
