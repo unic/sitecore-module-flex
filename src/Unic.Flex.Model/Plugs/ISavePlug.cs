@@ -33,7 +33,7 @@
         /// </summary>
         /// <c>true</c> if all conditions are met; otherwise, <c>false</c>.
         /// <param name="form"></param>
-        bool IsConditionFulfilled(IForm form);
+        bool CanExecute(IForm form);
 
         /// <summary>
         /// Executes the load plug.

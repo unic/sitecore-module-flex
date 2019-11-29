@@ -37,7 +37,7 @@
         /// </summary>
         /// <c>true</c> if all conditions are met; otherwise, <c>false</c>.
         /// <param name="form"></param>
-        public bool IsConditionFulfilled(IForm form)
+        public bool CanExecute(IForm form)
         {
             var ruleContext = new FlexFormRuleContext();
             ruleContext.Form = form;
