@@ -33,7 +33,7 @@
         public RuleList<RuleContext> ConditionalRule { get; set; }
 
         /// <summary>
-        /// Check in conditions from Rule list are fulfilled 
+        /// Check if the save plug can be executed.
         /// </summary>
         /// <c>true</c> if all conditions are met; otherwise, <c>false</c>.
         /// <param name="form"></param>
