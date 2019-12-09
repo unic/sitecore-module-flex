@@ -1,10 +1,11 @@
 ﻿namespace Unic.Flex.Implementation.Rules.SaveRules
 {
-    using System.Linq;
+    using Core.Rules.Conditions;
     using Model.Forms;
     using Sitecore.Diagnostics;
     using Sitecore.Rules;
     using Sitecore.Rules.Conditions;
+    using System.Linq;
 
     public class FieldValueIsEmptyCondition<T> : WhenCondition<T> where T : RuleContext
     {

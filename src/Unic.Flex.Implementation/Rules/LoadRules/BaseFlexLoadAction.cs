@@ -1,9 +1,10 @@
 ﻿namespace Unic.Flex.Implementation.Rules.LoadRules
 {
-    using System.Linq;
+    using Core.Rules.Conditions;
     using Model.Forms;
     using Sitecore.Rules;
     using Sitecore.Rules.Actions;
+    using System.Linq;
 
     public abstract class BaseFlexLoadAction<T> : RuleAction<T>
         where T : RuleContext
