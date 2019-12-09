@@ -1,9 +1,5 @@
 ﻿namespace Unic.Flex.Core.Plugs
 {
-    using System;
-    using System.Linq;
-    using System.Web;
-    using Sitecore.Diagnostics;
     using Configuration.Core;
     using Context;
     using Logging;
@@ -11,7 +7,11 @@
     using Model.Entities;
     using Model.Forms;
     using Model.Plugs;
-    using Rules.Conditions;
+    using Rules;
+    using Sitecore.Diagnostics;
+    using System;
+    using System.Linq;
+    using System.Web;
 
     public class PlugsService : IPlugsService
     {
@@ -96,7 +96,7 @@
                     }
                     else
                     {
-                        if (CanExecute(form, plug))
+                        if (this.CanExecute(form, plug))
                         {
                             this.logger.Debug($"Execute sync save plug '{plug.ItemId}' for form '{form.ItemId}'", this);
                             plug.Execute(form);

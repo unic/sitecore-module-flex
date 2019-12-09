@@ -1,6 +1,6 @@
 namespace Unic.Flex.Implementation.Rules.SaveRules
 {
-    using Core.Rules.Conditions;
+    using Core.Rules;
     using Model.Forms;
     using Sitecore.Rules;
     using Sitecore.Rules.Actions;

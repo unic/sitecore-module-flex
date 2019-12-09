@@ -1,6 +1,6 @@
 ﻿namespace Unic.Flex.Implementation.Plugs.SavePlugs
 {
-    using Core.Rules.Conditions;
+    using Core.Rules;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Model.Forms;
     using Model.Plugs;
