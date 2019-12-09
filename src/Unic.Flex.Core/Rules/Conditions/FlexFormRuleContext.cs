@@ -1,4 +1,4 @@
-﻿namespace Unic.Flex.Model.Plugs
+﻿namespace Unic.Flex.Core.Rules.Conditions
 {
     using Model.Forms;
     using Sitecore.Rules;

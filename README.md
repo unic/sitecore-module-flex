@@ -11,6 +11,9 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ## Changelog
 
+### 3.28
+* Added Rule Conditional to ExecuteSavePlugs method — rule is checked before executing Save Plug code — if true the Save Plug Execute method code is executed, when false the code of Save Plug is omitted
+
 ### 3.27
 
 * DateIntervalValidator added for DatePicker Field - validator checks if selected date is within specified interval (days, months, years in the future or in the past)

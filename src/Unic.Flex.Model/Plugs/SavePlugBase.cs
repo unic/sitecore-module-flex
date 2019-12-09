@@ -3,7 +3,6 @@
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Sitecore.Rules;
     using System;
-    using System.Linq;
     using Unic.Flex.Model.Forms;
 
     /// <summary>
@@ -31,19 +30,6 @@
 
         [SitecoreField("Conditional Rule")]
         public RuleList<RuleContext> ConditionalRule { get; set; }
-
-        /// <summary>
-        /// Check if the save plug can be executed.
-        /// </summary>
-        /// <c>true</c> if all conditions are met; otherwise, <c>false</c>.
-        /// <param name="form"></param>
-        public bool CanExecute(IForm form)
-        {
-            var ruleContext = new FlexFormRuleContext();
-            ruleContext.Form = form;
-
-            return !this.ConditionalRule.Rules.Any() || this.ConditionalRule.Rules.All(rule => rule.Evaluate(ruleContext));
-        }
 
         /// <summary>
         /// Executes the save plug.

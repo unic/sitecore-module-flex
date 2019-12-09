@@ -1,9 +1,9 @@
 ﻿namespace Unic.Flex.Implementation.Plugs.LoadPlugs
 {
+    using Core.Rules.Conditions;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Model.Forms;
     using Model.Plugs;
-    using Rules;
     using Sitecore.Rules;
 
     [SitecoreType(TemplateId = "{A3DF6696-BE85-4A66-8056-6773CA260742}")]
