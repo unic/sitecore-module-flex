@@ -1,5 +1,9 @@
 ﻿namespace Unic.Flex.Core.Plugs
 {
+    using System;
+    using System.Linq;
+    using System.Web;
+    using Sitecore.Diagnostics;
     using Configuration.Core;
     using Context;
     using Logging;
@@ -8,10 +12,6 @@
     using Model.Forms;
     using Model.Plugs;
     using Rules;
-    using Sitecore.Diagnostics;
-    using System;
-    using System.Linq;
-    using System.Web;
 
     public class PlugsService : IPlugsService
     {
