@@ -11,7 +11,7 @@
     using Model.Entities;
     using Model.Forms;
     using Model.Plugs;
-    using Rules.Conditions;
+    using Rules;
 
     public class PlugsService : IPlugsService
     {
@@ -96,7 +96,7 @@
                     }
                     else
                     {
-                        if (CanExecute(form, plug))
+                        if (this.CanExecute(form, plug))
                         {
                             this.logger.Debug($"Execute sync save plug '{plug.ItemId}' for form '{form.ItemId}'", this);
                             plug.Execute(form);

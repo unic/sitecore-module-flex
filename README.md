@@ -12,7 +12,8 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 ## Changelog
 
 ### 3.28
-* Added Rule Conditional to ExecuteSavePlugs method — rule is checked before executing Save Plug code — if true the Save Plug Execute method code is executed, when false the code of Save Plug is omitted
+
+* Added field with conditional rule to SavePlugBase. Rules are checked before executing Save Plug - if true the Save Plug is executed.
 
 ### 3.27
 
