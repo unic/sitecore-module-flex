@@ -1,0 +1,18 @@
+﻿---
+ID: "94494965-d4e2-4f7b-b262-e493f516d67c"
+Parent: "839a4f81-ec10-4045-99db-6349b5762fe2"
+Template: "54c4ece0-ab7f-4dc3-b18c-facd92bc1a1d"
+Path: /sitecore/system/Modules/Flex/Specifications/Time Interval Types
+DB: master
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 325
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20191106T130826Z

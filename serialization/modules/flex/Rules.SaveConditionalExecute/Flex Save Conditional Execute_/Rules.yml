@@ -1,0 +1,15 @@
+﻿---
+ID: "5ba9ef67-a4c6-4aea-95b4-46b278738685"
+Parent: "9ba2f5d4-3eb9-4be8-b4b2-237f9f9c38db"
+Template: "8ea2cf67-4250-47a2-aeca-4f70fd200dc7"
+Path: /sitecore/system/Settings/Rules/Flex Save Conditional Execute Rules/Rules
+DB: master
+BranchID: "bdc41fdd-a3ac-4b69-a0ba-471c425cb083"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20191125T091824Z

@@ -1,5 +1,6 @@
 ﻿namespace Unic.Flex.Model.Plugs
 {
+    using Sitecore.Rules;
     using System;
     using Unic.Flex.Model.Forms;
 
@@ -24,6 +25,8 @@
         /// </value>
         bool IsAsync { get; }
         
+        RuleList<RuleContext> ConditionalRule { get; set; }
+
         /// <summary>
         /// Executes the load plug.
         /// </summary>

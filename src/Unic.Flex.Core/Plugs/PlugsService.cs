@@ -9,6 +9,9 @@
     using Logging;
     using Model.Configuration;
     using Model.Entities;
+    using Model.Forms;
+    using Model.Plugs;
+    using Rules;
 
     public class PlugsService : IPlugsService
     {
@@ -93,8 +96,11 @@
                     }
                     else
                     {
-                        this.logger.Debug($"Execute sync save plug '{plug.ItemId}' for form '{form.ItemId}'", this);
-                        plug.Execute(form);
+                        if (this.CanExecute(form, plug))
+                        {
+                            this.logger.Debug($"Execute sync save plug '{plug.ItemId}' for form '{form.ItemId}'", this);
+                            plug.Execute(form);
+                        }
                     }
                 }
 
@@ -112,6 +118,20 @@
                 context.ErrorMessage = form.ErrorMessage;
                 this.logger.Error("Error while executing save plug", this, exception);
             }
+        }
+
+        /// <summary>
+        /// Check if the save plug can be executed.
+        /// </summary>
+        /// <c>true</c> if all conditions are met; otherwise, <c>false</c>.
+        /// <param name="form"></param>
+        /// <param name="plug"></param>
+        private bool CanExecute(IForm form, ISavePlug plug)
+        {
+            var ruleContext = new FlexFormRuleContext();
+            ruleContext.Form = form;
+
+            return !plug.ConditionalRule.Rules.Any() || plug.ConditionalRule.Rules.All(rule => rule.Evaluate(ruleContext));
         }
     }
 }

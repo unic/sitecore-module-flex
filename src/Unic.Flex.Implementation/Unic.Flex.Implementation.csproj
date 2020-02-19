@@ -128,6 +128,7 @@
     <Compile Include="Database\ISaveToDatabaseService.cs" />
     <Compile Include="Database\SaveToDatabaseService.cs" />
     <Compile Include="Definitions\Constants.cs" />
+    <Compile Include="Definitions\Enums.cs" />
     <Compile Include="Fields\InputFields\AutoCompleteField.cs" />
     <Compile Include="Fields\InputFields\CheckBoxField.cs" />
     <Compile Include="Fields\InputFields\DatePickerField.cs" />
@@ -159,7 +160,6 @@
     <Compile Include="Plugs\SavePlugs\SendEmail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataProviders\ChildrenProvider.cs" />
-    <Compile Include="Rules\FlexFormRuleContext.cs" />
     <Compile Include="Rules\LoadRules\BaseFlexLoadAction.cs" />
     <Compile Include="Rules\LoadRules\LoadContactEmailAddressAction.cs" />
     <Compile Include="Rules\LoadRules\LoadContactIdAction.cs" />
@@ -180,6 +180,7 @@
     <Compile Include="Validators\AjaxValidator.cs" />
     <Compile Include="Validators\CompareValidator.cs" />
     <Compile Include="Validators\DateCompareValidator.cs" />
+    <Compile Include="Validators\DateIntervalValidator.cs" />
     <Compile Include="Validators\DateRangeValidator.cs" />
     <Compile Include="Validators\DateValidator.cs" />
     <Compile Include="Validators\EmailValidator.cs" />

@@ -11,6 +11,15 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ## Changelog
 
+### 3.28
+
+* Added field with conditional rule to SavePlugBase. Rules are checked before executing Save Plug - if true the Save Plug is executed.
+
+### 3.27
+
+* DateIntervalValidator added for DatePicker Field - validator checks if selected date is within specified interval (days, months, years in the future or in the past)
+* Added project Unic.Flex.Implementation.Tests and tests for DateIntervalValidator
+
 ### 3.26
 
 * Allow Form and Field items to setup autocomplete attribute. Hint: please adjust custom themes on project level by line which setup autocomplete attribute of form (example: Views\Modules\Flex\Default\Form.cshtml).

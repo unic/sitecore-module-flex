@@ -1,0 +1,18 @@
+﻿---
+ID: "52f41b35-e4a8-4b71-a535-d955abc8e22b"
+Parent: "94494965-d4e2-4f7b-b262-e493f516d67c"
+Template: "47d4110f-7d21-4dc8-89f0-41302db57637"
+Path: /sitecore/system/Modules/Flex/Specifications/Time Interval Types/Year
+DB: master
+SharedFields:
+- ID: "11b2a1ce-2bcc-4118-adc5-94b444b07913"
+  Hint: Value
+  Value: Year
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20191106T130858Z

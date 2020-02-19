@@ -190,6 +190,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Presentation\IPresentationService.cs" />
     <Compile Include="Presentation\PresentationService.cs" />
+    <Compile Include="Rules\FlexFormRuleContext.cs" />
     <Compile Include="Rules\Conditions\FormCondition.cs" />
     <Compile Include="Rules\Conditions\InstanceCondition.cs" />
     <Compile Include="Utilities\ItemHelpers.cs" />
@@ -202,18 +203,18 @@
     <Compile Include="Utilities\TypeHelper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Unic.Flex.Model\Unic.Flex.Model.csproj">
-      <Project>{c47272b9-c13f-4f53-b9f3-d3066bb45810}</Project>
-      <Name>Unic.Flex.Model</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Unic.Flex.Model\Unic.Flex.Model.csproj">
+      <Project>{c47272b9-c13f-4f53-b9f3-d3066bb45810}</Project>
+      <Name>Unic.Flex.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

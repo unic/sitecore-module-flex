@@ -1,0 +1,20 @@
+﻿---
+ID: "dcb71651-3072-4760-9239-b8eb93824137"
+Parent: "7c8b0548-b4b2-4f70-ace8-95428ff07937"
+Template: "854ba861-63ea-4a0c-8c7b-541e9a7ec4c1"
+Path: /sitecore/system/Settings/Rules/Definitions/Elements/Flex Save Conditional Execute Rules/Tags/Default
+DB: master
+BranchID: "9a72c539-dbf8-4dad-96d3-a298fc04add6"
+SharedFields:
+- ID: "42f77151-098f-496a-94cf-590b7edeeabe"
+  Hint: Tags
+  Type: Multilist
+  Value: "{EB91F8D5-BA2D-45BD-BF10-9FD073068796}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20191125T092305Z
