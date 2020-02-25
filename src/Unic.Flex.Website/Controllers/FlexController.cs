@@ -168,7 +168,7 @@
 
                 // redirect to correct url
                 Profiler.OnEnd(this, ProfileGetEventName);
-                return this.Redirect(form.CancelLink.Url);
+                return this.Redirect(form.CancelLink?.BuildUrlWithQueryString());
             }
 
             // check if the current step may be accessed (only valid if all previous steps are done)

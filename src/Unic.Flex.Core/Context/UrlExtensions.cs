@@ -4,7 +4,7 @@
     using System.Linq;
     using Sitecore;
     using DependencyInjection;
-    using Glass.Mapper;
+    using Glass.Mapper.Sc.Fields;
     using Model.Forms;
     using Model.Steps;
 
@@ -48,12 +48,24 @@
             return context.Item == null ? string.Empty : context.Item.Url;
         }
 
+        public static string BuildUrlWithQueryString(this Link link)
+        {
+            if (link == null) return string.Empty;
+
+            var honorTrailingSlash = Sitecore.Configuration.Settings.GetBoolSetting(Definitions.Constants.HonorTrailingSlashConfig, false);
+
+            if (!honorTrailingSlash)
+                return $"{link.Url}?{link.Query}";
+
+            return $"{StringUtil.RemovePostfix('/', link.Url)}/?{link.Query}";
+        }
+
         private static string HandleTrailingSlash(string url, bool honorTrailingSlash)
         {
             if (!honorTrailingSlash)
                 return url;
 
-            return StringUtil.RemovePostfix('/', url + "/");
+            return StringUtil.RemovePostfix('/', url) + "/";
         }
     }
 }
