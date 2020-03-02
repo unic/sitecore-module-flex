@@ -54,10 +54,17 @@
 
             var honorTrailingSlash = Sitecore.Configuration.Settings.GetBoolSetting(Definitions.Constants.HonorTrailingSlashConfig, false);
 
-            if (!honorTrailingSlash)
-                return $"{link.Url}?{link.Query}";
+            var anchor = string.Empty;
+            
+            if (!string.IsNullOrWhiteSpace(link.Anchor))
+                anchor = $"#{link.Anchor}";
 
-            return $"{StringUtil.RemovePostfix('/', link.Url)}/?{link.Query}";
+
+
+            if (!honorTrailingSlash)
+                return $"{link.Url}?{link.Query}{anchor}";
+
+            return $"{StringUtil.RemovePostfix('/', link.Url)}/?{link.Query}{anchor}";
         }
 
         private static string HandleTrailingSlash(string url, bool honorTrailingSlash)
