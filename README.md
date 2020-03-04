@@ -297,7 +297,7 @@ placeholder settings:
 
 ## Glassmapper Dependencies
 
-Flex will uses the `Glass.Mapper.Sc.92.Core` for its internal functionality. One of the
+Flex will use the `Glass.Mapper.Sc.92.Core` for it's internal functionality. One of the
 pipelines has dependency on `Glass.Mapper.Sc.92.MVC` so you need to install and deploy 
 also this MVC package in your solution.
 If your `Web` database has different name, other that standard, then you need to adjust
