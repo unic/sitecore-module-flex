@@ -226,7 +226,7 @@ ticked by default
 
 ### IoC container
 
-You must install an IoC container framework for Flex. Currently For Sitecor 9
+You must install an IoC container framework for Flex. Currently for Sitecore 9
 you should install SimpleInjector, which can be installed over NuGet:
 
   > Install-Package Unic.Flex.SimpleInjector
