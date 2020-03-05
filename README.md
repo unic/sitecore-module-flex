@@ -11,6 +11,11 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ## Changelog
 
+### 4.0
+
+* Updated Glassmapper to Version 5.5.28 (THIS NEEDS TO BE DONE IN YOUR SC SOLUTION ALSO! For a Version compatible with GlassMapper 4.x please use the support branch support/3.28.x)
+* Fixed support for query strings and anchors on form cancel links
+
 ### 3.28
 
 * Added field with conditional rule to SavePlugBase. Rules are checked before executing Save Plug - if true the Save Plug is executed.
@@ -294,7 +299,7 @@ To add a form in the Page Editor, the the following rendering has to be enabled 
 placeholder settings:
 
     /sitecore/layout/Renderings/Flex/Flex Form
-
+	
 ## Glassmapper Dependencies
 
 Flex will use the `Glass.Mapper.Sc.92.Core` for it's internal functionality. One of the
