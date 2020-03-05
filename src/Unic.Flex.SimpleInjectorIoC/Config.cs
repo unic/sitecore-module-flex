@@ -3,6 +3,8 @@
     using Core.MarketingAutomation;
     using Core.Utilities;
     using Glass.Mapper.Sc;
+    using Glass.Mapper.Sc.Web;
+    using Glass.Mapper.Sc.Web.Mvc;
     using Implementation.Services;
     using SimpleInjector;
     using SimpleInjector.Diagnostics;
@@ -34,7 +36,7 @@
         {
             // logging
             container.Register<ILogger, SitecoreLogger>(Lifestyle.Singleton);
-            
+
             // business logic
             container.Register<IContextService, ContextService>();
             container.Register<IPresentationService, PresentationService>();
@@ -42,7 +44,7 @@
             container.Register<ITaskService, TaskService>();
             container.Register<IAnalyticsService, AnalyticsService>();
             container.Register<ICultureService, CultureService>();
-            
+
             // data access
             container.Register<IDictionaryRepository, DictionaryRepository>(Lifestyle.Singleton);
             container.Register<IFormRepository, FormRepository>();
@@ -58,7 +60,7 @@
             container.Register<UploadedFileModelBinder>();
             container.Register<DateTimeModelBinder>();
             container.Register<DecimalModelBinder>();
-            
+
             // context
             container.Register<IFlexContext, FlexContext>(Lifestyle.Scoped);
 
@@ -83,7 +85,27 @@
 
             // third party classes
             container.Register<IConfigurationManager>(() => new ConfigurationManager(), Lifestyle.Singleton);
-            container.Register<ISitecoreContext>(() => new SitecoreContext(Constants.GlassMapperContextName), Lifestyle.Scoped);
+            container.Register<ISitecoreService>(GetService, Lifestyle.Scoped);
+            container.Register<IRequestContext>(() => new RequestContext(GetService()), Lifestyle.Scoped);
+            container.Register<IMvcContext>(() => new MvcContext(GetService()), Lifestyle.Scoped);
+
+        }
+
+        /// <summary>
+        /// Get the Sitecore Service For Glassmapper
+        /// In the Initial Pipeline Sitecore Database is null, so for kick-start the container we will set it manually on master or web, depends on the config.
+        /// Afterwards it will uses the Context.Database
+        /// </summary>
+        /// <returns></returns>
+        private static ISitecoreService GetService()
+        {
+            var databaseName = Sitecore.Context.Database?.Name;
+            if (string.IsNullOrEmpty(databaseName))
+            {
+                databaseName = Sitecore.Configuration.Settings.GetSetting(Constants.FlexInitialDatabaseSetting, Constants.FlexInitialDatabaseName);
+            }
+
+            return new SitecoreService(databaseName, Constants.GlassMapperContextName);
         }
 
         /// <summary>

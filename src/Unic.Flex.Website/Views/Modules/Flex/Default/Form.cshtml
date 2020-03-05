@@ -7,7 +7,7 @@
 
 @{
     var optionalHide = Model.TitleVisuallyHidden ? " class='visuallyhidden'" : "";
-    var header = $"<h{Model.TitleLevel.Value}{optionalHide}>{Model.Title}</h{Model.TitleLevel.Value}>";
+    var header = string.Format("<h{0}{1}>{2}</h{3}>", Model.TitleLevel.Value, optionalHide, Model.Title, Model.TitleLevel.Value);
 }
 
 @Html.Raw(header)

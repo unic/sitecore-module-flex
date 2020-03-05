@@ -7,7 +7,9 @@
     using Core.Logging;
     using Core.Mapping;
     using Fields.InputFields;
+    using Glass.Mapper;
     using Glass.Mapper.Sc;
+    using Glass.Mapper.Sc.Web;
     using Model.Forms;
     using Model.Plugs;
     using Model.Types;
@@ -15,20 +17,24 @@
 
     public class DoubleOptinService : IDoubleOptinService
     {
-        private readonly ISitecoreContext sitecoreContext;
+        private readonly IRequestContext requestContext;
         private readonly IUnitOfWork unitOfWork;
         private readonly ILogger logger;
 
-        public DoubleOptinService(ISitecoreContext sitecoreContext, IUnitOfWork unitOfWork, ILogger logger, IFormRepository formRepository)
+        public DoubleOptinService(IRequestContext requestContext, IUnitOfWork unitOfWork, ILogger logger, IFormRepository formRepository)
         {
-            this.sitecoreContext = sitecoreContext;
+            this.requestContext = requestContext;
             this.unitOfWork = unitOfWork;
             this.logger = logger;
         }
 
         public void ExecuteSubSavePlugs(ISavePlug doubleOptinSavePlug, IFlexContext flexContext, string optInRecordId)
         {
-            var item = this.sitecoreContext.GetItem<DoubleOptinSavePlug>(doubleOptinSavePlug.ItemId);
+            var options = new GetItemByIdOptions(doubleOptinSavePlug.ItemId)
+            {
+                Lazy = LazyLoading.Enabled
+            };
+            var item = this.requestContext.SitecoreService.GetItem<DoubleOptinSavePlug>(options);
             var saveplugs = item.SavePlugs;
 
             try

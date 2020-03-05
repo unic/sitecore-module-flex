@@ -29,9 +29,6 @@ namespace Unic.Flex.Website.Initialize
             // load configurations
             this.Configure(resolver);
 
-            // finalise configuration
-            this.FinaliseConfiguration(resolver);
-
             // get configuration loader
             var configurationLoader = this.GetConfigurationLoader(resolver);
             if (configurationLoader != null)
@@ -71,15 +68,6 @@ namespace Unic.Flex.Website.Initialize
             resolver.DataMapperFactory.Insert(0, () => new SitecoreSharedQueryTypeMapper(resolver.QueryParameterFactory.GetItems()));
             resolver.DataMapperFactory.Insert(0, () => new SitecoreReusableFieldTypeMapper());
             resolver.DataMapperFactory.Insert(0, () => new SitecoreReusableChildrenTypeMapper());
-        }
-
-        /// <summary>
-        /// Finalises the Glass resolver configuration
-        /// </summary>
-        /// <param name="resolver"></param>
-        protected virtual void FinaliseConfiguration(IDependencyResolver resolver)
-        {
-            resolver.Finalise();
         }
 
         /// <summary>

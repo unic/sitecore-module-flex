@@ -51,7 +51,7 @@
         /// <value>
         /// The sections.
         /// </value>
-        [SitecoreReusableChildren(IsLazy = true, InferType = true)]
+        [SitecoreReusableChildren(InferType = true)]
         public virtual IEnumerable<ISection> LazySections { private get; set; }
         
         /// <summary>
