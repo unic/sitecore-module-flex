@@ -321,6 +321,7 @@ For installing a Flex development instance, the following steps are required:
 * Execute `Set-ScSerializationReference` in the Package Manager Console
 * Execute `Install-WebConfig` in the Package Manager Console
 * Build the Project
-* Call http://flex-sc9.local/unicorn.aspx and run a full sync 
+* Call http://flex-sc9.local/unicorn.aspx and run a full sync
+* In Content Editor, invoke `Revert Database` from the `Developer` ribbon strip
 
 The development instance is now available under http://flex-sc9.local/.
