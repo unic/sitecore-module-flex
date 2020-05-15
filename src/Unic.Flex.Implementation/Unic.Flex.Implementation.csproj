@@ -161,6 +161,7 @@
     <Compile Include="Plugs\SavePlugs\RegisterGoal.cs" />
     <Compile Include="Plugs\SavePlugs\RulesExecutionSavePlug.cs" />
     <Compile Include="Plugs\SavePlugs\SaveToDatabase.cs" />
+    <Compile Include="Plugs\SavePlugs\SendEmailAsync.cs" />
     <Compile Include="Plugs\SavePlugs\SendEmail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataProviders\ChildrenProvider.cs" />

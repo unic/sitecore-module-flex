@@ -7,7 +7,6 @@
     using Glass.Mapper.Sc.Configuration;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using MimeKit;
-    using Sitecore.Diagnostics;
     using Unic.Flex.Core.Mailing;
     using Unic.Flex.Implementation.Mailers;
     using Unic.Flex.Model.Fields;
