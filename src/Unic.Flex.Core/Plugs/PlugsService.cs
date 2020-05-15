@@ -92,7 +92,7 @@
                     if (isAsyncExecutionAllowed && plug.IsAsync)
                     {
                         this.logger.Debug($"Add async save plug '{plug.ItemId}' as background job for form '{form.ItemId}'", this);
-                        job.Tasks.Add(this.taskService.GetTask(plug));
+                        job.Tasks.Add(this.taskService.GetTask(plug, form));
                     }
                     else
                     {

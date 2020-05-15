@@ -155,12 +155,13 @@
         /// <returns>
         /// The task entity
         /// </returns>
-        public virtual Task GetTask(ISavePlug plug)
+        public virtual Task GetTask(ISavePlug plug, IForm form)
         {
             return new Task
             {
                 ItemId = plug.ItemId,
-                LastTry = DateTime.Now
+                LastTry = DateTime.Now,
+                TaskData = plug.GetTaskDataForStorage(form)
             };
         }
 
