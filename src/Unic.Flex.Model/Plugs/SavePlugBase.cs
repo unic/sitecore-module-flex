@@ -31,10 +31,18 @@
         [SitecoreField("Conditional Rule")]
         public RuleList<RuleContext> ConditionalRule { get; set; }
 
+        public string TaskData { get; set; }
+
         /// <summary>
         /// Executes the save plug.
         /// </summary>
         /// <param name="form">The form.</param>
         public abstract void Execute(IForm form);
+
+        /// <summary>
+        /// Provides relevant data for async plug execution
+        /// </summary>
+        /// <returns></returns>
+        public virtual string GetTaskDataForStorage(IForm form) => null;
     }
 }

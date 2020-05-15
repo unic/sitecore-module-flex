@@ -1,5 +1,6 @@
 ﻿namespace Unic.Flex.Core.Mailing
 {
+    using MimeKit;
     using Mvc.Mailer;
 
     /// <summary>
@@ -11,6 +12,6 @@
         /// Sends the mail message.
         /// </summary>
         /// <param name="message">The message.</param>
-        void SendMail(MvcMailMessage message);
+        void SendMail(MimeMessage message);
     }
 }

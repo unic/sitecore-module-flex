@@ -2,8 +2,11 @@
 {
     using System.Collections.Generic;
     using System.Collections.Specialized;
+    using System.IO;
+    using System.Text;
     using Glass.Mapper.Sc.Configuration;
     using Glass.Mapper.Sc.Configuration.Attributes;
+    using MimeKit;
     using Sitecore.Diagnostics;
     using Unic.Flex.Core.Mailing;
     using Unic.Flex.Implementation.Mailers;
@@ -208,10 +211,27 @@
         /// <param name="form">The form.</param>
         public override void Execute(IForm form)
         {
-            Assert.ArgumentNotNull(form, "form");
+            MimeMessage message;
+            using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(this.TaskData)))
+            {
+                message = MimeMessage.Load(stream);
+            }
 
+            this.mailRepository.SendMail(message);
+        }
+
+        public override string GetTaskDataForStorage(IForm form)
+        {
             var mailMessage = this.savePlugMailer.GetMessage(form, this);
-            this.mailRepository.SendMail(mailMessage);
+            var mimeMessage = MimeMessage.CreateFromMailMessage(mailMessage);
+            string serializedMimeMessage;
+            using (var stream = new MemoryStream())
+            {
+                mimeMessage.WriteTo(stream);
+                serializedMimeMessage = Encoding.UTF8.GetString(stream.GetBuffer(), 0, (int)stream.Length);
+            }
+
+            return serializedMimeMessage;
         }
     }
 }
