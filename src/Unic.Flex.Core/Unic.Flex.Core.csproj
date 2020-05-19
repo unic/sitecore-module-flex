@@ -191,8 +191,10 @@
     <Compile Include="ModelBinding\ListModelBinder.cs" />
     <Compile Include="ModelBinding\UploadedFileModelBinder.cs" />
     <Compile Include="Pipelines\ObjectConstruction\DependencyInjectorTask.cs" />
+    <Compile Include="Plugs\IAsyncPlugExecutionService.cs" />
     <Compile Include="Plugs\IPlugsService.cs" />
     <Compile Include="Plugs\ITaskService.cs" />
+    <Compile Include="Plugs\AsyncPlugExecutionService.cs" />
     <Compile Include="Plugs\PlugsService.cs" />
     <Compile Include="Plugs\TaskService.cs" />
     <Compile Include="Presentation\HtmlHelperExtensions.cs" />
