@@ -82,8 +82,7 @@
             var doubleOptinLink = this.doubleOptinLinkService.CreateConfirmationLink(form.Id, form.GetFieldValue(this.To), recordId.ToString());
             var mailMessage = this.doubleOptinSavePlugMailer.GetMessage(form, this, doubleOptinLink);
 
-            //todo : refactor this code
-            //this.mailRepository.SendMail(mailMessage);
+            this.mailRepository.SendMail(mailMessage);
         }
 
         public override bool IsAsync => false;

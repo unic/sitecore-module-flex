@@ -128,7 +128,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\DatabasePlugExport.cs" />
-    <Compile Include="Configuration\MailMessageConfiguration.cs" />
+    <Compile Include="Configuration\MailMessageGlobalConfiguration.cs" />
     <Compile Include="Configuration\SendEmailPlugConfiguration.cs" />
     <Compile Include="Database\ISaveToDatabaseService.cs" />
     <Compile Include="Database\SaveToDatabaseService.cs" />

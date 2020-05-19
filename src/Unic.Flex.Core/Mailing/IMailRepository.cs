@@ -13,5 +13,11 @@
         /// </summary>
         /// <param name="message">The message.</param>
         void SendMail(MimeMessage message);
+
+        /// <summary>
+        /// Sends the mail message.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        void SendMail(MvcMailMessage message);
     }
 }

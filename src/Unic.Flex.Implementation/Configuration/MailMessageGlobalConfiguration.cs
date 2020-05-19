@@ -2,7 +2,7 @@
 {
     using System.Net.Mail;
 
-    public class MailMessageConfiguration
+    public class MailMessageGlobalConfiguration
     {
         /// <summary>
         /// Gets or sets the from address.

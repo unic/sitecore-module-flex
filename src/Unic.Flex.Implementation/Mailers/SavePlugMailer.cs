@@ -81,7 +81,7 @@
             });
         }
 
-        private MailAddressCollection StringToAddresCollection(string source)
+        private MailAddressCollection StringToAddressCollection(string source)
         {
             var targetCollection =  new MailAddressCollection();
             if (!string.IsNullOrWhiteSpace(source))
@@ -92,7 +92,7 @@
             return targetCollection;
         }
 
-        public MailMessageConfiguration GetMailMessageByConfiguration(IForm form, SendEmail plug)
+        public MailMessageGlobalConfiguration GetMailMessageByConfiguration(IForm form, SendEmail plug)
         {
             var useGlobalConfig = this.IsGlobalConfigEnabled();
             var from = this.mailHelper.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.From), plug.From, useGlobalConfig);
@@ -111,12 +111,12 @@
                 replyTo = this.mailHelper.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.ReplyTo), plug.ReplyTo, useGlobalConfig);
             }
 
-            return new MailMessageConfiguration
+            return new MailMessageGlobalConfiguration
             {
                 From = new MailAddress(from),
-                To = this.StringToAddresCollection(to),
-                Cc = this.StringToAddresCollection(cc),
-                Bcc = this.StringToAddresCollection(bcc),
+                To = this.StringToAddressCollection(to),
+                Cc = this.StringToAddressCollection(cc),
+                Bcc = this.StringToAddressCollection(bcc),
                 ReplyTo = string.IsNullOrWhiteSpace(replyTo) ? new MailAddressCollection() : new MailAddressCollection { replyTo }
             };
         }
