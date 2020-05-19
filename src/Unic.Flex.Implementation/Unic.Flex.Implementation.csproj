@@ -128,6 +128,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\DatabasePlugExport.cs" />
+    <Compile Include="Configuration\MailMessageConfiguration.cs" />
     <Compile Include="Configuration\SendEmailPlugConfiguration.cs" />
     <Compile Include="Database\ISaveToDatabaseService.cs" />
     <Compile Include="Database\SaveToDatabaseService.cs" />
@@ -216,7 +217,9 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Converters\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

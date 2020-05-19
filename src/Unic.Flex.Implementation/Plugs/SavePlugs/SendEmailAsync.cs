@@ -1,8 +1,14 @@
 ﻿namespace Unic.Flex.Implementation.Plugs.SavePlugs
 {
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Text;
+    using Configuration;
     using Core.Mailing;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Mailers;
+    using MimeKit;
+    using Unic.Flex.Model.Forms;
 
     /// <summary>
     /// Send email async save plug model
@@ -27,6 +33,26 @@
 
         public SendEmailAsync(IMailRepository mailRepository, ISavePlugMailer savePlugMailer) : base(mailRepository, savePlugMailer)
         {
+        }
+
+        /// <summary>
+        /// Executes the save plug.
+        /// </summary>
+        /// <param name="form">The form.</param>
+        public override void Execute(IForm form)
+        {
+            MimeMessage message;
+            using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(this.TaskData)))
+            {
+                message = MimeMessage.Load(stream);
+            }
+
+            var mailMessageByConfiguration =
+                this.savePlugMailer.GetMailMessageByConfiguration(form, this);
+
+            this.ApplyConfigurationOnMessage(mailMessageByConfiguration, message);
+
+            this.mailRepository.SendMail(message);
         }
     }
 }

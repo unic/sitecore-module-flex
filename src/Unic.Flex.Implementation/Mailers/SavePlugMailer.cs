@@ -58,6 +58,42 @@
             this.ViewBag.TextMailIntroduction = this.ReplaceTokens(plug.TextMailIntroduction, form, plug);
             this.ViewBag.TextMailFooter = this.ReplaceTokens(plug.TextMailFooter, form, plug);
 
+            var configuration = this.GetMailMessageByConfiguration(form, plug);
+
+            return this.Populate(x =>
+            {
+                x.ViewName = this.presentationService.ResolveView(this.ControllerContext, "Mailers/SavePlug/Form", this.theme);
+                x.Subject = this.ViewBag.Subject;
+
+                x.From = configuration.From;
+                configuration.To.ForEach(x.To.Add);
+                configuration.Cc.ForEach(x.CC.Add);
+                configuration.Bcc.ForEach(x.Bcc.Add);
+                configuration.ReplyTo.ForEach(x.ReplyToList.Add);
+
+                if (plug.SendAttachments)
+                {
+                    foreach (var fileField in form.GetFields().OfType<FileUploadField>().Where(field => field.Value != null))
+                    {
+                        x.Attachments.Add(new Attachment(new MemoryStream(fileField.Value.Data), fileField.Value.FileName));
+                    }
+                }
+            });
+        }
+
+        private MailAddressCollection StringToAddresCollection(string source)
+        {
+            var targetCollection =  new MailAddressCollection();
+            if (!string.IsNullOrWhiteSpace(source))
+            {
+                source.Split(new[] { ";" }, StringSplitOptions.RemoveEmptyEntries).ForEach(targetCollection.Add);
+            }
+
+            return targetCollection;
+        }
+
+        public MailMessageConfiguration GetMailMessageByConfiguration(IForm form, SendEmail plug)
+        {
             var useGlobalConfig = this.IsGlobalConfigEnabled();
             var from = this.mailHelper.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.From), plug.From, useGlobalConfig);
             var cc = this.mailHelper.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.Cc), plug.Cc, useGlobalConfig);
@@ -75,25 +111,14 @@
                 replyTo = this.mailHelper.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.ReplyTo), plug.ReplyTo, useGlobalConfig);
             }
 
-            return this.Populate(x =>
+            return new MailMessageConfiguration
             {
-                x.ViewName = this.presentationService.ResolveView(this.ControllerContext, "Mailers/SavePlug/Form", this.theme);
-                x.Subject = this.ViewBag.Subject;
-
-                x.From = new MailAddress(from);
-                to.Split(new[] { ";" }, StringSplitOptions.RemoveEmptyEntries).ForEach(address => x.To.Add(address));
-                if (!string.IsNullOrWhiteSpace(cc)) cc.Split(new[] { ";" }, StringSplitOptions.RemoveEmptyEntries).ForEach(address => x.CC.Add(address));
-                if (!string.IsNullOrWhiteSpace(bcc)) bcc.Split(new[] { ";" }, StringSplitOptions.RemoveEmptyEntries).ForEach(address => x.Bcc.Add(address));
-                if (!string.IsNullOrWhiteSpace(replyTo)) x.ReplyToList.Add(replyTo);
-
-                if (plug.SendAttachments)
-                {
-                    foreach (var fileField in form.GetFields().OfType<FileUploadField>().Where(field => field.Value != null))
-                    {
-                        x.Attachments.Add(new Attachment(new MemoryStream(fileField.Value.Data), fileField.Value.FileName));
-                    }
-                }
-            });
+                From = new MailAddress(from),
+                To = this.StringToAddresCollection(to),
+                Cc = this.StringToAddresCollection(cc),
+                Bcc = this.StringToAddresCollection(bcc),
+                ReplyTo = string.IsNullOrWhiteSpace(replyTo) ? new MailAddressCollection() : new MailAddressCollection { replyTo }
+            };
         }
 
         public override string TextViewName(string viewName)

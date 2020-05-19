@@ -4,6 +4,7 @@
     using System.Collections.Specialized;
     using System.IO;
     using System.Text;
+    using Configuration;
     using Glass.Mapper.Sc.Configuration;
     using Glass.Mapper.Sc.Configuration.Attributes;
     using MimeKit;
@@ -24,12 +25,12 @@
         /// <summary>
         /// The mail repository
         /// </summary>
-        private readonly IMailRepository mailRepository;
+        protected readonly IMailRepository mailRepository;
 
         /// <summary>
         /// The save plug mailer
         /// </summary>
-        private readonly ISavePlugMailer savePlugMailer;
+        protected readonly ISavePlugMailer savePlugMailer;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SendEmail"/> class.
@@ -210,13 +211,15 @@
         /// <param name="form">The form.</param>
         public override void Execute(IForm form)
         {
-            MimeMessage message;
-            using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(this.TaskData)))
-            {
-                message = MimeMessage.Load(stream);
-            }
+            var mailMessage = this.savePlugMailer.GetMessage(form, this);
+            var mimeMessage = MimeMessage.CreateFromMailMessage(mailMessage);
 
-            this.mailRepository.SendMail(message);
+            var mailMessageByConfiguration =
+                this.savePlugMailer.GetMailMessageByConfiguration(form, this);
+
+            this.ApplyConfigurationOnMessage(mailMessageByConfiguration, mimeMessage);
+
+            this.mailRepository.SendMail(mimeMessage);
         }
 
         public override string GetTaskDataForStorage(IForm form)
@@ -231,6 +234,42 @@
             }
 
             return serializedMimeMessage;
+        }
+
+        protected MimeMessage ApplyConfigurationOnMessage(MailMessageConfiguration messageConfiguration, MimeMessage message)
+        {
+            if (messageConfiguration.From != null)
+            {
+                message.From.Clear();
+                message.Headers.Replace(HeaderId.From, string.Empty);
+                message.From.Add((InternetAddress)(MailboxAddress)messageConfiguration.From);
+            }
+            if (messageConfiguration.ReplyTo.Count > 0)
+            {
+                message.ReplyTo.Clear();
+                message.Headers.Replace(HeaderId.ReplyTo, string.Empty);
+                message.ReplyTo.AddRange((IEnumerable<InternetAddress>)(InternetAddressList)messageConfiguration.ReplyTo);
+            }
+            if (messageConfiguration.To.Count > 0)
+            {
+                message.To.Clear();
+                message.Headers.Replace(HeaderId.To, string.Empty);
+                message.To.AddRange((IEnumerable<InternetAddress>)(InternetAddressList)messageConfiguration.To);
+            }
+            if (messageConfiguration.Cc.Count > 0)
+            {
+                message.Cc.Clear();
+                message.Headers.Replace(HeaderId.Cc, string.Empty);
+                message.Cc.AddRange((IEnumerable<InternetAddress>)(InternetAddressList)messageConfiguration.Cc);
+            }
+            if (messageConfiguration.Bcc.Count > 0)
+            {
+                message.Bcc.Clear();
+                message.Headers.Replace(HeaderId.Bcc, string.Empty);
+                message.Bcc.AddRange((IEnumerable<InternetAddress>)(InternetAddressList)messageConfiguration.Bcc);
+            }
+
+            return message;
         }
     }
 }

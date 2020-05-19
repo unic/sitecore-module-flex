@@ -4,6 +4,7 @@
     using MimeKit;
     using Sitecore.Configuration;
     using Sitecore.Diagnostics;
+    using System;
 
     /// <summary>
     /// Implementation of repository for sending emails.
@@ -18,11 +19,20 @@
         {
             Assert.ArgumentNotNull(message, "message");
 
-            using (var client = GetSmtpClient())
+            try
             {
-                client.Send(message);
-                client.Disconnect(true);
+                using (var client = GetSmtpClient())
+                {
+                    client.Send(message);
+                    client.Disconnect(true);
+                }
             }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+
         }
 
         /// <summary>
