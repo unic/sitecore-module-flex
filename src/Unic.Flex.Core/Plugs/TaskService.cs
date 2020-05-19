@@ -295,6 +295,7 @@
             try
             {
                 this.logger.Debug(string.Format("Execute async plug '{0}' from task '{1}' in job '{2}' and form '{3}'", plug.ItemId, task.Id, job.Id, form.ItemId), this);
+                plug.TaskData = task.TaskData;
                 plug.Execute(form);
                 job.Tasks.Remove(task);
             }
