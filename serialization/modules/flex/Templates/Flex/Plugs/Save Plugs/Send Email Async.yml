@@ -1,17 +1,17 @@
 ﻿---
-ID: "f6ae7915-e582-4c65-bf3c-6d5415a8d6be"
-Parent: "7d26f24c-273c-4c73-bdb8-a7733048bc48"
+ID: "a63884ce-54f1-4134-8a29-05017d5317f6"
+Parent: "4332e2e7-c438-49b5-853f-2a64c2ca370a"
 Template: "ab86861a-6030-46c5-b394-e8f99e8b87db"
-Path: /sitecore/templates/Flex/Tasks/Plug Execution/Plug Execution Command
+Path: /sitecore/templates/Flex/Plugs/Save Plugs/Send Email Async
 DB: master
 SharedFields:
 - ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
   Hint: __Icon
-  Value: People/16x16/clock_stop.png
+  Value: network/32x32/at.png
 - ID: "12c33f3f-86c5-43a5-aeb4-5598cec45116"
   Hint: __Base template
   Type: tree list
-  Value: "{58119A3E-560E-4DA6-97C6-1ACE8A5B1219}"
+  Value: "{DF5C2C2F-4A48-4206-9DFB-0DCDE27E2233}"
 Languages:
 - Language: en
   Versions:
@@ -19,7 +19,7 @@ Languages:
     Fields:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20200520T135332Z
+      Value: 20200515T113702Z
     - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
       Hint: __Created by
       Value: sitecore\admin

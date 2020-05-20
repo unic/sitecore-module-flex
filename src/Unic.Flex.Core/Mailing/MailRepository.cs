@@ -46,17 +46,8 @@
         /// <param name="message">The message.</param>
         public virtual void SendMail(MvcMailMessage message)
         {
-            try
-            {
                 Assert.ArgumentNotNull(message, "message");
                 message.Send(new SmtpClientWrapper(GetSmtpClient()));
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-
         }
 
         /// <summary>

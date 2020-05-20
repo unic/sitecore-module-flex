@@ -164,6 +164,7 @@
     <Compile Include="Database\IUnitOfWork.cs" />
     <Compile Include="Database\UnitOfWork.cs" />
     <Compile Include="Definitions\Constants.cs" />
+    <Compile Include="Definitions\Items.cs" />
     <Compile Include="DependencyInjection\DependencyResolver.cs" />
     <Compile Include="DependencyInjection\IContainer.cs" />
     <Compile Include="Globalization\CultureService.cs" />
