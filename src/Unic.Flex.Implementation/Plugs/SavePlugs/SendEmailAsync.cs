@@ -8,6 +8,7 @@
     using Glass.Mapper.Sc.Configuration.Attributes;
     using Mailers;
     using MimeKit;
+    using Sitecore.Diagnostics;
     using Unic.Flex.Model.Forms;
 
     /// <summary>
@@ -41,6 +42,8 @@
         /// <param name="form">The form.</param>
         public override void Execute(IForm form)
         {
+            Assert.ArgumentNotNull(form, "form");
+
             MimeMessage message;
             using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(this.TaskData)))
             {
@@ -57,6 +60,8 @@
 
         public override string GetTaskDataForStorage(IForm form)
         {
+            Assert.ArgumentNotNull(form, "form");
+
             var mailMessage = this.savePlugMailer.GetMessage(form, this);
             var mimeMessage = MimeMessage.CreateFromMailMessage(mailMessage);
             string serializedMimeMessage;
@@ -71,6 +76,9 @@
 
         private MimeMessage ApplyGlobalConfigurationOnMessage(MailMessageGlobalConfiguration messageGlobalConfiguration, MimeMessage message)
         {
+            Assert.ArgumentNotNull(message, "message");
+            Assert.ArgumentNotNull(messageGlobalConfiguration, "messageGlobalConfiguration");
+
             if (messageGlobalConfiguration.From != null)
             {
                 message.From.Clear();

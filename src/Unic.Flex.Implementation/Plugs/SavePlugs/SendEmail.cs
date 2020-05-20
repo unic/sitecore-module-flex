@@ -4,6 +4,7 @@
     using Glass.Mapper.Sc.Configuration.Attributes;
     using System.Collections.Generic;
     using System.Collections.Specialized;
+    using Sitecore.Diagnostics;
     using Unic.Flex.Core.Mailing;
     using Unic.Flex.Implementation.Mailers;
     using Unic.Flex.Model.Fields;
@@ -207,6 +208,8 @@
         /// <param name="form">The form.</param>
         public override void Execute(IForm form)
         {
+            Assert.ArgumentNotNull(form, "form");
+
             var mailMessage = this.savePlugMailer.GetMessage(form, this);
 
             this.mailRepository.SendMail(mailMessage);

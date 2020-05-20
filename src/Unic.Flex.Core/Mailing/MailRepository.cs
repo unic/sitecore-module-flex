@@ -23,20 +23,11 @@
         {
             Assert.ArgumentNotNull(message, "message");
 
-            try
+            using (var client = GetMailKitSmtpClient())
             {
-                using (var client = GetMailKitSmtpClient())
-                {
-                    client.Send(message);
-                    client.Disconnect(true);
-                }
+                client.Send(message);
+                client.Disconnect(true);
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-
         }
 
         /// <summary>S
@@ -46,8 +37,8 @@
         /// <param name="message">The message.</param>
         public virtual void SendMail(MvcMailMessage message)
         {
-                Assert.ArgumentNotNull(message, "message");
-                message.Send(new SmtpClientWrapper(GetSmtpClient()));
+            Assert.ArgumentNotNull(message, "message");
+            message.Send(new SmtpClientWrapper(GetSmtpClient()));
         }
 
         /// <summary>
