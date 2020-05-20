@@ -150,6 +150,7 @@
     <Compile Include="Analytics\IAnalyticsService.cs" />
     <Compile Include="Attributes\ValidateFormHandlerAttribute.cs" />
     <Compile Include="Authorization\AdministratorOnly.cs" />
+    <Compile Include="Commands\AsyncPlugExecutionCommand.cs" />
     <Compile Include="Context\ContextService.cs" />
     <Compile Include="Context\FlexContext.cs" />
     <Compile Include="Context\IContextService.cs" />
