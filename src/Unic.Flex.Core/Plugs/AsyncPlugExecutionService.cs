@@ -36,7 +36,7 @@ namespace Unic.Flex.Core.Plugs
         /// Gets or sets a value indicating whether the activity should be logged.
         /// </summary>
         /// <value>
-        ///   <c>true</c> if it should log acticity; otherwise, <c>false</c>.
+        ///   <c>true</c> if it should log activity; otherwise, <c>false</c>.
         /// </value>
         public virtual bool LogActivity { get; set; }
 
