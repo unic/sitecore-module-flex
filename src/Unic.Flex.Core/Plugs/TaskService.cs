@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
+    using System.Linq.Expressions;
     using System.Net.Mail;
     using DependencyInjection;
     using Newtonsoft.Json;
@@ -52,6 +53,11 @@
         private readonly IDictionaryRepository dictionaryRepository;
 
         /// <summary>
+        /// The server origin service
+        /// </summary>
+        private readonly IServerOriginService serverOriginService;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="TaskService" /> class.
         /// </summary>
         /// <param name="unitOfWork">The unit of work.</param>
@@ -60,13 +66,15 @@
         /// <param name="logger">The logger.</param>
         /// <param name="configurationManager">The configuration manager.</param>
         /// <param name="dictionaryRepository">The dictionary repository.</param>
-        public TaskService(IUnitOfWork unitOfWork, IContextService contextService, IUserDataRepository userDataRepository, ILogger logger, IConfigurationManager configurationManager, IDictionaryRepository dictionaryRepository)
+        /// <param name="serverOriginService">The server origin service</param>
+        public TaskService(IUnitOfWork unitOfWork, IContextService contextService, IUserDataRepository userDataRepository, ILogger logger, IConfigurationManager configurationManager, IDictionaryRepository dictionaryRepository, IServerOriginService serverOriginService)
         {
             this.unitOfWork = unitOfWork;
             this.userDataRepository = userDataRepository;
             this.logger = logger;
             this.configurationManager = configurationManager;
             this.dictionaryRepository = dictionaryRepository;
+            this.serverOriginService = serverOriginService;
         }
 
         /// <summary>
@@ -126,7 +134,18 @@
         /// </returns>
         public virtual IEnumerable<Job> GetAllJobs()
         {
-            return this.unitOfWork.JobRepository.Get();
+            var serverOriginFilter = this.GetServerOriginFilter(this.serverOriginService.IsServerOriginCheckEnabled(), this.serverOriginService.GetServerOrigin());
+            return this.unitOfWork.JobRepository.Get(serverOriginFilter);
+        }
+
+        private Expression<Func<Job, bool>> GetServerOriginFilter(bool allowServerOriginCheck, string serverOrigin)
+        {
+            if (allowServerOriginCheck)
+            {
+                return job => string.Compare(job.JobOrigin, serverOrigin, StringComparison.CurrentCultureIgnoreCase) == 0;
+            }
+
+            return null;
         }
 
         /// <summary>
@@ -139,12 +158,14 @@
         public virtual Job GetJob(IForm form)
         {
             var formValues = this.userDataRepository.GetFormValues(form.Id);
+            var jobOrigin = this.serverOriginService.GetServerOrigin();
 
             return new Job
             {
                 ItemId = form.ItemId,
                 Data = JsonConvert.SerializeObject(formValues),
-                Tasks = new Collection<Task>()
+                Tasks = new Collection<Task>(),
+                JobOrigin = jobOrigin
             };
         }
 

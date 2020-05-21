@@ -31,5 +31,9 @@
         public const string HonorTrailingSlashConfig = "Flex.Urls.HonorTrailingSlash";
 
         public const string AllowLoadPlugsOnNonHttpGet = "Flex.Plugs.AllowLoadPlugsOnNonHttpGet";
+
+        public const string HonorJobOrigin = "Flex.Jobs.HonorServerOrigin";
+
+        public const string ServerOrigin = "Flex.ServerOrigin";
     }
 }

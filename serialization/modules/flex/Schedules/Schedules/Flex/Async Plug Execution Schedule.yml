@@ -11,6 +11,10 @@ SharedFields:
 - ID: "62e64dbb-0a39-4dd7-ba05-7bd08c5404e0"
   Hint: Command
   Value: "{181E4F6D-AAFF-47C9-B911-E72AB396EEE3}"
+- ID: "a2c0c7a2-697d-40e2-9516-54e0c2d6028e"
+  Hint: Async
+  Type: checkbox
+  Value: 1
 Languages:
 - Language: en
   Versions:

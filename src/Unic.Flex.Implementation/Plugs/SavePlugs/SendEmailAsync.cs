@@ -50,10 +50,10 @@
                 message = MimeMessage.Load(stream);
             }
 
-            var mailMessageByConfiguration =
-                this.savePlugMailer.GetMailMessageByConfiguration(form, this);
+            var mailMessageGlobalConfiguration =
+                this.savePlugMailer.GetMailMessageGlobalConfiguration(form, this);
 
-            this.ApplyGlobalConfigurationOnMessage(mailMessageByConfiguration, message);
+            this.ApplyGlobalConfigurationOnMessage(mailMessageGlobalConfiguration, message);
 
             this.mailRepository.SendMail(message);
         }

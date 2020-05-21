@@ -58,7 +58,7 @@
             this.ViewBag.TextMailIntroduction = this.ReplaceTokens(plug.TextMailIntroduction, form, plug);
             this.ViewBag.TextMailFooter = this.ReplaceTokens(plug.TextMailFooter, form, plug);
 
-            var configuration = this.GetMailMessageByConfiguration(form, plug);
+            var configuration = this.GetMailMessageGlobalConfiguration(form, plug);
 
             return this.Populate(x =>
             {
@@ -92,7 +92,7 @@
             return targetCollection;
         }
 
-        public MailMessageGlobalConfiguration GetMailMessageByConfiguration(IForm form, SendEmail plug)
+        public MailMessageGlobalConfiguration GetMailMessageGlobalConfiguration(IForm form, SendEmail plug)
         {
             var useGlobalConfig = this.IsGlobalConfigEnabled();
             var from = this.mailHelper.GetEmailAddresses(this.configurationManager.Get<SendEmailPlugConfiguration>(c => c.From), plug.From, useGlobalConfig);

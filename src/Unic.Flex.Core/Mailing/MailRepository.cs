@@ -6,7 +6,6 @@
     using Mvc.Mailer;
     using Sitecore.Configuration;
     using Sitecore.Diagnostics;
-    using System;
     using System.Net;
     using NetMail = System.Net.Mail;
 

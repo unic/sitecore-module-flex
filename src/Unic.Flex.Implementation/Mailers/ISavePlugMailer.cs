@@ -9,6 +9,6 @@
     {
         MvcMailMessage GetMessage(IForm form, SendEmail plug);
 
-        MailMessageGlobalConfiguration GetMailMessageByConfiguration(IForm form, SendEmail plug);
+        MailMessageGlobalConfiguration GetMailMessageGlobalConfiguration(IForm form, SendEmail plug);
     }
 }
