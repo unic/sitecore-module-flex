@@ -1,5 +1,6 @@
 ﻿namespace Unic.Flex.Core.Mailing
 {
+    using System;
     using MailKit.Net.Smtp;
     using MailKit.Security;
     using MimeKit;
@@ -47,7 +48,8 @@
         private static SmtpClient GetMailKitSmtpClient()
         {
             var client = new SmtpClient();
-            client.Connect(Settings.MailServer, Settings.MailServerPort, SecureSocketOptions.None);
+            var secureSocketOption = GetMailKitSmtpSecureSocketOption();
+            client.Connect(Settings.MailServer, Settings.MailServerPort, secureSocketOption);
 
             var username = Settings.MailServerUserName;
             var password = Settings.MailServerPassword;
@@ -58,6 +60,18 @@
             }
 
             return client;
+        }
+
+        /// <summary>
+        /// Gets SmtpSecureSocketOption from setting
+        /// </summary>
+        /// <returns>SmtpSecureSocketOption</returns>
+        private static SecureSocketOptions GetMailKitSmtpSecureSocketOption()
+        {
+            var secureSocketOptionSetting = Settings.GetSetting(Definitions.Constants.SmtpClientSecureSocketOption);
+
+            SecureSocketOptions option;
+            return Enum.TryParse(secureSocketOptionSetting, out option) ? option : SecureSocketOptions.Auto;
         }
 
         /// <summary>
