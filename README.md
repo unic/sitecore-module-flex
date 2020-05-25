@@ -14,10 +14,11 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 ### 3.29
 
 * Added new SendEmailAsync saveplug. This saveplug send emails by newly installed mail client "MailKit". Before using SendEmailAsync, default Agent for plug execution needs to be disabled (Flex.Unic.config). Instead of them please enable 
-Responsible sitecore tasks (command and schedule) available in "/sitecore/system/Tasks/"Commands/". Properties "Site Name", "Log Activity", "Log Tag" could be configured on command item:"/sitecore/system/Tasks/Commands/Flex/Async Plug Execution Command". 
-It is possible to configure interval on schedule item: "/sitecore/system/Tasks/Schedules/Flex/Async Plug Execution Schedule".
-* 'Flex.Jobs.HonorServerOrigin', 'Flex.ServerOrigin' are a new setting to ensure plug executor, that Jobs/Tasks are processed by the correct instance
-* 'Flex.Mailing.SmtpClient.MailKit.SecureSocketOptions'  are a new setting to setup SecureSocketOptions for MailKit Smpt client .
+Responsible sitecore tasks (command and schedule) available in "/sitecore/system/Tasks/"Commands/". It is required to configure interval on schedule item: "/sitecore/system/Tasks/Schedules/Flex/Async Plug Execution Schedule".
+Properties "Site Name", "Log Activity", "Log Tag" needs to be configured on command item:"/sitecore/system/Tasks/Commands/Flex/Async Plug Execution Command". 
+
+* 'Flex.Jobs.HonorServerOrigin', 'Flex.ServerOrigin' are a new settings to ensure plug executor, that Jobs/Tasks are processed by the correct instance
+* 'Flex.Mailing.SmtpClient.MailKit.SecureSocketOptions' is a new setting to setup SecureSocketOptions for MailKit Smpt client .
 * Because of refactoring in common classes, re-test of plugs "DoubleOptin", "Send Email" is recommended
 
 ### 3.28
