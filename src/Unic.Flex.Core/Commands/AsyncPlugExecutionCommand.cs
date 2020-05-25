@@ -1,5 +1,4 @@
-﻿using System;
-using CommandDefinitions = Unic.Flex.Core.Definitions.Items.AsyncPlugExecutionCommand;
+﻿using CommandDefinitions = Unic.Flex.Core.Definitions.Items.AsyncPlugExecutionCommand;
 
 namespace Unic.Flex.Core.Commands
 {
@@ -7,11 +6,9 @@ namespace Unic.Flex.Core.Commands
     using Plugs;
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
-    using Sitecore.Shell.Framework.Commands;
 
-    public class AsyncPlugExecutionCommand : Command
+    public class AsyncPlugExecutionCommand
     {
-
         public void Execute(Item[] items, Sitecore.Tasks.CommandItem command, Sitecore.Tasks.ScheduleItem schedule)
         {
             Assert.ArgumentNotNull(command, "AsyncPlugExecutionCommand");
@@ -26,11 +23,6 @@ namespace Unic.Flex.Core.Commands
             plugExecutionService.LogTag = logTag;
             plugExecutionService.SiteName = siteName;
             plugExecutionService.ExecutePlugs();
-        }
-
-        public override void Execute(CommandContext context)
-        {
-            throw new NotImplementedException();
         }
     }
 }
