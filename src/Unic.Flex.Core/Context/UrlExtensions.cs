@@ -4,6 +4,7 @@
     using System.Linq;
     using Sitecore;
     using DependencyInjection;
+    using Glass.Mapper.Sc.Fields;
     using Model.Forms;
     using Model.Steps;
 
@@ -23,21 +24,17 @@
         public static string GetUrl(this IStep item, IFlexContext context)
         {
             if (context == null) return string.Empty;
-            if (context.Item == null) return item.Url;
-            if (context.Form == null) return item.Url;
-            if (item.StepNumber == 1) return context.Item.Url;
 
             var honorTrailingSlash = Sitecore.Configuration.Settings.GetBoolSetting(Definitions.Constants.HonorTrailingSlashConfig, false);
 
-            if (!honorTrailingSlash)
-            {
-                return string.Join("/", context.Item.Url, item.Url.Split('/').Last());
-            }
-            else
-            {
-                var contextItemUrl = StringUtil.RemovePostfix('/', context.Item.Url);
-                return string.Join("/", contextItemUrl, item.Url.Split(new[]{ '/' }, StringSplitOptions.RemoveEmptyEntries).Last());
-            }
+            if (context.Item == null) return HandleTrailingSlash(item.Url, honorTrailingSlash);
+            if (context.Form == null) return HandleTrailingSlash(item.Url, honorTrailingSlash);
+            if (item.StepNumber == 1) return HandleTrailingSlash(context.Item.Url, honorTrailingSlash);
+
+            var lastUrlSegment = item.Url.Split(new[] { '/' }, StringSplitOptions.RemoveEmptyEntries).Last();
+            var contextItemUrl = StringUtil.RemovePostfix('/', context.Item.Url);
+
+            return HandleTrailingSlash(string.Join("/", contextItemUrl, lastUrlSegment), honorTrailingSlash);
         }
 
         /// <summary>
@@ -49,6 +46,33 @@
         {
             var context = DependencyResolver.Resolve<IFlexContext>();
             return context.Item == null ? string.Empty : context.Item.Url;
+        }
+
+        public static string BuildUrlWithQueryString(this Link link)
+        {
+            if (link == null) return string.Empty;
+
+            var honorTrailingSlash = Sitecore.Configuration.Settings.GetBoolSetting(Definitions.Constants.HonorTrailingSlashConfig, false);
+
+            var anchor = string.Empty;
+            
+            if (!string.IsNullOrWhiteSpace(link.Anchor))
+                anchor = $"#{link.Anchor}";
+
+
+
+            if (!honorTrailingSlash)
+                return $"{link.Url}?{link.Query}{anchor}";
+
+            return $"{StringUtil.RemovePostfix('/', link.Url)}/?{link.Query}{anchor}";
+        }
+
+        private static string HandleTrailingSlash(string url, bool honorTrailingSlash)
+        {
+            if (!honorTrailingSlash)
+                return url;
+
+            return StringUtil.RemovePostfix('/', url) + "/";
         }
     }
 }

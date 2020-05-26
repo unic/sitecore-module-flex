@@ -32,6 +32,10 @@
 
         public const string AllowLoadPlugsOnNonHttpGet = "Flex.Plugs.AllowLoadPlugsOnNonHttpGet";
 
+        public const string FlexInitialDatabaseSetting = "Unic.Feature.Flex.InitialDatabase";
+
+        public const string FlexInitialDatabaseName = "web";
+
         public const string HonorJobOrigin = "Flex.Jobs.HonorServerOrigin";
 
         public const string SmtpClientSecureSocketOption = "Flex.Mailing.SmtpClient.MailKit.SecureSocketOptions";

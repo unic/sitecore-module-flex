@@ -2,6 +2,7 @@
 {
     using System.Web;
     using Glass.Mapper.Sc;
+    using Glass.Mapper.Sc.Web;
     using Sitecore.Data.Items;
     using Sitecore.Globalization;
     using Sitecore.Sites;
@@ -28,7 +29,7 @@
         /// <summary>
         /// The sitecore context
         /// </summary>
-        private readonly ISitecoreContext sitecoreContext;
+        private readonly IRequestContext requestContext;
 
         /// <summary>
         /// The form
@@ -50,12 +51,12 @@
         /// </summary>
         /// <param name="contextService">The context service.</param>
         /// <param name="plugService">The plug service.</param>
-        /// <param name="sitecoreContext">The sitecore context.</param>
-        public FlexContext(IContextService contextService, IPlugsService plugService, ISitecoreContext sitecoreContext)
+        /// <param name="requestContext">The sitecore context.</param>
+        public FlexContext(IContextService contextService, IPlugsService plugService, IRequestContext requestContext)
         {
             this.contextService = contextService;
             this.plugService = plugService;
-            this.sitecoreContext = sitecoreContext;
+            this.requestContext = requestContext;
 
             this.SiteContext = Sitecore.Context.Site;
             this.LanguageName = Sitecore.Context.Language.Name;
@@ -101,7 +102,7 @@
                     this.contextService.PopulateFormValues(this.form);
                     this.plugService.ExecuteLoadPlugs(this);
                 }
-                
+
                 return this.form;
             }
 
@@ -138,7 +139,13 @@
         public virtual void SetContextItem(Item contextItem)
         {
             Sitecore.Context.Item = contextItem;
-            this.Item = contextItem != null ? this.sitecoreContext.GetItem<ItemBase>(contextItem.ID.ToGuid(), inferType: true) : null;
+            GetItemByIdOptions getItemByIdOptions = null;
+            if (contextItem != null)
+            {
+                getItemByIdOptions = new GetItemByIdOptions(contextItem.ID.ToGuid()) { InferType = true };
+            }
+
+            this.Item = contextItem != null ? this.requestContext.SitecoreService.GetItem<ItemBase>(getItemByIdOptions) : null;
         }
     }
 }

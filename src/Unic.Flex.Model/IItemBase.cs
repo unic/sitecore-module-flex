@@ -1,6 +1,7 @@
 ﻿namespace Unic.Flex.Model
 {
     using System;
+    using Glass.Mapper.Sc.Configuration.Attributes;
 
     /// <summary>
     /// Interface for a base item
@@ -37,6 +38,7 @@
         /// <value>
         /// The identifier.
         /// </value>
+        [SitecoreIgnore]
         string Id { get; }
     }
 }
