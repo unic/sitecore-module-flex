@@ -42,7 +42,7 @@
         /// </summary>
         /// <param name="plug">The plug.</param>
         /// <returns>The task entity</returns>
-        Task GetTask(ISavePlug plug);
+        Task GetTask(ISavePlug plug, IForm form);
 
         /// <summary>
         /// Saves the specified job to the database.

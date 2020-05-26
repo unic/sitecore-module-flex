@@ -42,7 +42,9 @@
             container.Register<ITaskService, TaskService>();
             container.Register<IAnalyticsService, AnalyticsService>();
             container.Register<ICultureService, CultureService>();
-            
+            container.Register<IAsyncPlugExecutionService, AsyncPlugExecutionService>();
+            container.Register<IServerOriginService, ServerOriginService>();
+
             // data access
             container.Register<IDictionaryRepository, DictionaryRepository>(Lifestyle.Singleton);
             container.Register<IFormRepository, FormRepository>();

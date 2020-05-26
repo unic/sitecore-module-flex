@@ -1,0 +1,34 @@
+﻿---
+ID: "181e4f6d-aaff-47c9-b911-e72ab396eee3"
+Parent: "2b201471-6d57-4042-8abf-b94958de2c4b"
+Template: "f6ae7915-e582-4c65-bf3c-6d5415a8d6be"
+Path: /sitecore/system/Tasks/Commands/Flex/Async Plug Execution Command
+DB: master
+SharedFields:
+- ID: "4bc75539-d5c4-487b-af35-ff13d62bd286"
+  Hint: Method
+  Value: Execute
+- ID: "6ae6e807-0a49-46cd-a745-c3795e40b771"
+  Hint: Log Activity
+  Type: Checkbox
+  Value: 1
+- ID: "6dd5d5d7-38e8-4c17-8813-6d48b22d6e6e"
+  Hint: Log Tag
+  Value: Plug Execution
+- ID: "752579a7-ef2f-45b7-b9d1-9b682308b7a5"
+  Hint: Type
+  Value:  Unic.Flex.Core.Commands.AsyncPlugExecutionCommand, Unic.Flex.Core
+- ID: "7f054ddb-7891-4d82-b8fd-8f271822d816"
+  Hint: Site Name
+  Value: website
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20200520T135924Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: sitecore\admin
