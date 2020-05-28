@@ -11,6 +11,10 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ## Changelog
 
+### 4.0.1
+
+* Remove lock on 9.2 version of Sitecore libraries
+
 ### 4.0
 
 * Updated Glassmapper to Version 5.5.28 (THIS NEEDS TO BE DONE IN YOUR SC SOLUTION ALSO! For a Version compatible with GlassMapper 4.x please use the support branch support/3.28.x)
