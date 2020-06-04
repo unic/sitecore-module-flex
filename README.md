@@ -11,11 +11,11 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ## Changelog
 
-### 3.29.1
+### 4.1.1
 
 *  Bugfix to display all occurances of "Send Email Async" plug in: "Control Panel\Flex Dashboard\Async Plugs".
 
-### 3.29
+### 4.1
 
 * Update of database schema is required for solutions upgrading to this version. Use SQL script: \databases\Async Mail Plug Upgrade Script\async-mail-plug-upgrade-script.sql. Please adjust database name in script content.
 * Added new SendEmailAsync saveplug. This saveplug send emails by newly installed mail client "MailKit". To use SendEmailAsync plug, async execution needs to be allowed in Global Config item of your project. Before using SendEmailAsync, default Agent for plug execution needs to be disabled (Flex.Unic.config). Instead of them please enable 
@@ -26,6 +26,12 @@ Properties "Site Name", "Log Activity", "Log Tag" needs to be configured on comm
 * 'Flex.Mailing.SmtpClient.MailKit.SecureSocketOptions' is a new setting to setup SecureSocketOptions for MailKit Smpt client.
 * Because of refactoring in common mailer classes, a re-test of mailer plugs in your solution is recommended. This applies to plugs such as 'DoubleOptin', 'SendMail' and any custom plug implementations relying on Mailer classes.
 * Limitations: sitecore task "Async Plug Execution Command" executes plugs always in context of site configured as "Site Name".
+
+### 4.0
+
+* Updated Glassmapper to Version 5.5.28 (THIS NEEDS TO BE DONE IN YOUR SC SOLUTION ALSO! For a Version compatible with GlassMapper 4.x please use the support branch support/3.28.x)
+* Fixed support for query strings and anchors on form cancel links
+
 ### 3.28
 
 * Added field with conditional rule to SavePlugBase. Rules are checked before executing Save Plug - if true the Save Plug is executed.
@@ -241,12 +247,8 @@ ticked by default
 
 ### IoC container
 
-You must install an IoC container framework for Flex. Currently there are containers 
-available for Ninject and SimpleInjector, which can be installed over NuGet:
-
-  > Install-Package Unic.Flex.Ninject
-
-or
+You must install an IoC container framework for Flex. Currently for Sitecore 9
+you should install SimpleInjector, which can be installed over NuGet:
 
   > Install-Package Unic.Flex.SimpleInjector
 
@@ -313,15 +315,29 @@ To add a form in the Page Editor, the the following rendering has to be enabled 
 placeholder settings:
 
     /sitecore/layout/Renderings/Flex/Flex Form
+	
+## Glassmapper Dependencies
+
+Flex will use the `Glass.Mapper.Sc.92.Core` for it's internal functionality. One of the
+pipelines has dependency on `Glass.Mapper.Sc.92.MVC` so you need to install and deploy 
+also this MVC package in your solution.
+If your `Web` database has different name, other that standard, then you need to adjust
+``
+the `Unic.Feature.Flex.InitialDatabase` setting.
 
 ## Setup for Development
 
 For installing a Flex development instance, the following steps are required:
 
 * Clone the repository
+* Run the `BumpSc9.ps1` from Solution root to install Sitecore 9 and xconnect
 * Open the solution in Visual Studio
 * Restore all NuGet packages
 * Restart Visual Studio
-* Execute `bump` in the Package Manager Console for the project *Unic.Flex.Integration.Website*
+* Execute `Set-ScSerializationReference` in the Package Manager Console
+* Execute `Install-WebConfig` in the Package Manager Console
+* Build the Project
+* Call http://flex-sc9.local/unicorn.aspx and run a full sync
+* In Content Editor, invoke `Revert Database` from the `Developer` ribbon strip
 
-The development instance is now available under http://flex.local.
+The development instance is now available under http://flex-sc9.local/.
