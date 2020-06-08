@@ -327,7 +327,7 @@
         /// <value>
         /// The validators.
         /// </value>
-        [SitecoreChildren(IsLazy = true, InferType = true)]
+        [SitecoreChildren(InferType = true)]
         public virtual IEnumerable<IValidator> Validators { get; set; }
 
         /// <summary>

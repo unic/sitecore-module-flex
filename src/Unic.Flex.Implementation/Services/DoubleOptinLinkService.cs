@@ -6,26 +6,32 @@
     using Core.Database;
     using Core.Logging;
     using Core.Utilities;
+    using Glass.Mapper;
     using Glass.Mapper.Sc;
+    using Glass.Mapper.Sc.Web;
     using Model;
 
     public class DoubleOptinLinkService : IDoubleOptinLinkService
     {
         private readonly IUnitOfWork unitOfWork;
         private readonly ILogger logger;
-        private readonly ISitecoreContext sitecoreContext;
+        private readonly IRequestContext requestContext;
 
-        public DoubleOptinLinkService(IUnitOfWork unitOfWork, ILogger logger, ISitecoreContext sitecoreContext)
+        public DoubleOptinLinkService(IUnitOfWork unitOfWork, ILogger logger, IRequestContext requestContext)
         {
             this.unitOfWork = unitOfWork;
             this.logger = logger;
-            this.sitecoreContext = sitecoreContext;
+            this.requestContext = requestContext;
         }
 
         public string CreateConfirmationLink(string formId, string toEmail, string optInRecordId)
         {
             var optInHash = this.CreateOptInHash(optInRecordId, toEmail, formId);
-            var url = this.sitecoreContext.GetCurrentItem<ItemBase>().Url;
+            var options = new GetItemByIdOptions(Sitecore.Context.Item.ID.ToGuid())
+            {
+                Lazy = LazyLoading.Disabled
+            };
+            var url = this.requestContext.SitecoreService.GetItem<ItemBase>(options).Url;
             var link = $"{url}?{Definitions.Constants.ScActionQueryKey}={Definitions.Constants.OptinQueryKey}&{Definitions.Constants.OptInFormIdKey}={Uri.EscapeDataString(formId)}&{Definitions.Constants.OptInRecordIdKey}={optInRecordId}&{Definitions.Constants.OptInHashKey}={Uri.EscapeDataString(optInHash)}";
 
             return link;

@@ -32,6 +32,11 @@ Properties "Site Name", "Log Activity", "Log Tag" needs to be configured on comm
 * Updated Glassmapper to Version 5.5.28 (THIS NEEDS TO BE DONE IN YOUR SC SOLUTION ALSO! For a Version compatible with GlassMapper 4.x please use the support branch support/3.28.x)
 * Fixed support for query strings and anchors on form cancel links
 
+### 4.0
+
+* Updated Glassmapper to Version 5.5.28 (THIS NEEDS TO BE DONE IN YOUR SC SOLUTION ALSO! For a Version compatible with GlassMapper 4.x please use the support branch support/3.28.x)
+* Fixed support for query strings and anchors on form cancel links
+
 ### 3.28
 
 * Added field with conditional rule to SavePlugBase. Rules are checked before executing Save Plug - if true the Save Plug is executed.

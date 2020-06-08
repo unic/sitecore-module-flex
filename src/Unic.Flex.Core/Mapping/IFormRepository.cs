@@ -27,5 +27,16 @@
         /// Item if found
         /// </returns>
         T LoadItem<T>(Guid id) where T : class;
+
+        /// <summary>
+        /// Loads an item from the data source.
+        /// </summary>
+        /// <typeparam name="T">Type of the item to load</typeparam>
+        /// <param name="id">The identifier.</param>
+        /// <param name="useVersionCountDisabler">Disable Version Count</param>
+        /// <returns>
+        /// Item if found
+        /// </returns>
+        T LoadItem<T>(Guid id, bool useVersionCountDisabler) where T : class;
     }
 }
