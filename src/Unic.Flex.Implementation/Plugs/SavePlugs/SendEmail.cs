@@ -1,9 +1,9 @@
 ﻿namespace Unic.Flex.Implementation.Plugs.SavePlugs
 {
-    using System.Collections.Generic;
-    using System.Collections.Specialized;
     using Glass.Mapper.Sc.Configuration;
     using Glass.Mapper.Sc.Configuration.Attributes;
+    using System.Collections.Generic;
+    using System.Collections.Specialized;
     using Sitecore.Diagnostics;
     using Unic.Flex.Core.Mailing;
     using Unic.Flex.Implementation.Mailers;
@@ -22,12 +22,12 @@
         /// <summary>
         /// The mail repository
         /// </summary>
-        private readonly IMailRepository mailRepository;
+        protected readonly IMailRepository mailRepository;
 
         /// <summary>
         /// The save plug mailer
         /// </summary>
-        private readonly ISavePlugMailer savePlugMailer;
+        protected readonly ISavePlugMailer savePlugMailer;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SendEmail"/> class.
@@ -211,6 +211,7 @@
             Assert.ArgumentNotNull(form, "form");
 
             var mailMessage = this.savePlugMailer.GetMessage(form, this);
+
             this.mailRepository.SendMail(mailMessage);
         }
     }

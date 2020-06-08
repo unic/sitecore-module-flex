@@ -11,6 +11,17 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ## Changelog
 
+### 4.1
+
+* Update of database schema is required for solutions upgrading to this version. Use SQL script: \databases\Async Mail Plug Upgrade Script\async-mail-plug-upgrade-script.sql
+* Added new SendEmailAsync saveplug. This saveplug send emails by newly installed mail client "MailKit". Before using SendEmailAsync, default Agent for plug execution needs to be disabled (Flex.Unic.config). Instead of them please enable 
+Responsible sitecore tasks (command and schedule) available in "/sitecore/system/Tasks/"Commands/". It is required to configure interval on schedule item: "/sitecore/system/Tasks/Schedules/Flex/Async Plug Execution Schedule".
+Properties "Site Name", "Log Activity", "Log Tag" needs to be configured on command item:"/sitecore/system/Tasks/Commands/Flex/Async Plug Execution Command". 
+
+* 'Flex.Jobs.HonorServerOrigin', 'Flex.ServerOrigin' are a new settings to ensure plug executor, that Jobs/Tasks are processed by the correct instance.
+* 'Flex.Mailing.SmtpClient.MailKit.SecureSocketOptions' is a new setting to setup SecureSocketOptions for MailKit Smpt client.
+* Because of refactoring in common mailer classes, a re-test of mailer plugs in your solution is recommended. This applies to plugs such as 'DoubleOptin', 'SendMail' and any custom plug implementations relying on Mailer classes.
+
 ### 4.0
 
 * Updated Glassmapper to Version 5.5.28 (THIS NEEDS TO BE DONE IN YOUR SC SOLUTION ALSO! For a Version compatible with GlassMapper 4.x please use the support branch support/3.28.x)

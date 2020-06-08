@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.5.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Portable.BouncyCastle.1.8.5\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Castle.Core.4.2.1\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
@@ -50,12 +53,18 @@
     <Reference Include="Glass.Mapper.Sc, Version=5.5.28.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Glass.Mapper.Sc.92.Core.5.5.28\lib\net471\Glass.Mapper.Sc.dll</HintPath>
     </Reference>
+    <Reference Include="MailKit, Version=2.5.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MailKit.2.6.0\lib\net47\MailKit.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="MimeKit, Version=2.6.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MimeKit.2.6.0\lib\net45\MimeKit.dll</HintPath>
     </Reference>
     <Reference Include="Mvc.Mailer">
       <HintPath>..\..\packages\MvcMailer.4.5\lib\45\Mvc.Mailer.dll</HintPath>
@@ -91,6 +100,7 @@
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.IO.FileSystem.Primitives" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Runtime.InteropServices.RuntimeInformation" />
     <Reference Include="System.ServiceModel" />
@@ -137,6 +147,7 @@
     <Compile Include="Analytics\IAnalyticsService.cs" />
     <Compile Include="Attributes\ValidateFormHandlerAttribute.cs" />
     <Compile Include="Authorization\AdministratorOnly.cs" />
+    <Compile Include="Commands\AsyncPlugExecutionCommand.cs" />
     <Compile Include="Context\ContextService.cs" />
     <Compile Include="Context\FlexContext.cs" />
     <Compile Include="Context\IContextService.cs" />
@@ -150,6 +161,7 @@
     <Compile Include="Database\IUnitOfWork.cs" />
     <Compile Include="Database\UnitOfWork.cs" />
     <Compile Include="Definitions\Constants.cs" />
+    <Compile Include="Definitions\Items.cs" />
     <Compile Include="DependencyInjection\DependencyResolver.cs" />
     <Compile Include="DependencyInjection\IContainer.cs" />
     <Compile Include="Globalization\CultureService.cs" />
@@ -178,9 +190,13 @@
     <Compile Include="ModelBinding\ListModelBinder.cs" />
     <Compile Include="ModelBinding\UploadedFileModelBinder.cs" />
     <Compile Include="Pipelines\ObjectConstruction\DependencyInjectorTask.cs" />
+    <Compile Include="Plugs\IAsyncPlugExecutionService.cs" />
     <Compile Include="Plugs\IPlugsService.cs" />
+    <Compile Include="Plugs\IServerOriginService.cs" />
     <Compile Include="Plugs\ITaskService.cs" />
+    <Compile Include="Plugs\AsyncPlugExecutionService.cs" />
     <Compile Include="Plugs\PlugsService.cs" />
+    <Compile Include="Plugs\ServerOriginService.cs" />
     <Compile Include="Plugs\TaskService.cs" />
     <Compile Include="Presentation\HtmlHelperExtensions.cs" />
     <Compile Include="Mapping\FormRepository.cs" />

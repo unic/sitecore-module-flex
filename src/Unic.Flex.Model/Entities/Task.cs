@@ -55,6 +55,8 @@
         [Required]
         public virtual DateTime LastTry { get; set; }
 
+        public virtual string TaskData { get; set; }
+
         /// <summary>
         /// Gets or sets the job.
         /// </summary>
