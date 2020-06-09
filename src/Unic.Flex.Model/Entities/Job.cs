@@ -37,6 +37,14 @@
         public virtual string Data { get; set; }
 
         /// <summary>
+        /// Gets or sets the job origin.
+        /// </summary>
+        /// <value>
+        /// The origin.
+        /// </value>
+        public virtual string JobOrigin { get; set; }
+
+        /// <summary>
         /// Gets or sets the tasks.
         /// </summary>
         /// <value>

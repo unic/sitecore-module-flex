@@ -27,10 +27,18 @@
         
         RuleList<RuleContext> ConditionalRule { get; set; }
 
+        string TaskData { get; set; }
+
         /// <summary>
         /// Executes the load plug.
         /// </summary>
         /// <param name="form">The form.</param>
         void Execute(IForm form);
+
+        /// <summary>
+        /// Provides relevant data for async plug execution
+        /// </summary>
+        /// <returns></returns>
+        string GetTaskDataForStorage(IForm form);
     }
 }
