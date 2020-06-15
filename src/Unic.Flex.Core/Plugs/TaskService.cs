@@ -84,7 +84,7 @@
         public virtual void ExecuteAll(SiteContext site)
         {
             this.logger.Debug("Execute all jobs from database", this);
-            var jobs = this.GetAllJobs();
+            var jobs = this.GetAllJobsByOrigin();
             foreach (var job in jobs)
             {
                 this.Execute(job, site);
@@ -127,15 +127,26 @@
         }
 
         /// <summary>
-        /// Gets all jobs.
+        /// Gets all jobs for current configured server origin, or all jobs when origin check disabled
+        /// </summary>
+        /// <returns>
+        /// List of jobs
+        /// </returns>
+        public virtual IEnumerable<Job> GetAllJobsByOrigin()
+        {
+            var serverOriginFilter = this.GetServerOriginFilter(this.serverOriginService.IsServerOriginCheckEnabled(), this.serverOriginService.GetServerOrigin());
+            return this.unitOfWork.JobRepository.Get(serverOriginFilter);
+        }
+
+        /// <summary>
+        /// Gets all jobs
         /// </summary>
         /// <returns>
         /// List of jobs
         /// </returns>
         public virtual IEnumerable<Job> GetAllJobs()
         {
-            var serverOriginFilter = this.GetServerOriginFilter(this.serverOriginService.IsServerOriginCheckEnabled(), this.serverOriginService.GetServerOrigin());
-            return this.unitOfWork.JobRepository.Get(serverOriginFilter);
+            return this.unitOfWork.JobRepository.Get();
         }
 
         private Expression<Func<Job, bool>> GetServerOriginFilter(bool allowServerOriginCheck, string serverOrigin)
