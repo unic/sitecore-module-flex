@@ -11,6 +11,10 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ## Changelog
 
+### 4.1.2
+
+* Remove lock on 9.2 version of Sitecore libraries
+
 ### 4.1.1
 
 *  Bugfix to display all occurrences of "Send Email Async" plug in: "Control Panel\Flex Dashboard\Async Plugs".
