@@ -25,6 +25,12 @@
         void Execute(Job job, SiteContext site);
 
         /// <summary>
+        /// Gets all jobs for current configured server origin, or all jobs when origin check disabled
+        /// </summary>
+        /// <returns>List of jobs</returns>
+        IEnumerable<Job> GetAllJobsByOrigin();
+
+        /// <summary>
         /// Gets all jobs.
         /// </summary>
         /// <returns>List of jobs</returns>
