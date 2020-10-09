@@ -74,7 +74,7 @@
             return serializedMimeMessage;
         }
 
-        private MimeMessage ApplyGlobalConfigurationOnMessage(MailMessageGlobalConfiguration messageGlobalConfiguration, MimeMessage message)
+        protected MimeMessage ApplyGlobalConfigurationOnMessage(MailMessageGlobalConfiguration messageGlobalConfiguration, MimeMessage message)
         {
             Assert.ArgumentNotNull(message, "message");
             Assert.ArgumentNotNull(messageGlobalConfiguration, "messageGlobalConfiguration");
