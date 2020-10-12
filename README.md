@@ -11,6 +11,10 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ## Changelog
 
+### 4.1.4
+
+* Expose additional method in Send Email Async.
+
 ### 4.1.3
 
 * Configure Flex.ServerOrigin for ContentDelivery
