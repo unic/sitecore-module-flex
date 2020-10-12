@@ -11,6 +11,10 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ## Changelog
 
+### 3.29.2
+
+* Expose additional method in Send Email Async.
+
 ### 3.29.1
 
 *  Bugfix to display all occurances of "Send Email Async" plug in: "Control Panel\Flex Dashboard\Async Plugs".
