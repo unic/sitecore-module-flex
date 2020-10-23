@@ -70,7 +70,7 @@
             {
                 string errorMsg = $"Could not load the datasource {dataSource}, make sure it is available and of the type form";
                 this.logger.Error(errorMsg, this, ex);
-                throw new Exception(errorMsg, ex);
+                return null;
             }
 
             if (form == null)
