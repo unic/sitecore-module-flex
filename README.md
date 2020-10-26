@@ -11,6 +11,10 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ## Changelog
 
+### 4.1.5
+
+* Fix page crashing on broken link to datasource
+
 ### 4.1.4
 
 * Expose additional method in Send Email Async.
