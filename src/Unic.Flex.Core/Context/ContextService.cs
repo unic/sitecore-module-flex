@@ -70,6 +70,14 @@
             {
                 string errorMsg = $"Could not load the datasource {dataSource}, make sure it is available and of the type form";
                 this.logger.Error(errorMsg, this, ex);
+
+                var propagateDatasourceLoadException = Sitecore.Configuration.Settings.GetBoolSetting(Definitions.Constants.propagateDatasourceLoadException, true);
+
+                if (propagateDatasourceLoadException)
+                {
+                    throw new Exception(errorMsg, ex);
+                }
+
                 return null;
             }
 
