@@ -41,7 +41,5 @@
         public const string SmtpClientSecureSocketOption = "Flex.Mailing.SmtpClient.MailKit.SecureSocketOptions";
 
         public const string ServerOrigin = "Flex.ServerOrigin";
-
-        public const string propagateDatasourceLoadException = "Flex.PropagateDatasourceLoadException";
     }
 }

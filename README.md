@@ -11,6 +11,10 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ## Changelog
 
+### 4.1.6
+
+* Remove setting to toggle exception handling on loading form datasource. This should be handled by overriding the ContextService in the consuming project
+
 ### 4.1.5
 
 * Add setting to toggle exception handling on loading form datasource
