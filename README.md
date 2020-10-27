@@ -11,6 +11,10 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ## Changelog
 
+### 4.1.5
+
+* Add setting to toggle exception handling on loading form datasource
+
 ### 4.1.4
 
 * Expose additional method in Send Email Async.
