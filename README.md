@@ -13,7 +13,7 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ### 4.1.5
 
-* Fix page crashing on broken link to datasource
+* Add setting to toggle exception handling on loading form datasource
 
 ### 4.1.4
 
