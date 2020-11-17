@@ -16,7 +16,6 @@
     using System.Web;
     using System.Web.Mvc;
     using Unic.Flex.Core.Context;
-    using Unic.Flex.Core.DependencyInjection;
     using Unic.Flex.Core.Globalization;
     using Unic.Flex.Core.Logging;
     using Unic.Flex.Core.Utilities;
@@ -82,7 +81,9 @@
                 var hash = SecurityUtil.GetMd5Hash(MD5.Create(), string.Join("_", form.ItemId, fileName));
                 var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
                 var downloadUrl = urlHelper.RouteUrl(Model.Constants.MvcRouteName, new { controller = "Flex", action = "DatabasePlugExport", formId = form.ItemId, fileName = fileName, hash = hash, sc_lang = item.Language });
-                SheerResponse.SetLocation(downloadUrl);
+                var modalUrl = urlHelper.RouteUrl(Model.Constants.MvcRouteName, new { controller = "Flex", action = "DatabasePlugExportDownload",
+                    downloadUrl });
+                SheerResponse.ShowModalDialog(this.GetModalDialogOptions(modalUrl));
             }
         }
 
@@ -164,5 +165,14 @@
                 this.contextService = DependencyResolver.Resolve<IContextService>();
             }
         }
+
+        private ModalDialogOptions GetModalDialogOptions(string url) =>
+            new ModalDialogOptions(url)
+            {
+                Header = DependencyResolver.Resolve<IDictionaryRepository>().GetText("Database Plug Export Download Title"),
+                Width = "500px",
+                Height = "275px",
+                Resizable = true
+            };
     }
 }
