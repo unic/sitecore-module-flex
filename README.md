@@ -11,6 +11,11 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ## Changelog
 
+### 4.1.7
+
+* Get rid of the error when trying to export data for a form that is not existing in database set as `Unic.Feature.Flex.InitialDatabase` (web by default) but existis in master.
+* Improve error handling of exporting data with Content Editor ribbon button by displaying visible error message to the user.
+
 ### 4.1.6
 
 * Remove setting to toggle exception handling on loading form datasource. This should be handled by overriding the ContextService in the consuming project
