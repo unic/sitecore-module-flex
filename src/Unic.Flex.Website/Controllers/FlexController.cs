@@ -515,7 +515,7 @@
                 // get the file, delete it and return the stream
                 var data = this.GetFileData(filePath);
                 System.IO.File.Delete(filePath);
-                var title = string.IsNullOrWhiteSpace(form.Title) ? this.dictionaryRepository.GetText("Export Fallback Filename") : form.Title;
+                var title = string.IsNullOrWhiteSpace(form?.Title) ? this.dictionaryRepository.GetText("Export Fallback Filename") : form.Title;
                 return this.File(data, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", string.Format("{0}.xlsx", title));
             }
             catch (Exception exception)
