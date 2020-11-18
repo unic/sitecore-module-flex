@@ -172,6 +172,7 @@
     <Compile Include="GlassExtensions\Handlers\SitecoreSharedFieldTypeMapper.cs" />
     <Compile Include="Validators\IValidatableObject.cs" />
     <Compile Include="Validators\ValidationType.cs" />
+    <Compile Include="ViewModels\DatabasePlugExportDownloadViewModel.cs" />
     <Compile Include="ViewModels\ErrorViewModel.cs" />
     <Compile Include="ViewModels\SuccessMessageViewModel.cs" />
     <Compile Include="Fields\InputFields\InputField.cs" />

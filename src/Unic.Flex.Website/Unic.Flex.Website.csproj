@@ -200,6 +200,7 @@
     <Content Include="Views\Modules\Flex\Default\Components\LabelLink.cshtml" />
     <Content Include="Views\Modules\Flex\Default\Mailers\SavePlug\DoubleOptin.cshtml" />
     <Content Include="Views\Modules\Flex\Default\Mailers\SavePlug\DoubleOptin.text.cshtml" />
+    <Content Include="Views\Modules\Flex\Default\Components\DatabasePlugExportDownload.cshtml" />
     <None Include="web.config">
       <SubType>Designer</SubType>
     </None>

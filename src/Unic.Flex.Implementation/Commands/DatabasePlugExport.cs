@@ -16,7 +16,6 @@
     using System.Web;
     using System.Web.Mvc;
     using Unic.Flex.Core.Context;
-    using Unic.Flex.Core.DependencyInjection;
     using Unic.Flex.Core.Globalization;
     using Unic.Flex.Core.Logging;
     using Unic.Flex.Core.Utilities;
@@ -56,7 +55,7 @@
         public override void Execute(CommandContext context)
         {
             Assert.ArgumentNotNull(context, "context");
-            
+
             // get the item to process
             var item = context.Items.FirstOrDefault();
             Assert.IsNotNull(item, "Item must not be null");
@@ -75,14 +74,37 @@
                 }
 
                 var filePath = this.GetTempFileName();
-                ProgressBox.Execute(this.dictionaryRepository.GetText("Exporting form"), this.dictionaryRepository.GetText("Flex Form Export"), this.Export, form, filePath);
-            
+                ProgressBox.Execute(
+                    this.dictionaryRepository.GetText("Exporting form"),
+                    this.dictionaryRepository.GetText("Flex Form Export"),
+                    this.Export,
+                    form,
+                    filePath);
+
                 // dowload the document
                 var fileName = filePath.Substring(filePath.LastIndexOf('\\') + 1);
                 var hash = SecurityUtil.GetMd5Hash(MD5.Create(), string.Join("_", form.ItemId, fileName));
                 var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
-                var downloadUrl = urlHelper.RouteUrl(Model.Constants.MvcRouteName, new { controller = "Flex", action = "DatabasePlugExport", formId = form.ItemId, fileName = fileName, hash = hash, sc_lang = item.Language });
-                SheerResponse.SetLocation(downloadUrl);
+                var downloadUrl = urlHelper.RouteUrl(
+                    Model.Constants.MvcRouteName,
+                    new
+                    {
+                        controller = "Flex",
+                        action = "DatabasePlugExport",
+                        formId = form.ItemId,
+                        fileName = fileName,
+                        hash = hash,
+                        sc_lang = item.Language
+                    });
+                var modalUrl = urlHelper.RouteUrl(
+                    Model.Constants.MvcRouteName,
+                    new
+                    {
+                        controller = "Flex",
+                        action = "DatabasePlugExportDownload",
+                        downloadUrl
+                    });
+                SheerResponse.ShowModalDialog(this.GetModalDialogOptions(modalUrl));
             }
         }
 
@@ -164,5 +186,14 @@
                 this.contextService = DependencyResolver.Resolve<IContextService>();
             }
         }
+
+        private ModalDialogOptions GetModalDialogOptions(string url) =>
+            new ModalDialogOptions(url)
+            {
+                Header = DependencyResolver.Resolve<IDictionaryRepository>().GetText("Database Plug Export Download Title"),
+                Width = "500px",
+                Height = "275px",
+                Resizable = true
+            };
     }
 }
