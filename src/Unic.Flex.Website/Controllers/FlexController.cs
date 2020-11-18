@@ -520,7 +520,7 @@
             }
             catch (Exception exception)
             {
-                this.logger.Warn(string.Format("Try for exporting form '{0}' failed. {1}", formId, exception), this);
+                this.logger.Warn(string.Format("Try for exporting form '{0}' failed.", formId), this, exception);
                 return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
             }
         }
