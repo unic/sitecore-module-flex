@@ -49,6 +49,11 @@
         private IContextService contextService;
 
         /// <summary>
+        /// The Flex context
+        /// </summary>
+        private IFlexContext flexContext;
+
+        /// <summary>
         /// The database in which context the command is executed.
         /// </summary>
         private Database database;
@@ -68,6 +73,8 @@
             // initialize
             this.Initialize();
 
+            var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
+            string downloadUrl;
             using (new LanguageSwitcher(item.Language))
             {
                 // generate the excel
@@ -89,8 +96,7 @@
                 // dowload the document
                 var fileName = filePath.Substring(filePath.LastIndexOf('\\') + 1);
                 var hash = SecurityUtil.GetMd5Hash(MD5.Create(), string.Join("_", form.ItemId, fileName));
-                var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
-                var downloadUrl = urlHelper.RouteUrl(
+                downloadUrl = urlHelper.RouteUrl(
                     Model.Constants.MvcRouteName,
                     new
                     {
@@ -101,17 +107,19 @@
                         hash,
                         sc_lang = item.Language
                     });
-                var modalUrl = urlHelper.RouteUrl(
-                    Model.Constants.MvcRouteName,
-                    new
-                    {
-                        controller = "Flex",
-                        action = "DatabasePlugExportDownload",
-                        downloadUrl,
-                        sc_database = this.database?.Name
-                    });
-                SheerResponse.ShowModalDialog(this.GetModalDialogOptions(modalUrl));
             }
+
+            var modalUrl = urlHelper.RouteUrl(
+                Model.Constants.MvcRouteName,
+                new
+                {
+                    controller = "Flex",
+                    action = "DatabasePlugExportDownload",
+                    downloadUrl,
+                    sc_database = this.database?.Name,
+                    sc_lang = this.flexContext.LanguageName
+                });
+            SheerResponse.ShowModalDialog(this.GetModalDialogOptions(modalUrl));
         }
 
         /// <summary>
@@ -191,13 +199,14 @@
                 this.logger = DependencyResolver.Resolve<ILogger>();
                 this.dictionaryRepository = DependencyResolver.Resolve<IDictionaryRepository>();
                 this.contextService = DependencyResolver.Resolve<IContextService>();
+                this.flexContext = DependencyResolver.Resolve<IFlexContext>();
             }
         }
 
         private ModalDialogOptions GetModalDialogOptions(string url) =>
             new ModalDialogOptions(url)
             {
-                Header = DependencyResolver.Resolve<IDictionaryRepository>().GetText("Database Plug Export Download Title"),
+                Header =this.dictionaryRepository.GetText("Database Plug Export Download Title"),
                 Width = "500px",
                 Height = "275px",
                 Resizable = true
