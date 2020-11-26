@@ -105,7 +105,8 @@
                         formId = form.ItemId,
                         fileName,
                         hash,
-                        sc_lang = item.Language
+                        sc_lang = item.Language,
+                        sc_database = this.database?.Name
                     });
             }
 
