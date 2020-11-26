@@ -49,6 +49,11 @@
         private IContextService contextService;
 
         /// <summary>
+        /// The database in which context the command is executed.
+        /// </summary>
+        private Database database;
+
+        /// <summary>
         /// Executes the specified context.
         /// </summary>
         /// <param name="context">The context.</param>
@@ -92,8 +97,8 @@
                         controller = "Flex",
                         action = "DatabasePlugExport",
                         formId = form.ItemId,
-                        fileName = fileName,
-                        hash = hash,
+                        fileName,
+                        hash,
                         sc_lang = item.Language
                     });
                 var modalUrl = urlHelper.RouteUrl(
@@ -102,7 +107,8 @@
                     {
                         controller = "Flex",
                         action = "DatabasePlugExportDownload",
-                        downloadUrl
+                        downloadUrl,
+                        sc_database = this.database?.Name
                     });
                 SheerResponse.ShowModalDialog(this.GetModalDialogOptions(modalUrl));
             }
@@ -178,7 +184,8 @@
         /// </summary>
         private void Initialize()
         {
-            using (new DatabaseSwitcher(Factory.GetDatabase("master")))
+            this.database = Factory.GetDatabase("master");
+            using (new DatabaseSwitcher(this.database))
             {
                 this.saveToDatabaseService = DependencyResolver.Resolve<ISaveToDatabaseService>();
                 this.logger = DependencyResolver.Resolve<ILogger>();
