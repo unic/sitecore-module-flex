@@ -28,6 +28,8 @@
     /// </summary>
     public class DatabasePlugExport : Command, ISupportsContinuation
     {
+        private const string MasterDatabaseName = "master";
+
         /// <summary>
         /// The save to database service
         /// </summary>
@@ -56,7 +58,12 @@
         /// <summary>
         /// The database in which context the command is executed.
         /// </summary>
-        private Database database;
+        private Database contextDatabase;
+
+        /// <summary>
+        /// Gets the command context database name.
+        /// </summary>
+        private string ContextDatabaseName => this.contextDatabase?.Name ?? MasterDatabaseName;
 
         /// <summary>
         /// Executes the specified context.
@@ -93,7 +100,7 @@
                     form,
                     filePath);
 
-                // dowload the document
+                // download the document
                 var fileName = filePath.Substring(filePath.LastIndexOf('\\') + 1);
                 var hash = SecurityUtil.GetMd5Hash(MD5.Create(), string.Join("_", form.ItemId, fileName));
                 downloadUrl = urlHelper.RouteUrl(
@@ -106,7 +113,7 @@
                         fileName,
                         hash,
                         sc_lang = item.Language,
-                        sc_database = this.database?.Name
+                        sc_database = this.ContextDatabaseName
                     });
             }
 
@@ -117,7 +124,7 @@
                     controller = "Flex",
                     action = "DatabasePlugExportDownload",
                     downloadUrl,
-                    sc_database = this.database?.Name,
+                    sc_database = this.ContextDatabaseName,
                     sc_lang = this.flexContext.LanguageName
                 });
             SheerResponse.ShowModalDialog(this.GetModalDialogOptions(modalUrl));
@@ -193,8 +200,8 @@
         /// </summary>
         private void Initialize()
         {
-            this.database = Factory.GetDatabase("master");
-            using (new DatabaseSwitcher(this.database))
+            this.contextDatabase = Factory.GetDatabase(MasterDatabaseName);
+            using (new DatabaseSwitcher(this.contextDatabase))
             {
                 this.saveToDatabaseService = DependencyResolver.Resolve<ISaveToDatabaseService>();
                 this.logger = DependencyResolver.Resolve<ILogger>();
