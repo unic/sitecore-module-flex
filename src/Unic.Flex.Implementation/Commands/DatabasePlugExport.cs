@@ -28,6 +28,8 @@
     /// </summary>
     public class DatabasePlugExport : Command, ISupportsContinuation
     {
+        private const string MasterDatabaseName = "master";
+
         /// <summary>
         /// The save to database service
         /// </summary>
@@ -49,6 +51,21 @@
         private IContextService contextService;
 
         /// <summary>
+        /// The Flex context
+        /// </summary>
+        private IFlexContext flexContext;
+
+        /// <summary>
+        /// The database in which context the command is executed.
+        /// </summary>
+        private Database contextDatabase;
+
+        /// <summary>
+        /// Gets the command context database name.
+        /// </summary>
+        private string ContextDatabaseName => this.contextDatabase?.Name ?? MasterDatabaseName;
+
+        /// <summary>
         /// Executes the specified context.
         /// </summary>
         /// <param name="context">The context.</param>
@@ -63,6 +80,8 @@
             // initialize
             this.Initialize();
 
+            var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
+            string downloadUrl;
             using (new LanguageSwitcher(item.Language))
             {
                 // generate the excel
@@ -81,31 +100,34 @@
                     form,
                     filePath);
 
-                // dowload the document
+                // download the document
                 var fileName = filePath.Substring(filePath.LastIndexOf('\\') + 1);
                 var hash = SecurityUtil.GetMd5Hash(MD5.Create(), string.Join("_", form.ItemId, fileName));
-                var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
-                var downloadUrl = urlHelper.RouteUrl(
+                downloadUrl = urlHelper.RouteUrl(
                     Model.Constants.MvcRouteName,
                     new
                     {
                         controller = "Flex",
                         action = "DatabasePlugExport",
                         formId = form.ItemId,
-                        fileName = fileName,
-                        hash = hash,
-                        sc_lang = item.Language
+                        fileName,
+                        hash,
+                        sc_lang = item.Language,
+                        sc_database = this.ContextDatabaseName
                     });
-                var modalUrl = urlHelper.RouteUrl(
-                    Model.Constants.MvcRouteName,
-                    new
-                    {
-                        controller = "Flex",
-                        action = "DatabasePlugExportDownload",
-                        downloadUrl
-                    });
-                SheerResponse.ShowModalDialog(this.GetModalDialogOptions(modalUrl));
             }
+
+            var modalUrl = urlHelper.RouteUrl(
+                Model.Constants.MvcRouteName,
+                new
+                {
+                    controller = "Flex",
+                    action = "DatabasePlugExportDownload",
+                    downloadUrl,
+                    sc_database = this.ContextDatabaseName,
+                    sc_lang = this.flexContext.LanguageName
+                });
+            SheerResponse.ShowModalDialog(this.GetModalDialogOptions(modalUrl));
         }
 
         /// <summary>
@@ -178,19 +200,21 @@
         /// </summary>
         private void Initialize()
         {
-            using (new DatabaseSwitcher(Factory.GetDatabase("master")))
+            this.contextDatabase = Factory.GetDatabase(MasterDatabaseName);
+            using (new DatabaseSwitcher(this.contextDatabase))
             {
                 this.saveToDatabaseService = DependencyResolver.Resolve<ISaveToDatabaseService>();
                 this.logger = DependencyResolver.Resolve<ILogger>();
                 this.dictionaryRepository = DependencyResolver.Resolve<IDictionaryRepository>();
                 this.contextService = DependencyResolver.Resolve<IContextService>();
+                this.flexContext = DependencyResolver.Resolve<IFlexContext>();
             }
         }
 
         private ModalDialogOptions GetModalDialogOptions(string url) =>
             new ModalDialogOptions(url)
             {
-                Header = DependencyResolver.Resolve<IDictionaryRepository>().GetText("Database Plug Export Download Title"),
+                Header =this.dictionaryRepository.GetText("Database Plug Export Download Title"),
                 Width = "500px",
                 Height = "275px",
                 Resizable = true

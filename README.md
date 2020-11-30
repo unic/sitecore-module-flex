@@ -11,6 +11,12 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ## Changelog
 
+### 4.1.8
+
+* Ensure that when database data export is triggered from ribbon button:
+    * the same DB that is used by the command (master) is used by controller 
+    * the translations visible in Sitecore client are in the client's language.
+
 ### 4.1.7
 
 * Get rid of the error when trying to export data for a form that is not existing in database set as `Unic.Feature.Flex.InitialDatabase` (web by default) but existis in master.
