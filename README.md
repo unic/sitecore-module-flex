@@ -11,6 +11,11 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ## Changelog
 
+### 4.1.9
+
+* Fix export to Excel with IdentityServer
+* Move deploy-once serialization files from app\flex to modules\flex\appDefault
+
 ### 4.1.8
 
 * Ensure that when database data export is triggered from ribbon button:
