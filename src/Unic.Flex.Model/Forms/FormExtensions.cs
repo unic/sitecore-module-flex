@@ -69,7 +69,7 @@
         public static string GetFieldValue(this IForm form, IField field)
         {
             if (form == null || field == null) return string.Empty;
-            var formField = form.GetField(field);
+            var formField = form.GetField(field.ReusableComponent ?? field);
             if (formField == null || formField.Value == null) return string.Empty;
 
             var listValue = formField.Value as IEnumerable<string>;
