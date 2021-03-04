@@ -11,6 +11,10 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ## Changelog
 
+### 3.30.0
+
+* Fix GetFieldValue for reusable fields
+
 ### 3.29.2
 
 * Expose additional method in Send Email Async.
