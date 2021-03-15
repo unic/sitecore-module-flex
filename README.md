@@ -11,6 +11,9 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ## Changelog
 
+### 4.2
+* Fix GetFieldValue for reusable fields
+
 ### 4.1.9
 
 * Fix export to Excel with IdentityServer
