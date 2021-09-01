@@ -65,6 +65,7 @@
         /// <param name="content">Content in which we do the replacement</param>
         /// <param name="genderFieldValue">Gender field value</param>
         /// <param name="genderSalutationMapping">Mapping of gender values and salutations</param>
+        /// <param name="fields">Form fields</param>
         /// <returns>Content with replaced values</returns>
         public virtual string ReplaceSalutationToken(string content, string genderFieldValue, NameValueCollection genderSalutationMapping, IEnumerable<IField> fields)
         {
