@@ -66,16 +66,23 @@
         /// <param name="genderFieldValue">Gender field value</param>
         /// <param name="genderSalutationMapping">Mapping of gender values and salutations</param>
         /// <returns>Content with replaced values</returns>
-        public virtual string ReplaceSalutationToken(string content, string genderFieldValue, NameValueCollection genderSalutationMapping)
+        public virtual string ReplaceSalutationToken(string content, string genderFieldValue, NameValueCollection genderSalutationMapping, IEnumerable<IField> fields)
         {
+            if (genderSalutationMapping == null || string.IsNullOrEmpty(genderFieldValue)) return content;
+            
+            var selectedGenderMapping = genderSalutationMapping.Get(genderFieldValue);
+            if (string.IsNullOrEmpty(selectedGenderMapping)) return content;
+            
+            var selectedGenderMappingWithReplacedTokens = this.ReplaceTokens(selectedGenderMapping, fields);
+
             return Regex.Replace(
                 content,
                 @"({)(salutation)(})",
                 match =>
                 {
-                    if (genderSalutationMapping != null && !string.IsNullOrEmpty(genderFieldValue))
+                    if (!string.IsNullOrEmpty(selectedGenderMappingWithReplacedTokens))
                     {
-                        return genderSalutationMapping.Get(genderFieldValue);
+                        return selectedGenderMappingWithReplacedTokens;
                     }
 
                     return match.Value;

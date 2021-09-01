@@ -38,6 +38,6 @@
         /// <param name="genderFieldValue">Gender field value</param>
         /// <param name="genderSalutationMapping">Mapping of gender values and salutations</param>
         /// <returns>Content with replaced values</returns>
-        string ReplaceSalutationToken(string content, string genderFieldValue, NameValueCollection genderSalutationMapping);
+        string ReplaceSalutationToken(string content, string genderFieldValue, NameValueCollection genderSalutationMapping, IEnumerable<IField> fields);
     }
 }
