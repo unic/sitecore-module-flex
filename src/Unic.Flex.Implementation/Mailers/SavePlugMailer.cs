@@ -83,7 +83,7 @@
 
         private MailAddressCollection StringToAddressCollection(string source)
         {
-            var targetCollection =  new MailAddressCollection();
+            var targetCollection = new MailAddressCollection();
             if (!string.IsNullOrWhiteSpace(source))
             {
                 source.Split(new[] { ";" }, StringSplitOptions.RemoveEmptyEntries).ForEach(targetCollection.Add);
@@ -133,8 +133,9 @@
 
         private string ReplaceTokens(string source, IForm form, SendEmail plug)
         {
-            var emailContentWithReplacedFieldTokens = this.ReplaceFieldTokens(source, form.GetFields());
-            var emailContentWithReplacedTokens = this.ReplaceSalutationToken(emailContentWithReplacedFieldTokens, form, plug);
+            var fields = form.GetFields();
+            var emailContentWithReplacedFieldTokens = this.ReplaceFieldTokens(source, fields);
+            var emailContentWithReplacedTokens = this.ReplaceSalutationToken(emailContentWithReplacedFieldTokens, form, plug, fields);
             return emailContentWithReplacedTokens;
         }
 
@@ -143,12 +144,12 @@
             return this.mailService.ReplaceTokens(source, fields);
         }
 
-        private string ReplaceSalutationToken(string source, IForm form, SendEmail plug)
+        private string ReplaceSalutationToken(string source, IForm form, SendEmail plug, IEnumerable<IField> fields)
         {
             if (plug.GenderField == null) return source;
 
             var genderFieldValue = form.GetFieldValue(plug.GenderField);
-            return this.mailService.ReplaceSalutationToken(source, genderFieldValue, plug.GenderSalutationMapping);
+            return this.mailService.ReplaceSalutationToken(source, genderFieldValue, plug.GenderSalutationMapping, fields);
         }
 
         private string GetMappedEmailFromFields(IEnumerable<IField> fields, IForm form, SendEmail plug)

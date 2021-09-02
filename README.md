@@ -11,6 +11,9 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ## Changelog
 
+### 4.3
+* Add handling of fields tokens inside salutation token
+
 ### 4.2
 * Fix GetFieldValue for reusable fields
 
