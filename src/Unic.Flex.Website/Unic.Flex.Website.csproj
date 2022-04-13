@@ -73,13 +73,11 @@
       <HintPath>..\..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sitecore.Kernel, Version=8.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sitecore.Kernel.8.1.160302\lib\Sitecore.Kernel.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Sitecore.Kernel">
+      <HintPath>..\..\packages\Sitecore.Kernel.8.1.160302\lib\NET45\Sitecore.Kernel.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Mvc, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sitecore.Mvc.8.1.160302\lib\Sitecore.Mvc.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Sitecore.Mvc">
+      <HintPath>..\..\packages\Sitecore.Mvc.8.1.160302\lib\NET45\Sitecore.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
@@ -122,13 +120,11 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="Unic.Configuration.Core, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Unic.Configuration.Core.3.0.0\lib\net45\Unic.Configuration.Core.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Unic.Configuration.Core">
+      <HintPath>..\..\packages\Unic.Configuration.Core.3.1.0\lib\net45\Unic.Configuration.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Unic.Configuration.Website, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Unic.Configuration.3.0.0\lib\net45\Unic.Configuration.Website.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Unic.Configuration.Website">
+      <HintPath>..\..\packages\Unic.Configuration.3.1.0\lib\net45\Unic.Configuration.Website.dll</HintPath>
     </Reference>
     <Reference Include="Unic.Profiling, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

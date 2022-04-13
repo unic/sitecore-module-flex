@@ -72,12 +72,11 @@
       <HintPath>..\..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sitecore.Analytics, Version=8.1.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\packages\Sitecore.Analytics.8.1.160302\lib\Sitecore.Analytics.dll</HintPath>
+    <Reference Include="Sitecore.Analytics">
+      <HintPath>..\..\packages\Sitecore.Analytics.8.1.160302\lib\NET45\Sitecore.Analytics.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Kernel, Version=8.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sitecore.Kernel.8.1.160302\lib\Sitecore.Kernel.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Sitecore.Kernel">
+      <HintPath>..\..\packages\Sitecore.Kernel.8.1.160302\lib\NET45\Sitecore.Kernel.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -116,9 +115,8 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Unic.Configuration.Core, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Unic.Configuration.Core.3.0.0\lib\net45\Unic.Configuration.Core.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Unic.Configuration.Core">
+      <HintPath>..\..\packages\Unic.Configuration.Core.3.1.0\lib\net45\Unic.Configuration.Core.dll</HintPath>
     </Reference>
     <Reference Include="Unic.Profiling, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

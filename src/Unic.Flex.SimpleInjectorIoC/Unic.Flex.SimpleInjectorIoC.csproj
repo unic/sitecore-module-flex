@@ -81,9 +81,8 @@
       <HintPath>..\..\packages\SimpleInjector.Integration.Web.3.1.2\lib\net40\SimpleInjector.Integration.Web.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sitecore.Kernel, Version=8.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sitecore.Kernel.8.1.160302\lib\Sitecore.Kernel.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Sitecore.Kernel">
+      <HintPath>..\..\packages\Sitecore.Kernel.8.1.160302\lib\NET45\Sitecore.Kernel.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -125,9 +124,8 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="Unic.Configuration.Core, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Unic.Configuration.Core.3.0.0\lib\net45\Unic.Configuration.Core.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Unic.Configuration.Core">
+      <HintPath>..\..\packages\Unic.Configuration.Core.3.1.0\lib\net45\Unic.Configuration.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
