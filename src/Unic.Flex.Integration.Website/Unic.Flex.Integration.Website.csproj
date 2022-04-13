@@ -70,13 +70,16 @@
       <HintPath>..\..\packages\Rainbow.Storage.Yaml.1.3.1\lib\net45\Rainbow.Storage.Yaml.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sitecore.Ship.AspNet">
+    <Reference Include="Sitecore.Ship.AspNet, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Sitecore.Ship.AspNet.0.4.0.150818\lib\net45\Sitecore.Ship.AspNet.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Ship.Core">
+    <Reference Include="Sitecore.Ship.Core, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Sitecore.Ship.AspNet.0.4.0.150818\lib\net45\Sitecore.Ship.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Ship.Infrastructure">
+    <Reference Include="Sitecore.Ship.Infrastructure, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Sitecore.Ship.AspNet.0.4.0.150818\lib\net45\Sitecore.Ship.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
