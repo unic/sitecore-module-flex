@@ -11,6 +11,9 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ## Changelog
 
+### 4.3.1
+* Update Unic.Configuration from 3.0.0 to 3.1.0.
+
 ### 4.3
 * Add handling of fields tokens inside salutation token
 

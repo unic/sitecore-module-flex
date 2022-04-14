@@ -115,13 +115,13 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="Unic.Configuration.Core, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Unic.Configuration.Core.3.0.0\lib\net45\Unic.Configuration.Core.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Unic.Configuration.Core, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Unic.Configuration.Core.3.1.0\lib\net45\Unic.Configuration.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Unic.Configuration.Website, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Unic.Configuration.3.0.0\lib\net45\Unic.Configuration.Website.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Unic.Configuration.Website, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Unic.Configuration.3.1.0\lib\net45\Unic.Configuration.Website.dll</HintPath>
     </Reference>
     <Reference Include="Unic.Profiling, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
