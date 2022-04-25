@@ -99,16 +99,16 @@
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Unic.Bob.Scrambler.ContentSearch, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Unic.Bob.Scrambler.ContentSearch.1.1.1\lib\net45\Unic.Bob.Scrambler.ContentSearch.dll</HintPath>
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Unic.Bob.Scrambler.ContentSearch.2.2.0\lib\net45\Unic.Bob.Scrambler.ContentSearch.dll</HintPath>
     </Reference>
     <Reference Include="Unic.Bob.Scrambler.Core, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Unic.Bob.Scrambler.Core.1.1.1\lib\net40\Unic.Bob.Scrambler.Core.dll</HintPath>
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Unic.Bob.Scrambler.Core.2.2.0\lib\net45\Unic.Bob.Scrambler.Core.dll</HintPath>
     </Reference>
     <Reference Include="Unic.Bob.Scrambler.Website, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Unic.Bob.Scrambler.1.1.1\lib\net40\Unic.Bob.Scrambler.Website.dll</HintPath>
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Unic.Bob.Scrambler.2.2.0\lib\net45\Unic.Bob.Scrambler.Website.dll</HintPath>
     </Reference>
     <Reference Include="Unicorn, Version=4.1.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Unicorn.Core.4.1.1\lib\net452\Unicorn.dll</HintPath>
