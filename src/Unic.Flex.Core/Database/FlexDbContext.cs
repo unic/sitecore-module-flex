@@ -1,12 +1,14 @@
 ﻿namespace Unic.Flex.Core.Database
 {
     using System.Data.Entity;
+    using System.Data.Entity.Infrastructure;
     using Unic.Flex.Model.Entities;
 
     public class FlexDbContext : DbContext
     {
         public FlexDbContext() : base("name=Flex")
         {
+            ((IObjectContextAdapter)this).ObjectContext.CommandTimeout = Sitecore.Configuration.Settings.GetIntSetting("Flex.Database.CommandTimeout", 30); 
         }
 
         public virtual DbSet<Form> Forms { get; set; }

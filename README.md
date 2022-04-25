@@ -11,6 +11,9 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ## Changelog
 
+### 4.3.2
+* Add setting for commandTimeout
+
 ### 4.3.1
 * Update Unic.Configuration.* to 3.1.0
 * Update Unic.Bob.Scrambler.* to 2.2.0
