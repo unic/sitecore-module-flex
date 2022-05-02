@@ -1,0 +1,47 @@
+﻿@model Unic.Flex.Model.ViewModels.DatabasePlugExportDownloadViewModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@Model.MetaTitle</title>
+    <style>
+        body {
+            line-height: initial;
+            font-family: 'Open Sans', Arial, sans-serif;
+            font-size: 13px;
+            color: #131313;
+            border: none;
+            outline: 0;
+            height: 100%;
+        }
+        .wrapper {
+            padding: 20px;
+        }
+        img.download {
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+@if (!string.IsNullOrWhiteSpace(Model.DownloadUrl))
+{
+    <div class="wrapper">
+        @if (!string.IsNullOrWhiteSpace(Model.Message))
+        {
+            <p>@Model.Message</p>
+        }
+        <div>
+            <a href="@Model.DownloadUrl">
+                @(!string.IsNullOrWhiteSpace(Model.DownloadLinkText) ? Model.DownloadLinkText : Model.DownloadUrl)
+                <img class="download" src="/-/icon/Network/32x32/download.png"/>
+            </a>
+        </div>
+    </div>
+}
+else if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
+{
+    <div>
+        <p>@Model.ErrorMessage</p></div>
+}
+</body>
+</html>

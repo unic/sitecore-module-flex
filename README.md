@@ -11,6 +11,19 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ## Changelog
 
+### 3.31
+
+* upgrade Unic.Configuration packages to version 3.1.0
+* adapt packages and references to the new Nuget Feeds 
+
+### 3.30.1
+
+*  Get rid of the error when trying to export data for a form that is not existing in database set as `Unic.Feature.Flex.InitialDatabase` (web by default) but existis in master.
+* Improve error handling of exporting data with Content Editor ribbon button by displaying visible error message to the user.
+* Ensure that when database data export is triggered from ribbon button:
+    * the same DB that is used by the command (master) is used by controller 
+    * the translations visible in Sitecore client are in the client's language.
+
 ### 3.30.0
 
 * Fix GetFieldValue for reusable fields

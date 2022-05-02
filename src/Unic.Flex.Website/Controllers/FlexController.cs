@@ -510,14 +510,43 @@
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
             }
 
-            // load the form to get the filename
-            var form = this.contextService.LoadForm(formId.ToString());
+            try
+            {
+                // load the form to get the filename
+                var form = this.contextService.LoadForm(formId.ToString());
 
-            // get the file, delete it and return the stream
-            var data = this.GetFileData(filePath);
-            System.IO.File.Delete(filePath);
-            var title = string.IsNullOrWhiteSpace(form.Title) ? this.dictionaryRepository.GetText("Export Fallback Filename") : form.Title;
-            return this.File(data, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", string.Format("{0}.xlsx", title));
+                // get the file, delete it and return the stream
+                var data = this.GetFileData(filePath);
+                System.IO.File.Delete(filePath);
+                var title = string.IsNullOrWhiteSpace(form?.Title) ? this.dictionaryRepository.GetText("Export Fallback Filename") : form.Title;
+                return this.File(data, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", string.Format("{0}.xlsx", title));
+            }
+            catch (Exception exception)
+            {
+                this.logger.Warn(string.Format("Try for exporting form '{0}' failed.", formId), this, exception);
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
+            }
+        }
+
+        /// <summary>
+        /// Displays the link to download the file with the exported data.
+        /// </summary>
+        /// <param name="downloadUrl">The url to download the file.</param>
+        /// <returns>
+        /// The view with download link.
+        /// </returns>
+        public ActionResult DatabasePlugExportDownload(string downloadUrl)
+        {
+            var model = new DatabasePlugExportDownloadViewModel
+            {
+                DownloadUrl = downloadUrl,
+                DownloadLinkText = this.dictionaryRepository.GetText("Database Plug Export Download Link Text"),
+                Message = this.dictionaryRepository.GetText("Database Plug Export Download Message"),
+                ErrorMessage = this.dictionaryRepository.GetText("Database Plug Export Download Error Message"),
+                MetaTitle = this.dictionaryRepository.GetText("Database Plug Export Download Title")
+            };
+
+            return this.View(model.ViewName, model);
         }
 
         /// <summary>
