@@ -112,7 +112,7 @@
                 if (doubleOptinSavePlug != null & formRecord != null)
                 {
                     var fields = formRecord.Fields;
-                    var email = fields.FirstOrDefault(x => x.ItemId == doubleOptinSavePlug.To.ItemId)?.Value ?? string.Empty;
+                    var email = fields.FirstOrDefault(x => x.ItemId == (doubleOptinSavePlug.To.ReusableComponent ?? doubleOptinSavePlug.To).ItemId)?.Value ?? string.Empty;
                     var redirectLink = doubleOptinSavePlug.RedirectLink;
 
                     if (this.doubleOptinLinkService.ValidateConfirmationLink(optInFormId, optInRecordId, email, optInHash))
