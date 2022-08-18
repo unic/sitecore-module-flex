@@ -11,6 +11,9 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ## Changelog
 
+### 4.3.3
+* Fix Double Optin Save Plug To field setting to handle values from Reusable Field
+
 ### 4.3.2
 * Add setting for commandTimeout
 
