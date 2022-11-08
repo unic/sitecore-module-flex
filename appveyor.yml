@@ -14,6 +14,7 @@ environment:
 install:
   - choco install gitversion.portable -y
   - ps: gitversion /l console /output buildserver
+  - ps: Install-Module -Name Sitecore.Courier
 
   # Setup GIT
   - git config --global user.email %GithubEmail%
@@ -36,6 +37,14 @@ build:
   verbosity: normal
 
 after_build:
+  - ps: |
+      $repositoryRoot = "c:\projects\sitecore-module-flex"
+      $courierOutputTarget = "$repositoryRoot\Flex.update"
+      $pathToRainbowFiles = "$repositoryRoot\serialization\modules"
+      New-CourierPackage -Target $pathToRainbowFiles -Output $courierOutputTarget -SerializationProvider "Rainbow" 
+
+  - cmd: cp .\README.md .\src\Unic.Flex.Website\readme.txt    
+
   - cmd: nuget pack .\src\Unic.Flex.Core\Unic.Flex.Core.csproj -version "%GitVersion_NuGetVersionV2%" -prop "target=%CONFIGURATION%"
   - cmd: appveyor PushArtifact "Unic.Flex.Core.%GitVersion_NuGetVersionV2%.nupkg"
 
