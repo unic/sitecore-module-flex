@@ -1,0 +1,75 @@
+version: '{build}'
+image: Visual Studio 2017
+
+environment:
+  RepoName: sitecore-module-flex
+  NuGetToken:
+    secure: jhODVb/iVko3b4Y9p1tOMP9LeDy6OQEYePDIDT6lfAOgNnJixjJpJBAJj/gtkDLc
+  Artefact_Output_Dir: .\output
+  GithubEmail: team-unic@unic.com
+  GithubUsername: team-unic
+  GithubAccessTokenTeamUnic:
+    secure: BCEthL/NRFeg5eKK9CgmwbySILxWjMUjpvExHC0oGl1jjAT4kMBAohzh9m/xsVDh
+
+install:
+  - choco install gitversion.portable -y
+  - ps: gitversion /l console /output buildserver
+  - ps: Install-Module -Name Sitecore.Courier
+
+  # Setup GIT
+  - git config --global user.email %GithubEmail%
+  - git config --global user.name %GithubUsername%
+  - git config --global push.default simple
+  - git config --global core.autocrlf true
+  - git config --global core.safecrlf false
+  - git config --global credential.helper store
+
+configuration: Release
+  
+assembly_info:
+  patch: false
+  
+before_build:
+  - nuget restore
+  - ps: gitversion /l console /output buildserver /updateAssemblyInfo
+
+build:
+  verbosity: normal
+
+after_build:
+  - ps: |
+      $repositoryRoot = "c:\projects\sitecore-module-flex"
+      $courierOutputTarget = "$repositoryRoot\Flex.update"
+      $pathToRainbowFiles = "$repositoryRoot\serialization\modules"
+      New-CourierPackage -Target $pathToRainbowFiles -Output $courierOutputTarget -SerializationProvider "Rainbow" 
+
+  - cmd: cp .\README.md .\src\Unic.Flex.Website\readme.txt    
+
+  - cmd: nuget pack .\src\Unic.Flex.Core\Unic.Flex.Core.csproj -version "%GitVersion_NuGetVersionV2%" -prop "target=%CONFIGURATION%"
+  - cmd: appveyor PushArtifact "Unic.Flex.Core.%GitVersion_NuGetVersionV2%.nupkg"
+
+  - cmd: nuget pack .\src\Unic.Flex.Implementation\Unic.Flex.Implementation.csproj -version "%GitVersion_NuGetVersionV2%" -prop "target=%CONFIGURATION%"
+  - cmd: appveyor PushArtifact "Unic.Flex.Implementation.%GitVersion_NuGetVersionV2%.nupkg"
+
+  - cmd: nuget pack .\src\Unic.Flex.Model\Unic.Flex.Model.csproj -version "%GitVersion_NuGetVersionV2%" -prop "target=%CONFIGURATION%"
+  - cmd: appveyor PushArtifact "Unic.Flex.Model.%GitVersion_NuGetVersionV2%.nupkg"
+
+  - cmd: nuget pack .\src\Unic.Flex.NinjectIoC\Unic.Flex.NinjectIoC.csproj -version "%GitVersion_NuGetVersionV2%" -prop "target=%CONFIGURATION%"
+  - cmd: appveyor PushArtifact "Unic.Flex.Ninject.%GitVersion_NuGetVersionV2%.nupkg"
+
+  - cmd: nuget pack .\src\Unic.Flex.SimpleInjectorIoC\Unic.Flex.SimpleInjectorIoC.csproj -version "%GitVersion_NuGetVersionV2%" -prop "target=%CONFIGURATION%"
+  - cmd: appveyor PushArtifact "Unic.Flex.SimpleInjector.%GitVersion_NuGetVersionV2%.nupkg"
+
+  - cmd: nuget pack .\src\Unic.Flex.Website\Unic.Flex.Website.csproj -version "%GitVersion_NuGetVersionV2%" -prop "target=%CONFIGURATION%"
+  - cmd: appveyor PushArtifact "Unic.Flex.%GitVersion_NuGetVersionV2%.nupkg"
+   
+deploy:
+  - provider: Environment
+    name: NuGet.org
+    on:
+      branch: main
+
+  - provider: Environment
+    name: NuGet.org
+    on:
+      APPVEYOR_REPO_TAG: true
