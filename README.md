@@ -11,7 +11,7 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ## Changelog
 
-### [Unreleased]
+### 5.0
 
 * Migration to GitHub public repository, AppVeyor and NuGet.org
 * Update Unic.Configuration.* to 4.0.1
