@@ -11,6 +11,12 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ## Changelog
 
+### 5.0
+
+* Migration to GitHub public repository, AppVeyor and NuGet.org
+* Update Unic.Configuration.* to 4.0.1
+* Update Unic.Profiling.* to 3.0.0
+
 ### 4.3.3
 * Fix Double Optin Save Plug To field setting to handle values from Reusable Field
 

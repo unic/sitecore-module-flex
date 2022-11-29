@@ -71,13 +71,13 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Unic.Configuration.Core, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Unic.Configuration.Core, Version=4.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Unic.Configuration.Core.3.1.0\lib\net45\Unic.Configuration.Core.dll</HintPath>
+      <HintPath>..\..\packages\Unic.Configuration.Core.4.0.1\lib\net45\Unic.Configuration.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Unic.Profiling, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Unic.Profiling, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Unic.Profiling.1.1.0\lib\net40\Unic.Profiling.dll</HintPath>
+      <HintPath>..\..\packages\Unic.Profiling.2.0.0\lib\net40\Unic.Profiling.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
