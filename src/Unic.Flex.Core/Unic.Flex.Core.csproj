@@ -73,18 +73,6 @@
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Analytics, Version=13.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sitecore.Analytics.9.2.0\lib\net471\Sitecore.Analytics.dll</HintPath>
-    </Reference>
-    <Reference Include="Sitecore.Analytics.Core, Version=13.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sitecore.Analytics.Core.9.2.0\lib\net471\Sitecore.Analytics.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Sitecore.Analytics.Model, Version=13.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sitecore.Analytics.Model.9.2.0\lib\net471\Sitecore.Analytics.Model.dll</HintPath>
-    </Reference>
-    <Reference Include="Sitecore.Analytics.XConnect, Version=13.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sitecore.Analytics.XConnect.9.2.0\lib\net471\Sitecore.Analytics.XConnect.dll</HintPath>
-    </Reference>
     <Reference Include="Sitecore.Kernel, Version=13.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Sitecore.Kernel.9.2.0\lib\net471\Sitecore.Kernel.dll</HintPath>
     </Reference>
@@ -143,8 +131,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Agents\PlugExecution.cs" />
-    <Compile Include="Analytics\AnalyticsService.cs" />
-    <Compile Include="Analytics\IAnalyticsService.cs" />
     <Compile Include="Attributes\ValidateFormHandlerAttribute.cs" />
     <Compile Include="Authorization\AdministratorOnly.cs" />
     <Compile Include="Commands\AsyncPlugExecutionCommand.cs" />
@@ -181,8 +167,6 @@
     <Compile Include="Mapping\Ordering\SitecoreSortOrder.cs" />
     <Compile Include="Mapping\UserDataRepository.cs" />
     <Compile Include="Mapping\ViewMapper.cs" />
-    <Compile Include="MarketingAutomation\IMarketingAutomationContactService.cs" />
-    <Compile Include="MarketingAutomation\MarketingAutomationContactService.cs" />
     <Compile Include="ModelBinding\DateTimeModelBinder.cs" />
     <Compile Include="ModelBinding\DecimalModelBinder.cs" />
     <Compile Include="ModelBinding\FieldModelBinder.cs" />
@@ -210,10 +194,8 @@
     <Compile Include="Rules\Conditions\FormCondition.cs" />
     <Compile Include="Rules\Conditions\InstanceCondition.cs" />
     <Compile Include="Utilities\ItemHelpers.cs" />
-    <Compile Include="Utilities\ITrackerWrapper.cs" />
     <Compile Include="Utilities\MappingHelper.cs" />
     <Compile Include="Utilities\SecurityUtil.cs" />
-    <Compile Include="Utilities\TrackerWrapper.cs" />
     <Compile Include="Validators\FieldValidators\FormFieldValidator.cs" />
     <Compile Include="Validators\FieldValidators\RegularExpressionValidator.cs" />
     <Compile Include="Utilities\TypeHelper.cs" />
