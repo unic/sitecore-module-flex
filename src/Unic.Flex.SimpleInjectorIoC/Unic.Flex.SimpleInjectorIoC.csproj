@@ -70,15 +70,14 @@
       <HintPath>..\..\packages\MvcMailer.4.5\lib\45\Mvc.Mailer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SimpleInjector, Version=3.1.2.0, Culture=neutral, PublicKeyToken=984cb50dea722e99">
-      <HintPath>..\..\packages\SimpleInjector.3.1.2\lib\net45\SimpleInjector.dll</HintPath>
+    <Reference Include="SimpleInjector, Version=4.2.0.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SimpleInjector.4.2.0\lib\net45\SimpleInjector.dll</HintPath>
     </Reference>
-    <Reference Include="SimpleInjector.Extensions.LifetimeScoping, Version=3.1.2.0, Culture=neutral, PublicKeyToken=984cb50dea722e99">
-      <HintPath>..\..\packages\SimpleInjector.Extensions.LifetimeScoping.3.1.2\lib\net40-client\SimpleInjector.Extensions.LifetimeScoping.dll</HintPath>
+    <Reference Include="SimpleInjector.Extensions.LifetimeScoping, Version=4.0.0.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SimpleInjector.Extensions.LifetimeScoping.4.0.0\lib\net40\SimpleInjector.Extensions.LifetimeScoping.dll</HintPath>
     </Reference>
-    <Reference Include="SimpleInjector.Integration.Web, Version=3.1.2.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SimpleInjector.Integration.Web.3.1.2\lib\net40\SimpleInjector.Integration.Web.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="SimpleInjector.Integration.Web, Version=4.2.0.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SimpleInjector.Integration.Web.4.2.0\lib\net40\SimpleInjector.Integration.Web.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.Kernel, Version=13.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Sitecore.Kernel.9.2.0\lib\net471\Sitecore.Kernel.dll</HintPath>
@@ -144,9 +143,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimpleInjectorContainer.cs" />
     <Compile Include="Verify.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Config\Include\01_modules\Unic.Flex.SimpleInjector.config">
