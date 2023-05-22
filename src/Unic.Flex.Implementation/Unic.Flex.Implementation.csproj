@@ -152,7 +152,6 @@
     <Compile Include="Plugs\LoadPlugs\QueryStringLoader.cs" />
     <Compile Include="Plugs\LoadPlugs\RulesExecutionLoadPlug.cs" />
     <Compile Include="Plugs\SavePlugs\DoubleOptinSavePlug.cs" />
-    <Compile Include="Plugs\SavePlugs\RegisterGoal.cs" />
     <Compile Include="Plugs\SavePlugs\RulesExecutionSavePlug.cs" />
     <Compile Include="Plugs\SavePlugs\SaveToDatabase.cs" />
     <Compile Include="Plugs\SavePlugs\SendEmailAsync.cs" />
