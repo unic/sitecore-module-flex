@@ -54,8 +54,8 @@
     <Reference Include="nunit.framework">
       <HintPath>..\..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Kernel, Version=13.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sitecore.Kernel.9.2.0\lib\net471\Sitecore.Kernel.dll</HintPath>
+    <Reference Include="Sitecore.Kernel, Version=18.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sitecore.Kernel.10.3.0\lib\net48\Sitecore.Kernel.dll</HintPath>
     </Reference>
     <Reference Include="sysglobl" />
     <Reference Include="System" />
