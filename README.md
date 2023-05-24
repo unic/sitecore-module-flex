@@ -11,6 +11,12 @@ Sitecore Authors and Marketers to create amazing web form experiences.
 
 ## Changelog
 
+### 6.0
+
+* Upgrade Sitecore from 9.3 to 10.3
+* Remove XP-only features to gain XM compatibility
+* Improve *.config files for easier updates in non-Bob folder structure
+
 ### 5.0
 
 * Migration to GitHub public repository, AppVeyor and NuGet.org
