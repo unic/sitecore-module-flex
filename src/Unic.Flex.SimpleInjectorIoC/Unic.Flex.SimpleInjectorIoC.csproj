@@ -128,10 +128,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Config\Include\20_author\Unic.Feature.Flex.Config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="App_Config\Include\20_delivery\Unic.Feature.Flex.Config">
+    <Content Include="App_Config\Include\01_modules\Unic.Feature.Flex.Config">
       <SubType>Designer</SubType>
     </Content>
     <None Include="packages.config" />

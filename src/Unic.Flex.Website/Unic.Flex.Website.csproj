@@ -152,8 +152,8 @@
     <Content Include="assets\flex\css\styling.css.min.map" />
     <Content Include="assets\flex\css\theme.css.map" />
     <Content Include="assets\flex\css\theme.css.min.map" />
-    <Content Include="App_Config\Include\01_modules_author\Unic.Flex.config" />
-    <Content Include="App_Config\Include\01_modules_author\Unic.Configuration.config" />
+    <Content Include="App_Config\Include\01_modules\Unic.Flex.Serialization.config" />
+    <Content Include="App_Config\Include\01_modules\Unic.Configuration.Serialization.config" />
     <Content Include="App_Config\Include\01_modules\Unic.Configuration.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
