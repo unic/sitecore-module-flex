@@ -1,12 +1,10 @@
 ﻿namespace Unic.Flex.NinjectIoC
 {
-    using Core.MarketingAutomation;
     using Glass.Mapper.Sc;
     using Implementation.Services;
     using Ninject.Modules;
     using Ninject.Web.Common;
     using Unic.Configuration.Core;
-    using Unic.Flex.Core.Analytics;
     using Unic.Flex.Core.Context;
     using Unic.Flex.Core.Database;
     using Unic.Flex.Core.Definitions;
@@ -38,7 +36,6 @@
             this.Bind<IPresentationService>().To<PresentationService>();
             this.Bind<IPlugsService>().To<PlugsService>();
             this.Bind<ITaskService>().To<TaskService>();
-            this.Bind<IAnalyticsService>().To<AnalyticsService>();
             this.Bind<ICultureService>().To<CultureService>();
 
             // data access
@@ -74,9 +71,6 @@
             this.Bind<ISaveToDatabaseService>().To<SaveToDatabaseService>();
             this.Bind<IDoubleOptinService>().To<DoubleOptinService>();
             this.Bind<IDoubleOptinLinkService>().To<DoubleOptinLinkService>();
-            
-            // Marketing Automation
-            this.Bind<IMarketingAutomationContactService, MarketingAutomationContactService>();
 
             // third party classes
             this.Bind<IConfigurationManager>().To<ConfigurationManager>().InSingletonScope();

@@ -11,7 +11,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Unic.Flex.Core</RootNamespace>
     <AssemblyName>Unic.Flex.Core</AssemblyName>
-    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -38,8 +38,8 @@
     <Reference Include="BouncyCastle.Crypto, Version=1.8.5.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Portable.BouncyCastle.1.8.5\lib\net40\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
-    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Castle.Core.4.2.1\lib\net45\Castle.Core.dll</HintPath>
+    <Reference Include="Castle.Core, Version=5.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Castle.Core.5.1.1\lib\net462\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
@@ -47,11 +47,11 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="Glass.Mapper, Version=5.5.28.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Glass.Mapper.Sc.92.Core.5.5.28\lib\net471\Glass.Mapper.dll</HintPath>
+    <Reference Include="Glass.Mapper, Version=5.8.181.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Glass.Mapper.Sc.103.Core.5.8.181\lib\net48\Glass.Mapper.dll</HintPath>
     </Reference>
-    <Reference Include="Glass.Mapper.Sc, Version=5.5.28.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Glass.Mapper.Sc.92.Core.5.5.28\lib\net471\Glass.Mapper.Sc.dll</HintPath>
+    <Reference Include="Glass.Mapper.Sc, Version=5.8.181.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Glass.Mapper.Sc.103.Core.5.8.181\lib\net48\Glass.Mapper.Sc.dll</HintPath>
     </Reference>
     <Reference Include="MailKit, Version=2.5.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
       <HintPath>..\..\packages\MailKit.2.6.0\lib\net47\MailKit.dll</HintPath>
@@ -70,26 +70,14 @@
       <HintPath>..\..\packages\MvcMailer.4.5\lib\45\Mvc.Mailer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Analytics, Version=13.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sitecore.Analytics.9.2.0\lib\net471\Sitecore.Analytics.dll</HintPath>
+    <Reference Include="Sitecore.Kernel, Version=18.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sitecore.Kernel.10.3.0\lib\net48\Sitecore.Kernel.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Analytics.Core, Version=13.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sitecore.Analytics.Core.9.2.0\lib\net471\Sitecore.Analytics.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Sitecore.Analytics.Model, Version=13.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sitecore.Analytics.Model.9.2.0\lib\net471\Sitecore.Analytics.Model.dll</HintPath>
-    </Reference>
-    <Reference Include="Sitecore.Analytics.XConnect, Version=13.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sitecore.Analytics.XConnect.9.2.0\lib\net471\Sitecore.Analytics.XConnect.dll</HintPath>
-    </Reference>
-    <Reference Include="Sitecore.Kernel, Version=13.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sitecore.Kernel.9.2.0\lib\net471\Sitecore.Kernel.dll</HintPath>
-    </Reference>
-    <Reference Include="Sitecore.Mvc, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sitecore.Mvc.9.2.0\lib\net471\Sitecore.Mvc.dll</HintPath>
+    <Reference Include="Sitecore.Mvc, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sitecore.Mvc.10.3.0\lib\net48\Sitecore.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="sysglobl" />
     <Reference Include="System" />
@@ -143,8 +131,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Agents\PlugExecution.cs" />
-    <Compile Include="Analytics\AnalyticsService.cs" />
-    <Compile Include="Analytics\IAnalyticsService.cs" />
     <Compile Include="Attributes\ValidateFormHandlerAttribute.cs" />
     <Compile Include="Authorization\AdministratorOnly.cs" />
     <Compile Include="Commands\AsyncPlugExecutionCommand.cs" />
@@ -181,8 +167,6 @@
     <Compile Include="Mapping\Ordering\SitecoreSortOrder.cs" />
     <Compile Include="Mapping\UserDataRepository.cs" />
     <Compile Include="Mapping\ViewMapper.cs" />
-    <Compile Include="MarketingAutomation\IMarketingAutomationContactService.cs" />
-    <Compile Include="MarketingAutomation\MarketingAutomationContactService.cs" />
     <Compile Include="ModelBinding\DateTimeModelBinder.cs" />
     <Compile Include="ModelBinding\DecimalModelBinder.cs" />
     <Compile Include="ModelBinding\FieldModelBinder.cs" />
@@ -210,10 +194,8 @@
     <Compile Include="Rules\Conditions\FormCondition.cs" />
     <Compile Include="Rules\Conditions\InstanceCondition.cs" />
     <Compile Include="Utilities\ItemHelpers.cs" />
-    <Compile Include="Utilities\ITrackerWrapper.cs" />
     <Compile Include="Utilities\MappingHelper.cs" />
     <Compile Include="Utilities\SecurityUtil.cs" />
-    <Compile Include="Utilities\TrackerWrapper.cs" />
     <Compile Include="Validators\FieldValidators\FormFieldValidator.cs" />
     <Compile Include="Validators\FieldValidators\RegularExpressionValidator.cs" />
     <Compile Include="Utilities\TypeHelper.cs" />

@@ -11,7 +11,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Unic.Flex.Implementation</RootNamespace>
     <AssemblyName>Unic.Flex.Implementation</AssemblyName>
-    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -38,17 +38,17 @@
     <Reference Include="BouncyCastle.Crypto, Version=1.8.5.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
       <HintPath>..\..\packages\BouncyCastle.1.8.5\lib\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
-    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Castle.Core.4.2.1\lib\net45\Castle.Core.dll</HintPath>
+    <Reference Include="Castle.Core, Version=5.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Castle.Core.5.1.1\lib\net462\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="EPPlus">
       <HintPath>..\..\packages\EPPlus.3.1.3.3\lib\net35\EPPlus.dll</HintPath>
     </Reference>
-    <Reference Include="Glass.Mapper, Version=5.5.28.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Glass.Mapper.Sc.92.Core.5.5.28\lib\net471\Glass.Mapper.dll</HintPath>
+    <Reference Include="Glass.Mapper, Version=5.8.181.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Glass.Mapper.Sc.103.Core.5.8.181\lib\net48\Glass.Mapper.dll</HintPath>
     </Reference>
-    <Reference Include="Glass.Mapper.Sc, Version=5.5.28.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Glass.Mapper.Sc.92.Core.5.5.28\lib\net471\Glass.Mapper.Sc.dll</HintPath>
+    <Reference Include="Glass.Mapper.Sc, Version=5.8.181.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Glass.Mapper.Sc.103.Core.5.8.181\lib\net48\Glass.Mapper.Sc.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
@@ -63,20 +63,11 @@
     <Reference Include="Mvc.Mailer">
       <HintPath>..\..\packages\MvcMailer.4.5\lib\45\Mvc.Mailer.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Analytics, Version=13.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sitecore.Analytics.9.2.0\lib\net471\Sitecore.Analytics.dll</HintPath>
-    </Reference>
-    <Reference Include="Sitecore.Analytics.Model, Version=13.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sitecore.Analytics.Model.9.2.0\lib\net471\Sitecore.Analytics.Model.dll</HintPath>
-    </Reference>
-    <Reference Include="Sitecore.Analytics.XConnect, Version=13.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sitecore.Analytics.XConnect.9.2.0\lib\net471\Sitecore.Analytics.XConnect.dll</HintPath>
-    </Reference>
-    <Reference Include="Sitecore.Kernel, Version=13.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sitecore.Kernel.9.2.0\lib\net471\Sitecore.Kernel.dll</HintPath>
+    <Reference Include="Sitecore.Kernel, Version=18.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sitecore.Kernel.10.3.0\lib\net48\Sitecore.Kernel.dll</HintPath>
     </Reference>
     <Reference Include="sysglobl" />
     <Reference Include="System" />
@@ -161,7 +152,6 @@
     <Compile Include="Plugs\LoadPlugs\QueryStringLoader.cs" />
     <Compile Include="Plugs\LoadPlugs\RulesExecutionLoadPlug.cs" />
     <Compile Include="Plugs\SavePlugs\DoubleOptinSavePlug.cs" />
-    <Compile Include="Plugs\SavePlugs\RegisterGoal.cs" />
     <Compile Include="Plugs\SavePlugs\RulesExecutionSavePlug.cs" />
     <Compile Include="Plugs\SavePlugs\SaveToDatabase.cs" />
     <Compile Include="Plugs\SavePlugs\SendEmailAsync.cs" />
@@ -169,18 +159,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataProviders\ChildrenProvider.cs" />
     <Compile Include="Rules\LoadRules\BaseFlexLoadAction.cs" />
-    <Compile Include="Rules\LoadRules\LoadContactEmailAddressAction.cs" />
-    <Compile Include="Rules\LoadRules\LoadContactIdAction.cs" />
-    <Compile Include="Rules\LoadRules\LoadFromContactFieldAction.cs" />
-    <Compile Include="Rules\LoadRules\LoadSimpleContactFieldAction.cs" />
     <Compile Include="Rules\SaveRules\BaseFlexSaveAction.cs" />
     <Compile Include="Rules\SaveRules\FieldValueCondition.cs" />
     <Compile Include="Rules\SaveRules\FieldValueIsEmptyCondition.cs" />
-    <Compile Include="Rules\SaveRules\SaveContactEmailAction.cs" />
-    <Compile Include="Rules\SaveRules\IdentifyContactAction.cs" />
-    <Compile Include="Rules\SaveRules\SaveLanguageAction.cs" />
-    <Compile Include="Rules\SaveRules\SaveContactFieldAction.cs" />
-    <Compile Include="Rules\SaveRules\SaveSimpleContactFieldAction.cs" />
     <Compile Include="Services\DoubleOptinLinkService.cs" />
     <Compile Include="Services\DoubleOptinService.cs" />
     <Compile Include="Services\IDoubleOptinLinkService.cs" />
