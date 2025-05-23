@@ -5,6 +5,7 @@
     using System.Web;
     using SimpleInjector.Extensions.LifetimeScoping;
     using SimpleInjector.Integration.Web;
+    using SimpleInjector.Lifestyles;
     using Unic.Flex.Core.DependencyInjection;
 
     /// <summary>
@@ -88,7 +89,7 @@
 
         public object BeginScope()
         {
-            return this.container.BeginLifetimeScope();
+            return ThreadScopedLifestyle.BeginScope(this.container);
         }
 
         public void EndScope(object scope)
@@ -110,9 +111,9 @@
             return standardContainer;
         }
         
-        private static ScopedLifestyle GetHybridLifestyle()
+static ScopedLifestyle GetHybridLifestyle()
         {
-            return Lifestyle.CreateHybrid(IsInWebContext, new WebRequestLifestyle(), new LifetimeScopeLifestyle());
+            return Lifestyle.CreateHybrid(IsInWebContext, new WebRequestLifestyle(), new ThreadScopedLifestyle());
         }
 
         private static bool IsInWebContext()
