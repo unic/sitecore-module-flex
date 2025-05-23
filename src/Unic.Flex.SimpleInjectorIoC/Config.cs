@@ -1,7 +1,5 @@
 ﻿namespace Unic.Flex.SimpleInjectorIoC
 {
-    using Core.MarketingAutomation;
-    using Core.Utilities;
     using Glass.Mapper.Sc;
     using Glass.Mapper.Sc.Web;
     using Glass.Mapper.Sc.Web.Mvc;
@@ -9,7 +7,6 @@
     using SimpleInjector;
     using SimpleInjector.Diagnostics;
     using Unic.Configuration.Core;
-    using Unic.Flex.Core.Analytics;
     using Unic.Flex.Core.Context;
     using Unic.Flex.Core.Database;
     using Unic.Flex.Core.Definitions;
@@ -42,7 +39,6 @@
             container.Register<IPresentationService, PresentationService>();
             container.Register<IPlugsService, PlugsService>();
             container.Register<ITaskService, TaskService>();
-            container.Register<IAnalyticsService, AnalyticsService>();
             container.Register<ICultureService, CultureService>();
             container.Register<IAsyncPlugExecutionService, AsyncPlugExecutionService>();
             container.Register<IServerOriginService, ServerOriginService>();
@@ -73,7 +69,6 @@
 
             // helpers
             container.Register<IUrlService, UrlService>(Lifestyle.Singleton);
-            container.Register<ITrackerWrapper, TrackerWrapper>();
 
             // implementation classes
             container.Register<ISavePlugMailer, SavePlugMailer>();
@@ -81,9 +76,6 @@
             container.Register<ISaveToDatabaseService, SaveToDatabaseService>();
             container.Register<IDoubleOptinService, DoubleOptinService>();
             container.Register<IDoubleOptinLinkService, DoubleOptinLinkService>();
-
-            // Marketing Automation
-            container.Register<IMarketingAutomationContactService, MarketingAutomationContactService>();
 
             // third party classes
             container.Register<IConfigurationManager>(() => new ConfigurationManager(), Lifestyle.Singleton);
