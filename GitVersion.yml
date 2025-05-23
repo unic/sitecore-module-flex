@@ -2,9 +2,9 @@ mode: ContinuousDeployment
 branches:  
    master:  
       regex: ^master$|^main$
-   sc10xm:
-      regex: ^feature/sitecore-10-xm$
+   sc104xm:
+      regex: ^feature/sitecore-104-xm$
       mode: ContinuousDelivery
       increment: Major
-      tag: "sc10xm"
+      tag: "sc104xm"
       source-branches: []
