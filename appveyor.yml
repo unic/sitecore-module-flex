@@ -4,7 +4,7 @@ image: Visual Studio 2017
 environment:
   RepoName: sitecore-module-flex
   NuGetToken:
-    secure: uO0ZADLtpHQ0O4iKTqZMLKYE8ECAxH3FInmrvu5MTIh8xjYPQPM2AF1TAnrHggGG
+    secure: PMKpaiVxEO5nfkHAueKnLhdrT0okNQ4hnP5RKVciBcgIZ6xyEtxV2i9qMo5YZyiw
   Artefact_Output_Dir: .\output
   GithubEmail: team-unic@unic.com
   GithubUsername: team-unic
